@@ -1,0 +1,451 @@
+---
+layout: documentation
+section: doc
+---
+ifdef::backend-html5[]
+:doctitle: 构建规模
+:notitle:
+:description:
+:author: R. Tyler Croy
+:email: jenkinsci-users@googlegroups.com
+:imagesdir: /doc/book/resources/
+:sectanchors:
+:toc: left
+endif::[]
+
+== 构建规模
+
+=== 介绍
+
+随着组织的成熟，从持续交付的角度来看，其Jenkins的要求也会同样增长。 这种增长常常反映在Jenkins master的架构中，无论是“垂直”还是“横向”增长。
+
+*Vertical growth* 是通过更多配置作业或编排更频繁的构建来增加主机的负载。 这也可能意味着更多的团队依赖于这一主机。
+
+*Horizontal* 增长是为了适应新的团队或项目而在组织中创建额外的主机，而不是将这些东西添加到现有的单个主机。
+
+每种扩展Jenkins的方法都存在潜在的缺陷，但仔细规划后，可以避免或管理其中的很多方法。 在选择扩展组织的Jenkins实例的策略时，需要考虑以下几点:
+
+* **Do you have the resources to run a distributed build system?**如果可能的话，建议设置专门的构建节点，这些节点与Jenkins主节点分开运行。 这将为主节点腾出资源来提高其调度性能，并防止构建能够修改主节点_$JENKINS_HOME_中的任何潜在敏感数据。 这也使得单个主机可以进行更大的垂直扩展，如果该主机既是作业构建器又是调度器
+* **Do you have the resources to maintain multiple masters?**Jenkins主机将需要定期插件更新，半月核心升级以及配置和构建历史的定期备份。 必须为每个主设备手动配置安全设置和角色。 被击沉的主机将需要人工重启Jenkins主机人以及任何因停电而丧生的工作。
+* **How mission critical are each team's projects?**考虑将最重要的项目分离出来，以便将主机分开，以最大限度地减少一位被击倒的主机的影响。 还可以考虑将任何关键任务项目流水线转换为流水线作业，这些流水线作业能够承受主代理连接中断。
+* **How important is a fast start-up time for your Jenkins instance?**主服务器配置的作业越多，升级或崩溃后加载Jenkins的时间就越长。 使用文件夹和视图来组织作业可以限制启动时需要渲染的数量。
+
+=== 分布式构建体系结构
+
+Jenkins主机可以独立运作，管理构建环境并使用自己的执行者和资源执行构建。 如果坚持这种“独立”配置，当项目的数量或负载增加时，很可能会耗尽资源。
+
+要恢复并运行您的Jenkins基础架构，您需要增强主控（增加内存，CPU数量等）。 维护和升级机器所需的时间，主机以及所有构建环境将会停止，作业将会停止，整个Jenkins基础设施将无法使用。
+
+在这种情况下规模Jenkins将是非常痛苦的，并会引入很多“闲置”期间，分配给您的构建环境的所有资源都是无用的。
+
+此外，执行主机的执行者的工作会引入一个“安全”问题：Jenkins用来运行作业的“jenkins”用户将拥有对主机上所有Jenkins资源的完全权限。 这意味着，通过简单的脚本，恶意用户可以直接访问私人信息的完整性，因此无法保证隐私。
+
+出于所有这些原因，Jenkins支持“主/代理”模式，其中建设项目的工作量被委托给多个代理。
+
+代理是一种设置为从主服务器卸载项目的机器。 构建计划的方法取决于给每个项目的配置。 例如，某些项目可能被配置为“限制运行此项目的地点”，这将项目与特定代理或一组标记代理关联起来。 其他忽略此配置的项目将从Jenkins的可用池中选择代理。
+
+在分布式构建环境中，Jenkins主机将使用其资源来处理HTTP请求并管理构建环境。 构建的实际执行将委派给代理。 通过这种配置，可以横向扩展体系结构，从而允许单个Jenkins安装来承载大量项目并构建环境。
+
+==== 主/代理通信协议
+
+为了让机器被识别为代理，它需要运行特定的代理程序来与主机建立双向通信。
+
+有不同的方式可以在主控和代理之间建立连接:
+
+////
+TODO: The terminology used in these two bullet points needs to be sychronised
+with the actual Jenkins interface terminology
+////
+
+* *The SSH connector*: 配置代理以使用SSH连接器是建立主代理通信的首选和最稳定的方式。 Jenkins有一个内置的SSH客户端实现。 这意味着Jenkins master可以轻松地与安装了SSH服务器的任何计算机进行通信。 唯一的要求是主设备的公钥是代理程序上授权密钥组的一部分。 一旦为新代理定义了主机和SSH密钥，Jenkins将建立与机器的连接并引导代理进程。
+
+////
+TODO: This whole bullet point/section needs to be rewritten to be more
+clearly structured
+////
+* *The JNLP-TCP connector*: 在这种情况下，通过Java Web Start（JNLP）启动代理来建立通信。 有了这个连接器，Java Web Start程序必须以两种不同的方式在机器中启动:
+
+ . Manually: 通过导航到代理浏览器中的Jenkins主URL。 一旦Java Web Start图标被点击，代理将在机器上启动。 这种方法的缺点是，代理不能由Jenkins主机集中管理，代理的每个/停止/开始/更新需要在代理的机器上以1.611以上的版本Jenkins手动执行。 当主设备无法实例化与客户端的连接时，这种方法非常方便，例如：运行在防火墙网络内的代理连接到位于防火墙外的主设备。
+
+ . As a service: 首先，您需要使用上述方法手动启动代理。 手动启动后, _jenkins-slave.exe_ 和
+   _jenkins-slave.xml_ 将在从机的工作目录中创建。 现在转到命令行执行以下命令:
+
+////
+TODO: This section on windows JNLP connection is not being indented or grouped
+properly
+////
+[source, width="300"]
+----
+sc.exe create "<serviceKey>" start= auto binPath= "<path to jenkins-slave.exe>" DisplayName= "<service display name>"
+----
+
+_<serviceKey>_ 是定义此代理服务的注册表键的名称，<service display name>是将在Service Manager界面中标识服务的标签。
+
+为确保自动重新启动，您需要下载比v 2.37更新的代理jar，并将其复制到机器上的永久位置。
+_.jar_ 文件可以在这里找到:
+
+[source, width="350"]
+----
+http://<your-jenkins-host>/jnlpJars/slave.jar
+----
+
+如果运行比1.559更新的Jenkins版本, _.jar_ 将在每次连接到主设备时保持最新状态。
+
+ * *The JNLP-HTTP connector*:这种方法与JNLP-TCP Java Web Start方法非常相似，在这种情况下的区别在于代理程序是以无头执行的方式执行的，并且可以通过HTTP隧道连接。 确切的命令可以在您的JNLP 代理的配置页面上找到:
+
+[[jnlp_agent]]
+.JNLP agent launch command
+image::jnlp-slave.png[scaledwidth=90%]
+
+这种方法在Unix上作为守护进程执行很方便。
+
+* *Custom-script*:如果其他解决方案不能为特定用例提供足够的灵活性，则还可以创建自定义脚本来初始化主服务器和代理之间的通信。 唯一的要求是该脚本将Java程序作为代理上的_java -jar slave.jar_ 运行。
+
+Windows代理设置可以遵循标准的SSH和JNLP方法，也可以使用更多Windows特定的配置方法。 Windows代理具有以下选项:
+
+* *SSH-connector approach with Putty*
+* *SSH-connector approach with Cygwin and OpenSSH*:
+  http://wiki.jenkins-ci.org/display/JENKINS/SSH+slaves+and+Cygwin[This] 是最容易设置和推荐的方法。
+* *Remote management facilities (WMI + DCOM)*:通过这种利用 http://wiki.jenkins-ci.org/display/JENKINS/Windows+Slaves+Plugin[Windows Slave 插件]的方法，Jenkins主机将在Windows从机上注册slave代理，创建Windows服务。 Jenkins主站可以控制从站，发出停止/重新启动/更新。 然而，这很难建立并且不被推荐。
+* *JNLP-connector approach*: 
+  http://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+as+a+Windows+service[该方法]
+   可以手动将从站注册为Windows服务，但无法从主站集中管理它。 除非运行Jenkins 1.611或更新版本，否则需要在从属机器上手动执行每个停止/启动/更新从属代理。
+
+=== 创建可替代的slaves
+
+==== 配置从站上的工具位置
+
+Jenkins全局配置页面允许您指定构建期间所需的工具（即Ant，Maven，Java等）。
+
+定义一个工具时，可以通过给出程序预期位于从机的目录来创建一个指向现有安装的指针。另一种选择是让Jenkins负责在给定位置安装特定版本。也可以为同一个工具指定多个安装，因为不同的作业可能需要不同版本的相同工具。
+
+预编译的“Default”选项调用从机上已安装并存在于机器PATH中的任何内容，但如果该工具尚未安装并且其位置未添加到PATH系统变量中，则此选项将返回失败。
+
+避免这种失败的一个最佳做法是假定目标从站没有安装必要的工具，并将工具的安装作为构建过程的一部分来配置作业。
+
+
+==== 定义一个策略来共享从属机器
+
+如前所述，slaves应该可以互换和标准化，以使其可共享并优化资源使用。slaves不应该为一组特定的工作而定制，也不应该为特定的团队定制。
+
+最近Jenkins不仅在CI中而且在CD中越来越受欢迎，这意味着它必须编排涉及不同团队和技术概况的工作和流水线：开发人员，QA人员和Dev-Ops人员。
+
+在这种情况下，创建定制和专用的slaves可能是有意义的：不同的团队通常需要不同的工具（即Ops团队的Puppet / Chef），团队的凭证通常存储在slaves中以确保他们的保护和隐私。
+
+为了确保仅在单个/一组从站上执行作业（即仅在OSX从站上构建iOS），可以通过在作业配置页面中指定从站的标签将作业绑定到从站。请注意，限制必须在每个要捆绑的单个作业中进行复制，并且从属设备不会受到其他团队的使用保护。
+
+==== 设置云slaves
+
+云构建资源可以成为一个案例的解决方案，因为有必要在内部维护合理小型的从属集群，同时在需要时仍提供新的构建资源。
+
+特别是可以将作业的执行卸载到云中的从属设备上，这要归功于临时插件，这些插件将处理创建云资源以及在不再需要时销毁云资源:
+
+* https://wiki.jenkins-ci.org/display/JENKINS/Amazon+EC2+Plugin[EC2 Plugin]
+  让Jenkins使用AWS EC2实例作为云构建资源，当其用完内部从属服务器时。 EC2从站将在AWS网络内动态创建，并在不需要时取消配置。
+* https://wiki.jenkins-ci.org/display/JENKINS/JClouds+Plugin[JCloud plugin]
+  创建了在JCloud库支持的任何云提供商上执行作业的可能性
+
+=== 正确尺寸的 Jenkins 主机
+
+==== 主机分区策略
+
+为你的组织设计最好的Jenkins架构取决于你如何对你的项目开发进行分层，并且可能受到现有Jenkins插件限制的限制。
+
+主机分层发展的三种最常见的形式是:
+
+1. **By environment (QA, DEV, etc)** - 通过这个策略，Jenkins主机根据他们部署到的环境来填充作业。
+
+* **Pros**
+** 可以针对特定环境的需求定制主插件上的插件
+** 只能将使用该环境的用户轻松限制对环境的访问
+
+* **Cons**
+** 减少创建流水线的能力
+** 没有办法看到主机的完整流程
+** 主站停电将阻止所有产品的流动
+
+2. **By org chart** - 这种策略是当主机被分配到组织内的部门时。
+
+* **Pros**
+** 可以根据团队的需求量身定制主机的插件
+** 只能将该部门项目的访问权限限制在该部门内的用户
+
+* **Cons**
+** 降低创建跨部门流水线的能力
+** 没有办法看到主机的完整流程
+** 主站停电将阻止所有产品的流动
+
+3. **Group masters by product lines** - 当一组产品在每个组中仅有关键产品的时候，会得到自己的Jenkins主机。
+
+* **Pros**
+** 整个流程可以可视化，因为所有步骤都在一个主控上减少一个主人的停机时间对仅影响一小部分产品的影响
+** 减少一个主机的停机时间对仅影响一小部分产品的影响
+
+* **Cons**
+** 必须设计限制权限的策略，以防止所有用户访问主服务器上的所有项目。
+
+在评估这些策略时，重要的是要权衡它们与引言中讨论的垂直和水平规模陷阱。
+
+另外需要注意的是，作业数量较少意味着故障恢复较快，更重要的是平均故障间隔时间较长。
+
+==== 计算需要多少工作，主机和执行者
+
+对Jenkins安装进行必要配置的最佳可能性估算允许组织从Jenkins的右手开始，并减少实现最佳安装所需的配置迭代次数。 Jenkins架构师面临的挑战是Jenkins主机的垂直规模的真正限制受到主控硬件的限制，以及难以量化的部分，比如将在构建节点上运行的构建和测试类型。
+
+根据构建需求和服务的开发人员数量，可以大致估算需要多少主机，工作和执行者。这些公式假设Jenkins 主机将拥有5个核心，每100个职位有1个核心（总共500个职位/主数据），并且这些团队将被划分为40个组。
+
+如果您有关于您的计划主数据的实际可用核数的信息，则可以相应地对“主机数”方程进行调整。
+
+当配置作业的数量已知时，*estimating the number of masters and executors needed*的等式如下:
+
+[source, width="350"]
+----
+masters = number of jobs/500
+executors = number of jobs * 0.03
+----
+
+基于开发人员数量的组织*estimating the maximum number of jobs, masters, and executors needed*的等式如下:
+
+[source, width="350"]
+----
+number of jobs = number of developers * 3.333
+number of masters = number of jobs/500
+number of executors = number of jobs * 0.03
+----
+
+这些数字将为Jenkins安装提供良好的起点，但根据安装运行的版本和测试类型，可能需要根据实际安装大小进行调整。
+
+==== 主机可扩展存储
+
+还建议选择主版本，以考虑未来主版本_$JENKINS_HOME_中存储的插件或作业数量的增长情况。 存储价格低廉，Jenkins不需要快速访问磁盘就能运行，因此，为您的主设备投资更大型的设备比使用更快的设备更有优势。
+
+Jenkins 主机的不同操作系统也允许不同的可扩展存储方法:
+
+* *Spanned Volumes on Windows* -在Windows等NTFS设备上，您可以创建一个跨区卷，允许您将新卷添加到现有卷上，但让它们表现为单个卷。 为此，您必须确保Jenkins安装在单独的分区上，以便稍后将其转换为跨区卷。
+* *Logical Volume Manager for Linux* - LVM管理磁盘驱动器并允许动态调整逻辑卷的大小。 许多Linux发行版在安装时使用LVM，但Jenkins应该有其LVM设置。
+* *ZFS for Solaris* - ZFS比LVM和跨区卷更灵活，只需要_$JENKINS_HOME_位于其自己的文件系统中。 这使得更容易创建快照，备份等。
+* *Symbolic Links* - 对于已安装Jenkins并且不能使用上述任何方法的系统，可以使用符号链接（符号链接）将作业文件夹存储在单独的卷上，并使用符号链接到这些目录。
+
+此外，为了轻松防止 _$JENKINS_HOME_ 文件夹变得臃肿，强制作业在特定时间段过去后和/或运行特定数量的构建之后放弃构建记录。 该策略可以在作业的配置页面上设置。
+
+
+=== 设置备份策略
+
+定期备份您的$JENKINS_HOME是最佳做法。 备份可以确保您的Jenkins实例可以在配置错误，意外作业删除或数据损坏后进行恢复。
+
+==== 寻找你的 $JENKINS_HOME
+
+**Windows**
+
+如果您使用Windows安装程序安装Jenkins，则Jenkins将作为服务进行安装，默认 _$JENKINS_HOME_将为 "C:\Program Files
+(x86)\jenkins"。
+
+您可以通过打开jenkins.xml文件来编辑 _$JENKINS_HOME_的位置，并编辑 _$JENKINS_HOME_变量，或者进入“管理Jenkins”屏幕，单击菜单中的“作为Windows服务安装”选项然后编辑“安装目录”字段以指向另一个现有目录。
+
+**Mac OSX**
+
+如果您使用OS X安装程序安装Jenkins，则可以通过编辑“Macintosh HD/Library/LaunchDaemons”文件的_$JENKINS_HOME_属性来查找并编辑_$JENKINS_HOME_的位置。
+
+默认情况下，_$JENKINS_HOME_将被设置为“Macintosh HD/Users/Shared/Jenkins”。
+
+**Ubuntu/Debian**
+
+如果您使用Debian软件包安装Jenkins，则可以通过编辑“/etc/default/ jenkins”文件来查找并编辑_$JENKINS_HOME_的位置。
+
+默认情况下，_$JENKINS_HOME_将设置为“/var/lib/jenkins”，$JENKINS_WAR将指向“/usr/share/jenkins/jenkins.war”。
+
+**Red Hat/CentOS/Fedora**
+
+如果您将Jenkins安装为RPM软件包，则缺省_$JENKINS_HOME_将为“/var/lib/jenkins”。
+
+您可以通过编辑“/etc/sysconfig/jenkins”文件来编辑_$JENKINS_HOME_的位置。
+
+**openSUSE**
+
+如果使用zypper将Jenkins安装为包，则可以通过编辑“/etc/sysconfig/jenkins”文件来编辑_$JENKINS_HOME_。
+
+您的_$JENKINS_HOME_的默认位置将被设置为“/var/lib/jenkins”，而$JENKINS_WAR主目录位于“/usr/lib/jenkins”中。
+
+**FreeBSD**
+
+如果使用端口安装Jenkins，_$JENKINS_HOME_将位于运行“make”命令的任何目录中。建议创建一个“/usr/ports/devel/jenkins”文件夹并在该目录中编译Jenkins。
+
+你可以通过编辑“/usr/local/etc/jenkins”来编辑_$JENKINS_HOME_。
+
+**OpenBSD**
+
+如果使用包安装Jenkins，默认将_$JENKINS_HOME_设置为“/var/jenkins”。
+
+如果使用端口安装Jenkins，_$JENKINS_HOME_将位于运行“make”命令的任何目录中。建议创建一个“/usr/ports/devel/jenkins”文件夹并在该目录中编译Jenkins。
+
+你可以通过编辑“/usr/local/etc/jenkins”文件来编辑_$JENKINS_HOME_。
+
+**Solaris/OpenIndiana**
+
+Jenkins项目于2014年9月17日投票决定停止Solaris软件包。
+
+==== 解剖 $JENKINS_HOME
+
+_$JENKINS_HOME_ directory is as follows目录的文件夹结构如下:
+
+[source]
+----
+JENKINS_HOME
+ +- config.xml     (Jenkins root configuration file)
+ +- *.xml          (other site-wide configuration files)
+ +- identity.key   (RSA key pair that identifies an instance)
+ +- secret.key     (deprecated key used for some plugins' secure operations)
+ +- secret.key.not-so-secret  (used for validating _$JENKINS_HOME_ creation date)
+ +- userContent    (files served under your http://server/userContent/)
+ +- secrets        (root directory for the secret+key for credential decryption)
+     +- hudson.util.Secret   (used for encrypting some Jenkins data)
+     +- master.key           (used for encrypting the hudson.util.Secret key)
+     +- InstanceIdentity.KEY (used to identity this instance)
+ +- fingerprints   (stores fingerprint records, if any)
+ +- plugins        (root directory for all Jenkins plugins)
+     +- [PLUGINNAME]   (sub directory for each plugin)
+         +- META-INF       (subdirectory for plugin manifest + pom.xml)
+         +- WEB-INF        (subdirectory for plugin jar(s) and licenses.xml)
+     +- [PLUGINNAME].jpi   (.jpi or .hpi file for the plugin)
+ +- jobs           (root directory for all Jenkins jobs)
+     +- [JOBNAME]      (sub directory for each job)
+         +- config.xml     (job configuration file)
+         +- workspace      (working directory for the version control system)
+         +- latest         (symbolic link to the last successful build)
+         +- builds         (stores past build records)
+             +- [BUILD_ID]     (subdirectory for each build)
+                 +- build.xml      (build result summary)
+                 +- log            (log file)
+                 +- changelog.xml  (change log)
+     +- [FOLDERNAME]   (sub directory for each folder)
+         +- config.xml     (folder configuration file)
+         +- jobs           (sub directory for all nested jobs)
+----
+
+==== 选择备份策略
+
+所有需要备份的Jenkins特定配置都将位于_$JENKINS_HOME_中，但最好只备份这些文件和文件夹的一部分。
+
+以下是规划备份策略时要考虑的一些指导原则。
+
+.Exclusions
+
+当涉及到创建备份时，建议您排除归档以下文件夹以减小备份大小:
+
+[literal]
+/war      (the exploded Jenkins war directory)
+/cache    (downloaded tools)
+/tools    (extracted tools)
+
+这些文件夹将在下次运行构建或Jenkins启动时自动重新创建。
+
+.Jobs and Folders
+
+您的工作或文件夹配置，构建历史记录，归档工件和工作空间将完全存在于_jobs_文件夹中。
+
+_jobs_目录，无论嵌套在文件夹中还是在根目录级别，如下:
+
+[source]
+----
+ +- jobs           (root directory for all Jenkins jobs)
+     +- [JOBNAME]      (sub directory for each job)
+         +- config.xml     (job configuration file)
+         +- workspace      (working directory for the version control system)
+         +- latest         (symbolic link to the last successful build)
+         +- builds         (stores past build records)
+             +- [BUILD_ID]     (subdirectory for each build)
+                 +- build.xml      (build result summary)
+                 +- log            (log file)
+                 +- changelog.xml  (change log)
+----
+
+如果您只需备份作业配置，则可以选择仅备份每个作业的_config.xml_。 通常构建记录和工作区不需要备份，因为工作区将在作业运行时重新创建，构建记录与组织认为它们一样重要。
+
+.System configurations
+
+您的实例的系统配置存在于_$JENKINS_HOME_ 文件夹的根级别:
+
+[literal]
+ +- config.xml     (Jenkins root configuration file)
+ +- *.xml          (other site-wide configuration files)
+
+_config.xml_是Jenkins的根配置文件。 它包括已安装工具路径，工作空间目录和从属代理端口的配置。
+
+根Jenkins文件夹中除_config.xml_之外的任何.xml文件都是已安装工具或插件（即Maven，Git，Ant等）的全局配置文件。
+如果安装了Credentials插件，则这包括_credentials.xml_。
+
+如果您只想备份核心Jenkins配置，则只需备份_config.xml_。
+
+.Plugins
+
+您的实例的插件文件（.hpi和.jpi）及其任何相关资源（帮助文件，_pom.xml_文件等）将存在于$JENKINS_HOME中的_plugins_文件夹中。
+
+[literal]
+ +- plugins        (root directory for all Jenkins plugins)
+     +- [PLUGINNAME]     (sub directory for each plugin)
+         +- META-INF       (subdirectory for plugin manifest + pom.xml)
+         +- WEB-INF        (subdirectory for plugin jar(s) and licenses.xml)
+     +- [PLUGINNAME].jpi (.jpi or .hpi file for the plugin)
+
+建议备份整个插件文件夹（.hpi/.jpis +文件夹）。
+
+.Other data
+
+建议您备份的其他数据包括您的_secrets_ 文件夹，你的_identity.key_,你的 _secret.key_, 和你的
+_secret.key.not-so-secret_ 文件的内容。
+
+[literal]
++- identity.key   (RSA key pair that identifies an instance)
+ +- secret.key     (used for various secure Jenkins operations)
+ +- secret.key.not-so-secret  (used for validating _$JENKINS_HOME_ creation date)
+ +- userContent    (files served in http://server/userContent/)
+ +- secrets        (directory for the secret+key decryption)
+     +- hudson.util.Secret   (used for encrypting some Jenkins data)
+     +- master.key           (used for encrypting the hudson.util.Secret key)
+     +- InstanceIdentity.KEY (used to identity this instance)
+
+
+_identity.key_ 是一个RSA密钥对，用于标识和验证当前的Jenkins实例。
+
+_secret.key_ 用于加密插件和其他Jenkins数据，并建立主站和从站之间的安全连接。
+
+_secret.key.not-so-secret_ 文件用于验证何时创建了_$JENKINS_HOME_。 它也是一个标志，secret.key文件是对信息进行加密的不赞成使用的方式。
+
+Jenkins使用secrets文件夹中的文件来加密和解密实例的存储凭证（如果存在）。 丢失这些文件将阻止恢复任何存储的凭证。 _hudson.util.Secret_ 用于加密诸如credentials.xml的一些Jenkins数据,  _master.key_ 用于加密hudson.util.Secret密钥。最后， _InstanceIdentity.KEY_ 用于识别此实例并生成数字签名。
+
+==== 定义要回滚到的Jenkins实例
+
+在整个机器故障的情况下，重要的是要确保有一个计划让Jenkins恢复在线状态并处于最后的良好状态。
+
+如果没有启用高可用性设置并且没有备份该主文件系统，则运行Jenkins的机器的损坏意味着所有历史构建数据和工件，作业和系统配置等都将丢失并且丢失的配置将需要在新实例上重新创建。
+
+1. 备份策略 - 除了使用前一部分的备份指南创建备份之外，还需要制定一个策略，以选择恢复关闭的主节点时应使用哪个备份。
+2. 从备份恢复 - 必须制定一个计划，确定在主服务器出现故障时是应手动还是使用脚本恢复备份。
+
+=== 弹性 Jenkins 结构
+
+管理员不断地在软件工厂增加越来越多的团队，使得管理员能够使他们的实例具有弹性以适应故障并扩展它们以便加入更多团队。
+
+增加构建节点到Jenkins实例，同时加强运行Jenkins主机的机器是扩展Jenkins的典型方法。换言之，管理员纵向调整他们的Jenkins主机。但是，实例的缩放比例是有限的。本章介绍中介绍了这些限制。
+
+理想情况下，主机将被设置为在没有人为干预的情况下自动从故障中恢复。有代理服务器监视活动主服务器并在主服务器出现故障时将请求重新路由到备用主服务器。在持续交付的途径中还应该审查其他因素。这些因素包括正在开发的应用程序的组件化，整个流水线的自动化（在合理范围内）以及释放有争议的资源。
+
+.Step 1: 使每个主机高度可用
+
+每个Jenkins主机需要被设置为它是Jenkins集群的一部分。
+
+代理（通常是HAProxy或F5）然后面向主要主控。 代理的工作是持续监视主要主服务器，并在主服务器出现故障时将请求路由到备份服务器。 为了使基础架构更具弹性，您可以配置多个备份主控。
+
+.Step 2: 启用安全性
+
+设置Jenkins将用于其用户数据库的认证领域。
+
+TIP: 如果您尝试设置概念证明，建议使用 https://wiki.jenkins-ci.org/display/JENKINS/Mock+Security+Realm+Plugin[Mock Security Realm plugin安全域插件] 进行验证。
+
+.Step 3: 添加构建节点（从属）到主
+
+将构建服务器添加到您的主服务器上，以确保您正在执行实际的构建执行，而不是主服务器（这意味着是一个编排中心），然后放到一台具有足够内存和I/O的“愚蠢”机器上进行指定的工作或测试。
+
+.Step 4: 设置一个测试实例
+
+测试实例通常用于测试新的插件更新。 当插件准备好使用时，应该将其安装到主生产更新中心。

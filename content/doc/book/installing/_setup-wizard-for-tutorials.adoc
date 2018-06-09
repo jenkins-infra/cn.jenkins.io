@@ -1,0 +1,65 @@
+////
+This file is only meant to be included as a snippet in other documents.
+There is a version of this file for the general 'Installing Jenkins' page
+(index.adoc) and another for tutorials (_run-jenkins-in-docker.adoc).
+This file is for the _run-jenkins-in-docker.adoc page used in the tutorials.
+If you update content on this page, please ensure the changes are reflected in
+the sibling file _setup-wizard.adoc (used in index.adoc).
+////
+
+
+[[setup-wizard]]
+==== 安装向导
+
+在你访问 Jenkins之前, 你需要执行一些快速的 "一次性" 步骤。
+
+
+===== 解锁 Jenkins
+
+当你第一次访问一个新的 Jenkins 实例时, 要求你使用自动生成的密码对其进行解锁。
+
+. 当在终端/命令提示窗口出现两组星号时,
+  浏览 `http://localhost:8080` 并等待 *Unlock Jenkins* 页面出现。
+[.boxshadow]
+image:tutorials/setup-jenkins-01-unlock-jenkins-page.jpg[alt="Unlock Jenkins
+page",width=100%]
+. 再次从终端/命令提示窗口, 复制自动生成的字母数字密码(在两组星号之间)。
+[.boxshadow]
+image:tutorials/setup-jenkins-02-copying-initial-admin-password.png[alt="Copying
+initial admin password",width=100%]
+. 在 *Unlock Jenkins* 页面, 粘贴该密码到 *Administrator password* 字段并点击 *Continue*。
+
+
+===== 使用插件自定义 Jenkins
+
+在 <<unlocking-jenkins,解锁 Jenkins>>后, *Customize Jenkins* 页面出现。
+
+在该页面，点击 *Install suggested plugins*。
+
+安装向导显示了正在配置的Jenkins的进程，以及建议安装的插件。这个过程肯需要几分钟。
+
+
+===== 创建第一个管理员用户
+
+最后, Jenkins 要求创建你的第一个管理员用户。
+
+. 当 *Create First Admin User* 页面出现, 在相应的字段中指定你的详细消息并点击 *Save and Finish*。
+. 当 *Jenkins is ready* 页面出现, 点击 *Start using Jenkins*。 +
+  *Notes:*
+* 该页面可能表明 *Jenkins is almost ready!* 如果相反, 点击
+  *Restart*.
+* 如果该页面在一分钟后没有自动刷新, 使用你的web浏览器手动刷新。
+. 如果需要,登录 Jenkins ， 你就可以开始使用 Jenkins了!
+
+
+==== 停止和重启 Jenkins
+
+在本教程的其余部分, 你可以通过在终端/命令提示窗口输入 `Ctrl-C`停止 Jenkins/Blue Ocean
+Docker 容器，你可以从中运行<<run-jenkins-in-docker,上面>>的 `docker run ...` 命令。
+
+要重启Jenkins/Blue Ocean Docker 容器:
+
+. 在上面的 <<on-macos-and-linux,macOS,Linux>> 或 <<on-windows,Windows>>上运行相同的 `docker run ...` 命令 。 +
+  *Note:* 如果有更新的话，该进程会更新 `jenkinsci/blueocean` Docker 镜像。
+. 浏览`http://localhost:8080`。
+. 等待直到登录页面出现并登陆。

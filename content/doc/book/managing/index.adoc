@@ -1,0 +1,25 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+:hide-uri-scheme:
+endif::[]
+
+= 管理Jenkins
+
+本章将介绍如何管理和配置Jenkins 管理器和节点。
+
+本章是为 Jenkins 管理员提供的。经验丰富的用户可能会发现这些信息是有用的, 但是只有在某种程度上，他们理解到的东西是不可能达到管理员所能够做到的。 各个部分可能会假设你对前面的信息有所了解, 但是这些假设将会被显式的调用和相互引用。
+
+如果你是一个系统管理员，想要学习如何备份, 恢复, 维护Jenkins服务器和节点maintain as Jenkins servers and nodes, 请参考
+<<system-administration#,Jenkins System Administration>>。
+
+有关Jenkins用户手册内容的概述, 请参考
+<<getting-started#,用户户手册概述>>.
+但是只有经验到达一定程度上，他们才会理解本章讲的是什么并且不可能让管理员去做

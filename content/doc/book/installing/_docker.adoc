@@ -1,0 +1,183 @@
+////
+This file is only meant to be included as a snippet in other documents.
+There is a version of this file for the general 'Installing Jenkins' page
+(index.adoc) and another for tutorials (_run-jenkins-in-docker.adoc).
+This file is for the index.adoc page used in the general 'Installing Jenkins'
+page.
+If you update content on this page, please ensure the changes are reflected in
+the sibling file _docker-for-tutorials.adoc (used in
+_run-jenkins-in-docker.adoc).
+////
+
+
+===== 在macOS和Linux上
+
+. 打开一个终端窗口。
+. 下载 `jenkinsci/blueocean` 镜像并使用以下docker run 命令将其作为Docker中的容器运行 ：
++
+[source,bash]
+----
+docker run \
+  -u root \
+  --rm \  # <1>
+  -d \ # <2>
+  -p 8080:8080 \ # <3>
+  -p 50000:50000 \ # <4>
+  -v jenkins-data:/var/jenkins_home \ # <5>
+  -v /var/run/docker.sock:/var/run/docker.sock \ # <6>
+  jenkinsci/blueocean # <7>
+----
+<1> （可选） `jenkinsci/blueocean` 关闭时自动删除Docker容器（下图为实例）。如果您需要退出Jenkins，这可以保持整洁。
+<2> （可选）`jenkinsci/blueocean` 在后台运行容器（即“分离”模式）并输出容器ID。如果您不指定此选项，
+则在终端窗口中输出正在运行的此容器的Docker日志。
+<3> 映射（例如“发布”）`jenkinsci/blueocean` 容器的端口8080到主机上的端口8080。
+第一个数字代表主机上的端口，而最后一个代表容器的端口。因此，如果您为此选项指定 `-p
+                                       49000:8080` ，您将通过端口49000访问主机上的Jenkins。
+<4> （可选）将 `jenkinsci/blueocean` 容器的端口50000 映射到主机上的端口50000。
+    如果您在其他机器上设置了一个或多个基于JNLP的Jenkins代理程序，而这些代理程序又与 `jenkinsci/blueocean` 容器交互（充当“主”Jenkins服务器，或者简称为“Jenkins主”），
+    则这是必需的。默认情况下，基于JNLP的Jenkins代理通过TCP端口50000与Jenkins主站进行通信。
+    您可以通过“ 配置全局安全性” 页面更改Jenkins主服务器上的端口号。如果您要将您的Jenkins主机的JNLP代理端口的TCP端口 值更改为51000（例如），那么您需要重新运行Jenkins（通过此 docker run ...命令）并指定此“发布”选项 -p 52000:51000，其中最后一个值与Jenkins master上的这个更改值相匹配，第一个值是Jenkins主机的主机上的端口号，
+    通过它，基于JNLP的Jenkins代理与Jenkins主机进行通信 - 例如52000。
+<5> （可选，但强烈建议）映射在容器中的`/var/jenkins_home` 目录到具有名字 `jenkins-data`
+   的link:https://docs.docker.com/engine/admin/volumes/volumes/[volume]。
+   如果这个卷不存在，那么这个 `docker run` 命令会自动为你创建卷。
+   如果您希望每次重新启动Jenkins（通过此 `docker run ...` 命令）时保持Jenkins状态，则此选项是必需的 。
+   如果你没有指定这个选项，那么在每次重新启动后，Jenkins将有效地重置为新的实例。 +
+*注意:*
+所述的 `jenkins-data` 卷也可以 link:https://docs.docker.com/engine/reference/commandline/volume_create/[`docker
+                                     volume create`]命令创建：
+                                     `docker volume create jenkins-data`
+                                     代替映射 `/var/jenkins_home` 目录转换为Docker卷，还
+                                     可以将此目录映射到计算机本地文件系统上的目录。
+                                     例如，指定该选项 `-v $HOME/jenkins:/var/jenkins_home` 会将容器的 `/var/jenkins_home` 目录映射 到 本地计算机上目录中的  `jenkins` 子目录，
+                                     该$HOME目录通常是 `/Users/<your-username>/jenkins` 或`/home/<your-username>/jenkins` 。
+<6> （可选 `/var/run/docker.sock` 表示Docker守护程序通过其监听的基于Unix的套接字。
+    该映射允许 `jenkinsci/blueocean` 容器与Docker守护进程通信，
+    如果 `jenkinsci/blueocean` 容器需要实例化其他Docker容器，则该守护进程是必需的。
+    如果运行声明式管道，其语法包含<<pipeline/syntax#agent,`agent`>>部分用 `docker`
+    - 例如， `agent { docker { ... } }` 此选项是必需的。
+    在<<pipeline/syntax#,Pipeline Syntax>> 页面上阅读更多关于这个的信息 。
+<7> `jenkinsci/blueocean` Docker镜像本身。如果此镜像尚未下载，则此 `docker run` 命令
+    将自动为您下载镜像。此外，如果自上次运行此命令后发布了此镜像的任何更新，
+    则再次运行此命令将自动为您下载这些已发布的镜像更新。
+    注意：这个Docker镜像也可以使用以下
+    link:https://docs.docker.com/engine/reference/commandline/pull/[`docker pull`]命令独立下载（或更新） ： `docker pull jenkinsci/blueocean`
+*注意:* 如果复制并粘贴上面的命令片段不起作用，请尝试在此处复制并粘贴此无注释版本：
++
+[source,bash]
+----
+docker run \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  jenkinsci/blueocean
+----
+. 继续按照<<setup-wizard,Post-installation setup wizard>>安装。
+
+
+===== 在Windows上
+
+. 打开命令提示符窗口。
+. 下载 `jenkinsci/blueocean` 镜像并使用以下
+  link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
+  命令将其作为Docker中的容器运行 ：
++
+[source]
+----
+docker run ^
+  -u root ^
+  --rm ^
+  -d ^
+  -p 8080:8080 ^
+  -p 50000:50000 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  jenkinsci/blueocean
+----
+有关这些选项的解释，请参阅上面的<<on-macos-and-linux,
+                在macOS和Linux上>>。
+. 继续按照<<setup-wizard,Post-installation setup wizard>>安装。
+
+
+==== 访问Jenkins / Blue Ocean Docker容器
+
+如果您对Docker有一些经验，并且您希望或需要 `jenkinsci/blueocean` 通过
+命令提示符通过终端/命令提示符访问link:https://docs.docker.com/engine/reference/commandline/exec/[`docker exec`]
+，则可以添加一个选项 `--name jenkins-blueocean`（如
+                                       link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
+                                       所述）,这会为 `jenkinsci/blueocean`
+                                       容器命名为 "jenkins-blueocean" 。
+
+这意味着你可以使用如下命令访问容器（通过单独的终端/命令提示符窗口） ：
+
+`docker exec -it jenkins-blueocean bash`
+
+
+==== 通过Docker日志访问Jenkins控制台日志
+
+您可能需要访问Jenkins控制台日志。例如，在<<unlocking-jenkins,解锁 Jenkins>>
+作为安装后设置向导的一部分时。
+
+如果没有指定分离模式选项 `-d` 与 `docker run ...` 命令以上，
+那么Jenkins控制台日志是通过终端方便/命令从中运行此Docker命令提示符窗口。
+
+否则，您可以通过访问Jenkins控制台日志
+link:https://docs.docker.com/engine/reference/commandline/logs/[Docker logs]中
+的 `jenkinsci/blueocean` ，使用以下命令：
+
+`docker logs <docker-container-name>`
+
+Your `<docker-container-name>` can be obtained using the
+link:https://docs.docker.com/engine/reference/commandline/ps/[`docker ps`]
+command. If you specified the +
+`--name jenkins-blueocean` option in the `docker run ...` command above (see
+also
+<<accessing-the-jenkins-blue-ocean-docker-container,Accessing the Jenkins/Blue
+Ocean Docker container>>), you can simply use the `docker logs` command:
+
+您的  `<docker-container-name>` 可以使用link:https://docs.docker.com/engine/reference/commandline/ps/[`docker ps`]
+命令获得 。如果您在上述 `docker run ...`命令中指定了 `--name jenkins-blueocean`
+参数(请参阅<<accessing-the-jenkins-blue-ocean-docker-container,访问Jenkins/Blue Ocean Docker容器>>)
+，则只需使用以下 `docker logs` 命令：
+
+`docker logs jenkins-blueocean`
+
+
+==== 访问Jenkins主目录
+
+例如，您可能需要访问Jenkins主目录，以查看 `workspace` 子目录中Jenkins版本的详细信息。
+
+如果您将Jenkins主目录（ `/var/jenkins_home` ）映射到您计算机
+本地文件系统上的一个目录（如上面的 `docker run ...` 命令 ），
+那么您可以通过计算机常用的终端/命令提示符访问此目录的内容。
+
+否则，如果您在 `docker run ...` 命令里指定了 `-v jenkins-data:/var/jenkins_home` 选项，
+则可以 `jenkinsci/blueocean` 使用以下 link:https://docs.docker.com/engine/reference/commandline/exec/[`docker exec`]
+ 命令通过容器的终端/命令提示符访问Jenkins主目录的内容：
+
+`docker exec -it <docker-container-name> bash`
+
+如<<accessing-the-jenkins-console-log-through-docker-logs,上面>>所提到，
+您的 `<docker-container-name>` 可以使用来获得 link:https://docs.docker.com/engine/reference/commandline/ps/[`docker ps`]
+ 命令。如果您在  `docker run ...` 中指定了 `--name jenkins-blueocean` 该选项(也可参照
+ <<accessing-the-jenkins-blue-ocean-docker-container,访问Jenkins / Blue Ocean Docker容器>>))，
+ 则只需使用以下 `docker exec` 命令：
+
+`docker exec -it jenkins-blueocean bash`
+
+////
+Might wish to add explaining the `docker run -t` option, which was covered in
+the old installation instructions but not above.
+
+Also mention that spinning up a container of the `jenkinsci/blueocean` Docker
+image can be done so with all the same
+https://github.com/jenkinsci/docker#usage[configuration options] available to
+the other images published by the Jenkins project.
+
+Explain colon syntax on Docker image references like
+`jenkinsci/blueocean:latest'.
+////

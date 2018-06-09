@@ -1,0 +1,118 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc:
+endif::[]
+
+////
+XXX: Pages to mark as deprecated by this document:
+      * https://wiki.jenkins-ci.org/display/JENKINS/Terminology
+////
+
+[glossary]
+= 术语表
+
+////
+NOTE: The [glossary] delimiter in AsciiDoctor doesn't autogenerate anchors for
+each of the terms below. Which means that if we want to cross-reference terms
+directly from other documents we need to include an inline anchor.
+
+Additionally, because these inline anchors don't attach to section headings,
+cross referencing must include the appropriate display text, for example:
+
+  MyTerm:: [[myterm]] this is the definition of MyTerm
+
+Should be cross-referenced with:
+
+  <<myterm,MyTerm>>
+
+To ensure it is rendered appropriately.
+////
+
+== 一般术语
+
+[glossary]
+Agent::  [[agent]]
+    代理通常是一个机器或者容器, 它连接到 Jenkins
+    的主服务器并在主服务器的指示下执行任务。
+Artifact:: [[artifact]]
+    在 <<build,Build>> 或<<pipeline,Pipeline>>
+    运行期间生成的一个不可变文件，该文件被 *archived*到Jenkins <<master,Master>>供用户在之后进行检索。
+Build:: [[build]]
+    <<project,Project>>的单个执行结果
+Cloud:: [[cloud]]
+    一个提供动态 <<agent,Agent>>配置和分配的系统配置, 如由
+    plugin:azure-vm-agents[Azure VM Agents]
+    或
+    plugin:ec2[Amazon EC2] 插件提供的配置。
+Core:: [[core]]
+    主要的 Jenkins 应用程序 (`jenkins.war`) which 提供基本的 web UI, 配置, 和 <<plugin, Plugins>>构建的基础。
+Downstream:: [[downstream]]
+    一个已配置的 <<pipeline,Pipeline>> 或 <<project,Project>>，它作为一个单独的流水线或项目执行的一部分被触发。
+Executor:: [[executor]]
+    一个工作的执行位置 ，由<<node, Node>>上的 <<pipeline,Pipeline>> 或
+    <<project,Project>>定义。一个节点可能由0或多个配置的执行器，它对应 有多少并发项目或流水线能够在此节点上执行。
+Fingerprint:: [[fingerprint]]
+    被认为是全局唯一的一个散列，用于追踪<<artifact,Artifact>>或其他跨多个<<pipeline,Pipelines>> 或 <<project,Projects>>的实体的使用。
+    
+Folder:: [[folder]]
+    用于 <<pipeline,Pipelines>> 和/或
+    <<project,Projects>>的组织容器, 类似于文件系统的文件夹。
+Item:: [[item]]
+    web UI中的一个实体， 对应于以下任一个:
+    <<folder,Folder>>, <<pipeline,Pipeline>>, 或<<project,Project>>。
+Job:: [[job]]
+    一个不赞成使用的一个术语, <<project,Project>>的同义词。
+Label:: [[label]]
+    用于分组<<agent,Agents>>的用户定义的文本, 通常使用类似的功能和功能。例如， 基于 Linux代理的`linux`或者Docker-capable代理的`docker`。
+Master:: [[master]]
+   中心, 协调保存配置, 加载插件,和呈现给Jenkins各种用户界面的过程。
+Node:: [[node]]
+    一种机器，他是Jenkins环境的一部分，能够执行 <<pipeline,Pipelines>> 或 <<project,Projects>>。
+    <<master,Master>> 和 <<agent,Agents>> 都被认为是节点。
+Project:: [[project]]
+    应该执行的工作的用户配置描述 , 比如
+    构建一个软件, 等等。
+Pipeline:: [[pipeline]]
+    连续交付流水线的一个用户定义模型, 了解更请阅读本手册的
+    <<pipeline#,Pipeline chapter>>。
+Plugin:: [[plugin]]
+    Jenkins功能的扩展，由Jenkins <<core,核心>>分别提供。
+Publisher:: [[publisher]]
+    完成所有已配置的发布报告, 发送通知等
+    <<step,Steps>>之后<<build,Build>>的部分。
+Stage:: [[stage]]
+    `stage` 是流水线的一部分, 用于定义整个流水线的概念上不同的子集, 例如: "Build", "Test", 和 "Deploy",
+    他们被许多插件用于可视化或呈现Jenkins流水线状态/进展。
+Step:: [[step]]
+    一个单一的任务; 从根本上，步骤告诉Jenkins在一个
+    <<pipeline,Pipeline>>或<<project,Project>>中要做 _what_ 。
+Trigger:: [[trigger]]
+    触发一个新的 <<pipeline,Pipeline>> 运行或
+    <<build,Build>>的标准。
+Update Center:: [[update-center]]
+    托管了插件和插件元数据的库，用来支持在Jenkins内部安装插件。
+Upstream:: [[upstream]]
+    一个已配置<<pipeline,Pipeline>>或<<project,Project>> ，它 触发一个流水线或项目作为执行的一部分。
+Workspace:: [[workspace]]
+    A disposable directory 在 <<node,Node>>文件系统的一次性目录，
+    其中工作可以通过 <<pipeline,Pipeline>> 或<<project,Project>>完成。在 <<build,Build>> 或
+    <<pipeline,Pipeline>> 运行完成之后，
+    工作区通常会保留在适当的位置。除非在Jenkins <<master,Master>>上设置了 特定的工作区清理策略。
+
+////
+XXX: It's currently unclear to me (rtyler) whether these merit definition
+
+== Project/Pipeline Status
+
+Aborted:: [[aborted]]
+Failed:: [[failed]]
+Stable:: [[stable]]
+Successful:: [[successful]]
+Unstable:: [[unstable]]
+////

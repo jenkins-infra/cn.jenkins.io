@@ -1,0 +1,195 @@
+---
+layout: section
+title: 流水线开发工具
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+ifdef::basebackend-dockbook[:imagesdir: doc/book/resources]
+
+= 流水线开发工具
+
+Jenkins 流水线包括
+<<getting-started#built-in-documentation, 内置文档>>和
+<<getting-started#snippet-generator, 代码生成器>> ，是开发流水线的关键资源。它们提供了详细的帮助和信息，这些帮助和信息被定制到当前安装的Jen在本节中, 我们将讨论可能有助于Jenkins流水线开发的其他工具和资源。
+
+== Blue Ocean 编辑器
+
+<<../blueocean/pipeline-editor#, Blue Ocean Pipeline Editor>> 提供
+link:https://en.wikipedia.org/wiki/WYSIWYG[WYSIWYG]
+方法来创建声明式流水线。 该编辑器提供了所有阶段，并行分支和流水线中步骤的构造视图。
+编辑器验证了流水线的更改, 在它们被提交之前消除了许多错误。在后台，它仍然生成声明式的流水线代码。
+
+[[linter]]
+== 命令行流水线linter
+
+Jenkins可以验证或者
+"link:https://en.wikipedia.org/wiki/Lint_(software)[lint]",
+在实际运行它之前，从命令行发出声明式流水线。
+这可以通过使用 Jenkins CLI 命令或用适当的参数创建一个
+HTTP POST请求来完成。
+建议使用
+<<../managing/cli#ssh, SSH interface>>
+来运行linter。请参阅 <<../managing/cli#, Jenkins CLI 文档>> 了解如何正确配置Jenkins以获取安全命令行访问的详细信息 。
+
+.Linting via the CLI with SSH
+[source,bash]
+----
+# ssh (Jenkins CLI)
+# JENKINS_SSHD_PORT=[sshd port on master]
+# JENKINS_HOSTNAME=[Jenkins master hostname]
+ssh -p $JENKINS_SSHD_PORT $JENKINS_HOSTNAME declarative-linter < Jenkinsfile
+----
+
+.Linting via HTTP POST using `curl`
+[source,bash]
+----
+# curl (REST API)
+# Assuming "anonymous read access" has been enabled on your Jenkins instance.
+# JENKINS_URL=[root URL of Jenkins master]
+# JENKINS_CRUMB is needed if your Jenkins master has CRSF protection enabled as it should
+JENKINS_CRUMB=`curl "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"`
+curl -X POST -H $JENKINS_CRUMB -F "jenkinsfile=<Jenkinsfile" $JENKINS_URL/pipeline-model-converter/validate
+----
+
+=== 示例
+
+下面是正在运行流水线linter的两个示例。
+第一个示例显示传递一个无效的 `Jenkinsfile`时的输出,这是 `agent` 声明中缺失的部分。
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+  agent
+  stages {
+    stage ('Initialize') {
+      steps {
+        echo 'Placeholder.'
+      }
+    }
+  }
+}
+----
+
+.Linter output for invalid Jenkinsfile
+[source,bash]
+----
+# pass a Jenkinsfile that does not contain an "agent" section
+ssh -p 8675 localhost declarative-linter < ./Jenkinsfile
+Errors encountered validating Jenkinsfile:
+WorkflowScript: 2: Not a valid section definition: "agent". Some extra configuration is required. @ line 2, column 3.
+     agent
+     ^
+
+WorkflowScript: 1: Missing required section "agent" @ line 1, column 1.
+   pipeline &#125;
+   ^
+----
+
+在第二个示例中, `Jenkinsfile` 已被更新，它的内容包含`agent`上
+丢失的`any`。 linter 现在报告说流水线是有效的。
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+  agent any
+  stages {
+    stage ('Initialize') {
+      steps {
+        echo 'Placeholder.'
+      }
+    }
+  }
+}
+----
+
+.Linter output for valid Jenkinsfile
+[source,bash]
+----
+ssh -p 8675 localhost declarative-linter < ./Jenkinsfile
+Jenkinsfile successfully validated.
+----
+
+[[replay]]
+== "replay" Pipeline Runs with Modifications
+
+典型的流水线将在经典的 Jenkins web UI中被定义,
+或者提交一个 `Jenkinsfile` i到源代码控制。 不幸的是,
+这两种方法都不适合于流水线的快速迭代或原型开发。
+"Replay" 特性允许快速修改和执行现有流水线，而不需要修改流水线配置或创建新的提交。
+
+=== 用法
+
+使用"Replay" 特性:
+
+. 在构建历史中选择一个之前已完成的运行。
++
+image::pipeline/replay-previous-run.png[Previous Pipeline Run]
++
+. 点击右侧菜单的 "Replay" 。
++
+image::pipeline/replay-left-bar.png[Replay Left-menu Button]
++
+. 修改并点击 "Run"。在该示例中, 将 "ruby-2.3" 改为 "ruby-2.4"。
++
+image::pipeline/replay-modified.png[Replay Left-menu Button]
++
+. 检查更改的结果
+
+一旦你满意本次更改,
+你可以使用回放来再次查看他们, 复制他们到你的流水线作业或 `Jenkinsfile`中, 然后使用平常的工程流程提交它们。
+
+=== 特性
+
+* *Can be called multiple times on the same run* -
+允许对不同的更改进行简单的并行测试。
+* *Can also be called on Pipeline runs that are still in-progress* -
+只要流水线包含语法正确的 Groovy 并且能够启动,就可以回放。
+* *Referenced Shared Library code is also modifiable* - 如果一个流水线运行引用了一个
+<<shared-libraries#, Shared Library>>, 那么共享库中的代码也将作为回放页面的一部分显示和修改。
+
+=== 限制
+
+* *Pipeline runs with syntax errors cannot be replayed* -
+意思是他们的代码不能被查看，任何在他们里面的改变都不能被检索。
+当使用回放进行更重要的修改时, 在运行之前保存你的变更到一个Jenkins之外的文件或编辑器中。
+参考link:https://issues.jenkins-ci.org/browse/JENKINS-37589[JENKINS-37589]
+* *Replayed Pipeline behavior may differ from runs started by other methods* -
+对于不属于多分支流水线的流水线,原始运行和回放运行的
+提交信息可能会不同。
+参考 link:https://issues.jenkins-ci.org/browse/JENKINS-36453[JENKINS-36453]
+
+== IDE 集成
+
+=== Eclipse Jenkins 编辑器
+https://marketplace.eclipse.org/content/jenkins-editor[Eclipse 市场]存在一个名为 `Jenkins Editor`的Eclipse插件。
+这个特殊的文本编辑器提供了一些定义流水线的特性，比如:
+
+- 通过 <<#linter,Jenkins Linter Validation>>验证流水线脚本。 失败会显示为Eclipse标记。
+- 带有专用图标的大纲(用于声明式 Jenkins 流水线 )
+- 语法 / 关键字高亮
+- Groovy 验证
+
+NOTE: Jenkins 编辑器插件是一个不被Jenkins项目支持的第三方工具。
+
+
+
+[[unit-test]]
+== 流水线单元测试框架
+
+NOTE: 流水线单元测试框架是一个不被Jenkins项目支持的第三方工具。
+
+link:https://github.com/lesfurets/JenkinsPipelineUnit[流水线单元测试框架]
+允许在运行流水线和<<shared-libraries#, 共享库>>之前对他们进行
+link:https://en.wikipedia.org/wiki/Unit_testing[单元测试]。它提供了一个模拟执行环境，其中实际的流水线步骤被模拟对象所替换，你可以使用模拟对象来检查预期的行为。
+新而粗糙的边缘周围, 但有希望。
+该项目的 link:https://github.com/lesfurets/JenkinsPipelineUnit/blob/master/README.md[README]包含示例和使用说明。

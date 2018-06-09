@@ -1,0 +1,79 @@
+---
+layout: section
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:toc: left
+endif::[]
+
+= 安全
+
+[NOTE]
+====
+这仍然是一项正在进行中的工作。
+====
+
+在Jenkins 1.x的默认配置中, Jenkins 不执行任何安全检查。这意味着 Jenkins能够启动进程并访问本地文件，任何人都可以访问Jenkins web UI和更多。
+
+保护 Jenkins 可从两个方面着手。
+
+* 访问控制, 这确保用户在访问Jenkins及其活动时进行身份验证。
+* 保护Jenkins免受外部威胁
+
+== 访问控制
+
+你应该所得对 Jenkins UI 的访问以便于用户进行身份认证，
+并授予一组合适的权限。 还设置主要由两个轴控制:
+
+* *Security Realm*, 他决定用户和他们的密码, 以及用户所属的组。
+* *Authorization Strategy*,他决定谁有权访问什么。
+
+这两个轴是正交的, 需要单独配置。比如, 你可以选择使用外部的 LDAP 或Active 目录作为安全域, 你也可以选择 "每个人都完全访问" 模式的授权策略。或者你还可以选择让Jenkins运行 他自己的用户数据库, 并基于权限/用户矩阵执行访问控制。
+
+
+* https://wiki.jenkins-ci.org/display/JENKINS/Quick+and+Simple+Security[快速简单的安全] --- 如果你像 `java -jar jenkins.war` 一样运行Jenkins，只需要一个非常简单的设置。
+* https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup[标准安全设置] --- 讨论最常见的设置，让Jenkins运行自己的用户数据库，并进行细粒度的访问控制。
+* https://wiki.jenkins-ci.org/display/JENKINS/Apache+frontend+for+security[Apache前端安全] --- run Jenkins behind Apache and perform access control in Apache instead of Jenkins
+* https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients[验证脚本客户端] --- 如果你需要以编程方式访问安全启用的 Jenkins web UI, 使用 BASIC auth
+* https://wiki.jenkins-ci.org/display/JENKINS/Matrix-based+security[基于矩阵的 安全|基于矩阵的安全性] --- 同意和否认更细粒度的权限
+
+
+== 保护Jenkins用户免受其他威胁
+
+在Jenkins中有另外的安全子系统，可以保护Jenkins和Jenkins的用户免受间接攻击。
+
+下面的主体将讨论 *off by default*下的特性。
+我们建议你先阅读并立即行动。
+
+* https://wiki.jenkins-ci.org/display/JENKINS/CSRF+Protection[CSRF Protection] --- 防止远程攻击运行在防火墙内部的Jenkins。这个特性是Jenkins 1.x  *off by default* ，直到升级到 2.x。
+* https://wiki.jenkins-ci.org/display/JENKINS/Security+implication+of+building+on+master[Security implication of building on master] --- 保护Jenkins主机免受恶意构建攻击
+* https://wiki.jenkins-ci.org/display/JENKINS/Slave+To+Master+Access+Control[Slave To Master Access Control] --- 保护Jenkins主机免受恶意的构建代理攻击
+* https://wiki.jenkins.io/display/JENKINS/Securing+JENKINS_HOME[Securing JENKINS_HOME] --- 保护Jenkins主机免受恶意的构建代理本地用户的访问
+
+下面的主题讨论默认情况下的其他安全特性。你只需要在它们造成问题的时候查看他们。
+
+* https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy[Configuring Content Security Policy] --- 保护 Jenkins用户免受恶意构建攻击
+* https://wiki.jenkins-ci.org/display/JENKINS/Markup+formatting[Markup formatting] --- 保护 Jenkins用户免受 Jenkins的恶意用户攻击
+
+
+== 禁用安全
+
+你可能意外的设置了安全域 / 权限，在这种情况下你可能无法重新配置Jenkins。
+
+当出现这种情况时, 你可以通过以下步骤修复它:
+
+. 停止Jenkins (最简单的方法是停止servlet容器)
+. 进入文件系统的 `$JENKINS_HOME`并找到 `config.xml` 文件。
+. 在编辑器中打开该文件。
+. 在该文件中寻找 `<useSecurity>true</useSecurity>` 元素。
+. 用 `false`取代 `true` 
+. 删除 `authorizationStrategy` 和 `securityRealm`
+. 启动Jenkins
+. 当Jenkins回来时, 它将处于一种不安全的模式，每个人都能完全访问系统。
+
+如果仍然不起作用, 尝试重命名或删除 `config.xml`。

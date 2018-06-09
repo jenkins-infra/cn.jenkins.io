@@ -1,0 +1,112 @@
+---
+layout: section
+title: 流水线运行细节视图
+wip: true
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+
+= 流水线运行细节视图
+
+Blue Ocean 流水线运行细节视图显示了与单个流水线运行相关的信息并允许以后编辑或回放运行。
+下面是运行细节视图部分的详细概述。
+
+image:blueocean/pipeline-run-details/overview.png[Overview of the Pipeline Run Details, role=center]
+
+. *Run Status* - 此图标, 以及顶部菜单栏的背景色,表明了流水线运行的状态。
+. *Pipeline Name* - 运行的流水线的名称。
+. *Run Number* - 流水线运行的ID号。
+对于流水线的每个分支(和 Pull 请求)，ID号是唯一的。
+. *Tab Selector* - 查看该运行的一个细节 <<tabs, 选项卡>>。
+默认值是"<<pipeline, Pipeline>>"。
+. *Re-run Pipeline* - 再次执行运行的流水线。
+. *Edit Pipeline* - 在 <<pipeline-editor#, Pipeline Editor>>中打开运行的流水线。
+. *Go to Classic* - 转换到该运行细节的 "经典" UI 视图。
+. *Close Details* - 这将关闭细节视图并使用户回到该流水线的
+<<activity, 活动视图>>。
+. *Branch* or *Pull Request* - 该运行的分支或pull请求。
+. *Commit Id* - 提交本次运行的ID。
+. *Duration* - 本次运行的持续时间。
+. *Completed Time* - 多久之前运行完成。
+. *Change Author* - 更改的作者姓名。
+. *Tab View* - 显示所选选项卡的信息。
+
+== 流水线运行状态
+
+Blue Ocean 可以很容易的查看当前流水线运行的状态，通过顶部菜单栏颜色的改变来匹配状态:
+蓝色表示 "In progress", 绿色表示 "Passed", 黄色表示 "Unstable",
+红色表示 "Failed", 灰色表示 "Aborted"。
+
+== 特例
+
+Blue Ocean 在源代码控制中使用流水线进行优化，但它也可以显示其他类型项目的细节。
+Blue Ocean 为所有支持的项目类型提供了同样的<<tabs, 选项卡>> ,
+但这些选项卡可能显示不同的信息。
+
+=== 源代码控制之外的流水线
+
+对于不基于源代码控制的流水线,
+Blue Ocean 仍然会显示 "提交 Id", "分支", 和 "更改",
+但是这些字段都是空白的。
+在这种情况下, 顶部菜单栏不包含 "Edit" 选项。
+
+=== 自由式项目
+
+对于自由式项目, Blue Ocean 仍然提供相同的<<tabs, 选项卡>>,
+但是流水线选项卡只显示控制台日志输出。
+"Rerun"或 "Edit"选项也没有显示在顶部菜单栏中。
+
+=== 矩阵项目
+
+在Blue Ocean中不支持矩阵项目。
+查看矩阵项目将重定向到该项目的 "经典UI" 视。
+
+== 选项卡
+
+运行细节视图的每个选项卡都提供了运行的特定方面的信息。
+
+=== 流水线
+
+这是默认选项卡并给出了该流水线运行的留的总体视图
+他显示每个阶段河道并行分支, 这些阶段中的步骤,
+以及这些步骤的控制台输出。上面的概述图像显示了一个成功的流水线运行。
+如果运行中的某个步骤失败, 该选项将自动默认显示来自失败步骤的控制台日志。
+下图显示了一个失败的运行。
+
+image:blueocean/pipeline-run-details/pipeline-failed.png[Failed Run, role=center]
+
+=== 变化
+
+image:blueocean/pipeline-run-details/changes-one-change.png[List of Changes for a Run, role=center]
+
+=== 测试
+
+"Tests" 选项卡显示有关此次运行的测试结果的信息。
+该选项卡只包含测试结果发布步骤的信息,
+如 "Publish JUnit test results" (`junit`) 步骤。
+如果没有结果被记录 这个表会说,
+如果所有的测试通过, 该选项会报告通过测试的总数。
+在失败的情况下。选项卡将会显示从失败中获取的如下日志细节。
+
+image:blueocean/pipeline-run-details/tests-unstable.png[Test Results for Unstable Run, role=center]
+
+当先前的运行失败，而当前运行修复这些失败时,
+该选项卡会注意到固定的文本并显示它们的日志。
+
+image:blueocean/pipeline-run-details/tests-fixed.png[Test Results for Fixed Run, role=center]
+
+=== 工件
+
+"Artifacts" 选项卡显示使用"Archive Artifacts" (`archive`)步骤保存的任何工件的列表。
+单击列表中的项并下载它。
+运行中的完整输出日志可以从这个列表中下载。
+
+image:blueocean/pipeline-run-details/artifacts-list.png[List of Artifacts from a Run, role=center]

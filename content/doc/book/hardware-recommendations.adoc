@@ -1,0 +1,53 @@
+---
+layout: documentation
+section: doc
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author: R. Tyler Croy
+:email: jenkinsci-users@googlegroups.com
+:imagesdir: /doc/book/resources/hardware-recommendations
+:sectanchors:
+:toc: left
+endif::[]
+
+== 硬件建议
+
+=== 介绍
+
+确定Jenkins环境的大小取决于许多因素，这使得它成为非常不精确的科学。 实现最佳配置需要一些经验和实验。 但是，可以做出明智的近似 - 尤其是在设计Jenkins的最佳实践时。
+
+以下概述了这些因素以及在确定配置大小时如何解释它们。 Jenkins可扩展性峰会上还提供了一些最大的Jenkins安装背后的示例配置和硬件。
+
+=== 为master选择合适的硬件
+
+正确设置Jenkins实例的最大挑战之一是没有_one size fits all_ 答案 - 您需要的硬件的确切规格将在很大程度上取决于组织当前和未来的需求。
+
+您的Jenkins主将会提供HTTP请求，并将Jenkins实例的所有重要信息存储在_$JENKINS_HOME_文件夹（配置，构建历史记录和插件）中。
+
+有关基于组织需求的大小调整的更多信息，请参阅 link:../architecting-for-scale[Architecting for Scale]部分。
+
+==== Master的内存要求
+
+Jenkins需要的内存数量在很大程度上取决于很多因素，这就是为什么分配给它的RAM可以从小型安装的200 MB到单个和大规模Jenkins主机的70+ GB的范围。 但是，您应该能够根据您的项目构建需求来估算所需的RAM。
+
+每个构建节点连接需要2-3个线程，这等于大约2 MB或更多的内存。 如果有许多用户将访问Jenkins用户界面，则还需要考虑Jenkins的CPU开销。
+
+在主服务器上分配执行程序通常是一种不好的做法，因为编译可能会快速超负载主服务器的CPU /内存/等并导致实例崩溃，从而导致不必要的停机时间。 相反，建议Jenkins主人可以将工作委派给工作人员的代理人，将主要工作保留在主人自身之外。
+
+
+=== 选择正确的构建机器
+
+Jenkins的骨干是它编排构建的能力，但不利用Jenkins的分布式构建架构的安装是人为地限制其主人可以编排的构建数量。 可以在 link:../architecting-for-scale[构建规模]部分找到  link:../architecting-for-scale#distributed-builds-architecture[更分散的架构] 。
+
+==== 机器成为代理的要求
+
+[[fungibility]]
+代理通常是通用x86计算机，具有足够的内存来运行特定的构建类型。 代理的配置取决于它将用于的构建以及相同构建所需的工具。
+
+将机器配置为充当基础架构内的代理可能非常繁琐且耗时。 当相同的设置必须在大量代理中复制时，尤其如此。 正因为如此，最好有可替代的代理，这些代理很容易替换。 代理应该是所有构建通用的，而不是针对特定作业或一组作业定制的。 代理越通用，他们就越容易互换，这反过来又允许更好地利用资源，并在某些代理遭遇停机时减少对生产率的影响。 Andrew Bayer 在介绍http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition["Seven Habits of Highly Effective Jenkins Users" at the Jenkins User Conference (Europe, 2014)]期间介绍了这种适用于代理商的“可互换性”概念。
+
+环境配置越自动化，越容易将配置复制到新的代理机器上。 用于配置管理的工具或预先映射的映像可以成为此目的的极好解决方案。 容器和虚拟化也是创建通用代理环境的流行工具。
+
+有关估计给定环境中所需执行程序数量的更多信息，请参阅 link:../architecting-for-scale[构建规模]部分。

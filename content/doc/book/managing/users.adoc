@@ -1,0 +1,19 @@
+---
+layout: section
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+:hide-uri-scheme:
+endif::[]
+
+= 管理用户
+
+[NOTE]
+====
+这仍然是一项正在进行的工作
+====

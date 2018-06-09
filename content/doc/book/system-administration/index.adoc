@@ -1,0 +1,23 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+endif::[]
+
+= 系统管理
+
+本章适用于Jenkins服务器和节点的系统管理员。它将涵盖系统维护主题，包括安全性，监控和备份/恢复。
+
+没有参与系统级任务的用户会发现这章的使用受限。个别部分可能会假设对前一部分的信息有所了解，但这些假设将被明确地调出并交叉引用。
+
+如果您是Jenkins管理员，想要了解有关管理Jenkins节点和实例的更多信息，请参阅
+<<managing#,管理Jenkins>>.
+
+有关Jenkins用户手册中内容的概述，请参阅
+<<getting-started#,用户手册概览>>.

@@ -1,0 +1,136 @@
+---
+layout: section
+title: 仪表盘
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+
+
+= 仪表盘
+
+Blue Ocean的 "Dashboard" 是当你打开 Blue Ocean时的
+默认视图，他显示了在Jenkins实例上配置的所有的流水线项目的示例。
+
+该仪表盘由顶部的蓝色 link:#navigation-bar[导航条] 
+,  link:#pipelines-list[流水线列表, 和
+link:#favorites-list[收藏列表]组成。
+
+[.boxshadow]
+image:blueocean/dashboard/overview.png[Overview of the
+Dashboard,role=center,width=100%]
+
+
+== 导航条
+
+仪表盘包括了界面顶部的
+link:../getting-started#navigation-bar[导航条] 。
+
+该导航条被分为两部分 - 顶部的公共部分和下面的上下文部分。 上下文部分根据你当前正在查看的Blue Ocean页面而改变。
+
+在查看仪表盘时, 导航条的上下文部分包括:
+
+* *Search pipelines* 字段, 筛选 link:#pipelines-list[流水线列表]
+  以显示包含你输入到该字段的文本的项。
+* *New Pipeline* 按钮, 开始
+  link:../creating-pipelines[创建流水线] 进程。
+
+
+== 流水线列表
+
+"流水线" 列表是仪表盘的默认列表，在一次访问 Blue Ocean时, 它是显示在仪表盘上的唯一列表。
+
+该列表显示了配置在Jenkins实例上的每个人流水线的总体状态(也可以包含其他的流水线项目)。对于本列表的某一项, 下列信息表示:
+
+* 项目的 *NAME*,
+* 项目的 link:#pipeline-health[*HEALTH*],
+* 通过或失败的流水线的源代码控制仓库的 *BRANCH*数和pull请求 (*PR*) 数，
+* 一个星号表明该项目的默认/主分支石佛营以手动的添加到当前Jenkins 用户的<<收藏列表>>。
+
+点击一个项目的星将在下面的内容中切换:
+
+* 添加项目的存储库的默认分支到你当前用户的收藏列表中 (使用一个实心的 "&#9733;"表示),
+* 从该列表中移除默认分支 (使用空心的
+  "&#9734;"表示)。
+
+在流水线列表中点击一个项会显示项目的
+link:../activity[活动视图]。
+
+
+== 收藏列表
+
+当至少一个流水线/项目出现在用户的最喜欢列表中时，*Favorites* 列表出现在仪表盘的默认 <<pipelines-list>>的上方。
+
+
+该列表为<<pipelines-list>>中的可访问项的核心子集提供了关键信息和操作。 该关键信息包括
+项目及其仓库分支的当前 link:#run-status[运行状态]，以及项目运行的其他细节,包括分支名称,
+提交哈希的初始部分和最后一次运行的时间。 在这个列表中的项目还包括可点击的图标，在仓库分支上运行或重新运行该项目。
+
+如果你要定期检查该项目的分支，你应该只在你的收藏列表中添加一个项目(或仓库的特定分支)。 添加项目的指定分支到收藏列表可以通过项目的 link:../activity[活动视图]来完成。
+
+当包含由当前用户编辑更改的运行时，Blue Ocean 自动添加分支和PR到该列表。
+
+你也可以通过点击该列表中的实心的 "&#9733;"手动的从收藏列表中移除项。当这个列表在的最后一项被移除时, 该列表将从界面中移除。
+
+在收藏列表中点击一个项可以打开在存储库分支或PR所示的最新运行的
+link:../pipeline-run-details[流水线运行细节] 。
+
+
+[[pipeline-health]]
+=== 健康图标
+
+Blue Ocean 使用天气图标代表一个流水线/项目或它的一个存储库的分支的整体健康状况, 这取决于最近通过的构建的数量。
+
+仪表盘上的健康图标代表这个流水线的健康, 而 link:../activity#branches[活动视图中的分支选项]中的健康图标代表每个分支的健康。
+
+.Health icons (best to worst)
+|===
+|Icon |Health
+
+|image:blueocean/icons/weather/sunny.svg[Sunny,role=center]
+|*Sunny*, more than 80% of Runs passing
+
+|image:blueocean/icons/weather/partially-sunny.svg[Partially Sunny,role=center]
+|*Partially Sunny*, 61% to 80% of Runs passing
+
+|image:blueocean/icons/weather/cloudy.svg[Cloudy,role=center,width=100]
+|*Cloudy*, 41% to 60% of Runs passing
+
+|image:blueocean/icons/weather/raining.svg[Raining,role=center]
+|*Raining*, 21% to 40% of Runs passing
+
+|image:blueocean/icons/weather/storm.svg[Storm,role=center]
+|*Storm*, less than 21% of Runs passing
+|===
+
+
+=== 运行状态
+
+Blue Ocean使用始终如一的图标集代表流水线/项目或它的一个仓库的分支的运行状态。
+
+.Run status icons
+|===
+|Icon |Status
+
+|image:blueocean/dashboard/status-in-progress.png["In Progress" Status Icon,role=center]
+|*In Progress*
+
+|image:blueocean/dashboard/status-passed.png["Passed" Status Icon,role=center]
+|*Passed*
+
+|image:blueocean/dashboard/status-unstable.png["Unstable" Status Icon,role=center]
+|*Unstable*
+
+|image:blueocean/dashboard/status-failed.png["Failed" Status Icon,role=center]
+|*Failed*
+
+|image:blueocean/dashboard/status-aborted.png["Aborted" Status Icon,role=center]
+|*Aborted*
+|===

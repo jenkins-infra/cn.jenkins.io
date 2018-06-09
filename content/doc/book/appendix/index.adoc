@@ -1,0 +1,25 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+:notitle:
+endif::[]
+
+[appendix]
+= 附录
+
+本节通常是为 Jenkins 管理员和系统管理员准备的。
+每一节都是与其他节不同的独立主题。
+这些都是高级的主题, 涉及到终端, 也不适合其他章节的内容。
+
+[WARNING]
+====
+*To Contributors*: 请考虑在其他地方添加一个终端。
+事实上,在其他地方不适合甚至超出该手册的范围的主题。请参阅
+link:/participate[Contributing to Jenkins] 了解如何联系产品贡献者的详细信息，并讨论你想要添加的内容。
+====

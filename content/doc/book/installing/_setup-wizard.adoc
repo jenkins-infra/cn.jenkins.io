@@ -1,0 +1,77 @@
+////
+This file is only meant to be included as a snippet in other documents.
+There is a version of this file for the general 'Installing Jenkins' page
+(index.adoc) and another for tutorials (_run-jenkins-in-docker.adoc).
+This file is for the index.adoc page used in the general 'Installing Jenkins'
+page.
+If you update content on this page, please ensure the changes are reflected in
+the sibling file _setup-wizard-for-tutorials.adoc (used in
+_run-jenkins-in-docker.adoc).
+////
+
+
+[[setup-wizard]]
+== 安装后设置向导
+
+下载安装并运行Jenkins后，即将开始进入安装向导。
+
+此安装向导会引导您完成几个快速“一次性”步骤来解锁Jenkins，
+使用插件对其进行自定义，并创建第一个可以继续访问Jenkins的管理员用户。
+
+=== 解锁 Jenkins
+
+当您第一次访问新的Jenkins实例时，系统会要求您使用自动生成的密码对其进行解锁。
+
+. 浏览到 `http://localhost:8080`（或安装时为Jenkins配置的任何端口），并等待 *解锁 Jenkins* 页面出现。
+
+[.boxshadow]
+image:tutorials/setup-jenkins-01-unlock-jenkins-page.jpg[alt="Unlock Jenkins
+page",width=100%]
+
+. 从Jenkins控制台日志输出中，复制自动生成的字母数字密码（在两组星号之间）。
+
+[.boxshadow]
+image:tutorials/setup-jenkins-02-copying-initial-admin-password.png[alt="Copying
+initial admin password",width=100%] +
+
+. 在 *解锁Jenkins* 页面上，将此 *密码* 粘贴到管理员密码字段中，然后单击 *继续* 。
+
+*Notes:*
+
+* 如果您以分离模式在Docker中运行Jenkins，则可以从Docker日志（<<accessing-the-jenkins-console-log-through-docker-logs,above>>）
+访问Jenkins控制台日志。
+* Jenkins控制台日志显示可以获取密码的位置（在Jenkins主目录中）。
+  必须在新Jenkins安装中的安装向导中输入此密码才能访问Jenkins的主UI。
+  如果您在设置向导中跳过了后续的用户创建步骤，
+  则此密码还可用作默认admininstrator帐户的密码（使用用户名“admin”）
+
+
+=== 自定义jenkins插件
+
+<<unlocking-jenkins,解锁 Jenkins>>之后，在 *Customize Jenkins* 页面内，
+您可以安装任何数量的有用插件作为您初始步骤的一部分。
+
+两个选项可以设置:
+
+* *安装建议的插件* - 安装推荐的一组插件，这些插件基于最常见的用例.
+* *选择要安装的插件* - 选择安装的插件集。当你第一次访问插件选择页面时，默认选择建议的插件。
+
+NOTE: 如果您不确定需要哪些插件，请选择 **安装建议的插件** 。
+您可以通过Jenkins中的link:../../book/managing[**Manage Jenkins**] > link:../../book/managing/plugins/[**Manage Plugins**]
+页面在稍后的时间点安装（或删除）其他Jenkins插件 。
+
+设置向导显示正在配置的Jenkins的进程以及您正在安装的所选Jenkins插件集。这个过程可能需要几分钟的时间
+
+=== 创建第一个管理员用户
+
+最后，在<<customizing-jenkins-with-plugins,customizing Jenkins with
+    plugins>>之后，Jenkins要求您创建第一个管理员用户。
+. 出现“ *创建第一个管理员用户* ”页面时，
+  请在各个字段中指定管理员用户的详细信息，然后单击 *保存完成* 。
+. 当 *Jenkins准备好了* 出现时，单击*开始使用 Jenkins*。
+
+*Notes:*
+* 这个页面可能显示  *Jenkins几乎准备好了!* 相反，如果是这样，请单击 *重启* 。
+* 如果该页面在一分钟后不会自动刷新，请使用Web浏览器手动刷新页面。如果需要，请使用您刚刚创建的用户的凭据登录到Jenkins，并准备好开始使用Jenkins！
+
+IMPORTANT: 从这时起，Jenkins用户界面只能通过提供有效的用户名和密码凭证来访问。

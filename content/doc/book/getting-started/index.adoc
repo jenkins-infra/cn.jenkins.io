@@ -1,0 +1,26 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+:notitle:
+endif::[]
+
+= 用户手册概述
+
+本页提供Jenkins用户手册文档概述
+
+如果您是初次使用Jenkins，请参阅
+link:../installing[安装Jenkins] 以了解如何在支持的平台上安装Jenkins
+
+如果您已经是Jenkins用户 (任何技能水平) 想要进一步了解Jenkins的使用, 请参阅 link:../using[使用 Jenkins].
+或者参阅link:../pipeline[Pipeline] 和 link:../blueocean[Blue Ocean] 独立章节以获取关于Jenkins核心特性的更多信息
+
+如果您是Jenkins管理员，想要了解有关管理Jenkins节点和实例的更多信息，请参阅 link:../managing[管理 Jenkins].
+
+如果您是系统管理员，想要了解如何备份、恢复和维护Jenkins服务器和节点，请参阅
+link:../system-administration[Jenkins 系统管理].

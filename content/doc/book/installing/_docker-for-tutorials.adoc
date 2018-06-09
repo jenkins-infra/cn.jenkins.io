@@ -1,0 +1,84 @@
+////
+This file is only meant to be included as a snippet in other documents.
+There is a version of this file for the general 'Installing Jenkins' page
+(index.adoc) and another for tutorials (_run-jenkins-in-docker.adoc).
+This file is for the _run-jenkins-in-docker.adoc page used in the tutorials.
+If you update content on this page, please ensure the changes are reflected in
+the sibling file _docker.adoc (used in index.adoc).
+////
+
+
+==== 在 macOS 和 Linux 系统上
+
+. 打开终端窗口
+. 使用下面的
+  link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
+ 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果没有完成，这个命令会自动下载镜像):
++
+[source]
+----
+docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \ # <1>
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \ # <2>
+  jenkinsci/blueocean
+----
+<1> 将容器中的 `/var/jenkins_home` 目录映射到 Docker
+link:https://docs.docker.com/engine/admin/volumes/volumes/[volume] ，并将其命名为
+`jenkins-data`。如果该卷不存在, 那么 `docker run` 命令会自动为你创建卷。
+<2> 将主机上的`$HOME` 目录 (即你的本地)映射到  (通常是 `/Users/<your-username>` 目录) 到容器的 `/home` 目录。
++
+*Note:* 如果复制或粘贴上面的命令片段不起作用, 尝试复制和粘贴这个注释免费的版本:
++
+[source]
+----
+docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \
+  jenkinsci/blueocean
+----
+. 继续 <<setup-wizard,安装向导>>。
+
+
+==== 在 Windows 系统
+
+. 打开命令提示窗口。
+. 使用下面的
+  link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
+ 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果没有完成，这个命令会自动下载镜像):
++
+----
+docker run ^
+  --rm ^
+  -u root ^
+  -p 8080:8080 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  -v "%HOMEPATH%":/home ^
+  jenkinsci/blueocean
+----
+对这些选项的解释, 请参考上面的 <<on-macos-and-linux,macOS 和 Linux>> 说明。
+. 继续<<setup-wizard,安装向导>>。
+
+
+==== 访问 Jenkins/Blue Ocean Docker 容器
+
+如果你有一些 Docker 的经验，希望或需要使用
+link:https://docs.docker.com/engine/reference/commandline/exec/[`docker exec`]
+命令通过一个终端/命令提示符来访问
+Jenkins/Blue Ocean Docker 容器, 你可以添加如 `--name jenkins-tutorials` 的选项(与上面的
+link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
+), 这将会给Jenkins/Blue Ocean Docker容器一个名字
+"jenkins-tutorials"。
+
+这意味着你可以通过 `docker exec` 命令访问Jenkins/Blue Ocean 容器(通过一个单独的终端
+/命令提示窗口) :
+
+`docker exec -it jenkins-tutorials bash`

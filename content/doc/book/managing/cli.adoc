@@ -1,0 +1,363 @@
+---
+layout: section
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+
+= Jenkins CLI
+
+
+////
+Pages to mark as deprecated by this document:
+
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+CLI
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+SSH
+////
+
+
+Jenkins有一个内置的命令行界面，允许用户和管理员从脚本或shell环境中访问Jenkins。这可以方便的编写日常任务, 批量更新, 故障排除等等。
+
+可以通过SSH 或 Jenkins CLI客户端访问命令行界面, Jenkins分布式的的`.jar` 文件。
+
+[WARNING]
+====
+由于安全原因，**not recommended**使用 Jenkins 2.53 及以下和Jenkins LTS 2.46.1 及以下分布式的CLI 客户端:
+虽然目前没有已知的漏洞,但之前有几个漏洞被报告并修补过,
+ 而且它使用的Jenkins远程协议 很容易受到远程代码执行bug的影响，is inherently vulnerable to remote code execution bugs,
+甚至是 “预认证” 漏洞 (匿名用户能够物理访问Jenkins 网络)。
+
+Jenkins 2.5 及以上和Jenkins LTS 2.46.2 及以上分发的客户端被认为在它的默认 (`-http`) 或 `-ssh` 模式是安全的，如使用标准 `ssh` 命令。
+====
+
+[[ssh]]
+== 通过SSH使用 CLI 
+
+在新的Jenkins安装中, SSH 服务默认禁用。
+管理员可以选择设置一个特定的端口，或让Jenkins在 <<security#ssh-server, 配置全局安全>> 页面选择一个随机的端口。
+
+为了确定随机分配的SSH端口,请检查Jenkins URL返回的头，例如:
+
+[source]
+----
+% curl -Lv https://JENKINS_URL/login 2>&1 | grep 'X-SSH-Endpoint'
+< X-SSH-Endpoint: localhost:53801
+%
+----
+
+使用随机 SSH 端口 (本例中为`53801` ), 和配置的 <<Authentication>>, 任何现代的 SSH 客户端都可以安全的执行 CLI 命令。
+
+=== 身份验证
+
+无论哪个在Jenkins 主机身份验证的用户，为了_access_ CLI，都必须具有
+`Overall/Read` 权限。根据执行的命令，用户可能需要其他的权限。
+
+身份认证依赖于
+基于SSH公共/私有密钥对身份认证。要为合适的用户添加 SSH 公共密钥, 导航到
+`https://JENKINS_URL/user/USERNAME/configure` 并将 SSH 公共密钥粘贴到合适的文本域。
+
+image::managing/cli-adding-ssh-public-keys.png["Adding public SSH keys for a user", role=center]
+
+=== 常用命令
+
+Jenkins 有许多内置的 CLI 命令，这些命令可以在任何
+Jenkins 环境中找到, 比如 `build` 或 `list-jobs`。插件也提供
+CLI 命令; 为了确定给定Jenkins环境中可用命令的完整列表, 执行CLI `help` 命令:
+
+[source]
+----
+% ssh -l kohsuke -p 53801 localhost help
+----
+
+下面的命令列表并不全面, 但他是Jenkins CLI 使用的起点。
+
+==== build
+
+最常见和有用的 CLI命令之一是 `build`, 它允许用户触发拥有权限的任何作业或流水线。
+
+最基本的调用将简单的触发 作业或流水线并退出, 但是通过额外的选项，用户也可以传递参数, 轮询 SCM, 甚至可以跟踪触发的构建或流水线的运行的控制台输出。
+
+[source]
+----
+% ssh -l kohsuke -p 53801 localhost help build
+
+java -jar jenkins-cli.jar build JOB [-c] [-f] [-p] [-r N] [-s] [-v] [-w]
+Starts a build, and optionally waits for a completion.  Aside from general
+scripting use, this command can be used to invoke another job from within a
+build of one job.  With the -s option, this command changes the exit code based
+on the outcome of the build (exit code 0 indicates a success) and interrupting
+the command will interrupt the job.  With the -f option, this command changes
+the exit code based on the outcome of the build (exit code 0 indicates a
+success) however, unlike -s, interrupting the command will not interrupt the
+job (exit code 125 indicates the command was interrupted).  With the -c option,
+a build will only run if there has been an SCM change.
+ JOB : Name of the job to build
+ -c  : Check for SCM changes before starting the build, and if there's no
+       change, exit without doing a build
+ -f  : Follow the build progress. Like -s only interrupts are not passed
+       through to the build.
+ -p  : Specify the build parameters in the key=value format.
+ -s  : Wait until the completion/abortion of the command. Interrupts are passed
+       through to the build.
+ -v  : Prints out the console output of the build. Use with -s
+ -w  : Wait until the start of the command
+% ssh -l kohsuke -p 53801 localhost build build-all-software -f -v
+Started build-all-software #1
+Started from command line by admin
+Building in workspace /tmp/jenkins/workspace/build-all-software
+[build-all-software] $ /bin/sh -xe /tmp/hudson1100603797526301795.sh
++ echo hello world
+hello world
+Finished: SUCCESS
+Completed build-all-software #1 : SUCCESS
+%
+----
+
+==== console
+
+同样有用的是`console` 命令, 它检索指定的构建或流水线运行的控制台输出。当没有提供构建编号时,
+`console` 命令将会输出最后完成的构建的控制台输出。
+
+[source]
+----
+% ssh -l kohsuke -p 53801 localhost help console
+
+java -jar jenkins-cli.jar console JOB [BUILD] [-f] [-n N]
+Produces the console output of a specific build to stdout, as if you are doing 'cat build.log'
+ JOB   : Name of the job
+ BUILD : Build number or permalink to point to the build. Defaults to the last
+         build
+ -f    : If the build is in progress, stay around and append console output as
+         it comes, like 'tail -f'
+ -n N  : Display the last N lines
+% ssh -l kohsuke -p 53801 localhost console build-all-software
+Started from command line by kohsuke
+Building in workspace /tmp/jenkins/workspace/build-all-software
+[build-all-software] $ /bin/sh -xe /tmp/hudson1100603797526301795.sh
++ echo hello world
+yes
+Finished: SUCCESS
+%
+----
+
+==== who-am-i
+
+`who-am-i` 有助于列出当前用户的可用凭证和权限。这对调试时由于没有某些权限而缺少 CLI 命令的情况很有帮助。
+
+[source]
+----
+
+% ssh -l kohsuke -p 53801 localhost help who-am-i
+
+java -jar jenkins-cli.jar who-am-i
+Reports your credential and permissions.
+% ssh -l kohsuke -p 53801 localhost who-am-i
+Authenticated as: kohsuke
+Authorities:
+  authenticated
+%
+----
+
+
+== 使用 CLI 客户端
+
+尽管基于SSH的CLI快速且覆盖了大多数需求, 但是Jenkins分布式的CLI客户端是更好的选择。 例如,  CLI客户端的默认传输是
+HTTP，这意味着不需要在防火墙中打开其他端口以供其使用。
+
+=== 下载客户端
+
+CLI 客户端可以直接在URL
+`/jnlpJars/jenkins-cli.jar`从Jenkins主机下载, 实际上  `https://JENKINS_URL/jnlpJars/jenkins-cli.jar`
+
+当 `.jar` 用于 Jenkins的不同版本时, 在使用时出现兼容性问题, 请重新从Jenkins主机下载最新的 `.jar`文件。
+
+=== 使用客户端
+
+调用客户端的一般语法如下:
+
+[source]
+----
+java -jar jenkins-cli.jar [-s JENKINS_URL] [global options...] command [command options...] [arguments...]
+----
+
+`JENKINS_URL` 可以通过环境变量 `$JENKINS_URL`来指定。
+其他通用选项的摘要可以通过运行客户端来显示，而不需要任何参数。
+
+=== 客户端连接模式
+
+在2.54+ / 2.46.2+ 客户端，有三种基本模式可以使用 , 可通过全局变量选择:
+`-http`; `-ssh`; 和 `-remoting`。
+
+==== HTTP 连接模式
+
+这是2.54 和 2.46.2的默认模式, 不过你可以明确地传递 `-http` 选项。
+
+身份认证最好使用 `-auth` 选项, 它接受 `username:apitoken` 参数。
+从`/me/configure`获取你的API令牌:
+
+[source]
+----
+java -jar jenkins-cli.jar [-s JENKINS_URL] -auth kohsuke:abc1234ffe4a command ...
+----
+
+(实际上也接受密码, 但这是不鼓励的)
+
+你还可以在带 `@`的参数之前从文件加载相关的内容:
+
+[source]
+----
+java -jar jenkins-cli.jar [-s JENKINS_URL] -auth @/home/kohsuke/.jenkins-cli command ...
+----
+
+一般来说，不需要特别的参数配置来启动基于 HTTP的CLI 连接。
+如果你在HTTP 反向代理后台运行Jenkins,
+e确保它不缓存请求或响应体。
+
+[WARNING]
+====
+Jenkins 2.54及以上的CLI的HTTP连接模式不能在使用mod_proxy的Apache HTTP 反向代理服务器上正常工作。工作区包括使用不同的反向代理，如 Nginx 或 HAProxy, 或在可能的情况下使用 SSH 连接模式。参考
+link:https://issues.jenkins-ci.org/browse/JENKINS-47279[JENKINS-47279].
+====
+
+==== SSH连接模式
+
+身份验证是通过 SSH 密钥对进行的。你还必须选择Jenkins用户ID:
+
+[source]
+----
+java -jar jenkins-cli.jar [-s JENKINS_URL] -ssh -user kohsuke command ...
+----
+
+在这种模式下, 客户机基本上像一个本地 `ssh` 命令。
+
+默认情况下，客户端尝试连接在 `JENKINS_URL`使用的相同主机上的SSH端口。
+如果Jenkins在 HTTP 反向代理的后面, 这通常不会起作用,
+所以用系统属性 `-Dorg.jenkinsci.main.modules.sshd.SSHD.hostName=ACTUALHOST`运行Jenkins，
+为SSH端点定义一个主机名或IP地址
+
+==== 远程连接模式
+
+这是客户端支持从pre-2.54 / pre-2.46.2 Jenkins 服务器下载的唯一模式
+(引入 `-remoting` 选项之前)。
+由于安全和性能原因它被弃用了。
+也就是说, 某些命令或命令模式 _only_ 能在远程模式下运行,
+通常是由于命令功能包括在客户端机器上运行的服务器提供的代码。
+
+该模式在服务器端被禁用，用于2.54+ 和 2.46.2的新的安装。
+如果你必须使用它, 并接受风险, 可在 <<security, 配置全局安全性>>中启用。
+
+身份验证最好通过 SSH 密钥对进行。
+`login`命令和 `--username` / `--password` 命令(注意: *not global*) 选项也是可用的;
+由于无法使用非基于密码的安全域,这些命令是无效的。
+如果匿名用户缺乏整体或工作对权限，那么某些命令参数无法得到适当的解析，并且在脚本中保存人工选择的密码用于使用被认为是不安全的。
+
+注意，此模式有两种传输方式: 通过HTTP, 或通过 专用的TCP 套接。
+如果<<security#jnlp-tcp-port, TCP 端口可用>> 并且看起来有效, 客户端将使用此传输。
+如果TCP 端口被禁用, 或者这样一个端口被广告但不接受连接
+(例如，你使用带有防火墙的 HTTP 反向代理),
+客户端将会自动地退回到效率较低的HTTP传输。
+
+===== 基于远程的客户端的常见问题
+
+在运行CLI客户端时可能会遇到很多常见问题。
+
+====== 操作超时
+
+如果你在服务器上使用防火墙请检查 HTTP 或 TCP 端口是否打开。你可以在Jenkins配置中配置它的值。 默认情况下，它将设置一个随机的端口。
+
+[source]
+----
+% java -jar jenkins-cli.jar -s JENKINS_URL help
+Exception in thread "main" java.net.ConnectException: Operation timed out
+    at java.net.PlainSocketImpl.socketConnect(Native Method)
+    at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+    at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+    at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+    at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:432)
+    at java.net.Socket.connect(Socket.java:529)
+    at java.net.Socket.connect(Socket.java:478)
+    at java.net.Socket.<init>(Socket.java:375)
+    at java.net.Socket.<init>(Socket.java:189)
+    at hudson.cli.CLI.<init>(CLI.java:97)
+    at hudson.cli.CLI.<init>(CLI.java:82)
+    at hudson.cli.CLI._main(CLI.java:250)
+    at hudson.cli.CLI.main(CLI.java:199)
+----
+
+====== No X-Jenkins-CLI2-Port
+
+进入 *Manage Jenkins* > *Configure Global Security* 并选择*TCP port for JNLP agents*下面的 "Fixed" 或
+"Random"。
+
+[source]
+----
+java.io.IOException: No X-Jenkins-CLI2-Port among [X-Jenkins, null, Server, X-Content-Type-Options, Connection,
+        X-You-Are-In-Group, X-Hudson, X-Permission-Implied-By, Date, X-Jenkins-Session, X-You-Are-Authenticated-As,
+        X-Required-Permission, Set-Cookie, Expires, Content-Length, Content-Type]
+    at hudson.cli.CLI.getCliTcpPort(CLI.java:284)
+    at hudson.cli.CLI.<init>(CLI.java:128)
+    at hudson.cli.CLIConnectionFactory.connect(CLIConnectionFactory.java:72)
+    at hudson.cli.CLI._main(CLI.java:473)
+    at hudson.cli.CLI.main(CLI.java:384)
+    Suppressed: java.io.IOException: Server returned HTTP response code: 403 for URL: http://citest.gce.px/cli
+        at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1840)
+        at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+        at hudson.cli.FullDuplexHttpStream.<init>(FullDuplexHttpStream.java:78)
+        at hudson.cli.CLI.connectViaHttp(CLI.java:152)
+        at hudson.cli.CLI.<init>(CLI.java:132)
+        ... 3 more
+----
+
+====== 服务器密钥未验证
+你可能会得到以下的错误并找到一个关于 `mismatched keys`的日志条目:
+
+[source]
+----
+org.apache.sshd.common.SshException: Server key did not validate
+    at org.apache.sshd.client.session.AbstractClientSession.checkKeys(AbstractClientSession.java:523)
+    at org.apache.sshd.common.session.helpers.AbstractSession.handleKexMessage(AbstractSession.java:616)
+    ...
+----
+
+这意味着你的SSH 配置不承认服务器提供的公钥。
+当你在开发模式下运行Jenkins，应用程序的多个实例会随着时间的推移运行在同一个SSH端口上。
+在开发环境中, 访问你的 `~/.ssh/known_hosts` (或 `C:/Users/<your_name>/.ssh/known_hosts` )并删除与你当前 SSH 端口对应的行 (比如 `[localhost]:3485`)。
+在生产环境中, 如果服务器的公钥在最近发生改变，请与Jenkins管理员联系。
+如果是这样, a请管理员执行上面描述的步骤。
+
+====== UsernameNotFoundException
+
+如果你的客户端显示如下的堆栈跟踪:
+
+[source]
+----
+org.acegisecurity.userdetails.UsernameNotFoundException: <name_you_used>
+    ...
+----
+
+这意味着SSH密钥被识别并对存储的用户进行了验证，但是用户名对当前应用程序正在使用的安全域无效 。
+这可能发生在最初使用Jenkins数据库时, 配置了你的用户, 然后切换到另一个安全域 (如 LDAP等) ，在该安全域中，你定义的用户还不存在。
+
+要解决这个问题, 就要确保你的用户在你配置的安全域中存在。
+
+====== 故障诊断日志
+
+为了获取认证过程的更多信息:
+
+. 进入 *Manage Jenkins* > *System Log* > *Add new log recorder*。
+. 输入你想要的名称，点击 *Ok*。
+. 点击 *Add*。
+. 输入 `org.jenkinsci.main.modules.sshd.PublicKeyAuthenticatorImpl` (或者输入 `PublicKeyAuth` ，然后选择全名)
+. 设置等级为*ALL*。
+. 为 `hudson.model.User`重复之前的三个步骤。
+. 点击*Save*。
+
+当你尝试身份验证时, 你可以刷新页面并查看内部发生了什么。

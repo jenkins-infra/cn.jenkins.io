@@ -1,0 +1,25 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+endif::[]
+
+= 规模 Jenkins
+
+本章将讨论与使用和管理大规模 Jenkins
+配置相关的主题: 大量的用户, 节点, 代理, 文件夹, 项目,
+并发作业, 作业结果和日志, 甚至大量的主服务器。
+
+本章适合于熟悉 Jenkins的用户, 管理员, 和那些计划大规模安装的人。
+
+如果你是Jenkins管理员想要了解更有与管理 Jenkins节点和 instances相关的信息, 请参考
+<<managing#,管理Jenkins>>.
+
+对于Jenkins用户手册内容的概述, 请参阅
+<<getting-started#,用户手册概述>>。

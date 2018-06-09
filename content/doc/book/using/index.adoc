@@ -1,0 +1,29 @@
+---
+layout: chapter
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+endif::[]
+
+
+= 使用 Jenkins
+
+本章节包含一般Jenkins用户（任何技能水平）关于Jenkins使用的主题，
+这些用例不包含Jenkins核心特性：Pipeline和Blue Ocean
+
+如果您想要通过JenkinsFile或者Blue Ocean 创建、配置Pipeline项目，或者希望了解更多Jenkins核心特性，请参阅
+link:../pipeline[Pipeline] 和 link:../blueocean[Blue Ocean] 章节.
+
+如果您是 Jenkins 管理员，想要了解有关管理Jenkins节点和实例的更多信息，请参阅
+link:../managing[管理 Jenkins].
+
+如果您是系统管理员，想要了解如何备份、恢复和维护Jenkins服务器和节点，请参阅
+link:../system-administration[Jenkins 系统管理].
+
+有关Jenkins用户手册内容概述，请参照
+link:../getting-started[用户手册概述]。

@@ -1,0 +1,229 @@
+---
+layout: documentation
+section: doc
+---
+ifdef::backend-html5[]
+:doctitle: Architecting for Manageability
+:notitle:
+:description:
+:author: R. Tyler Croy
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc:
+endif::[]
+
+== 构建可管理性
+
+=== 介绍
+
+在开源社区中有超过1000个插件和无数版本的插件，在升级一个或多个生产Jenkins实例之前测试所有可能的冲突根本不可行。 如果Jenkins检测到插件需要更新版本的Jenkins核心，它本身会警告潜在的不兼容性，但没有自动的方法来检测插件之间的冲突，或自动量化在升级之前升级插件的影响。
+
+相反，在执行生产实例之前，Jenkins管理员应负责手动测试其实例的插件和核心版本更新。 这种测试需要生产服务器的副本或“测试实例”充当此类测试的沙箱，并可以防止生产主服务器停机。
+
+=== 测试实例
+
+测试大师是Jenkins大师，专门用于测试非生产环境中的配置和插件。 对于具有关键任务Jenkins实例的组织，强烈建议拥有测试主管。
+
+升级或降级Jenkins核心或任何插件有时会产生意想不到的副作用，使另一个插件的功能崩溃甚至崩溃。 从今天起，没有比测试大师更好的预测这种灾难性冲突的方法。
+
+测试主人应该与生产主数据具有相同的配置，作业和插件，以便测试升级与生产主数据的类似更改的结果非常相似。 例如，在运行版本低于1.554.1的Jenkins核心时安装文件夹插件将导致实例崩溃并且无法访问，直到从_plugin_文件夹手动卸载插件。
+
+==== 设置测试实例
+
+有很多方法可以设置测试实例，但它们之间的共同点是它们之间的_ $ JENKINS_HOME__$JENKINS_HOME_几乎完全相同。 无论这是否意味着大多数生产主文件的_$JENKINS_HOME_文件夹都受版本控制，如GitHub的服务，并手动或以编程方式安装到测试服务器或Docker容器，结果几乎相同。
+
+在尝试创建测试主机之前，首先确保主机处于空闲状态（无运行或排队作业）是理想的。
+
+*With GitHub + manual commands*
+
+您只需要打开命令行界面并将“cd”打开到包含生产主文件的_$JENKINS_HOME_目录的文件夹，然后运行“git init”命令。 有关该文件夹的位置，请参阅第3节。
+
+建议在运行“git add”命令之前创建一个好的 _.gitignore_文件。 这个文件可以防止你无意中版本控制一个文件太大而无法存储在GitHub中（任何东西> 50 MB）。
+
+以下是运行在OS X上的Jenkins主文件的示例 _.gitignore__文件:
+
+[source]
+----
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+*.log
+*.tmp
+*.old
+*.jar
+*.son
+.Xauthority
+.bash_history
+.bash_profile
+.fontconfig
+.gitconfig
+.gem
+.lesshst
+.mysql_history
+.owner
+.ri
+.rvm
+.ssh
+.viminfo
+.vnc
+bin/
+tools/
+**/.owner
+**/queue.xml
+**/fingerprints/
+**/shelvedProjects/
+**/updates/
+**/jobs/*/workspace/
+**/war/
+/tools/
+**/custom_deps/
+**/slave/workspace/
+**/slave-slave.log.*
+cache/
+fingerprints/
+**/wars/jenkins*.war
+*.log
+*.zip
+*.rrd
+*.gz
+----
+
+一旦你有一个好的 _.gitignore_ 文件，你可以运行follow git命令来提交你的 _$JENKINS_HOME_ 到Git仓库，比如GitHub:
+
+[source,bash]
+----
+git add -—all
+git commit -m "first commit"
+git push
+----
+
+现在，您可以将Jenkins安装到新实例，并将git clone这个_$JENKINS_HOME_ 从git存储库中添加到您的新实例中。 您将需要用新版本控制的文件替换新实例中的文件以完成迁移，无论是通过脚本还是通过拖放过程。
+
+完成此操作后，您需要重新启动新的测试大师的Jenkins服务或从Jenkins UI重新加载其配置（“管理Jenkins”>>“重新加载配置”）。
+
+*With GitHub + Docker (Linux-only)*
+
+当涉及到控制$JENKINS_HOME的版本时，只需按照上一节中的说明操作即可。
+
+下一步将创建一个Docker镜像，其配置与生产实例的操作系统（仅限Linux）相同，安装的库/工具和开放端口相同。 这可以通过Dockerfiles完成。
+
+然后，您需要在克隆版本控制的_$JENKINS_HOME_ home主目录以及用于克隆_$JENKINS_HOME_的简单镜像的Docker服务器上创建挂载的存储。
+
+例如，我们可以在名为“demo-joc”的Github存储库中创建一个名为_jenkins-storage_的Docker镜像，并对我们的 _$JENKINS_HOME_进行版本控制。 “jenkins-storage”Docker镜像可以通过类似于Dockerfile的Docker来构建:
+
+[source,bash]
+----
+FROM debian:jessie
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y --no-install-recommends \
+    openjdk-7-jdk \
+    openssh-server \
+    curl \
+    ntp \
+    ntpdate  \
+    git  \
+    maven  \
+    less  \
+    vim
+RUN printf "AddressFamily inet" >> /etc/ssh/ssh_config
+ENV MAVEN_HOME /usr/bin/mvn
+ENV GIT_HOME /usr/bin/git
+# Install Docker client
+RUN curl https://get.docker.io/builds/Linux/x86_64/docker-latest -o /usr/local/bin/docker
+RUN chmod +x /usr/local/bin/docker
+RUN groupadd docker
+# Create Jenkins user
+RUN useradd jenkins -d /home/jenkins
+RUN echo "jenkins:jenkins" | chpasswd
+RUN usermod -a -G docker jenkins
+# Make directories for [masters] JENKINS_HOME, jenkins.war lib and [slaves] remote FS root, ssh privilege separation directory
+RUN mkdir /usr/lib/jenkins /var/lib/jenkins /home/jenkins /var/run/sshd
+# Set permissions
+RUN chown -R jenkins:jenkins /usr/lib/jenkins /var/lib/jenkins /home/jenkins
+#create data folder for cloning
+RUN ["mkdir", "/data"]
+RUN ["chown", "-R", "jenkins:jenkins", "/data"]
+USER jenkins
+VOLUME ["/data"]
+WORKDIR /data
+# USER jenkins
+CMD ["git", "clone", "https://github.com/[your-github-id]/docker-jenkins-storage.git", "."]
+----
+
+Creating mounted storage for containers would just require something similar to
+the following command:
+
+[source,bash]
+----
+docker run --name storage [your-dockerhub-id]/jenkins-storage git clone https://github.com/[your-github-id]/docker-jenkins-storage.git .
+----
+
+然后，依靠装载存储的_$JENKNIS_HOME_的Jenkins图像将需要指向已安装的卷:
+
+[source,bash]
+----
+docker run -d --dns=172.17.42.1 --name joc-1 --volumes-from storage -e JENKINS_HOME=/data/var/lib/jenkins/jenkins [your-dockerhub-id]/jenkins --prefix=""
+----
+
+.Test master slaves
+
+测试主机可以连接到测试从机，但这需要进一步的配置。 根据您的测试实例的实现，您需要创建一个Jenkins Docker从属镜像或从属虚拟机。 当然，像EC2插件这样的开源插件也可以根据需要启动新的从站。
+
+从属连接信息还需要在位于测试主站_$JENKINS_HOME_中的config.xml中进行编辑。
+
+.Rolling back plugins that cause failures
+
+如果您发现插件更新在测试主控内部导致冲突，则可以采用多种方式进行回滚:
+
+* 对于错误的插件，您可以通过转到插件管理器（“管理Jenkins”>>“管理插件”）并转到“可用”选项卡，从UI中回滚插件。 Jenkins会在可降级的插件旁边显示“降级”按钮。
+
+* 如果UI不可用，请输入您的 _$JENKINS_HOME_文件夹并转至插件文件夹。 从那里删除违规插件的.hpi或.jpi文件，然后重新启动Jenkins。 如果您需要回滚到旧版本，则需要手动复制旧版本的.jpi或.hpi。 为此，请转到 link:http://updates.jenkins-ci.org/download/plugins[Jenkins wiki]上的插件页面并下载其中一个存档版本。
+
+
+=== 故障排除稳定性
+
+当主设备的硬件大小不正确或者错误插件浪费资源时，Jenkins主设备可能会遇到不稳定问题。 为了解决这个问题，Jenkins管理员应该通过识别哪些组件行为异常以及哪些资源不足来开始他们的故障排除。 管理员可以
+link:https://wiki.jenkins-ci.org/display/JENKINS/Obtaining+a+thread+dump[采取线程转储] 并且头部转储以获得这些信息，但是在某些情况下，实例变得不可操作并且无法进行线程转储，因此在需要此类故障排除时，在Jenkins本身之外拥有持久记录以供参考时非常有用。
+
+==== 使用Jenkins度量插件
+
+link:https://wiki.jenkins-ci.org/display/JENKINS/Metrics+Plugin[Jenkins 度量插件] 是一个开源插件，它揭示了Jenkins实例的度量标准。
+度量标准使用
+link:https://dropwizard.github.io/metrics/3.1.0[Dropwizard度量API]
+
+.Metrics exposed
+
+公开指标的确切列表因安装的插件而异。
+要获得您自己的主设备的可用指标的完整列表，请运行以下命令
+ https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Script+Console[您的主机的脚本控制台]上的脚本:
+
+[source,groovy]
+----
+for (j in Jenkins.instance.getExtensionList(jenkins.metrics.api.MetricProvider.class)) {
+     for (m in j.getMetricSet()) {
+          for (i in m.metrics)
+               { println i.getKey() }
+     }
+}
+----
+
+CloudBees 由
+link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-reference.html#monitoring-sect-reference-metrics[记录]暴露指标的完整列表，并对每个指标进行深入解释。
+
+.Metrics Usage
+
+度量标准受一组查看，访问线程转储和发布运行状况检查的权限的保护。 通过访问<jenkins-url> / metrics / currentUser，Metrics Operational Menu可以通过Web UI进行访问，4菜单选项（Metrics，Ping，Threads，Healthcheck）会导致包含请求的度量或线程转储的JSON字符串。
+
+访问度量标准Servlet也可以通过发布API密钥来提供。 API密钥可以从“Metrics”部分下的Jenkins全局配置屏幕（<jenkins-url> / configure）进行配置。 可以生成多个访问权限，并且在这个级别也可以限制与这些密钥相关的权限。
+
+有关度量标准基本和高级用法的更多信息可以
+link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-getting-started.html[在这里]找到。

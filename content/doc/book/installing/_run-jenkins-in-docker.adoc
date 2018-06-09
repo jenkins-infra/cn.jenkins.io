@@ -1,0 +1,23 @@
+////
+This file is only meant to be included as a snippet in other documents.
+It is currently used in the Tutorials.
+If you update content on this page, please ensure it reflects the generic
+Docker instructions documented in the sibling 'index.adoc' file.
+////
+
+=== 在 Docker中运行Jenkins
+
+在本教程中, 将Jenkins作为 Docker 容器并从
+link:https://hub.docker.com/r/jenkinsci/blueocean/[`jenkinsci/blueocean`] Docker
+镜像中运行。
+
+要在 Docker中运行Jenkins, 请遵循下面的<<on-macos-and-linux,macOS 和 Linux>> 或 <<on-windows,Windows>>相关文档说明进行操作。
+.
+
+你可以在
+link:../../book/installing#docker[Docker]和 link:../../book/installing[Installing Jenkins] 页面的
+link:../../book/installing#downloading-and-running-jenkins-in-docker[Downloading and running Jenkins in Docker]部分阅读更多有关Docker容器和镜像概念的信息。
+
+include::_docker-for-tutorials.adoc[]
+
+include::_setup-wizard-for-tutorials.adoc[]

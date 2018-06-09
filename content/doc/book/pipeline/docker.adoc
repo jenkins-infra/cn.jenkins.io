@@ -1,0 +1,460 @@
+---
+layout: section
+title: 在流水线中使用Docker
+---
+ifdef::backend-html5[]
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+
+= 在流水线中使用Docker
+
+许多组织使用 link:https://www.docker.com[Docker] 在机器之间统一构建和测试环境, 并为部署应用程序提供有效的机制。从流水线版本 2.5 或以上开始,
+流水线内置了与`Jenkinsfile`中的Docker进行交互的的支持。
+
+虽然本节将介绍基础知识在
+`Jenkinsfile`中使用Docker的基础,但它不会涉及 Docker 的基本原理, 可以参考
+link:https://docs.docker.com/get-started/[Docker入门指南]。
+
+
+[[execution-environment]]
+== 自定义执行环境
+
+设计流水线的目的是更方便地使用
+link:https://docs.docker.com/[Docker]镜像作为单个
+link:../../glossary/#stage[Stage]或整个流水线的执行环境。 这意味着用户可以定义流水线需要的工具，而无需手动配置代理。
+实际上，只需对 `Jenkinsfile`进行少量编辑，任何
+link:http://hub.docker.com[packaged in a Docker container]的工具，
+都可轻松使用。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent {
+        docker { image 'node:7-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+// Script //
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+    docker.image('node:7-alpine').inside {
+        stage('Test') {
+            sh 'node --version'
+        }
+    }
+}
+----
+
+当流水线执行时, Jenkins 将会自动地启动指定的容器并在其中执行指定的步骤:
+
+[source]
+----
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
+[guided-tour] Running shell script
++ node --version
+v7.4.0
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+----
+
+=== 容器的缓存数据
+
+许多构建工具都会下载外部依赖并将它们缓存到本地以便于将来的使用。 由于容器最初是由 "干净的" 文件系统构建的, 这导致流水线速度变慢, 因为它们不会利用后续流水线运行的磁盘缓存。
+on-disk caches between subsequent Pipeline runs.
+
+流水线支持
+向Docker中添加自定义的参数, 允许用户指定自定义的
+link:https://docs.docker.com/engine/tutorials/dockervolumes/[Docker Volumes]
+装在, 这可以用于在流水线运行之间的
+link:../../glossary/#agent[agent]上缓存数据。下面的示例将会在
+流水线运行期间使用
+link:https://hub.docker.com/_/maven/[`maven` container]缓存 `~/.m2`,
+ 从而避免了在流水线的后续运行中重新下载依赖的需求。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B'
+            }
+        }
+    }
+}
+// Script //
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+    docker.image('maven:3-alpine').inside('-v $HOME/.m2:/root/.m2') {
+        stage('Build') {
+            sh 'mvn -B'
+        }
+    }
+}
+----
+
+
+
+=== 使用多个容器
+
+代码库依赖于多种不同的技术变得越来越容易。比如, 一个仓库既有基于Java的后端API 实现 _and_ 有基于JavaScript的前端实现。 Docker和流水线的结合允许 `Jenkinsfile` 通过将 `agent {}` 指令和不同的阶段结合使用
+*multiple* 技术类型。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:7-alpine' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+// Script //
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+
+    stage('Back-end') {
+        docker.image('maven:3-alpine').inside {
+            sh 'mvn --version'
+        }
+    }
+
+    stage('Front-end') {
+        docker.image('node:7-alpine').inside {
+            sh 'node --version'
+        }
+    }
+}
+----
+
+[[dockerfile]]
+=== 使用Dockerfile
+
+对于更需要自定义执行环境的项目, 流水线还支持从源仓库的`Dockerfile` 中构建和运行容器。 与使用"现成" 容器的 <<execution-environment,previous approach>> 不同的是
+, 使用 `agent { dockerfile true }` 语法从 `Dockerfile` 中构建一个新的镜像而不是从
+link:https://hub.docker.com[Docker Hub]中拉取一个。
+
+重复使用上面的示例, 使用一个更加自定义的 `Dockerfile`:
+
+.Dockerfile
+[source]
+----
+FROM node:7-alpine
+
+RUN apk add -U subversion
+----
+
+通过提交它到源仓库的根目录下, 可以更改 `Jenkinsfile` 文件，来构建一个基于该 `Dockerfile` 文件的容器然后使用该容器运行已定义的步骤:
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
+    }
+}
+// Script //
+----
+
+
+`agent { dockerfile true }` 语法支持大量的其它选项，这些选项的更详细的描述请参考
+link:../syntax#agent[流水线语法] 部分。
+
+.Using a Dockerfile with Jenkins Pipeline
+video::Pi2kJ2RJS50[youtube, width=852, height=480]
+
+
+=== 指定Docker标签
+的了
+link:../../glossary/#agent[agent] 都能够运行基于Docker的流水线。
+对于有macOS, Windows, 或其他代理的Jenkins环境, 不能运行Docker守护进程, 这个默认设置可能会有问题。
+流水线在 **Manage Jenkins** 页面和 link:../../glossary/#folder[文件夹]级别提供一个了全局选项,用来指定运行基于Docker的流水线的代理 (通过
+link:../../glossary/#label[标签])。
+
+image::pipeline/configure-docker-label.png[Configuring the Pipeline Docker Label]
+
+== 脚本化流水线的高级用法
+
+=== 运行 "sidecar" 容器
+
+在流水线中使用Docker可能是运行构建或一组测试的所依赖的服务的有效方法。类似于
+link:https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar[sidecar
+模式], Docker 流水线可以"在后台"运行一个容器 , 而在另外一个容器中工作。 利用这种sidecar 方式, 流水线可以为每个流水线运行
+提供一个"干净的" 容器。
+
+考虑一个假设的集成测试套件，它依赖于本地 MySQL
+数据库来运行。使用 `withRun` 方法, 在
+plugin:docker-workflow[Docker Pipeline] 插件中实现对脚本化流水线的支持,
+`Jenkinsfile` 文件可以运行 MySQL作为sidecar :
+
+[source,groovy]
+----
+node {
+    checkout scm
+    /*
+     * In order to communicate with the MySQL server, this Pipeline explicitly
+     * maps the port (`3306`) to a known port on the host machine.
+     */
+    docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw" -p 3306:3306') { c ->
+        /* Wait until mysql service is up */
+        sh 'while ! mysqladmin ping -h0.0.0.0 --silent; do sleep 1; done'
+        /* Run some tests which require MySQL */
+        sh 'make check'
+    }
+}
+----
+
+该示例可以更进一步, 同时使用两个容器。
+一个 "sidecar" 运行 MySQL, 另一个提供<<execution-environment,执行环境>>, 通过使用Docker
+link:https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/[容器链接]。
+
+[source,groovy]
+----
+node {
+    checkout scm
+    docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw"') { c ->
+        docker.image('mysql:5').inside("--link ${c.id}:db") {
+            /* Wait until mysql service is up */
+            sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+        }
+        docker.image('centos:7').inside("--link ${c.id}:db") {
+            /*
+             * Run some tests which require MySQL, and assume that it is
+             * available on the host name `db`
+             */
+            sh 'make check'
+        }
+    }
+}
+----
+
+上面的示例使用 `withRun`公开的项目, 它通过 `id` 属性具有可用的运行容器的ID。使用该容器的
+ID, 流水线通过自定义 Docker 参数生成一个到`inside()` 
+方法的链。
+
+
+The `id` property can also be useful for inspecting logs from a running Docker
+container before the Pipeline exits:
+
+[source,groovy]
+----
+sh "docker logs ${c.id}"
+----
+
+
+=== 构建容器
+
+
+为了构建 Docker 镜像,plugin:docker-workflow[Docker 流水线]
+插件也提供了一个 `build()` 方法用于在流水线运行期间从存储库的`Dockerfile` 中创建一个新的镜像。
+
+使用语法 `docker.build("my-image-name")` 的主要好处是，
+脚本化的流水线能够使用后续 Docker流水线调用的返回值, 比如:
+
+[source,groovy]
+----
+node {
+    checkout scm
+
+    def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+    customImage.inside {
+        sh 'make test'
+    }
+}
+----
+
+
+该返回值也可以用于通过 `push()` 方法将Docker 镜像发布到
+link:https://hub.docker.com[Docker Hub],
+或 <<custom-registry, custom Registry>>,比如:
+
+[source,groovy]
+----
+node {
+    checkout scm
+    def customImage = docker.build("my-image:${env.BUILD_ID}")
+    customImage.push()
+}
+----
+
+镜像 "tags"的一个常见用法是 为最近的, 验证过的, Docker镜像的版本，指定 `latest` 标签。  `push()` 方法接受可选的 `tag` 参数, 允许流水线使用不同的标签 push `customImage` , 比如:
+
+[source,groovy]
+----
+node {
+    checkout scm
+    def customImage = docker.build("my-image:${env.BUILD_ID}")
+    customImage.push()
+
+    customImage.push('latest')
+}
+----
+
+在默认情况下， `build()` 方法在当前目录构建一个 `Dockerfile`。提供一个包含 `Dockerfile`文件的目录路径作为`build()` 方法的第二个参数 就可以覆盖该方法, 比如:
+
+[source,groovy]
+----
+node {
+    checkout scm
+    def testImage = docker.build("test-image", "./dockerfiles/test") // <1>
+
+    testImage.inside {
+        sh 'make test'
+    }
+}
+----
+<1> 从在 `./dockerfiles/test/Dockerfile`中发现的Dockerfile中构建`test-image`。
+
+
+通过添加其他参数到 `build()` 方法的第二个参数中，传递它们到
+link:https://docs.docker.com/engine/reference/commandline/build/[docker build]。
+当使用这种方法传递参数时, 该字符串的最后一个值必须是Docker文件的路径。
+
+该示例通过传递 `-f`标志覆盖了默认的 `Dockerfile` :
+
+[source,groovy]
+----
+node {
+    checkout scm
+    def dockerfile = 'Dockerfile.test'
+    def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles") // <1>
+}
+----
+<1> 从在`./dockerfiles/Dockerfile.test`发现的Dockerfile构建 `my-image:${env.BUILD_ID}`。
+
+=== 使用远程 Docker 服务器
+
+默认情况下, plugin:docker-workflow[Docker Pipeline] 插件会与本地的Docker的守护进程通信, 通常通过 `/var/run/docker.sock`访问。
+
+
+要选择一个非默认的Docker 服务器, 比如
+link:https://docs.docker.com/swarm/[Docker 集群],
+应使用`withServer()` 方法。
+
+通过传递一个URI, 在Jenkins中预先配置的 **Docker Server Certificate Authentication**的证书ID, 如下:
+
+
+[source,groovy]
+----
+node {
+    checkout scm
+
+    docker.withServer('tcp://swarm.example.com:2376', 'swarm-certs') {
+        docker.image('mysql:5').withRun('-p 3306:3306') {
+            /* do things */
+        }
+    }
+}
+----
+
+[CAUTION]
+====
+`inside()` 和 `build()` 不能正确的在Docker集群服务器中工作。
+
+对于`inside()` 工作, Docker 服务器和Jenkins 代理必须使用相同的文件系统，
+这样才能安装工作区。
+
+目前，Jenkins 插件和Docker CLI 都不会自动的
+检查服务器远程运行的情况; 典型的症状是嵌套的`sh`命令的错误，比如
+
+[source]
+----
+cannot create /…@tmp/durable-…/pid: Directory nonexistent
+----
+
+当 Jenkins 检查到代理本身在 Docker
+容器中运行时, 它会自动地传递 `--volumes-from` 参数到
+`inside` 容器,确保它能够和代理共享工作区。
+
+另外，Docker集群的一些版本不支持自定义注册。
+====
+
+
+
+
+[[custom-registry]]
+=== 使用自定义注册表
+
+默认情况下， plugin:docker-workflow[Docker 流水线] 集成了 link:https://hub.docker.com[Docker Hub]默认的 Docker注册表。
+.
+
+为了使用自定义Docker 注册吧, 脚本化流水线的用户能够使用 `withRegistry()` 方法完成步骤，传入自定义注册表的URL, 比如:
+
+[source, groovy]
+----
+node {
+    checkout scm
+
+    docker.withRegistry('https://registry.example.com') {
+
+        docker.image('my-custom-image').inside {
+            sh 'make test'
+        }
+    }
+}
+----
+
+对于需要身份验证的Docker 注册表, 从Jenkins 主页添加一个 "Username/Password"
+证书项， 并使用证书ID 作为 `withRegistry()`的第二个参数:
+
+[source, groovy]
+----
+node {
+    checkout scm
+
+    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+}
+----

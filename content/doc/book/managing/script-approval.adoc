@@ -1,0 +1,107 @@
+---
+layout: section
+---
+ifdef::backend-html5[]
+:notitle:
+:description:
+:author:
+:email: 进程内的脚本批准
+:sectanchors:
+:toc:
+ifdef::env-github[:imagesdir: ../resources]
+ifndef::env-github[:imagesdir: ../../resources]
+:hide-uri-scheme:
+endif::[]
+
+= 进程内的脚本批准
+
+Jenkins和许多插件都允许用户_in_ Jenkins执行
+Groovy脚本。 这些脚本功能的提供者是:
+
+* <<script-console#, 脚本控制台>>。
+* <<../pipeline#, Jenkins 流水线>>。
+* plugin:email-ext[Extended Email plugin]。
+* plugin:groovy[Groovy plugin] - 当使用"Execute system Groovy
+  script" 步骤时。
+* plugin:job-dsl[JobDSL plugin] 1.60及之后的版本。
+
+为了保护Jenkins不执行恶意脚本,这些插件在 <<groovy-sandbox>>中执行用户提供的脚本，这限制了可访问的内部API。然后管理员可以使用由 plugin:script-security[Script Security plugin]提供"In-process Script Approval"页面,来管理Jenkins环境中不安全的方法（如果有的话）。
+
+image::managing/manage-inprocess-script-approval.png["Entering the In-process Script Approval configuration", role=center]
+
+== 开始
+
+plugin:script-security[脚本安全插件] 是由
+link:../../getting-started/installing#post-install-setup-wizard[Post-install Setup Wizard]自动安装的,
+尽管最初没有附加的脚本或操作被批准使用。
+[IMPORTANT]
+====
+这个插件的旧版本可能不能安全使用。 请查看 plugin:script-security[the Script Security plugin page]列出的安全警告，
+来确保 plugin:script-security[Script Security plugin] 是最新的。
+====
+
+进程内脚本的安全性由两个不同的机制提供:
+<<groovy-sandbox>> 和 <<script-approval>>。第一种, Groovy 沙箱, 是 link:/doc/book/pipeline[Jenkins 流水线]默认的机制，允许用户提供的脚本化和声明式流水线在没有管理员干预的情况下执行。第二种, 脚本批准, 允许管理员批准或否认非沙箱脚本, 或允许沙箱脚本执行其他方法。
+
+对于大多数实例, Groovy 沙箱和已批准方法签名的
+link:https://github.com/jenkinsci/script-security-plugin/tree/master/src/main/resources/org/jenkinsci/plugins/scriptsecurity/sandbox/whitelists[脚本安全的内置列表] 的结合足够了。 强烈建议，如果绝对必要，管理员脱离这些默认值。
+
+[[groovy-sandbox]]
+== Groovy 沙箱
+
+为了减少管理员的人工干预, 大多数脚本默认在
+Groovy沙箱运行, 包括所有的
+link:/doc/book/pipeline[Jenkins 流水线]。
+沙箱只允许 Groovy的方法的子集被认为足够安全，无需预先批准就可以执行"不被信任的" 访问。
+使用Groovy沙箱的脚本 *all* 受到同样的限制, 因此 ，
+由管理员编写的流水线将受到非管理员用户授权的限制。
+
+当一个脚本试图使用沙箱未授权的特性或方法时，
+脚本会立刻停止, 如下图所示
+
+.Unauthorized method signature rejected at runtime via Blue Ocean
+image::managing/script-sandbox-rejection.png["Sandbox method rejection", role=center]
+
+上面的流水线将不会执行直到管理员通过
+*In-process Script Approval* 页面
+<<approving-method-signature, 批准方法签名>>。
+
+除了添加批准的方法签名之外, 用户还可以完全禁用
+Groovy 沙箱，如下所示。 禁用 Groovy 沙箱要求
+ **entire** 脚本必须经过管理员的审核和
+<<approving-unsandboxed-pipeline, 手动批准>> 。
+
+.Disabling the Groovy Sandbox for a Pipeline
+image::managing/unchecked-groovy-sandbox-on-pipeline.png["Creating a Scripted Pipeline and unchecking 'Use Groovy Sandbox'", role=center]
+
+[[script-approval]]
+== 脚本批准
+
+管理员对整个脚本或方法签名的手动批准, 为管理员提供了额外的灵活性，来支持进程内脚本的更高级的用法。 当 <<groovy-sandbox>> 被禁用, 或内置列表外的方法被调用时, 脚本安全插件将
+检查管理员管理的批准脚本和方法列表。
+
+对于希望在 <<groovy-sandbox>>外执行的脚本, 管理员必须批准*In-process Script Approval* 页面内的 *entire* 脚本 :
+
+[[approving-unsandboxed-pipeline]]
+.Approving an unsandboxed Scripted Pipeline
+image::managing/inprocess-script-approval-pipeline.png["Approving an unsandboxed Scripted Pipeline", role=center]
+
+
+对于使用<<groovy-sandbox>>的脚本, 但是希望执行当前未批准的方法签名，也会被Jenkins停止，并要求管理员在脚本被允许执行之前批准指定的方法签名:
+
+[[approving-method-signature]]
+.Approving a new method signature
+image::managing/inprocess-script-approval-method.png["Approving a new method signature", role=center]
+
+=== 批准假设权限检查
+
+
+脚本批准提供了三个选项: 批准, 否认, 和 "批准假设权限检查" 。虽然前两者的目的是不言而喻的, 第三种需要对内部数据脚本能够访问的内容和在如何在Jenkins函数内部检查权限进行一些额外的了解。
+
+考虑访问方法
+`hudson.model.AbstractItem.getParent()`的脚本,它本身是无害的，它将返回一个包含当前执行的流水线或任务的文件夹和根项的对象。 Following that 方法调用,
+执行 `hudson.model.ItemGroup.getItems()`,它将列出文件夹或根项中的项, 需要 `Job/Read` 权限。
+
+这可能意味着批准 `hudson.model.ItemGroup.getItems()` 方法签名将允许脚本绕过内置的权限检查。
+
+通常更可取的是，点击 *Approve assuming permissions check* ，这将造成脚本审批引擎允许方法 签名，假设运行该脚本的用户具有执行该方法的权限, 比如示例中的 `Job/Read` 权限。

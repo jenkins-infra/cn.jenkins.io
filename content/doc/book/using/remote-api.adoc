@@ -1,0 +1,37 @@
+---
+layout: redirect
+redirect_url: https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API
+---
+
+////
+
+---
+layout: section
+---
+:notitle:
+:description:
+:author:
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+:hide-uri-scheme:
+
+= Remote API
+
+////
+标记为本文档弃用的页面:
+
+https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API
+////
+
+[NOTE]
+====
+This is still very much a work in progress
+====
+
+
+== Security
+
+=== CSRF
+
+////
