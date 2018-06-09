@@ -1,0 +1,22 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# SaltStack插件中定义的扩展点
+
+plugin:saltstack[SaltStack 插件]
+
+## 基本客户端
++jenkinsdoc:saltstack:com.waytta.clientinterface.BasicClient[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:saltstack[SaltStack 插件]: com.+++<wbr/>+++waytta.+++<wbr/>+++clientinterface.+++<wbr/>+++**HookClient** (link:https://github.com/jenkinsci/saltstack-plugin/search?q=HookClient&type=Code[在GitHub上查看])
+* plugin:saltstack[SaltStack Plugin]: com.+++<wbr/>+++waytta.+++<wbr/>+++clientinterface.+++<wbr/>+++**LocalBatchClient** (link:https://github.com/jenkinsci/saltstack-plugin/search?q=LocalBatchClient&type=Code[在GitHub上查看])
+* plugin:saltstack[SaltStack Plugin]: com.+++<wbr/>+++waytta.+++<wbr/>+++clientinterface.+++<wbr/>+++**LocalClient** (link:https://github.com/jenkinsci/saltstack-plugin/search?q=LocalClient&type=Code[在GitHub上查看])
+* plugin:saltstack[SaltStack Plugin]: com.+++<wbr/>+++waytta.+++<wbr/>+++clientinterface.+++<wbr/>+++**LocalSubsetClient** (link:https://github.com/jenkinsci/saltstack-plugin/search?q=LocalSubsetClient&type=Code[在GitHub上查看])
+* plugin:saltstack[SaltStack Plugin]: com.+++<wbr/>+++waytta.+++<wbr/>+++clientinterface.+++<wbr/>+++**RunnerClient** (link:https://github.com/jenkinsci/saltstack-plugin/search?q=RunnerClient&type=Code[在GitHub上查看])
+

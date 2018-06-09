@@ -1,0 +1,262 @@
+---
+layout: 开发人员
+title: Extend the Plugin
+---
+
+- link:../prepare[Step 1: Preparing for Plugin Development]
+- link:../create[Step 2: Create a Plugin]
+- link:../run[Step 3: Build and Run the Plugin]
+- link:../extend[*Step 4: Extend the Plugin*]
+
+NOTE: 尽管可以使用纯文本编辑器，但通过使用具有Maven支持的Java IDE，本节更容易遵循
+// TODO 工具引用
+
+到了用新功能扩展示例插件的时候:
+
+* 不仅在构建日志中记录问候语中使用的名称，而且还有适当的数据结构。
+* 在构建中添加一个新页面，以显示问候语中使用的名称。
+
+我们必须存储运行构建时使用的名称，而不是使用配置中的名称，因为配置可能会更改。
+ 
+== 记录名称
+
+首先，在与+HelloWorldBuilder+相同的包中创建一个名为+HelloWorldAction+的类。 该类需要实现 jenkinsdoc:Action[]。 _Actions_是Jenkins中可扩展性的基本构建块：它们可以附加到许多模型对象，与它们一起存储，并可以添加到它们的UI中。
+
+[source,java]
+----
+package io.jenkins.plugins.sample;
+
+import hudson.model.Action;
+
+public class HelloWorldAction implements Action {
+
+    @Override
+    public String getIconFileName() {
+        return null;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return null;
+    }
+
+    @Override
+    public String getUrlName() {
+        return null;
+    }
+}
+----
+
+由于我们要存储问候中使用的名称，因此我们需要为此类添加一个带getter的字段。 我们还将添加一个将名称作为参数的构造函数。
+
+[source,java]
+----
+(...)
+
+public class HelloWorldAction implements Action {
+
+    private String name;
+
+    public HelloWorldAction(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    (...)
+----
+
+现在，我们实际上需要在构建步骤执行时创建该类的一个实例。 我们需要扩展+HelloWorldBuilder+ 类中的+perform+方法，以将我们创建的动作的一个实例添加到正在运行的构建中:
+
+[source,java]
+----
+(...)
+    @Override
+    public void perform(Run<?, ?> run, FilePath workspace, Launcher launcher, TaskListener listener) throws InterruptedException, IOException {
+        run.addAction(new HelloWorldAction(name)); // <1>
+        if (useFrench) {
+            listener.getLogger().println("Bonjour, " + name + "!");
+        } else {
+            listener.getLogger().println("Hello, " + name + "!");
+        }
+    }
+(...)
+----
+<1> 这是添加的行，其他所有内容都可以保持不变。
+
+保存这些更改，然后使用+mvn hpi:run+再次运行插件。
+
+NOTE: 每当更改Java源代码或添加或删除资源文件时，您都需要重新启动Jenkins实例才能使更改生效。 Jenkins通过`hpi:run`运行时只能编辑一些资源文件。
+
+现在，使用此构建步骤运行构建时，该操作将被添加到构建数据中。 我们可以通过查看与 +work/jobs/_JOBNAME_/builds/_BUILDNUMBER_/+ 目录中的构建版本相对应的 +build.xml+ 文件来确认。
+
+我们可以看到，这个构建中有两个动作:
+
+[source,xml]
+----
+<build>
+  <actions>
+    <hudson.model.CauseAction> // <1>
+      <causes>
+        <hudson.model.Cause_-UserIdCause/>
+      </causes>
+    </hudson.model.CauseAction>
+    <io.jenkins.plugins.sample.HelloWorldAction plugin="demo@1.0-SNAPSHOT"> // <2>
+      <name>Jenkins</name> // <3>
+    </io.jenkins.plugins.sample.HelloWorldAction>
+  </actions>
+  (...)
+</build>
+----
+<1> 构建原因（构建如何触发）也存储为操作。 在这种情况下，匿名用户开始构建。
+<2> 这是我们创建的行为，
+<3> 这是创建构建时使用的名称。
+
+== 添加一个显示名称的视图
+
+接下来，我们需要让我们正在存储的构建可见。
+
+首先，我们需要回到过去 +HelloWorldAction+ 并定义图标，标题和URL名称:
+
+[source,java]
+----
+    @Override
+    public String getIconFileName() {
+        return "document.png"; // <1>
+    }
+
+    @Override
+    public String getDisplayName() {
+        return "Greeting"; // <2>
+    }
+
+    @Override
+    public String getUrlName() {
+        return "greeting"; // <3>
+    }
+----
+<1> 他是用于侧面板项目的图标。 `document.png`是Jenkins捆绑的预定义图标之一。
+<2> 这是用于侧面板项目的标签。
+<3> 这是用于此操作的URL片段。
+
+通过这些更改，操作将显示在构建的侧面板中，并链接到URL +http://_JENKINS_/job/_JOBNAME_/_BUILDNUMBER_/greeting/+。
+
+image::developer/tutorial/sidepanel-item.png[]
+
+接下来，需要定义出现在该URL上的页面。
+为了在Jenkins创建这样的 _views_ , 通常使用 link:http://commons.apache.org/proper/commons-jelly/[Apache Commons Jelly]。
+Jelly允许用XML定义XML和XHTML输出。
+它有许多有用的功能：它
+
+* 支持条件和循环
+* 允许包含在其他地方定义的_view fragments_
+* 可用于定义可重用的UI组件
+
+在`src/main/resources/io/jenkins/plugins/sample/`中, 我们需要创建一个新的名为 `HelloWorldAction/`的目录。
+该目录与 `HelloWorldAction` 类对应并包含相关资源。
+
+NOTE: 这是 `src/main/resources`中的一个目录, 而不是 `src/main/java`。
+
+NOTE: 我们可以看到与构建步骤`HelloWorldBuilder`相关的资源，它被存储在  `src/main/resources/io/jenkins/plugins/sample/HelloWorldBuilder/` 目录:
+`config.jelly` 是构建步骤配置表单，包含构建步骤配置的本地化的
+各种`config*.properties`文件
+和为配置提供了本地化的内联帮助`help*.html`文件。
+
+在 `src/main/resources/io/jenkins/plugins/sample/HelloWorldAction/`目录创建名为 `index.jelly` 的文件。
+这将会显示在 +http://_JENKINS_/job/_JOBNAME_/_BUILDNUMBER_/greeting/+ URL上。
+添加以下内容:
+
+[source,xml]
+----
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:st="jelly:stapler">
+    <l:layout title="Greeting"> // <1>
+        <l:main-panel> // <2>
+            <h1> // <3>
+                Name: ${it.name} // <4>
+            </h1>
+        </l:main-panel>
+    </l:layout>
+</j:jelly>
+----
+<1> +layout+ 是Jenkins核心中定义的可重用_tag_，它提供了页眉，侧面板，主要内容区域和页脚的基本页面布局。
+<2> 为了使名称显示在主内容区域（而不是侧面板），我们需要将输出包裹在`main-panel`标签中。
+<3> 我们可以使用任何HTML标签，并将它们用于输出。
+
+<4> 这是一个 https://commons.apache.org/proper/commons-jexl/[JEXL] 表达式。 +it+ 引用视图所属的Java对象 (类似于Java中的 +this+), 在本例中为 `HelloWorldAction` 实例。 `it.name` 等同于一个getter调用 (`getName()`)。
+
+
+结果页面看起来与此类似:
+
+image::developer/tutorial/view1.png[]
+
+== 将构建的侧面板添加到视图
+
+在上面的输出中，没有侧面板。 由于此视图与特定版本相关，因此应该显示该版本的侧面板。 为此，我们首先需要获取对我们动作中相应构建的引用，然后在动作视图中包含构建的侧面视图_fragment_。
+
+为了获得+HelloWorldAction+ 所属的构建（或者更一般地说， +jenkinsdoc:Run[]+）的引用，我们需要改变现有的类以使其实现+jenkinsdoc:RunAction2[]+。
+
+该接口添加了两个方法，当运行首次连接到构建时（+onAttached(Run)+），以及从磁盘（+onLoad(Run)+）加载操作和运行时分别调用该方法。
+
+
+[source,java]
+----
+(...)
+import hudson.model.Run;
+import jenkins.model.RunAction2;
+
+public class HelloWorldAction implements RunAction2 { // <1>
+
+    private transient Run run; // <2>
+
+    @Override
+    public void onAttached(Run<?, ?> run) {
+        this.run = run; // <3>
+    }
+
+    @Override
+    public void onLoad(Run<?, ?> run) {
+        this.run = run; // <4>
+    }
+
+    public Run getRun() { // <5>
+        return run;
+    }
+(...)
+----
+<1> +RunAction2+ 是实现的接口，以便添加动作到 +jenkinsdoc:Run[]+s properly get references to the +Run+中。
+
+<2> +Run+ 存储在一个瞬态动作中，所以这个字段不会被序列化到磁盘上。
+<3> 首次将此操作附加到 +Run+时设置该字段。
+<4> 从磁盘加载此操作时设置该字段。
+<5> 这将使+Run+ 可用于Jelly视图 -- 它不能访问专用字段。
+
+一旦完成，我们需要将扩展视图以 _include_  +Run+的侧面板视图片段:
+
+[source,xml]
+----
+(...)
+    <l:layout title="Greeting">
+        <l:side-panel> // <1>
+            <st:include page="sidepanel.jelly" it="${it.run}" optional="true" /> // <2>
+        </l:side-panel>
+        <l:main-panel>
+          (...)
+        </l:main-panel>
+    </l:layout>
+(...)
+----
+<1> 与+main-panel+类似，我们希望内容仅在侧面板中显示，因此我们需要将它们包装在此元素中。
+<2> 在这个位置_includes_另一个对象（+Run+）的视图片段（+sidepanel.jelly+）。 我们把它标记为可选的，所以如果这个视图片断不存在，就不会显示错误，因为抽象类 +Run+没有定义这样的视图，只有它的子类+jenkinsdoc:AbstractBuild[]+。
+
+通过这些更改，我们创建的视图与Jenkins UI正确集成，与构建版本相关的内置页面没有区别:
+
+image::developer/tutorial/view2.png[]
+
+恭喜，您已成功创建并大幅扩展了Jenkins插件!
+
+== 故障排除
+
+NOTE: 没有适合你的东西？ 在 link:/chat[[IRC]]或 link:/mailing-lists[on the jenkinsci-dev mailing list]中寻求帮助。

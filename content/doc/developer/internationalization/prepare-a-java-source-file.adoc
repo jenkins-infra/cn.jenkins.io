@@ -1,0 +1,127 @@
+---
+title: Prepare a Java Source File for Localization
+layout: developerguide
+references:
+- url: https://en.wikipedia.org/wiki/.properties
+  title: .properties file format on Wikipedia
+---
+:toc:
+
+本指南介绍了如何在Jenkins核心或本地化插件中准备Java源文件。
+
+== 步骤1：识别消息
+
+首先，我们需要确定应该翻译的可本地化的字符串。
+一般来说，任何用户界面上显示的所有内容应该是国际化的（即准备用于本地化为用户的语言）。
+
+历史上，从日志记录器写入Jenkins服务器日志文件的日志消息有可能不会被翻译，但也有可能会。
+
+我们来考虑下面的示例，取自示例+HelloWorldBuilder+:
+
+[source, java]
+.HelloWorldBuilder.java (excerpt)
+----
+public FormValidation doCheckName(@QueryParameter String value)
+        throws IOException, ServletException {
+    if (value.length() == 0)
+        return FormValidation.error("Please set a name"); // <1>
+    if (value.length() < 4)
+        return FormValidation.warning("Isn't the name too short?"); // <2>
+    return FormValidation.ok();
+}
+
+...
+
+/**
+ * This human readable name is used in the configuration screen.
+ */
+public String getDisplayName() {
+    return "Say hello world"; // <3>
+}
+
+@Override
+public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
+    // To persist global configuration information,
+    // set that to properties and call save().
+    useFrench = formData.getBoolean("useFrench"); // <4>
+    // ^Can also use req.bindJSON(this, formData);
+    //  (easier when there are many fields; need set* methods for this, like setUseFrench)
+    save();
+    return super.configure(req,formData);
+}
+
+----
+<1> 这个字符串应该是国际化的，因为它被用作表单验证响应。
+<2> 该字符串也应该国际化，因为它是另一种表单验证响应。
+<3> 这是用户界面上构建步骤的显示名称，也应该是国际化的。
+<4> 这是表单配置选项的内部标识符，不能国际化。
+
+== 步骤2: 准备 +Messages.properties+ 文件
+
+
+////
+// TODO better documentation for tool support, including how Netbeans transparently handles properties encoding
+////
+
+[NOTE]
+====
+link:https://wiki.jenkins-ci.org/display/JENKINS/Internationalization#Internationalization-StaplerpluginforIntelliJIDEA[IntelliJ IDEA Plugin for Stapler] 和 link:https://wiki.jenkins-ci.org/display/JENKINS/NetBeans+plugin+for+Stapler[NetBeans Plugin for Stapler] 具有使这一点和以下步骤更容易的功能。
+====
+
+默认语言（通常为英文）的本地化字符串（除非它们在同一个组件中重复使用）通常会添加到与使用它的类相同的包中的 +Messages.properties+ 文件中。
+
+[IMPORTANT]
+====
+不要引用其他组件（例如核心+Messages+类。
+他们通常不会将自己的本地化消息视为稳定的API，因此如果他们更改消息，您的插件可能会中断。
+====
+
+使用默认的Maven项目布局，存储在源文件+src/main/java/org/jenkinsci/plugins/example/HelloWorldBuilder.java+中的+HelloWorldBuilder+类将使用资源文件+src/main/resources/org/jenkinsci/plugins/example/Messages.properties+中的本地化字符串（基本上，在同一个包中）。
+如果该文件不存在，请创建该文件。
+
+现在，让我们将上面标识的可本地化字符串的条目添加到该文件中
+
+[source]
+.Messages.properties
+----
+HelloWorldBuilder.NoName=Please set a name // <1>
+HelloWorldBuilder.ShortName=\// <2>
+  Isn''t the name too short? // <3>
+# Unicode variant of the line above: // <4>
+# Isn\u2019t the name too short? // <5>
+HelloWorldBuilder.DisplayName=Say hello world
+----
+<1> 这将为密钥+ HelloWorldBuilder.NoName +设置值。
+虽然可以自由选择密钥，但指定使用密钥通常是个好主意，因为多个文件可能共享相同的+Messages.properties+文件。
+这也是由Stapler插件为IntelliJ IDEA和NetBeans生成的格式。
+<2> 换行符，主要用于非常长的值，例如 使用说明，可以使用反斜线进行转义。
+确保不要在它后面添加空格。
+<3> 在属性文件中，单引号需要用另一个单引号转义。
+或者，这里也可以使用Unicode撇号。
+<4> 以 +#+字符开头的行是注释。
+<5> .properties文件的文件编码是ISO-8859-1（拉丁文1），因此不需要使用它们的Unicode代码点来指定不在该组中的字符。+\u2019+ 为撇号。
+
+== 步骤3: 一次构建项目
+
+在向任何+Messages.properties+文件（或重命名现有文件）添加新条目之后，项目需要重建，以便本地化程序可以从中生成源代码。
+虽然我们可以在源代码中引用它们，但是只有在生成+Messages+类后，我们才会自动完成。
+
+== 步骤4：参考+消息+字符串
+
+代码生成运行后，我们可以将生成的类的引用添加到源代码中。
+例如:
+
+[source, java]
+.HelloWorldBuilder.java (excerpt)
+----
+public FormValidation doCheckName(@QueryParameter String value)
+        throws IOException, ServletException {
+    if (value.length() == 0)
+        return FormValidation.error(Messages.HelloWorldBuilder_NoName());
+    if (value.length() < 4)
+        return FormValidation.warning(Messages.HelloWorldBuilder_ShortName());
+    return FormValidation.ok();
+}
+----
+
+如果您的IDE甚至在构建项目后仍未提供自动完成功能，请确保本地化程序的输出文件夹+target/generated-sources/localizer+已配置并被识别为包含生成的源代码的目录。

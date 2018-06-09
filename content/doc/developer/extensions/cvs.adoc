@@ -1,0 +1,32 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# CVS插件中定义的扩展点
+
+plugin:cvs[CVS Plugin]
+
+## CVS模块位置
++jenkinsdoc:cvs:hudson.scm.CvsModuleLocation[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:cvs[CVS 插件]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsModuleLocation.+++<wbr/>+++BranchModuleLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsModuleLocation.BranchModuleLocation&type=Code[在 GitHub上查看])
+* plugin:cvs[CVS Plugin]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsModuleLocation.+++<wbr/>+++HeadModuleLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsModuleLocation.HeadModuleLocation&type=Code[在 GitHub上查看])
+* plugin:cvs[CVS Plugin]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsModuleLocation.+++<wbr/>+++TagModuleLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsModuleLocation.TagModuleLocation&type=Code[在 GitHub上查看])
+
+
+## CvsRepositoryLocation
++jenkinsdoc:cvs:hudson.scm.CvsRepositoryLocation[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:cvs[CVS 插件]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsRepositoryLocation.+++<wbr/>+++BranchRepositoryLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsRepositoryLocation.BranchRepositoryLocation&type=Code[在 GitHub上查看])
+* plugin:cvs[CVS Plugin]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsRepositoryLocation.+++<wbr/>+++HeadRepositoryLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsRepositoryLocation.HeadRepositoryLocation&type=Code[在 GitHub上查看])
+* plugin:cvs[CVS Plugin]: hudson.+++<wbr/>+++scm.+++<wbr/>+++**CvsRepositoryLocation.+++<wbr/>+++TagRepositoryLocation** (link:https://github.com/jenkinsci/cvs-plugin/search?q=CvsRepositoryLocation.TagRepositoryLocation&type=Code[在 GitHub上查看])
+

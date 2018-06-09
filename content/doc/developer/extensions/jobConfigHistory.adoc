@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 作业配置历史记录插件中定义的扩展点
+
+plugin:jobConfigHistory[作业配置历史记录插件]
+
+## 作业配置历史策略
++jenkinsdoc:jobConfigHistory:hudson.plugins.jobConfigHistory.JobConfigHistoryStrategy[]+
+
++++ Master class for adding new backends to the history plugin.+++
+
+
+**Implementations:**
+
+* plugin:jobConfigHistory[作业配置历史记录插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jobConfigHistory.+++<wbr/>+++**FileHistoryDao** (link:https://github.com/jenkinsci/jobConfigHistory-plugin/search?q=FileHistoryDao&type=Code[在GitHub上查看])
+

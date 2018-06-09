@@ -1,0 +1,105 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 流水线：Groovy插件中定义的扩展点
+
+plugin:workflow-cps[流水线：Groovy插件]
+
+## 全局变量
++jenkinsdoc:workflow-cps:org.jenkinsci.plugins.workflow.cps.GlobalVariable[]+
+
++++ Defines a provider of a global variable offered to flows.+++ +++ Within a given flow execution, the variable is assumed to be a singleton.+++ +++ It is created on demand if the script refers to it by name.+++ +++
+<p><strong>Note:</strong>+++ +++ This extension point was designed for a handful of variables defined by generic Pipeline plugins.+++ +++ If you find yourself implementing this in a domain-specific plugin,+++ +++ you are probably doing too much work and harming usability in the process.+++ +++ For example, there will be no+++ jenkinsdoc:Snippetizer[] +++integration except to list its name and help text.+++ +++ Variables will also not generally be compatible with Declarative Pipeline,+++ +++ and may not work at all in alternate+++ jenkinsdoc:FlowExecution[] +++implementations.+++ +++ It is also all too easy to introduce security vulnerabilities for variables implemented using Groovy code.+++ +++ Just because you can does not mean you should.+++ +++ If at all possible, limit your plugin to implementing plain+++ jenkinsdoc:Step[] +++s.+++ +++ </p>
+<p>+++ +++ Should have a view named {@code help} offering usage.+++ </p>
+
+
+**Implementations:**
+
+* plugin:artifactory[Artifactory 插件]: org.+++<wbr/>+++jfrog.+++<wbr/>+++hudson.+++<wbr/>+++pipeline.+++<wbr/>+++dsl.+++<wbr/>+++**ArtifactoryDSL** (link:https://github.com/jenkinsci/artifactory-plugin/search?q=ArtifactoryDSL&type=Code[在GitHub上查看])
+* plugin:confluence-publisher[Confluence Publisher Plugin]: com.+++<wbr/>+++myyearbook.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++confluence.+++<wbr/>+++**ConfluenceDSL** (link:https://github.com/jenkinsci/confluence-publisher-plugin/search?q=ConfluenceDSL&type=Code[在GitHub上查看])
+* plugin:docker-workflow[Docker Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++docker.+++<wbr/>+++workflow.+++<wbr/>+++**DockerDSL** (link:https://github.com/jenkinsci/docker-workflow-plugin/search?q=DockerDSL&type=Code[在GitHub上查看])
+* plugin:groovy-postbuild[Groovy Postbuild Plugin]: org.+++<wbr/>+++jvnet.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++groovypostbuild.+++<wbr/>+++**WorkflowManager** (link:https://github.com/jenkinsci/groovy-postbuild-plugin/search?q=WorkflowManager&type=Code[在GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++model.+++<wbr/>+++workflow.+++<wbr/>+++**OwnershipGlobalVariable** (link:https://github.com/jenkinsci/ownership-plugin/search?q=OwnershipGlobalVariable&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**JXCommandsDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=JXCommandsDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**MavenFlowDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=MavenFlowDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**PipelineDSLGlobal** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=PipelineDSLGlobal&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**PromoteArtifactsDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=PromoteArtifactsDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**PromoteImagesDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=PromoteImagesDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**ReleaseProjectDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=ReleaseProjectDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**StageProjectDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=StageProjectDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**TagImagesDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=TagImagesDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**WaitUntilArtifactSyncedWithCentralDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=WaitUntilArtifactSyncedWithCentralDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**WaitUntilJenkinsPluginSyncedDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=WaitUntilJenkinsPluginSyncedDSL&type=Code[在GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**WaitUntilPullRequestMergedDSL** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=WaitUntilPullRequestMergedDSL&type=Code[在GitHub上查看])
+* plugin:kubernetes-pipeline-arquillian-steps[Kubernetes :: Pipeline :: Arquillian Steps Plugin]: io.+++<wbr/>+++fabric8.+++<wbr/>+++kubernetes.+++<wbr/>+++pipeline.+++<wbr/>+++arquillian.+++<wbr/>+++cube.+++<wbr/>+++kubernetes.+++<wbr/>+++**CubeDSL** (link:https://github.com/jenkinsci/kubernetes-pipeline-plugin/search?q=CubeDSL&type=Code[在GitHub上查看])
+* plugin:kubernetes-pipeline-steps[Kubernetes :: Pipeline :: Kubernetes Steps Plugin]: io.+++<wbr/>+++fabric8.+++<wbr/>+++kubernetes.+++<wbr/>+++pipeline.+++<wbr/>+++**KubernetesDSL** (link:https://github.com/jenkinsci/kubernetes-pipeline-plugin/search?q=KubernetesDSL&type=Code[在GitHub上查看])
+* plugin:openshift-client[OpenShift Client Jenkins Plugin]: com.+++<wbr/>+++openshift.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++**OpenShiftGlobalVariable** (link:https://github.com/jenkinsci/openshift-client-plugin/search?q=OpenShiftGlobalVariable&type=Code[在GitHub上查看])
+* plugin:workflow-remote-loader[Pipeline Remote Loader Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++remoteloader.+++<wbr/>+++**FileLoaderDSL** (link:https://github.com/jenkinsci/workflow-remote-loader-plugin/search?q=FileLoaderDSL&type=Code[在GitHub上查看])
+* plugin:workflow-remote-loader[Pipeline Remote Loader Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++remoteloader.+++<wbr/>+++**GroovyFileGlobalVariable** (link:https://github.com/jenkinsci/workflow-remote-loader-plugin/search?q=GroovyFileGlobalVariable&type=Code[在GitHub上查看])
+* plugin:pipeline-model-definition[Pipeline: Declarative Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++**ModelStepLoader** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=ModelStepLoader&type=Code[在GitHub上查看])
+* plugin:pipeline-github[Pipeline: GitHub Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++github.+++<wbr/>+++**PullRequestGlobalVariable** (link:https://github.com/jenkinsci/pipeline-github-plugin/search?q=PullRequestGlobalVariable&type=Code[在GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**EnvActionImpl.+++<wbr/>+++Binder** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=EnvActionImpl.Binder&type=Code[在GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**ParamsVariable** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=ParamsVariable&type=Code[在GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**RunWrapperBinder** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=RunWrapperBinder&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**SCMVar** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=SCMVar&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**UserDefinedGlobalVariable** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=UserDefinedGlobalVariable&type=Code[在GitHub上查看])
+* plugin:puppet-enterprise-pipeline[Puppet Enterprise Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++steps.+++<wbr/>+++**PuppetDSL** (link:https://github.com/jenkinsci/puppet-enterprise-pipeline-plugin/search?q=PuppetDSL&type=Code[在GitHub上查看])
+* plugin:simple-build-for-pipeline[Simple Build DSL for Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipelinedsl.+++<wbr/>+++**PipelineDSLGlobal** (link:https://github.com/jenkinsci/simple-build-for-pipeline-plugin/search?q=PipelineDSLGlobal&type=Code[在GitHub上查看])
+* plugin:simple-build-for-pipeline[Simple Build DSL for Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++simplebuild.+++<wbr/>+++**SimpleBuildDSL** (link:https://github.com/jenkinsci/simple-build-for-pipeline-plugin/search?q=SimpleBuildDSL&type=Code[在GitHub上查看])
+* plugin:simple-travis-runner[Simple Travis Pipeline Runner Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++simpletravisrunner.+++<wbr/>+++**SimpleTravisRunnerDSL** (link:https://github.com/jenkinsci/simple-travis-runner-plugin/search?q=SimpleTravisRunnerDSL&type=Code[在GitHub上查看])
+
+
+## GlobalVariableSet
++jenkinsdoc:workflow-cps:org.jenkinsci.plugins.workflow.cps.GlobalVariableSet[]+
+
++++ Extension point that defines a collection of global variables.+++
+
+
+**Implementations:**
+
+* plugin:pipeline-github[Pipeline: GitHub Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++github.+++<wbr/>+++**GitHubPipelineGlobalVariables** (link:https://github.com/jenkinsci/pipeline-github-plugin/search?q=GitHubPipelineGlobalVariables&type=Code[在GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**GlobalVariableSet.+++<wbr/>+++GlobalVariableProvider** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=GlobalVariableSet.GlobalVariableProvider&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**LibraryAdder.+++<wbr/>+++GlobalVars** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryAdder.GlobalVars&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**UserDefinedGlobalVariableList** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=UserDefinedGlobalVariableList&type=Code[在GitHub上查看])
+
+
+## Groovy Shell装饰者
++jenkinsdoc:workflow-cps:org.jenkinsci.plugins.workflow.cps.GroovyShellDecorator[]+
+
++++ Hook to customize the behaviour of+++ jenkinsdoc:GroovyShell[] ++++++ +++ used to run workflow scripts.+++
+
+
+**Implementations:**
+
+* plugin:pipeline-utility-steps[流水线实用步骤插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++utility.+++<wbr/>+++steps.+++<wbr/>+++maven.+++<wbr/>+++**ReadMavenPomStep.+++<wbr/>+++PackageAutoImporter** (link:https://github.com/jenkinsci/pipeline-utility-steps-plugin/search?q=ReadMavenPomStep.PackageAutoImporter&type=Code[在GitHub上查看])
+* plugin:pipeline-model-definition[Pipeline: Declarative Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++parser.+++<wbr/>+++**GroovyShellDecoratorImpl** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=GroovyShellDecoratorImpl&type=Code[在GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**GroovyShellDecorator** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=GroovyShellDecorator.NULL.&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**GroovyShellDecoratorImpl** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=GroovyShellDecoratorImpl&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**GroovyShellDecoratorImpl** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=GroovyShellDecoratorImpl.forTrusted.&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**LibraryDecorator** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryDecorator&type=Code[在GitHub上查看])
+
+
+## 原始加载的脚本
++jenkinsdoc:workflow-cps:org.jenkinsci.plugins.workflow.cps.replay.OriginalLoadedScripts[]+
+
++++ Defines which scripts are eligible to be replaced by+++ jenkinsdoc:ReplayAction#run[] +++.+++
+
+
+**Implementations:**
+
+* plugin:workflow-cps[流水线: Groovy 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++replay.+++<wbr/>+++**ReplayFlowFactoryAction.+++<wbr/>+++StoredLoadedScripts** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=ReplayFlowFactoryAction.StoredLoadedScripts&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**LibraryAdder.+++<wbr/>+++LoadedLibraries** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryAdder.LoadedLibraries&type=Code[在GitHub上查看])
+
+
+## 步骤描述符缓存
++jenkinsdoc:workflow-cps:org.jenkinsci.plugins.workflow.cps.nodes.StepDescriptorCache[]+
+
++++ Shared cacheSingleton for the StepDescriptors, extension-scoped to avoid test issues+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

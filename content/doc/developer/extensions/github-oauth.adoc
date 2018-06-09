@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# GitHub身份验证插件中定义的扩展点
+
+plugin:github-oauth[GitHub身份验证插件]
+
+## 身份验证范围
++jenkinsdoc:github-oauth:org.jenkinsci.plugins.GitHubOAuthScope[]+
+
++++ Extension point to be implemented by plugins to request additional scopes.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

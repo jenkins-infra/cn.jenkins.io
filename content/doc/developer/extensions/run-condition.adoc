@@ -1,0 +1,42 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 运行条件插件中定义的扩展点
+
+plugin:run-condition[运行条件插件]
+
+## 运行条件
++jenkinsdoc:run-condition:org.jenkins_ci.plugins.run_condition.RunCondition[]+
+
++++ Define a condition that can be used to decide whether to run a BuildStep or not.+++
+
+
+**Implementations:**
+
+* plugin:build-cause-run-condition[构建原因运行条件插件]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_cause_run_condition.+++<wbr/>+++**ExtendedCauseCondition** (link:https://github.com/jenkinsci/build-cause-run-condition-plugin/search?q=ExtendedCauseCondition&type=Code[在GitHub上查看])
+* plugin:conditional-buildstep[Conditional BuildStep Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++conditionalbuildstep.+++<wbr/>+++**LegacyBuildstepCondition** (link:https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=LegacyBuildstepCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++common.+++<wbr/>+++**AlwaysPrebuildRunCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=AlwaysPrebuildRunCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**AlwaysRun** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=AlwaysRun&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++logic.+++<wbr/>+++**And** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=And&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++contributed.+++<wbr/>+++**BatchFileCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=BatchFileCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**BooleanCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=BooleanCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**CauseCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=CauseCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++contributed.+++<wbr/>+++**CommandInterperterCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=CommandInterperterCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**DayCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=DayCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**ExpressionCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=ExpressionCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**FileExistsCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=FileExistsCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**FilesMatchCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=FilesMatchCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**NeverRun** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=NeverRun&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**NodeCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=NodeCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++logic.+++<wbr/>+++**Not** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=Not&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**NumericalComparisonCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=NumericalComparisonCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++logic.+++<wbr/>+++**Or** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=Or&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++common.+++<wbr/>+++**PrebuildSameAsPerformRunCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=PrebuildSameAsPerformRunCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++contributed.+++<wbr/>+++**ShellCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=ShellCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**StatusCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=StatusCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**StringsMatchCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=StringsMatchCondition&type=Code[在GitHub上查看])
+* plugin:run-condition[Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition.+++<wbr/>+++core.+++<wbr/>+++**TimeCondition** (link:https://github.com/jenkinsci/run-condition-plugin/search?q=TimeCondition&type=Code[在GitHub上查看])
+* plugin:text-finder-run-condition[Text Finder Run Condition Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++text_finder_run_condition.+++<wbr/>+++**TextFinderCondition** (link:https://github.com/jenkinsci/text-finder-run-condition-plugin/search?q=TextFinderCondition&type=Code[在GitHub上查看])
+

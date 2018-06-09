@@ -1,0 +1,36 @@
+---
+title: 插件教程
+layout: developer
+noanchors: true
+references: []
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial
+//  title: Plugin tutorial on the wiki
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Structure
+//  title: Structure of a plugin
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/Developer's+Guide
+//  title: Plugin tutorial (incomplete) # TODO WTF
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/Create+a+new+Plugin+with+a+custom+build+Step
+//  title: Create a new Plugin with a custom build Step
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/Manage+global+settings+and+tools+installations
+//  title: Manage global settings and tools installations
+//- url: https://jenkinsci.github.io/maven-hpi-plugin/plugin-info.html
+//  title: Maven HPI Plugin site
+//- url: https://wiki.jenkins-ci.org/display/JENKINS/FindBugs+in+plugins
+//  title: FindBugs in Plugins # TODO Is this obsolete with recent parent POM versions?
+wip: true
+---
+
+Jenkins有一个功能强大的扩展和插件系统，允许开发人员编写影响Jenkins行为几乎每个方面的插件。 即使是大部分“核心”功能都是以扩展名的形式编写的 -- 扩展名也可以由插件提供。
+
+一些更明显的扩展点包括*SCM implementations*，将Git，Subversion或Perforce等SCM集成到Jenkins中; *build steps*，提供从方便的用户界面到配置构建工具，到发送电子邮件等所有内容; 或*authentication realms*，将Jenkins与单点登录系统或外部用户目录（如LDAP或Active Directory）集成。
+
+但它比这更进一步：*Job types* --管道在插件中实现 --; *annotating console output or changelogs*，例如添加链接到问题跟踪器中引用的错误; 影响Jenkins *build queue*优先考虑队列项目并将构建分配给代理; 或者添加*node monitors*，度量提供者Jenkins定期查询以确定每个构建节点的健康状况都可以使用插件中的扩展来完成。 这些仅仅是Jenkins中扩展点的几个例子。
+
+本教程是Jenkins插件开发的起点：它解释了如何准备您的构建环境，如何创建插件以及如何实现通用功能。
+
+== 章节
+
+- link:prepare[步骤 1: 为插件开发做准备]
+- link:create[步骤 2: 创建插件]
+- link:run[步骤 3: 构建和运行插件]
+- link:extend[步骤 4: 扩展插件]

@@ -1,0 +1,61 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Blue Ocean插件在REST实现中定义的扩展点
+
+plugin:blueocean-rest-impl[Blue Ocean插件的REST实现]
+
+## 容器过滤器
++jenkinsdoc:blueocean-rest-impl:io.jenkins.blueocean.service.embedded.rest.ContainerFilter[]+
+
++++ Simple extension point to allow filtering item types by a specific key+++ +++ This can be used anywhere a list of items are returned, and it will examine+++ +++ the current request for a ?filter=filter1(param:value),filter2 parameter,+++ +++ okay the last bit is a future addition once/if OmniSearch and this are consolidated+++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**PipelineJobFilters.+++<wbr/>+++FolderJobFilter** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineJobFilters.FolderJobFilter&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**PipelineJobFilters.+++<wbr/>+++OriginFilter** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineJobFilters.OriginFilter&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**PipelineJobFilters.+++<wbr/>+++PullRequestFilter** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineJobFilters.PullRequestFilter&type=Code[在GitHub上查看])
+
+
+## JobAnalyticsCheck
++jenkinsdoc:blueocean-rest-impl:io.jenkins.blueocean.service.embedded.analytics.JobAnalyticsCheck[]+
+
++++Used to check the type of item for+++ jenkinsdoc:io.jenkins.blueocean.service.embedded.analytics.JobAnalytics[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**DeclarativePipelineAnalyticsCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=DeclarativePipelineAnalyticsCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**DeclarativeSinglePipelineCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=DeclarativeSinglePipelineCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**FreeStyleAnalyticsCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=FreeStyleAnalyticsCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**MatrixAnalyticsCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MatrixAnalyticsCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**MavenAnalyticsCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MavenAnalyticsCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**ScriptedPipelineAnalyticsCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ScriptedPipelineAnalyticsCheck&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**ScriptedSinglePipelineCheck** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ScriptedSinglePipelineCheck&type=Code[在GitHub上查看])
+
+
+## 排除工作分析
++jenkinsdoc:blueocean-rest-impl:io.jenkins.blueocean.service.embedded.analytics.JobAnalyticsExclude[]+
+
++++Used to exclude an item from+++ jenkinsdoc:io.jenkins.blueocean.service.embedded.analytics.JobAnalytics[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**MatrixAnalyticsCheck.+++<wbr/>+++ExcludeImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MatrixAnalyticsCheck.ExcludeImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**MavenAnalyticsCheck.+++<wbr/>+++ExcludeImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MavenAnalyticsCheck.ExcludeImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Pipeline implementation for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++analytics.+++<wbr/>+++**ScriptedPipelineAnalyticsCheck.+++<wbr/>+++ExcludeImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ScriptedPipelineAnalyticsCheck.ExcludeImpl&type=Code[在GitHub上查看])
+
+
+## 敏锐配置
++jenkinsdoc:blueocean-rest-impl:io.jenkins.blueocean.service.embedded.analytics.KeenConfiguration[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**KeenConfiguration.+++<wbr/>+++DefaultKeenConfiguration** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=KeenConfiguration.DefaultKeenConfiguration&type=Code[在GitHub上查看])
+

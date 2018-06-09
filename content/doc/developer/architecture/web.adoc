@@ -1,0 +1,31 @@
+---
+title: Web 框架
+layout: developersection
+summary: How Jenkins uses the Stapler framework
+---
+
+== 请求处理
+
+Jenkins 通过使用 http://stapler.kohsuke.org[Stapler]绑定到 URL。
+单例 +jenkinsdoc:Jenkins[]+ 实例绑定到上下文根目录下 (多数情况下是 "/") URL, 其余的对象根据它们从这个根对象的可达性进行绑定。
+Stapler 使用反射来递归确定如何处理任何给定的URL。
+一些例子说明如何处理URL'`/foo/bar` :
+
+* 在`Jenkins`对象上定义了`getFoo（String）`，并且Stapler将`bar`作为参数传递。
+  返回的对象有一个名为`doIndex(…)`的方法被调用并呈现响应。
+* `getFoo()`被定义并返回一个具有`getBar`或`doBar`方法的对象。
+ 从那里返回的对象有一个关联的`index.jelly`或`index.groovy`视图。
+
+* 定义了`getFoo()`，并且返回的对象有一个名为`bar.jelly`或`bar.groovy`的视图。`
+* 定义了`doFoo()`。
+
+处理请求的方法还有很多，但这些是最常见的。
+
+link:../../handling-requests/[详细了解Jenkins中的请求处理]
+
+== 视图
+
+Jenkins模型对象有多个 _views_，用于呈现每个对象的 HTML页面。
+视图是在 http://jakarta.apache.org/commons/jelly/[Jelly] 或 http://groovy-lang.org/[Groovy] 中编写的，可以由许多不同的部分视图组成（或查看片段）。
+
+link:../../handling-requests/[了解更多关于Jenkins的观点]

@@ -1,0 +1,30 @@
+---
+layout: developersection
+title: 插件构建过程
+references:
+- url: ../updating-parent/
+  title: Guide to Updating Your Maven Parent POM
+- url: https://github.com/jenkinsci/plugin-pom/
+  title: Plugin parent POM 2.x and up
+- url: https://github.com/jenkinsci/maven-hpi-plugin/
+  title: Maven HPI Plugin
+---
+
+大多数Jenkins插件都是用 link:https://maven.apache.org[Maven]构建的。
+他们通常使用link:https://github.com/jenkinsci/plugin-pom/[Jenkins plugin POM]作为其父link:https://maven.apache.org/pom.html[POM]，它提供了一个 插件构建的合理默认配置。
+link:https://github.com/jenkinsci/maven-hpi-plugin/[Maven HPI plugin]是其中的一个插件。
+它完成了繁重的工作，例如捆绑用于Jenkins插件的HPI / JPI归档格式的插件，或允许开发人员使用该插件运行调试Jenkins实例。
+
+从插件POM的2.0版本开始，可以指定父POM的核心版本依赖性，而不依赖于其版本。 footnoteref:[1.x，至Jenkins 1.645，插件POM与Jenkins发布版本保持同步，以便 插件的最低Jenkins版本确定了用于构建插件的工具的版本。 这些版本不应再使用。]
+这使得与旧版Jenkins版本兼容的插件可以从修补和改进父POM中受益。
+link:https://github.com/jenkinsci/plugin-pom/blob/master/CHANGELOG.md[plugin POM changelog]提供了更多详细信息。
+
+== 保持最新状态
+
+通常建议经常更新到最近的插件父POM，原因有很多:
+
+* 插件开发人员和用户受益于错误修复和对父POM及其指定的工具和库的改进
+* 像静态代码分析和一般测试这样的默认构建补充旨在提高插件的整体质量。
+// TODO 在将其作为示例包含之前，需要一个很好的引用:
+// 例如，取决于插件父POM 1.596（使用maven-hpi-plugin 1.110）或更新的插件将需要在所有Jelly文件中指定<code> escape-by-default </ code>以供InjectedTest传递。 取决于旧版本的插件可能存在隐藏的XSS漏洞。
+* 最新版本的工具 (继承自父插件POM）允许开发人员使用更高级的工具，如 https://github.com/jenkinsci/plugin-compat-tester[plugin compatibility tester] 以确定他们的插件是否与最新的Jenkins版本兼容。

@@ -1,0 +1,10 @@
+---
+title: 在Jelly视图中的消息国际化
+layout: developersection
+references:
+- url: http://stapler.kohsuke.org/apidocs/org/kohsuke/stapler/jelly/InternationalizedStringExpression.html
+  title: API documentation for the InternationalizedStringExpression class in Stapler
+- url: https://commons.apache.org/proper/commons-jexl/
+  title: Apache JEXL
+wip: true
+---

@@ -1,0 +1,18 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 流水线：REST API插件中定义的扩展点
+
+plugin:pipeline-rest-api[流水线：REST API插件]
+
+## FlowNodeUtil.+++<wbr/>+++CacheExtensionPoint
++jenkinsdoc:pipeline-rest-api:com.cloudbees.workflow.flownode.FlowNodeUtil.CacheExtensionPoint[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:pipeline-rest-api[流水线：REST API插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++workflow.+++<wbr/>+++flownode.+++<wbr/>+++**FlowNodeUtil.+++<wbr/>+++CacheExtension** (link:https://github.com/jenkinsci/pipeline-stage-view-plugin/search?q=FlowNodeUtil.CacheExtension&type=Code[在GitHub上查看])
+

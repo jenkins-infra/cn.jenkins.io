@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# GitLab插件中定义的扩展点
+
+plugin:gitlab-plugin[GitLab 插件]
+
+## GitLab客户端构建器
++jenkinsdoc:gitlab-plugin:com.dabsquared.gitlabjenkins.gitlab.api.GitLabClientBuilder[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:gitlab-plugin[GitLab 插件]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++gitlab.+++<wbr/>+++api.+++<wbr/>+++impl.+++<wbr/>+++**AutodetectGitLabClientBuilder** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=AutodetectGitLabClientBuilder&type=Code[在GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++gitlab.+++<wbr/>+++api.+++<wbr/>+++impl.+++<wbr/>+++**ResteasyGitLabClientBuilder** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=ResteasyGitLabClientBuilder&type=Code[在GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++gitlab.+++<wbr/>+++api.+++<wbr/>+++impl.+++<wbr/>+++**V3GitLabClientBuilder** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=V3GitLabClientBuilder&type=Code[在GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++gitlab.+++<wbr/>+++api.+++<wbr/>+++impl.+++<wbr/>+++**V4GitLabClientBuilder** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=V4GitLabClientBuilder&type=Code[在GitHub上查看])
+

@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Maven Artifact ChoiceListProvider（Nexus）插件中定义的扩展点
+
+plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider（Nexus）插件]
+
+## 抽象Maven人工选择列表提供程序
++jenkinsdoc:maven-artifact-choicelistprovider:org.jenkinsci.plugins.maven_artifact_choicelistprovider.AbstractMavenArtifactChoiceListProvider[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider（Nexus）插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++artifactory.+++<wbr/>+++**ArtifactoryChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=ArtifactoryChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++central.+++<wbr/>+++**MavenCentralChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=MavenCentralChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++nexus.+++<wbr/>+++**NexusChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=NexusChoiceListProvider&type=Code[在GitHub上查看])
+

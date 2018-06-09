@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# SSH代理插件中定义的扩展点
+
+plugin:ssh-agent[SSH代理插件]
+
+## 远程代理工厂
++jenkinsdoc:ssh-agent:com.cloudbees.jenkins.plugins.sshagent.RemoteAgentFactory[]+
+
++++ Extension point for ssh-agent providers.+++
+
+
+**Implementations:**
+
+* plugin:ssh-agent[SSH代理插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++sshagent.+++<wbr/>+++exec.+++<wbr/>+++**ExecRemoteAgentFactory** (link:https://github.com/jenkinsci/ssh-agent-plugin/search?q=ExecRemoteAgentFactory&type=Code[在GitHub上查看])
+* plugin:ssh-agent[SSH Agent Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++sshagent.+++<wbr/>+++jna.+++<wbr/>+++**JNRRemoteAgentFactory** (link:https://github.com/jenkinsci/ssh-agent-plugin/search?q=JNRRemoteAgentFactory&type=Code[在GitHub上查看])
+* plugin:ssh-agent[SSH Agent Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++sshagent.+++<wbr/>+++mina.+++<wbr/>+++**MinaRemoteAgentFactory** (link:https://github.com/jenkinsci/ssh-agent-plugin/search?q=MinaRemoteAgentFactory&type=Code[在GitHub上查看])
+

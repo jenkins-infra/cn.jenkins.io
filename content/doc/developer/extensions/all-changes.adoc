@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在所有changes插件中定义的扩展点
+
+plugin:all-changes[所有changes插件]
+
+## 更改聚合器
++jenkinsdoc:all-changes:org.jenkinsci.plugins.all_changes.ChangesAggregator[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:all-changes[所有changes插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++all_changes.+++<wbr/>+++**DependencyChangesAggregator** (link:https://github.com/jenkinsci/all-changes-plugin/search?q=DependencyChangesAggregator&type=Code[在 GitHub上查看])
+* plugin:all-changes[All changes Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++all_changes.+++<wbr/>+++**SubProjectChangesAggregator** (link:https://github.com/jenkinsci/all-changes-plugin/search?q=SubProjectChangesAggregator&type=Code[在 GitHub上查看])
+

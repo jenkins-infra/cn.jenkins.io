@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 节点和标签参数插件中定义的扩展点
+
+plugin:nodelabelparameter[节点和标签参数插件]
+
+## 节点资格
++jenkinsdoc:nodelabelparameter:org.jvnet.jenkins.plugins.nodelabelparameter.node.NodeEligibility[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:nodelabelparameter[节点和标签参数插件]: org.+++<wbr/>+++jvnet.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++nodelabelparameter.+++<wbr/>+++node.+++<wbr/>+++**AllNodeEligibility** (link:https://github.com/jenkinsci/nodelabelparameter-plugin/search?q=AllNodeEligibility&type=Code[在GitHub上查看])
+* plugin:nodelabelparameter[Node and Label parameter Plugin]: org.+++<wbr/>+++jvnet.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++nodelabelparameter.+++<wbr/>+++node.+++<wbr/>+++**IgnoreOfflineNodeEligibility** (link:https://github.com/jenkinsci/nodelabelparameter-plugin/search?q=IgnoreOfflineNodeEligibility&type=Code[在GitHub上查看])
+* plugin:nodelabelparameter[Node and Label parameter Plugin]: org.+++<wbr/>+++jvnet.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++nodelabelparameter.+++<wbr/>+++node.+++<wbr/>+++**IgnoreTempOfflineNodeEligibility** (link:https://github.com/jenkinsci/nodelabelparameter-plugin/search?q=IgnoreTempOfflineNodeEligibility&type=Code[在GitHub上查看])
+

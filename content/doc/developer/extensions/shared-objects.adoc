@@ -1,0 +1,25 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 共享对象插件中定义的扩展点
+
+plugin:shared-objects[共享对象插件]
+
+## 共享对象类型
++jenkinsdoc:shared-objects:org.jenkinsci.plugins.sharedobjects.SharedObjectType[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:shared-objects[共享对象插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**ClearcaseSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=ClearcaseSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**FileURLPropertiesSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=FileURLPropertiesSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**GroovySharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=GroovySharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++**MultipleSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=MultipleSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**PublicFilePathSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=PublicFilePathSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++**SimpleSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=SimpleSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**StringValueSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=StringValueSharedObjectType&type=Code[在GitHub上查看])
+* plugin:shared-objects[Shared Objects Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++sharedobjects.+++<wbr/>+++type.+++<wbr/>+++**URLPropertiesSharedObjectType** (link:https://github.com/jenkinsci/shared-objects-plugin/search?q=URLPropertiesSharedObjectType&type=Code[在GitHub上查看])
+

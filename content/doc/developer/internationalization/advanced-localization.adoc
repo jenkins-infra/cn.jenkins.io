@@ -1,0 +1,77 @@
+---
+title: 高级本地化
+layout: developersection
+references:
+- url: http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html
+  title: Javadoc for <tt>java.text.MessageFormat</tt>
+- url: http://docs.oracle.com/javase/8/docs/api/java/text/ChoiceFormat.html
+  title: Javadoc for <tt>java.text.ChoiceFormat</tt>
+- url: http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+  title: Javadoc for <tt>java.text.SimpleDateFormat</tt> explaining custom date format definitions
+---
+
+本地化字符串中的占位符可以支持一系列灵活的格式化选项，除了基本的等，它插入代表作为参数传递的任何对象的字符串。
+
+本页提供了支持的消息格式的概述。
+javadoc:java.text.MessageFormat[`MessageFormat` Javadoc] 提供了更多细节 。
+
+== 数字
+
+如果数字作为参数传递，它们通常打印时不使用本地化格式。
+
+
+----
+{0,number}          // <1>
+{0,number,integer}  // <2>
+{0,number,currency} // <3>
+{0,number,percent}  // <4>
+{0,number,0.###E0}  // <5>
+----
+<1> 显示本地化数字，例如 `1,234.56` (en_US), `1.234,56` (de_DE), or `1'234.5` (de_CH)
+<2> 四舍五入为最接近的整数，例如 `1,235` (en_US) or  `1.235` (de_DE)
+<3> 显示为货币
+<4> 百分比，例如 `0.12` 可以格式化为 `12%`
+<5> 任意模式可以定义为第三个参数，如 javadoc:java.text.DecimalFormat[`DecimalFormat` Javadoc].
+该示例定义了科学记数法，所以 `1234` 将显示为`1.234E3`.
+
+== 选择
+
+当术语的翻译取决于数字的值时，这种模式很有用。
+例：
+
+----
+{0,choice,0#No projects were|1#A project was|2<{0,number,integer} projects were} found.
+----
+
+在该示例中，输出取决于第一个参数的值(下标 `0`):
+
+- 如果它为零, *No projects were found* 将被打印。
+- 如果它是一个, *A project was found* 将被打印。
+- 如果它是两个或更多, *`N` projects were found* 将被打印, `N` 是参数值的局部表示。
+这表明模式可以嵌套，本地化的`number`嵌套在`choice`模式中。
+
+== 日期和时间
+
+
+日期和时间模式可用于显示适合用户本地语言环境的`Date`实例。
+
+这些使用预定义的日期和时间样式 (`short`, `medium`, `long`, 和 `full`), 或者使用javadoc:java.text.SimpleDateFormat[`SimpleDateFormat`] 类的自定义格式。
+
+----
+{0,date}            // <1>
+{0,date,short}
+{0,date,medium}
+{0,date,long}
+{0,date,full}
+{0,date,yyyy-mm-dd} // <2>
+{0,time}            // <3>
+{0,time,short}
+{0,time,medium}
+{0,time,long}
+{0,time,full}
+{0,time,HH:mm:ss}   // <4>
+----
+<1> 默认（中）日期格式
+<2> 自定义日期格式，在这种情况下，日期类似于2017-02-27
+<3> 默认（中等）时间格式
+<4> 自定义时间格式，在这种情况下是17:45:32

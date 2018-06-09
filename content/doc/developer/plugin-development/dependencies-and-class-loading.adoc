@@ -1,0 +1,488 @@
+---
+title: 依赖和类的加载
+summary: How code is physically structured in Jenkins core and plugins, and how this relates to dependencies and Java class loading behavior.
+layout: developersection
+---
+
+Jenkins拥有复杂的模块化架构。
+为了使插件能够使用Java生态系统中丰富的库数组，
+并使用插件到插件的API彼此构建，
+Jenkins插件扩展机制超越了简单的插件清单。
+
+Jenkins插件的事实上的构建工具是Apache Maven。
+这里的所有示例都将使用Maven。
+使用Gradle构建插件也是可能的，但特定的功能可能会落后。
+
+## Jenkins 类的加载
+
+在深入_how_从你的插件引用其他插件和库之前，
+了解Java类加载的元素以及Jenkins如何适用这些元素非常有用。
+如果您不是Java开发人员，那么您可以忽略所有这些简单插件，
+但需要了解类加载以排除奇怪的错误或执行高级包装。
+
+### 插件的类加载器层次结构
+
+[source]
+----
+□ Java Platform
+ ↖
+  □ “application classpath” (servlet container): java -jar jenkins.war
+   ↖
+    □ Jenkins core: jenkins.war!/WEB-INF/lib/*.jar
+     ↖
+      □ plugin A: $JENKINS_HOME/plugins/a.jpi!/WEB-INF/lib/*.jar
+       ↖                                                             ↖
+        □ plugin C: $JENKINS_HOME/plugins/c.jpi!/WEB-INF/lib/*.jar  ← □ UberClassLoader
+     ↖ ↙                                                             ↙
+      □ plugin B: $JENKINS_HOME/plugins/b.jpi!/WEB-INF/lib/*.jar
+      ⋮
+----
+
+Java类加载器有他们委托的_parents_。
+对于Jenkins而言，最重要的是委托给Java平台的“Jenkins核心”，
+并且所有的Jenkins插件都委托给Jenkins核心。
+
+插件也可以委托给另一个插件。
+在上面的例子中，C声明了对A和B的依赖关系。
+在它的+c.jpi!/META-INF/MANIFEST.MF+中，它看起来像这样:
+
+[source]
+----
+Plugin-Dependencies: a:1.13,b:1.6
+----
+
+因此C可以直接引用在A或B，以及Jenkins和Java平台中定义的类:
+
+[source,java]
+----
+package org.jenkinsci.plugins.c;
+import java.util.Date;
+import jenkins.model.Jenkins;
+import org.jenkinsci.plugins.a.Alpha;
+import org.jenkinsci.plugins.b.Beta;
+public class Charlie {/* … */}
+----
+
+
+每个（启用的）插件都有自己的+ClassLoader+。
+两个不同的插件可以定义一个同名的类，只要两个都不依赖于其他插件。
+
+还有一个特殊的+UberClassLoader+，它委托给_all_启用的插件。
+这不会加载任何额外的资源，但它可以用来查找任何插件类或资源。
+
+### 启动与定义加载器
+
+当你_initiate_ 加载一个类
+
+[source,java]
+----
+Class<?> alpha = Charlie.class.getClassLoader().loadClass("org.jenkinsci.plugins.a.Alpha");
+----
+
+你正在请求一个特定的+ClassLoader+（这里是C）按名称查找一个类。
+（通常这会通过请求他的所有父类来找到该类 _start_，
+并且只能查看`c.jpi!/WEB-INF/lib/*.jar`作为最后的手段。）
+
+如果+Alpha.class+引用其他各种类，例如在+import+语句中使用它们，会发生什么情况？
+Java会考虑+Alpha.class+（这里是A）的_defining_加载器，并且只会询问该类加载器。
+你开始用C加载的事实是无关紧要的。
+这意味着C不能提供某些可能需要链接的类。
+需要能够自己“看到”任何这样的课程。
+否则，您将在运行时获得+NoClassDefFoundError+。
+
+### 上下文类加载器
+
+Java定义了一个+Thread.getContextClassLoader()+。
+Jenkins并没有使用这么多; 它通常会由servlet容器设置为Jenkins核心加载器。
+
+一些Java库有一个基本的设计缺陷，起源于具有“扁平类路径”的前置系统系统，
+据此，他们希望库的客户端定义的类可以通过名称获得，而不是需要任何资格:
+
+[source,java]
+----
+package org.somelib;
+public class LibClass {
+    public static Object use(String name) throws Exception {
+        return getUserClass(name).newInstance();
+    }
+    private Class<?> getUserClass(String name) throws ClassNotFoundException {
+        return Class.forName(name);
+    }
+}
+----
+
+这在Jenkins中无法正常工作，因为library +org.somelib+可能在插件A中定义，
+而用户类在依赖于A的插件B中定义。
++Class.forName(String)+使用_calling class_（+LibClass+）来确定启动的+ClassLoader+;
+由于插件A无法从插件B加载类，因此会导致+ClassNotFoundException+。
+
+其他存储库尝试如下解决该问题:
+
+[source,java]
+----
+package org.somelib;
+public class LibClass {
+    public static Object use(String name) throws Exception {
+        return getUserClass(name).newInstance();
+    }
+    private Class<?> getUserClass(String name) throws ClassNotFoundException {
+        return Class.forName(name, true, Thread.currentThread().getContextClassLoader());
+    }
+}
+----
+
+这在Jenkins中默认也是失败的，因为+contextClassLoader+只能看到Jenkins的核心（甚至连插件A都看不到，更不用说B）。
+在某些情况下，Jenkins插件代码可以解决此问题:
+
+[source,java]
+----
+package org.jenkinsci.plugins.b;
+import org.somelib.LibClass;
+class UsesThatLib {
+    Object someMethod() {
+        Thread t = Thread.currentThread();
+        ClassLoader orig = t.getContextClassLoader();
+        t.setContextClassLoader(UsesThatLib.class.getClassLoader());
+        try {
+            return LibClass.use(UsesThatLib.class.getName());
+        } finally {
+            t.setContextClassLoader(orig);
+        }
+    }
+}
+----
+
+（当不清楚需要的特定的类加载器时，+ UberClassLoader +可以用作后备，
+尽管这样做并不安全，因为在两个不相关的插件捆绑在同一个库的情况下，查找可能不明确。）
+
+但是，最终，如果它不允许客户端直接指定一个+ClassLoader+来用于查找，它就是库中的一个设计缺陷
+（或为特定名称预注册+Class+实例）。
+考虑修补库或者更加努力寻找已经存在的合适的API。
+例如，默认情况下，+java.io.ObjectInputStream+（用于反序列化Java对象）使用复杂的算法来猜测+ClassLoader+，
+但你可以重写+resolveClass+来消除猜测的需要（因为+hudson.remoting.ObjectInputStreamEx+实际上是这样）。
+
+### 视图和其他资源
+
+Jenkins插件通常包含“Stapler视图”，如+config.jelly+以及+src/main/resources/+中的其他资源。
+虽然你可以明确地从Java代码加载这些:
+
+[source,java]
+----
+package org.jenkinsci.plugins.a;
+public class Alpha {
+    /** loads {@code /org/jenkinsci/plugins/a/config.txt} from {@code a.jpi!/WEB-INF/lib/a.jar} */
+    static URL config() throws IOException {
+        return Alpha.class.getResource("config.txt");
+    }
+}
+----
+
+通常这些资源将以您的名义加载，例如依照Jenkins的惯例寻找一个视图。
+在这种情况下，通过+UberClassLoader+查找，因此您的资源路径（+/org/jenkinsci/plugins/a/config.txt+）
+最好是全球独一无二的。
+
+用于本地化的+Messages.properties+有点不同，
+因为在构建过程中实际编译为+Messages.class+
+并因此表现得像你的插件代码中静态引用的任何其他Java类:
+
+[source,java]
+----
+package org.jenkinsci.plugins.a;
+public class Alpha {
+    /** compiled from {@code /org/jenkinsci/plugins/a/Messages.properties#Alpha.message} */
+    static String message() throws IOException {
+        return Messages.Alpha_message();
+    }
+}
+----
+
+## 依赖于其他插件
+
+让你的插件依赖于其他插件是很容易的：只需手动或使用你最喜欢的IDE，在你的POM中声明依赖关系。
+
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>a</artifactId>
+        <version>1.13</version>
+    </dependency>
+    <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>b</artifactId>
+        <version>1.6</version>
+    </dependency>
+</dependencies>
+----
+
+Jenkins插件的Maven包装类型理解为将其转换为+Plugin-Dependencies+清单头，
+这将由Jenkins插件管理器以及更新中心和其他工具来理解。
+
+Maven编译器插件类似地理解，在构建插件时，应该将+a-1.13.jar+和+b-1.6.jar+添加到您的类路径中。
+
+### 扩展和控制反转
+
+“服务定位器”模式用于整个Jenkins的模块化和可扩展性。
+例如，如果一个插件（或核心）定义了一个API
+
+[source,java]
+----
+package org.jenkinsci.plugins.someapi;
+import hudson.ExtensionPoint;
+public interface Checker extends ExtensionPoint {
+    boolean doesThisSeemOK(String input);
+}
+----
+
+然后另一个插件可能会声明对该API的依赖关系
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>someapi</artifactId>
+    <version>1.0</version>
+</dependency>
+----
+
+并添加扩展:
+
+[source,java]
+----
+package org.jenkinsci.plugins.somethingelse;
+import hudson.Extension;
+import org.jenkinsci.plugins.someapi.Checker;
+@Extension
+public class MyChecker implements Checker {
+    @Override
+    public boolean doesThisSeemOK(String input) {
+        return !input.contains("/");
+    }
+}
+----
+
+现在任何能够链接到+someapi+的代码都可以使用这些实现;
+最常见的是在同一个API插件中完成:
+
+[source,java]
+----
+package org.jenkinsci.plugins.someapi;
+import hudson.ExtensionList;
+class RunsChecks {
+    static boolean allFine(String input) {
+        for (Checker c : ExtensionList.lookup(Checker.class)) {
+            if (!c.doesThisSeemOK(input)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+----
+
+理解这一点非常重要，尽管+MyChecker+需要链接到+Checker+，强制使用+dependency+，
++RunsChecks+ _not_需要能够链接到+MyChecker+（或任何其他实现）。
+虽然局部变量+c+的实现类可能在+somethingelse+插件中，
+它只需要关心_declared type_ +Checker+。
+
+## 捆绑第三方库
+
+有时插件需要使用Java平台以外的Java库和Jenkins本身。
+例如，连接到特定服务的插件可能会使用供应商提供的Java SDK。
+
+这样做原则上非常简单。
+只需简单声明Maven依赖该库:
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.yoyodyne.cloud</groupId>
+    <artifactId>cloud-access-sdk</artifactId>
+    <version>1.0</version>
+</dependency>
+----
+
+（假设该存储库在Maven中心可以得到。
+如果不能，可以将工件上传到Jenkins Artifactory存储库以供插件使用。
+请向开发者名单寻求帮助。
+*not*试图在源代码控制中保留这样的二进制文件。
+
+除了在编译期间提供SDK类（比如+com.yoyodyne.cloud.*+）之外，
+用于创建Jenkins插件的+maven-hpi-plugin+会注意到依赖关系本身并不是一个Jenkins插件，
+而不是_bundle_里面 +yourplugin.hpi+ 作为 +WEB-INF/lib/cloud-access-sdk-1.0.jar+。 
+
+在运行时，插件类加载器将从+WEB-INF/lib/cloud-access-sdk-1.0.jar+加载类，
+
+就像从+WEB-INF/lib/yourplugin.jar+（你的插件自己的代码，从+src/main/java/+ 和 +src/main/resources/+）一样。
+因此你的插件的类可以引用该库中的类。
+其他插件依赖于您的插件也可以。
+
+### 为junk检查 +WEB-INF/lib/*.jar+ 
+
+注意Maven依赖包括 _all transitive_ 依赖。
+捆绑库时可能会导致意外的结果。
+例如 +com.yoyodyne.cloud:cloud-access-sdk+的POM可能会声明它需要 +commons-net:commons-net:3.5+。
+你的插件也会因此捆绑+commons-net-3.5.jar+ 。
+如果你不小心，+WEB-INF/lib/+可能会填满数兆字节的东西，但实际上并未使用。
+
+### 使用库包装插件
+
+在实践中，Jenkins功能插件捆绑各种第三方库是不可取的。
+通常，其他插件需要一些相同的库，因此多个插件将捆绑拷贝。
+即使所有这些副本碰巧是完全相同的版本，“下游”插件也可能导致链接错误。
+用户将结束下载相同代码的多个副本，
+增加产品和+$JENKINS_HOME/plugins/+大小，加载更新中心，延迟HotSpot编译器等。
+
+另一个问题是，更新库版本在多个插件中独立捆绑时变得难以集中。
+虽然每个插件定义一个库的确切版本确实可以降低API兼容性错误的风险，
+但是当新的安全漏洞（或其他重要修补程序）宣布时，保证更新库是不重要的。
+
+为了集中化图书馆管理，您可以定义一个_wrapper_插件，或者找到其他人已经定义的插件。
+这是一个Jenkins插件，它不包含它自己的源代码，只是在某些库上包含+dependency+。
+在更新中心发布后，其他“功能”插件可以声明简单的插件到插件的依赖于它，从而使用该库。
+
+偶尔，在包装器插件本身中包含一些API类是有意义的，
+任何使用该库的Jenkins代码都会合理地需要一些样板适配器来适应标准的Jenkins设施。
+
+为了降低使用不兼容的更改中断插件功能的库插件更新的风险，
+建议在封装插件的+artifactId+中包含库的主要版本，例如+commons-lang3+。
+（假设库遵循类似http://semver.org/ [语义版本]）的一些东西。）
+因此可能会同时加载多个主要版本。
+当然，这意味着关键修复必须作为所有发行版本的更新发布，因此只能为库的_supported_版本执行此操作。
+
+
+### +pluginFirstClassLoader+ 和它的不满
+
+Java类加载器以及Jenkins插件类加载器的默认行为，
+是首先通过向父装载器请求该名称的类来服务+loadClass+请求，
+并且只有当它不能检查该类是否可以在启动加载器中存在的JAR之间定义时。
+这通常是合理的，因为它可以确保来自不同的插件的字节码中提到的类型
+在运行时解析为相同的+Class+对象，从而允许API使用共享类型签名工作。
+
+然而，有时候并不希望父母先被搜索。
+例如，Jenkins核心目前捆绑了大量的第三方库，并将其所有软件包公开给插件。
+对于这个问题，一些插件绑定了第三方库，然后偶然暴露出来
+到需要依赖捆绑插件中定义的API的其他插件。
+如果一个插件也需要一些相同库的变体供它自己使用，它会令人惊讶地无法加载它，
+因为父类加载器会先找到它。
+
+为了避免这种行为，可以在插件的Maven POM中设置一个标志 https://jenkinsci.github.io/maven-hpi-plugin/hpi-mojo.html#pluginFirstClassLoader[+pluginFirstClassLoader+]。
+（这只是生成一个JAR清单条目，在运行时由Jenkins插件系统解释。）
+该标志指示插件类加载器为任何提及的类名称_first_ 检查其自己的JAR。
+使用此模式时必须非常小心，因为任何通常在核心（或“上游”插件）中定义的类型，
+在您调用的方法的Java签名的任何部分中都提到了这一点，因此它们不得在您的JAR中重复使用，否则会导致链接错误。
+因此，最好保留给纯粹由内部实现使用的库。
+
+一个更加有限的标志是+maskClasses+，它只阻塞来自父装载器的选定类或包，而不是所有东西。
+您必须在Java链接器的传递闭包下手动验证被屏蔽的类是否完整：
+例如，从捆绑在Jenkins核心的库中屏蔽一个软件包而不是另一个软件包可能会使被屏蔽的软件包中的类无法解析。
+有一个相关标志+globalMaskClasses+，用于调整_every loaded plugin_的行为，以基本覆盖Java平台的组件。
+
+如果您不理解本节的任何部分，请不要使用这些选项。 即使你做了，也要三思。
+
+### Shading
+
+另一种独揽库依赖关系和类加载复杂性的方法大致被称为_shading_，
+以 https://maven.apache.org/plugins/maven-shade-plugin/[Maven Shade插件]为例（虽然可能有多种技术）。
+
+在这种情况下，不是试图控制给定的+classLoader.loadClass("org.apache.commons.lang.StringUtils")+ 调用找到定义的加载器的位置，
+这个想法是将整个库捆绑在一个独立的包前缀下，重写所有静态和反射类（或资源）负载，
+既可以在库中，也可以从插件中定义的代码进行捆绑。
+因此+your-plugin.hpi!/WEB-INF/lib/commons-lang-shaded.jar+ 可能包含 +org/jenkinsci/plugins/yourplugin/commonslang/StringUtils.class+等条目;
+和插件源代码一样
+
+[source,java]
+----
+import org.apache.commons.lang.StringUtils;
+// …
+if (StringUtils.isEmpty(arg)) {/* … */}
+----
+
+会导致+your-plugin.hpi!/WEB-INF/lib/classes.jar+ 中的字节码在其常量池中引用+org.jenkinsci.plugins.yourplugin.commonslang.StringUtils+类型。
+由于该类型名称在整个Jenkins JVM中是唯一的，因此不存在从错误位置加载的风险;
+从Jenkins的角度来看，就好像你将整个Commons Lang库复制并粘贴到插件的一些源中。
+
+虽然这个系统确实解决了链接错误的风险，但它并没有减少Jenkins中库的版本数量，
+如库封装器一节所述。
+然而，在某些情况下，库包装器本身也会将其用于官方目的，
+以便于这样封装的库就会出现在一个包名称下，表明主要的发行版本。
+因此，使用包装库的插件会引用重新包装的名称:
+
+[source,java]
+----
+import org.jenkinsci.commons_lang2.StringUtils;
+----
+
+## +@Restricted+ 注解
+
+Java中的+public+修饰符允许从系统中的任何其他类访问类型，方法，构造函数和字段，以便与定义类型进行链接。
+因此它是API的一部分，+protected+成员也是。
+
+然而，在某些情况下，出于技术原因而不是出于定义API的目的而使用这些访问修饰符：
+可能需要从同一插件中的另一个包中的类访问方法，以防止使用默认包访问;
+一个+@extension+需要+public+来允许Jenkins服务加载器实例化它;
++FormValidation doCheckName(@QueryParameter String value)+方法必须是+public+，以便将其作为Stapler Web方法公开，从而将其公开为表单上的JavaScript。
+
+在这种情况下，您应该阻止该成员被外部代码使用：
+不必要的API添加存在有可能以无意的方式使用的风险，
+并迫使你的插件或多或少地永远维护成员，以免向后兼容性被破坏。
+这可以通过使用Jenkins代码中的特殊注释来完成:
+
+[source,java]
+----
+@Restricted(NoExternalUse.class)
+@Extension
+public class MyListener extends ItemListener {/* … */}
+----
+
+尝试引用+MyListener+的其他插件将收到构建时错误。
+因此，您可以随时重命名，移动，删除或以其他方式修改+MyListener+。
+
+有几种限制可用; 详情请咨询Javadoc。
+
+该系统对使用+java.lang.reflect+的访问没有影响。
+
+## +JenkinsRule+ 与 +acceptance-test-harness+ 类加载
+
+Jenkins有三种主要的自动化测试类别:
+
+* 单元测试，包括模拟框架，如PowerMock。
+* 基于+jenkins-test-harness+中定义的+JenkinsRule+ API的功能测试。
+* 验收测试位于+acceptance-test-harness+ 库中。
+
+这些对生产Jenkins服务器中运行的插件代码的类加载行为具有不同的保真度。
+单元测试只是选择在Maven的+test+范围内定义的Java类路径（+java.class.path+）。
+
+验收测试运行完整的Jenkins服务器并使用Jenkins的正常机制安装插件（包括正在测试的插件）。
+由于测试不会针对Jenkins运行时中定义的任何类型（仅针对Selenium Web驱动程序）进行编译或链接，
+甚至不像Jenkins那样运行在相同的JVM上，它与Jenkins的类加载没有任何相互作用。
+因此，在验收测试中运行的插件的类加载行为可以假定为与生产中相同。
+
+功能测试中的类加载在行为上是中等的，但更接近于单元测试。
+测试代码_does_链接针对Jenkins核心和（+test+ -范围的）插件类型，
+而且Java类路径中的所有内容实际上都是在Java的应用程序类加载器中加载的，包括+test+ 范围中的插件。
+这意味着插件元数据中的某些错误（例如误用+pluginFirstClassLoader+）可能会被忽视。
+
+(+JenkinsRule+ 确实启动了真正的Jenkins服务，并且在某些情况下，可以安装不在Java类路径中的其他插件。
+这些得到他们自己的类加载器。)
+
+https://issues.jenkins-ci.org/browse/JENKINS-41827[JENKINS-41827]提出了一个+JenkinsRule+的变体，它将保留大部分便利
+但确保更加真实的类加载行为，以帮助早点发现错误。
+
+## Jenkins 模块
+
++jenkins.war+ 包含一些称为_modules_的组件，它们像插件一样被构建和打包，并且可以引用Jenkins核心中定义的类型，
+但它们与核心捆绑在一起，并且不能由插件管理器中的用户管理。
+这种设计的通常原因是包含无法禁用的功能，
+或者在插件完全初始化之前必须在Jenkins启动序列的早期出现。
+
+对于类加载的目的，这些组件的行为与内核中捆绑的的任何其他组件一样：模块不会获得它们自己的类加载器。
+对于Maven依赖管理的目的，如果插件希望使用它们的API，则可以声明依赖于这些模块的+provided+-范围，
+以核心选择与核心基准版本中捆绑的版本相同的版本。
+
+## 可编程核心组件
+
+有时期望插件依赖于某些组件的更新版本，而不是Jenkins核心版本中捆绑的版本作为基准。
+建议的功能 https://issues.jenkins-ci.org/browse/JENKINS-41196[JENKINS-41196]将使这成为可能。
+撰写本文时正在审查中。

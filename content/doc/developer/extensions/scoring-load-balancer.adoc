@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 评分负载平衡器插件中定义的扩展点
+
+plugin:scoring-load-balancer[评分负载平衡器插件]
+
+## 得分规则
++jenkinsdoc:scoring-load-balancer:jp.ikedam.jenkins.plugins.scoringloadbalancer.ScoringRule[]+
+
++++ Scores nodes to determine which is proper to have a task build on.+++
+
+
+**Implementations:**
+
+* plugin:scoring-load-balancer[评分负载平衡器插件]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++scoringloadbalancer.+++<wbr/>+++rules.+++<wbr/>+++**BuildResultScoringRule** (link:https://github.com/jenkinsci/scoring-load-balancer-plugin/search?q=BuildResultScoringRule&type=Code[在 GitHub上查看])
+* plugin:scoring-load-balancer[Scoring Load Balancer Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++scoringloadbalancer.+++<wbr/>+++rules.+++<wbr/>+++**NodeLoadScoringRule** (link:https://github.com/jenkinsci/scoring-load-balancer-plugin/search?q=NodeLoadScoringRule&type=Code[在 GitHub上查看])
+* plugin:scoring-load-balancer[Scoring Load Balancer Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++scoringloadbalancer.+++<wbr/>+++rules.+++<wbr/>+++**NodePreferenceScoringRule** (link:https://github.com/jenkinsci/scoring-load-balancer-plugin/search?q=NodePreferenceScoringRule&type=Code[在 GitHub上查看])
+

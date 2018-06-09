@@ -1,0 +1,41 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Docker Slaves插件中定义的扩展点
+
+plugin:docker-slaves[Docker Slaves Plugin]
+
+## Docker驱动程序工厂
++jenkinsdoc:docker-slaves:it.dockins.dockerslaves.spi.DockerDriverFactory[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:docker-slaves[Docker Slaves插件]: it.+++<wbr/>+++dockins.+++<wbr/>+++dockerslaves.+++<wbr/>+++drivers.+++<wbr/>+++**PlainDockerAPIDockerDriverFactory** (link:https://github.com/jenkinsci/docker-slaves-plugin/search?q=PlainDockerAPIDockerDriverFactory&type=Code[在 GitHub上查看])
+
+
+## Docker主机源码
++jenkinsdoc:docker-slaves:it.dockins.dockerslaves.spi.DockerHostSource[]+
+
++++ A DockerHostSource is responsible to determine (or provision) the dockerhost to host a build for the specified job.+++ +++
+<p>+++ +++ Implementation can use this extension to execute some decision and/or provisioning logic, depending on infrastructure+++ +++ details and constraints.+++ </p>
+
+
+**Implementations:**
+
+* plugin:docker-slaves[Docker Slaves插件]: it.+++<wbr/>+++dockins.+++<wbr/>+++dockerslaves.+++<wbr/>+++**DefaultDockerHostSource** (link:https://github.com/jenkinsci/docker-slaves-plugin/search?q=DefaultDockerHostSource&type=Code[在 GitHub上查看])
+
+
+## 暗示
++jenkinsdoc:docker-slaves:it.dockins.dockerslaves.spec.Hint[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:docker-slaves[Docker Slaves插件]: it.+++<wbr/>+++dockins.+++<wbr/>+++dockerslaves.+++<wbr/>+++hints.+++<wbr/>+++**MemoryHint** (link:https://github.com/jenkinsci/docker-slaves-plugin/search?q=MemoryHint&type=Code[在 GitHub上查看])
+* plugin:docker-slaves[Docker Slaves Plugin]: it.+++<wbr/>+++dockins.+++<wbr/>+++dockerslaves.+++<wbr/>+++hints.+++<wbr/>+++**VolumeHint** (link:https://github.com/jenkinsci/docker-slaves-plugin/search?q=VolumeHint&type=Code[在 GitHub上查看])
+

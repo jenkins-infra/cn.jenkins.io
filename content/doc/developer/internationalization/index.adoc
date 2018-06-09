@@ -1,0 +1,20 @@
+---
+layout: developerchapter
+summary: How to internationalize views and messages, and how to localize them.
+wip: true
+title: 国际化和本地化
+references:
+- url: https://wiki.jenkins-ci.org/display/JENKINS/Translation+Tool
+  title: Translation Tool
+- url: https://wiki.jenkins-ci.org/display/JENKINS/Internationalization
+  title: Internationalization documentation on the wiki
+---
+
+国际化（有时称为i18n）是设计软件的过程，以便可以适应多种语言和地区。
+本地化（或l10n）是软件适应特定地区或语言的地方。
+
+本章解释了在Jenkins中如何实现国际化，以及支持国际化和本地化的工具。
+
+
+
+

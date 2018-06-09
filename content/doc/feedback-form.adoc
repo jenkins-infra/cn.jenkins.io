@@ -1,0 +1,110 @@
+---
+layout: documentation
+title: Jenkins 用户文档
+section: doc
+---
+
+////
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+////
+
+++++
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfewAhW-679vSTEaIHYi3K8MV3jmoYg2sXEhjMn1Q-Cg4tnRg'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(document.referrer);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<!-- This CSS sets the size of textareas (allowing them to be fully resizable)
+     and widens the width of the email field. -->
+<style>
+  textarea {
+    width: 300px;
+    height: 150px;
+    resize: both;
+  }
+  #email {
+    width: 300px;
+  }
+  span {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+<p/>
+
+<h2>页面和内容反馈</h2>
+
+<p/>
+
+<p>Jenkins社区非常感谢您对Jenkins用户的反馈
+文档.<br/>
+此表格只需要几分钟即可完成.</p>
+
+<p>问题/领域标记 <span>*</span> 是 <em>必需的</em>.</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfewAhW-679vSTEaIHYi3K8MV3jmoYg2sXEhjMn1Q-Cg4tnRg/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the referrer URL into the form. -->
+<input type="hidden" name="entry.322173973" id="current-url" value=""/>
+
+<!-- Next question -->
+
+<p><strong>总的来说，您查看的页面有多大帮助?</strong>
+<span>*</span></p>
+
+<p><input type="radio" name="entry.640207764" id="h1" value="Very helpful" required/>
+<label for="h1">Very helpful</label></p>
+<p><input type="radio" name="entry.640207764" id="h2" value="Moderately helpful"/>
+<label for="h2">Moderately helpful</label></p>
+<p><input type="radio" name="entry.640207764" id="h3" value="Neutral"/>
+<label for="h3">Neutral</label></p>
+<p><input type="radio" name="entry.640207764" id="h4" value="Not that helpful"/>
+<label for="h4">Not that helpful</label></p>
+<p><input type="radio" name="entry.640207764" id="h5" value="Unhelpful"/>
+<label for="h4">Unhelpful</label></p>
+
+<!-- Next question -->
+
+<p><label for="page-improvements"><strong>你有什么建议可以改进这个页面?</strong> <span>*</span><br/>
+(如果您在上面回答“非常有帮助”，请随时写上“无”以表示没有进一步的反馈意见.)</label><br/>
+<textarea name="entry.1588294104" id="page-improvements" required/></textarea></p>
+
+<!-- Next question -->
+
+<p><label for="other-area-improvements"><strong>Jenkins用户文档中是否还有其他方面需要改进?</strong><br/>
+(请尽可能具体.)</label><br/>
+<textarea name="entry.1858374341" id="other-area-improvements"/></textarea></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label> <span>*</span><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1nA8xVOkyKmZ8oTYSLdwjborT0w-BpBNNZT0nxR9deZ8/edit?usp=sharing" target="_blank">here</a>.</p>
+
+</form>
+++++

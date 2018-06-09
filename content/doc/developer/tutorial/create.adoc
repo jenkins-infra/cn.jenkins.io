@@ -1,0 +1,95 @@
+---
+layout: developer
+title: 创建一个插件
+---
+
+- link:../prepare[Step 1: Preparing for Plugin Development]
+- link:../create[*Step 2: Create a Plugin*]
+- link:../run[Step 3: Build and Run the Plugin]
+- link:../extend[Step 4: Extend the Plugin]
+
+在 link:../prepare[准备环境]后, 下一步是创建一个新的插件。
+
+NOTE: 如果您的目的是在Jenkins更新站点上发布您的插件，现在是查找已经执行类似操作的插件的好时机。
+参考 link:https://wiki.jenkins-ci.org/display/JENKINS/Before+starting+a+new+plugin[this wiki page]了解更多信息。
+
+== 使用示例插件原型创建项目布局
+
+打开命令提示符，导航到您想要存储新Jenkins插件的目录，然后运行以下命令:
+
+[source]
+mvn -U archetype:generate -Dfilter=io.jenkins.archetypes:
+
+这个命令将让你生成与Jenkins有关的几个项目原型中的一个。
+在本教程中，我们将使用`hello-world`原型，版本1.3，所以选择:
+
+// http://asciidoctor.org/docs/user-manual/#applying-substitutions
+[source,subs="verbatim,quotes"]
+----
+$ mvn -U archetype:generate -Dfilter=io.jenkins.archetypes:
+…
+Choose archetype:
+1: remote -> io.jenkins.archetypes:empty-plugin (Skeleton of a Jenkins plugin with a POM and an empty source tree.)
+2: remote -> io.jenkins.archetypes:global-configuration-plugin (Skeleton of a Jenkins plugin with a POM and an example piece of global configuration.)
+3: remote -> io.jenkins.archetypes:hello-world-plugin (Skeleton of a Jenkins plugin with a POM and an example build step.)
+Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): : *3* // <1>
+Choose io.jenkins.archetypes:hello-world-plugin version:
+1: 1.1
+2: 1.2
+3: 1.3
+Choose a number: 3: *3* // <2>
+[INFO] Using property: groupId = unused
+Define value for property 'artifactId': *demo* // <3>
+Define value for property 'version' 1.0-SNAPSHOT: : // <4>
+[INFO] Using property: package = io.jenkins.plugins.sample
+Confirm properties configuration:
+groupId: unused
+artifactId: demo
+version: 1.0-SNAPSHOT
+package: io.jenkins.plugins.sample
+ Y: : *y* // <5>
+
+----
+<1> 输入 +hello-world-plugin+ 原型的编号, 在该案例中是*3* 。
+<2> 本教程是基于 *hello-world-plugin* 原型的1.3版本, 所以输入 *3* 选择它 。
+<3> Jenkin是强制且唯一标识您的插件。
+ 这个插件教程使用名称`demo`（用粗体突出显示的用户输入）。
+ 如果你想发布你的插件，请确保名称尚未被采用，并且你选择的名称是面向未来的：
+ 在发布第一个版本后，不能更改`artifactId`。
+    请_not_ 在这个ID中使用单词`jenkins` 或 `plugin`—只有描述这是什么样的Jenkins插件的文字。
+<4> 这里不需要选择不同的版本号。 这是1.0版本的开发版本 (通过 +SNAPSHOT+表示)。
+    link:https://stackoverflow.com/q/5901378[Learn more about Maven version numbers.]
+<5> 在你输入所有值之后, Maven 会再次显示它们。 查看并确认您的选择。
+这会创建一个与插件的 `artifactId` 的名称相同的目录(该例中为`demo` ),
+并添加了工作插件的基本结构。
+让我们确保我们可以构建插件:
+
+[listing]
+----
+$ mv demo demo-plugin // <1>
+$ cd demo-plugin
+$ mvn verify
+----
+<1> Maven在一个目录中创建了与您为插件选择的名称相同的项目结构。
+    我们将重命名该目录以匹配GitHub组织`@jenkinsci`中使用的常规存储库名称。
+
+Maven将下载更多的依赖项，然后遍历配置的构建周期，包括静态分析（FindBugs）和测试，直到它显示像这样的东西:
+
+[listing]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 06:11 min
+[INFO] Finished at: 2017-03-02T14:14:34+01:00
+[INFO] Final Memory: 73M/872M
+[INFO] ------------------------------------------------------------------------
+
+NOTE: 要详细了解插件构建中涉及的内容，请参阅 link:../../plugin-development/build-process[Plugin 构建过程]。
+
+不是你看到的输出？ 查看下面的 <<Troubleshooting>> 部分。
+
+让我们 link:../run[运行插件] 并查看它能做什么。
+
+== 故障排除
+
+NOTE: 没有适合你的东西？ 在 link:/chat[chat]或 link:/mailing-lists[on the jenkinsci-dev mailing list]中寻求帮助。

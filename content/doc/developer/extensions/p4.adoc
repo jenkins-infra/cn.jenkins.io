@@ -1,0 +1,76 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# P4插件中定义的扩展点
+
+plugin:p4[P4 插件]
+
+## AbstractSource
++jenkinsdoc:p4:org.jenkinsci.plugins.p4.workflow.source.AbstractSource[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:p4[P4 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workflow.+++<wbr/>+++source.+++<wbr/>+++**DepotSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=DepotSource&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workflow.+++<wbr/>+++source.+++<wbr/>+++**GraphSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=GraphSource&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workflow.+++<wbr/>+++source.+++<wbr/>+++**StreamSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=StreamSource&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workflow.+++<wbr/>+++source.+++<wbr/>+++**TemplateSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=TemplateSource&type=Code[在GitHub上查看])
+
+
+## 过滤器
++jenkinsdoc:p4:org.jenkinsci.plugins.p4.filters.Filter[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:p4[P4 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++filters.+++<wbr/>+++**FilterPathImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FilterPathImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++filters.+++<wbr/>+++**FilterPatternListImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FilterPatternListImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++filters.+++<wbr/>+++**FilterPerChangeImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FilterPerChangeImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++filters.+++<wbr/>+++**FilterUserImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FilterUserImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++filters.+++<wbr/>+++**FilterViewMaskImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FilterViewMaskImpl&type=Code[在GitHub上查看])
+
+
+## 填充
++jenkinsdoc:p4:org.jenkinsci.plugins.p4.populate.Populate[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:p4[P4 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**AutoCleanImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=AutoCleanImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**CheckOnlyImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=CheckOnlyImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**FlushOnlyImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=FlushOnlyImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**ForceCleanImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=ForceCleanImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**GraphHybridImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=GraphHybridImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++populate.+++<wbr/>+++**SyncOnlyImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=SyncOnlyImpl&type=Code[在GitHub上查看])
+
+
+## 发布
++jenkinsdoc:p4:org.jenkinsci.plugins.p4.publish.Publish[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:p4[P4 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++publish.+++<wbr/>+++**CommitImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=CommitImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++publish.+++<wbr/>+++**ShelveImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=ShelveImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++publish.+++<wbr/>+++**SubmitImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=SubmitImpl&type=Code[在GitHub上查看])
+
+
+## Workspace
++jenkinsdoc:p4:org.jenkinsci.plugins.p4.workspace.Workspace[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:p4[P4 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workspace.+++<wbr/>+++**ManualWorkspaceImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=ManualWorkspaceImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workspace.+++<wbr/>+++**SpecWorkspaceImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=SpecWorkspaceImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workspace.+++<wbr/>+++**StaticWorkspaceImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=StaticWorkspaceImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workspace.+++<wbr/>+++**StreamWorkspaceImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=StreamWorkspaceImpl&type=Code[在GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++workspace.+++<wbr/>+++**TemplateWorkspaceImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=TemplateWorkspaceImpl&type=Code[在GitHub上查看])
+

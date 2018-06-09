@@ -1,0 +1,38 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 部署到容器插件中定义的扩展点
+
+plugin:deploy[部署到容器插件]
+
+## 容器适配器
++jenkinsdoc:deploy:hudson.plugins.deploy.ContainerAdapter[]+
+
++++ Encapsulates container-specific deployment operation.+++
+
+
+**Implementations:**
+
+* plugin:deploy[部署到容器插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++**CargoContainerAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=CargoContainerAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++**DefaultCargoContainerAdapterImpl** (link:https://github.com/jenkinsci/deploy-plugin/search?q=DefaultCargoContainerAdapterImpl&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++glassfish.+++<wbr/>+++**GlassFish2xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=GlassFish2xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++glassfish.+++<wbr/>+++**GlassFish3xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=GlassFish3xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++glassfish.+++<wbr/>+++**GlassFishAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=GlassFishAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBoss3xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBoss3xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBoss4xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBoss4xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBoss5xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBoss5xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBoss6xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBoss6xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBoss7xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBoss7xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++jboss.+++<wbr/>+++**JBossAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=JBossAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++**PasswordProtectedAdapterCargo** (link:https://github.com/jenkinsci/deploy-plugin/search?q=PasswordProtectedAdapterCargo&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**Tomcat4xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=Tomcat4xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**Tomcat5xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=Tomcat5xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**Tomcat6xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=Tomcat6xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**Tomcat7xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=Tomcat7xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**Tomcat8xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=Tomcat8xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++tomcat.+++<wbr/>+++**TomcatAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=TomcatAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++weblogic.+++<wbr/>+++**WebLogic10_3_xAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=WebLogic10_3_xAdapter&type=Code[在GitHub上查看])
+* plugin:deploy[Deploy to container Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++deploy.+++<wbr/>+++weblogic.+++<wbr/>+++**WebLogicAdapter** (link:https://github.com/jenkinsci/deploy-plugin/search?q=WebLogicAdapter&type=Code[在GitHub上查看])
+

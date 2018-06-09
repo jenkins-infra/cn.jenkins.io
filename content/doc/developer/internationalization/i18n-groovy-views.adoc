@@ -1,0 +1,5 @@
+---
+title: 在Groovy视图中使消息国际化
+layout: developersection
+wip: true
+---

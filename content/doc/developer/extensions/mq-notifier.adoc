@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# MQ通知程序插件中定义的扩展点
+
+plugin:mq-notifier[MQ通知程序插件]
+
+## MQ数据提供程序
++jenkinsdoc:mq-notifier:com.sonymobile.jenkins.plugins.mq.mqnotifier.providers.MQDataProvider[]+
+
++++ Provides data for the notifier to send.+++
+
+
+**Implementations:**
+
+* plugin:build-failure-analyzer[构建失败分析器插件]: com.+++<wbr/>+++sonyericsson.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bfa.+++<wbr/>+++providers.+++<wbr/>+++**FailureCauseProvider** (link:https://github.com/jenkinsci/build-failure-analyzer-plugin/search?q=FailureCauseProvider&type=Code[在 GitHub上查看])
+* plugin:mq-notifier[MQ Notifier Plugin]: com.+++<wbr/>+++sonymobile.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++mq.+++<wbr/>+++mqnotifier.+++<wbr/>+++providers.+++<wbr/>+++**CauseProvider** (link:https://github.com/jenkinsci/mq-notifier-plugin/search?q=CauseProvider&type=Code[在 GitHub上查看])
+* plugin:mq-notifier[MQ Notifier Plugin]: com.+++<wbr/>+++sonymobile.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++mq.+++<wbr/>+++mqnotifier.+++<wbr/>+++providers.+++<wbr/>+++**ParameterProvider** (link:https://github.com/jenkinsci/mq-notifier-plugin/search?q=ParameterProvider&type=Code[在 GitHub上查看])
+

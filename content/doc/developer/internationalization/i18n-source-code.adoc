@@ -1,0 +1,79 @@
+---
+title: Java源代码中的消息国际化
+layout: developersection
+references:
+- url: https://github.com/kohsuke/localizer
+  title: Localizer project on GitHub
+---
+
+== 介绍
+
+Jenkins使用 https://github.com/kohsuke/localizer[Localizer]库和Maven插件来实现国际化。
+
+其目的是在构建过程中生成与Java `.properties` 文件组相对应的类，以使代码中的本地化文本可用。
+
+在Jenkins中，Localizer被配置为对名为`Messages.properties`的资源文件（以及针对本地化变体的`Messages_XX.properties`）进行操作。
+在Jenkins核心和插件的构建过程中，它从每个`Messages.properties`文件组中生成`Messages`类。
+
+== 示例
+
+作为示例，请考虑以下资源文件：
+
+`src/main/resources/org/example/package/Messages.properties`:
+[source]
+Example.Description = A simple example for localization
+
+`src/main/resources/org/example/package/Messages_de.properties`:
+[source]
+Example.Description = Ein einfaches Beispiel f\u00fcr Lokalisierung
+
+第一个文件是_key_“description”的默认本地化（除非有更具体的本地化可用），而第二个文件提供德文本地化。
+
+Localizer将从这些资源文件中生成类似于以下内容的类：
+
+[source, java]
+----
+package org.example.package;
+
+public class Messages {
+    private final static ResourceBundleHolder holder = ResourceBundleHolder.get(Messages.class); // <1>
+
+    public static String Example_Description() { // <2>
+        return holder.format("Example.Description");
+    }
+
+    public static Localizable _Example_Description() { // <3>
+        return new Localizable(holder, "Example.Description");
+    }
+}
+----
+<1> `ResourceBundleHolder`是一个包含对本地化`.properties`文件的访问的内部工具类
+<2> 生成的方法返回+Example.Description+ 属性文件条目的本地化字符串
+<3> 生成的方法返回+Example.Description+ 属性文件条目的 +Localizable+ 实例
+
+生成的方法名称与属性文件中的键相对应（但由于Java标识符约束而不完全匹配。
+资源文件中的每个键都会导致产生一对方法：一个返回`String`，另一个返回`Localizable`。
+`Localizable` 是Localizer库提供的一种类型，它允许将消息本地化为特定的区域设置。
+然而，这很少需要，因为对 `Messages.Example_Description()`的调用将返回当前语言环境的本地化消息。
+
+== 带参数的本地化消息
+
+如果`Messages.properties`中的值引用占位符，则将使用参数生成静态方法。
+请参阅以下示例以获取 `Messages.properties`摘录以及由此生成的一个静态方法。
+
+`Messages.properties` 内容:
+
+[source]
+----
+ItemGroupMixIn.may_not_copy_as_it_contains_secrets_and_=May not copy {0} as it contains secrets and {1} has {2}/{3} but not /{4}
+----
+
+生成的源代码:
+[source, java]
+----
+public static String ItemGroupMixIn_may_not_copy_as_it_contains_secrets_and_(Object arg0, Object arg1, Object arg2, Object arg3, Object arg4) {
+    return holder.format("ItemGroupMixIn.may_not_copy_as_it_contains_secrets_and_", arg0, arg1, arg2, arg3, arg4);
+}
+----
+
+有关本地化消息中参数更高级的用法，请参阅 link:/doc/developer/internationalization/advanced-localization/[Advanced Localization].

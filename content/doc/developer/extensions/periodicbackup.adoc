@@ -1,0 +1,41 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 定期备份插件中定义的扩展点
+
+plugin:periodicbackup[P定期备份插件]
+
+## 文件管理器描述符
++jenkinsdoc:periodicbackup:org.jenkinsci.plugins.periodicbackup.FileManagerDescriptor[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:periodicbackup[定期备份插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**ConfigOnly.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=ConfigOnly.DescriptorImpl&type=Code[在 GitHub上查看])
+* plugin:periodicbackup[Periodic Backup Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**FullBackup.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=FullBackup.DescriptorImpl&type=Code[在 GitHub上查看])
+
+
+## 位置描述符
++jenkinsdoc:periodicbackup:org.jenkinsci.plugins.periodicbackup.LocationDescriptor[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:periodicbackup[定期备份插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**LocalDirectory.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=LocalDirectory.DescriptorImpl&type=Code[在 GitHub上查看])
+
+
+## 存储描述符
++jenkinsdoc:periodicbackup:org.jenkinsci.plugins.periodicbackup.StorageDescriptor[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:periodicbackup[定期备份插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**NullStorage.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=NullStorage.DescriptorImpl&type=Code[在 GitHub上查看])
+* plugin:periodicbackup[Periodic Backup Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**TarGzStorage.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=TarGzStorage.DescriptorImpl&type=Code[在 GitHub上查看])
+* plugin:periodicbackup[Periodic Backup Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++periodicbackup.+++<wbr/>+++**ZipStorage.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/periodicbackup-plugin/search?q=ZipStorage.DescriptorImpl&type=Code[在 GitHub上查看])
+

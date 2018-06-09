@@ -1,0 +1,29 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Openstack Cloud 插件中定义的扩展点
+
+plugin:openstack-cloud[Openstack Cloud 插件]
+
+## 摘要Openstack凭据
++jenkinsdoc:openstack-cloud:jenkins.plugins.openstack.compute.auth.AbstractOpenstackCredential[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:openstack-cloud[Openstack Cloud 插件]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++openstack.+++<wbr/>+++compute.+++<wbr/>+++auth.+++<wbr/>+++**OpenstackCredentialv2** (link:https://github.com/jenkinsci/openstack-cloud-plugin/search?q=OpenstackCredentialv2&type=Code[在 GitHub上查看])
+* plugin:openstack-cloud[Openstack Cloud Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++openstack.+++<wbr/>+++compute.+++<wbr/>+++auth.+++<wbr/>+++**OpenstackCredentialv3** (link:https://github.com/jenkinsci/openstack-cloud-plugin/search?q=OpenstackCredentialv3&type=Code[在 GitHub上查看])
+
+
+## Openstack.+++<wbr/>+++FactoryEP
++jenkinsdoc:openstack-cloud:jenkins.plugins.openstack.compute.internal.Openstack.FactoryEP[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:openstack-cloud[Openstack Cloud 插件]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++openstack.+++<wbr/>+++compute.+++<wbr/>+++internal.+++<wbr/>+++**Openstack.+++<wbr/>+++Factory** (link:https://github.com/jenkinsci/openstack-cloud-plugin/search?q=Openstack.Factory&type=Code[在 GitHub上查看])
+

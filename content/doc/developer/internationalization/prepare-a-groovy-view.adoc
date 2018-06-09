@@ -1,0 +1,5 @@
+---
+title: 准备对基于Groovy的本地化视图
+layout: developerguide
+wip: true
+---

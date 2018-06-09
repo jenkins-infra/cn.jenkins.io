@@ -1,0 +1,69 @@
+---
+layout: developer
+title: 为插件开发做准备
+references:
+- url: http://www.oracle.com/technetwork/java/javase/downloads/index.html # TODO redundant?
+  title: Oracle Java downloads site
+- url: https://maven.apache.org # TODO redundant?
+  title: Apache Maven website
+---
+
+- link:../prepare[*Step 1: Preparing for Plugin Development*]
+- link:../create[Step 2: Create a Plugin]
+- link:../run[Step 3: Build and Run the Plugin]
+- link:../extend[Step 4: Extend the Plugin]
+
+== 下载并安装 JDK
+
+// TIMEBASED
+Jenkins是基于Java开发的, 要构建 Jenkins插件,你需要下载Java开发工具（JDK）。
+最近的Jenkins版本需要运行JDK 8，所以这就是我们在这里使用的。
+
+从link:http://www.oracle.com/technetwork/java/javase/downloads/[Oracle 网站]免费下载JDK 8： 并安装它。
+
+NOTE:许多Linux发行版为Oracle JDK或OpenJDK JDK提供了更简单的安装和升级体验。
+详细信息请查阅您的发行版的文档。
+它甚至可能已经安装。
+为了找到答案，请在命令提示符下键入`javac -version`。
+
+== 下载并安装 Maven
+
+Jenkins插件压倒性地使用Maven构建，所以这就是我们将在本教程中使用的内容。
+
+从链接下载Maven：link:https://maven.apache.org[its website]。
+请确保下载名称中带有`bin`的其中一个文件。
+`src`表示一个源分布
+
+// TODO: 为每个操作系统包含子部分
+NOTE: 许多Linux发行版为Maven提供了更简单的安装和升级体验包。
+详细信息请查阅您的发行版的文档。
+在macOS上，link:https://brew.sh/[Homebrew]软件包管理器提供Maven软件包。
+确保最新版本的Maven 3，理想情况下是3.3.9或更新版本，如果您决定走这条路线。
+// TIMEBASED
+
+下载并提取Maven，并记下它的位置。
+您现在有以下选项:
+
+. 将提取目录`bin/`子目录添加到`PATH`中。
+  这会让你使用`mvn`来调用Maven。
+  如何工作取决于你的操作系统和命令行。
+. 总是使用`mvn`可执行文件的完整路径， 例如 `~/Applications/apache-maven/bin/mvn` 或 `C:\Program files\Maven\bin\mvn`
+
+本教程的其余部分假定Maven在您的`PATH`上，但您也可以输入完整路径。
+
+一旦下载并解压到某个地方，通过在命令提示符下输入以下内容，确保一切正常:
+
+NOTE: macOS上输入 `Terminal.app`  , Windows输入`cmd.exe` , Linux输入任意shell 。
+
+[listing]
+mvn -version
+
+这会打印一些诊断输出，包括Java和Maven的版本，以及Maven找到哪个Java安装。
+这应该表示Java的_1.8_版本，并列出JDK的路径。
+如果不是这两种情况，请参阅 <<故障排除>>。
+
+下一步: link:../create[创建并构建你的第一个 Jenkins 插件]。
+
+== 故障排除
+
+NOTE: 没有适合你的东西？ 寻求帮助 link:/chat[IRC] 或 link:/mailing-lists[在 jenkinsci-dev 邮件列表上]。

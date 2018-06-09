@@ -1,0 +1,5 @@
+---
+title: 准备对基于Jelly的视图进行本地化
+layout: developerguide
+wip: true
+---

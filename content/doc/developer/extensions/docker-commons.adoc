@@ -1,0 +1,22 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Docker Commons插件中定义的扩展点
+
+plugin:docker-commons[Docker Commons Plugin]
+
+## Docker镜像提取器
++jenkinsdoc:docker-commons:org.jenkinsci.plugins.docker.commons.DockerImageExtractor[]+
+
++++ Identifies the Docker images used by a Jenkins job. Docker-related plugins can use this+++ +++ extension point to integrate with for example Docker HUB web hook support.+++
+
+
+**Implementations:**
+
+* plugin:docker-custom-build-environment[CloudBees Docker自定义构建环境插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++docker_build_env.+++<wbr/>+++**SelectorDockerImageExtractor** (link:https://github.com/jenkinsci/docker-custom-build-environment-plugin/search?q=SelectorDockerImageExtractor&type=Code[在 GitHub上查看])
+* plugin:dockerhub-notification[CloudBees Docker Hub/Registry Notification Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++registry.+++<wbr/>+++notification.+++<wbr/>+++**DockerPullImageBuilder.+++<wbr/>+++ImageExtractor** (link:https://github.com/jenkinsci/dockerhub-notification-plugin/search?q=DockerPullImageBuilder.ImageExtractor&type=Code[在 GitHub上查看])
+* plugin:dockerhub-notification[CloudBees Docker Hub/Registry Notification Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++registry.+++<wbr/>+++notification.+++<wbr/>+++**TriggerImageExtractor** (link:https://github.com/jenkinsci/dockerhub-notification-plugin/search?q=TriggerImageExtractor&type=Code[在 GitHub上查看])
+* plugin:docker-workflow[Docker Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++docker.+++<wbr/>+++workflow.+++<wbr/>+++**ImageAction.+++<wbr/>+++ExtractorImpl** (link:https://github.com/jenkinsci/docker-workflow-plugin/search?q=ImageAction.ExtractorImpl&type=Code[在 GitHub上查看])
+

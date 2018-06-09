@@ -1,0 +1,47 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 配置即代码插件中定义的扩展点
+
+plugin:configuration-as-code[配置即代码插件]
+
+## 配置
++jenkinsdoc:configuration-as-code:org.jenkinsci.plugins.casc.Configurator[]+
+
++++ Defines a mapping between a tree that represents user configuration and a Jenkins object produced from it.+++
+
+
+**Implementations:**
+
+* plugin:configuration-as-code[配置即代码插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++core.+++<wbr/>+++**AdminWhitelistRuleConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**BaseConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++credentials.+++<wbr/>+++**CredentialsRootConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**DataBoundConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**DescriptorConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**ExtensionConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**GlobalConfigurationCategoryConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++integrations.+++<wbr/>+++globalmatrixauth.+++<wbr/>+++**GlobalMatrixAuthorizationStrategyConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**HeteroDescribableConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++core.+++<wbr/>+++**HudsonPrivateSecurityRealmConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**JenkinsConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**PrimitiveConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++integrations.+++<wbr/>+++projectmatriaxauth.+++<wbr/>+++**ProjectMatrixAuthorizationStrategyConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++integrations.+++<wbr/>+++rolebasedauth.+++<wbr/>+++**RoleBasedAuthorizationStrategyConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**TopLevelItemConfigurator** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++core.+++<wbr/>+++**UnsecuredAuthorizationStrategyConfigurator** 
+
+
+## 秘密来源
++jenkinsdoc:configuration-as-code:org.jenkinsci.plugins.casc.SecretSource[]+
+
++++ Resolves variable references in configuration file of the form "${abc}"+++
+
+
+**Implementations:**
+
+* plugin:configuration-as-code[配置即代码插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**DockerSecretSource** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**EnvSecretSource** 
+* plugin:configuration-as-code[Configuration as Code Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++casc.+++<wbr/>+++**VaultSecretSource** 
+

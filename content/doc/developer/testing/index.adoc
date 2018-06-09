@@ -1,0 +1,360 @@
+---
+title: Testing
+layout: developerchapter
+wip: true
+references:
+- url: https://wiki.jenkins.io/display/JENKINS/Mocking+in+Unit+Tests
+  title: "Wiki: Mocking in Unit Tests"
+- url: https://wiki.jenkins.io/display/JENKINS/Unit+Test+on+Windows
+  title: "Wiki: Unit Testing on Windows"
+- url: http://javadoc.jenkins.io/component/jenkins-test-harness/
+  title: "Jenkins Test Harness Javadoc"
+- url: https://github.com/jenkinsci/acceptance-test-harness
+  title: "Acceptance Test Harness"
+---
+
+== 概述
+编写Jenkins及其插件的自动化测试对于确保一切按预期工作非常重要 —  在各种情况下，使用多个Java版本以及在不同的操作系统上 —  同时有助于防止在后续版本中引入回归。
+
+无论您是在编写一个新的Jenkins插件，还是只想  link:/participate/[参与Jenkins项目]，本指南都将涵盖您开始编写各种类型的自动化测试所需的一切。
+假设已有编写基于Java的测试的 link:http://junit.org/[JUnit测试框架]的经验。
+
+为了简化测试的开发，Jenkins提供了基于JUnit测试框架的： link:https://github.com/jenkinsci/jenkins-test-harness/[测试工具]。
+这提供了以下功能:
+
+1. Jenkins安装的自动设置和拆卸，允许每个测试方法在干净，隔离的环境中运行。
+2. Helper类和方法简化作业，代理，安全领域，SCM实现等的创建。
+3. 声明性注释来指定测试方法将使用的环境; 例如，设置`JENKINS_HOME`内容。
+4. 直接访问Jenkins对象模型。 这允许测试直接对抗Jenkins的内部状态
+5. link:http://htmlunit.sourceforge.net/[HtmlUnit] 支持,使测试与Web UI和其他HTTP调用的交互变得简单。
+
+== 配置
+=== 依赖关系
+==== Jenkins测试线束
+默认情况下，你不需要为你的插件执行任何操作来配置     https://github.com/jenkinsci/jenkins-test-harness/[Jenkins Test Harness] 。
+
+所有Jenkins插件都从 link:https://github.com/jenkinsci/plugin-pom/[插件父POM]继承，因此自动包含测试用具依赖项。
+
+同样，JUnit作为父POM的依赖项包含在内，因此不需要将它作为依赖项添加。
+
+===== 覆盖测试线束版本
+如果您使用的是插件父级POM的版本2.3或更新版本，如果您需要更新的功能，您可以通过覆盖`jenkins-test-harness.version`属性来更改测试用具版本。
+例如:
+[source,xml]
+----
+<project>
+  …
+  <properties>
+    <jenkins-test-harness.version>2.34</jenkins-test-harness.version>
+  </properties>
+----
+
+==== 使用流水线
+
+我们鼓励您使用 link:/doc/pipeline/[流水线]测试您的插件。
+你可以做到这一点，而不必让你的插件本身依赖于各种与流水线相关的插件; 相反，您可以将它们包含为`test`依赖项，以便它们仅在编译和运行测试用例时使用。
+
+最简单的方法是添加 plugin:workflow-aggregator[`workflow-aggregator`]插件，即“父级”流水线插件到POM的`<dependencies>`部分，就像这样:
+
+[source,xml]
+----
+<dependency>
+  <groupId>org.jenkins-ci.plugins.workflow</groupId>
+  <artifactId>workflow-aggregator</artifactId>
+  <version>2.5</version> // <1>
+  <scope>test</scope>
+</dependency>
+----
+<1> 在撰写本文时，版本2.5是最新版本，至少需要Jenkins 2.7.3; plugin:workflow-aggregator[插件]的新版本现在可用。
+如果你的插件支持低于2.7.3的Jenkins基线，那么你最好增加它; 否则，您将不得不查找2.5以前版本的`workflow-aggregator`。
+
+==== 依赖其他插件
+
+在运行测试用例或使用 link:/doc/developer/tutorial/run/[`mvn hpi:run`]时创建的Jenkins安装中， 作为依赖项添加到您的带有`<scope> test </ scope>`的POM中的Jenkins插件将可用。
+
+您也可以将 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/recipes/WithPlugin.html[`@WithPlugin`]注解应用于单个测试用例，但这很少需要。
+
+
+=== 源代码位置
+您的测试用例的源代码应放置在Maven项目的标准位置，即在 `src/test/java/`目录下。
+您也可以在Groovy中编写测试用例，将它们放在`src/test/groovy/`下。 TODO：我们想鼓励这个吗？
+
+== 基本示例
+在这里，我们将展示一个基本的测试类，用于演示Jenkins构建步骤。
+
+通过使用 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/JenkinsRule.html[`JenkinsRule`]，在每个`@ Test`方法之前，将执行新的临时的Jenkins安装。
+一旦Jenkins实例运行，每个测试方法都可以通过`JenkinsRule`的便捷方法使用`Jenkins`对象模型来设置和运行一个新项目。
+每个测试方法完成后，临时Jenkins安装将被销毁。
+
+[source,java]
+----
+import hudson.Functions;
+import hudson.model.*;
+import hudson.tasks.*;
+import org.jenkinsci.plugins.workflow.cps.*;
+import org.jenkinsci.plugins.workflow.job.*;
+import org.junit.*;
+import org.jvnet.hudson.test.*;
+
+public class BasicExampleTest {
+  @Rule public JenkinsRule j = new JenkinsRule(); // <1>
+  @ClassRule public static BuildWatcher bw = new BuildWatcher(); // <2>
+
+  @Test public void freestyleEcho() throws Exception {
+    final String command = "echo hello";
+
+    // Create a new freestyle project with a unique name, with an "Execute shell" build step;
+    // if running on Windows, this will be an "Execute Windows batch command" build step
+    FreeStyleProject project = j.createFreeStyleProject();
+    Builder step = Functions.isWindows() ? new BatchFile(command) : new Shell(command); // <3>
+    project.getBuildersList().add(step);
+
+    // Enqueue a build of the project, wait for it to complete, and assert success
+    FreeStyleBuild build = j.buildAndAssertSuccess(project);
+
+    // Assert that the console log contains the output we expect
+    j.assertLogContains(command, build);
+  }
+
+  @Test public void pipelineEcho() throws Exception {
+    // Create a new Pipeline with the given (Scripted Pipeline) definition
+    WorkflowJob project = j.createProject(WorkflowJob.class); // <4>
+    project.setDefinition(new CpsFlowDefinition("node { echo 'hello' }", true)); // <5>
+
+    // Enqueue a build of the Pipeline, wait for it to complete, and assert success
+    WorkflowRun build = j.buildAndAssertSuccess(project);
+
+    // Assert that the console log contains the output we expect
+    j.assertLogContains("hello", build);
+  }
+}
+----
+<1> 声明一个`JenkinsRule`是自动设置和拆除每个测试方法的Jenkins安装的唯一要求。 您可以通过添加 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/WithoutJenkins.html[`@WithoutJenkins`]注解来来禁用单个测试方法的此行为。
+<2> link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/BuildWatcher.html[`BuildWatcher`] 捕获测试案例中运行的每个构建的控制台日志输出，并将其写入标准输出。
+<3> 尽量确保您的测试能够在Windows和类Unix操作系统上运行; link:http://javadoc.jenkins.io/hudson/Functions.html#isWindows--[`isWindows()`]方法可以在这里会有帮助。
+<4> 由于 link:http://javadoc.jenkins.io/plugin/workflow-job/?org/jenkinsci/plugins/workflow/job/WorkflowJob.html[Pipeline project type] 不包含在Jenkins核心中, 与自由式不同, 我们必须使用`WorkflowJob`的通用的 link:http://javadoc.jenkins.io/component/jenkins-test-harness/org/jvnet/hudson/test/JenkinsRule.html#createProject-java.lang.Class-[`createProject`] 方法, 而不是特定的便捷方法，如 link:http://javadoc.jenkins.io/component/jenkins-test-harness/org/jvnet/hudson/test/JenkinsRule.html#createFreeStyleProject[`createFreeStyleProject`]。
+<5> 第二个参数应该*always*设置为`true`，因为这会启用 plugin:script-security[script sandboxing]插件。
+
+== 运行测试
+=== 从命令行
+`mvn test`将运行所有的测试用例，在命令行上报告进度和结果，并按照模式`target/surefire-reports/TEST-<class name>.xml`将这些结果写入JUnit XML文件。
+// TODO：运行单个测试课程。
+
+=== 从IDE
+大多数Java IDE应该能够运行JUnit测试并报告结果。
+
+//=== Debugging
+//==== From the Command Line
+//==== From an IDE
+
+== 要测试什么
+现在我们可以写一个基本的测试，我们应该讨论你应该测试什么......
+
+TODO：尽可能地对你的代码进行单元测试。 JenkinsRule测试：创建使用构建步骤的作业并运行，在输出中声明
+
+== 常见模式
+本节介绍了您通常在测试用例中使用的模式，以及您应该考虑测试的场景。
+
+=== 配置往返测试
+对于Freestyle作业，用户必须通过Web界面配置项目，如果您正在编写l ink:http://javadoc.jenkins.io/byShortName/Builder[`Builder`], link:http://javadoc.jenkins.io/byShortName/Publisher[`Publisher`]或类似的，测试你的配置表单是否正常工作是个好主意。
+接下来的过程是:
+
+1. 启动Jenkins安装并以编程方式配置您的插件。
+2.通过HtmlUnit在Jenkins中打开相关的配置页面。
+3.提交配置页面而不作任何更改。
+4.确认您的插件仍然配置相同。
+
+这可以通过`JenkinsRule`中的 link:http://javadoc.jenkins.io/component/jenkins-test-harness/org/jvnet/hudson/test/JenkinsRule.html#configRoundtrip--[`configRoundtrip`] 便捷方法轻松完成:
+
+[source,java]
+----
+@Rule public JenkinsRule j = new JenkinsRule();
+
+@Test public void configRoundtrip() {
+  // Configure a build step with certain properties
+  JUnitResultArchiver junit = new JUnitResultArchiver("**/TEST-*.xml");
+  junit.setAllowEmptyResults(true);
+
+  // Create a project using this build step, open the configuration form, and save it
+  j.configRoundtrip(junit);
+
+  // Assert that the build step still has the correct configuration
+  assertThat(junit.getTestResults(), is("**/TEST-*.xml"));
+  assertThat(junit.isAllowEmptyResults(), is(true));
+}
+----
+
+=== 提供环境变量
+在Jenkins中，您可以在配置系统页面上设置环境变量，然后在构建期间变为可用。
+要从测试方法重新创建相同的配置，您可以执行以下操作:
+
+[source,java]
+----
+@Rule public JenkinsRule j = new JenkinsRule();
+
+@Test public void someTest() {
+  EnvironmentVariablesNodeProperty prop = new EnvironmentVariablesNodeProperty();
+  EnvVars env = prop.getEnvVars();
+  env.put("DEPLOY_TARGET", "staging");
+  j.jenkins.getGlobalNodeProperties().add(prop);
+  // …
+}
+----
+
+=== 提供测试数据
+为了测试插件的某些部分，可能需要在构建工作区中存在某些文件，或者以某种方式配置Jenkins。
+本节介绍使用Jenkins测试线束实现此目的的各种方法。
+
+==== 自定义构建工作区
+===== 使用虚拟SCM
+自由式项目通常在运行构建步骤之前从SCM检出代码，并且测试工具提供了几个虚拟SCM实现，这使得可以轻松地将文件“检出”到工作区中。
+
+其中最简单的是 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/SingleFileSCM.html[`SingleFileSCM`] , 顾名思义, 它在检出文件期间提供单个文件。
+例如:
+
+[source,java]
+----
+@Rule public JenkinsRule j = new JenkinsRule();
+
+@Test public void customizeWorkspaceWithFile() throws Exception {
+  // Create a Freestyle project with a dummy SCM
+  FreeStyleProject project = j.createFreeStyleProject();
+  project.setScm(new SingleFileSCM("greeting.txt", "hello"));
+  // …
+}
+----
+一旦该项目的构建开始，将在SCM检出阶段将带有内容`hello`的文件`greetings.txt`添加到工作区中。
+
+`SingleFileSCM`构造函数的其他变量允许您从字节数组创建文件内容，或通过从资源文件夹或另一个`URL`源读取文件。
+例如:
+
+[source,java]
+----
+import io.jenkins.myplugin;
+
+// Reads the contents from `src/test/resources/io/jenkins/myplugin/test.json`
+project.setScm(new SingleFileSCM("data.json", getClass().getResource("test.json")));
+
+// Reads the contents from `src/test/resources/test.json` — note the slash prefix
+project.setScm(new SingleFileSCM("data.json", getClass().getResource("/test.json")));
+----
+
+如果你想提供多个文件，你可以使用 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/ExtractResourceSCM.html[`ExtractResourceSCM`], 这会将给定zip文件的内容提取到工作区中:
+
+[source,java]
+----
+import io.jenkins.myplugin;
+
+// Extracts `src/test/resources/io/jenkins/myplugin/files-and-folders.zip` into the workspace
+project.setScm(new ExtractResourceSCM(getClass().getResource("files-and-folders.zip")));
+----
+
+===== 在流水线内
+流水线项目没有像Freestyle项目那样的单个SCM的概念，但提供了将文件放入工作空间的各种方法。
+
+最简单的，你可以使用 plugin:workflow-basic-steps[流水线: 基本步骤插件]的 link:/doc/pipeline/steps/workflow-basic-steps/#code-writefile-code-write-file-to-workspace[`writeFile`] 步骤。例如:
+
+[source,java]
+----
+@Rule public JenkinsRule j = new JenkinsRule();
+
+@Test public void customizeWorkspace() throws Exception {
+    // Create a new Pipeline with the given (Scripted Pipeline) definition
+    WorkflowJob project = j.createProject(WorkflowJob.class);
+    project.setDefinition(new CpsFlowDefinition("" +
+        "node {" + // <1>
+        "  writeFile text: 'hello', file: 'greeting.txt'" +
+        "  // …" +
+        "}", true));
+    // …
+}
+----
+<1>  `node` 在一个代理上分配一个工作空间，这样我们就有了写文件的地方。
+
+或者，您可以使用 plugin:pipeline-utility-steps[流水线实用程序步骤插件]的 link:/doc/pipeline/steps/pipeline-utility-steps/#code-unzip-code-extract-zip-file[`unzip`]步骤来复制多个文件或文件夹到工作区。
+
+首先，将插件添加到您的POM中作为测试依赖项 —  您可以在 link:https://github.com/jenkinsci/pipeline-utility-steps-plugin/blob/master/pom.xml[plugin POM]找到 `groupId` 和 `artifactId`的值:
+[source,xml]
+----
+<dependency>
+  <groupId>org.jenkins-ci.plugins</groupId>
+  <artifactId>pipeline-utility-steps</artifactId>
+  <version>1.5.1</version>
+  <scope>test</scope>
+</dependency>
+----
+
+然后你可以通过提取该zip文件开始，编写一个测试。
+例如:
+[source,java]
+----
+import io.jenkins.myplugin;
+
+public class PipelineWorkspaceExampleTest {
+  @Rule public JenkinsRule j = new JenkinsRule();
+
+  @Test public void customizeWorkspaceFromZip() throws Exception {
+      // Get a reference to the zip file from the `src/test/resources/io/jenkins/myplugin/files-and-folders.zip`
+      URL zipFile = getClass().getResource("files-and-folders.zip");
+
+      // Create a new Pipeline with the given (Scripted Pipeline) definition
+      WorkflowJob project = j.createProject(WorkflowJob.class);
+      project.setDefinition(new CpsFlowDefinition("" +
+          "node {" + // <1>
+          "  unzip '" + zipFile.getPath() + "'" + // <1>
+          "  // …" +
+          "}", true));
+      // …
+  }
+}
+----
+<1> 压缩文件的路径是动态的，所以我们将它传递给流水线定义。
+
+===== 使用 `FilePath`
+TODO: 展开本节，并解释下面的示例。
+
+[source,java]
+----
+FilePath workspace = j.jenkins.getWorkspaceFor(job);
+FilePath report = workspace.child("target").child("lint-results.xml");
+report.copyFrom(getClass().getResourceAsStream("lint-results_r20.xml"));
+----
+
+==== 自定义 `JENKINS_HOME` 目录
+TODO: 写这部分。
+
+==== 使用 `@LocalData`
+TODO: 准备写这部分。
+
+使用本地测试方法或测试类的数据集运行测试用例。
+
+此配方允许您的测试用例从您的测试方法或测试类加载的预设HUDSON_HOME数据开始。
+例如，如果测试方法是org.acme.FooTest.bar()，那么您可以将测试数据放在资源文件夹中的以下位置之一(通常为 src/test/resources):
+
+* 在org/acme/FooTest/bar目录下（即，您将拥有org/acme/FooTest/bar/config.xml），其格式与实际的JENKINS_HOME目录中相同。
+* 在org/acme/FooTest/bar.zip 中作为zip文件。
+* 在org/acme/FooTest 目录下 (即, 你将拥有 org/acme/FooTest/config.xml), 其格式与实际的JENKINS_HOME目录中相同。
+* 在org/acme/FooTest.zip 中作为zip文件。
+
+搜索按此特定顺序执行。 回退机制允许您编写一个与同一数据集的不同方面进行交互的测试类，方法是将数据集与测试类相关联，或将数据集设置为特定测试方法的本地数据集。
+zip和目录的选择取决于测试数据的性质以及它的大小。
+
+=== 配置 SCM
+TODO:  写这部分。
+您可以在使用`@GitSampleRepoRule`进行测试期间创建一个Git存储库。
+
+=== 使用代理
+TODO: 创建假代理。
+
+=== 启用安全性
+TODO: 创建虚假的安全域。使用LocalData预设。
+
+== 进一步的流水线测试
+=== 测试持久的流水线步骤
+TODO: 可重新启动的JenkinsRule。
+
+== 其他模式
+=== 自定义构建器
+
+== 高级和提示等
+//Tip: Use @ClassRule for JenkinsRule, if you're 900% sure that everything is ok

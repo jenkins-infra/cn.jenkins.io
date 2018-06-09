@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# RabbitMQ Consumer插件中定义的扩展点
+
+plugin:rabbitmq-consumer[RabbitMQ Consumer插件]
+
+## 消息队列侦听器
++jenkinsdoc:rabbitmq-consumer:org.jenkinsci.plugins.rabbitmqconsumer.extensions.MessageQueueListener[]+
+
++++ Listener for message queue.+++
+
+
+**Implementations:**
+
+* plugin:gerrit-trigger[Gerrit触发器插件]: com.+++<wbr/>+++sonyericsson.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++gerrit.+++<wbr/>+++trigger.+++<wbr/>+++impls.+++<wbr/>+++**RabbitMQMessageListenerImpl** (link:https://github.com/jenkinsci/gerrit-trigger-plugin/search?q=RabbitMQMessageListenerImpl&type=Code[在 GitHub上查看])
+* plugin:rabbitmq-build-trigger[RabbitMQ Build Trigger Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++rabbitmqbuildtrigger.+++<wbr/>+++**RemoteBuildListener** (link:https://github.com/jenkinsci/rabbitmq-build-trigger-plugin/search?q=RemoteBuildListener&type=Code[在 GitHub上查看])
+* plugin:rabbitmq-consumer[RabbitMQ Consumer Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++rabbitmqconsumer.+++<wbr/>+++logger.+++<wbr/>+++**MessageLogger** (link:https://github.com/jenkinsci/rabbitmq-consumer-plugin/search?q=MessageLogger&type=Code[在 GitHub上查看])
+

@@ -1,0 +1,24 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# JIRA插件中定义的扩展点
+
+plugin:jira[JIRA 插件]
+
+## 摘要问题选择器
++jenkinsdoc:jira:hudson.plugins.jira.selector.AbstractIssueSelector[]+
+
++++ Strategy of finding issues which should be updated after completed run.+++
+
+
+**Implementations:**
+
+* plugin:jira[JIRA 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++**DefaultIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=DefaultIssueSelector&type=Code[在 GitHub上查看])
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++**ExplicitIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=ExplicitIssueSelector&type=Code[在 GitHub上查看])
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++perforce.+++<wbr/>+++**JobIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=JobIssueSelector&type=Code[在 GitHub上查看])
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++**JqlIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=JqlIssueSelector&type=Code[在 GitHub上查看])
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++perforce.+++<wbr/>+++**P4JobIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=P4JobIssueSelector&type=Code[在 GitHub上查看])
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++selector.+++<wbr/>+++perforce.+++<wbr/>+++**PerforceJobIssueSelector** (link:https://github.com/jenkinsci/jira-plugin/search?q=PerforceJobIssueSelector&type=Code[在 GitHub上查看])
+

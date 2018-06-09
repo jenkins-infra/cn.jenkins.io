@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# SSH Slaves插件中定义的扩展点
+
+plugin:ssh-slaves[SSH Slaves插件]
+
+## Java提供商
++jenkinsdoc:ssh-slaves:hudson.plugins.sshslaves.JavaProvider[]+
+
++++ Guess where Java is.+++
+
+
+**Implementations:**
+
+* plugin:ssh-slaves[SSH Slaves插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++sshslaves.+++<wbr/>+++**SSHLauncher.+++<wbr/>+++DefaultJavaProvider** (link:https://github.com/jenkinsci/ssh-slaves-plugin/search?q=SSHLauncher.DefaultJavaProvider&type=Code[在 GitHub上查看])
+

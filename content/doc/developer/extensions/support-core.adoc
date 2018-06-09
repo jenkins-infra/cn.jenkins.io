@@ -1,0 +1,38 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 支持核心插件中定义的扩展点
+
+plugin:support-core[支持核心插件]
+
+## BundleNameInstanceTypeProvider
++jenkinsdoc:support-core:com.cloudbees.jenkins.support.BundleNameInstanceTypeProvider[]+
+
++++
+<p>扩展点允许定制支持包命名策略.</p>+++ +++
+<p>+++ +++ 它将以下面的方式工作:+++ +++ </p>+++ +++
+<ol>
++++ +++
+<li>如果+++ jenkinsdoc:BundleNameInstanceTypeProvider[] +++的执行被发现, 它将被使用.<br>+++ +++ <strong>WARNING: </strong>如果找到很多，则会发出警告，并且第一个扩展名将会+++ +++ 被使用.</li>+++ +++
+<li>如果不是，那么它将检查是否存在+++ jenkinsdoc:#SUPPORT_BUNDLE_NAMING_INSTANCE_SPEC_PROPERTY[] ++++++ +++ system property, and will use its value if provided.</li>+++ +++
+<li>If not, then will fallback to the original behaviour, which is simply an empty String</li>+++ +++
+</ol>+++
+
+
+**Implementations:**
+
+* plugin:support-core[支持核心插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++support.+++<wbr/>+++**BundleNameInstanceTypeProvider.+++<wbr/>+++DEFAULT_STRATEGY** (link:https://github.com/jenkinsci/support-core-plugin/search?q=BundleNameInstanceTypeProvider.DEFAULT_STRATEGY&type=Code[在GitHub上查看])
+
+
+## SupportProvider
++jenkinsdoc:support-core:com.cloudbees.jenkins.support.api.SupportProvider[]+
+
++++ The provider of support.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

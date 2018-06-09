@@ -1,0 +1,18 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# DeployHub插件中定义的扩展点
+
+plugin:deployhub[DeployHub Plugin]
+
+## DeployHub菜单
++jenkinsdoc:deployhub:org.jenkinsci.plugins.deployhub.DeployHubMenu[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+_(no known implementations)_
+

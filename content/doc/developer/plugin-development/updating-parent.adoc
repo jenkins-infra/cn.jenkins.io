@@ -1,0 +1,76 @@
+---
+title: 更新您的Maven的父POM
+layout: developerguide
+---
+
+大多数Jenkins插件使用Apache Maven作为构建工具。
+这里有一些关于如何使你的插件符合当前建议的提示。
+
+## 使用2.x 版本的父 POM
+
+适当维护的Jenkins插件预计将使用2.x系列父POM，
+定义`pom.xml`的基本结构越晚越好。
+
+https://github.com/jenkinsci/plugin-pom#usage[Parent POM general usage instructions]
+
+你可以使用Maven本身来创建一个新的插件:
+
+https://github.com/jenkinsci/archetypes#usage[Archetype usage instructions]
+
+如果您要升级较旧的插件，请替换一个标头，如
+
+[source,xml]
+----
+<parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>1.625</version>
+</parent>
+----
+
+采用新格式:
+
+[source,xml]
+----
+<parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>2.33</version>
+    <relativePath />
+</parent>
+<properties>
+    <jenkins.version>1.625</jenkins.version>
+</properties>
+----
+
+## 了解 +requireUpperBoundDeps+ 故障和修复
+
+TODO
+
+### 传递依赖插件太老了
+
+TODO Jenkins 2.12+ 在 +InjectedTest+期间也会检查, 但更慢
+
+### 不恰当的尝试使用核心组件
+
+TODO
+
+### 测试范围的依赖项不匹配
+
+TODO
+
+### 捡取依赖插件的修复
+
+TODO
+
+### 抑制违规行为
+
+TODO
+
+### 着色库
+
+TODO
+
+## 可选的依赖关系和扩展
+
+TODO

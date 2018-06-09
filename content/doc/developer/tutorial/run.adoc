@@ -1,0 +1,57 @@
+---
+layout: developer
+title: 构建并运行插件
+references: []
+---
+
+- link:../prepare[Step 1: Preparing for Plugin Development]
+- link:../create[Step 2: Create a Plugin]
+- link:../run[*Step 3: Build and Run the Plugin*]
+- link:../extend[Step 4: Extend the Plugin]
+
+Maven HPI插件用于构建和打包Jenkins插件。
+它还提供了一个使用插件运行Jenkins实例的便捷方式:
+
+[listing]
+mvn hpi:run
+
+NOTE: 了解更多关于Maven HPI插件及其提供的目标, 参阅 link:https://jenkinsci.github.io/maven-hpi-plugin/[它的文档]。
+
+这将在`http://localhost:8080/jenkins/`建立一个Jenkins实例。等待以下控制台输出，然后打开Web浏览器并查看插件的功能。
+
+[listing]
+INFO: Jenkins已经完全运转起来
+
+NOTE: 使用的Jenkins主目录是插件目录中的`work/`目录。 这意味着后续运行将保留其数据。
+
+在Jenkins创建一个新的自由式项目，并给它任意一个名称。
+
+然后添加“Say hello world”构建步骤。 它看起来像这样:
+
+image::developer/tutorial/job-config.png[Freestyle job configuration]
+
+输入名称，保存项目并开始新的构建。 导航到UI上的构建，然后单击_Console Output_查看构建日志。
+它将包含由刚刚配置的构建步骤编写的消息:
+
+[listing]
+----
+Started by user anonymous
+Building in workspace /Users/mrjenkins/demo/work/workspace/testjob
+Hello, Jenkins! // <1>
+Finished: SUCCESS
+----
+<1> 构建步骤添加的问候语
+
+// TODO 这在原型的1.2版中不存在
+//另外，构建步骤具有全局配置选项。 转到 _Manage Jenkins » Configure System_，你会看到:
+//
+//image::developer/tutorial/system-config.png[系统配置]
+
+让我们通过按下终端中的+ Ctrl-C +（或您系统的等价物）来停止Jenkins。
+
+下一步: link:../extend[扩展插件]。
+
+
+== 故障排除
+
+NOTE: 没有适合你的东西？ 寻求帮助 link:/chat[chat] 或 link:/mailing-lists[在jenkinsci-dev邮件列表上]。

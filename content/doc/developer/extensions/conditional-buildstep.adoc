@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 条件构建步骤插件中定义的扩展点
+
+plugin:conditional-buildstep[条件构建步骤插件]
+
+## 构建器描述符列表器
++jenkinsdoc:conditional-buildstep:org.jenkinsci.plugins.conditionalbuildstep.lister.BuilderDescriptorLister[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:any-buildstep[任何构建步骤插件]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++any_buildstep.+++<wbr/>+++builder.+++<wbr/>+++**BuilderLister** (link:https://github.com/jenkinsci/any-buildstep-plugin/search?q=BuilderLister&type=Code[在 GitHub上查看])
+* plugin:conditional-buildstep[Conditional BuildStep Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++conditionalbuildstep.+++<wbr/>+++lister.+++<wbr/>+++**DefaultBuilderDescriptorLister** (link:https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=DefaultBuilderDescriptorLister&type=Code[在 GitHub上查看])
+

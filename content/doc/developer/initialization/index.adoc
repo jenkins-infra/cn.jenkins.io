@@ -1,0 +1,9 @@
+---
+title: 初始化和启动
+layout: developerchapter
+wip: true
+references:
+- url: https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Pieces+in+GitHub
+  title: >
+    Jenkins wiki: On Winstone and executable-war
+---
