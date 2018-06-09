@@ -1,0 +1,60 @@
+---
+:layout: post
+:title: "Jenkins被Google Summer Summer Code 2018接纳，加入我们！"
+:tags:
+- gsoc
+- gsoc2018
+- events
+- community
+:author: oleg_nenashev
+---
+
+image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=right]
+
+我们很高兴地宣布Jenkins项目已被link:https://summerofcode.withgoogle.com/[Google Summer of Code 2018]接受 。今年，我们邀请学生和老师加入Jenkins社区，并提各层次的介绍：核心，插件，开发工具和基础架构。
+
+我们的导师已经创建了一些link:/projects/gsoc/gsoc2018-project-ideas[项目ideas].
+例如，欢迎您致力于新的link:/projects/gsoc/gsoc2018-project-ideas/#jenkins-configuration-as-code[Configuration-as-Code initiative]或者帮助link:/projects/gsoc/gsoc2018-project-ideas/#code-coverage-api-plugin[编写代码覆盖率插件].
+If you like test automation, there is a proposal to
+link:/projects/gsoc/gsoc2018-project-ideas/#improvements-to-the-jenkins-acceptance-test-harness[Jenkins Acceptance Test Harness].
+Over the next weeks we plan to extend this list by new even more project ideas.
+
+All information about the Jenkins GSoC is available on its link:/projects/gsoc/[subproject page].
+
+== 我是学生。我如何申请？
+
+See link:/projects/gsoc/students[Information for students] for application guidelines.
+
+First step is to join discussions in the mailing lists in order to introduce yourself, establish connections with the community and potential mentors.
+The application period starts on March 12 and ends on March 27, but don't let it misguide you!
+Use time before application to discuss project ideas/proposals with mentors and to process their feedback.
+To create a better proposal, we also recommend to study Jenkins and to do some contributions in the area of your project proposal.
+
+Not satisfied by the current link:/projects/gsoc/gsoc2018-project-ideas[project ideas]?
+You can link:/projects/gsoc/gsoc2018-project-ideas/#proposing-new-project-ideas[propose your own idea]
+in the developer mailing list.
+
+== 我想成为一名导师。是不是太晚了？
+
+It's not!
+If you are passionate about open-source and Jenkins, we invite you to join the mentors team.
+You can either propose a new project idea or join an existing one.
+See link:/blog/2018/01/06/gsoc2018-call-for-mentors[Call for Mentors] and link:/projects/gsoc/mentors[Information for mentors] for details.
+
+This year mentorship does **NOT** require strong expertise in Jenkins development.
+The objective is to guide students and to get involved into the Jenkins community.
+GSoC org admins will help to find advisers if special expertise is required.
+
+== 关键日期
+
+* Mar 05 - deadline for new GSoC project idea proposals
+* Mar 12 - student application period starts
+* Mar 27 - deadline for student applications
+* Apr 23 - accepted projects announced, community bonding starts
+* May 14 - coding period starts
+* Aug 06 - end of the coding period
+
+See the link:https://summerofcode.withgoogle.com/how-it-works/#timeline[GSoC Timeline] for more info.
+In the Jenkins project we will also organize special events during and after GSoC (e.g. at Jenkins world).
+
+**P.S:** I am going to create a special GSoC 2018 edition of swags for mentors and students. Do not miss them ;)

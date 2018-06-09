@@ -1,0 +1,32 @@
+---
+zh-CN:
+  solutions:
+    java.adoc:
+      layout_solution: 'layout: solution'
+      title_jenkins_and_java: 'title: "Jenkins和Java"'
+      jenkins_supports_building_java: Jenkins supports building Java projects since
+        its inception, and for a reason!
+      its_both_the_language_jenkins_: It's both the language Jenkins is written in,
+        plus the language in use by many if not all the
+      projects_kohsuke_kawaguchi_wan: projects Kohsuke Kawaguchi wanted to watch out
+        when he created the tool many years ago.
+      if_you_want_to_build_a_java_pr: If you want to build a Java project, there are
+        a bunch of different options.
+      the_most_typical_ones_nowadays: The most typical ones nowadays are generally
+        Apache Maven, or Gradle.
+      apache_maven: Apache Maven
+      in_any_freestyle_job_as_curren: In any FreeStyle job, as *currently* Maven is
+        supported in standard, you can use the
+      dedicated_step_one_advantage_i: dedicated step. One advantage is, as for all
+        Jenkins tools, that you can select a specific
+      maven_version_and_have_jenkins: Maven version and have Jenkins automatically
+        install it on the build node it's going to run on.
+      imageimagessolutionimagesjenki: image::/images/solution-images/jenkins-gradle-step.png['Jenkins
+        Gradle step', role=center]
+      gradle: Gradle
+      as_the_associated_plugin_is_no: As the associated plugin is not installed by
+        default, first install the
+      linkhttpswikijenkinsciorgdispl: link:https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin[Gradle
+        plugin].
+      once_done_you_should_be_able_t: Once done, you should be able to add a Gradle
+        step.

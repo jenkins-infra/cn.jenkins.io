@@ -1,0 +1,22 @@
+- # Ensure we have URI in scope
+- require 'uri'
+
+%div
+  -if legacy?
+    %h2= page.title
+  - else
+    %h4= page.title
+
+  %div.content
+    %div.item-list
+      - if page.articles
+        %ul.ji-dated-list
+          - page.articles.each do |link, title|
+            %li.post
+              %a.article{:href => link}
+                - if legacy?
+                  = title
+                - else
+                  %h6.title= title
+              .url= URI.parse(link).host
+

@@ -1,0 +1,8 @@
+---
+zh-CN:
+  _layouts:
+    developer:
+      layout_default: 'layout: default'
+      section_doc: 'section: doc'
+      references: References
+      '': ":"

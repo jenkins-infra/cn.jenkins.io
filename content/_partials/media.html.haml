@@ -1,0 +1,22 @@
+.jumbotron.media-row
+
+  %h3.header
+    = page.title
+
+  - page.media.each do |media|
+
+    %a.card.media{'data-toggle' => 'lightbox',
+      'data-gallery' => 'youtubevideos',
+      'data-title' => media.title,
+      :href => "https://youtu.be/#{media.id}"}
+
+      %img.card-img-top{'data-src' => 'holder.js/100%x180/',
+        :src => "https://img.youtube.com/vi/#{media.id}/hqdefault.jpg"}
+      .card-block
+
+        %h4.media-title
+          = media.title
+
+        %p.short
+          =media.short
+

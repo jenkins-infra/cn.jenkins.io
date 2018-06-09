@@ -1,0 +1,146 @@
+---
+:layout: post
+:title: "猎豹项目 - 更快，更精简的Pipeline，满足更高需求"
+:tags:
+- pipeline
+- performance
+- scalability
+:author: svanoort
+---
+
+:toc: 
+
+[NOTE]
+====
+这是来自 link:http://cloudbees.com[CloudBees]的软件工程师 link:https://github.com/svanoort[Sam Van Oort]的文章,
+ 他是Jenkins项目贡献者以及Pipeline插件的维护者。
+====
+
+自从它发布以来，Pipeline有一些Dr.Jekyll和Hyde先生提到的性能问题。在某些情况下，Pipeline可以从一个好的CI / CD工具变成大问题，消耗大量的存储读/写能力，导致Pipeline和Jenkins无法正常工作。出问题的时候，Jenkins的执行效率会大幅下降， 过去造成这种问题的罪魁祸首是重自动化（ab）使用Jenkins API，现在解决的用户查找错误，备份工作和插件运行疯狂，加载的构建数量过多。
+
+现在我不是在说这个来吓唬人们，或者批评我们已经建立起来的技术。实施Pipeline可扩展性最佳实践以及SSD存储使Jenkins处于一个快乐的地方。我们只需要了解这些弱点的背景，看看为什么解决这些弱点非常重要。
+== 什么是“猎豹项目”
+
+Today we're announcing the first major results of "Project Cheetah", our long-running effort to address these challenges and improve Pipeline scalability.  More broadly, Cheetah aims to help in 3 places:
+
+* *Small-scale containers:* Pipeline needs to run leanly in resource-constrained containers, to enable easy scale-out without consuming excessive resources on shared container hosts.
+* *Enterprise systems:* Pipeline needs to effectively serve high-scale Jenkins instances that are central to many large companies.
+* *General case:* run Pipelines a bit more quickly on average, and allow users to get much-stronger performance in worst-case scenarios.
+
+These changes are implemented across many of the Pipeline plugins.
+
+== 猎豹项目做了什么？? 
+
+Project Cheetah offers several things, but the most important is Durability Settings for all Pipelines, and especially the Performance-Optimized setting.  This setting avoids several potentially unexpected performance "surprises" that may strike users.  In the general case, it greatly reduces the disk IO needs for Pipeline.  How much?  Below is a graph of storage utilization with legacy Pipeline versions (think early 2017) and with the latest version using the Performance-Optimized mode.  These are tested on an AWS instance backed by an EBS volume provisioned with 300 IOPs. 
+
+Before and After:
+
+image:/images/post-images/2018-02-22-cheetah/io-utilization.png[role="center"]
+
+As you can see, storage utilization goes down by a _lot_.  While the exact number will vary, across the benchmark testcases *this results in Pipeline throughput of 2x to 6x the previous before becoming IO-bound*. This also increases stability of Jenkins masters because they will tolerate unexpected load.
+
+This comes with a major drop in CPU IOWait as well:
+
+image:/images/post-images/2018-02-22-cheetah/cpu-iowait.png[role="center"]
+
+And of course the rate at which data is written to disk and number of writes/s is also reduced:
+
+image:/images/post-images/2018-02-22-cheetah/diskio.png[role="center"]
+
+For enterprise users, timing stats often show 10-20% of normal builds is serializing the Program and writing the record of steps run ("FlowNodes") - the performance optimized durability setting will cut this to _almost nothing_ (for standard pipelines, 1/100 or less) - so builds will complete faster, especially complex ones.
+
+Please see the link:/doc/book/pipeline/scaling-pipeline/[Pipeline Scalability documentation] for deeper information on the new Durability Settings, how to use them, and which plugin versions are required to gain these features.
+
+Also, users may see a reduction in hung Pipelines because new test utilities made it possible to identify and correct a variety of bugs.
+
+== 如何进行性能优化设置？
+有3种方法来进行性能优化设置:
+
+=== 1. *全局设置*, 你可选择一个全局的性能优化设置:
+在 "Manage Jenkins" > "Configure System", 选择 "Pipeline Speed/Durability Settings".  You can override these with the more specific settings below.
+
+image:/images/post-images/2018-02-22-cheetah/global-durability.png[role="center"]
+
+=== 2. *每个Pipeline* can get a custom Durability Setting:
+This is one of the job properties located at the top of the job configuration, labelled "Custom Pipeline Speed/Durability Level."  **This overrides the global setting.**  Or, use a "properties" step - the setting will apply to the NEXT run after the step is executed (same result).
+
+image:/images/post-images/2018-02-22-cheetah/pipeline-durability-highlighted.png[role="center"]
+
+[pipeline]
+----
+// Script //
+properties([durabilityHint('PERFORMANCE_OPTIMIZED')])
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    options {
+        durabilityHint('PERFORMANCE_OPTIMIZED')
+    }
+}
+----
+
+=== 3. **Multibranch Projects** can use a new BranchProperty to customize the Durability Setting.
+Under the SCM you can configure a custom Branch Property Strategy and add a property for Custom Pipeline Speed/Durability Level.  This overrides the global Durability Setting and will apply to each branch at the next run.  You can also use a "properties" step to override the setting, but remember that you may have to run the step again to undo this.
+
+image:/images/post-images/2018-02-22-cheetah/multibranch-durability.png[role="center"]
+
+Durability settings will take effect with the next applicable Pipeline run, not immediately.  The setting will be displayed in the log. 
+
+image:/images/post-images/2018-02-22-cheetah/durability-in-log-highlighted.png[role="center"]
+
+There is a slight durability trade-off for using the Performance-Optimized mode -- link:/doc/book/pipeline/scaling-pipeline/#what-am-i-giving-up-with-this-durability-setting-trade-off[the appropriate section of the Pipeline Scalability documentation] has the specifics.
+For most uses we do not expect this to be important, but there are a few specific cases where users may wish to use a slower/higher-durability setting.  link:/doc/book/pipeline/scaling-pipeline/#suggested-best-practices-and-tips-for-durability-settings[The Best Practices are documented.]
+
+We recommend using Performance-Optimized by default, but because it does represent a slight behavioral change the initial "Cheetah" plugin releases defaults to maintain previous behavior. We expect to switch this default in the future with appropriate notice once people have a chance to get used to the new settings.
+
+== 性能优化模式会帮助我吗？
+* Yes, if your Jenkins instance uses NFS, magnetic storage, runs many Pipelines at once, or shows high iowait (above 5%)
+* Yes, if you are running Pipelines with many steps (more than several hundred).
+* Yes, if your Pipeline stores large files or complex data to variables in the script, keeps that variable in scope for future use, and then runs steps.  This sounds oddly specific but happens more than you'd expect.
+** For example: `readFile` step with a large XML/JSON file, or using configuration information from parsing such a file with link:https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#code-readjson-code-read-json-from-files-in-the-workspace[One of the Utility Steps].
+** Another common pattern is a "summary" object containing data from many branches (logs, results, or statistics). Often this is visible because you'll be adding to it often via an add/append or `Map.put()` operations.
+** Large arrays of data or Maps of configuration information are another common example of this situation.
+* No, if your Pipelines spend almost all their time waiting for a few shell/batch steps to finish.  This ISN'T a magic "go fast" button for everything!
+* No, if Pipelines are writing massive amounts of data to logs (logging is unchanged).
+* No, if you are not using Pipelines, or your system is loaded down by other factors.
+* No, if you don't enable higher-performance modes for pipelines.  See above for how!
+
+== 其他好东西
+
+* Users can now set an optional job property so that individual Pipelines fail cleanly rather than resuming upon restarting the master.  This is useful for niche cases where some Pipelines are considered disposable and users would value a clean restart over Pipeline durability.
+
+* We've reduced classloading and reflection quite significantly, which improves scaling and reduces CPU use:
+
+image:/images/post-images/2018-02-22-cheetah/classloading.png[role="center"]
+
+* Script Security (as of version 1.41) has gotten optimizations to reduce the performance overhead of Sandbox mode and eliminate lock contention so Pipeline multithreads better. 
+
+* Pipeline Step data uses up less space on disk (regardless of the durability setting) - this should be 30% smaller.  Assume it's a few MB per 1000 steps - but for every build after the change. 
+
+* Even in the low-performance/high-durability modes, some redundant writes have been removed, which decreases the number of writes by 10-20%.
+
+== 你是怎么做到的？
+
+That's probably material for another blog post or https://www.cloudbees.com/jenkinsworld[Jenkins World talk].
+
+The short answer is: first we built a tool to simulate a full production environment and provide detailed metrics collection at scale.  Then we profiled Jenkins to identify bottlenecks and attacked them.  Rinse and repeat.
+
+== 接下来是什么？
+
+The next big change, which I'm calling Cheetah Part 2 is to address Pipeline's logging. For every Step run, Pipeline writes one or more small log files. These log files are then copied into the build log content, but are retained to make it possible to easily fetch logs for each step. 
+
+This copying process means every log line is written twice, greatly reducing performance, and writing to many small files is orders of magnitude slower than appending to one big log file.
+
+We're going to remove this duplication and data fragmentation and use a more efficient mechanism to find per-step logs. This should further improve the ability to run Pipelines on NFS mounts and hard-drive-backed storage, and should significantly improve performance at scale.
+
+Besides this, there's a variety of different tactical improvements to improve scaling behavior and reduce resource needs.
+
+The Project Cheetah work doesn't free users to _completely ignore_ link:/doc/book/pipeline/scaling-pipeline/[Pipeline scaling best practices] and  link:/blog/2017/02/01/pipeline-scalability-best-practice/[previous suggestions].  Nor does it eliminate the need for link:/blog/2016/11/21/gc-tuning/[efficient GC settings].  But this and other enhancements from the last year _can_ significantly improve the storage situation for most users and reduce the penalties for worst-case behaviors.  When you add all the pieces together, the result is a faster, leaner, more reliable Pipeline experience.
+

@@ -1,0 +1,32 @@
+.banner-container
+  .skew
+  .container
+    .row
+      = t('.nbsp')
+    .row
+      .col-md-2
+
+      .col-lg-4
+        .logo{:style => 'width: 256px;'}
+          = partial('logo.html.haml')
+
+      .col-md-4
+        %h1.page-title
+          %span>
+            = t('.jenkins')
+        %p
+          %strong
+            = t('.build_great_things_at_any_scal')
+        %p
+          = t('.the_leading_open_source_automa')
+          = t('.hundreds_of_plugins_to_support')
+          = t('.any_project')
+
+        .container
+          .row
+            %a.btn.btn-secondary.m-1{:href => expand_link('doc')}
+              = t('.documentation')
+            %a.btn.btn-primary.m-1{:href => expand_link('download')}
+              = t('.download')
+
+      .col-md-2

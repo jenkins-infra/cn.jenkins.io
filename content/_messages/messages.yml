@@ -1,0 +1,27 @@
+---
+en:
+  _partials:
+    toptoolbar:
+      blog: Blog
+      documentation: Documentation
+      use_jenkins: Use Jenkins
+      extend_jenkins: Extend Jenkins
+      plugins: Plugins
+      usecases: Use-cases
+      participate: Participate
+      subprojects: Sub-projects
+      overview: Overview
+      resources: Resources
+      account_management: Account Management
+      chat: Chat
+      issue_tracker: Issue Tracker
+      mailing_lists: Mailing Lists
+      wiki: Wiki
+      about: About
+      security: Security
+      press: Press
+      awards: Awards
+      conduct: Conduct
+      artwork: Artwork
+      download: Download
+      nbsp: "&nbsp;"

@@ -1,0 +1,22 @@
+.plugins-list
+  -if legacy?
+    %h2= page.title
+  - else
+    %h4= page.title
+
+  %div.content
+    - if page.plugins
+      %div.item-list
+        %ul.ji-dated-list.ji-item-list.plugins
+          - page.plugins.each do |link, title, description|
+            %li.post
+              %a.body.article{:href => link}
+                - if legacy?
+                  = title
+                - else
+                  %h6.title= title
+                  %p.url= description
+                  .icon.card.date
+                    .icon-plug
+              - if legacy?
+                %p.url= description

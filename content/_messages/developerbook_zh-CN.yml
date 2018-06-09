@@ -1,0 +1,16 @@
+---
+zh-CN:
+  _layouts:
+    developerbook:
+      layout_default: 'layout: default'
+      topics: Topics
+      nbsp: "&nbsp;"
+      resources: Resources
+      taglibs: Taglibs
+      core: Core
+      stapler: Stapler
+      jelly_core: Jelly Core
+      tools: Tools
+      maven_hpi_plugin: Maven HPI Plugin
+      references: References
+      '': ":"

@@ -1,0 +1,46 @@
+---
+zh-CN:
+  content:
+    index:
+      layout_default: 'layout: default'
+      title_jenkins: 'title: Jenkins'
+      blogrollup_true: 'blogrollup: true'
+      homepage_true: 'homepage: true'
+      continuous_integration_and_con: Continuous Integration and Continuous Delivery
+      as_an_extensible_automation_se: As an extensible automation server, Jenkins
+        can be used as a simple
+      ci_server_or_turned_into_the_c: CI server or turned into the continuous delivery
+        hub for any project.
+      easy_installation: Easy installation
+      jenkins_is_a_selfcontained_jav: Jenkins is a self-contained Java-based program,
+        ready to run
+      outofthebox_with_packages_for_: out-of-the-box, with packages for Windows, Mac
+        OS X and other
+      unixlike_operating_systems: Unix-like operating systems.
+      easy_configuration: Easy configuration
+      jenkins_can_be_easily_set_up_a: Jenkins can be easily set up and configured
+        via its web interface,
+      which_includes_onthefly_error_: which includes on-the-fly error checks and built-in
+        help.
+      plugins: Plugins
+      with_hundreds_of_plugins_in_th: With hundreds of plugins in the Update Center,
+        Jenkins integrates
+      with_practically_every_tool_in: with practically every tool in the continuous
+        integration and
+      continuous_delivery_toolchain: continuous delivery toolchain.
+      extensible: Extensible
+      jenkins_can_be_extended_via_it: Jenkins can be extended via its plugin architecture,
+        providing
+      nearly_infinite_possibilities_: nearly infinite possibilities for what Jenkins
+        can do.
+      distributed: Distributed
+      jenkins_can_easily_distribute_: Jenkins can easily distribute work across multiple
+        machines,
+      helping_drive_builds_tests_and: helping drive builds, tests and deployments
+        across multiple
+      platforms_faster: platforms faster.
+      we_thank_the_following_organiz: We thank the following organizations for their
+        support of the Jenkins
+      support_the_jenkins_project: support the Jenkins project.
+      project_through_free_andor_ope: project through free and/or open source licensing
+        programs.

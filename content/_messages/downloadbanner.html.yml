@@ -1,0 +1,14 @@
+---
+en:
+  _partials:
+    downloadbanner:
+      nbsp: "&nbsp;"
+      jenkins: Jenkins
+      build_great_things_at_any_scal: Build great things at any scale
+      the_leading_open_source_automa: The leading open source automation server, Jenkins
+        provides
+      hundreds_of_plugins_to_support: hundreds of plugins to support building, deploying
+        and automating
+      any_project: any project.
+      documentation: Documentation
+      download: Download

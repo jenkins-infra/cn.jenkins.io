@@ -1,0 +1,28 @@
+---
+zh-CN:
+  _partials:
+    toptoolbar:
+      blog: 博客
+      documentation: 文档
+      use_jenkins: 使用Jenkins
+      extend_jenkins: 扩展Jenkins
+      plugins: 插件
+      usecases: 用户案例
+      participate: 参与
+      subprojects: 子项目
+      overview: 总览
+      resources: 资源
+      account_management: 账号管理
+      chat: 聊天
+      issue_tracker: 问题
+      mailing_lists: 邮件列表
+      wiki: Wiki
+      about: 关于
+      security: 安全
+      press: 新闻
+      awards: 获奖
+      conduct: Conduct
+      artwork: Artwork
+      download: 下载
+      nbsp: "&nbsp;"
+

@@ -1,0 +1,12 @@
+---
+layout: frame
+---
+- # We need to propogate the page.section into the partial since inside the partial
+- # this template (default.html.haml) is scoped as `page`
+= partial('toptoolbar.html.haml', :section => page.section)
+
+- if page.precontent
+  - page.precontent.each do |pre|
+    = partial("#{pre}.html.haml")
+
+= content

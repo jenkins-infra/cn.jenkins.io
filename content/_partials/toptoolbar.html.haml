@@ -1,0 +1,90 @@
+%nav#ji-toolbar.navbar.navbar-toggleable-md.navbar-inverse.top.bg-inverse.fixed-top
+  .container
+    %button.navbar-toggler.navbar-toggler-rght.hidden-lg-up.float-right{"data-target" => "#CollapsingNavbar", "data-toggle" => "collapse", :type => "button"}
+      %i.ion-navicon
+    %a.navbar-brand{:href => site.base_url}
+      = site.base_title
+
+    #CollapsingNavbar.collapse.navbar-collapse
+      %ul.nav.navbar-nav.ml-auto
+        %li.nav-item{:class => active_link?('node')}
+          %a.nav-link{:href => expand_link('node')}
+            = t('.blog')
+
+        %li.nav-item.dropdown
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            = t('.documentation')
+
+          .dropdown-menu
+            %a.dropdown-item{:href => expand_link('doc')}
+              = t('.use_jenkins')
+            %a.dropdown-item{:href => expand_link('doc/developer')}
+              = t('.extend_jenkins')
+
+        %li.nav-item{:class => active_link?('plugins')}
+          %a.nav-link{:href => 'https://plugins.jenkins.io/'}
+            = t('.plugins')
+
+        %li.nav-item.dropdown
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            = t('.usecases')
+          .dropdown-menu
+            - site.solutions.keys.sort.each do |key|
+              - link = expand_link("solutions/#{key}")
+              %a.dropdown-item.feature{:href => link, :class => active_link?(key.to_s)}
+                = site.solutions[key].usecase
+
+        %li.nav-item{:class => active_link?('participate')}
+          %a.nav-link{:href => expand_link("participate")}
+            = t('.participate')
+
+        %li.dropdown.nav-item
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}= t('.subprojects')
+          .dropdown-menu
+            %a.dropdown-item.feature{:href => expand_link('projects/')}
+              = t('.overview')
+            - site.pages.map do |page|
+              - next unless page.url.match(/\/projects\/(\w+)\/$/)
+              %a.dropdown-item.feature{:href => expand_link(page.url)}
+                = page.title
+
+        %li.nav-item.dropdown
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            = t('.resources')
+
+          .dropdown-menu
+            %a.dropdown-item.feature{:href => "https://accounts.jenkins.io/", :title => "Create/manage your account for accessing wiki, issue tracker, etc"}
+              = t('.account_management')
+
+            %a.dropdown-item{:href => expand_link('chat'), :title => "Chat with the rest of the Jenkins community on IRC"}
+              = t('.chat')
+            %a.dropdown-item.feature{:href => "https://issues.jenkins-ci.org/"}
+              = t('.issue_tracker')
+            %a.dropdown-item{:href => expand_link('mailing-lists'),
+                              :title => "Browse Jenkins mailing list archives and/or subscribe to lists"}
+              = t('.mailing_lists')
+            %a.dropdown-item.feature{:href => "https://wiki.jenkins-ci.org/"}
+              = t('.wiki')
+
+        %li.nav-item.dropdown
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            = t('.about')
+
+          .dropdown-menu
+            %a.dropdown-item{:href => expand_link('security')}
+              = t('.security')
+            %a.dropdown-item{:href => expand_link('press')}
+              = t('.press')
+            %a.dropdown-item{:href => expand_link('awards')}
+              = t('.awards')
+            %a.dropdown-item{:href => expand_link('project/conduct')}
+              = t('.conduct')
+            %a.dropdown-item{:href => expand_link('artwork')}
+              = t('.artwork')
+
+        %li.nav-item
+          %a.nav-link.btn.btn-outline-secondary{:href => expand_link('download')}
+            = t('.download')
+/ Spacing to make the fixed-top sticky navbar not occlude any content below it
+.pt-4
+  = t('.nbsp')

@@ -1,0 +1,12 @@
+---
+zh-CN:
+  _partials:
+    downloadbanner:
+      nbsp: "&nbsp;"
+      jenkins: Jenkins
+      build_great_things_at_any_scal: 构建伟大，无所不能
+      the_leading_open_source_automa: Jenkins是开源CI&CD软件领导者，
+      hundreds_of_plugins_to_support: 提供超过1000个插件来支持构建、部署、自动化，
+      any_project: 满足任何项目的需要。
+      documentation: 文档
+      download: 下载

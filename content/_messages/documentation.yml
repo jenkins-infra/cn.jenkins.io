@@ -1,0 +1,13 @@
+---
+en:
+  _layouts:
+    documentation:
+      layout_default: 'layout: default'
+      section_doc: 'section: doc'
+      guided_tour: Guided Tour
+      tutorials: Tutorials
+      user_handbook: User Handbook
+      pdf: "(PDF)"
+      resources: Resources
+      recent_tutorial_blog_posts: Recent Tutorial Blog Posts
+      view_all_tutorial_blog_posts: View all tutorial blog posts

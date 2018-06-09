@@ -1,0 +1,14 @@
+---
+zh-CN:
+  _layouts:
+    documentation:
+      layout_default: 'layout: default'
+      section_doc: 'section: doc'
+      guided_tour: Jenkins入门
+      tutorials: 教程
+      user_handbook: 用户手册
+      pdf: "(PDF)"
+      resources: 参考资料
+      recent_tutorial_blog_posts: 最新博客
+      view_all_tutorial_blog_posts: 所有博客
+      Overview: 概览

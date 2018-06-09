@@ -1,0 +1,120 @@
+---
+layout: default
+section: doc
+---
+:ruby
+  tutorials = []
+  site.pages.reverse_each do |page|
+    # Some pages don't have tags
+    next if page.tags.nil?
+    page.tags.each do |tag|
+      # tag is an Awestruct::Extensions::Tagger::TagStat
+      next unless tag.to_s == 'tutorial'
+      tutorials << page
+    end
+  end
+
+  section_key = File.basename(page.source_path, File.extname(page.source_path))
+  chapter_key = File.basename(File.dirname(page.source_path))
+
+  # If the section key isn't something interesting, we'll just say there is no
+  # section
+  if section_key == 'index.html'
+    section_key = nil
+  end
+
+:javascript
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+
+.container
+  .row.body
+    .col-lg-3
+      .sidebar-nav.tour
+        %p
+          = active_href('doc', '用户文档中心')
+
+        %h4
+          = t('.guided_tour')
+        %ul
+          %li
+            = active_href('doc/pipeline/tour/getting-started', '入门指南')
+          %li
+            = active_href('doc/pipeline/tour/hello-world', '创建Hello World Pipeline')
+          %li
+            = active_href('doc/pipeline/tour/running-multiple-steps', '执行多个步骤')
+          %li
+            = active_href('doc/pipeline/tour/agents', '定义执行环境')
+          %li
+            = active_href('doc/pipeline/tour/environment', '使用环境变量')
+          %li
+            = active_href('doc/pipeline/tour/tests-and-artifacts', '记录测试结果和构建包')
+          %li
+            = active_href('doc/pipeline/tour/post', '清理和通知')
+          %li
+            = active_href('doc/pipeline/tour/deployment', '部署')
+
+        %h4
+          = t('.tutorials')
+        %ul
+          %li
+            = active_href('doc/tutorials', t('.Overview'))
+          %li
+            = active_href('doc/tutorials/build-a-java-app-with-maven', '用Maven构建Java应用')
+          %li
+            = active_href('doc/tutorials/build-a-node-js-and-react-app-with-npm', '用npm构建 Node.js和React应用')
+          %li
+            = active_href('doc/tutorials/build-a-python-app-with-pyinstaller', '用PyInstaller构建Python应用')
+          %li
+            = active_href('doc/tutorials/create-a-pipeline-in-blue-ocean', '用Blue Ocean创建Pipeline')
+          %li
+            = active_href('doc/tutorials/build-a-multibranch-pipeline-project', '构建一个多分支的Pipeline项目')
+
+        %h4
+          = t('.user_handbook')
+          %span{:style => 'font-size: 0.6rem; vertical-align: middle;'}
+            %a{:href => '/user-handbook.pdf'}
+              = t('.pdf')
+
+        %ul
+          - site.handbook.chapters.each do |chapter|
+            %li
+              = active_href(File.join('doc/book', chapter.key), chapter.title, :fuzzy => true)
+              - if (chapter.key == chapter_key) && section_key
+                %small
+                  %ul{:style => 'padding-left: 1rem;'}
+                    - chapter.sections.each do |s|
+                      %li
+                        = active_href(File.join('doc/book', chapter.key, s.key), s.title, :fuzzy => true)
+        %h4
+          = t('.resources')
+        %ul
+          %li
+            = active_href('doc/book/pipeline/syntax', 'Pipeline语法参考')
+          %li
+            = active_href('doc/pipeline/steps', 'Pipeline步骤参考')
+          %li
+            = active_href('doc/upgrade-guide', 'LTS升级指导', :fuzzy => true)
+
+        %h5
+          = t('.recent_tutorial_blog_posts')
+        %ul
+          - tutorials[0...3].each do |t|
+            %li
+              %a{:href => t.url}
+                = t.title
+        .small
+          %a{:href => '/node/tags/tutorial'}
+            = t('.view_all_tutorial_blog_posts')
+
+        %p
+
+
+    .col-lg-9
+      - unless page.notitle
+        %h1
+          = page.title
+      = content
