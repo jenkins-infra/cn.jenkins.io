@@ -1,0 +1,138 @@
+---
+layout: default
+title: Jenkins
+blogrollup: true
+homepage: true
+---
+
+:ruby
+  # Images should all be between 300 and 350 pixels wide, and no more than 180px tall
+
+  sponsors = [
+    ['microsoft.png',
+     'Microsoft Azure',
+     'https://www.azure.com'],
+    ['cloudbees.png',
+    'CloudBees, Inc.',
+    'https://cloudbees.com'],
+    ['osuosl.png',
+    'Oregon State University Open Source Lab',
+    'https://osuosl.org'],
+    ['rackspace.png',
+    'Rackspace, Inc.',
+    'https://rackspace.com'],
+    ['redhat.png',
+    'RedHat, Inc.',
+    'https://redhat.com'],
+  ]
+  supporters = [['Atlassian', 'https://atlassian.com'],
+                ['Datadog', 'https://www.datadoghq.com'],
+                ['JFrog', 'https://jfrog.com'],
+                ['Mac Cloud', 'http://maccloud.me/'],
+                ['PagerDuty', 'https://pagerduty.com'],
+                ['XMission', 'https://xmission.com'],
+  ]
+
+= partial('downloadbanner.html.haml')
+
+= partial('projectjumbotron.html.haml',
+  :href => expand_link('projects/blueocean'),
+  :title => 'Say &ldquo;hello&rdquo; to Blue Ocean',
+  :intro => "Blue Ocean是一种全新的用户体验，可以将持续交付延伸到任何团队，而不会牺牲Jenkins的强大功能。",
+  :image => expand_link('images/blueocean/blueocean-successful-pipeline.png'),
+  :call_to_action => {:text => '开始', :href => expand_link('projects/blueocean')})
+
+#feature-list-segment.segment
+  .container
+    .row.chunks.features.uniform-height
+      .col-md-6.col-lg-4
+        .box.cicd
+          %i.icon-arrow-shuffle
+          %h5
+            持续集成和持续交付
+          %p
+            作为一个可扩展的自动化服务器，Jenkins可以用作简单的CI服务器，或者变成任何项目的连续交付中心。
+
+
+      .col-md-6.col-lg-4
+        .box.install
+          %i.icon-download
+          %h5
+            简易安装
+          %p
+            Jenkins是一个独立的基于Java的程序，可以立即运行，包含Windows，Mac OS X和其他类Unix操作系统。
+
+      .col-md-6.col-lg-4
+        .box.settings
+          %i.icon-settings
+          %h5
+            配置简单
+          %p
+            Jenkins可以通过其网页界面轻松设置和配置，其中包括即时错误检查和内置帮助。
+
+      .col-md-6.col-lg-4
+        .box.ecosystem
+          %i.icon-plug
+          %h5
+            插件
+          %p
+            通过更新中心中的1000多个插件，Jenkins集成了持续集成和持续交付工具链中几乎所有的工具。
+
+      .col-md-6.col-lg-4
+        .box.extend
+          %i.icon-puzzle-piece
+          %h5
+            扩展
+          %p
+            詹金斯可以通过其插件架构进行扩展，从而为詹金斯可以做的事提供几乎无限的可能性。
+
+      .col-md-6.col-lg-4
+        .box.distributed
+          %i.icon-uniE602
+          %h5
+            分布式
+          %p
+            Jenkins可以轻松地在多台机器上分配工作，帮助更快速地跨多个平台推动构建，测试和部署。
+
+.container
+  .section.events
+    .container-fluid.events.no-margin
+      %div.row
+        %div#sidebar.col-md-12.events.horizontal
+          = partial('events.html.haml')
+
+  .section.blogs.f9f9f9
+    %div.container
+      %div.row.body
+        .col-md-1
+        %div#content.col-md-10
+
+          %div#content-top
+          = partial('blogs.html.haml')
+
+        .col-md-1
+        .col-md-2
+
+#sponsorsblock.jumbotron
+  .sponsors
+    %p
+      %strong
+        我们感谢以下组织对Jenkins项目的参与。
+
+    %ul
+
+      - sponsors.each do |logo, name, url|
+        %li
+          %a{:href => url, :target => '_blank'}
+            %img{:alt => name, :title => name, :src => expand_link("images/sponsors/#{logo}")}/
+
+  .supporters
+    %p
+      %strong
+        我们感谢以下组织通过免费和/或开源许可计划支持Jenkins项目。
+
+    %ul
+      - supporters.each do |name, url|
+        %li
+          %a{:href => url, :target => '_blank'}
+            = name

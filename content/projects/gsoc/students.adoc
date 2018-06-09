@@ -1,0 +1,149 @@
+---
+layout: project
+title: "Google Summer of Code. Information for students"
+tags:
+- gsoc
+---
+
+image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=right]
+
+This page provides information for students about participating in Jenkins GSoC.
+See link:/projects/gsoc[the main GSoC project] page for other information and links.
+
+== Student Application process
+
+=== Application steps
+
+. Check out the link:/projects/gsoc/gsoc2018-project-ideas[GSoC 2018 Project ideas]
+. Select an interesting project idea or draft your own proposal.
+. If you are not familiar with Jenkins, read the introductory info on the website and try it out with one of your previous projects.
+. Join the _jenkinsci-dev_ and _jenkinsci-gsoc-all-public_ mailing lists, add GSoC office hours to your calendar
+. Introduce yourself the community and start your project proposal discussion by sending an introductory email to the link:https://groups.google.com/forum/#!forum/jenkinsci-dev[jenkinsci-dev] Google Group
+. Recommended: Do some contributions in the area of your project idea
+
+You can find more details about application steps below.
+
+NOTE: 
+Please note that link:https://groups.google.com/forum/#!forum/jenkinsci-dev[jenkinsci-dev] mailing list is publicly visible inside and outside the community. 
+It is required for the initial review and feedback collection.
+
+=== First email to jenkinsci-dev
+
+* Selecting a thread subject
+** Please use the _[GSoC]_ prefix in your email thread subjects.
+** It is recommended to introduce yourself in a project idea thread if it already exists.
+*** Creating personal intro thread is also fine,
+but at some point you may be asked to continue the project idea discussion in an existing thread.
+* Contents. In the first e-mail we would be interested to see the following information:
+** A short self-introduction: your area of study, interests, background
+** Motivation letter. Why are you interested in the Jenkins project? Which projects ideas do you want to work on?
+** If you participate in open-source projects, please reference them
+** If you have a GitHub, Twitter account, a blog or technical/scientific publications, please reference them as well
+
+NOTE: In GSoC we do not hire you in the common sense.
+Please do **NOT** send us your CVs or universal cover letters.
+We are mostly interested to understand your interests and your motivation to work in the project.
+
+=== First contributions
+
+We highly recommend to make some contributions to the project while you work on the application.
+It will help you to polish the proposal,
+and mentors will consider contributions and interactions with the community when processing applications.
+
+Useful links:
+
+* link:/participate[Participating in the project]
+* link:https://issues.jenkins-ci.org/issues/?jql=labels%20%3D%20newbie-friendly[List of newbie-friendly issues]
+
+Feel free to contact potential mentors and org admins if you need help with choosing such small tasks.
+
+== Getting in touch
+
+=== Mailing lists
+
+Since the Jenkins community is distributed across all timezones,
+we recommend using mailing lists for the most of communications.
+
+* _jenkinsci-dev@googlegroups.com_ - for all technical discussions and the project application
+* _jenkinsci-gsoc-all-public@googlegroups.com_ - sync-ups on organizational topics (meeting scheduling, process Q&A)
+
+Organizational questions:
+
+* _jenkinsci-gsoc-orgs@googlegroups.com_ - for **private** communications with org admins (escalations)
+** Please DO NOT use this mailing list for applications and intro emails
+
+=== Chat
+
+We use the link:/chat[#jenkins_ IRC channel] for office hours and real-time discussions.
+Note that mentors and org-admins may be unavailable in the chat outside the Office Hours slots (see below).
+
+Once the projects are announced, mentors and students may switch to another communication channel.
+
+[[officehours]]
+=== Office hours
+
+In addition to chat and mailing lists, we have regular office hours for sync-ups
+between students, org admins and mentors.
+
+See the link:/projects/gsoc/#office-hours[main GSoC page] for the schedule.
+
+== Expectations from students
+
+NOTE: The section below is under development. 
+The expectations may slightly change before the beginning of the Student application period.
+
+=== Student application process
+
+. We expect students to get involved into project discussions on the beginning of the student application period in order to have opportunity to discuss the project with them and to jointly review the proposal drafts.
+. We expect students to attend at least one office hours during the application period.
+. We expect proposals to contain all the sections discussed in the link:http://write.flossmanuals.net/gsocstudentguide/what-is-google-summer-of-code/[GSoC Student Guide]
+
+=== Community bonding
+
+Students and mentors are expected to...
+
+. Work closely in order to study the area of their project and to get introduced to the key stakeholders and contributors in the area of the project
+. Define the communication ways (chats, etc.) and setup regular meetings (recommended - at least 2 meetings per week)
+. Create a mini-design for the project, which would include top-level architecture and implementation plan with milestones
+. Prepare the development environment, including setup of the development tools and getting of special permissions (if required)
+. Attend Jenkins governance meetings if the timezone allows
+. Spend a significant amount of time on study and design during the community bonding
+
+=== Coding period
+
+Students are expected to...
+
+. Work on the GSoC project as it is a full-time employment.
+ * It means that 30..40 hours per week is an **expected** workload though it can be adjusted upon the agreements with mentors.
+ * It also means that you have ~5 "vacation days" during the project, do not hesitate to use them if required
+. Use weekend to have a rest, avoid significant overwork and enjoy coding
+. Timely notify mentors in the case of emergencies and outages (missing scheduled meetings, etc.).
+. Timely notify mentors and org admins about unexpected time commitments
+. Be around in _#jenkins_ IRC and in the project chats during the working hours
+. Attend Jenkins governance meetings if the timezone allows
+. Be proactive; reach out to the community if required
+. Produce the good quality code with reasonable amount of testing and documentation
+. Have a finalized deliverable at the end of the project
+
+Students are **not** expected to...
+
+. Strictly follow the originally submitted mini-design and the project proposal
+ * The world is not ideal, and there may be unexpected obstacles or shortcuts
+ * Upon the discussion with mentors, any plan can be adjusted
+ * We expect students to achieve at least some goals in the original proposal
+. Investigate and solve *every* issue on their own
+ * We have mentors and experts, who can help you by answering questions and doing joint investigation if required
+
+=== Evaluations
+
+. At the end of the each coding phase students and mentors present the project status at the public meeting
+. As a part of the Final evaluation students present the project results at the link:https://www.meetup.com/Jenkins-online-meetup/[Jenkins Online Meetup]
+
+=== Post-GSoC
+
+Depending on the project results, and available budget, we may offer a sponsored trip
+to link:https://www.cloudbees.com/jenkinsworld/home[Jenkins world] or another Jenkins-related event to students
+who successfully finish their projects.
+This sponsorship is not guaranteed though.
+
+If students agree to go to such event, we expect them to present their project and to write a blog-post about the trip.
