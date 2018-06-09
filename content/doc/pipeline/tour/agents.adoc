@@ -1,0 +1,90 @@
+---
+layout: documentation
+title: 定义执行环境
+---
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+:imagesdir: ../../../book/resources
+:hide-uri-scheme:
+
+
+在
+link:../running-multiple-steps[上一小节]
+您可能已经注意到每个示例中的 `agent` 指令。
+`agent` 指令告诉Jenkins在哪里以及如何执行Pipeline或者Pipeline子集。
+正如您所预料的，所有的Pipeline都需要 `agent` 指令。
+
+在执行引擎中，`agent` 指令会引起以下操作的执行：
+
+* 所有在块block中的步骤steps会被Jenkins保存在一个执行队列中。
+一旦一个执行器 <<../../book/glossary/#executor, executor>> 是可以利用的，这些步骤将会开始执行。
+* 一个工作空间 <<../../book/glossary/#workspace, workspace>> 将会被分配，
+工作空间中会包含来自远程仓库的文件和一些用于Pipeline的工作文件
+
+在Pipeline中可以使用这几种
+link:/doc/book/pipeline/syntax#agent[定义代理的方式]
+在本导读中，我们仅使用Docker容器的代理方式。
+
+在Pipeline中可以很容易的运行
+link:https://docs.docker.com/[Docker]
+镜像和容器。
+Pipeline可以定义命令或者应用运行需要的环境和工具，
+不需要在执行代理中手动去配置各种各样的系统工具和依赖。
+这种方式可以让你使用
+link:http://hub.docker.com[Docker容器工具包]
+中的任何工具。
+
+`agent` 指令更多选项和相关信息，可以查看
+link:/doc/book/pipeline/syntax#agent[语法参考] 。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent {
+        docker { image 'node:7-alpine' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+    docker.image('node:7-alpine').inside {
+        stage('Test') {
+            sh 'node --version'
+        }
+    }
+}
+----
+
+当执行Pipeline时，Jenkins将会自动运行指定的容器，并执行Pipeline中已经定义好的步骤steps：
+
+[source]
+----
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
+[guided-tour] Running shell script
++ node --version
+v7.4.0
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+----
+
+在Pipeline中，混合和搭配不同的容器或者其他代理可以获得更大的灵活性。
+更多配置选项和信息，可以参考
+**link:../environment[继续“使用环境变量”]**
+。
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

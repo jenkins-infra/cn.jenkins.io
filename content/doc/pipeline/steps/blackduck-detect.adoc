@@ -1,0 +1,28 @@
+---
+layout: pipelinesteps
+title: "Black Duck 检测插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Black Duck 检测插件
+
+plugin:blackduck-detect[在插件索引中查看此插件]
+
+=== +hub_detect+: Black Duck Hub 检测
+++++
+<ul><li><code>detectProperties</code>
+<div><div>
+  The command line options to pass to Hub Detect 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

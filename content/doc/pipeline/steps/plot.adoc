@@ -1,0 +1,80 @@
+---
+layout: pipelinesteps
+title: "Plot 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Plot 插件
+
+plugin:plot[在插件索引中查看此插件]
+
+=== +plot+: Plot 构建数据
+++++
+<ul><li><code>group</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>title</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>numBuilds</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>yaxis</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>style</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>useDescr</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>exclZero</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>logarithmic</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepRecords</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>yaxisMinimum</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>yaxisMaximum</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>csvFileName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>csvSeries</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inclusionFlag</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exclusionValues</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>displayTableFlag</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>propertiesSeries</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>label</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>xmlSeries</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>xpath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodeType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

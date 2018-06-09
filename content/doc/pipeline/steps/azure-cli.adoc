@@ -1,0 +1,47 @@
+---
+layout: pipelinesteps
+title: "Azure CLI 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Azure CLI 插件
+
+plugin:azure-cli[在插件索引中查看此插件]
+
+=== +azureCLI+:未找到Azure CLI
+++++
+<ul><li><code>principalCredentialId</code>
+<div><div>
+  The Service Principal credentials required to connect to your Azure account. 
+ <br> More information can be found here: 
+ <a href="https://github.com/Azure/azure-devops-utils#user-content-create-service-principal" rel="nofollow">https://github.com/Azure/azure-devops-utils#user-content-create-service-principal</a> 
+ <br> If you want to add an Azure credential click "Add" and select "Microsoft Azure Service Principal" from the Kind drop-down. 
+ <br> If you want to remove existing Azure credentials you must go to the 
+ <a rel="nofollow">Credentials Dashboard</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commands</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>script</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportVariablesString</code>
+<div><div>
+  Export the output of the command to environment variables 
+ <br> The format: /"variable from JSON" | "desired environment variable name" 
+ <br> For example: Output: { "id": "/subscriptions/some-guid/resourceGroups/test", "location": "northeurope", "managedBy": null, "name": "test", "properties": { "provisioningState": "Succeeded" }, "tags": null } Environment Variable String: /location|LOCATION , /name|NAME 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

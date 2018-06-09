@@ -1,0 +1,35 @@
+---
+layout: pipelinesteps
+title: "Dingding JSON Pusher插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Dingding JSON Pusher 插件
+
+plugin:dingding-json-pusher[在插件索引中查看此插件]
+
+=== +dingding+: Dingding Json Pusher
+++++
+<ul><li><code>accessToken</code>
+<div><div>
+ 这里填写钉钉机器人产生URL中的accessToken, 
+ <b>请注意</b>不要填写完整的URL
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>jsonFilePath</code>
+<div><div>
+ 被推送的JSON文件路径
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

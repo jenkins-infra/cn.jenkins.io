@@ -1,0 +1,82 @@
+---
+layout: pipelinesteps
+title: "Pipeline GitHub Notify Step Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 流水线GitHub通知步骤插件
+
+plugin:pipeline-githubnotify-step[在插件索引中查看此插件]
+
+=== +githubNotify+: 通知GitHub合并请求的状态
+++++
+<div><div> 
+ <p>The <code>githubNotify</code> step gives full controll to pipelines about the commit status</p> 
+ <p>You can check the oficial GitHub's documentation about statutes <a href="https://developer.github.com/v3/repos/statuses/" rel="nofollow">here</a></p> 
+</div></div>
+<ul><li><code>status</code>
+<ul><li><b>Values:</b> <code>PENDING</code>, <code>SUCCESS</code>, <code>ERROR</code>, <code>FAILURE</code></li></ul></li>
+<li><code>description</code>
+<div><div> 
+ <p>The notification description, it will be displayed by GitHub</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>account</code> (optional)
+<div><div> 
+ <p>The GitHub account that owns the repos that contains the commit to notify</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>context</code> (optional)
+<div><div> 
+ <p>The Notification key, keys are used by GitHub to diferentiate between notifications, two notification with the same key are meant to be the same</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div> 
+ <p>The GitHub credentials, username/password or username/accessToken</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>gitApiUrl</code> (optional)
+<div><div> 
+ <p>If you are a user of GitHub Enterprise use this field to set your custom API endpoint</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>repo</code> (optional)
+<div><div> 
+ <p>The GitHub repository that contains the commit to validate, must be owned by the user specified in the account field</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sha</code> (optional)
+<div><div> 
+ <p>The SHA that identifies the commit to notify</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetUrl</code> (optional)
+<div><div> 
+ <p>Use this field to specify a custom target URL for the notification, if not specified the build's URL will be used</p> 
+ <p>You can check the oficial GitHub's documentation <a href="https://developer.github.com/v3/repos/statuses/#create-a-status" rel="nofollow">here</a></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,36 @@
+---
+layout: pipelinesteps
+title: "PlasticSCM 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== PlasticSCM 插件
+
+plugin:plasticscm-plugin[在插件索引中查看此插件]
+
+=== +cm+: Plastic SCM
+++++
+<ul><li><code>branch</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>changelog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>poll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>repository</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>server</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>useUpdate</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>workspaceName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

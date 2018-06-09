@@ -1,0 +1,247 @@
+---
+layout: pipelinesteps
+title: "用于Jenkins的Cadence vManager插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 用于Jenkins的Cadence vManager插件
+
+plugin:vmanager-plugin[在插件索引中查看此插件]
+
+=== +vmanagerLaunch+: Cadence vManager会话启动器
+++++
+<ul><li><code>vAPIUrl</code>
+<div><div>
+  vManager expose a REST API interface for API. The REST API is a dedicated process for serving remote http requests - vAPI.
+ <br> Starting 14.1 s005 The vAPI process is served automatically by the vManager Server process, and as such you need to supply the following url:
+ <br> 
+ <strong>https://[VMANAGER_HOST:VMANAGER_PORT]/vmgr/vapi</strong>
+ <br> For vmanager 14.1 s002, the vAPI process need to get started manually, as such, the url syntaxt is:
+ <br> 
+ <strong>http://[VAPI_HOST:VAPI_PORT]/vmgr</strong>
+ <br>
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vAPIUser</code>
+<div><div>
+  In case of a secure mode, the userId will be shown as the user who perform the operation within vManager tool.
+ <br> In case of open mode, the default userid that will be used is "vapi".
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vAPIPassword</code>
+<div><div>
+  In case of a secure mode, a password is needed
+ <br> Please contact vManager documentation for further info.
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vSIFName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vSIFInputFile</code>
+<div><div>
+  In case of a need in dynamically selecting the vsif files to get launched per job, the pre-job should place into the workspace directory a file with the full paths of the relevant vsif files to be launched, new line for each additional vsif file.
+ <br> The input file should be place into the working directory. In case this field is empty, The file name need to be: ${BUILD_NUMBER}.${BUILD_ID}.vsif.input
+ <br> Please fill this field only in case, you want to hard code the input file name, to be consist across all builds. 
+ <br> The output of all IDs of the launched sessions can be found at: ${BUILD_NUMBER}.${BUILD_ID}.session_launch.output
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialInputFile</code>
+<div><div>
+  Supported only from 16.1 and above.
+ <br> vManager can execute jobs in one of two modes:
+ <br> 
+ <li> Same user permissions (the account permission where the vManager server is installed) for all jobs launched by the vAPI/Jenkins. </li> 
+ <li> Use the Linux account permissions of the actual user who is doing the launch operation.</li>
+ <br> Default (unchecked above) is for the vManager to launch job by using the account permissions where the server is installed.
+ <br> When this box is checked, user can choose between using the same credentials used within the authentication section above, or supply a file with user/password in plain text containing only two lines:
+ <br> 
+ <strong> username<br> password<br> </strong> 
+ <br> For this (dynamic user/password), a pre-job should place any file into its working directory, and supply the full path to it.
+ <br> In case this field is empty, The file name need to be: ${BUILD_NUMBER}.${BUILD_ID}.credential.input, and should be place in the working directory of the current running build.
+ <br> Please fill this field only in case you want to hard code the input file name, to be consist across all builds. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deleteInputFile</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>deleteCredentialInputFile</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>useUserOnFarm</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>authRequired</code>
+<div><div>
+  vManager vAPI can operate in one of two modes:
+ <br> 
+ <li> Secured by user/secret key </li> 
+ <li> Open </li> In case of a secure mode, the userId (vAPI User) will be shown as the user who perform the operation within vManager tool.
+ <br> In case of open mode, the default userid that will be used is "vapi".
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>vsifType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>userFarmType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>dynamicUserId</code>
+<div><div>
+  In case of a need in dynamically selecting the user name per job, the pre-job should place into the workspace directory a file with single line that contains the userid to be used.
+ <br> The file name should be: ${BUILD_NUMBER}.${BUILD_ID}.user.input"
+ <br> The job will pick the userid which is in the file, and connect to vAPI using this userid and the vAPI secret key. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>advConfig</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>connTimeout</code>
+<div><div>
+  Connection Timeout is the time (in minutes) for the Jenkins executor to wait till it establish a connection with the vManager server. It is usually very fast, so no need to change the default (1 minute).
+ <br> Setting the time to 0 means an unlimited time. In case it is taking too long to establish a connection, and the time passed is more than the Connection Timeout set, the connection to the vManager server will be closed, and the Jenkins executor will be able to continue. The vAPI operation will fail (it will not start), and the build will be marked as failed.
+ <br> If no Connection timeout is set, the default is 1 minutes. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>readTimeout</code>
+<div><div>
+  Read Timeout is the time (in minutes) for the Jenkins executor to wait for vManager server to end the current operation. In heavy operations such as collect compact or ranking, the time to response back can vary, and might even take an hour or so depends on the load the vManager server is experiencing. 
+ <br> Setting the time to 0 means an unlimited time. In case the vAPI call is taking too long, and is more than the Read Timeout set, the connection to the vManager server will be closed, and the Jenkins executor will be able to continue. The vAPI operation will not fail, but the build will be marked as failed.
+ <br> If no Read timeout is set, the default is 30 minutes. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>envVarible</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>envVaribleFile</code>
+<div><div> 
+ <strong>Supported by vManager 15.1 and above only</strong>
+ <br> In case of a need in adding the vsif environment variables, the pre-job should place into the workspace directory a file with a list of relevant environment variables in json keys format.
+ <br> Example:
+ <br> 
+ <strong> "MY_REGRESSION_AREA": "/home/dan/regression",<br> "MY_DUT" : "top"<br> </strong> (Note the comma seperator at the end of each line, to exclude the last line.) 
+ <br> The input file should be place into the working directory. In case this field is empty, The file name need to be: ${BUILD_NUMBER}.${BUILD_ID}.environment.input
+ <br> Please fill this field only in case, you want to hard code the input file name, to be consist across all builds. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inaccessibleResolver</code>
+<div><div>
+  The following setup allow you to select how the build will behave in each of the state where the session stop from running.
+ <br> 
+ <br> 
+ <strong>Continue</strong>
+ <br> In case you select to continue, the build will assume (on the chosen state) for a given session that it can continue and finish the wait on this specific session.
+ <br> Please note that in case there are multiple sessions that are being executed by this step, the build will wait till all sessions got into a state that allow it to continue. 
+ <br> 
+ <br> 
+ <strong>Ignore</strong>
+ <br> In case you select to continue, the build will assume (on the chosen state) for a given session that it can ignore the chosen state and keep waiting for other state (until get the 'completed' state). 
+ <br> 
+ <br> 
+ <strong>Fail</strong>
+ <br> In case you select to fail, the build will assume (on the chosen state) for a given session that it should mark this build as a failure build. 
+ <strong>Note: </strong>If you have multiple sessions on this build step, it is enough for one single session to be marked as 'failed' in order to mark the entire build as a failed build. 
+ <br> 
+ <br> 
+ <strong>Other Waiting Considerations</strong>
+ <br> 1. When all sessions on this build step are having the state 'completed' the build will be marked as success.
+ <br> 2. When the vManager server goes down, the build step will keep waiting till the server will go back up. The build step will only change its state based on sessions state changes.
+ <br> 3. If the session was manually deleted on the vManager server, before reaching into final state, the build will be marked as a failure build.
+ <br> 4. In any case, if the number of minutes waiting is bigger than the timeout set here, the build will marked as a failed build.
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stoppedResolver</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failedResolver</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>doneResolver</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>suspendedResolver</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>waitTillSessionEnds</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>stepSessionTimeout</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>generateJUnitXML</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>extraAttributesForFailures</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>staticAttributeList</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>markBuildAsFailedIfAllRunFailed</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failJobIfAllRunFailed</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>envSourceInputFile</code>
+<div><div> 
+ <strong>Supported by vManager 17.10 and above only</strong>
+ <br> In case of a need in adding the vsif environment variables, users can create a list of aliases and store them within a file. The job will 'source' that file prior of reading the vsif.
+ <br> Note that this can also serve for any pre stage execution, not just for aliases. 
+ <br> Relative path is also supported (aka ~/doSomething.sh). 
+ <br> Script must be in bash. 
+ <br>
+ <br> The file should be place into a directory with a read permission for the user who launches the regression.
+ <br> In case this field is empty, this field is ignored
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vMGRBuildArchive</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>deleteAlsoSessionDirectory</code>
+<div><div>
+  Choosing to delete vManager session during build removal, will trigger an operation during manual/automatic deletion of a build, to deal with the remote session/sessions that were created during that build on the vManager DB.
+ <br> When this option is enabled the build will place an instruction file (sdi.properties) within the job directory that specify the sessions to get deleted, as well as other parameters - that will be used during the delete operation.
+ <br>
+ <br> Builds that runs while this option is turned off, will not get effected during removal, and will keep their sessions.
+ <br>
+ <br> You can choose between two methodologies: 
+ <br> 
+ <br> 
+ <strong>Sync Delete Methodology (built-in)</strong>
+ <br> In case you select the sync methodology, the plugin will call vManager vAPI during the build removal process for deleting the sessions that were created during that same build.
+ <br> With this option you can also supply a generic user/password to be used for the delete operation, otherwise, the same user that was used during the build will be picked automatically. 
+ <br> Please note that the sync methodology is lacking two main aspects:
+ <br> 1. Since Jenkins ignores any exception thrown within the callback functions of RunListener, the build will get deleted even if the session failed to get deleted from vManager DB.
+ <br> 2. When the vAPI is down, it can take up to 20 seconds to finish the operation (as it needs to wait till vAPI will be available) - the UX at that time, might appear sluggish to the end user.
+ <br> 
+ <br> 
+ <strong>Async Delete Methodology (externally)</strong>
+ <br> In case you want to introduce a more robust approach (promise session deletion even if vManager Server is down, as well as faster UX), you should use the async methodology.
+ <br> When Async Methodology is used, the callback function will not try to delete the session, but instead will copy the sdi.properties file into an external location of your choice. 
+ <br> You should create an additional job, one that is triggered every 1 minute for scanning that directory (and trying to delete the relevant sessions within these sdi files). To exclude the copy of the sdi files during build removal, this flow is not managed by the plugin.
+ <br> Please note - defining an external directory location (in windows) requires the use of forward slash instead of backslash.
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>genericCredentialForSessionDelete</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiveUser</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archivePassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>famMode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>famModeLocation</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>noAppendSeed</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,64 @@
+---
+layout: pipelinesteps
+title: "Google Cloud 存储插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Google Cloud 存储插件
+
+plugin:google-storage-plugin[在插件索引中查看此插件]
+
+=== +googleStorageUpload+: Google存储经典上传
+++++
+<ul><li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>bucket</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pattern</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathPrefix</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sharedPublicly</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>showInline</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +googleStorageDownload+: Google 存储下载
+++++
+<ul><li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>bucketUri</code>
+<div><div> 
+ <p> This specifies the cloud object to download from Cloud Storage. You can view these by visiting the "Cloud Storage" section of the <a href="https://cloud.google.com/console" rel="nofollow">Cloud Console</a> for your project.<br> A single asterisk can be specified in the object path (not the bucket name), past the last "/". The asterisk behaves consistently with <a href="https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames" rel="nofollow">gsutil</a>. For example, <code>gs://my-bucket-name/pre/a_*.txt</code> would match the objects in cloud bucket <code>my-bucket-name</code> that are named <code>pre/a_2.txt</code> or <code>pre/a_abc23-4.txt</code>, but not <code>pre/a_2/log.txt</code>. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>localDirectory</code>
+<div><div> 
+ <p> The local directory that will store the downloaded files. The path specified is considered relative to the build's workspace. Example value: </p>
+ <ul> 
+  <li>path/to/dir</li> 
+  <p></p> 
+ </ul>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathPrefix</code> (optional)
+<div><div> 
+ <p> The specified prefix will be stripped from all downloaded filenames. Filenames that do not start with this prefix will not be modified. If this prefix does not have a trailing slash, it will be added automatically. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

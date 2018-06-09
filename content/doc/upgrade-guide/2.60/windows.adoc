@@ -1,0 +1,56 @@
+---
+layout: documentation
+title:  升级Windows主服和代理
+notitle: true
+---
+
+== 升级Windows主服和代理到 2.60.1
+
+将Jenkins升级到2.60.1后，可以启用以下功能:
+
+* 自动升级代理上的 link:https://github.com/jenkinsci/remoting[远程] 库 (`slave.jar`) 
+* 自动终止代理上的失控代理进程
+* 自动终止Jenkins主进程
+
+NOTE: 所描述的功能和指导适用于作为服务安装的传统JNLP代理。
+link:https://plugins.jenkins.io/windows-slaves[Windows 代理插件] 到目前为止不提供所有功能, 参阅 link:https://issues.jenkins-ci.org/browse/JENKINS-42743[JENKINS-42743]。
+
+=== 升级旧的Jenkins代理
+
+https://github.com/jenkinsci/windows-slave-installer-module#upgrading-old-agents[代理升级指南] (Windows代理安装程序模块文档)中描述了升级步骤。
+
+唯一不平凡的行为是XML配置更改。
+在2.60.1升级期间，建议执行以下步骤:
+
+1. 添加 link:https://github.com/kohsuke/winsw/blob/master/doc/extensions/runawayProcessKiller.md[失控进程杀手] 扩展。
+ ** 请参阅下面引用的模板中的示例。
+2. 启用 `slave.jar` 文件的自动下载
+ ** 示例: `<download from="JENKINS_URL/jnlpJars/slave.jar" to="%BASE%\slave.jar"/>` (用实际的URL替换 `JENKINS_URL` )
+
+NOTE: 如果您在不安全的网络上使用带有HTTP的Jenkins，请注意MITM攻击的风险。 默认情况下，新代理仅为HTTPS启用自动更新。
+
+当更新 `jenkins-slave.xml` 配置文件时, 你可以使用
+link:https://github.com/jenkinsci/windows-slave-installer-module/blob/windows-slave-installer-1.9/src/main/resources/org/jenkinsci/modules/windows_slave_installer/jenkins-slave.xml[该文件]
+作为新配置的模板。
+
+=== 升级Jenkins主服务
+
+Jenkins主服务可执行文件可能会在极少数情况下运行，因此建议为它们启用 link:https://github.com/kohsuke/winsw/blob/master/doc/extensions/runawayProcessKiller.md[Runaway Process Killer] 。
+
+要升级主设备并启用此功能，请执行以下步骤:
+
+1. 将Jenkins更新为2.60.1并启动实例。 它会自动升级`jenkins.exe`文件。
+2. 停止Jenkins服务
+3. 修改Jenkins主目录中的 `jenkins.xml` 
+** 要启用Runaway Process Killer，请添加 link:https://github.com/jenkinsci/windows-slave-installer-module/blob/windows-slave-installer-1.9/src/main/resources/org/jenkinsci/modules/windows_slave_installer/jenkins-slave.xml#L62-L75[以下条目] 到 `jenkins.xml`
+4. 再次启动Jenkins
+
+要验证升级的正确性，请检查 `jenkins.wrapper.log` 输出。
+它应该包含成功启动后与Runaway Process Killer相关的日志条目。
+
+=== 启用额外的Windows服务功能
+
+WinSW和代理安装程序提供了许多您可能想要启用的高级功能。 有关更多详情，请参阅这些文档:
+
+* link:https://github.com/kohsuke/winsw/blob/master/README.md[WinSW 文档]
+* link:https://github.com/jenkinsci/windows-slave-installer-module/blob/master/README.md[Windows 代理安装程序文档]

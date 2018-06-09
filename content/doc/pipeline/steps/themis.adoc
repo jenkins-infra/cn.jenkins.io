@@ -1,0 +1,54 @@
+---
+layout: pipelinesteps
+title: "Themis 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Themis 插件
+
+plugin:themis[在插件索引中查看此插件]
+
+=== +themisRefresh+: 刷新Themis项目
+++++
+<ul><li><code>instanceName</code>
+<div><div>
+  The instance where the project to refresh is located. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectKey</code>
+<div><div>
+  The key of the project to refresh. You can find it in the project administration page of Themis. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>onlyOnSuccess</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +themisReport+: 发送报告文件给Themis
+++++
+<ul><li><code>instanceName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>reports</code> (optional)
+<ul><b>Array/List</b><br/>
+<code>java.lang.String></code>
+</ul></li>
+</ul>
+
+
+++++

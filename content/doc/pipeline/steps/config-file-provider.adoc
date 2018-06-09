@@ -1,0 +1,39 @@
+---
+layout: pipelinesteps
+title: "配置文件提供程序插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 配置文件提供程序插件
+
+plugin:config-file-provider[在插件索引中查看此插件]
+
+=== +configFileProvider+: 提供配置文件
+++++
+<div><div>
+  Make 
+ <a rel="nofollow">globally configured</a> files available in you local workspace. All files configured via the 
+ <a href="https://wiki.jenkins-ci.org/display/JENKINS/Config+File+Provider+Plugin" rel="nofollow">config-file-provider plugin</a> are available an can be referenced. 
+</div></div>
+<ul><li><code>managedFiles</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>fileId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>replaceTokens</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>targetLocation</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>variable</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

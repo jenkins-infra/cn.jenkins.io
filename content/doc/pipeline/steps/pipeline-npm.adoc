@@ -1,0 +1,33 @@
+---
+layout: pipelinesteps
+title: "流水线NPM集成插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 流水线NPM集成插件
+
+plugin:pipeline-npm[在插件索引中查看此插件]
+
+=== +withNPM+: 提供NPM环境
+++++
+<div><div>
+  Configures npm environment to use within a pipeline job by calling sh npm or bat npm. The selected npmrc will be configured and placed in the path so as to override the user and global settings. 
+</div></div>
+<ul><li><code>npmrcConfig</code> (optional)
+<div><div>
+  Select an npmrc from File Config Provider. The 
+ <code>npmrc</code> contains configuration values for npm. npm performs a lookup order starting in the current directory, then user, then global. By choosing a specific provider, individual builds will be able to override settings and have them managed centrally as a config file provider. 
+ <p> see also: <a href="https://docs.npmjs.com/files/npmrc" rel="nofollow"><code>npmrc</code> reference</a> </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

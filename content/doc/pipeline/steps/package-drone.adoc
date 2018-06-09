@@ -1,0 +1,84 @@
+---
+layout: pipelinesteps
+title: "包 Drone 部署者"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 包 Drone 部署者
+
+plugin:package-drone[在插件索引中查看此插件]
+
+=== +pdrone+: 包 Drone 部署者
+++++
+<ul><li><code>serverUrl</code>
+<div><div>
+  The main URL of the server. Not to any channel or artifact but to the server only. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>channel</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<div><div>
+  A 
+ <a href="https://wiki.jenkins.io/display/JENKINS/Plain+Credentials+Plugin" rel="nofollow">secrect text</a> credential stored in Jenkins to be used as deploy key. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifacts</code>
+<div><div>
+  You can use wildcards like 'module/dist/**/*.zip'. See 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the includes attribute of Ant fileset</a> for the exact format. The base directory is 
+ <a rel="nofollow">the workspace</a>. You can only archive files that are located in your workspace. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowEmptyArchive</code> (optional)
+<div><div>
+  Normally, a build fails if archiving returns zero artifacts. This option allows the archiving process to return nothing without failing the build. Instead, the build will simply throw a warning. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>defaultExcludes</code> (optional)
+<div><div>
+  Package Drone uses the Ant glob pattern which excludes by default some patterns. Refer 
+ <a href="http://ant.apache.org/manual/dirtasks.html#defaultexcludes" rel="nofollow">here</a> for the complete list of patterns. 
+ <p>This option allows to enable or disable the default Ant exclusions. </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>deployKey</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>excludes</code> (optional)
+<div><div>
+  Optionally specify 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow">the 'excludes' pattern</a>, such as "foo/bar/**/*". A file that matches this mask will not be archived even if it matches the mask specified in 'files to archive' section. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failsAsUpload</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>stripPath</code> (optional)
+<div><div>
+  This will strip the leading directories from the uploaded file name. For example the file 
+ <code>foo/bar/file</code> will get uploaded as 
+ <code>file</code> instead. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>uploadV3</code> (optional)
+<div><div>
+  This will upload all artifacts in a single transfer archive, which is faster but requires the Upload API V3, which is only present in Eclipse Package Drone™ since version 0.14.0. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

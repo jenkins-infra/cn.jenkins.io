@@ -1,0 +1,71 @@
+---
+layout: pipelinesteps
+title: "Puppet Enterprise 流水线"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Puppet Enterprise 流水线
+
+plugin:puppet-enterprise-pipeline[在插件索引中查看此插件]
+
+=== +puppetCode+: 部署 Puppet 环境代码
+++++
+<div><div> 
+ <p> Puppet Enterprise code deployment step. This instructs Puppet Enterprise's code management to pull and deploy new Puppet environment code. </p> 
+</div></div>
+<ul><li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environments</code> (optional)
+<ul><code>java.util.ArrayList</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +puppetHiera+: 设置Hiera数据.
+++++
+<ul>
+
+
+++++
+=== +puppetJob+: 创建Puppet Orchestrator作业
+++++
+<ul><li><code>application</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>concurrency</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodes</code> (optional)
+<ul><code>java.util.ArrayList</code>
+</ul></li>
+<li><code>noop</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>query</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>target</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +puppetQuery+: 使用Puppet查询语言（PQL）查询PuppetDB
+++++
+<ul><li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>query</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

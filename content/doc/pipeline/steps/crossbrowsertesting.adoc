@@ -1,0 +1,56 @@
+---
+layout: pipelinesteps
+title: "CrossBrowserTesting.com 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== CrossBrowserTesting.com 插件
+
+plugin:crossbrowsertesting[在插件索引中查看此插件]
+
+=== +cbt+: CrossBrowserTesting.com
+++++
+<ul><li><code>useLocalTunnel</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>useTestResults</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tunnelName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>localTunnelPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +cbtScreenshotsTest+: 运行CrossbrowserTesting.com截图测试
+++++
+<ul><li><code>browserList</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>loginProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +cbtSeleniumTest+: 运行CrossbrowserTesting.com硒测试
+++++
+<ul><li><code>operatingSystem</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>browser</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resolution</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

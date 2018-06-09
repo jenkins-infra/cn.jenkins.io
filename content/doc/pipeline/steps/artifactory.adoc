@@ -1,0 +1,354 @@
+---
+layout: pipelinesteps
+title: "Artifactory 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Artifactory 插件
+
+plugin:artifactory[在插件索引中查看此插件]
+
+=== +AddInteractivePromotion+: 添加交互式提升
+++++
+<ul><li><code>promotionConfig</code>
+<ul><code>org.jfrog.hudson.pipeline.types.PromotionConfig</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+<li><code>displayName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +ArtifactoryGradleBuild+: 运行Artifactory gradle
+++++
+<ul><li><code>gradleBuild</code>
+<ul><code>org.jfrog.hudson.pipeline.types.GradleBuild</code>
+</ul></li>
+<li><code>rootDir</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tasks</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>switches</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +ArtifactoryMavenBuild+: 运行 Artifactory maven
+++++
+<ul><li><code>mavenBuild</code>
+<ul><code>org.jfrog.hudson.pipeline.types.MavenBuild</code>
+</ul></li>
+<li><code>pom</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>goals</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +ConanAddRemote+: 添加新的仓库到Conan配置
+++++
+<ul><li><code>serverUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>conanHome</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +ConanAddUser+: 添加新的用户到Conan配置
+++++
+<ul><li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+<li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>conanHome</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +InitConanClient+: 创建 Conan 客户端
+++++
+<ul><li><code>client</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ConanClient</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +MavenDescriptorStep+: 获取Artifactory Maven描述符
+++++
+<ul><li><code>pomFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionPerModule</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>failOnSnapshot</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>dryRun</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +RunConanCommand+: 运行Conan 命令
+++++
+<ul><li><code>command</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>conanHome</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildLogPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +artifactoryDistributeBuild+: 分发构建
+++++
+<ul><li><code>distributionConfig</code>
+<ul><code>org.jfrog.hudson.pipeline.types.DistributionConfig</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +artifactoryDownload+: 下载 artifacts
+++++
+<ul><li><code>spec</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +artifactoryPromoteBuild+:提升构建
+++++
+<ul><li><code>promotionConfig</code>
+<ul><code>org.jfrog.hudson.pipeline.types.PromotionConfig</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +artifactoryUpload+: 上传 artifacts
+++++
+<ul><li><code>spec</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +collectEnv+: 收集环境变量和系统属性
+++++
+<ul><li><code>env</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.Env</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +deployArtifacts+: Deploy artifacts
+++++
+<ul><li><code>deployer</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +dockerPullStep+: Artifactory docker pull
+++++
+<ul><li><code>image</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsConfig</code>
+<ul><b>Nested Object</b>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overridingCredentials</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>host</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +dockerPushStep+: Artifactory docker push
+++++
+<ul><li><code>image</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsConfig</code>
+<ul><b>Nested Object</b>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overridingCredentials</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>host</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetRepo</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+<li><code>properties</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +dockerPushWithProxyStep+: Artifactory docker push
+++++
+<ul><li><code>image</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsConfig</code>
+<ul><b>Nested Object</b>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overridingCredentials</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>host</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetRepo</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+<li><code>properties</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+</ul>
+
+
+++++
+=== +getArtifactoryServer+: Get Artifactory server from Jenkins config
+++++
+<ul><li><code>artifactoryServerID</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +newArtifactoryServer+: 返回新的Artifactory服务器
+++++
+<ul><li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +newBuildInfo+: 新的构建信息
+++++
+<ul></ul>
+
+
+++++
+=== +newGradleBuild+: 新Artifactory gradle执行者
+++++
+<ul></ul>
+
+
+++++
+=== +newMavenBuild+: 新 Artifactory maven
+++++
+<ul></ul>
+
+
+++++
+=== +publishBuildInfo+: 将构建信息发布到Artifactory
+++++
+<ul><li><code>buildInfo</code>
+<ul><code>org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +xrayScanBuild+: Xray构建扫描
+++++
+<ul><li><code>xrayScanConfig</code>
+<ul><code>org.jfrog.hudson.pipeline.types.XrayScanConfig</code>
+</ul></li>
+<li><code>server</code>
+<ul><code>org.jfrog.hudson.pipeline.types.ArtifactoryServer</code>
+</ul></li>
+</ul>
+
+
+++++

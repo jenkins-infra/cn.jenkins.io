@@ -1,0 +1,22 @@
+---
+layout: pipelinesteps
+title: "时间戳器"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 时间戳器
+
+plugin:timestamper[在插件索引中查看此插件]
+
+=== +timestamps+: 时间戳
+++++
+<ul></ul>
+
+
+++++

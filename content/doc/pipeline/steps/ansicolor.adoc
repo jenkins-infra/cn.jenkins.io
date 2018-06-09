@@ -1,0 +1,27 @@
+---
+layout: pipelinesteps
+title: "AnsiColor"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== AnsiColor
+
+plugin:ansicolor[在插件索引中查看此插件]
+
+=== +ansiColor+: 颜色ANSI控制台输出
+++++
+<div><div>
+  Adds support for standard ANSI escape sequences, including color, to Console Output. 
+</div></div>
+<ul><li><code>colorMapName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

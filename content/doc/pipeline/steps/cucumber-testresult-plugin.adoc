@@ -1,0 +1,40 @@
+---
+layout: pipelinesteps
+title: "Cucumberjson测试报告."
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Cucumber json测试报告.
+
+plugin:cucumber-testresult-plugin[在插件索引中查看此插件]
+
+=== +cucumber+: 发布 Cucumber 测试结果报告
+++++
+<div><div>
+  Cucumber test results report in JSON format. When this option is configured, Jenkins can provide useful information about test results, such as historical test result trends, a web UI for viewing test reports, tracking failures, and so on. 
+ <p> To use this feature, first set up your build to run tests, then specify the path to Cucumber JSON files in the <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow">Ant glob syntax</a>, such as **/build/test-reports/*.json. Be sure not to include any non-report files into this pattern. You can specify only one file pattern. </p>
+ <p> Once there are a few builds running with test results, you should start seeing something like <a href="https://wiki.jenkins-ci.org/display/JENKINS/Cucumber+Test+Result+Plugin" rel="nofollow">this</a>. </p>
+</div></div>
+<ul><li><code>testResults</code>
+<div><div>
+  ANT Glob set. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreBadSteps</code> (optional)
+<div><div>
+  Ignore not closed steps in broken JSON for GherkinParser. See: 
+ <a href="https://issues.jenkins-ci.org/browse/JENKINS-21835" rel="nofollow">#JENKINS-21835</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

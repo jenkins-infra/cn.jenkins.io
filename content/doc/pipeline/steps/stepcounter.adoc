@@ -1,0 +1,66 @@
+---
+layout: pipelinesteps
+title: "StepCounter 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== StepCounter 插件
+
+plugin:stepcounter[在插件索引中查看此插件]
+
+=== +stepcounter+: 计数步骤
+++++
+<div><div>
+  Specify the file which measures the number of steps.
+ <br> And specify these encoding and the category of a total unit.
+ <br> If result output to file, specify file path and file format. 
+</div></div>
+<ul><li><code>outputFile</code> (optional)
+<div><div>
+  If result output to file, specify file path and file format. (example 'dist/result.xls')。
+ <br> The directory used as root is 
+ <a rel="nofollow">work space</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>outputFormat</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>settings</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>encoding</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filePattern</code>
+<div><div>
+  A wild card can be used for the candidate for a count (example 'module/dist/**/*.zip'). About an exact form, they are 
+ <a href="http://www.jajakarta.org/ant/ant-1.6.1/docs/en/manual/CoreTypes/fileset.html" rel="nofollow">. Please refer to an includes attribute (file set of Ant) </a>. The directory used as root is 
+ <a rel="nofollow">work space</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filePatternExclude</code>
+<div><div>
+  A wild card can be used for the object excepted from a count (example 'module/dist/**/*.zip'). About an exact form, they are 
+ <a href="http://www.jajakarta.org/ant/ant-1.6.1/docs/en/manual/CoreTypes/fileset.html" rel="nofollow"> Please refer to an excludes attribute (file set of Ant) </a>. The directory used as a standard is 
+ <a rel="nofollow">work space</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>key</code>
+<div><div>
+  Specify the file type. It will be the counting unit of results. 
+ <br> Please be configured in a range of [A-z][A-Z][0-9][-_]. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

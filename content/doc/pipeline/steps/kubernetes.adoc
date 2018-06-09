@@ -1,0 +1,407 @@
+---
+layout: pipelinesteps
+title: "Kubernetes 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Kubernetes 插件
+
+plugin:kubernetes[在插件索引中查看此插件]
+
+=== +containerLog+: 从Kubernetes获取容器日志
+++++
+<ul><li><code>name</code>
+<div><div>
+  Name of the container, as specified in 
+ <code>containerTemplate</code>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>limitBytes</code> (optional)
+<div><div>
+  If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>returnLog</code> (optional)
+<div><div>
+  Return the container log. If not checked, the log will be printed to the build log. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>sinceSeconds</code> (optional)
+<div><div>
+  A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>tailingLines</code> (optional)
+<div><div>
+  If set, the number of lines from the end of the log to show. If not specified, log is shown from the creation of the container or limited by "sinceSeconds". 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +container+: 在容器中运行构建步骤
+++++
+<div><div>
+  Selects a container of the agent pod so that all shell steps are executed in that container. 
+</div></div>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +podTemplate+: 定义一个在kubernetes插件中使用的podTemplate
+++++
+<div><div>
+  Defines a container inside the kubernetes plugin configuration 
+</div></div>
+<ul><li><code>label</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<div>The name prefix of the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>activeDeadlineSeconds</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>annotations</code> (optional)
+<div>Annotations to set on pod metadata
+<br> 
+<a href="https://kubernetes.io/docs/user-guide/annotations/" rel="nofollow">https://kubernetes.io/docs/user-guide/annotations/</a></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<div>The annotation key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The annotation value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>cloud</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>containers</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code> (optional)
+<div>The name for the container to be run. One container is automatically created with name 
+<code>jnlp</code>, and runs the Jenkins JNLP agent service. In order to replace the default JNLP agent, the name of the container with the custom JNLP image must be 
+<code>jnlp</code>.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>image</code> (optional)
+<div>Docker image ID for a jenkins JNLP agent. This image is responsible to run a jenkins jnlp bootstrap agent and connect to Jenkins master. Secret key and agent name as well as jenkins callback URL are passed as argument as expected by 
+<code>hudson.remoting.jnlp.Main</code>.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>alwaysPullImage</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>args</code> (optional)
+<div>Arguments to pass to the command. ${computer.jnlpmac} and ${computer.name} are replaced with the agent secret and name respectively.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>command</code> (optional)
+<div>Override the image entrypoint with a different one</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVars</code> (optional)
+<div>The environment variables to pass to the container.</div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>containerEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>envVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>podEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>secretEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>secretName</code>
+<div>Name of secret to lookup from Kubernetes.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>secretKey</code>
+<div>Key of secret to lookup from Kubernetes.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>livenessProbe</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>execArgs</code>
+<div>Command executed by the liveness probe.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeoutSeconds</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>initialDelaySeconds</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>failureThreshold</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>periodSeconds</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>successThreshold</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></li>
+<li><code>ports</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code> (optional)
+<div>The name of the port</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>containerPort</code> (optional)
+<div>Port to expose into the pod</div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>hostPort</code> (optional)
+<div>Port to expose onto the host</div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></li>
+<li><code>privileged</code> (optional)
+<div>Flag to mark the container as privileged.</div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>resourceLimitCpu</code> (optional)
+<div>Kubernetes Resources Limit of CPU This value can be set to control the CPU resource limit passed when creating the Jenkins agent Docker container in Kubernetes. Unlike a resource request, this is the upper limit of resources used by your Jenkins Agent container. When left blank, the defaults of your Kubernetes cluster will be used. For more info, see the 
+<a href="http://kubernetes.io/docs/user-guide/compute-resources/" rel="nofollow">Kubernetes docs.</a> e.g. `500m`.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceLimitMemory</code> (optional)
+<div>Kubernetes Resources Limit of Memory This value can be set to control the memory resource limit passed when creating the Jenkins agent Docker container in Kubernetes. Unlike a resource request, this is the upper limit of resources used by your Jenkins Agent container. When left blank, the defaults of your Kubernetes cluster will be used. For more info, see the 
+<a href="http://kubernetes.io/docs/user-guide/compute-resources/" rel="nofollow">Kubernetes docs.</a> e.g. `250Mi`.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceRequestCpu</code> (optional)
+<div>Kubernetes Resources Request of CPU This value can be set to control the CPU resources requested when creating the Jenkins agent Docker container in Kubernetes. When left blank, the defaults of your Kubernetes cluster will be used. For more info, see the 
+<a href="http://kubernetes.io/docs/user-guide/compute-resources/" rel="nofollow">Kubernetes docs.</a> e.g. `500m`.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceRequestMemory</code> (optional)
+<div>Kubernetes Resources Request of Memory This value can be set to control the memory resources requested when creating the Jenkins agent Docker container in Kubernetes. When left blank, the defaults of your Kubernetes cluster will be used. For more info, see the 
+<a href="http://kubernetes.io/docs/user-guide/compute-resources/" rel="nofollow">Kubernetes docs.</a> e.g. `250Mi`.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ttyEnabled</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>workingDir</code> (optional)
+<div>Path to the root of the workspace from the view point of this node, such as "/home/jenkins", this need not be absolute provided that the launcher establishes a consistent working directory, such as "./.jenkins-agent".</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>envVars</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>containerEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>envVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>podEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div>The environment variable value.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>secretEnvVar</code></li>
+<ul><li><code>key</code>
+<div>The environment variable key.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>secretName</code>
+<div>Name of secret to lookup from Kubernetes.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>secretKey</code>
+<div>Key of secret to lookup from Kubernetes.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>idleMinutes</code> (optional)
+<div>Time in minutes to retain agent when idle</div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>imagePullSecrets</code> (optional)
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inheritFrom</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>instanceCap</code> (optional)
+<div><div>
+  Max number of containers to start from this template. If set to empty or negative number it means no limit. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>namespace</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodeSelector</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodeUsageMode</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceAccount</code> (optional)
+<div>The service account of the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>slaveConnectTimeout</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>volumes</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>configMapVolume</code></li>
+<ul><li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configMapName</code>
+<div>The name of the Kubernetes Config Map to mount into the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>emptyDirVolume</code></li>
+<ul><li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>memory</code>
+<div>Flag for in-memory volume.</div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>hostPathVolume</code></li>
+<ul><li><code>hostPath</code>
+<div>File or directory on the host node's filesystem to mount into the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>nfsVolume</code></li>
+<ul><li><code>serverAddress</code>
+<div>NFS Server Address.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverPath</code>
+<div>NFS Server Path.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>readOnly</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>persistentVolumeClaim</code></li>
+<ul><li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>claimName</code>
+<div>The claim name.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>readOnly</code>
+<div>Flag for read-only volume.</div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>secretVolume</code></li>
+<ul><li><code>mountPath</code>
+<div>Path to mount this volume inside the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>secretName</code>
+<div>The name of the Kubernetes Secret to mount into the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>workingDir</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>workspaceVolume</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>emptyDirWorkspaceVolume</code></li>
+<ul><li><code>memory</code>
+<div>Flag for in-memory volume.</div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>hostPathWorkspaceVolume</code></li>
+<ul><li><code>hostPath</code>
+<div>File or directory on the host node's filesystem to mount into the pod.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>nfsWorkspaceVolume</code></li>
+<ul><li><code>serverAddress</code>
+<div>NFS Server Address.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverPath</code>
+<div>NFS Server Path.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>readOnly</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>persistentVolumeClaimWorkspaceVolume</code></li>
+<ul><li><code>claimName</code>
+<div>The claim name.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>readOnly</code>
+<div>Flag for read-only volume.</div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++

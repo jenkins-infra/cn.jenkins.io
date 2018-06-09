@@ -1,0 +1,184 @@
+---
+layout: documentation
+title: 创建您的第一个Pipeline
+section: doc
+---
+
+:toc:
+:imagesdir: ../../../book/resources
+
+=== 什么是Jenkins Pipeline?
+
+Jenkins Pipeline (或简称为"Pipeline")是一套插件，将持续交付的实现和实施集成到Jenkins中。
+
+持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。
+
+Jenkins Pipeline提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。
+Jenkins Pipeline的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被检入到项目的源代码控制库中。
+footnoteref:[scm,https://en.wikipedia.org/wiki/Source_control_management[Source Control Management]]
+
+Pipeline和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/doc/book/pipeline[Pipeline] 和
+link:/doc/book/pipeline/jenkinsfile[Using a Jenkinsfile]
+
+快速开始使用Pipeline:
+
+. 将以下示例 <<examples, examples below>> 复制到您的仓库中并命名为 `Jenkinsfile`
+. 单击Jenkins中的 *New Item* 菜单
+image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%]
+. 为您的新工程起一个名字 (例如 *My Pipeline*) ，选择 *Multibranch Pipeline*
+. 单击 *Add Source* 按钮，选择您想要使用的仓库类型并填写详细信息.
+. 单击 *Save* 按钮，观察您的第一个Pipeline运行！
+
+您可能需要修改 `Jenkinsfile` 以便应用在您自己的项目中。尝试修改 `sh` 命令，使其与您本地运行的命令相同。
+
+在配置好Pipeline之后，Jenkins会自动检测您仓库中创建的任何新的分支或合并请求，并开始为它们运行Pipelines。
+
+**link:../running-multiple-steps[继续去 "Run multiple steps"]**
+
+[[examples]]
+== 快速开始示例
+
+下面是一个简单的Pipeline各种语言的复制和粘贴示例。
+
+=== Java
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { docker 'maven:3.3.3' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+    }
+}
+// Scripted //
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('maven:3.3.3').inside {
+            sh 'mvn --version'
+        }
+    }
+}
+----
+
+=== Node.js / JavaScript
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { docker 'node:6.3' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm --version'
+            }
+        }
+    }
+}
+// Scripted //
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('node:6.3').inside {
+            sh 'npm --version'
+        }
+    }
+}
+----
+
+=== Ruby
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { docker 'ruby' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'ruby --version'
+            }
+        }
+    }
+}
+// Scripted //
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('ruby').inside {
+            sh 'ruby --version'
+        }
+    }
+}
+----
+
+=== Python
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { docker 'python:3.5.1' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+    }
+}
+// Scripted //
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('python:3.5.1').inside {
+            sh 'python --version'
+        }
+    }
+}
+----
+
+=== PHP
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent { docker 'php' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'php --version'
+            }
+        }
+    }
+}
+// Scripted //
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('php').inside {
+            sh 'php --version'
+        }
+    }
+}
+----
+
+---
+**link:../running-multiple-steps[继续“运行多重步骤steps”]**
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

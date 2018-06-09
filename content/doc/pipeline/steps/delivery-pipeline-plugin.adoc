@@ -1,0 +1,24 @@
+---
+layout: pipelinesteps
+title: "交付流水线插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 交付流水线插件
+
+plugin:delivery-pipeline-plugin[在插件索引中查看此插件]
+
+=== +task+: 任务
+++++
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

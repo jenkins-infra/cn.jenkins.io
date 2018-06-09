@@ -1,0 +1,43 @@
+---
+layout: pipelinesteps
+title: "GitHub 集成插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== GitHub 集成插件
+
+plugin:github-pullrequest[在插件索引中查看此插件]
+
+=== +setGitHubPullRequestStatus+: 设置GitHub PullRequest提交状态
+++++
+<div><div>
+  Sets the commit status of the commit that triggered a pull request build. Note that this step can only be used by builds that were triggered by a pull request. 
+</div></div>
+<ul><li><code>context</code> (optional)
+<div><div>
+  A string label to differentiate this status from the status of other systems. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>message</code> (optional)
+<div><div>
+  A short detail message to add to the status 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>state</code> (optional)
+<div><div>
+  State of the status indicating the progress or completion of the check. 
+</div></div>
+
+<ul><li><b>Values:</b> <code>PENDING</code>, <code>SUCCESS</code>, <code>ERROR</code>, <code>FAILURE</code></li></ul></li>
+</ul>
+
+
+++++

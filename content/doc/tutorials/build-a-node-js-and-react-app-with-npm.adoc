@@ -1,0 +1,396 @@
+---
+layout: documentation
+title: 使用npm构建Node.js和React应用
+section: doc
+---
+
+:toc:
+:toclevels: 3
+:imagesdir: ../../book/resources
+
+本教程将展示Jenkins如何使用 https://www.npmjs.com/[Node Package Manager (npm)]去组合构建简单的
+https://nodejs.org/en/[Node.js] 和 https://reactjs.org/[React] 应用
+.
+
+如果你是一个对CI/CD概念不了解的 Node.js 和 React 开发者, 或者你熟悉这些概念却不知道如何使用Jenkins完成构建,那么本教程很适合你。 示例Node.js和React（你可以从示例仓库中获取）生成一个网页，该网页含有 "Welcome to React" 内容且伴随有一个检查应用程序满意度的测试。
+
+*耗时:* 本教程需要 20-40 分钟来完成 (假设你的机器已经满足 <<prerequisites,配置要求>> ). 确切的耗时取决于你机器的性能，
+以及你是否完成过<<run-jenkins-in-docker,在Docker中运行Jenkins>> 请参考:..[另一个教程]。
+
+你可以在任何时候停止本教程，并从你离开的地方继续。
+
+若你已经完成了link:..[另一个教程]，可以跳过<<prerequisites,配置要求>>和<<run-jenkins-in-docker,在Docker中运行Jenkins>>章节，
+继续阅读<<fork-sample-repository,fork示例仓库>>（确保你本地安装了link:https://git-scm.com/downloads[Git]）。
+如果你需要重启Jenkins，请参考<<stopping-and-restarting-jenkins,停止和重启Jenkins>>.
+
+include::doc/tutorials/_prerequisites.adoc[]
+** link:https://git-scm.com/downloads[Git] 和 optionally
+   link:https://desktop.github.com/[GitHub Desktop].
+
+include::doc/book/installing/_run-jenkins-in-docker.adoc[]
+
+
+[[fork-sample-repository]]
+=== Fork 和 clone GitHub 示例仓库
+
+通过将应用程序源代码所在的示例仓库fork到你自己的Github账号中， 并clone到本地，
+你就可以获取一个"Welcome to React"简单Node.js和React应用程序。
+
+. 请确保你登陆了你的GitHub账户。如果你还没有Github账户，你可以在 https://github.com/[GitHub网站] 免费注册一个账户。.
+. 将示例仓库 https://github.com/jenkins-docs/building-a-multibranch-pipeline-project[`building-a-multibranch-pipeline-project`]
+  fork到你的账户的Github仓库中。在此过程中，如果你需要帮助，
+  请参考 https://help.github.com/articles/fork-a-repo/[Fork A Repo] 文档。
+. 将你的GitHub账户中的 `simple-java-maven-app` 仓库clone到你的本地机器。
+  根据你的情况完成以下步骤之一(其中 `<your-username>` 是你的操作系统用户账户名称)：
+** 在GitHub网站上，点击绿色的 *Clone or download* 按钮，再点击 *Open in Desktop*.
+.. 在Github桌面版中，在点击 *Clone a Repository* 对话框上的 *Clone* 按钮之前，确保 *Local Path* 的配置为：
+*** macOS 系统配置为  `/Users/<your-username>/Documents/GitHub/simple-node-js-react-npm-app`
+*** Linux 系统配置为 `/home/<your-username>/GitHub/simple-node-js-react-npm-app`
+*** Windows 配置为 `C:\Users\<your-username>\Documents\GitHub\simple-node-js-react-npm-app`
+** 其他情况:
+.. 打开一个终端/命令提示行，并且`cd` 进入正确的目录:
+*** macOS 系统路径为 `/Users/<your-username>/Documents/GitHub/`
+*** Linux 系统路径为 `/home/<your-username>/GitHub/`
+*** Windows 系统路径为 `C:\Users\<your-username>\Documents\GitHub\` (建议使用 Git bash 命令而不是通常的 Microsoft 命令提示符)
+.. 运行以下的命令完成仓库的clone: +
+   `git clone https://github.com/YOUR-GITHUB-ACCOUNT-NAME/simple-node-js-react-npm-app` +
+   其中 `YOUR-GITHUB-ACCOUNT-NAME` 是你的GitHub账户用户。
+
+
+=== 在Jenkins中创建流水线项目
+
+. 回到Jenkin，再次登录并点击 *Welcome to Jenkins!* 下的 *create new jobs*
+  +
+  *Note:* 如果没有看到上述内容，请点击左上角的 *New Item* 。
+. 在 *Enter an item name* 域, 填写你的新的流水线项目的名称 (比如`simple-node-js-react-npm-app`)。
+. 向下滚动并单击 *Pipeline*, 然后点击页面末尾的 *OK*。
+. ( _Optional_ )在下一页中,在  *Description* 字域为你的流水线项目做一个简短的描述(比如. `An entry-level Pipeline demonstrating how to
+  use Jenkins to build a simple Node.js and React application with npm.`)
+. 点击页面顶部的 *Pipeline* 选项，向下滚动到
+  *Pipeline* 部分.
+. 在*Definition* 域，选择 *Pipeline script from SCM* 选项。此选项指示Jenkins从源代码管理（SCM）仓库获取你的流水线，
+这里的仓库就是你clone到本地的Git仓库。
+  
+.  在 *SCM* 域中，选择 *Git*。
+. 在 *Repository URL* 域中，填写你本地仓库的 <<fork-sample-repository,目录路径>>，
+这是从你主机上的用户账户home目录映射到Jenkins容器的 `/home` 目录：
+* macOS系统 - `/home/Documents/GitHub/simple-node-js-react-npm-app`
+* Linux系统 - `/home/GitHub/simple-node-js-react-npm-app`
+* Windows系统 - `/home/Documents/GitHub/simple-node-js-react-npm-app`
+. 点击 *Save* 保存你的流水线项目。你现在可以开始创建你的 `Jenkinsfile`，这些文件会被添加到你的本地仓库。
+
+
+=== 将你的初始流水线创建为Jenkinsfile
+
+现在你已准备好创建你的流水线，它将使用Jenkins中的Maven自动构建你的Node.js 和 React 应用。
+你的流水线将被创建为 `Jenkinsfile`，它将被提交到你本地的Git仓库（`simple-java-maven-app`）。
+
+这是 "Pipeline-as-Code" 的基础，它将持续交付流水线作为应用程序的一部分，与其他代码一样进行版本控制和审查。
+了解更多信息请阅读 link:/doc/book/pipeline[流水线]以及用户手册中的 link:/doc/book/pipeline/jenkinsfile[使用Jenkinsfile] 章节。
+
+首先，创建一个初始流水线来下载 Docker镜像，并将其作为Docker容器运行（这将构建你的简单Java应用）。
+同时添加一个“构建”阶段到流水线中，用于协调整个过程。
+
+. 使用你最常用的文本编辑器或者IDE，在你本地的 `simple-java-maven-app` Git仓库的根目录创建并保存一个名为 `Jenkinsfile` 的文本文件。
+. 复制以下声明式流水线代码并粘贴到 `Jenkinsfile` 文件中：
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine' // <1>
+            args '-p 3000:3000' // <2>
+        }
+    }
+    stages {
+        stage('Build') { // <3>
+            steps {
+                sh 'npm install' // <4>
+            }
+        }
+    }
+}
+----
+<1> 这里的 `image` 参数（参考 link:/doc/book/pipeline/syntax#agent[`agent`] 章节的 `docker` 参数）
+是用来下载 https://hub.docker.com/_/maven/[`maven:3-apline` Docker镜像]
+（如果你的机器还没下载过它）并将该镜像作为单独的容器运行。这意味着：
+* 你将在Docker中本地运行相互独立的Jenkins和Node容器。
+* Node容器成为了Jenkins用来运行你的流水线项目的 link:/doc/book/glossary/#agent[agent] 。然而, 这个容器寿命较短 - 它的寿命周期只是你的流水线执行的持续时间 。
+<2> 这里的 `args` 参数使Node容器(暂时的) 可通过端口3000进行访问。它的意义在于解释你clone的仓库的 
+`jenkins/scripts/deliver.sh` 域, 在本教程的后续部分将介绍这一内容。
+<3> 定义出现在Jenkins UI中名为`Build` 的 link:/doc/book/pipeline/syntax/#stage[`stage`] (指令) 
+<4> 这里的
+link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`]
+步骤 (参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节) 执行 `npm` 命令确保运行你的应用程序的所需的所有依赖被下载到 `node_modules` 工作区目录
+(在Jenkins容器的 `/var/jenkins_home/workspace/simple-node-js-react-npm-app` 目录中).
+. 保存并提交你编辑的 `Jenkinsfile` 到你本地的
+  `simple-node-js-react-npm-app` Git 仓库。 比如.在
+  `simple-node-js-react-npm-app` 目录中,运行命令: +
+  `git add .` +
+  然后 +
+  `git commit -m "Add initial Jenkinsfile"`
+. 再次回到Jenkins, 如果有必要的话再次登录，点击左边的 *Open Blue
+  Ocean* 进入 Jenkins的Blue Ocean 界面.
+. 在 *This job has not been run* 消息框, 点击 *Run*, 然后快速的点击在右下的 *OPEN* 链接，查看Jenkins构建你的流水线项目. 如果你点击不了 *OPEN* 链接,
+  点击Blue Ocean的主界面的一行来使用这一特性。+
+  *Note:* 你可能需要几分钟完成第一次的运行。
+  在clone你本地的 `simple-node-js-react-npm-app` Git
+  仓库后, Jenkins进行了以下动作:
+.. 将项目加入队列等待在agent上的运行。
+..下载 Node容器镜像并将它运行在Docker的一个容器中.
++
+[.boxshadow]
+image:tutorials/node-js-react-01-downloading-node-docker-image.png[alt="Downloading
+Node Docker image",width=100%]
+.. 在Node容器中运行 `Build` 阶段 (在 `Jenkinsfile`中定义) 。
+   在这期间, `npm` 会下载运行你的Nod.js和React应用所需的一些依赖,这些依赖最终会被保存在
+   `node_modules` 工作区目录 (在Jenkins的主目录中).
++
+[.boxshadow]
+image:tutorials/node-js-react-02-initial-pipeline-downloading-npm-dependencies.png[alt="Downloading
+'npm' dependencies",width=100%]
+
++
+如果Jenkins成功构建了你的应用，Blue Ocean的界面就会变绿。
+[.boxshadow]
+image:tutorials/node-js-react-03-initial-pipeline-runs-successfully.png[alt="Initial
+Pipeline runs successfully",width=100%]
+. 点击右上角的 *X* 返回到Blue Ocean的主界面.
++
+[.boxshadow]
+image:tutorials/node-js-react-04-main-blue-ocean-interface.png[alt="Main Blue
+Ocean interface",width=100%]
+
+
+=== 向流水线添加Test阶段
+
+. 回到文本编辑器/IDE，打开`Jenkinsfile`。
+. 在`Jenkinsfile`的`agent`部分复制并粘贴下面的声明式语法:
++
+[source,groovy]
+----
+    environment {
+        CI = 'true'
+    }
+----
+以及在 `Build` 阶段复制并粘贴以下内容 :
++
+[source,groovy]
+----
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+----
+最终的代码为:
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true' // <1>
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') { // <2>
+            steps {
+                sh './jenkins/scripts/test.sh' // <3>
+            }
+        }
+    }
+}
+----
+<1> 这里的 link:/doc/book/pipeline/syntax#environment[`environment`] 指令 设置环境变量 `CI` 为布尔值 `true`, 它对管道中的所有步骤都是有用的。 当 `test.sh` 的`npm test` 命令  (在定义在流水线的下一步的 `Test` 阶段运行) 检测到环境变量 `CI`值为 `true`时, 该命令在
+"non-watch" (i.e. non-interactive) 模式下运行。在"watch" 模式下, `npm test` 期望用户的输入,它能够无限期地停止 CI/CD 应用的运行。
+作为在Jenkins的流水线中指定 `environment` 指令的替代选择, 你也可以在`package.json`域中指定该环境变量的值(通过 `npm test` 命令) 通过以下方式:
+.. 在`jenkins/scripts/test.sh` 取消 `npm install --save-dev cross-env` 命令
+   ( 在`Test` 阶段安装 `cross-env` 依赖)。了解更多请参考 `test.sh` 文件.
+.. 在 `package.json` 文件中修改以下行 (在
+   `simple-node-js-react-npm-app` 仓库的根目录下) 从
+   * `"test": "react-scripts test --env=jsdom",` +
+     到
+   * `"test": "cross-env CI=true react-scripts test --env=jsdom",`
+<2> 定义名为 `Test` 的link:/doc/book/pipeline/syntax/#stage[`stage`] (指令)，
+它出现在Jenkins UI中.
+<3> 
+link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`]
+步骤 (参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节) 运行
+shell 脚本 `test.sh`，该脚本位于
+`simple-node-js-react-npm-app` 仓库的 `jenkins/scripts` 目录。  `test.sh` 文件本身对其进行了解释. 在通用原则下,
+最好让你的流水线代码 (也就是 `Jenkinsfile`) 尽可能的整洁，并且将更复杂的构建脚本放在一个独立的像 `test.sh` 文件一样的shell脚本文件里。这最终会促进你的流水线的维护，尤其是在它更复杂的情况下。
+. 保存并提交你编辑的 `Jenkinsfile` 到你本地的
+  `simple-node-js-react-npm-app` Git 仓库。比如在 
+  `simple-node-js-react-npm-app` 仓库, 运行命令: +
+  `git stage .` +
+  然后 +
+  `git commit -m "Add 'Test' stage"`
+. 再次回到Jenkins , 如果必要的话再次登录并进入
+  Jenkins的 Blue Ocean 界面。
+. 点击左上方的 *Run* , 然后快速的点击出现在右下方的 *OPEN* 链接
+  观察 Jenkins 运行你改进之后的流水线项目。如果点击不了 **OPEN** 链接, 点击Blue Ocean
+  界面的_top_ 行使用这一特性。 +
+  *Note:* 你在这次运行中会注意到 Jenkins 不再需要下载
+   Node Docker 镜像。 而是, Jenkins 只需要从之前下载的Node镜像中运行一个新的容器 。 并且, 从现在开始, 在"Build"阶段不再需要下载 (新的) `npm`
+  依赖。 因此,
+  在接下来的时间运行流水线会更快些。 +
+  如果改进后的流水线运行成功,  Blue Ocean
+  界面应该是这样的。另外要注意 "Test" 阶段。你可以点击之前的 "Build" 阶段来循环的 访问该阶段的输出。
+[.boxshadow]
+image:tutorials/node-js-react-11-test-stage-runs-successfully-with-output.png[alt="Test
+stage runs successfully (with output)",width=100%]
+. 点击右上方的 *X* 回到 Blue Ocean 主界面。
+
+
+=== 给流水线添加最终交付阶段
+
+. 回到文本编辑器/IDE，打开 `Jenkinsfile` 。
+. 在 `Jenkinsfile`的 `Test`
+  阶段下方复制并粘贴以下的声明式流水线语法:
++
+[source,groovy]
+----
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+----
+最终的代码如下:
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    environment { // <1>
+        CI = 'true'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') { // <2>
+            steps {
+                sh './jenkins/scripts/deliver.sh' // <3>
+                input message: 'Finished using the web site? (Click "Proceed" to continue)' // <4>
+                sh './jenkins/scripts/kill.sh' // <5>
+            }
+        }
+    }
+}
+----
+<1>  link:/doc/book/pipeline/syntax#environment[`environment`] 指令
+不会出现在你的流水线中,如果你在 `package.json` 
+<<add-a-test-stage-to-your-pipeline,above>> 指定 `CI`
+环境变量。
+<2> 定义一个新的 `Deliver` 阶段，它出现在 Jenkins UI中。
+<3> link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`]
+步骤 (参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节) 运行
+shell 脚本 `deliver.sh`，该脚本位于 `simple-node-js-react-npm-app` 仓库的 `jenkins/scripts` 目录。  `deliver.sh` 文件对它进行了解释。
+<4> link:/doc/pipeline/steps/pipeline-input-step/#code-input-code-wait-for-interactive-input[`input`]
+步骤 (由 link:/doc/pipeline/steps/pipeline-input-step[Pipeline:
+Input Step] 插件提供) 中止运行构建并提示用户(带有自定义消息) 进行或中止。
+<5> link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`]
+步骤运行 shell 脚本 `kill.sh`, 该脚本也位于 `jenkins/scripts`
+目录。 `kill.sh`
+文件进行了解释。
+. 保存并提交你编辑的 `Jenkinsfile` 到你的本地
+  `simple-node-js-react-npm-app` Git 仓库. 比如在
+  `simple-node-js-react-npm-app` 仓库, 运行命令: +
+  `git stage .` +
+  然后 +
+  `git commit -m "Add 'Deliver' stage"`
+. 再次回到 Jenkins , 如果有必要的话再次登录并进入
+  Jenkins的 Blue Ocean 主界面。
+. 点击左上方的 *Run* t, 然后快速的点击出现在右下方的 *OPEN* ，查看 Jenkins 运行你改进后的流水线项目。 如果你点击不了 **OPEN** 链接, 点击Blue Ocean界面的 _top_ 行
+  来使用.这一特性。 +
+   如果你成功运行了流水线,  Blue Ocean
+  界面应该是这样的. 另外注意 "Deliver" 阶段。 点击之前的 "Test" 和 "Build" 阶段循环的访问这些阶段的输出。
++
+[.boxshadow]
+image:tutorials/node-js-react-21-deliver-stage-pauses-for-user-input.png[alt="Deliver
+stage pauses for user input",width=100%]
+. 观察 "Deliver" 阶段 (必要的时候点击它), 然后点击
+  绿色的 *`./jenkins/scripts/deliver.sh`* 步骤扩展它的内容并向下滚动直到看见 `http://localhost:3000` 链接。
+[.boxshadow]
+image:tutorials/node-js-react-22-deliver-stage-opened-deliver-sh-step.png[alt="Deliver
+stage output only",width=100%]
+. 点击 `http://localhost:3000` 链接在一个新的浏览器选项卡查看你的 Node.js 和 React
+  应用的运行(在开发模式下) 。 你会
+  看到一个标题为 *Welcome to React* 的网页/站点。 +
+  *Tip:* 如果你觉得有些冒险, 你可以尝试访问你的Jenkins Docker
+  终端/命令提示符 , 然后使用 vi
+  编辑器, 调整并保存 `App.js` 源文件，查看出现在
+  the *Welcome to React* 页面上的结果。 为此, 运行下面的命令:
++
+[source]
+----
+docker exec -it <docker-container-name> bash # <1>
+cd /var/jenkins_home/workspace/simple-node-js-react-npm-app/src # <2>
+vi App.js # <3>
+----
+<1> 这个命令可以访问到你的Jenkins
+Docker容器的终端/命令提示符 。 使用命令 `docker ps` 可以获得 `<docker-container-name>` 。 另外, 他就是  `jenkins-tutorials` (如果你在之前运行容器
+<<run-jenkins-in-docker,above>> 的时候在命令中指定了它 - 比如 `--name jenkins-tutorials`).
+<2> 在容器中, 更该目录为 Node.js 和 React 源目录
+ (在 Jenkins 工作区目录).
+<3> 使用vi编辑器访问, 编辑和保存改变你的应用的 `App.js` 文件 。
+. 当你查看完页面/站点, 点击 *Proceed* 按钮以完成
+  流水线的执行。
++
+[.boxshadow]
+image:tutorials/node-js-react-23-deliver-stage-runs-successfully.png[alt="Deliver
+stage runs successfully",width=100%]
+. 点击右上方的 *X* 返回 Blue Ocean 的主界面,
+  它按时间顺序的反序的方式列出了流水线的历史运行记录。
+[.boxshadow]
+image:tutorials/node-js-react-24-main-blue-ocean-interface-with-all-previous-runs-displayed.png[alt="Main
+Blue Ocean interface with all previous runs displayed",width=100%]
+
+
+=== 总结
+
+做得好！您刚刚使用Jenkins通过npm构建了一个简单的Node.js 和 React
+应用程序！
+
+您在上面创建的 "Build", "Test" 和 "Deliver" 阶段是使用Jenkins中的Maven构建更复杂的 Node.js 和 React应用程序以及与其他技术栈集成的Node.js 和React应用程序的基础。
+
+由于Jenkins具有极高的可扩展性，因此可以对其进行修改和配置，以处理构建协调和自动化的几乎任何方面。
+
+要详细了解Jenkins可以做什么，请查看：
+
+* link:/doc/tutorials[教程概览] 页面中的其他介绍教程。
+* link:/doc/book[用户手册] 使用Jenkins的更多细节，例如 link:/doc/book/pipeline[Pipelines] (尤其是 link:/doc/book/pipeline/syntax[Pipeline 语法])
+  和 link:/doc/book/blueocean[Blue Ocean] 界面。
+* link:/node[Jenkins blog] 资讯，其他教程和更新。
+
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

@@ -1,0 +1,26 @@
+---
+layout: pipelinesteps
+title: "Updatebot 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Updatebot 插件
+
+plugin:updatebot[在插件索引中查看此插件]
+
+=== +updateBotPush+: UpdateBot推送
+++++
+<ul><li><code>file</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pollPeriodMS</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+
+
+++++

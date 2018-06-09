@@ -1,0 +1,29 @@
+---
+layout: pipelinesteps
+title: "节流并发构建插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 节流并发构建插件
+
+plugin:throttle-concurrents[在插件索引中查看此插件]
+
+=== +throttle+: 节流执行本体内的节点块
+++++
+<ul><li><code>categories</code>
+<div><div> 
+ <p>One or more throttle categories in a list.</p> 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

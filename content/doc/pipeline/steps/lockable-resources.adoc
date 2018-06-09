@@ -1,0 +1,47 @@
+---
+layout: pipelinesteps
+title: "Lockable 源插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Lockable 源插件
+
+plugin:lockable-resources[在插件索引中查看此插件]
+
+=== +lock+: Lock shared resource锁定共享资源
+++++
+<ul><li><code>resource</code>
+<div><div> 
+ <p> The resource name to lock as defined in Global settings. If the resource does not exist in Global Settings it will be automatically created on build execution. Either a resource or a label need to be specified. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inversePrecedence</code> (optional)
+<div><div> 
+ <p> By default waiting builds get the lock in the same order they requested to acquire it. </p> 
+ <p> By checking this option the newest build in the waiting queue will get the lock first. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>label</code> (optional)
+<div><div> 
+ <p> The label of the resources to be locked as defined in Global settings. Either a resource or a label need to be specified. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>quantity</code> (optional)
+<div><div> 
+ <p> The quantity of resources with the specified label to be locked as defined in Global settings. Either a resource or a label need to be specified. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

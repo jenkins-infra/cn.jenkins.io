@@ -1,0 +1,343 @@
+---
+layout: documentation
+title: 使用Maven构建Java应用程序
+section: doc
+---
+
+:toc:
+:toclevels: 3
+:imagesdir: ../../book/resources
+
+本教程将向你展示如何使用Jenkins编排并构建一个使用link:https://maven.apache.org/[Maven]管理的简单Java应用程序。
+
+如果你是使用Maven的Java开发人员，并且对CI/CD概念不熟悉，或者你可能熟悉这些概念，但不知道如何使用Jenkins实现构建应用程序，那么本教程适合你。
+
+你将在Github示例仓库中获取一个输出"Hello world!"字符串的简单Java应用，该应用还包含若干单元测试，用于检查main方法。
+测试结果保存在JUnit XML报告中。
+
+*耗时:* 假如你的机器符合<<prerequisites,配置要求>>，完成本教程需要20-40分钟。准确的耗时取决于你机器的性能，
+以及你是否完成过<<run-jenkins-in-docker,在Docker中运行Jenkins>>教程，请参考link:..[另一个教程].
+
+你可以在任何时候停止本教程，并从你离开的地方继续。
+
+若你已经完成了link:..[另一个教程]，可以跳过<<prerequisites,配置要求>>和<<run-jenkins-in-docker,在Docker中运行Jenkins>>章节，
+继续阅读<<fork-sample-repository,fork示例仓库>>（确保你本地安装了link:https://git-scm.com/downloads[Git]）。
+如果你需要重启Jenkins，请参考<<stopping-and-restarting-jenkins,停止和重启Jenkins>>.
+
+include::doc/tutorials/_prerequisites.adoc[]
+** link:https://git-scm.com/downloads[Git]和link:https://desktop.github.com/[GitHub Desktop].
+
+include::doc/book/installing/_run-jenkins-in-docker.adoc[]
+
+
+[[fork-sample-repository]]
+=== Fork 和 clone GitHub示例仓库
+
+通过将应用程序源代码所在的示例仓库fork到你自己的Github账号中， 并clone到本地，你就可以获取一个"Hello world!"简单Java应用程序。
+
+. 请确保你登陆了你的GitHub账户。如果你还没有Github账户，你可以在 https://github.com/[GitHub网站] 免费注册一个账户。
+. 将示例仓库 https://github.com/jenkins-docs/simple-java-maven-app[`simple-java-maven-app`]
+  fork到你的账户的Github仓库中。在此过程中，如果你需要帮助，请参考 https://help.github.com/articles/fork-a-repo/[Fork A Repo] 文档。
+. 将你的GitHub账户中的 `simple-java-maven-app` 仓库clone到你的本地机器。
+  根据你的情况完成以下步骤之一(其中 `<your-username>` 是你的操作系统用户账户名称)：
+** 如果你的机器安装了Github Desktop：
+.. 在GitHub网站上，点击绿色的 *Clone or download* 按钮，再点击 *Open in Desktop*.
+.. 在Github桌面版中，在点击 *Clone a Repository* 对话框上的 *Clone* 按钮之前，确保 *Local Path* 的配置为：
+*** macOS 系统配置为 `/Users/<your-username>/Documents/GitHub/simple-java-maven-app`
+*** Linux 系统配置为 `/home/<your-username>/GitHub/simple-java-maven-app`
+*** Windows 系统配置为 `C:\Users\<your-username>\Documents\GitHub\simple-java-maven-app`
+** 其他情况:
+.. 打开一个终端/命令提示符，并且 `cd` 进入正确的目录路径：
+*** macOS 系统路径为 `/Users/<your-username>/Documents/GitHub/`
+*** Linux 系统路径为 `/home/<your-username>/GitHub/`
+*** Windows 系统路径为 `C:\Users\<your-username>\Documents\GitHub\`
+（推荐使用Git bash命令行，而不是通常的Microsoft命令提示符）
+.. 运行以下命令完成仓库的clone： +
+   `git clone https://github.com/YOUR-GITHUB-ACCOUNT-NAME/simple-java-maven-app` +
+   其中 `YOUR-GITHUB-ACCOUNT-NAME` 是你的Github账户的名称。
+
+
+=== 在Jenkins中创建你的流水线项目
+
+. 回到Jenkins，如果有必要的话重新登录，点击 *Welcome to Jenkins!* 下方的 *create new jobs* +
+  *注意:* 如果你无法看见以上内容，点击左上方的 *New Item* 。
+. 在 *Enter an item name* 域中，为新的流水线项目指定名称（例如 `simple-java-maven-app`）。
+. 向下滚动并单击 *Pipeline*，然后单击页面末尾的 *OK* 。
+. （ _可选_ ） 在下一页中，在 *Description* 字段中填写流水线的简要描述
+（例如 `一个演示如何使用Jenkins构建Maven管理的简单Java应用程序的入门级流水线。`）
+. 点击页面顶部的 *Pipeline* 选项卡，向下滚动到 *Pipeline* 部分。
+. 在 *Definition* 域中，选择 *Pipeline script from SCM* 选项。此选项指示Jenkins从源代码管理（SCM）仓库获取你的流水线，
+这里的仓库就是你clone到本地的Git仓库。
+. 在 *SCM* 域中，选择 *Git*。
+. 在 *Repository URL* 域中，填写你本地仓库的 <<fork-sample-repository,目录路径>>，
+这是从你主机上的用户账户home目录映射到Jenkins容器的 `/home` 目录：
+* MacOS系统 - `/home/Documents/GitHub/simple-java-maven-app`
+* Linux系统 - `/home/GitHub/simple-java-maven-app`
+* Windows系统 - `/home/Documents/GitHub/simple-java-maven-app`
+. 点击 *Save* 保存你的流水线项目。你现在可以开始创建你的 `Jenkinsfile`，这些文件会被添加到你的本地仓库。
+
+
+=== 将你的初始流水线创建为Jenkinsfile
+
+现在你已准备好创建你的流水线，它将使用Jenkins中的Maven自动构建你的Java应用程序。
+你的流水线将被创建为 `Jenkinsfile`，它将被提交到你本地的Git仓库（`simple-java-maven-app`）。
+
+这是 "Pipeline-as-Code" 的基础，它将持续交付流水线作为应用程序的一部分，与其他代码一样进行版本控制和审查。
+阅读更多关于 link:/doc/book/pipeline[流水线] 的信息，以及用户手册中的 link:/doc/book/pipeline/jenkinsfile[使用Jenkinsfile] 章节。
+
+首先，创建一个初始流水线来下载Maven Docker镜像，并将其作为Docker容器运行（这将构建你的简单Java应用）。
+同时添加一个“构建”阶段到流水线中，用于协调整个过程。
+
+. 使用你最称手的文本编辑器或者IDE，在你本地的 `simple-java-maven-app` Git仓库的根目录创建并保存一个名为 `Jenkinsfile` 的文本文件。
+. 复制以下声明式流水线代码并粘贴到 `Jenkinsfile` 文件中：
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine' // <1>
+            args '-v /root/.m2:/root/.m2' // <2>
+        }
+    }
+    stages {
+        stage('Build') { // <3>
+            steps {
+                sh 'mvn -B -DskipTests clean package' // <4>
+            }
+        }
+    }
+}
+----
+<1> 这里的 `image` 参数（参考 link:/doc/book/pipeline/syntax#agent[`agent`] 章节的 `docker` 参数）
+是用来下载 https://hub.docker.com/_/maven/[`maven:3-apline` Docker镜像]
+（如果你的机器还没下载过它）并将该镜像作为单独的容器运行。这意味着：
+* 你将在Docker中本地运行相互独立的Jenkins和Maven容器。
+* Maven容器成为了Jenkins用来运行你的流水线项目的 link:/doc/book/glossary/#agent[agent]。
+这个容器寿命很短——它的寿命只是你的流水线的执行时间。
+<2> 这里的 `args` 参数在暂时部署的Maven Docker容器的 `/root/.m2` （即Maven仓库）目录
+和Docker主机文件系统的对应目录之间创建了一个相互映射。这背后的实现细节超出了本教程的范围，在此不做解释。
+但是，这样做的主要原因是，在Maven容器的生命周期结束后，构建Java应用程序所需的工件
+（Maven在流水线执行时进行下载）能够保留在Maven存储库中。这避免了在后续的流水线执行过程中，
+Maven反复下载相同的工件。请注意，不同于你为 <<download-and-run-jenkins-in-docker,`jenkins-data`>>
+创建的Docker数据卷，Docker主机的文件系统在每次重启Docker时都会被清除。
+这意味着每次Docker重新启动时，都会丢失下载的Maven仓库工件。
+<3> 定义了一个名为 `Build` 的 link:/doc/book/pipeline/syntax/#stage[`stage`]，之后会出现在Jenkins UI上。
+<4> 这里的 link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`]
+step（参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节）运行Maven命令干净地构建你的Java应用（不运行任何tests）。
+. 保存对 `Jenkinsfile` 的修改并且将其提交到你本地的 `simple-java-maven-app` Git仓库。例如，在 `simple-java-maven-app` 目录下，运行以下命令： +
+  `git add .` +
+  继续运行 +
+  `git commit -m "Add initial Jenkinsfile"`
+. 再次回到Jenkins，如果有必要的话重新登录，点击左侧的 *Open Blue Ocean* 进入Jenkins的Blue Ocean界面。
+. 在 *This job has not been run* 消息框中，点击 *Run*，然后快速点击右下角出现的 *OPEN* 链接，
+观察Jenkins运行你的流水线项目。如果你不能点击 *OPEN* 链接，点击Blue Ocean主界面的一行来使用这一特性。 +
+  *注意：* 你可能需要几分钟时间等待第一次运行完成。在clone了你的本地 `simple-java-maven-app` Git仓库后，
+Jenkins接下来做了以下动作：
+.. 将项目排入队列等待在agent上运行。
+.. 下载Maven Docker镜像，并且将其运行在Docker中的一个容器中。
++
+[.boxshadow]
+image:tutorials/java-maven-01-downloading-maven-docker-image.png[alt="Downloading
+Maven Docker image",width=100%]
+.. 在Maven容器中运行 `Build` 阶段 （`Jenkinsfile` 中所定义的）。在这期间，Maven会下载构建你的Java应用所需的工件，
+   这些工件最终会被保存在Jenkins的本地Maven仓库中（Docker的主机文件系统）。
+[.boxshadow]
+image:tutorials/java-maven-02-initial-pipeline-downloading-maven-artifacts.png[alt="Downloading
+Maven artifacts",width=100%]
+
++
+若Jenkins成功构建了你的Java应用，Blue Ocean界面会变为绿色。
+[.boxshadow]
+image:tutorials/java-maven-03-initial-pipeline-runs-successfully.png[alt="Initial
+Pipeline runs successfully",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean主界面。
++
+[.boxshadow]
+image:tutorials/java-maven-04-main-blue-ocean-interface.png[alt="Main Blue Ocean
+interface",width=100%]
+
+
+=== 为你的流水线增加test阶段
+
+. 回到你的文本编辑器/IDE，打开你的 `Jenkinsfile`。
+. 复制以下声明式流水线代码，并粘贴到 `Jenkinsfile` 中 `Build` 阶段的下方：
++
+[source,groovy]
+----
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+----
+最终的代码为：
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') { // <1>
+            steps {
+                sh 'mvn test' // <2>
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml' // <3>
+                }
+            }
+        }
+    }
+}
+----
+<1> 定义了一个名为 `Test` 的 link:/doc/book/pipeline/syntax/#stage[`stage`]，之后会出现在Jenkins UI上。
+<2> 这里的 link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`] step
+（参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节）执行Maven命令来运行你的Java应用的单元测试。
+这个命令还生成一个JUnit XML报告，保存在 `target/surefire-reports` 目录 （位于Jenkins容器中的 `/var/jenkins_home/workspace/simple-java-maven-app` 目录）。
+<3> 这里的 link:/doc/pipeline/steps/junit/#code-junit-code-archive-junit-formatted-test-results[`junit`] step
+（由 link:/doc/pipeline/steps/junit[JUnit Plugin] 提供）用于归档JUnit XML报告（由上面的 `mvn test` 命令生成）
+并通过Jenkins接口公开结果。在Blue Ocean中，可以在流水线运行的 *Tests* 页面获取结果。 link:/doc/book/pipeline/syntax/#post[`post`]
+章节的 `always` 条件包含了这个 `junit` step， 保证了这个step _总是_ 在 `Test` 阶段 _结束后_ 执行，不论该阶段的运行结果如何。
+. 保存对 `Jenkinsfile` 的修改并将其提交到你的本地 `simple-java-maven-app` Git仓库。例如，在 `simple-java-maven-app` 目录下，运行以下命令： +
+  `git stage .` +
+  继续运行 +
+  `git commit -m "Add 'Test' stage"`
+. 再次回到Jenkins，如果有必要的话重新登录，进入Jenkins的Blue Ocean界面。
+. 点击左上方的 *Run* 然后快速点击右下方出现的 *OPEN* 链接， 观察Jenkins运行你修改过的流水线项目。
+  如果你不能点击 *OPEN* 链接，点击Blue Ocean主界面的 _top_ 行来使用这一特性。 +
+  *注意：* 你会发现本次运行Jenkins不再需要下载Maven Docker镜像。Jenkins只需要从之前下载的Maven镜像运行
+   一个新的容器。另外，如果最近一次运行 <<create-your-initial-pipeline-as-a-jenkinsfile,流水线>> 后，Docker没有重启，
+   那么在 "Build" 阶段无需下载Maven工件。因此，你的流水线再次运行时速度会更快。 +
+   如果你修改过的流水线运行成功，Blue Ocean界面看起来会像下面这样。注意增加的 "Test" 阶段。
+   你可以点击之前的 "Build" 阶段来获取阶段输出结果。
+[.boxshadow]
+image:tutorials/java-maven-11-test-stage-runs-successfully-with-output.png[alt="Test
+stage runs successfully (with output)",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean主界面。
+
+
+=== 为你的流水线增加deliver阶段
+
+. 回到你的文本编辑器/IDE，打开你的 `Jenkinsfile`。
+. 复制以下声明式流水线代码，并粘贴到 `Jenkinsfile` 中 `Test` 阶段的下方：
++
+[source,groovy]
+----
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+----
+最终的代码为：
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') { // <1>
+            steps {
+                sh './jenkins/scripts/deliver.sh' // <2>
+            }
+        }
+    }
+}
+----
+<1> 定义了一个名为 `Deliver` 的stage，之后会出现在Jenkins UI上。
+<2> 这里的 link:/doc/pipeline/steps/workflow-durable-task-step/#code-sh-code-shell-script[`sh`] step
+    （参考 link:/doc/book/pipeline/syntax/#steps[`steps`] 章节）执行位于 `jenkins/scripts` 目录下的shell脚本 `deliver.sh`，
+    该目录位于 `simple-java-maven-app` 仓库根目录下。`deliver.sh` 文件所做动作包含在其自身文本内容中。
+    一般的原则是，尽量保持你的流水线代码（即 `Jenkinsfile`）越简洁越好，将更复杂的构建步骤放在多个独立的shell脚本中
+    （尤其对于那些包含2个以上steps的stage）。这最终会使得维护你的流水线代码变得更容易，特别是当你的流水线变得越来越复杂的时候。
+. 保存对 `Jenkinsfile` 的修改并将其提交到你的本地 `simple-java-maven-app` Git仓库。例如，在 `simple-java-maven-app` 目录下，运行以下命令： +
+  `git stage .` +
+  继续运行 +
+  `git commit -m "Add 'Deliver' stage"`
+. 再次回到Jenkins，如果有必要的话重新登录，进入Jenkins的Blue Ocean界面。
+. 点击左上方的 *Run* 然后快速点击右下方出现的 *OPEN* 链接， 观察Jenkins运行你修改过的流水线项目。
+    如果你不能点击 *OPEN* 链接，点击Blue Ocean主界面的 _top_ 行来使用这一特性。 +
+  如果你修改过的流水线运行成功，Blue Ocean界面看起来会像下面这样。注意增加的 "Deliver" 阶段。
+  你可以点击之前的 "Test" 和 "Build" 阶段来获取阶段输出结果。
++
+[.boxshadow]
+image:tutorials/java-maven-21-deliver-stage-runs-successfully.png[alt="Deliver
+stage runs successfully",width=100%]
+
++
+以下是 "Deliver" 阶段的输出应该是什么样子，向你展示最终Java应用程序的执行结果。
+[.boxshadow]
+image:tutorials/java-maven-22-deliver-stage-output-only.png[alt="Deliver stage
+output only",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean主界面，列表显示流水线历史运行记录，按时间顺序倒序排列。
+[.boxshadow]
+image:tutorials/java-maven-23-main-blue-ocean-interface-with-all-previous-runs-displayed.png[alt="Main
+Blue Ocean interface with all previous runs displayed",width=100%]
+
+
+=== 总结
+
+做得好！您刚刚使用Jenkins用Maven构建了一个简单的Java应用程序！
+
+您在上面创建的 "Build", "Test" 和 "Deliver" 阶段是使用Jenkins中的Maven构建更复杂的Java应用程序的基础，以及与其他技术栈集成的Java和Maven应用程序。
+
+由于Jenkins具有极高的可扩展性，因此可以对其进行修改和配置，以处理构建协调和自动化的几乎任何方面。
+
+要详细了解Jenkins可以做什么，请查看：
+
+* link:/doc/tutorials[教程概览] 页面中的其他介绍教程。
+* link:/doc/book[用户手册] 使用Jenkins的更多细节，例如 link:/doc/book/pipeline[Pipelines] (尤其是 link:/doc/book/pipeline/syntax[Pipeline syntax])
+  和 link:/doc/book/blueocean[Blue Ocean] 界面。
+* link:/node[Jenkins blog] 资讯，其他教程和更新。
+
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++
+
+////
+Hide this warning due to temporary addition to 'mvn jar:jar install:install'
+fix implemented.
+*Warning:* It's possible that since Maven downloads artifacts during this final
+`Deliver` stage, Maven will attempt to run some of the other commands further
+down the `sh` step before the artifacts have finished downloading. This will
+cause the build to fail. If you notice the build failing the first time, run
+the Pipeline project again and it should succeed.
+////

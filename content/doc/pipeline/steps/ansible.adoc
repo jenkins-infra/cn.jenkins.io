@@ -1,0 +1,87 @@
+---
+layout: pipelinesteps
+title: "Ansible 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Ansible 插件
+
+plugin:ansible[在插件索引中查看此插件]
+
+=== +ansiblePlaybook+: 调用ansible playbook
+++++
+<div><div>
+  Execute an Ansible playbook. Only the 
+ <code>playbook</code> parameter is mandatory. 
+</div></div>
+<ul><li><code>playbook</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>colorized</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>dynamicInventory</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>extraVars</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>extras</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forks</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>hostKeyChecking</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>installation</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inventory</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inventoryContent</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>limit</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>skippedTags</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>startAtTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sudo</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>sudoUser</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tags</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vaultCredentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +ansibleVault+: 调用 ansible vault
+++++
+<div><div>
+  Execute Ansible vault. Only the 
+ <code>vaultCredentialsId</code> parameter is mandatory. 
+</div></div>
+<ul><li><code>action</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>content</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>input</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>installation</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>newVaultCredentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>output</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vaultCredentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

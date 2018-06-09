@@ -1,0 +1,88 @@
+---
+layout: pipelinesteps
+title: "BlazeMeter 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== BlazeMeter 插件
+
+plugin:BlazeMeterJenkinsPlugin[在插件索引中查看此插件]
+
+=== +blazeMeterTest+: BlazeMeter
+++++
+<ul><li><code>credentialsId</code> (optional)
+<div><div>
+  Select the BlazeMeter credentials to use. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>workspaceId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testId</code> (optional)
+<div><div>
+  BlazeMeter's plugin for Jenkins allows users to automate load tests from the cloud post build. 
+ <br> Just choose the test you want to run. Let Jenkins start and stop the test and document the results. 
+ <br> After the run, a test report will be generated directly into Jenkins and 
+ <a href="https://a.blazemeter.com/user" rel="nofollow">your BlazeMeter account.</a> 
+ <br> If the test list is empty, you must insert your unique BlazeMeter API key into the 
+ <a rel="nofollow">Jenkins settings</a>, or 
+ <a href="https://a.blazemeter.com/user/login?destination=cloud/testing/load/home/hello" rel="nofollow">create a test</a> in 
+ <a href="https://a.blazemeter.com/user" rel="nofollow">your BlazeMeter account.</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>getJtl</code> (optional)
+<div><div>
+  Check this box if you need to download JTL report after test will be over. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>getJunit</code> (optional)
+<div><div>
+  Check this box if you need to download junit report after test will be over. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>jobApiKey</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>jtlPath</code> (optional)
+<div><div>
+  Here you can define desired location for downloading jtl artifact. 
+ <br> Plugin supports both absolute and relative paths. 
+ <br> Jenkins environment variables will be resolved. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>junitPath</code> (optional)
+<div><div>
+  Here you can define desired location for downloading junit artifact. 
+ <br> Plugin supports both absolute and relative paths. 
+ <br> Jenkins environment variables will be resolved. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>notes</code> (optional)
+<div><div>
+  Enter here some notes that you want to attached to test report. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverUrl</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sessionProperties</code> (optional)
+<div><div>
+  Define jmeter properties for particular session in format key1=value1,key2=value2,key3=value3. 
+ <br> Properties will be pushed to every separate session of master session. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

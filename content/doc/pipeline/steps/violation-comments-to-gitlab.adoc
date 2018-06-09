@@ -1,0 +1,65 @@
+---
+layout: pipelinesteps
+title: "对GitLab插件的违规评论"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 对GitLab插件的违规评论
+
+plugin:violation-comments-to-gitlab[在插件索引中查看此插件]
+
+=== +ViolationsToGitLab+: 向GitLab报告违规行为
+++++
+<div><div> 
+ <p> See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Violation+Comments+to+GitLab+Plugin" rel="nofollow">Violation Comments to GitLab Plugin</a> for details on how to configure and use this plugin. </p> 
+ <p> Pattern is a regular expression for matching report files. For example <b>.*/findbugs/.*\.xml$</b> matches xml-files, in a folder named findbugs, anywhere in workspace. </p> 
+</div></div>
+<ul><li><code>config</code>
+<ul><b>Nested Object</b>
+<li><code>gitLabUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>mergeRequestId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiToken</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiTokenCredentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiTokenPrivate</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>authMethodHeader</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>commentOnlyChangedContent</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>createCommentWithAllSingleFileComments</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>ignoreCertificateErrors</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepOldComments</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>minSeverity</code> (optional)
+<ul><li><b>Values:</b> <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></li></ul></li>
+<li><code>shouldSetWip</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>violationConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>parser</code>
+<ul><li><b>Values:</b> <code>ANDROIDLINT</code>, <code>CHECKSTYLE</code>, <code>CODENARC</code>, <code>CLANG</code>, <code>CPD</code>, <code>CPPCHECK</code>, <code>CPPLINT</code>, <code>CSSLINT</code>, <code>FINDBUGS</code>, <code>FLAKE8</code>, <code>FXCOP</code>, <code>GENDARME</code>, <code>JCREPORT</code>, <code>JSHINT</code>, <code>LINT</code>, <code>KLOCWORK</code>, <code>MYPY</code>, <code>GOLINT</code>, <code>GOOGLEERRORPRONE</code>, <code>PERLCRITIC</code>, <code>PITEST</code>, <code>PMD</code>, <code>PYDOCSTYLE</code>, <code>PYLINT</code>, <code>RESHARPER</code>, <code>SBTSCALAC</code>, <code>SIMIAN</code>, <code>STYLECOP</code>, <code>XMLLINT</code>, <code>ZPTLINT</code>, <code>DOCFX</code>, <code>PCLINT</code></li></ul></li>
+<li><code>pattern</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>reporter</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++

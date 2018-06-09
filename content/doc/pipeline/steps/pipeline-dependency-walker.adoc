@@ -1,0 +1,48 @@
+---
+layout: pipelinesteps
+title: "流水线依赖Walker插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 流水线依赖Walker插件
+
+plugin:pipeline-dependency-walker[在插件索引中查看此插件]
+
+=== +walk+: 为作业及其所有下游作业执行流水线任务.
+++++
+<div><div>
+  Triggers a new task for a given job and all maven-dependent jobs. 
+</div></div>
+<ul><li><code>job</code>
+<div><div>
+  Name of a downstream job to build. May be another Pipeline job, but more commonly a freestyle or other project. Use a simple name if the job is in the same folder as this upstream Pipeline job; otherwise can use relative paths like 
+ <code>../sister-folder/downstream</code> or absolute paths like 
+ <code>/top-level-folder/nested-folder/downstream</code>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnUnstable</code> (optional)
+<div><div>
+  If failOnUnstable is true than the action would be performed only if all the related jobs have latest build successful. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>jobAction</code> (optional)
+<div><div>
+  Action to be performed on jobs. Use 
+ <code>JOB_NAME</code> keyword to refer to a job. 
+ <br> If the field is empty then jobs would be build, e.i. empty value will be replaced by 
+ <code>build 'JOB_NAME'</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

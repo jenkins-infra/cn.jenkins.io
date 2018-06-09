@@ -1,0 +1,41 @@
+---
+layout: pipelinesteps
+title: "Git 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Git 插件
+
+plugin:git[在插件索引中查看此插件]
+
+=== +git+: Git
+++++
+<div><div> 
+ <p> Git step. It performs a clone from the specified repository. </p> 
+ <p> Note that this step is shorthand for the generic SCM step:</p>
+ <pre>
+checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+     userRemoteConfigs: [[url: 'http://git-server/user/repository.git']]])
+    </pre> 
+ <p></p> 
+</div></div>
+<ul><li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>branch</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>changelog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>poll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

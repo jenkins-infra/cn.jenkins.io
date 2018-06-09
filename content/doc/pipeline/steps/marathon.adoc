@@ -1,0 +1,119 @@
+---
+layout: pipelinesteps
+title: "Marathon 部署"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Marathon 部署
+
+plugin:marathon[在插件索引中查看此插件]
+
+=== +marathon+: Marathon 部署
+++++
+<ul><li><code>url</code>
+<div><div> 
+ <p> <b>This parameter is required.</b> </p> 
+ <p> The URL for the target Marathon instance following the format: <code>http[s]://hostname:port</code>. The <i>port</i> section is optional. </p> 
+ <p> Example: <code>http://marathon.example.com</code> </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>appid</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div> 
+ <p>There are two types of authentication supported:</p> 
+ <ul> 
+  <li>Basic Authentication (Username and Password)</li> 
+  <li>DC/OS Service Account (String)</li> 
+ </ul> 
+ <h3>Basic Authentication</h3> 
+ <p>To authenticate with HTTP basic authentication, select a credential of type username with password. <strong>DC/OS does not support this authentication type.</strong></p> 
+ <h3>DC/OS Service Account</h3> 
+ <p><a href="https://docs.mesosphere.com/latest/administration/id-and-access-mgt/service-auth/" rel="nofollow">DC/OS Service Accounts</a> use JSON Web Tokens (JWTs) to authenticate with DC/OS and retrieve an access token for use in subsequent requests. This plugin generates the JWT from the content of the selected credential and handles the creation and management of the necessary access token.</p> 
+ <p>The content of the selected credential is a JSON object with the following fields (extra fields are ignored):</p> 
+ <ul> 
+  <li><strong>uid</strong> <br>DC/OS service account ID (example: <code>"jenkins-sa"</code>) </li> 
+  <li><strong>login_endpoint</strong> <br>URL for the login end point of the target DC/OS cluster (example: <code>"https://leader.mesos/acs/api/v1/auth/login"</code>) </li> 
+  <li><strong>scheme</strong><br><strong>This must be <code>"RS256"</code>.</strong> Algorithm to use with <code>private_key</code>. </li> 
+  <li><strong>private_key</strong><br>Private key to use for signing JWTs, which is verified by the corresponding public key registered with DC/OS. Note the inclusion of "\n" to make the content JSON friendly. <br> (example: <code>"-----BEGIN RSA PRIVATE KEY-----\nMIIEpAI..."</code>) </li> 
+ </ul> 
+ <h5>Example JSON Secret</h5> 
+ <pre>
+    {"uid":"jenkins","login_endpoint":"https://leader.mesos/acs/api/v1/auth/login","scheme":"RS256","private_key":"-----BEGIN RSA PRIVATE KEY-----\nMIIEpAI..."}
+    </pre> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>docker</code> (optional)
+<div><div> 
+ <p> A Docker image name, including a URI if using a private registry. This will overwrite the <i>image</i> field in the Application Definition file. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>dockerForcePull</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>env</code> (optional)
+<div><div> 
+ <p> Env are used to set environment variables to Marathon apps. </p> 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>filename</code> (optional)
+<div><div> 
+ <p> The path to the <a href="https://mesosphere.github.io/marathon/docs/application-basics.html" rel="nofollow">Marathon application definition</a>, a JSON file. A path (<code>builds/marathon.json</code>) is relative to the build's workspace (<code>$WORKSPACE</code>). If left blank, the default value (<i>marathon.json</i>) will be used. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forceUpdate</code> (optional)
+<div><div> 
+ <p> This parameter decides how to handle updating a Marathon application that has an active deployment. </p> 
+ <p> If this is set to <code>true</code> (checked), then a new deployment will be forced and the current deployment canceled. If this is set to <code>false</code> (unchecked), then this plugin will attempt to update the Marathon application every couple of seconds until a timeout is reached. If the plugin is unable to successfully update the application before the timeout is reached, then the job will be marked as failed. </p> 
+ <p> More information can be found on the <a href="https://mesosphere.github.io/marathon/docs/rest-api.html#put-v2-apps-appid" rel="nofollow"> Marathon REST API</a> documentation page. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>id</code> (optional)
+<div><div> 
+ <p> This parameter will overwrite the <code>id</code> field in the Application Definition file. Please read the <a href="https://mesosphere.github.io/marathon/docs/rest-api.html#post-v2-apps" rel="nofollow"> Marathon REST API documentation</a> for this parameter's format. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code> (optional)
+<div><div> 
+ <p> Labels are used to attach metadata to Marathon applications. Labels are also used within the Marathon UI to sort and filter applications. </p> 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>uris</code> (optional)
+<div><div> 
+ <p> URIs to download into the container sandbox before the Marathon application starts. </p> 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>uri</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

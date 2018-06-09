@@ -1,0 +1,22 @@
+---
+layout: pipelinesteps
+title: "Gatling Jenkins 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Gatling Jenkins插件
+
+plugin:gatling[在插件索引中查看此插件]
+
+=== +gatlingArchive+: 归档Gatling报告
+++++
+<ul></ul>
+
+
+++++

@@ -1,0 +1,116 @@
+---
+layout: pipelinesteps
+title: "版本号插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 版本号插件
+
+plugin:versionnumber[在插件索引中查看此插件]
+
+=== +VersionNumber+: 确定正确的版本号
+++++
+<ul><li><code>versionNumberString</code>
+<div><div> 
+ <p> The version number format string is used to generate the version number. It will be passed through unaltered, except that any expression of the form ${variable_name, argument} will be replaced according to the table below. Arguments are optional, and, unless otherwise specified in the table below, the argument is a string of length N, and the number will be left-padded with zeros until its length equals N. It will not be padded if its length already exceeds N. For example, if the build day is 5, then ${BUILD_DAY, XX} would return 05. </p> 
+ <p> Any variable not recognized in the table below will be replaced by an environment variable of the same name. So to use the hudson build ID, stored in the environment variable BUILD_ID, you'd just use ${BUILD_ID}. If no environment variable of the appropriate name can be found, the expression will just be replaced with an empty string. </p> 
+ <p> </p>
+ <table> 
+  <tbody>
+   <tr> 
+    <td> BUILD_DATE_FORMATTED </td> 
+    <td> If the argument for this is a quotes-enclosed java date format string, then this will be replaced with the build date formatted with that string. If there is no argument, then this will be the standard simple date format. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILD_DAY </td> 
+    <td> The day of the build. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILD_WEEK </td> 
+    <td> The week of the year of the build. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILD_MONTH </td> 
+    <td> The month of the build. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILD_YEAR </td> 
+    <td> The year of the build. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILDS_TODAY </td> 
+    <td> The number of builds done on this calendar date. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILDS_THIS_WEEK </td> 
+    <td> The number of builds done in this calendar week. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILDS_THIS_MONTH </td> 
+    <td> The number of builds done in this calendar month. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILDS_THIS_YEAR </td> 
+    <td> The number of builds done in this calendar year. </td> 
+   </tr> 
+   <tr> 
+    <td> BUILDS_ALL_TIME </td> 
+    <td> The number of builds done since the beginning of the project. </td> 
+   </tr> 
+   <tr> 
+    <td> MONTHS_SINCE_PROJECT_START </td> 
+    <td> The number of calendar months that have elapsed since the project start date. </td> 
+   </tr> 
+   <tr> 
+    <td> YEARS_SINCE_PROJECT_START </td> 
+    <td> The number of calendar years that have elapsed since the project start date. </td> 
+   </tr> 
+  </tbody>
+ </table> 
+ <p></p> 
+ <p> Note: BUILDS_TODAY_Z, BUILDS_THIS_WEEK_Z, BUILDS_THIS_MONTH_Z, BUILDS_THIS_YEAR_Z and BUILDS_ALL_TIME_Z are zero-indexed versions of the similar named variables from above. The override build numbers are NOT zero indexed, however, if you override Builds Today with 3, then BUILDS_TODAY_Z will be 2 for the next build. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideBuildsAllTime</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideBuildsThisMonth</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideBuildsThisWeek</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideBuildsThisYear</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideBuildsToday</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectStartDate</code> (optional)
+<div><div> 
+ <p> The date the project began, in the format yyyy-MM-dd. This is used in calculating the number of months and years since the beginning of the project. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>skipFailedBuilds</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>versionPrefix</code> (optional)
+<div><div> 
+ <p> The prefix which is added in front of the version number to allow using the same build numbers for all the release tags. </p> 
+ <p> If this prefix contains a variable that should be substituted, make sure that the prefix is enclosed in double-quotes for variable-substitution to take place! </p> 
+ <p> Note that different to freestyle jobs, the version prefix is always automatically added to the front of the returned version and does not have to be manually specified within the version number string. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>worstResultForIncrement</code> (optional)
+<div><div> 
+ <p> If the former build-run's result is worse than the one selected here, this will not cause the build numbers for builds today / this week / this month / this year / all time to be incremented for the next build. Basically, this keeps "non-successful" builds from "eating" build numbers. Other rules apply; for example, if a failed build is fixed on the first build of the next day, then BUILDS_TODAY will be 1 for the fixed build. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

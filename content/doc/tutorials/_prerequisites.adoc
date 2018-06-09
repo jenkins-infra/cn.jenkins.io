@@ -1,0 +1,14 @@
+////
+This file is only meant to be included as a snippet in other documents.
+////
+
+=== 配置要求
+
+对于本教程，您将需要：
+
+* 安装有macOS，Linux或Windows操作系统的机器，并拥有以下配置：
+** 最小256MB内存, 推荐512MB以上。
+** 10GB硬盘空间， 用于安装Jenkins，您的Docker镜像和容器。
+* 安装有以下软件:
+** https://www.docker.com/[Docker] - 在link:/doc/book/installing/[安装Jenkins]页面的link:/doc/book/installing/#installing-docker[安装Docker]章节阅读更多信息。 +
+   *注意:* 如果您使用Linux，本教程假定您没有以root用户的身份运行Docker命令，而是使用单个用户帐户访问本教程中使用的其他工具。

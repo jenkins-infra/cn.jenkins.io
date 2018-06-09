@@ -1,0 +1,22 @@
+---
+layout: pipelinesteps
+title: "RadarGun报告插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== RadarGun报告插件
+
+plugin:radargun-reporting[在插件索引中查看此插件]
+
+=== +radargunreporting+: 报告RadarGun性能测试
+++++
+<ul></ul>
+
+
+++++

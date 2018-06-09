@@ -1,0 +1,229 @@
+---
+layout: documentation
+title: 运行多重步骤steps
+section: doc
+---
+
+:toc:
+
+Pipelines由多重steps组成，包括构建、测试和部署等应用。
+Jenkins Pipeline允许您使用一种简单的方式组合多重steps，以帮助您实现多种类型的自动化构建过程。
+
+可以把“step”看作一个简单的命令去执行一个简单的动作，或者说是一个步骤。
+当一个步骤运行成功时继续运行下一个步骤。
+当任何一个步骤执行失败时，Pipeline的执行结果也为失败。
+
+当所有的步骤都执行完成并且为成功时，Pipeline的执行结果为成功。
+
+=== Linux, BSD, and Mac OS
+
+在Linux, BSD, 和 Mac OS (类Unix) 系统中的shell命令， 对应于Pipeline中的一个 `sh` 步骤（step）
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    stage('Build') {
+        sh 'echo "Hello World"'
+        sh '''
+            echo "Multiline shell steps works too"
+            ls -lah
+        '''
+    }
+}
+----
+
+=== Windows
+
+基于Windows的系统使用 `bat` 步骤表示执行批处理命令
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                bat 'set'
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    stage('Build') {
+        bat 'set'
+    }
+}
+----
+
+////
+XXX: (rtyler) I think this section doesn't belong at this point in the Guided Tour
+     may need to figure out a better place to introduce additional steps and
+     wrappers steps
+////
+
+== 超时、重试和更多
+
+Jenkins Pipeline提供了很多的步骤（steps），这些步骤可以相互组合嵌套更加方便的解决重试问题和超时问题。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                retry(3) {
+                    sh './flakey-deploy.sh'
+                }
+
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh './health-check.sh'
+                }
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    stage('Deploy') {
+        retry(3) {
+            sh './flakey-deploy.sh'
+        }
+
+        timeout(time: 3, unit: 'MINUTES') {
+            sh './health-check.sh'
+        }
+    }
+}
+----
+
+“Deploy”阶段（stage）重试运行 `flakey-deploy.sh` 脚本3次，然后等待 `health-check.sh` 脚本最多执行3分钟。
+如果 `health-check.sh` 脚本在3分钟内没有完成，Pipeline将会标记在“Deploy”阶段失败。
+
+内嵌类型的步骤（带有body的步骤）例如 `timeout` and `retry` 可以包含其他的步骤。
+
+我们也可以组合这些步骤。例如，如果我们想要重试部署任务5次，但是总共花费的时间不能超过3分钟。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                timeout(time: 3, unit: 'MINUTES') {
+                    retry(5) {
+                        sh './flakey-deploy.sh'
+                    }
+                }
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    stage('Deploy') {
+        timeout(time: 3, unit: 'MINUTES') {
+            retry(5) {
+                sh './flakey-deploy.sh'
+            }
+        }
+    }
+}
+----
+
+== 完成时动作
+
+当Pipeline运行完成时，你可能需要做一些清理工作或者基于Pipeline的运行结果执行不同的操作，
+这些操作可以放在 `post` 部分。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                sh 'echo "Fail!"; exit 1'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+// Scripted //
+node {
+    try {
+        stage('Test') {
+            sh 'echo "Fail!"; exit 1'
+        }
+        echo 'This will run only if successful'
+    } catch (e) {
+        echo 'This will run only if failed'
+
+        // Since we're catching the exception in order to report on it,
+        // we need to re-throw it, to ensure that the build is marked as failed
+        throw e
+    } finally {
+        def currentResult = currentBuild.result ?: 'SUCCESS'
+        if (currentResult == 'UNSTABLE') {
+            echo 'This will run only if the run was marked as unstable'
+        }
+
+        def previousResult = currentBuild.previousBuild?.result
+        if (previousResult != null && previousResult != currentResult) {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+
+        echo 'This will always run'
+    }
+}
+----
+
+---
+
+完成定义多重步骤steps的基本学习之后，我们
+**link:../agents[继续去“定义执行环境”]**
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

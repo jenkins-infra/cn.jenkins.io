@@ -1,0 +1,653 @@
+---
+layout: pipelinesteps
+title: "CRX内容包部署者插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== CRX内容包部署者插件
+
+plugin:crx-content-package-deployer[在插件索引中查看此插件]
+
+=== +crxBuild+:在CRX上构建内容包
+++++
+<div><div>
+  Create and build a content package on CRX by specifying a workspace filter, and then download it to the workspace to get archived as a backup, or as the beginning of a magical content package adventure, full of drama, suspense, and deployments to lower environments! 
+</div></div>
+<ul><li><code>packageId</code> (optional)
+<div><div>
+  Specify a list of package IDs to replicate from each specified Base URL. Each package ID string must occupy its own line.
+ <br> 
+ <br> A Package ID consists of the group, the name, and the version of a package, separated by colons (':'), as in: "group:name:version". The version may be omitted.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseUrl</code> (optional)
+<div><div>
+  Specify the base URL of the Adobe Granite server, including hostname and port. The CRX Package Manager service path will be appended to this value for all requests. For example, 
+ <strong>http://localhost:4502</strong> or 
+ <strong>https://author.mycorp.com</strong>, etc.
+ <br> 
+ <br> If login credentials for the server are different than those configured in the Connection Options section, you may override them in the Base URL by inserting 
+ <code>username[:password]@</code> between the scheme and the hostname.
+ <br> 
+ <br> For example, to override the Username without changing the associated password or private key, you may use the following form:
+ <br> 
+ <br> http://
+ <strong>deployer@</strong>localhost:4502
+ <br> 
+ <br> To override the credentials completely, provide a username and password (which may be provided by an encrypted parameter) by separating them with a colon, as shown below: 
+ <br> http://
+ <strong>deployer:Password123@</strong>localhost:4502
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div>
+  Select the login credentials for authenticating requests to the CRX server.
+ <br> 
+ <br> 
+ <strong>[Signature]</strong> credentials may be used if the target server supports HTTP Signature Authentication using the keyId format, 
+ <code>/$username/keys/$fingerprint</code>.
+ <br> 
+ <br> Select "-none-" to use the default credentials set in the global 
+ <strong>CRX Content Package Deployer - HTTP Client</strong> configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>download</code> (optional)
+<div><div>
+  Check this box to download the package after building it. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>localDirectory</code> (optional)
+<div><div>
+  Specify a path relative to the workspace where the package will be downloaded (if the "Download" box is checked).
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>requestTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for a response for each individual request. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>serviceTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for PackageManager service availability between sending POST requests. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitDelay</code> (optional)
+<div><div>
+  Specify a delay in milliseconds before calls to check for Package Manager service availability. Increase this value if a /crx/packmgr node is sometimes created in the repository by this step, indicating that the Package Manager servlet was brought down for bundle installation AFTER a successful check for service availability, but BEFORE the next POST request was sent. What happens is that the SlingPostServlet takes over when the crx-packagemgr bundle is refreshed and creates nodes for any POST requests that it handles. Increasing this delay gives more time for the bundle refresh process to begin on the server. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>wspFilter</code> (optional)
+<div><div>
+  Specify a package workspace filter in a simple text format that will be applied to the package before build. This defines what content will be captured by the package.
+ <br> 
+ <br> Simple spec is defined simply as a line-by-line format where:
+ <br> 
+ <ul> 
+  <li>each line consists of significant text before an optional comment character (#)</li> 
+  <li>each line that begins with a "/" begins a new filter root.</li> 
+  <li>the first non-empty, non-comment line must define a new filter root</li> 
+  <li>each non-empty, non-comment line after a filter root that begins with a "+" or "-" defines an include or exclude rule, respectively. Everything following the "+" or "-" must be a valid regular expression</li> 
+ </ul> Content is "covered" by a filter root if the content path starts with, or is the same as the filter root path. Once the "covering" filter root is identified, its include/exclude rules are evaluated from top to bottom, by matching the content path against each rule pattern (which is a Java regular expression). The last rule whose pattern matches the content path defines whether that content is included (line starts with "+") or excluded (line starts with "-"). If no rules are defined, all content covered by that root path is included
+ <br> 
+ <br> For example, to include everything under /etc except for packages:
+ <br> 
+ <br> 
+ <pre>
+        /etc                 # define /etc as the filter root
+        +/etc(/.*)?          # include everything under /etc
+        -/etc/packages(/.)?  # exclude package paths
+    </pre> To create a package for a project "acme" defined in CRX DE Lite, a filter may look like this:
+ <br> 
+ <br> 
+ <pre>
+        /content/acme        # include the site content
+        /apps/acme           # include the app code
+    </pre> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +crxDeploy+: 将内容包部署到CRX
+++++
+<div><div>
+  Deploy CRX Content Package files from the workspace to a configured Adobe Granite repository via the CRX Package Manager.
+ <br> 
+ <br> Only package files with 
+ <strong>.zip</strong> or 
+ <strong>.jar</strong> extensions will be identified and deployed. 
+</div></div>
+<ul><li><code>packageIdFilters</code> (optional)
+<div><div>
+  Specify a list of package ID filters and path filters to match against identified Vault packages located in the workspace. Each filter string must occupy its own line.
+ <br> 
+ <br> A Package ID consists of the group, the name, and the version of a package, separated by colons (':'). 
+ <br> Package ID filters must follow one of three patterns:
+ <br> 
+ <ul> 
+  <li> group:name:version </li> 
+  <li> group:name </li> 
+  <li> name </li> 
+ </ul> Each segment in the package ID filter may be either ommitted or replaced with an asterisk ('*') to represent a wildcard.
+ <br> 
+ <br> This step now supports path filters as well. A path filter is a path suffix relative to the localDirectory ending in '.zip' or '.jar', which may include '**', '*', and '?' wildcard characters.
+ <br> 
+ <br> For example, this pattern will match all zip files under the Local Directory:
+ <br> 
+ <br> 
+ <pre>
+        **/*.zip
+    </pre> This pattern will only match packages located directly under the Packages folder whose filenames begin with 'acme-':
+ <br> 
+ <br> 
+ <pre>
+        Packages/acme-*.zip
+    </pre> Matching packages will be uploaded in the order in which the filters are specified. Only the highest matching version of a package identified by 'group:name' will be deployed, and it will only be deployed once per build step, regardless of the number of matching filters.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseUrls</code> (optional)
+<div><div>
+  Specify the base URL of the Adobe Granite server, including hostname and port. The CRX Package Manager service path will be appended to this value for all requests. For example, 
+ <strong>http://localhost:4502</strong> or 
+ <strong>https://author.mycorp.com</strong>, etc.
+ <br> 
+ <br> Multiple urls can be specified, one per line. All specified packages will be deployed to one server before beginning deployments to the next one.
+ <br> 
+ <br> If login credentials for one of the servers are different than those configured in the Connection Options section, you may override them in the Base URL by inserting 
+ <code>username[:password]@</code> between the scheme and the hostname.
+ <br> 
+ <br> For example, to override the Username without changing the associated password or private key, you may use the following form:
+ <br> 
+ <br> http://
+ <strong>deployer@</strong>localhost:4502
+ <br> 
+ <br> To override the credentials completely, provide a username and password (which may be provided by an encrypted parameter) by separating them with a colon, as shown below:
+ <br> 
+ <br> http://
+ <strong>deployer:Password123@</strong>localhost:4502
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>acHandling</code> (optional)
+<div><div>
+  Change the way content ACL's included in the package filter scope are handled during installation. 
+ <dl> 
+  <dt>
+   Defer to Package
+  </dt> 
+  <dd>
+   Allow package to specify AC Handling mode. (This can be dangerous. Consider using a 
+   <strong>Validate CRX Content Packages</strong> step to check packages for destructive AC Handling rules before you deploy them.)
+  </dd> 
+  <dt>
+   Ignore
+  </dt> 
+  <dd>
+   Ignores the packaged access control and leaves the target unchanged.
+  </dd> 
+  <dt>
+   MergePreserve
+  </dt> 
+  <dd>
+   Merge access control in the content with the one provided with the package by adding the access control entries of principals not present in the content (i.e. content first). It never alters access control entries already existing in the content.
+  </dd> 
+  <dt>
+   Merge
+  </dt> 
+  <dd>
+   Merge access control provided with the package with the one in the content by replacing the access control entries of corresponding principals (i.e. package first). It never alters access control entries of principals not present in the package.
+  </dd> 
+  <dt>
+   Overwrite
+  </dt> 
+  <dd>
+   Applies the access control provided with the package to the target. This also removes existing access control.
+  </dd> 
+  <dt>
+   Clear
+  </dt> 
+  <dd>
+   Clears all access control on the target system.
+  </dd> 
+ </dl> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>autosave</code> (optional)
+<div><div>
+  Specify the number of changes to batch before saving the JCR session during package installation. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>behavior</code> (optional)
+<div><div>
+  Specify the behavior when a package exists on the target server that has the same package ID as one you are trying to deploy. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div>
+  Select the login credentials with which content packages will be deployed to the CRX server.
+ <br> 
+ <br> 
+ <strong>[Signature]</strong> credentials may be used if the target server supports HTTP Signature Authentication using the keyId format, 
+ <code>/$username/keys/$fingerprint</code>.
+ <br> 
+ <br> Select "-none-" to use the default credentials set in the global 
+ <strong>CRX Content Package Deployer - HTTP Client</strong> configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>disableForJobTesting</code> (optional)
+<div><div>
+  Check this box to disable package deployment during Jenkins Job testing. For example, it is often necessary to test changes to artifact resolution configuration or to test Vault package identification. By checking this box, you can be sure that no installation will occur on any Granite server, and you will also see additional debug messaging in the console log describing the results of identification of Vault packages in the workspace. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>localDirectory</code> (optional)
+<div><div>
+  Specify a path relative to the workspace in which to scan for packages.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>recursive</code> (optional)
+<div><div>
+  Check this box to install any sub-packages along with the deployed package. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>replicate</code> (optional)
+<div><div>
+  Check this box to replicate each package after installation. This will not be attempted if the package installation fails, and only packages which have actually been installed by this step (rather than simply uploaded or skipped) will be replicated. This happens asynchronously, so you won't really know if the replication was successful or not unless you manually check your replication agent logs. For this reason, it might be better instead to deploy to each replication target directly. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>requestTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for a response for each individual request. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>serviceTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for PackageManager service availability between sending POST requests. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitDelay</code> (optional)
+<div><div>
+  Specify a delay in milliseconds before calls to check for Package Manager service availability. Increase this value if a /crx/packmgr node is sometimes created in the repository by this step, indicating that the Package Manager servlet was brought down for bundle installation AFTER a successful check for service availability, but BEFORE the next POST request was sent. What happens is that the SlingPostServlet takes over when the crx-packagemgr bundle is refreshed and creates nodes for any POST requests that it handles. Increasing this delay gives more time for the bundle refresh process to begin on the server. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+
+
+++++
+=== +crxDownload+: 从CRX下载内容包
+++++
+<div><div>
+  Download CRX Content Package files from a configured Adobe Granite repository into the workspace via the CRX Package Manager. 
+</div></div>
+<ul><li><code>packageIds</code> (optional)
+<div><div>
+  Specify a list of package IDs to download to the workspace. Each package ID string must occupy its own line.
+ <br> 
+ <br> A Package ID consists of the group, the name, and the version of a package, separated by colons (':'), as in: "group:name:version".
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseUrl</code> (optional)
+<div><div>
+  Specify the base URL of the Adobe Granite server, including hostname and port. The CRX Package Manager service path will be appended to this value for all requests. For example, 
+ <strong>http://localhost:4502</strong> or 
+ <strong>https://author.mycorp.com</strong>, etc.
+ <br> 
+ <br> If login credentials for the server are different than those configured in the Connection Options section, you may override them in the Base URL by inserting 
+ <code>username[:password]@</code> between the scheme and the hostname.
+ <br> 
+ <br> For example, to override the Username without changing the associated password or private key, you may use the following form:
+ <br> 
+ <br> http://
+ <strong>deployer@</strong>localhost:4502
+ <br> 
+ <br> To override the credentials completely, provide a username and password (which may be provided by an encrypted parameter) by separating them with a colon, as shown below:
+ <br> 
+ <br> http://
+ <strong>deployer:Password123@</strong>localhost:4502
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div>
+  Select the login credentials with which content packages will be downloaded from the CRX server.
+ <br> 
+ <br> 
+ <strong>[Signature]</strong> credentials may be used if the target server supports HTTP Signature Authentication using the keyId format, 
+ <code>/$username/keys/$fingerprint</code>.
+ <br> 
+ <br> Select "-none-" to use the default credentials set in the global 
+ <strong>CRX Content Package Deployer - HTTP Client</strong> configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreErrors</code> (optional)
+<div><div>
+  Check this box to ignore errors during download such that the build continues after completion of this step. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>localDirectory</code> (optional)
+<div><div>
+  Specify a path relative to the workspace to which packages will be downloaded.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>rebuild</code> (optional)
+<div><div>
+  Check this box to rebuild each package before downloading it. If rebuilding a package fails, the job will fail, unless Ignore Errors is also checked. If there are errors during rebuild, but it is ultimately reported as successful, then the job will be marked as unstable and the download step will continue. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>requestTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for a response for each individual request. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>serviceTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for PackageManager service availability between sending POST requests. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitDelay</code> (optional)
+<div><div>
+  Specify a delay in milliseconds before calls to check for Package Manager service availability. Increase this value if a /crx/packmgr node is sometimes created in the repository by this step, indicating that the Package Manager servlet was brought down for bundle installation AFTER a successful check for service availability, but BEFORE the next POST request was sent. What happens is that the SlingPostServlet takes over when the crx-packagemgr bundle is refreshed and creates nodes for any POST requests that it handles. Increasing this delay gives more time for the bundle refresh process to begin on the server. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+
+
+++++
+=== +crxReplicate+: 从CRX复制内容包
+++++
+<div><div>
+  Asynchronously replicate CRX Content Packages from one-or-more configured Adobe Granite repositories to wherever their replication agents may take them. This is probably not the most deterministic way to install packages on publish servers, so prefer using the "Deploy Content Packages" step if possible. 
+</div></div>
+<ul><li><code>packageIds</code> (optional)
+<div><div>
+  Specify a list of package IDs to replicate from each specified Base URL. Each package ID string must occupy its own line.
+ <br> 
+ <br> A Package ID consists of the group, the name, and the version of a package, separated by colons (':'), as in: "group:name:version".
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseUrls</code> (optional)
+<div><div>
+  Specify the base URL of the Adobe Granite server, including hostname and port. The CRX Package Manager service path will be appended to this value for all requests. For example, 
+ <strong>http://localhost:4502</strong> or 
+ <strong>https://author.mycorp.com</strong>, etc.
+ <br> 
+ <br> Multiple urls can be specified, one per line. All specified packages will be replicated from one server before beginning replications from the next one.
+ <br> 
+ <br> If login credentials for one of the servers are different than those configured in the Connection Options section, you may override them in the Base URL by inserting 
+ <code>username[:password]@</code> between the scheme and the hostname.
+ <br> 
+ <br> For example, to override the Username without changing the associated password or private key, you may use the following form:
+ <br> 
+ <br> http://
+ <strong>deployer@</strong>localhost:4502
+ <br> 
+ <br> To override the credentials completely, provide a username and password (which may be provided by an encrypted parameter) by separating them with a colon, as shown below:
+ <br> 
+ <br> http://
+ <strong>deployer:Password123@</strong>localhost:4502
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<div><div>
+  Select the login credentials with which content packages will be replicated from the CRX server.
+ <br> 
+ <br> 
+ <strong>[Signature]</strong> credentials may be used if the target server supports HTTP Signature Authentication using the keyId format, 
+ <code>/$username/keys/$fingerprint</code>.
+ <br> 
+ <br> Select "-none-" to use the default credentials set in the global 
+ <strong>CRX Content Package Deployer - HTTP Client</strong> configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreErrors</code> (optional)
+<div><div>
+  Check this box to ignore errors during replication such that the build continues after completion of this step. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>requestTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for a response for each individual request. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>serviceTimeout</code> (optional)
+<div><div>
+  Specify the timeout in milliseconds to wait for PackageManager service availability between sending POST requests. Specify a value of 0 to use default behavior. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitDelay</code> (optional)
+<div><div>
+  Specify a delay in milliseconds before calls to check for Package Manager service availability. Increase this value if a /crx/packmgr node is sometimes created in the repository by this step, indicating that the Package Manager servlet was brought down for bundle installation AFTER a successful check for service availability, but BEFORE the next POST request was sent. What happens is that the SlingPostServlet takes over when the crx-packagemgr bundle is refreshed and creates nodes for any POST requests that it handles. Increasing this delay gives more time for the bundle refresh process to begin on the server. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+
+
+++++
+=== +crxValidate+: 验证CRX内容包
+++++
+<div><div>
+  Validate that content packages in the workspace conform to restrictions on the scope of their WorkspaceFilter and on the types of embedded files. Use this to enforce security policies to prevent developers from deploying content or code through continuous integration.
+ <br> 
+ <br> Only package files with 
+ <strong>.zip</strong> or 
+ <strong>.jar</strong> extensions will be identified and deployed. 
+</div></div>
+<ul><li><code>packageIdFilters</code> (optional)
+<div><div>
+  Specify a list of package ID filters to match against identified Vault packages located in the workspace. Each filter string must occupy its own line.
+ <br> 
+ <br> A Package ID consists of the group, the name, and the version of a package, separated by colons (':').
+ <br> 
+ <br> Package ID filters must follow one of three patterns:
+ <br> 
+ <ul> 
+  <li> group:name:version </li> 
+  <li> group:name </li> 
+  <li> name </li> 
+ </ul> Each segment in the package ID filter may be either ommitted or replaced with an asterisk ('*') to represent a wildcard.
+ <br> 
+ <br> This step now supports path filters as well. A path filter is a path suffix relative to the localDirectory ending in '.zip' or '.jar', which may include '**', '*', and '?' wildcard characters.
+ <br> 
+ <br> For example, this pattern will match all zip files under the Local Directory:
+ <br> 
+ <br> 
+ <pre>
+        **/*.zip
+    </pre> This pattern will only match packages located directly under the Packages folder whose filenames begin with 'acme-':
+ <br> 
+ <br> 
+ <pre>
+        Packages/acme-*.zip
+    </pre> Matching packages will be validated in the order in which the filters are specified. At least one package must match each filter or the step will fail.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowNonCoveredRoots</code> (optional)
+<div><div>
+  Check this box to allow package workspace filters to cover roots which are not covered by the validation workspace filter. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>forbiddenACHandlingModeSet</code> (optional)
+<div><div>
+  Select a set of AC Handling Modes to forbid, to prevent destructive or unauthorized changes to Access Control Lists, at the package level:
+ <br> 
+ <br> 
+ <dl> 
+  <dt>
+   Skip Validation
+  </dt> 
+  <dd>
+   Do not validate package AC Handling Mode.
+  </dd> 
+  <dt>
+   No Clear
+  </dt> 
+  <dd>
+   Forbid the "Clear" AC Handling Mode, which resets all covered ACLs (Forbids "Clear").
+  </dd> 
+  <dt>
+   No Unsafe
+  </dt> 
+  <dd>
+   Forbid any AC Handling Mode which may delete ACLs for unspecified users (Forbids "Clear", "Overwrite").
+  </dd> 
+  <dt>
+   Allow Additive
+  </dt> 
+  <dd>
+   Forbid any AC Handling Mode which may delete or overwrite an existing ACL (Forbids "Clear", "Overwrite", "Merge").
+  </dd> 
+  <dt>
+   No ACLs
+  </dt> 
+  <dd>
+   Forbid any AC Handling Mode other than "Ignore" (Forbids "Clear", "Overwrite", "Merge", "MergePreserve").
+  </dd> 
+ </dl> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forbiddenExtensions</code> (optional)
+<div><div>
+  List of file extensions to scan the package for (as a jar file), one per line. For example, specify the following to ensure that embedded jar files and package files are not included in the package even if the workspace filter does not cover the paths from where they could be theoretically installed:
+ <br> 
+ <br> 
+ <pre>
+        .jar
+        .zip
+    </pre> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forbiddenFilterRootPrefixes</code> (optional)
+<div><div>
+  List of path prefixes which are forbidden to be the same path or an ancestor of any workspace filter root. Surrounding whitespace and trailing slashes are ignored and the prefix is treated as an atomic path. For example:
+ <br> 
+ <br> 
+ <pre>/apps/system</pre>
+ <br> will fail a package defining a filter root of 
+ <pre>/apps/system/config</pre>
+ <br> but it will not fail a package filter covering only 
+ <pre>/apps/systemOfADown/config</pre> 
+ <br> Use this test to safeguard entire repository trees from package installation or uninstallation.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>localDirectory</code> (optional)
+<div><div>
+  Specify a path relative to the workspace in which to scan for packages to validate.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathsDeniedForInclusion</code> (optional)
+<div><div>
+  List of test paths which must be "excluded" by the package filter in order to be considered valid. For example:
+ <br> 
+ <br> 
+ <pre>
+        /apps/system/rep:policy
+        /etc/map/http/site_root_redirect
+    </pre> Use this test to safeguard specific paths or possible paths within unrestricted roots from overly broad workspace filters.
+ <br> 
+ <br> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>validationFilter</code> (optional)
+<div><div>
+  Specify a validation workspace filter in a simple text format that each package workspace filter will be evaluated against.
+ <br> 
+ <br> Simple spec is defined simply as a line-by-line format where:
+ <br> 
+ <ul> 
+  <li>each line consists of significant text before an optional comment character (#)</li> 
+  <li>each line that begins with a "/" begins a new filter root.</li> 
+  <li>the first non-empty, non-comment line must define a new filter root</li> 
+  <li>each non-empty, non-comment line after a filter root that begins with a "+" or "-" defines an include or exclude rule, respectively. Everything following the "+" or "-" must be a valid regular expression</li> 
+ </ul> A package filter root is "covered" by a validation filter root if the package filter root path starts with, or is the same as the validation filter root path. Once the "covering" validation filter root is identified, the package filter root's include/exclude rules are inspected to be sure that they contain all of the validation filter's rules in order, at the end of the list.
+ <br> 
+ <br> For example, to require that packages exclude the /etc/packages folder:
+ <br> 
+ <br> 
+ <pre>
+        /etc                 # define /etc as the filter root
+        -/etc/packages(/.)?  # exclude package paths
+    </pre> This field supports parameter tokens. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

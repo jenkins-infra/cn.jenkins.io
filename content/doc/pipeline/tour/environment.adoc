@@ -1,0 +1,65 @@
+---
+layout: documentation
+title: 使用环境变量
+---
+:email: jenkinsci-docs@googlegroups.com
+:sectanchors:
+:toc:
+:imagesdir: ../../../book/resources
+:hide-uri-scheme:
+
+可以设置全局的和阶段stage的环境变量。
+如你所料，阶段性的环境变量只能在阶段定义的地方使用。
+
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'
+            }
+        }
+    }
+}
+// Scripted //
+node {
+    withEnv(['DISABLE_AUTH=true',
+             'DB_ENGINE=sqlite']) {
+        stage('Build') {
+            sh 'printenv'
+        }
+    }
+}
+----
+
+这种在 `Jenkinsfile` 中定义环境变量的方法对于指令性的脚本定义非常有用方便，
+比如 `Makefile` 文件，可以在Pipeline中配置构建或者测试的环境，然后在Jenkins中运行。
+
+环境变量的另一个常见用途是设置或者覆盖构建或测试脚本中的凭证。
+因为把凭证信息直接写入 `Makefile` 很显然是一个坏主意，
+Jenkins Pipeline允许用户快速安全地访问在 `Jenkinsfile` 中预定义的凭证信息，并且无需知道它们的的价值。
+
+=== 环境变量中的凭证信息
+
+更多信息参考
+link:/doc/book[用户手册]
+中的
+link:/doc/book/pipeline/jenkinsfile#handling-credentials[凭证信息处理]
+。
+
+**link:../tests-and-artifacts[继续“记录测试和构建结果”]**
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

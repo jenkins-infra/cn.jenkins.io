@@ -1,0 +1,89 @@
+---
+layout: pipelinesteps
+title: "Mattermost通知插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Mattermost通知插件
+
+plugin:mattermost[在插件索引中查看此插件]
+
+=== +mattermostSend+: 发送 Mattermost 消息
+++++
+<div><div>
+  Simple step for sending a Mattermost message to specified channel.
+ <br> Use the advanced settings to override the Mattermost Plugin global configuration to include: 
+ <code>endpoint</code>, 
+ <code>channel</code> and 
+ <code>icon</code>.
+ <br> Please see the Slack Plugin global configuration for more details on the fields. Usage Example:
+ <br> 
+ <code> mattermostSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (&lt;${env.BUILD_URL}|Open&gt;)" </code> 
+</div></div>
+<ul><li><code>message</code>
+<div><div>
+  This is the main text in a message attachment, and can contain standard message markup. The content will automatically collapse if it contains 700+ characters or 5+ linebreaks, and will display a "Show more..." link to expand the content. Message may include global variables, for example environment and currentBuild variables:
+ <br> 
+ <code> mattermostSend "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (&lt;${env.BUILD_URL}|Open&gt;)" </code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>channel</code> (optional)
+<div><div>
+  Allows overriding the Mattermost Plugin channel specified in the global configuration.
+ <br> 
+ <code>mattermostSend channel: "#channel-name", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>color</code> (optional)
+<div><div>
+  An 
+ <b>optional</b> value that can either be one of 
+ <b>good</b>, 
+ <b>warning</b>, 
+ <b>danger</b>, or any 
+ <b>hex color code</b> (eg. #439FE0). This value is used to color the border along the left side of the message attachment.
+ <br> 
+ <code>mattermostSend color: "#439FE0", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>endpoint</code> (optional)
+<div><div>
+  Allows overriding the Mattermost Plugin endpoint (url?token) specified in the global configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<div><div>
+  If set to true, then the step will abort the Workflow run if there is an error sending message.
+ <br> 
+ <code>mattermostSend failOnError: true, message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>icon</code> (optional)
+<div><div>
+  Allows overriding the Mattermost Plugin Integration icon specified in the global configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code> (optional)
+<div><div>
+  This text is the main message after the message attachment, and can contain standard message markup. The content may contain user "mentions" and highlights.
+ <br> 
+ <code> mattermostSend prext: "@foo @bar" color: "#439FE0", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}" </code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,61 @@
+---
+layout: pipelinesteps
+title: "用于Jenkins的SonarQube扫描仪"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 用于Jenkins的SonarQube扫描仪
+
+plugin:sonar[在插件索引中查看此插件]
+
+=== +waitForQualityGate+: 等待SonarQube分析完成并返回质量门状态
+++++
+<div><div> 
+ <p> This step pauses Pipeline execution and wait for previously submitted SonarQube analysis to complete and returns quality gate status. </p> 
+ <p> Note: This step doesn't require an executor. </p> 
+ <p> Requirements: </p>
+ <ul> 
+  <li>SonarQube server 6.2+</li> 
+  <li><a href="https://redirect.sonarsource.com/doc/webhooks.html" rel="nofollow">Configure a webhook</a> in your SonarQube server pointing to <code>&lt;your Jenkins instance&gt;/sonarqube-webhook/</code>. <strong>The trailing slash is mandatory!</strong></li> 
+  <li>Use <code>withSonarQubeEnv</code> step to run your analysis prior to use this step</li> 
+ </ul> 
+ <p></p> 
+ <p> Example:<br> <code></code></p>
+ <pre><code>
+      stage("build &amp; SonarQube analysis") {
+          node {
+              withSonarQubeEnv('My SonarQube Server') {
+                 sh 'mvn clean package sonar:sonar'
+              }    
+          }
+      }
+      
+      stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }        
+      </code></pre> 
+ <p></p> 
+</div></div>
+<ul></ul>
+
+
+++++
+=== +withSonarQubeEnv+: 准备SonarQube扫描仪环境
+++++
+<ul><li><code>installationName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

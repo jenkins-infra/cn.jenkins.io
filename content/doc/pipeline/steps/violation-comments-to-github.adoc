@@ -1,0 +1,61 @@
+---
+layout: pipelinesteps
+title: "对GitHub插件的违规评论"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 对GitHub插件的违规评论
+
+plugin:violation-comments-to-github[在插件索引中查看此插件]
+
+=== +ViolationsToGitHub+: 向GitHub报告违规行为
+++++
+<div><div> 
+ <p> See <a href="https://wiki.jenkins-ci.org/display/JENKINS/Violation+Comments+to+GitHub+Plugin" rel="nofollow">Violation Comments to GitHub Plugin</a> for details on how to configure and use this plugin. </p> 
+ <p> Pattern is a regular expression for matching report files. For example <b>.*/findbugs/.*\.xml$</b> matches xml-files, in a folder named findbugs, anywhere in workspace. </p> 
+</div></div>
+<ul><li><code>config</code>
+<ul><b>Nested Object</b>
+<li><code>repositoryName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>repositoryOwner</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pullRequestId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>gitHubUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commentOnlyChangedContent</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>createCommentWithAllSingleFileComments</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>createSingleFileComments</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>keepOldComments</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>minSeverity</code> (optional)
+<ul><li><b>Values:</b> <code>INFO</code>, <code>WARN</code>, <code>ERROR</code></li></ul></li>
+<li><code>oAuth2Token</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>violationConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>reporter</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pattern</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>parser</code>
+<ul><li><b>Values:</b> <code>ANDROIDLINT</code>, <code>CHECKSTYLE</code>, <code>CODENARC</code>, <code>CLANG</code>, <code>CPD</code>, <code>CPPCHECK</code>, <code>CPPLINT</code>, <code>CSSLINT</code>, <code>FINDBUGS</code>, <code>FLAKE8</code>, <code>FXCOP</code>, <code>GENDARME</code>, <code>JCREPORT</code>, <code>JSHINT</code>, <code>LINT</code>, <code>KLOCWORK</code>, <code>MYPY</code>, <code>GOLINT</code>, <code>GOOGLEERRORPRONE</code>, <code>PERLCRITIC</code>, <code>PITEST</code>, <code>PMD</code>, <code>PYDOCSTYLE</code>, <code>PYLINT</code>, <code>RESHARPER</code>, <code>SBTSCALAC</code>, <code>SIMIAN</code>, <code>STYLECOP</code>, <code>XMLLINT</code>, <code>ZPTLINT</code>, <code>DOCFX</code>, <code>PCLINT</code></li></ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++

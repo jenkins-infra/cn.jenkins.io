@@ -1,0 +1,508 @@
+---
+layout: documentation
+title: 构建多分支流水线项目
+section: doc
+---
+
+:toc:
+:toclevels: 3
+:imagesdir: ../../book/resources
+
+本教程向你展示如何使用Jenkins协调一个用 https://www.npmjs.com/[Node Package Manager (npm)]
+管理的简单 https://nodejs.org/en/[Node.js] 和 https://reactjs.org/[React] 项目，
+ _并同时_ 为开发和产品环境交付不同的结果。
+
+在开始本教程之前，建议你前往 link:..[教程概览] 页面，并至少完成一个 link:../#introductory-tutorials[介绍教程]，
+从而让你熟悉持续集成/持续交付概念（不同于你以往熟悉的技术栈）和这些概念在Jenkins中实现方式，
+以及Jenkins流水线的基本知识。
+
+本教程你将使用与 link:../build-a-node-js-and-react-app-with-npm[构建npm管理的Node.js和React应用]
+教程相同的应用。然而这一次，项目的交付会根据Jenkins构建不同的Git分支而有所区别。
+也就是说，所构建的分支决定你的流水线会执行哪一个交付阶段。
+
+*耗时：* 假如你的机器符合<<prerequisites,配置要求>>，完成本教程需要30-50分钟。 准确的耗时取决于你机器的性能，
+以及你是否完成过<<run-jenkins-in-docker,在Docker中运行Jenkins>>教程，请参考link:..[另一个教程].
+
+你可以在任何时候停止本教程，并从你离开的地方继续。
+
+若你已经完成了link:..[另一个教程]，可以跳过<<prerequisites,配置要求>>和<<run-jenkins-in-docker,在Docker中运行Jenkins>>章节，
+继续阅读<<fork-sample-repository,fork示例仓库>>（确保你本地安装了link:https://git-scm.com/downloads[Git]）。
+如果你需要重启Jenkins，请参考<<stopping-and-restarting-jenkins,停止和重启Jenkins>>.
+
+include::doc/tutorials/_prerequisites.adoc[]
+** link:https://git-scm.com/downloads[Git]和link:https://desktop.github.com/[GitHub Desktop].
+
+include::doc/book/installing/_run-jenkins-in-docker.adoc[]
+
+
+[[fork-sample-repository]]
+=== Fork 和 clone GitHub示例仓库
+
+通过将应用程序源代码所在的示例仓库fork到你自己的Github账号中， 并clone到本地，
+你就可以获取一个"Welcome to React"简单Node.js和React应用程序。
+
+. 请确保你登陆了你的GitHub账户。如果你还没有Github账户，你可以在 https://github.com/[GitHub网站] 免费注册一个账户。
+. 将示例仓库 https://github.com/jenkins-docs/building-a-multibranch-pipeline-project[`building-a-multibranch-pipeline-project`]
+  fork到你的账户的Github仓库中。在此过程中，如果你需要帮助，
+  请参考 https://help.github.com/articles/fork-a-repo/[Fork A Repo] 文档。
+. 将你的GitHub账户中的 `simple-java-maven-app` 仓库clone到你的本地机器。
+  根据你的情况完成以下步骤之一(其中 `<your-username>` 是你的操作系统用户账户名称)：
+** 如果你的机器安装了Github Desktop：
+.. 在GitHub网站上，点击绿色的 *Clone or download* 按钮，再点击 *Open in Desktop*.
+.. 在Github桌面版中，在点击 *Clone a Repository* 对话框上的 *Clone* 按钮之前，确保 *Local Path* 的配置为：
+*** macOS 系统配置为 `/Users/<your-username>/Documents/GitHub/building-a-multibranch-pipeline-project`
+*** Linux 系统配置为 `/home/<your-username>/GitHub/building-a-multibranch-pipeline-project`
+*** Windows 系统配置为 `C:\Users\<your-username>\Documents\GitHub\building-a-multibranch-pipeline-project`
+** 其他情况:
+.. 打开一个终端/命令提示符，并且 `cd` 进入正确的目录路径：
+*** macOS 系统路径为 `/Users/<your-username>/Documents/GitHub/`
+*** Linux 系统路径为 `/home/<your-username>/GitHub/`
+*** Windows 系统路径为 `C:\Users\<your-username>\Documents\GitHub\`
+（推荐使用Git bash命令行，而不是通常的Microsoft命令提示符）
+.. 运行以下命令完成仓库的clone： +
+   `git clone https://github.com/YOUR-GITHUB-ACCOUNT-NAME/building-a-multibranch-pipeline-project` +
+   其中 `YOUR-GITHUB-ACCOUNT-NAME` 是你的Github账户的名称。
+
+
+=== 在你的仓库中创建开发和生产分支
+
+在Jenkins中创建流水线项目之前，在你的本地Git仓库中创建"development"和 "production"分支。
+你将创建一个单独的Jenkinsfile（最初是在 `master` 分支，但最终其上的代码会复制到其他分支），
+该Jenkinsfile的各个阶段会根据Jenkins所构建的分支不同而被选择性的执行。
+
+在 `building-a-multibranch-pipeline-project` 目录路径下（即你的本地clone仓库）
+
+. 运行以下命令来创建以上分支（从 `master` 分支的内容复制）：
+* `git branch development` +
+  以及
+* `git branch production`
+. 检查这些分支被成功创建，运行命令 `git branch`，结果为：
++
+[source,bash]
+----
+  development
+* master
+  production
+----
+. 如果符号*（标识当前分支）未处于 `master` 的位置，运行命令 `git checkout master` 以确保 `master` 是当前分支。
+
+
+=== 在Blue Ocean中创建你的流水线项目
+
+当你在Blue Ocean中创建 _any_ 流水线项目是 , Jenkins 实际上在后台创建了一个多分支管道项目 。 如果你在Blue Ocean创建了一个流水线项目后，访问 Jenkins的经典界面; 你会看到Jenkins 将你的项目创建为一个 "多分支流水线" 项目。
+
+. 回到Jenkins并进入 Blue Ocean 界面。 要做到这点, 确保:
+* 浏览 `http://localhost:8080/blue` 并登陆+
+  或
+* 浏览 `http://localhost:8080/`, 登录后点击右侧的 *Open
+  Blue Ocean* 。
+. 在Blue Ocean界面中心的 *Welcome to Jenkins* 框,
+  点击 *Create a new Pipeline* 开始流水线构建向导。 +
+  *Note:* 如果你没有看到这个框, 点击右上方的 *New Pipeline*。
+. 在 *Where do you store your code?*,点击 *Git* (_not_ *GitHub*).
+. 在*Repository URL* 域 (在 *Connect to a Git repository*里), 指定你<<fork-sample-repository,above>>clone到本地的仓库的目录路径, 他来自你主机上的
+  用户账号/主目录 , 映射到Jenkins容器的 `/home`
+  d目录 - 即
+* macOS - `/home/Documents/GitHub/building-a-multibranch-pipeline-project`
+* Linux - `/home/GitHub/building-a-multibranch-pipeline-project`
+* Windows - `/home/Documents/GitHub/building-a-multibranch-pipeline-project`
+. 点击k *Save* 保存你新建的流水线项目。 +
+  Blue Ocean 在每个分支中检测 `Jenkinsfile` "流水线存根" 的存在并运行每条流水线以对抗其各自的分支, 它的构建结果显示在Blue Ocean主界面的 *Activity* 页面上。+
+[.boxshadow]
+image:tutorials/multibranch-pipeline-01-main-blueocean-interface.png[alt="Main
+Blue Ocean interface",width=100%]
+
+[NOTE]
+====
+流水线存根包含一条流水线的基本要求 - 即
+link:/doc/book/pipeline/syntax#agent[`agent`] 和
+link:/doc/book/pipeline/syntax#stages[`stages`] 部分, 以及
+link:/doc/book/pipeline/syntax#stage[`stage`] 指令。
+
+为什么 `building-a-multibranch-pipeline-project` 仓库的原因包括`Jenkinsfile` 流水线存根，它的存在的作用是：在 Blue Ocean中创建流水线项目后能够立刻检测到(即 `Jenkinsfile`) , 这使得这些分支可以通过Blue Ocean进行访问。
+
+如果你在Blue Ocean中构建了一个流水线项目，但在你的仓库的一个或多个分支上没有一个 Jenkinsfile, 随后添加`Jenkinsfile` 到这些分支中,然后在Blue Ocean中访问这些分支
+任一个:
+
+* 在多分支流水线项目中使用 *Scan Multibranch Pipeline Now* 特性  (可通过 Jenkins的 经典界面进行访问), +
+  或者
+* 在 Git 仓库中实现webhooks。
+====
+
+
+=== 将你的带有build 和 test 阶段的初始流水线创建为Jenkinsfile 
+
+现在，你已经准备好在Jenkins中创建你的能够自动构建 Node.js
+和React 应用程序的流水。 你的流水线将被创建为
+`Jenkinsfile`, 它会提交你本地的Git仓库(`building-a-multibranch-pipeline-project`)的 `master` 分支 。
+
+首先, 创建一个初始流水线来下载 Node Docker 镜像并将它作为Docket容器运行，它会构建简单的Node.js 和 React 应用程序。还会添加  "Build" 阶段到流水线，开始编排整个过程和"Test" 阶段 ，检查应用程序呈现的结果是否令人满意。
+
+. 使用你最称手的文本编辑器或 IDE, 在本地 `building-a-multibranch-pipeline-project` Git 仓库的根目录下打开现有的 `Jenkinsfile` 并 _clear_ 它的内容。 +
+  *Note:* 确保在你的仓库的`master` 分支上执行了该步骤。
+. 复制并粘贴下面的声明式流水线代码到空的
+  `Jenkinsfile`文件中:
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000 -p 5000:5000' // <1>
+        }
+    }
+    environment {
+        CI = 'true'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+    }
+}
+----
+<1>  `args` 使 Node 容器 (临时的) 可以通过
+3000 和 5000端口进行访问。它的意义在于解释了你clone的仓库的
+`jenkins/scripts/deliver-for-deployment.sh` 和
+`jenkins/scripts/deploy-for-production.sh` 文件, 这将在本教程的后续部分中介绍。
++
+*Note:* 对 `Jenkinsfile`中其他组件的解释, 请参考link:../build-a-node-js-and-react-app-with-npm/[使用npm构建Node.js和React应用]教程的link:../build-a-node-js-and-react-app-with-npm/#create-your-initial-pipeline-as-a-jenkinsfile[``Create
+your initial Pipeline...''] 和
+link:../build-a-node-js-and-react-app-with-npm/#add-a-test-stage-to-your-pipeline[``Add
+a test stage...'']章节的声明式流水线的注解。
+.
+. 保存并提交你编辑的 `Jenkinsfile` 文件到本地的
+  `building-a-multibranch-pipeline-project` Git 仓库。 比如在
+  `building-a-multibranch-pipeline-project` 目录下, 运行下面的命令: +
+  `git stage .` +
+  然后 +
+  `git commit -m "Add initial Jenkinsfile with 'Test' stage"`
+. 再次回到Jenkins, 必要的话再次登录并进入
+  Jenkins的Blue Ocean的界面。
+. 点击右上方的 *Branches* 进入你的流水线项目的分支列表。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-11-branches-page.png[alt="Branches
+page",width=100%]
+. 点击你的流水线项目的 `master` 分支的运行图标
+  image:tutorials/multibranch-pipeline-12-run-icon.png[alt="Run icon",width=3%]
+ , 然后快速的点击出现在右下方的 *OPEN*
+  链接来查看Jenkins 使用改进后的 `Jenkinsfile`构建
+  `master` 分支。 如果你点击不了**OPEN** 链接, 点击Blue Ocean *Activity* 页面  的_top_ 行来使用这一特性。 +
+  在几分钟内, 如果Jenkins成功的从你的 `master`分支构建了 Node.js 和 React 应用程序，Blue Ocean界面就会变成绿色。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-13-build-and-test-stages-run-successfully-with-output.png[alt="Build
+and test stages run successfully with output",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean 界面的 *Activity* 页面。
+
+
+=== 给你的流水线添加deliver和 deploy 阶段
+
+接下来, 添加 "交付开发" 和 "部署生产" 阶段到你的流水线,Jenkins将会根据Jenkins所在的分支选择性的执行。
+
+这将 "流水线即代码" 概念提升到一个新的级别, 在这个级别中， 一个单一的
+`Jenkinsfile` 文件描述了在Jenkins中你的仓库的每个分支的整个项目的构建, 测试, 交付和部署过程。 了解更多在用户手册的
+link:/doc/book/pipeline[流水线] 和 link:/doc/book/pipeline/jenkinsfile[使用Jenkinsfile]章节。
+
+. 回到你的文本编辑器/IDE，打开`Jenkinsfile` 文件。
+. 立刻复制并粘贴下面的声明式流水线语法到`Jenkinsfile`文件的
+  `Test` 阶段下面:
++
+[source,groovy]
+----
+        stage('Deliver for development') {
+            when {
+                branch 'development'
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Deploy for production') {
+            when {
+                branch 'production'
+            }
+            steps {
+                sh './jenkins/scripts/deploy-for-production.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+----
+结果如下:
++
+[source,groovy]
+----
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000 -p 5000:5000'
+        }
+    }
+    environment {
+        CI = 'true'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver for development') {
+            when {
+                branch 'development' // <1>
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Deploy for production') {
+            when {
+                branch 'production'  // <1>
+            }
+            steps {
+                sh './jenkins/scripts/deploy-for-production.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+    }
+}
+----
+<1> link:/doc/book/pipeline/syntax#when[`when`] 指令 (和它们的`branch` 条件一起)决定是否
+link:/doc/book/pipeline/syntax#stage[`stages`] (包括这些 `when`
+指令) 会被执行。 如果 `branch` 条件的值(即模式)
+与Jenkins运行构建的分支名匹配, 包含 `when` 和 `branch` 概念的`stage` 就会被执行。
++
+*Notes:*
+* 对 `input message` 过程的解释, 请参考link:../build-a-node-js-and-react-app-with-npm/#add-a-final-deliver-stage-to-your-pipeline[``Add
+  a final deliver stage...'' section of the Build a Node.js and React app]
+  教程的声明式流水线的注解 *4*。
+* 对 `deliver-for-development.sh`,
+  `deploy-for-production.sh` 和 `kill.sh` 脚本步骤的解释,请参考位于`building-a-multibranch-pipeline-project` 仓库的根目录下的`jenkins/scripts` 目录下的这些文件的内容。
+. 保存并提交你编辑的 `Jenkinsfile` 到本地的
+  `building-a-multibranch-pipeline-project` Git 仓库。 比如在
+  `building-a-multibranch-pipeline-project` 目录, 运行命令: +
+  `git stage .` +
+  然后 +
+  `git commit -m "Add 'Deliver...' and 'Deploy...' stages"`
+. 再次回到Jenkins, 如果必要重新登录并进入Jenkins的Blue Ocean界面。
+. 点击右上方的 *Branches* 来访问你的流水线项目的分支列表。
+. 点击你的流水线项目的`master`分支的运行图标
+  image:tutorials/multibranch-pipeline-12-run-icon.png[alt="Run icon",width=3%]
+  ,然后快速的点击出现在右下方的 *OPEN*
+  链接查看Jenkins使用改进过的 `Jenkinsfile`构建
+  `master` 分支。I如果你点击不了 **OPEN** 链接, 点击Blue Ocean *Activity* 页面的 _top_ 行来访问这一特性。 +
+  注意Jenkins是如何跳过你添加的最后两个阶段, 由于你正在运行构建的分支 (`master`) 在这些阶段不满足 `when` 指令的
+  `branch` 条件。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-21-complete-pipeline-runs-successfully-on-master-branch.png[alt="Complete
+Pipeline runs successfully on the 'master' branch",width=100%]
+. C点击右上方的 *X* 回到Blue Ocean界面的 *Activity* 页面。
+
+
+=== Pull 更新的 Jenkinsfile 到其他的仓库分支中
+
+现在你已经有一个完整的 `Jenkinsfile` 文件可以在Jenkins中构建你的应用, 你可以 pull 该文件从你本地仓库的 `master` 分支到它的 `development` 和 `production` 分支。
+在你本地仓库的 `building-a-multibranch-pipeline-project`
+目录下:
+
+. 运行下面的命令来来pull从`master` 到
+  `development`的改变:
+* `git checkout development` +
+  然后
+* `git pull . master`
+. 还可以运行线面的命令将更改从 `master` pull到 `production`:
+* `git checkout production` +
+  然后
+* `git pull . master`
+
++
+现在你的 `development` 和 `production` 分支拥有你在 `master` 分支上对
+`Jenkinsfile` 的所有修改。
+
+
+=== 在development分支上运行流水线
+
+. 再次回到 Jenkins, 需要的话再次登录并进入 Jenkins的Blue Ocean界面。
+. 点击右上的 *Branches* 进入流水线项目的分支列表。
+. 点击流水线项目`development` 分支的运行图标
+  image:tutorials/multibranch-pipeline-12-run-icon.png[alt="Run icon",width=3%], 然后快速的点击出现在右下方的
+  *OPEN* 链接来查看Jenkins 使用改进后的 `Jenkinsfile`构建 `development` 分支。 如果你点击不了 **OPEN** 链接, 点击Blue Ocean的 *Activity*
+ 页面上的 _top_ 行来访问这一特性。
+. 在几分钟，当构建停止时, 确保你正在查看
+  *Deliver for development* 阶段 (如果需要点击它), 然后点击顶部绿色的*Shell Script* 步骤来扩展它的内容 并向下滚动直到你看见 `http://localhost:3000` 链接。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-31-deliver-for-development-stage-opened.png[alt="Shell
+Script step 'Deliver for development' stage opened",width=100%] +
+  *Note:* 由于你正在不同的分支上构建应用程序,  `npm
+  install` 步骤需要几分钟为`npm`下载运行Node.js 和 React 应用所需的一些依赖 (保存在Jenkins主目录的`node_modules` 目录下)。由于这次的Jenkins构建是你的流水线项目在 `development` 分支上的第一次运，并且每个分支都会在Jenkins的主目录中有他自己的工作区目录(包括他自己的`node_modules` 目录)，这些依赖被再次下载。
+. 点击 `http://localhost:3000` 链接查看Node.js 和 React
+  应用在开发模式下在一个新的web浏览器选项卡中运行 (使用 `npm start` 命令) 。 你应该会看到一个标题为 *Welcome to React*的页面/站点。
+. 当你查看完页面/站点, 在Blue Ocean点击 *Proceed* 按钮完成流水线的执行。 +
+  如果Jenkins成功在`development` 分支上构建Node.js 和 React
+  应用程序，Blue Ocean界面就会变成绿色。注意
+  *Deliver for development* 阶段是如何被执行的 ，而*Deploy for production*
+  阶段却没有执行。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-32-complete-pipeline-runs-successfully-on-development-branch.png[alt="Complete
+Pipeline runs successfully on the 'development' branch",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean界面的*Activity* 页面。
+
+
+=== 在production分支上运行流水线
+
+. 点击右上方的 *Branches* 来访问你的流水线项目的分支列表。
+. 点击你的流水线项目的`production`分支的运行图标
+  image:tutorials/multibranch-pipeline-12-run-icon.png[alt="Run icon",width=3%], 然后快速的点击出现在右下方的
+  *OPEN* 链接查看Jenkins使用改进后的 `Jenkinsfile`构建`production` 分支。如果 你不能点击 **OPEN** 链接, 点击Blue Ocean *Activity* 页面的 _top_ 行来访问这一特性。
+. 在几分钟内，当构建停止时， 确保你正在查看 *Deploy for production* 阶段 (如果必要点击它), 然后点击顶部绿色的*Shell Script* 步骤来扩展它的内容并向下滚动直到你看到`http://localhost:5000` 链接。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-41-deploy-for-production-stage-opened.png[alt="Shell
+Script step 'Deploy for production' stage opened",width=100%] +
+. 点击 `http://localhost:5000` 链接在一个新的web浏览器选项卡中查看你的Node.js 和 React应用。他将会在生产模式下从你的源代码的生产构建开始运行(使用 `npm run
+  build` 命令生产)。 同样的, 你会看到一个标题为*Welcome to React*的页面/站点 然而, 这一次, 该应用程序的内容是由
+  link:https://www.npmjs.com/package/serve[npm `serve` module]提供的，并且很可能会继续在你浏览器的后台运行。
+. 当你查看完网页/站点, 在Blue Ocean中点击 *Proceed* 按钮 完成流水线的执行。 +
+  如果Jenkins 从`production`分支成功 `production`构建你的Node.js 和 React
+ 应用，Blue Ocean界面就会变成绿色。 注意
+  *Deploy for production* 阶段是如何被执行的，而 *Deliver for development*
+  阶段被跳过。
+[.boxshadow]
+image:tutorials/multibranch-pipeline-42-complete-pipeline-runs-successfully-on-production-branch.png[alt="Complete
+Pipeline runs successfully on the 'production' branch",width=100%]
+. 点击右上方的 *X* 回到Blue Ocean界面的 *Activity* p页面。+
+  *Note:* 由于你的浏览器很可能会继续运行npm `serve` 模块提供的应用内容, 在Jenkins关闭`serve` 进程后，你的浏览器仍然会长时间显示你在`http://localhost:5000`查看过的内容
+  。 在<<clearing-the-app-from-your-browser,below>>阅读更多关于如何从你的浏览器清除应用程序和它的内容。
+
+
+=== 跟踪 (可选)
+
+本节将向你介绍使用Jenkins的一种类似的开发工作流程，在它们被部署到生产 (从 `production` 分支)前，从`development`分支经由`master` 分支对你的应用程序 (即 `App.js` 源文件) 进行更改。
+
+. 在你本地仓库的 `building-a-multibranch-pipeline-project`
+  目录下, 运行命令 `git checkout development` 更改
+  `development` 分支。
+. 回到你的文本编辑器/IDE，打开你本地的`building-a-multibranch-pipeline-project` Git仓库的 `src`目录下的 `App.js` 文件。
+. 立刻复制并粘贴下面的HTML语法到`App.js`文件的`To get started...` 行下面:
++
+[source,html]
+----
+          <br/>
+          This is a new line I added.
+----
+结果如下:
++
+[source,javascript]
+----
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+          <br/>
+          This is a new line I added.
+        </p>
+      </div>
+    );
+  }
+}
+
+export default App;
+----
+. 保存并提交你编辑的 `App.js` 文件到你本地的
+  `building-a-multibranch-pipeline-project` Git仓库。 比如在
+  `building-a-multibranch-pipeline-project` 目录下, 运行命令: +
+  `git stage .` +
+  然后 +
+  `git commit -m "Update 'App.js'"`
+. 回到Blue Ocean, 在 `development` 分支运行你的流水线 (如
+  <<run-your-pipeline-on-the-development-branch,above>>所述) 并通过 `http://localhost:3000`检查结果以查看新添加的行。
+. 假设你对该更改感到满意, 在你本地仓库的
+  `building-a-multibranch-pipeline-project` 目录下, 运行下面一系列的命令 pull 你的更改到 `production` 分支 (via the `master`
+  分支):
+* `git checkout master` +
+  然后
+* `git pull . development` +
+  然后
+* `git checkout production` +
+  接着
+* `git pull . master` +
+. 回到 Blue Ocean, 这次在 `production`分支运行你的流水线 (和你在
+ <<run-your-pipeline-on-the-production-branch,above>>中做的一样) 并通过 `http://localhost:5000` 检查结果，以查看你新添加的行 。 +
+  *Notes:*
+* 由于你的浏览器很可能会缓存 npm `serve` 模块的内容,
+  你需要刷新你的浏览器页面以查看你的更改。
+* 在一个真正的软件开发环境中，对于大型团队来说, 在云或web托管的 Git 服务上 (如 GitHub或BitBucket)使用pull请求，更有可能在分支之间pull变更。
+
+
+=== 从你的浏览器中清除应用程序
+
+你的浏览器很有可能继续运行由link:https://www.npmjs.com/package/serve[npm `serve` module]提供的应用的内容, 这意味着在 Jenkins 中止 `serve` 进程后，你的浏览器仍然会长时间显示你在`http://localhost:5000`查看的内容。
+从浏览器中清除应用程序以及内容:
+
+
+==== 在Chrome
+
+. 在你浏览器的 URL 域输入以下内容: +
+  `chrome://serviceworker-internals/`
+. 将 "ServiceWorker" 条目定位到 `http://localhost:5000`
+. 点击 *Unregister* 按钮。
+
+
+==== 在Firefox
+
+. 在你浏览器的 URL 域输入以下内容: +
+  `about:serviceworkers`
+. 将 "Registered Service Worker" 条目定位到 `http://localhost:5000`
+. 点击 *Unregister* 按钮。
+
+
+=== 结束语
+
+做得好！您刚刚使用Jenkins通过npm构建了一个有选择的运行阶段的多分支流水线项目！
+
+本教程展现了Jenkins 使用一个 `Jenkinsfile` 在你的仓库的多个分支中编排不同的构建和交付结果的能力。
+
+由于Jenkins具有极高的可扩展性，因此可以对其进行修改和配置，以处理构建协调和自动化的几乎任何方面。
+
+要详细了解Jenkins可以做什么，请查看：
+
+* link:/doc/tutorials[教程概览] 页面中的其他介绍教程。
+* link:/doc/book[用户手册] 使用Jenkins的更多细节，例如 link:/doc/book/pipeline[Pipelines] (尤其是 link:/doc/book/pipeline/syntax[Pipeline 语法])
+  和 link:/doc/book/blueocean[Blue Ocean] 界面。
+* link:/node[Jenkins blog] 资讯，其他教程和更新。
+
+
+
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

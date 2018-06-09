@@ -1,0 +1,111 @@
+---
+layout: documentation
+title: 清理和通知
+---
+
+因为 `post` 部分保证在Pipeline结束的时候运行，
+所以我们可以添加通知或者其他的步骤去完成清理、通知或者其他的Pipeline结束任务。
+
+[pipeline]
+----
+// Declarative //
+pipeline {
+    agent any
+    stages {
+        stage('No-op') {
+            steps {
+                sh 'ls'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
+        }
+    }
+}
+// Scripted //
+node {
+    try {
+        stage('No-op') {
+            sh 'ls'
+        }
+    }
+    catch (exc) {
+        echo 'I failed'
+    }
+    finally {
+        if (currentBuild.result == 'UNSTABLE') {
+            echo 'I am unstable :/'
+        } else {
+            echo 'One way or another, I have finished'
+        }
+    }
+}
+----
+
+有很多方法可以发送通知，
+下面是一些示例展示了如何通过电子邮件、Hipchat room或者Slack channel发送Pipeline的相关信息。
+
+=== 电子邮件
+
+[source, groovy]
+----
+post {
+    failure {
+        mail to: 'team@example.com',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+    }
+}
+----
+
+
+=== Hipchat
+
+[source,groovy]
+----
+post {
+    failure {
+        hipchatSend message: "Attention @here ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed.",
+                    color: 'RED'
+    }
+}
+----
+
+=== Slack
+
+[source,groovy]
+----
+post {
+    success {
+        slackSend channel: '#ops-room',
+                  color: 'good',
+                  message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+    }
+}
+----
+
+
+当Pipeline失败、不稳定甚至是成功时，团队都会收到通知，
+现在我们可以继续完成我们的持续交付Pipeline激动人心的部分：部署！
+
+**link:../deployment[继续“部署”]**
+
+'''
+++++
+include::_partials/_feedback-footer.html[]
+++++

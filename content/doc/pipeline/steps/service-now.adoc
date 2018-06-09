@@ -1,0 +1,225 @@
+---
+layout: pipelinesteps
+title: "立即服务步骤插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 立即服务步骤插件
+
+plugin:service-now[在插件索引中查看此插件]
+
+=== +serviceNow_attachFile+: 附加文件步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceNowItem</code>
+<ul><b>Nested Object</b>
+<li><code>table</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sysId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filename</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +serviceNow_attachZip+: 附加Zip步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceNowItem</code>
+<ul><b>Nested Object</b>
+<li><code>table</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sysId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filename</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +serviceNow_createChange+: 创建更改步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +serviceNow_getCTask+: 获取C任务步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceNowItem</code>
+<ul><b>Nested Object</b>
+<li><code>table</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sysId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filename</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +serviceNow_getChangeState+: 获取更改状态步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceNowItem</code>
+<ul><b>Nested Object</b>
+<li><code>table</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sysId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filename</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +serviceNow_updateChangeItem+: 更新更改项目步骤
+++++
+<ul><li><code>serviceNowConfiguration</code>
+<ul><b>Nested Object</b>
+<li><code>instance</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>producerId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceNowItem</code>
+<ul><b>Nested Object</b>
+<li><code>table</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sysId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cTask</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filename</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>vaultConfiguration</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

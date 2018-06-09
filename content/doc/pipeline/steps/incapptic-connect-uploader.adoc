@@ -1,0 +1,34 @@
+---
+layout: pipelinesteps
+title: "incapptic connect uploader plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== incapptic连接上传插件
+
+plugin:incapptic-connect-uploader[在插件索引中查看此插件]
+
+=== +uploadToIncappticConnect+: incapptic连接发布者
+++++
+<ul><li><code>token</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>appId</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>mask</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>useMasterProxy</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>verboseLogging</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

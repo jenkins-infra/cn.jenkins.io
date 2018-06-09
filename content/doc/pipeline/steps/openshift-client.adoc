@@ -1,0 +1,91 @@
+---
+layout: pipelinesteps
+title: "OpenShift客户端Jenkins插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== OpenShift客户端Jenkins插件
+
+plugin:openshift-client[在插件索引中查看此插件]
+
+=== +_OcAction+: OpenShift DSL的内部效用函数
+++++
+<ul><li><code>server</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>project</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>skipTLSVerify</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>caPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>verb</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>advArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>verbArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>userArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>options</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>token</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>streamStdOutToConsolePrefix</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>reference</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>logLevel</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +_OcContextInit+: OpenShift DSL的内部效用函数
+++++
+<ul></ul>
+
+
+++++
+=== +_OcWatch+: OpenShift DSL的内部效用函数
+++++
+<ul><li><code>server</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>project</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>skipTLSVerify</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>caPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>verb</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>advArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>verbArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>userArgs</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>options</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>token</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>logLevel</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

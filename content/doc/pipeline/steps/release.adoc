@@ -1,0 +1,293 @@
+---
+layout: pipelinesteps
+title: "release插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== release插件
+
+plugin:release[在插件索引中查看此插件]
+
+=== +release+: 触发释放该作业
+++++
+<ul><li><code>job</code>
+<div><div>
+  Full name of the job to be released. This job must be visible to the current user. It should contain the Release configuration defined by the plugin. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>parameters</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>booleanParam</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ClearCaseUcmBaselineParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseline</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forceRmview</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>credentials</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'CvsTagsParamValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tagName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DateParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DeployMetaDataParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildVersion</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>applicationName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>file</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>file</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+</ul><li><code>$class: 'FileSystemListParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'GeneratorKeyValueParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'GitParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'InheritableStringParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'JavaParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>selectedJDK</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'JiraIssueParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'JiraVersionParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'LabelParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>label</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allNodesMatchingLabel</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>nodeEligibility</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>$class: 'AllNodeEligibility'</code></li>
+<ul></ul><li><code>$class: 'IgnoreOfflineNodeEligibility'</code></li>
+<ul></ul><li><code>$class: 'IgnoreTempOfflineNodeEligibility'</code></li>
+<ul></ul></ul></li>
+</ul><li><code>$class: 'ListSubversionTagsParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tagsDir</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tag</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'MatrixCombinationsParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>combinations</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'MavenMetadataParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>groupId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>packaging</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>classifier</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'NodeParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodeEligibility</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>$class: 'AllNodeEligibility'</code></li>
+<ul></ul><li><code>$class: 'IgnoreOfflineNodeEligibility'</code></li>
+<ul></ul><li><code>$class: 'IgnoreTempOfflineNodeEligibility'</code></li>
+<ul></ul></ul></li>
+</ul><li><code>$class: 'PackageChoiceParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ParameterSeparatorValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>separatorStyle</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sectionHeader</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sectionHeaderStyle</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'PatchParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>file</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+</ul><li><code>$class: 'PromotedBuildParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'RandomStringParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ReviewboardParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>run</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'SauceParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>selectedBrowsers</code>
+<ul><code>net.sf.json.JSONArray</code>
+</ul></li>
+</ul><li><code>string</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>text</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'VBoxParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodes</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodeDelimiter</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ValidatingStringParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'VersionParameterValue'</code></li>
+<ul><li><code>groupid</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactid</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>propertyName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'WHideParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'WReadonlyStringParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'WReadonlyTextParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'com.michelin.cio.hudson.plugins.passwordparam.PasswordParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'com.moded.extendedchoiceparameter.ExtendedChoiceParameterValue'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>password</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++

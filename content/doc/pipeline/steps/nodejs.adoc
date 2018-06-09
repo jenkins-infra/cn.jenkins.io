@@ -1,0 +1,26 @@
+---
+layout: pipelinesteps
+title: "NodeJS 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== NodeJS 插件
+
+plugin:nodejs[在插件索引中查看此插件]
+
+=== +nodejs+: 将节点和npm bin/文件夹提供给PATH
+++++
+<ul><li><code>nodeJSInstallationName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

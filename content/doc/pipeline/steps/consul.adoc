@@ -1,0 +1,91 @@
+---
+layout: pipelinesteps
+title: "Consul 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Consul 插件
+
+plugin:consul[在插件索引中查看此插件]
+
+=== +Consul+: ConsulStep
+++++
+<ul><li><code>installationName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>consulSettingsProfileName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>operationList</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ConsulGetKV'</code></li>
+<ul><li><code>valuePath</code>
+<div><div>
+  Consul path for the required value.
+ <br> e.g. mysql/config/users/admin 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentVariableName</code>
+<div><div>
+  Environment variable name for the value. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ConsulServiceDiscoveryOperation'</code></li>
+<ul><li><code>serviceName</code>
+<div><div>
+  Service name to look in consul 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serviceTag</code>
+<div><div>
+  Service tag - leave empty for no tag filtering. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentVariableName</code>
+<div><div>
+  Environment variable name for the response.
+ <br> Leave empty to use the same name of the service. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>healthStatus</code>
+<div><div>
+  Service health status. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>addPort</code>
+<div><div>
+  Add port number to response?
+ <br> The port will be added for every ip address - {ip}:{port} 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ConsulSetKV'</code></li>
+<ul><li><code>valuePath</code>
+<div><div>
+  Consul path to set with your value.
+ <br> e.g. mysql/config/users/admin 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div><div>
+  Value or ENV var name to use. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,89 @@
+---
+layout: pipelinesteps
+title: "JaCoCo 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== JaCoCo 插件
+
+plugin:jacoco[在插件索引中查看此插件]
+
+=== +jacoco+: 记录 JaCoCo  覆盖报告
+++++
+<div><div>
+  Allows to configure various aspects of the JaCoCo code coverage report. The pathes define where the various types of files can be found in the workspace, inclusions and exclusions allow to exclude certain class files. And the coverage thresholds allow to configure how much coverage is necessary to make the build green (if changing the build status is enabled). 
+</div></div>
+<ul><li><code>buildOverBuild</code> (optional)
+<div><div>
+  Check this to set the build status to failure if the delta coverage thresholds are violated. Delta coverage is the difference between coverage of last successful and current build. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>changeBuildStatus</code> (optional)
+<div><div>
+  Check this to set the build status to unstable if coverage thresholds are violated. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>classPattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaBranchCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaClassCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaComplexityCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaInstructionCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaLineCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaMethodCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exclusionPattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>execPattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inclusionPattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumBranchCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumClassCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumComplexityCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumInstructionCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumLineCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maximumMethodCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumBranchCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumClassCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumComplexityCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumInstructionCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumLineCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>minimumMethodCoverage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>skipCopyOfSrcFiles</code> (optional)
+<div><div>
+  Check this to disable display of source files for each line coverage 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>sourcePattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

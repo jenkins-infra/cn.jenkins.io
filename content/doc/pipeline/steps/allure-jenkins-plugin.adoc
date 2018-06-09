@@ -1,0 +1,73 @@
+---
+layout: pipelinesteps
+title: "Allure Jenkins 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Allure Jenkins 插件
+
+plugin:allure-jenkins-plugin[在插件索引中查看此插件]
+
+=== +allure+: Allure Report
+++++
+<ul><li><code>results</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>commandline</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>config</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>results</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>path</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>commandline</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>includeProperties</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>jdk</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>properties</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>reportBuildPolicy</code> (optional)
+<ul><li><b>Values:</b> <code>ALWAYS</code>, <code>UNSTABLE</code>, <code>UNSUCCESSFUL</code></li></ul></li>
+</ul></li>
+<li><code>disabled</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>includeProperties</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>jdk</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>properties</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>report</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>reportBuildPolicy</code> (optional)
+<ul><li><b>Values:</b> <code>ALWAYS</code>, <code>UNSTABLE</code>, <code>UNSUCCESSFUL</code></li></ul></li>
+</ul>
+
+
+++++

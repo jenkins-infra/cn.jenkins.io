@@ -1,0 +1,32 @@
+---
+layout: pipelinesteps
+title: "SSLOC计数插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== SLOC计数插件
+
+plugin:sloccount[在插件索引中查看此插件]
+
+=== +sloccountPublish+: 发布Sloc计数报告
+++++
+<ul><li><code>pattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>encoding</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commentIsCode</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>numBuildsInGraph</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>ignoreBuildFailure</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

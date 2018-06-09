@@ -1,0 +1,241 @@
+---
+layout: pipelinesteps
+title: "另一个Docker插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== 另一个Docker插件
+
+plugin:yet-another-docker-plugin[在插件索引中查看此插件]
+
+=== +dockerShell+: [Experimental] Docker Shell 步骤
+++++
+<ul><li><code>connector</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>$class: 'CloudNameDockerConnector'</code></li>
+<ul><li><code>cloudName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DockerConnector'</code></li>
+<ul><li><code>serverUrl</code>
+<div><div>
+  The URL to use to access your Docker server API (e.g: http://172.16.42.43:4243 or unix://). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiVersion</code> (optional)
+<div><div>
+  Docker Daemon API version. Should be set when plugin underlying library can't connect to new daemon because docker daemon API become backward incompatible.
+ <br> Version in format "1.22". Connector will append "/v${VERSION}" to api url for connector, where ${VERSION} is entered string. For details see 
+ <a href="https://docs.docker.com/reference/api/docker_remote_api/" rel="nofollow">docker_remote_api</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>connectTimeout</code> (optional)
+<div><div>
+  Timeout for opening connection to Docker API. 0 is infinity.
+ <br> Works only for Jersey. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>connectorType</code> (optional)
+<div>Docker-java provides different connection implementations based on different client libraries. In case you have some errors please try other.</div>
+
+<ul><li><b>Values:</b> <code>JERSEY</code>, <code>NETTY</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>readTimeout</code> (optional)
+<div><div>
+  Read timeout to Docker API. In seconds. 0 is infinity. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></ul></li>
+<li><code>containerLifecycle</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>createContainer</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>bindAllPorts</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>bindPorts</code> (optional)
+<div><div>
+  Bind ports from inside the container to outside of the host, scheme is hostport:containerport. Same effect as the "-p" or "-P" option on the CLI. 
+ <a href="https://docs.docker.com/reference/run/#expose-incoming-ports" rel="nofollow">Docker documentation</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>command</code> (optional)
+<div><div>
+  The command to run for this image, replaced by Jenkins Launchers 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cpuShares</code> (optional)
+<div>Similarly the operator can increase the priority of this container. By default (no value), all containers run at the same priority and get the same proportion of CPU cycles, but you can tell the kernel to give more shares of CPU time to one or more containers when you start them via Docker. 
+<br>
+<br>Consult 
+<a href="https://docs.docker.com/engine/reference/run/#cpu-share-constraint" rel="nofollow">https://docs.docker.com/engine/reference/run/#cpu-share-constraint</a> for further information.</div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>cpusetCpus</code> (optional)
+<div>Please follow format described at 
+<a href="https://docs.docker.com/engine/reference/run/#cpuset-constraint" rel="nofollow">https://docs.docker.com/engine/reference/run/#cpuset-constraint</a></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cpusetMems</code> (optional)
+<div><a href="https://docs.docker.com/engine/reference/run/#cpuset-constraint" rel="nofollow">https://docs.docker.com/engine/reference/run/#cpuset-constraint</a></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>devicesString</code> (optional)
+<div>Add host device to container. For format please refer to 
+<a href="https://docs.docker.com/engine/reference/commandline/run/#add-host-device-to-container-device" rel="nofollow">Add host device to container (--device) documentation</a></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>dnsString</code> (optional)
+<div><div>
+  Set the DNS servers to use within your images, if not set Docker will use DNS settings of the host 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>entrypoint</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentString</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>extraHostsString</code> (optional)
+<div><div>
+  A list of new line separated hostnames/IP mappings to be added to the container’s /etc/hosts file. Specified in the form "hostname:IP". 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>hostname</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>linksString</code> (optional)
+<div>Add link to another container. Only the form container:alias is supported (e.g. the_db_container:db). 
+<br> Consult 
+<a href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#communication-across-links" rel="nofollow">https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#communication-across-links</a> for further information.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>macAddress</code> (optional)
+<div><div>
+  Container MAC address (e.g. 92:d0:c6:0a:29:33) 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>memoryLimit</code> (optional)
+<div><div>
+  The operator can constrain the memory available to a container. If the host supports swap memory, then the setting can be larger than physical RAM. 
+ <br>
+ <br> Consult 
+ <a href="https://docs.docker.com/reference/run/" rel="nofollow">Docker Run Documentation</a> for further information. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>networkMode</code> (optional)
+<div><a href="https://docs.docker.com/engine/reference/run/#network-settings" rel="nofollow">Set the Network mode for the container:</a> 
+<ul> 
+ <li>Empty: undefined, docker daemon defaults</li> 
+ <li>'bridge': creates a new network stack for the container on the docker bridge</li> 
+ <li>'none': no networking for this container</li> 
+ <li>'container:&lt;name | id&gt;': reuses another container network stack </li> 
+ <li>'host': use the host network stack inside the container. Note: the host mode gives the container full access to local system services such as D-bus and is therefore considered insecure. </li> 
+</ul></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>privileged</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>restartPolicy</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>policyName</code>
+<ul><li><b>Values:</b> <code>NO</code>, <code>UNLESS_STOPPED</code>, <code>ALWAYS</code>, <code>ON_FAILURE</code></li></ul></li>
+<li><code>maximumRetryCount</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></li>
+<li><code>shmSize</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>tty</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>user</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>volumesFromString</code> (optional)
+<div><div>
+  New line separated list of volumes to inherit from another container. Specified in the form &lt;container name&gt;[:&lt;ro|rw&gt;] 
+ <br> If accessmode not specified, then default rw will be used. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>volumesString</code> (optional)
+<div><div>
+  New line separated list of host volume mounts : &lt;host/path&gt;[&lt;container/path&gt;[&lt;:mode&gt;]] 
+ <ul> 
+  <li>container/path create empty volume container/path</li> 
+  <li>host/path:container/path will mount host/path from host to container's container/path, read/write</li> 
+  <li>host/path:container/path:rw will mount host/path from host to container's container/path, read/write</li> 
+  <li>host/path:container/path:ro will mount host/path from host to container's container/path, read-only</li> 
+ </ul> Note: if access mode not specified, then default rw will be used. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>workdir</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>image</code> (optional)
+<div><div>
+  The hash or tagged name of the image that you wish docker to run (e.g "docker run -i -t  /bin/bash") 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pullImage</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>credentialsId</code> (optional)
+<div>Credentials for pulling docker image. Supported only "Docker Registry Auth" type.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pullStrategy</code> (optional)
+<ul><li><b>Values:</b> <code>PULL_ALWAYS</code>, <code>PULL_ONCE</code>, <code>PULL_LATEST</code>, <code>PULL_NEVER</code></li></ul></li>
+<li><code>registriesCreds</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>registryAddr</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>removeContainer</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>force</code> (optional)
+<div><div>
+  Force the removal of a running container (uses SIGKILL) 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>removeVolumes</code> (optional)
+<div><div>
+  Remove the volumes associated with the container 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>stopContainer</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>timeout</code> (optional)
+<div><div>
+  Sending SIGTERM and then SIGKILL after a grace period 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>executorScript</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>shellScript</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

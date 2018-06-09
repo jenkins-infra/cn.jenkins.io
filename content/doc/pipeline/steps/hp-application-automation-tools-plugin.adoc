@@ -1,0 +1,407 @@
+---
+layout: pipelinesteps
+title: "HPE应用程序自动化工具"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== HPE应用程序自动化工具
+
+plugin:hp-application-automation-tools-plugin[在插件索引中查看此插件]
+
+=== +loadRunnerTest+: 运行LoadRunner性能方案测试
+++++
+<ul><li><code>testPaths</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the 
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the 
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the 
+ <b>HPE Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute HPE test from file system” build step. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>controllerPollingInterval</code> (optional)
+<div><div>
+  Polling interval for checking the scenario status, in seconds. The default is 30 seconds. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsTimeout</code> (optional)
+<div><div>
+  Timeout value in seconds. If left empty, there is no timeout. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreErrorStrings</code> (optional)
+<div><div>
+  Ignore errors during the scenario run containing any of the strings listed below. For example: "Error: CPU usage for this load generator has exceeded 80%" 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>perScenarioTimeOut</code> (optional)
+<div><div>
+  The maximum time allotted for scenario execution, in minutes. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +runLoadRunnerScript+: 运行LoadRunner脚本
+++++
+<ul><li><code>scriptPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +sseBuildAndPublish+: 使用HPE ALM实验室管理和发布HPE测试结果执行HP测试
+++++
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almEntityId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDuration</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the 
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the 
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the 
+ <b>HPE Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute HPE test from file system” build step. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cdaDetails</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>deploymentAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deployedEnvironmentName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deprovisioningAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>description</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigurationId</code> (optional)
+<div><div>
+  To find the ID of your environment configuration, right-click the entity, copy the URL, and paste it to a text editor. Use the number associated with the EntityID at the end of the URL. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxySettings</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>fsProxyAddress</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsProxyCredentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +pcBuild+: 使用Performance Center执行性能测试
+++++
+<ul><li><code>serverAndPort</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pcServerName</code>
+<div><div>
+  Hostname or IP address 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almUserName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testInstanceId</code>
+<div><div>
+  Represents an instance of a performance test within an ALM Test Set. In order to find the test instance id go to: 
+ <b>PC Web UI &gt; Test Lab perspective &gt; Performance Test Set table</b> and look for the ID column 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>autoTestInstanceID</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDurationHours</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDurationMinutes</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code>
+<ul><li><b>Values:</b> <code>COLLATE</code>, <code>COLLATE_AND_ANALYZE</code>, <code>DO_NOTHING</code></li></ul></li>
+<li><code>vudsMode</code>
+<div><div>
+  A 
+ <b>Virtual User Day (VUD)</b> license provides you with a specified number of Vusers (VUDs) that you can run an unlimited number of times within a 24 hour period. Before using this option, make sure that VUDs licenses are applied in your HPE Performance Center environment. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>statusBySLA</code>
+<div><div>
+  Check this option in order to set the build-step status according to a pre-defined 
+ <b>SLA (Service Level Agreement)</b> configured within your performance test. Unless checked, the build-step will be labeled as 
+ <i>Passed</i> as long as no failures occurred. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>addRunToTrendReport</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trendReportId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>HTTPSProtocol</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>proxyOutURL</code>
+<div><div>
+  Add your local proxy as following: 
+ <b>http(s)://&lt;host&gt;:&lt;port&gt;</b> or Leave empty if not using a local proxy.
+ <br> PAC (proxy auto-config) or Automatic configuration script are not supported. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxyOutUser</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxyOutPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +runFromAlmBuilder+: 从HPE ALM执行HPE功能测试
+++++
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almUserName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almTestSets</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunResultsMode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almTimeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunMode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunHost</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +sseBuild+: 使用HPE ALM实验室管理执行HPE测试
+++++
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almEntityId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDuration</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cdaDetails</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>deploymentAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deployedEnvironmentName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deprovisioningAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>description</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigurationId</code> (optional)
+<div><div>
+  To find the ID of your environment configuration, right-click the entity, copy the URL, and paste it to a text editor. Use the number associated with the EntityID at the end of the URL. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxySettings</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>fsProxyAddress</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsProxyCredentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +svChangeModeStep+: SV: 虚拟服务的变化模式
+++++
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>mode</code>
+<ul><li><b>Values:</b> <code>OFFLINE</code>, <code>SIMULATING</code>, <code>STAND_BY</code>, <code>LEARNING</code></li></ul></li>
+<li><code>dataModel</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>BY_NAME</code>, <code>NONE</code>, <code>DEFAULT</code></li></ul></li>
+<li><code>dataModel</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>performanceModel</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>BY_NAME</code>, <code>NONE</code>, <code>OFFLINE</code>, <code>DEFAULT</code></li></ul></li>
+<li><code>performanceModel</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +svDeployStep+: SV: Deploy Virtual Service
+++++
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>firstAgentFallback</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +svExportStep+: SV: 导出虚拟服务
+++++
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>targetDirectory</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cleanTargetDirectory</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>switchToStandByFirst</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +svUndeployStep+: SV: 取消部署虚拟服务
+++++
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>continueIfNotDeployed</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +uftScenarioLoad+: 运行UFT场景
+++++
+<ul><li><code>testPaths</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the 
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the 
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the 
+ <b>HPE Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute HPE test from file system” build step. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsTimeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsUftRunMode</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,40 @@
+---
+layout: pipelinesteps
+title: "Rancher 插件"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Rancher 插件
+
+plugin:rancher[在插件索引中查看此插件]
+
+=== +rancher+: 部署/升级Rancher服务
+++++
+<ul><li><code>environmentId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>endpoint</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>image</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>confirm</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>ports</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environments</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
