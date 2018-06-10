@@ -19,10 +19,16 @@ prepare: fetch depends assets
 run: prepare scripts/awestruct
 	LISTEN=true ./scripts/awestruct --dev --bind 0.0.0.0  $(AWESTRUCT_CONFIG)
 
+cn-run: prepare scripts/awestruct
+	LISTEN=true SITE_LANG=zh-CN ./scripts/awestruct --dev --bind 0.0.0.0  $(AWESTRUCT_CONFIG)
+
 generate: site pdfs
 
-site: prepare scripts/awestruct
+site: scripts/awestruct
 	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG)
+
+cn-site: scripts/awestruct
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG)
 
 user-site: prepare scripts/awestruct
 	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
@@ -47,9 +53,9 @@ fetch-reset:
 
 $(BUILD_DIR)/fetch: $(BUILD_DIR)/ruby scripts/release.rss.groovy scripts/fetch-examples scripts/fetch-external-resources | $(OUTPUT_DIR)
 	./scripts/groovy pull
-	./scripts/groovy scripts/release.rss.groovy 'https://updates.jenkins.io/release-history.json' > $(OUTPUT_DIR)/releases.rss
+	./scripts/groovy scripts/release.rss.groovy 'http://10.21.20.202:9390/docs/release-history.json' > $(OUTPUT_DIR)/releases.rss
 	./scripts/fetch-examples
-	./scripts/ruby bundle exec ./scripts/fetch-external-resources
+	bundle exec ./scripts/fetch-external-resources
 	@touch $(BUILD_DIR)/fetch
 
 #######################################################
@@ -62,7 +68,7 @@ depends: $(BUILD_DIR)/ruby $(BUILD_DIR)/node
 # update dependencies information
 update: depends
 	./scripts/ruby bundle update
-	./scripts/node npm update
+	./scripts/node npm  --proxy http://10.21.21.37:3128 update
 
 # when we pull dependencies also pull docker image
 # without this images can get stale and out of sync from CI system
