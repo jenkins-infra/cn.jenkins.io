@@ -12,5 +12,5 @@ link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc[C
 document]
 
 
-How to make:
-=make cn-site
+How to make: +
+make cn-site
