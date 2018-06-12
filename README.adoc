@@ -14,3 +14,5 @@ document]
 
 How to make: +
 make cn-site
+
+visit link:https://122.112.226.199 to see the result
