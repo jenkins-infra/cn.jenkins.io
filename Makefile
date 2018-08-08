@@ -53,7 +53,7 @@ fetch-reset:
 
 $(BUILD_DIR)/fetch: $(BUILD_DIR)/ruby scripts/release.rss.groovy scripts/fetch-examples scripts/fetch-external-resources | $(OUTPUT_DIR)
 	./scripts/groovy pull
-	./scripts/groovy scripts/release.rss.groovy 'http://10.21.20.202:9390/docs/release-history.json' > $(OUTPUT_DIR)/releases.rss
+	./scripts/groovy scripts/release.rss.groovy 'https://updates.jenkins.io/release-history.json' > $(OUTPUT_DIR)/releases.rss
 	./scripts/fetch-examples
 	bundle exec ./scripts/fetch-external-resources
 	@touch $(BUILD_DIR)/fetch
