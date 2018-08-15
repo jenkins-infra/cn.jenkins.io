@@ -56,7 +56,7 @@ $(BUILD_DIR)/fetch: $(BUILD_DIR)/ruby scripts/release.rss.groovy scripts/fetch-e
 	./scripts/groovy pull
 	./scripts/groovy scripts/release.rss.groovy 'https://updates.jenkins.io/release-history.json' > $(OUTPUT_DIR)/releases.rss
 	./scripts/fetch-examples
-	bundle exec ./scripts/fetch-external-resources
+	./scripts/ruby bundle exec ./scripts/fetch-external-resources
 	@touch $(BUILD_DIR)/fetch
 
 scripts-permission:
@@ -72,7 +72,7 @@ depends: $(BUILD_DIR)/ruby $(BUILD_DIR)/node
 # update dependencies information
 update: depends
 	./scripts/ruby bundle update
-	./scripts/node npm  --proxy http://10.21.21.37:3128 update
+	./scripts/node npm update
 
 # when we pull dependencies also pull docker image
 # without this images can get stale and out of sync from CI system
