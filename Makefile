@@ -13,6 +13,7 @@ AWESTRUCT_USER_SITE=-P user-site --url "$(USER_SITE_URL)"
 
 # Generate everything
 all: fetch-reset prepare generate archive
+cn-all: fetch-reset prepare cn-site
 prepare: scripts-permission fetch depends assets
 
 # Run a local dev server on localhost:4242
