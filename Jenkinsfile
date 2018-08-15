@@ -62,6 +62,7 @@ try {
                     chmod 750 -R ./scripts/*
                     
                     rm -rf ./content/_tmp/examples/
+                    rm -rf ./content/_data/_generated/
 
                     make cn-all
 
