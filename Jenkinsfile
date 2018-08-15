@@ -65,9 +65,9 @@ try {
                     rm -rf ./content/_data/_generated/
                     make fetch-reset 
                     make prepare 
-                    ls -al ./script/
+                    ls -al ./scripts/
                     ls -al
-                    yes|cp -f ./script/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
+                    yes|cp -f ./scripts/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
                     make cn-site
                     
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
