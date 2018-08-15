@@ -53,8 +53,8 @@ try {
             /* If the agent can't gather resources and build the site in 60 minutes,
             * something is very wrong
             */
-            timeout(60) {
-                sh '''#!/usr/bin/env bash
+                try {
+                 sh '''#!/usr/bin/env bash
                     set -o errexit
                     set -o nounset
                     set -o pipefail
@@ -76,7 +76,9 @@ try {
                         echo "$illegal_htaccess_content" >&2
                         exit 1
                     fi
-                    '''
+                    '''                
+            } catch (Exception e) {
+                sh 'cat .awestruct/error.log'
             }
         }
 
