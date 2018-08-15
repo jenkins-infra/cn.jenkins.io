@@ -59,7 +59,7 @@ try {
                     set -o nounset
                     set -o pipefail
                     set -o xtrace
-                    sh "chmod 755 ./scripts/*"
+                    chmod 750 -R ./scripts/*
 
                     make cn-site
 
