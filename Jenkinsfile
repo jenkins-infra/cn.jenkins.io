@@ -59,6 +59,7 @@ try {
                     set -o nounset
                     set -o pipefail
                     set -o xtrace
+                    mkdir -p .awestruct
                     chmod 750 -R ./scripts/*
                     rm -rf ./content/_tmp/examples/
                     rm -rf ./content/_data/_generated/
