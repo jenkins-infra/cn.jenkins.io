@@ -60,7 +60,7 @@ try {
                     set -o pipefail
                     set -o xtrace
 
-                    make all
+                    make cn-site
 
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
                     if [[ -n "$illegal_htaccess_content" ]] ; then
