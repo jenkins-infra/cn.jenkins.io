@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-/bin/cp -f ./script/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
+yes|cp -f datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
+yes|cp -f ./script/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
 
 if [[ "$1" = "--dev" ]] ; then
     ./scripts/ruby bundle exec awestruct $@
