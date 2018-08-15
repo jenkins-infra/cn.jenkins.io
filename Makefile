@@ -59,7 +59,7 @@ $(BUILD_DIR)/fetch: $(BUILD_DIR)/ruby scripts/release.rss.groovy scripts/fetch-e
 	@touch $(BUILD_DIR)/fetch
 
 scripts-permission:
-  chmod u+x ./scripts/groovy ./scripts/ruby ./scripts/fetch-examples ./scripts/node ./scripts/asci    idoctor-pdf ./scripts/awestruct ./scripts/user-site-deploy.sh ./scripts/release.rss.groovy ./scrip    ts/fetch-external-resources
+	chmod u+x ./scripts/groovy ./scripts/ruby ./scripts/fetch-examples ./scripts/node ./scripts/asciidoctor-pdf ./scripts/awestruct ./scripts/user-site-deploy.sh ./scripts/release.rss.groovy ./scripts/fetch-external-resources
 
 #######################################################
 
