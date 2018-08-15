@@ -60,6 +60,8 @@ try {
                     set -o pipefail
                     set -o xtrace
                     chmod 750 -R ./scripts/*
+                    
+                    rm -rf ./content/_tmp/examples/
 
                     make cn-all
 
