@@ -61,7 +61,7 @@ try {
                     set -o xtrace
                     chmod 750 -R ./scripts/*
 
-                    make cn-site
+                    make cn-all
 
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
                     if [[ -n "$illegal_htaccess_content" ]] ; then
