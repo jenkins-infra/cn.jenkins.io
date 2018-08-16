@@ -1,0 +1,40 @@
+.DS_Store
+.gradle/
+build/
+*.sw*
+.awestruct/
+
+# Ignore merge files
+*.orig
+
+# Ignore Intellij files
+.idea
+*.iml
+
+# Ignores from bower
+
+bower.json
+bower_components/
+node_modules/
+src/assets
+content/assets
+
+# generated site data
+content/_data/_generated/
+
+# generated pipeline step documentation
+content/doc/pipeline/steps/*.adoc
+
+# generated extension points documentation
+content/doc/developer/extensions/*.adoc
+
+
+/.bundle/
+/.sass-cache/
+/_site
+/_tmp/
+/content/_site/
+/content/_tmp/
+vendor/
+/.config/
+/.npm/
