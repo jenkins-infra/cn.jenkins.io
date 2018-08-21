@@ -78,10 +78,7 @@ try {
                     '''                
             } catch (Exception e) {
                 sh '''
-                   ls -al
-                   ls -al .awestruct
-                   chmod 750 -R ./.awestruct/*
-                   cat ./.awestruct/error.log
+                   cat ./content/.awestruct/error.log
                 '''
             }
         }
