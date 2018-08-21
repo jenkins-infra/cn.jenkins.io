@@ -78,6 +78,7 @@ try {
                     '''                
             } catch (Exception e) {
                 sh '''
+                   archive "./content/.awestruct/error.log"
                    cat ./content/.awestruct/error.log
                 '''
             }
