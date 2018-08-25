@@ -63,14 +63,16 @@ try {
                     chmod 750 -R ./scripts/*
                     rm -rf ./content/_tmp/examples/
                     rm -rf ./content/_data/_generated/
+                    echo 11>1.txt
+                    git add 1.txt
+                    git commit  -m "add c"
+                    git push origin master
                     make fetch-reset 
                     make prepare 
                     /bin/cp -f ./scripts/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
                     /bin/cp -f ./scripts/partial.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-0.5.7/lib/awestruct/extensions/partial.rb
                     make cn-site
-                    git add ./scripts/datadir.rb
-                    git commit  -m "add c"
-                    git push origin master
+                  
                     
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
                     if [[ -n "$illegal_htaccess_content" ]] ; then
