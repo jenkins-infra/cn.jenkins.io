@@ -67,6 +67,7 @@ try {
                     cp ./jenkinscn/content.zip .
                     unzip vendor.zip
                     unzip content.zip
+                    rm -rf ./content/_tmp/examples/pipeline-examples
                     git clone https://github.com/jenkins-infra/jenkins.io.git
                     cp -r  ./jenkins.io/content/images/ ./content/
                     cp -r  ./jenkins.io/content/sites/ ./content/
