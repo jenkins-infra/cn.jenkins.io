@@ -68,8 +68,8 @@ try {
                     unzip vendor.zip
                     unzip content.zip
                     git clone https://github.com/jenkins-infra/jenkins.io.git
-                    cp -r  ./jenkins/content/images/ ./content/
-                    cp -r  ./jenkins/content/sites/ ./content/
+                    cp -r  ./jenkins.io/content/images/ ./content/
+                    cp -r  ./jenkins.io/content/sites/ ./content/
                     make fetch-reset 
                     make prepare 
                     make cn-site
