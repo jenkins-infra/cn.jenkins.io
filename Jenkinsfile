@@ -61,12 +61,17 @@ try {
                     set -o xtrace
                     mkdir -p .awestruct
                     chmod 750 -R ./scripts/*
-                    rm -rf ./content/_tmp/examples/
-                    rm -rf ./content/_data/_generated/
+                    rm -rf ./content/
+                    git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
+                    cp ./jenkinscn/vendor.zip .
+                    cp ./jenkinscn/content.zip .
+                    unzip vendor.zip
+                    unzip content.zip
+                    git clone https://github.com/jenkins-infra/jenkins.io.git
+                    cp -r  ./jenkins/content/images/ ./content/
+                    cp -r  ./jenkins/content/sites/ ./content/
                     make fetch-reset 
                     make prepare 
-                    /bin/cp -f ./scripts/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
-                    /bin/cp -f ./scripts/partial.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-0.5.7/lib/awestruct/extensions/partial.rb
                     make cn-site
                     
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
