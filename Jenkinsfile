@@ -65,7 +65,7 @@ try {
                     git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
                     cp ./jenkinscn/vendor.zip .
                     cp ./jenkinscn/content.zip .
-                    unzip vendor.zip
+                    
                     unzip content.zip
                     rm -rf ./content/_tmp/examples/pipeline-examples
                     git clone https://github.com/jenkins-infra/jenkins.io.git
