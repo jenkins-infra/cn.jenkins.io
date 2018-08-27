@@ -1,0 +1,84 @@
+---
+layout: sig
+title: "Chinese Localization"
+section: sigs
+sigId: "chinese-localization"
+logo: /images/user.gif
+tags:
+- Chinese
+- localization
+- chinese-localization
+- chinese-localization-sig
+leads:
+- name: "赵晓杰"
+  id: "linuxsuren"
+  github: "linuxsuren"
+participants:
+- name: "郑深语"
+  id: "cizezsy"
+  github: "cizezsy"
+- name: "李连强"
+  id: "xuesea"
+  github: "xuesea"
+
+links:
+  gitter: jenkinsci/chinese-localization-sig
+  googlegroup: jenkins-chinese-localization-sig
+meetings:
+  text: To be announced
+  link: TODO
+overview: >
+  中文本地化组（Chinese Localization Group）的贡献者和协作者致力于改善 Jenkins 的中文用户的使用体验。涉及的范围包括：
+  Jenkins 核心和插件以及官方网站。欢迎加入！
+
+---
+
+中文本地化组（Chinese Localization Group）的贡献者和协作者致力于改善 Jenkins 的中文用户的使用体验。涉及的范围包括：
+Jenkins 核心和插件以及官方网站。欢迎加入！
+
+=== 目标受众
+
+Jenkins 的用户以及开发者都可以加入。
+
+=== Jenkins 核心
+
+当前进度如下：
+
+简体中文： 66.54% +
+繁体中文： 65.69%
+
+=== Jenkins 插件列表
+
+我们优先本地化下面的插件：
+
+link:https://github.com/jenkinsci/credentials-plugin[credentials-plugin] +
+link:https://github.com/jenkinsci/plain-credentials-plugin[plain-credentials-plugin] +
+link:https://github.com/jenkinsci/ssh-credentials-plugin[ssh-credentials-plugin] +
+link:https://github.com/jenkinsci/cloudbees-folder-plugin[cloudbees-folder-plugin] +
+link:https://github.com/jenkinsci/github-organization-folder-plugin[github-organization-folder-plugin] +
+link:https://github.com/jenkinsci/blueocean-plugin[blueocean-plugin] +
+link:https://github.com/jenkinsci/pipeline-plugin[pipeline-plugin] +
+link:https://github.com/jenkinsci/workflow-cps-plugin[pipeline-plugin] +
+link:https://github.com/jenkinsci/workflow-scm-step-plugin[workflow-scm-step-plugin] +
+link:https://github.com/jenkinsci/workflow-support-plugin[workflow-support-plugin] +
+link:https://github.com/jenkinsci/pipeline-model-definition-plugin[pipeline-model-definition-plugin] +
+link:https://github.com/jenkinsci/pipeline-stage-view-plugin[pipeline-stage-view-plugin] +
+link:https://github.com/jenkinsci/pipeline-utility-steps-plugin[pipeline-utility-steps-plugin] +
+link:https://github.com/jenkinsci/pipeline-input-step-plugin[pipeline-input-step-plugin] +
+link:https://github.com/jenkinsci/pipeline-view-plugin[pipeline-view-plugin] +
+link:https://github.com/jenkinsci/github-plugin[github-plugin] +
+link:https://github.com/jenkinsci/github-branch-source-plugin[github-branch-source-plugin] +
+link:https://github.com/jenkinsci/bitbucket-plugin[bitbucket-plugin] + 
+link:https://github.com/jenkinsci/bitbucket-branch-source-plugin[bitbucket-branch-source-plugin] +
+link:https://github.com/jenkinsci/bitbucket-build-status-notifier-plugin[bitbucket-build-status-notifier-plugin] +
+link:https://github.com/jenkinsci/configuration-as-code-plugin[configuration-as-code-plugin] +
+link:https://github.com/jenkinsci/kubernetes-plugin[kubernetes-plugin] +
+link:https://github.com/jenkinsci/cmakebuilder[cmakebuilder]
+
+=== 会议
+
+将会定期发起 SIG 会议。
+初期，每月发起一次会议，之后也会根据情况进行调整。
+
+会议将通过 Jenkins Hangouts-on-Air 进行，并做记录。
+
