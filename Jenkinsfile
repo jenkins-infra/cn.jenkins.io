@@ -61,16 +61,15 @@ try {
                     set -o xtrace
                     mkdir -p .awestruct
                     chmod 750 -R ./scripts/*
+                    cp -r  ./content/images/ ./
                     rm -rf ./content/
-                    git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
-                    cp ./jenkinscn/vendor.zip .
-                    cp ./jenkinscn/content.zip .
-                    
                     unzip content.zip
+                    cp -r  ./images/ ./
+                    ls -al
+                    cd content 
+                    ls -al
+                    cd ..
                     rm -rf ./content/_tmp/examples/pipeline-examples
-                    git clone https://github.com/jenkins-infra/jenkins.io.git
-                    cp -r  ./jenkins.io/content/images/ ./content/
-                    cp -r  ./jenkins.io/content/sites/ ./content/
                     make fetch-reset 
                     make prepare 
                     make cn-site
