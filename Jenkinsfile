@@ -64,7 +64,7 @@ try {
                     cp -r  ./content/images/ ./
                     rm -rf ./content/
                     unzip content.zip
-                    cp -r  ./images/ ./
+                    cp -r  ./images/ ./content/
                     ls -al
                     cd content 
                     ls -al
