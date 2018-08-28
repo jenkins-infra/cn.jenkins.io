@@ -69,7 +69,8 @@ try {
                     git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
                     cp ./jenkinscn/vendor.zip .
                     unzip vendor.zip
-                    chmod 777 -R ./vendor
+                    chmod 750 -R ./vendor
+                    ls ./vendor -al
                     make fetch-reset 
                     make prepare 
                     make cn-site
