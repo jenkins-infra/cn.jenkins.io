@@ -2,6 +2,7 @@
 
 CONTAINER_NAME=ruby:2.3
 source ./scripts/docker-env
+echo "this is a test"
 
 if [ ! -z ${LISTEN+x} ]; then
     ADDITIONAL_ARGS="-p 4242:4242"
