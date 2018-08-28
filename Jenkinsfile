@@ -65,11 +65,11 @@ try {
                     rm -rf ./content/
                     unzip content.zip
                     cp -r  ./images/ ./content/
-                    ls -al
-                    cd content 
-                    ls -al
-                    cd ..
                     rm -rf ./content/_tmp/examples/pipeline-examples
+                    git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
+                    cp ./jenkinscn/vendor.zip .
+                    unzip vendor.zip
+                    chmod 755 -R ./vendor
                     make fetch-reset 
                     make prepare 
                     make cn-site
