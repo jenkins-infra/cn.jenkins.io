@@ -69,10 +69,12 @@ try {
                     git clone https://codehub.devcloud.huaweicloud.com/bc5f563ff21f4b7dae778badc7e1c90b/jenkinscn.git
                     cp ./jenkinscn/vendor.zip .
                     unzip vendor.zip
-                    chmod 755 -R ./vendor
+                    chmod 777 -R ./vendor
                     make fetch-reset 
                     make prepare 
                     make cn-site
+                    make pdfs
+                    make archive
                     
                     illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
                     if [[ -n "$illegal_htaccess_content" ]] ; then
