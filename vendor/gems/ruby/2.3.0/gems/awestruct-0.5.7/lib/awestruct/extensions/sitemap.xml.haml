@@ -1,0 +1,17 @@
+---
+---
+!!! XML
+- if !page.stylesheet_url.nil?
+  <?xml-stylesheet type='text/xsl' href='#{site.baseurl}#{page.stylesheet_url}'?>
+%urlset{ :xmlns=>'http://www.sitemaps.org/schemas/sitemap/0.9' }
+  - unless page.sitemap_entries.empty?
+    - for entry in page.sitemap_entries
+      %url
+        %loc= "#{entry.site.base_url}#{entry.url}"
+        - if entry.lastmod
+          %lastmod= entry.lastmod
+        - if entry.priority
+          %priority= entry.priority
+        - if entry.change_frequency
+          %changefreq= entry.change_frequency
+  

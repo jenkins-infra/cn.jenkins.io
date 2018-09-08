@@ -1,0 +1,30 @@
+= Awestruct I-Beams
+
+The `awestruct-ibeams` gem adds more structural support with a variety of
+different extensions to the link:http://awestruct.org[Awestruct] static site
+generator.
+
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+[source, ruby]
+----
+gem 'awestruct-ibeams'
+----
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install awestruct-ibeams
+
+== Usage
+
+== Contributing
+
+Bug reports and pull requests are welcome
+link:https://github.com/jenkins-infra/awestruct-ibeams[on GitHub].

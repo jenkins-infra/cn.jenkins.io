@@ -1,0 +1,1 @@
+var crunchy = "#{site.crunchy}"

@@ -1,0 +1,32 @@
+#header.page
+  %p#brand= link_to t('.some_place'), '/'
+  #menu
+    %ul.header-links
+      - if true
+        - if false
+          %li
+            %a#cheese-rice{:href => url_for([:admin, :dashboard])}
+              %span.thing-ok= t('.admin')
+            #bla
+              %ul#admin-dropdown-box
+                %li
+                  %a{:href => url_for([:admin, :dashboard])}
+                    %span= t('.admin_dashboard')
+                %li
+                  %a{:href => url_for([:admin, :stacks])}
+                    %span= t('.stacks')
+                %li
+                  %a{:href => url_for([:admin, :environments])}
+                    %span t('.alerts')
+                %li
+                  %a{:href => url_for([:admin, :environments])}
+                    %span= t('.alerts')
+                %li
+                  %a{:href => url_for([:admin, :accounts])}
+                    %span= t('.accounts')
+        = link_to pending_account_invoices_path(account) do
+          = t('.this_linkez')
+        - if true
+          = t('.what_is_supposed_to_be_is_supp')
+        %td=link_to(t('.details'), admin_usage_import_url(usage_import.usage_report))
+        = t('.random')

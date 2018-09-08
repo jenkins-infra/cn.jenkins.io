@@ -1,0 +1,33 @@
+have_library: checking for main() in -lstdc++... -------------------- yes
+
+"gcc -o conftest -I/opt/gitlab/embedded/include/ruby-2.3.0/x86_64-linux -I/opt/gitlab/embedded/include/ruby-2.3.0/ruby/backward -I/opt/gitlab/embedded/include/ruby-2.3.0 -I. -I/opt/gitlab/embedded/include -O2 -O3 -g -pipe -I/opt/gitlab/embedded/include   -I/opt/gitlab/embedded/include -O2 -O3 -g -pipe -fPIC conftest.c  -L. -L/opt/gitlab/embedded/lib -Wl,-R/opt/gitlab/embedded/lib -L/opt/gitlab/embedded/lib -Wl,-R/opt/gitlab/embedded/lib -L. -Wl,-rpath,/opt/gitlab/embedded/lib -fstack-protector -L/opt/gitlab/embedded/lib -rdynamic -Wl,-export-dynamic -L/opt/gitlab/embedded/lib  -Wl,-R/opt/gitlab/embedded/lib     -Wl,-R/opt/gitlab/embedded/lib -L/opt/gitlab/embedded/lib -lruby  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/opt/gitlab/embedded/include/ruby-2.3.0/x86_64-linux -I/opt/gitlab/embedded/include/ruby-2.3.0/ruby/backward -I/opt/gitlab/embedded/include/ruby-2.3.0 -I. -I/opt/gitlab/embedded/include -O2 -O3 -g -pipe -I/opt/gitlab/embedded/include   -I/opt/gitlab/embedded/include -O2 -O3 -g -pipe -fPIC conftest.c  -L. -L/opt/gitlab/embedded/lib -Wl,-R/opt/gitlab/embedded/lib -L/opt/gitlab/embedded/lib -Wl,-R/opt/gitlab/embedded/lib -L. -Wl,-rpath,/opt/gitlab/embedded/lib -fstack-protector -L/opt/gitlab/embedded/lib -rdynamic -Wl,-export-dynamic -L/opt/gitlab/embedded/lib  -Wl,-R/opt/gitlab/embedded/lib     -Wl,-R/opt/gitlab/embedded/lib -L/opt/gitlab/embedded/lib -lruby -lstdc++  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return !p; }
+/* end */
+
+--------------------
+

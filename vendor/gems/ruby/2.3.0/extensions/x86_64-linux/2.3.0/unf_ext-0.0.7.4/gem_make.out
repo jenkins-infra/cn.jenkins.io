@@ -1,0 +1,20 @@
+current directory: /jenkins/jenkins-cn/vendor/gems/ruby/2.3.0/gems/unf_ext-0.0.7.4/ext/unf_ext
+/opt/gitlab/embedded/bin/ruby -r ./siteconf20180310-100234-1clfdas.rb extconf.rb
+checking for main() in -lstdc++... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /jenkins/jenkins-cn/vendor/gems/ruby/2.3.0/extensions/x86_64-linux/2.3.0/unf_ext-0.0.7.4/mkmf.log
+
+current directory: /jenkins/jenkins-cn/vendor/gems/ruby/2.3.0/gems/unf_ext-0.0.7.4/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /jenkins/jenkins-cn/vendor/gems/ruby/2.3.0/gems/unf_ext-0.0.7.4/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /jenkins/jenkins-cn/vendor/gems/ruby/2.3.0/gems/unf_ext-0.0.7.4/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20180310-100234-1npi8kr

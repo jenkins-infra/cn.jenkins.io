@@ -1,0 +1,32 @@
+#header.page
+  %p#brand= link_to "Some place", '/'
+  #menu
+    %ul.header-links
+      - if true
+        - if false
+          %li
+            %a#cheese-rice{:href => url_for([:admin, :dashboard])}
+              %span.thing-ok Admin
+            #bla
+              %ul#admin-dropdown-box
+                %li
+                  %a{:href => url_for([:admin, :dashboard])}
+                    %span Admin Dashboard
+                %li
+                  %a{:href => url_for([:admin, :stacks])}
+                    %span Stacks
+                %li
+                  %a{:href => url_for([:admin, :environments])}
+                    %span t('.alerts')
+                %li
+                  %a{:href => url_for([:admin, :environments])}
+                    %span= t('.alerts')
+                %li
+                  %a{:href => url_for([:admin, :accounts])}
+                    %span Accounts
+        = link_to pending_account_invoices_path(account) do
+          this_linkez
+        - if true
+          What is@ supposed to be, is supposed to be! ~
+        %td=link_to("Details", admin_usage_import_url(usage_import.usage_report))
+        "raNdom"

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+$: << File.dirname(__FILE__) + '/../lib'
+
+require 'rubygems'
+require 'awestruct/cli/invoker'
+
+invoker = Awestruct::CLI::Invoker.new( ARGV )
+invoker.invoke!
+
+invoker.success ? exit(0) : exit(-1)

@@ -1,0 +1,12 @@
+= AsciiDoc
+Stuart Rackham <srackham@example.com>; Dan Allen
+2013-02-06
+:page-tags: [a, b, c]
+:page-layout: haml-layout
+:name: NOT_HANDLED
+:site-test: preserved
+
+This is *AsciiDoc* page named {page-name} in an Awestruct site.
+{awestruct-version}
+{site-encoding}
+{site-test}
