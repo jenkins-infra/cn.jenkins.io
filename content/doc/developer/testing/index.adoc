@@ -22,11 +22,11 @@ references:
 为了简化测试的开发，Jenkins提供了基于JUnit测试框架的： link:https://github.com/jenkinsci/jenkins-test-harness/[测试工具]。
 这提供了以下功能:
 
-1. Jenkins安装的自动设置和拆卸，允许每个测试方法在干净，隔离的环境中运行。
-2. Helper类和方法简化作业，代理，安全领域，SCM实现等的创建。
-3. 声明性注释来指定测试方法将使用的环境; 例如，设置`JENKINS_HOME`内容。
-4. 直接访问Jenkins对象模型。 这允许测试直接对抗Jenkins的内部状态
-5. link:http://htmlunit.sourceforge.net/[HtmlUnit] 支持,使测试与Web UI和其他HTTP调用的交互变得简单。
+1. Jenkins安装的自动设置和拆卸，允许每个测试方法在干净，隔离的环境中运行。Automated setup and teardown of a Jenkins installation, allowing each test method to run in a clean, isolated environment.
+2. Helper类和方法简化作业，代理，安全领域，SCM实现等的创建。Helper classes and methods to simplify the creation of jobs, agents, security realms, SCM implementations and more.
+3. 声明性注释来指定测试方法将使用的环境; 例如，设置`JENKINS_HOME`内容Declarative annotations to specify the environment a test method will use; for example, setting the `JENKINS_HOME` contents.
+4. 直接访问Jenkins对象模型。 这允许测试直接对抗Jenkins的内部状态。Direct access to the Jenkins object model. This allows tests to assert directly against the internal state of Jenkins.
+5. link:http://htmlunit.sourceforge.net/[HtmlUnit] support,使测试与Web UI和其他HTTP调用的交互变得简单。 making it simple to test interaction with the web UI and other HTTP calls.
 
 == 配置
 === 依赖关系

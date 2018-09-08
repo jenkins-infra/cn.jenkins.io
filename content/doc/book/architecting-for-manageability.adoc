@@ -12,35 +12,67 @@ ifdef::backend-html5[]
 :toc:
 endif::[]
 
-== 构建可管理性
+== Architecting for Manageability
 
-=== 介绍
+=== Introduction
 
-在开源社区中有超过1000个插件和无数版本的插件，在升级一个或多个生产Jenkins实例之前测试所有可能的冲突根本不可行。 如果Jenkins检测到插件需要更新版本的Jenkins核心，它本身会警告潜在的不兼容性，但没有自动的方法来检测插件之间的冲突，或自动量化在升级之前升级插件的影响。
+With over 1,000 plugins and countless versions of said plugins in the
+open-source community, testing for all possible conflicts before upgrading one
+or more production Jenkins instances is simply not feasible. While Jenkins
+itself will warn of potential incompatibility if it detects that a plugin
+requires a newer version of the Jenkins core, there is no automatic way to
+detect conflicts between plugins or to automatically quantifying the impact of
+upgrading a plugin before doing the upgrade.
 
-相反，在执行生产实例之前，Jenkins管理员应负责手动测试其实例的插件和核心版本更新。 这种测试需要生产服务器的副本或“测试实例”充当此类测试的沙箱，并可以防止生产主服务器停机。
+Instead, Jenkins administrators should be made responsible for manually testing
+their own instance's plugin and core version updates before performing them on
+the production instance. This kind of testing requires a copy or "test
+instance" of the production server to act as the sandbox for such tests and can
+prevent production master downtime.
 
-=== 测试实例
+=== Test Instances
 
-测试大师是Jenkins大师，专门用于测试非生产环境中的配置和插件。 对于具有关键任务Jenkins实例的组织，强烈建议拥有测试主管。
+A test master is a Jenkins master used solely for testing configurations and
+plugins in a non-production environment. For organizations with a
+mission-critical Jenkins instance, having a test master is highly recommended.
 
-升级或降级Jenkins核心或任何插件有时会产生意想不到的副作用，使另一个插件的功能崩溃甚至崩溃。 从今天起，没有比测试大师更好的预测这种灾难性冲突的方法。
+Upgrading or downgrading either the Jenkins core or any plugins can sometimes
+have the unintended side effect of crippling another plugin's functionality or
+even crashing a master. As of today, there is no better way to pre-test for
+such catastrophic conflicts than with a test master.
 
-测试主人应该与生产主数据具有相同的配置，作业和插件，以便测试升级与生产主数据的类似更改的结果非常相似。 例如，在运行版本低于1.554.1的Jenkins核心时安装文件夹插件将导致实例崩溃并且无法访问，直到从_plugin_文件夹手动卸载插件。
+Test masters should have identical configurations, jobs, and plugins as the
+production master so that test upgrades  will most closely resemble the
+outcomes of a similar change on your production master. For example, installing
+the Folders plugin while running a version of the Jenkins core older than
+1.554.1 will cause the instance crash and be inaccessible until the plugin is
+manually uninstalled from the _plugin_ folder.
 
-==== 设置测试实例
+==== Setting up a test instance
 
-有很多方法可以设置测试实例，但它们之间的共同点是它们之间的_ $ JENKINS_HOME__$JENKINS_HOME_几乎完全相同。 无论这是否意味着大多数生产主文件的_$JENKINS_HOME_文件夹都受版本控制，如GitHub的服务，并手动或以编程方式安装到测试服务器或Docker容器，结果几乎相同。
+There are many methods for setting up a test instance, but the commonality
+between them all is that the _$JENKINS_HOME_ between them is nearly identical.
+Whether this means that most all of the production masters' _$JENKINS_HOME_
+folder is version controlled in a service like GitHub and mounted manually or
+programmatically to a test server or Docker container, the result is nearly the
+same.
 
-在尝试创建测试主机之前，首先确保主机处于空闲状态（无运行或排队作业）是理想的。
+It is ideal to first ensure sure the master is idle (no running or queued jobs)
+before attempting to create a test master.
 
 *With GitHub + manual commands*
 
-您只需要打开命令行界面并将“cd”打开到包含生产主文件的_$JENKINS_HOME_目录的文件夹，然后运行“git init”命令。 有关该文件夹的位置，请参阅第3节。
+You will simply need to open up your command-line interface and "cd" to the
+folder that contains the _$JENKINS_HOME_ directory for your production master
+and run the "git init" command. For the location of this folder, please refer
+to section 3.
 
-建议在运行“git add”命令之前创建一个好的 _.gitignore_文件。 这个文件可以防止你无意中版本控制一个文件太大而无法存储在GitHub中（任何东西> 50 MB）。
+It is recommended that before running the "git add" command that you create a
+good _.gitignore_ file. This file will prevent you from accidentally
+version-controlling a file that is too large to be stored in GitHub (anything
+>50 MB).
 
-以下是运行在OS X上的Jenkins主文件的示例 _.gitignore__文件:
+Here is an example _.gitignore_ file for a Jenkins master running on OS X:
 
 [source]
 ----
@@ -97,7 +129,8 @@ fingerprints/
 *.gz
 ----
 
-一旦你有一个好的 _.gitignore_ 文件，你可以运行follow git命令来提交你的 _$JENKINS_HOME_ 到Git仓库，比如GitHub:
+Once you have a good _.gitignore_ file, you can run the follow git commands to
+commit your _$JENKINS_HOME_ to a git repository like GitHub:
 
 [source,bash]
 ----
@@ -106,19 +139,32 @@ git commit -m "first commit"
 git push
 ----
 
-现在，您可以将Jenkins安装到新实例，并将git clone这个_$JENKINS_HOME_ 从git存储库中添加到您的新实例中。 您将需要用新版本控制的文件替换新实例中的文件以完成迁移，无论是通过脚本还是通过拖放过程。
+Now you can install Jenkins to a fresh instance and "git clone" this
+_$JENKINS_HOME_ from the git repository to your new instance. You will need to
+replace the files in the new instance with your version-controlled files to
+complete the migration, whether through scripts or through a drag-and-drop
+process.
 
-完成此操作后，您需要重新启动新的测试大师的Jenkins服务或从Jenkins UI重新加载其配置（“管理Jenkins”>>“重新加载配置”）。
+Once this is done, you will need to restart the new test master's Jenkins
+service or reload its configuration from the Jenkins UI ("Manage Jenkins" >>
+"Reload Configuration").
 
 *With GitHub + Docker (Linux-only)*
 
-当涉及到控制$JENKINS_HOME的版本时，只需按照上一节中的说明操作即可。
+When it comes to version controlling your $JENKINS_HOME, just follow the
+instructions in the previous section.
 
-下一步将创建一个Docker镜像，其配置与生产实例的操作系统（仅限Linux）相同，安装的库/工具和开放端口相同。 这可以通过Dockerfiles完成。
+The next step will be to create a Docker image with identical configurations to
+your production instance's - operating system (Linux-only), installed
+libraries/tools, and open ports. This can be accomplished through Dockerfiles.
 
-然后，您需要在克隆版本控制的_$JENKINS_HOME_ home主目录以及用于克隆_$JENKINS_HOME_的简单镜像的Docker服务器上创建挂载的存储。
+You will then just need to create mounted storage on your Docker server with a
+clone of your version-controlled _$JENKINS_HOME_ home and a simple image to
+clone the _$JENKINS_HOME_ into.
 
-例如，我们可以在名为“demo-joc”的Github存储库中创建一个名为_jenkins-storage_的Docker镜像，并对我们的 _$JENKINS_HOME_进行版本控制。 “jenkins-storage”Docker镜像可以通过类似于Dockerfile的Docker来构建:
+For example, we can create a Docker image called _jenkins-storage_ and version
+control our _$JENKINS_HOME_ in a Github repository known as "demo-joc". The
+"jenkins-storage" Docker image can be built from a Dockerfile similar to this:
 
 [source,bash]
 ----
@@ -167,7 +213,8 @@ the following command:
 docker run --name storage [your-dockerhub-id]/jenkins-storage git clone https://github.com/[your-github-id]/docker-jenkins-storage.git .
 ----
 
-然后，依靠装载存储的_$JENKNIS_HOME_的Jenkins图像将需要指向已安装的卷:
+And Jenkins images that rely on the mounted storage for their _$JENKNIS_HOME_
+will then need to point to the mounted volume:
 
 [source,bash]
 ----
@@ -176,35 +223,61 @@ docker run -d --dns=172.17.42.1 --name joc-1 --volumes-from storage -e JENKINS_H
 
 .Test master slaves
 
-测试主机可以连接到测试从机，但这需要进一步的配置。 根据您的测试实例的实现，您需要创建一个Jenkins Docker从属镜像或从属虚拟机。 当然，像EC2插件这样的开源插件也可以根据需要启动新的从站。
+Test masters can be connected to test slaves, but this will require further
+configurations. Depending on your implementation of a test instance, you will
+either need to create a Jenkins Docker slave image or a slave VM. Of course,
+open-source plugins like the EC2 plugin also the option of spinning up new
+slaves on-demand.
 
-从属连接信息还需要在位于测试主站_$JENKINS_HOME_中的config.xml中进行编辑。
+The slave connection information will also need to be edited in the config.xml
+located in your test master's _$JENKINS_HOME_.
 
 .Rolling back plugins that cause failures
 
-如果您发现插件更新在测试主控内部导致冲突，则可以采用多种方式进行回滚:
+If you discover that a plugin update is causing conflict within the test
+master, you can rollback in several ways:
 
-* 对于错误的插件，您可以通过转到插件管理器（“管理Jenkins”>>“管理插件”）并转到“可用”选项卡，从UI中回滚插件。 Jenkins会在可降级的插件旁边显示“降级”按钮。
+* For bad plugins, you can rollback the plugin from the UI by going to the
+  plugin manager ("Manage Jenkins" >> "Manage Plugins") and going to the
+  "Available" tab. Jenkins will show a "downgrade" button next to any plugins
+  that can be downgraded.
 
-* 如果UI不可用，请输入您的 _$JENKINS_HOME_文件夹并转至插件文件夹。 从那里删除违规插件的.hpi或.jpi文件，然后重新启动Jenkins。 如果您需要回滚到旧版本，则需要手动复制旧版本的.jpi或.hpi。 为此，请转到 link:http://updates.jenkins-ci.org/download/plugins[Jenkins wiki]上的插件页面并下载其中一个存档版本。
+* If the UI is unavailable, then enter your _$JENKINS_HOME_ folder and go to
+  the plugins folder. From there, delete the .hpi or .jpi file for the
+  offending plugin, then restart Jenkins. If you need to rollback to an older
+  version, you will need to manually copy in an older version of that .jpi or
+  .hpi. To do this, go to the plugin's page on the
+  link:http://updates.jenkins-ci.org/download/plugins[Jenkins wiki] and download one
+  of its archived versions.
 
 
-=== 故障排除稳定性
+=== Troubleshooting for Stability
 
-当主设备的硬件大小不正确或者错误插件浪费资源时，Jenkins主设备可能会遇到不稳定问题。 为了解决这个问题，Jenkins管理员应该通过识别哪些组件行为异常以及哪些资源不足来开始他们的故障排除。 管理员可以
-link:https://wiki.jenkins-ci.org/display/JENKINS/Obtaining+a+thread+dump[采取线程转储] 并且头部转储以获得这些信息，但是在某些情况下，实例变得不可操作并且无法进行线程转储，因此在需要此类故障排除时，在Jenkins本身之外拥有持久记录以供参考时非常有用。
+Jenkins masters can suffer instability problems when the master is not properly
+sized for its hardware or a buggy plugin wastes resources. To combat this,
+Jenkins administrators should begin their troubleshooting by identifying which
+components are behaving abnormally and which resources are insufficient. The
+administrator can
+link:https://wiki.jenkins-ci.org/display/JENKINS/Obtaining+a+thread+dump[take thread
+dumps] and head dumps to get some of this information, but in some cases where
+the instance has become non-operational and taking a thread dump is impossible,
+it is useful to have a persistent record outside of Jenkins itself to reference
+when such troubleshooting is required.
 
-==== 使用Jenkins度量插件
+==== Using the Jenkins Metrics Plugin
 
-link:https://wiki.jenkins-ci.org/display/JENKINS/Metrics+Plugin[Jenkins 度量插件] 是一个开源插件，它揭示了Jenkins实例的度量标准。
-度量标准使用
-link:https://dropwizard.github.io/metrics/3.1.0[Dropwizard度量API]
+The link:https://wiki.jenkins-ci.org/display/JENKINS/Metrics+Plugin[Jenkins Metrics
+Plugin] is an open-source plugin which exposes metrics on a Jenkins instance.
+Metrics are exposed using the
+link:https://dropwizard.github.io/metrics/3.1.0[Dropwizard Metrics API]
 
 .Metrics exposed
 
-公开指标的确切列表因安装的插件而异。
-要获得您自己的主设备的可用指标的完整列表，请运行以下命令
- https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Script+Console[您的主机的脚本控制台]上的脚本:
+The exact list of exposed metrics varies depending on your installed plugins.
+To get a full list of available metrics for your own master, run the following
+script on
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+Script+Console[your
+master's script console]:
 
 [source,groovy]
 ----
@@ -216,14 +289,23 @@ for (j in Jenkins.instance.getExtensionList(jenkins.metrics.api.MetricProvider.c
 }
 ----
 
-CloudBees 由
-link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-reference.html#monitoring-sect-reference-metrics[记录]暴露指标的完整列表，并对每个指标进行深入解释。
+CloudBees has
+link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-reference.html#monitoring-sect-reference-metrics[documented]
+the full list of exposed metrics, along with in-depth explanations of each.
 
 .Metrics Usage
 
-度量标准受一组查看，访问线程转储和发布运行状况检查的权限的保护。 通过访问<jenkins-url> / metrics / currentUser，Metrics Operational Menu可以通过Web UI进行访问，4菜单选项（Metrics，Ping，Threads，Healthcheck）会导致包含请求的度量或线程转储的JSON字符串。
+Metrics are protected by a set of permissions for viewing, accessing the thread
+dump, and posting a health check. The Metrics Operational Menu can be access
+via the web UI by visiting <jenkins-url>/metrics/currentUser, and the 4 menu
+options (Metrics, Ping, Threads, Healthcheck) lead to a JSON string containing
+the requested metrics or thread dump.
 
-访问度量标准Servlet也可以通过发布API密钥来提供。 API密钥可以从“Metrics”部分下的Jenkins全局配置屏幕（<jenkins-url> / configure）进行配置。 可以生成多个访问权限，并且在这个级别也可以限制与这些密钥相关的权限。
+Access to the Metrics Servlet can also be provided by issuing API keys. API
+keys can be configured from the Jenkins global configuration screen
+(<jenkins-url>/configure) under the "Metrics" section. Multiple access can be
+generated and permissions associated with those keys can also be restricted at
+this level.
 
-有关度量标准基本和高级用法的更多信息可以
-link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-getting-started.html[在这里]找到。
+More information on Metrics basic and advanced usages can be found
+link:https://documentation.cloudbees.com/docs/cje-user-guide/monitoring-sect-getting-started.html[here].

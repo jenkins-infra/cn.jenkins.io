@@ -27,7 +27,7 @@ asciidoctor:
     linkattrs: ''
     source-highlighter: coderay
     coderay-css: style
-    prewrap: nullW
+    prewrap: null
     fragment: ''
     notitle: ''
 profiles:
@@ -44,4 +44,4 @@ profiles:
       account: UA-000000-0
     base_url: http://localhost:4242/
   cn-site:
-    base_url: https://122.112.226.199/
+    base_url: http://cn.jenkins.io/

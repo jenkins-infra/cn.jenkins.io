@@ -18,7 +18,7 @@ layout: section
 = Fingerprints
 
 ////
-标记为本文档弃用的页面:
+Pages to mark as deprecated by this document:
 
 https://wiki.jenkins-ci.org/display/JENKINS/Fingerprint
 ////

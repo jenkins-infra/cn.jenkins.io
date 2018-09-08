@@ -12,22 +12,30 @@ ifdef::backend-html5[]
 :toc: left
 endif::[]
 
-== 流水线即代码
+== Pipeline as Code
 
 
-=== 介绍
+=== Introduction
 
-_Pipeline as Code_ 描述了一组允许Jenkins用户使用代码定义流水线作业流程的功能，在源代码库中存储和版本化。 这些功能使Jenkins能够发现，管理和运行多个源存储库和分支机构的作业 - 无需手动创建和管理作业。
+_Pipeline as Code_ describes a set of features that allow Jenkins users to
+define pipelined job processes with code, stored and versioned in a source
+repository.  These features allow Jenkins to discover, manage, and run jobs for
+multiple source repositories and branches -- eliminating the need for manual job
+creation and management.
 
-要使用 _Pipeline as Code_, 项目必须在存储库根目录中包含一个名为`Jenkinsfile`的文件，其中包含一个“流水线脚本”。
+To use _Pipeline as Code_, projects must contain a file named `Jenkinsfile` in
+the repository root, which contains a "Pipeline script."
 
-另外，需要在Jenkins中配置其中一个启用作业:
+Additionally, one of the enabling jobs needs to be configured in Jenkins:
 
-* _Multibranch Pipeline_: 自动构建_single_存储库的多个分支
-* _Organization Folders_: 浏览 *GitHub Organization* 或 *Bitbucket Team* 来发现组织的存储库，为他们自动创建托管的_Multibranch Pipeline_作业
+* _Multibranch Pipeline_: build multiple branches of a _single_ repository automatically
+* _Organization Folders_: scan a *GitHub Organization* or *Bitbucket Team* to
+  discover an organization's repositories, automatically creating managed
+  _Multibranch Pipeline_ jobs for them
 
 
-基本上，组织的存储库可以被视为一个层次结构，其中每个存储库可能具有分支和请求的子元素。
+Fundamentally, an organization's repositories can be viewed as a hierarchy,
+where each repository may have child elements of branches and pull requests.
 
 .Example Repository Structure
 [source]
@@ -44,181 +52,267 @@ _Pipeline as Code_ 描述了一组允许Jenkins用户使用代码定义流水线
 ....
 [source]
 
-在 _Multibranch Pipeline_ 作业和 _Organization Folders_之前,
-link:https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin[文件夹]
-可以用于在Jenkins中创建此层次结构，方法是将存储库组织为包含每个单独分支的作业的文件夹。
+Prior to _Multibranch Pipeline_ jobs and _Organization Folders_,
+link:https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin[Folders]
+could be used to create this hierarchy in Jenkins by organizing repositories
+into folders containing jobs for each individual branch.
 
-_Multibranch Pipeline_ 和 _Organization Folders_ 通过分别检测分支和存储库来消除手动过程，并自动在Jenkins中创建带有作业的相应文件夹。
-
-
-==== Jenkinsfile
-
-在存储库的根目录中存在`Jenkinsfile` 使得Jenkins有资格根据存储库分支自动管理和执行作业。
-
-`Jenkinsfile`应该包含一个流水线脚本，指定执行作业的步骤。 该脚本拥有Pipeline的所有功能，从调用Maven构建器那样简单到一系列相互依赖的步骤，这些步骤协调了并行执行与部署和验证阶段。
-
-开始使用Pipeline的一个简单方法是使用Jenkins _Pipeline_作业的配置屏幕中提供的 _Snippet Generator_。 使用_Snippet Generator_，你可以创建一个Pipeline脚本，就像你可以通过其他Jenkins作业中的下拉菜单一样。
+_Multibranch Pipeline_ and _Organization Folders_ eliminate the manual process
+by detecting branches and repositories, respectively, and creating appropriate
+folders with jobs in Jenkins automatically.
 
 
-==== 文件夹计算
+==== The Jenkinsfile
 
-_Multibranch Pipeline_ 项目和_Organization Folders_通过引入'computed'文件夹来扩展现有的文件夹功能。 计算文件夹自动运行一个进程来管理文件夹内容。 对于_Multibranch Pipeline_项目，此计算为子项内的每个符合条件的分支创建子项。 对于_Organization Folders_，计算会将存储库的子项目填充为单个_Multibranch Pipelines_。
+Presence of the `Jenkinsfile` in the root of a repository makes it eligible for
+Jenkins to automatically manage and execute jobs based on repository branches.
 
-文件夹计算可能通过webhook回调自动发生，因为分支和存储库被创建或删除。 计算也可能由配置中定义的_Build Trigger_触发，它会在一段时间不活动后自动运行计算任务（默认情况下在一天后运行）。
+The `Jenkinsfile` should contain a Pipeline script, specifying the steps to
+execute the job.  The script has all the power of Pipeline available, from
+something as simple as invoking a Maven builder, to a series of interdependent
+steps, which have coordinated parallel execution with deployment and validation
+phases.
+
+A simple way to get started with Pipeline is to use the _Snippet Generator_
+available in the configuration screen for a Jenkins _Pipeline_ job.  Using the
+_Snippet Generator_, you can create a Pipeline script as you might through the
+dropdowns in other Jenkins jobs.
+
+
+==== Folder Computation
+
+_Multibranch Pipeline_ projects and _Organization Folders_ extend the existing
+folder functionality by introducing 'computed' folders.  Computed folders
+automatically run a process to manage the folder contents.  This computation, in
+the case of _Multibranch Pipeline_ projects, creates child items for each
+eligible branch within the child.  For _Organization Folders_, computation
+populates child items for repositories as individual _Multibranch Pipelines_.
+
+Folder computation may happen automatically via webhook callbacks, as branches
+and repositories are created or removed.  Computation may also be triggered by
+the _Build Trigger_ defined in the configuration, which will automatically run a
+computation task after a period of inactivity (this defaults to run after one
+day).
 
 [role="image-border"]
 image::folder-computation-build-trigger-schedule.png[scaledwidth="75%"]
 
-有关上次执行文件夹计算的信息可在 *Folder Computation* 部分中找到。
+Information about the last execution of the folder computation is available in
+the *Folder Computation* section.
 
 [role="image-border"]
 image::folder-computation-main.png[scaledwidth="75%",width="75%"]
 
-上次尝试计算文件夹的日志可从此页面获得。 如果文件夹计算不会产生预期的存储库集合，则日志可能具有有用的信息来诊断问题。
+The log from the last attempt to compute the folder is available from this page.
+If folder computation doesn't result in an expected set of repositories, the log
+may have useful information to diagnose the problem.
 
 [role="image-border"]
 image::folder-computation-log.png[scaledwidth="75%",width="75%"]
 
 
-=== 配置
+=== Configuration
 
-_Multibranch Pipeline_项目和_Organization Folders_都有配置选项，可以精确选择存储库。 这些功能还允许选择连接到远程系统时使用的两种类型的凭证:
+Both _Multibranch Pipeline_ projects and _Organization Folders_ have
+configuration options to allow precise selection of repositories.  These
+features also allow selection of two types of credentails to use when connecting
+to the remote systems:
 
-* _scan_ 凭据，用于访问GitHub或Bitbucket API
-* _checkout_ 凭证，当从远程系统克隆存储库时使用这些文件; 选择一个SSH密钥或 _"- anonymous -"_可能会很有用，它使用为OS用户配置的默认凭据 。
+* _scan_ credentials, which are used for accessing the GitHub or Bitbucket APIs
+* _checkout_ credentials, which are used when the repository is cloned from the
+  remote system; it may be useful to choose an SSH key or _"- anonymous -"_,
+  which uses the default credentials configured for the OS user
 
-IMPORTANT: 如果你使用 _GitHub Organization_, 你应该 link:https://github.com/settings/tokens/new?scopes=repo,public_repo,admin:repo_hook,admin:org_hook&amp;description=Jenkins+Access[create a GitHub access token]以避免在Jenkins中存储您的密码，并防止在使用GitHub API时出现任何问题。
-使用GitHub访问令牌时，必须使用标准的_Username with password_，其中用户名与GitHub用户名相同，密码为访问令牌。
+IMPORTANT: If you are using a _GitHub Organization_, you should link:https://github.com/settings/tokens/new?scopes=repo,public_repo,admin:repo_hook,admin:org_hook&amp;description=Jenkins+Access[create a GitHub access token] to use to avoid storing your password in Jenkins and prevent any issues when using the GitHub API.
+When using a GitHub access token, you must use standard _Username with password_ credentials, where the username is the same as your GitHub username and the password is your access token.
 
-==== 多分支流水线项目
+==== Multibranch Pipeline Projects
 
-_Multibranch Pipeline_ 项目是_Pipeline as Code_的基本功能之一。 构建或部署过程的更改可随着项目需求而变化，并且作业始终反映项目的当前状态。 它还允许您为同一项目的不同分支配置不同的作业，或者在适当的情况下放弃工作。 分支或拉取请求根目录中的 `Jenkinsfile`标识多分支项目。
+_Multibranch Pipeline_ projects are one of the fundamental enabling features for
+_Pipeline as Code_.  Changes to the build or deployment procedure can evolve
+with project requirements and the job always reflects the current state of the
+project.  It also allows you to configure different jobs for different branches
+of the same project, or to forgo a job if appropriate.  The `Jenkinsfile` in the
+root directory of a branch or pull request identifies a multibranch project.
 
-NOTE:  _Multibranch Pipeline_ 项目使用`BRANCH_NAME`环境变量公开正在构建的分支的名称，并提供一个特殊的`checkout scm` Pipeline命令，该命令保证检查Jenkinsfile所产生的特定提交。 如果Jenkinsfile出于某种原因需要检出版本库，请确保使用`checkout scm`，因为它也考虑了替代原始版本库来处理诸如请求的问题。
+NOTE:  _Multibranch Pipeline_ projects expose the name of the branch being built with
+the `BRANCH_NAME` environment variable and provide a special `checkout scm`
+Pipeline command, which is guaranteed to check out the specific commit that the
+Jenkinsfile originated.  If the Jenkinsfile needs to check out the repository
+for any reason, make sure to use `checkout scm`, as it also accounts for
+alternate origin repositories to handle things like pull requests.
 
-要创建_Multibranch Pipeline_, 前往: _New Item -> Multibranch Pipeline_.
-根据需要配置SCM来源。 有许多不同类型的存储库和服务的选项，包括Git，Mercurial，Bitbucket和GitHub。 例如，如果使用GitHub，请单击*Add source*，选择GitHub并配置适当的所有者，扫描凭证和存储库。
+To create a _Multibranch Pipeline_, go to: _New Item -> Multibranch Pipeline_.
+Configure the SCM source as appropriate.  There are options for many different
+types of repositories and services including Git, Mercurial, Bitbucket, and
+GitHub.  If using GitHub, for example, click *Add source*, select GitHub and
+configure the appropriate owner, scan credentials, and repository.
 
-_Multibranch Pipeline_ 项目其他的可用选项有:
+Other options available to _Multibranch Pipeline_ projects are:
 
-* *API endpoint* - 一个替代的API端点可以使用自托管的GitHub Enterprise
-* *Checkout credentials* -检查代码时使用的备用凭证（克隆）
-* *Include branches* - 一个正则表达式来指定要包含的分支
-* *Exclude branches* - 用于指定要排除的分支的正则表达式; 请注意，这将优先于包含
-* *Property strategy* - 如有必要，为每个分支定义自定义属性
+* *API endpoint* - an alternate API endpoint to use a self-hosted GitHub Enterprise
+* *Checkout credentials* - alternate credentials to use when checking out the code (cloning)
+* *Include branches* - a regular expression to specify branches to include
+* *Exclude branches* - a regular expression to specify branches to exclude; note that this will take precedence over includes
+* *Property strategy* - if necessary, define custom properties for each branch
 
-配置这些项目并保存配置后，Jenkins将自动扫描存储库并导入适当的分支。
+After configuring these items and saving the configuration, Jenkins will
+automatically scan the repository and import appropriate branches.
 
-==== 组织文件夹
+==== Organization Folders
 
-组织文件夹提供了一种便捷的方式，允许Jenkins自动管理Jenkins中自动包含哪些存储库。
-尤其是，如果您的组织使用_GitHub Organizations_ 或 _Bitbucket Teams_，任何时候开发人员使用 `Jenkinsfile`创建一个新的存储库，Jenkins都会自动检测它并为其创建一个_Multibranch Pipeline_ 项目。
-这可以减轻管理员或开发人员为这些新存储库手动创建项目的需求。
+Organization Folders offer a convenient way to allow Jenkins to automatically manage which repositories are automatically included in Jenkins.
+Particularly, if your organization utilizes _GitHub Organizations_ or _Bitbucket Teams_, any time a developer creates a new repository
+with a `Jenkinsfile`, Jenkins will automatically detect it and create a _Multibranch Pipeline_ project for it.
+This alleviates the need for administrators or developers to manually create projects for these new repositories.
 
-要在Jenkins中创建_Organization Folder_ ，请转到: *New Item -> GitHub Organization* 或 *New Item -> Bitbucket Team* 并按照每个项目的配置步骤进行操作，确保分别为GitHub组织或Bitbucket团队名称指定适当的_Scan Credentials_和特定的 *owner* 。
+To create an _Organization Folder_ in Jenkins, go to: *New Item -> GitHub Organization* or *New Item -> Bitbucket Team* and follow the configuration steps for each item,
+making sure to specify appropriate _Scan Credentials_ and a specific *owner* for the GitHub Organization or Bitbucket Team name, respectively.
 
-其他可用选项:
+Other options available are:
 
-* *Repository name pattern* - 一个正则表达式来指定哪些存储库是 *included*
-* *API endpoint* - 一个替代的API端点可以使用自托管的GitHub Enterprise
-* *Checkout credentials* - 检查代码时使用的备用凭证（克隆）
+* *Repository name pattern* - a regular expression to specify which repositories are *included*
+* *API endpoint* - an alternate API endpoint to use a self-hosted GitHub Enterprise
+* *Checkout credentials* - alternate credentials to use when checking out the code (cloning)
 
-配置完这些项目并保存配置后，Jenkins将自动扫描组织并导入适当的存储库和生成的分支。
+After configuring these items and saving the configuration, Jenkins will automatically scan the organization and import appropriate repositories and resulting branches.
 
 
-==== 孤儿项目策略
+==== Orphaned Item Strategy
 
-计算文件夹可以立即移除项目，或根据所需的保留策略离开项目。
-默认情况下，只要文件夹计算确定它们不再存在，项目就会被删除。
-如果您的组织要求这些项目保持更长时间的可用状态，只需简单配置孤立项目策略即可。
-例如，保留项目以检查分支被移除后的生成结果可能会很有用。
+Computed folders can remove items immediately or leave them based on a desired retention strategy.
+By default, items will be removed as soon as the folder computation determines they are no longer present.
+If your organization requires these items remain available for a longer period of time, simply configure the Orphaned Item Strategy appropriately.
+It may be useful to keep items in order to examine build results of a branch after it's been removed, for example.
+
 [role="image-border"]
 image::orphaned-item-strategy.png[scaledwidth="75%"]
 
-==== 图标和视图策略
+==== Icon and View Strategy
 
-您也可以配置一个图标用于文件夹显示。 例如，显示子版本的总体健康状况可能很有用。另外，您可能会引用您在GitHub组织帐户中使用的相同图标。
+You may also configure an icon to use for the folder display.
+For example, it might be useful to display an aggregate health of the child builds.
+Alternately, you might reference the same icon you use in your GitHub organization account.
 
 [role="image-border"]
 image::folder-icon.png[scaledwidth="75%"]
 
 
-=== 示例
+=== Example
 
-为了演示如何使用组织文件夹管理存储库，我们将使用虚构组织：CloudBeers，Inc. ..
+To demonstrate using an Organization Folder to manage repositories, we'll use
+the fictitious organization: CloudBeers, Inc..
 
-去*New Item*.
-输入“cloudbeers”作为项目名称。
-选择*GitHub Organization* 并点击 *OK*.
+Go to *New Item*.
+Enter 'cloudbeers' for the item name.
+Select *GitHub Organization* and click *OK*.
 
 [role="image-border"]
 image::screenshot1.png[scaledwidth="75%"]
 
-或者，为_Description_输入一个更好的描述性名称，例如'CloudBeers GitHub'。
-在_Repository Sources_部分中，完成“GitHub组织”部分。
-确保 *owner*完全匹配GitHub组织名称，在我们的案例中它必须是：_cloudbeers_。
-默认值与第一步中为项目名称输入的值相同。
-接下来，选择或添加新的“扫描凭据” - 我们将输入我们的GitHub用户名和访问令牌作为密码。
+Optionally, enter a better descriptive name for the _Description_, such as 'CloudBeers GitHub'.
+In the _Repository Sources_ section, complete the section for "GitHub Organization".
+Make sure the *owner* matches the GitHub Organization name exactly, in our case it must be: _cloudbeers_.
+This defaults to the same value that was entered for the item name in the first step.
+Next, select or add new "Scan credentials" - we'll enter our GitHub username and access token as the password.
 
 [role="image-border"]
 image::screenshot2.png[scaledwidth="75%"]
 
-保存后，将运行“文件夹计算”以扫描符合条件的存储库，然后执行多分支构建。
+After saving, the "Folder Computation" will run to scan for eligible repositories, followed by multibranch builds.
 
 [role="image-border"]
 image::screenshot3.png[scaledwidth="75%"]
 
-作业运行后刷新页面以确保存储库的视图已更新。
+Refresh the page after the job runs to ensure the view of repositories has been updated.
 
 [role="image-border"]
 image::screenshot4.png[scaledwidth="75%"]
 
-此时，您已完成基本的项目配置，现在可以浏览导入的存储库。您还可以调查作业的结果作为初始 _Folder Computation_的一部分。
+A this point, you're finished with basic project configuration and can now explore your imported repositories.
+You can also investigate the results of the jobs run as part of the initial _Folder Computation_.
 
 [role="image-border"]
 image::screenshot5.png[scaledwidth="75%"]
 
 
-=== 流水线持续交付
+=== Continuous Delivery with Pipeline
 
-==== 介绍
+==== Introduction
 
 ////
 TODO: This section is remedial and doesn't flow properly. Suggest rewrite
 ////
-持续交付使组织能够交付风险较低的软件。通过对组织内使用的软件交付流水线进行建模，然后专注于全部自动化，开始持续交付的途径。通过流水线自动化实现的早期定向反馈，使传统交付方式的软件交付更加快速。
+Continuous delivery allows organizations to deliver software with lower risk.
+The path to continuous delivery starts by modeling the software delivery
+pipeline used within the organization and then focusing on the automation of it
+all. Early, directed feedback, enabled by pipeline automation enables software
+delivery more quickly over traditional methods of delivery.
 
-Jenkins是软件交付工具链中的瑞士军刀。开发人员和运营（DevOps）人员有着不同的思维方式，并使用不同的工具来完成各自的工作。由于Jenkins集成了大量的工具集，它充当了开发和运营团队之间的交叉点。
+Jenkins is the Swiss army knife in the software delivery toolchain. Developers
+and operations (DevOps) personnel have different mindsets and use different
+tools to get their respective jobs done. Since Jenkins integrates with a huge
+variety of toolsets, it serves as the intersection point between development and
+operations teams.
 
-多年来，许多组织一直在用现有的Jenkins插件编排流水线。随着他们的自动化技术和Jenkins经验的增加，组织不可避免地希望超越简单的流水线，并创建针对其交付流程的复杂流程。
+Many organizations have been orchestrating pipelines with existing Jenkins
+plugins for several years. As their automation sophistication and their own
+Jenkins experience increases, organizations inevitably want to move beyond
+simple pipelines and create complex flows specific to their delivery process.
 
-这些Jenkins用户需要一个将复杂流水线作为第一类对象的功能，因此 link:https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin[流水线插件] 被开发 。
+These Jenkins users require a feature that treats complex pipelines as a
+first-class object, and so the link:https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin[Pipeline
+plugin] was developed .
 
-==== 先决条件
+==== Pre-requisites
 
-持续交付是一个过程 - 而不是一种工具 - 需要一种思维和文化，必须从组织内的自上而下渗透。 一旦组织带进了原理，下一个也是最困难的部分就是绘制软件流程，从开发到生产。
+Continuous delivery is a process - rather than a tool - and requires a mindset
+and culture that must percolate from the top-down within an organization. Once
+the organization has bought into the philosophy, the next and most difficult
+part is mapping the flow of software as it makes its way from development to
+production.
 
-这样一个流水线的根本将是一个像Jenkins一样的编排工具，但是有一些关键要求是流水线的整体部分必须满足，才能处理关键业务流程:
+The root of such a pipeline will always be an orchestration tool like a Jenkins,
+but there are some key requirements that such an integral part of the pipeline
+must satisfy before it can be tasked with enterprise-critical processes:
 
-* *Zero or low downtime disaster recovery*:正如一位神话般的英雄一样，一次承诺在进入流水线的过程中遇到了更艰难和更长的挑战。最近几天看到流水线执行情况并不罕见。 在七天流水线的第六天发生硬件故障或Jenkins故障会对按时交付产品造成严重后果。
+* *Zero or low downtime disaster recovery*: A commit, just as a mythical hero,
+  encounters harder and longer challenges as it makes its way down the pipeline.
+  It is not unusual to see pipeline executions that last days. A hardware or a
+  Jenkins failure on day six of a seven-day pipeline has serious consequences
+  for on-time delivery of a product.
+* *Audit runs and debug ability*: Build managers like to see the exact execution
+  flow through the pipeline, so they can easily debug issues.
 
-* *Audit runs and debug ability*: 构建管理者喜欢看到通过流水线的确切执行流程，因此他们可以轻松调试问题。
 
+To ensure a tool can scale with an organization and suitably automate existing delivery pipelines without changing them, the tool should also support:
 
-为了确保工具可以随组织扩展并适当自动化现有的交付流水线而不必改变它们，该工具也应该支持:
+* *Complex pipelines*: Delivery pipelines are typically more complex than
+  canonical examples (linear process: Dev->Test->Deploy, with a couple of
+  operations at each stage). Build managers want constructs that help
+  parallelize parts of the flow, run loops, perform retries and so forth. Stated
+  differently, build managers want programming constructs to define pipelines.
 
-* *Complex pipelines*: 交付流水线通常比典型示例（线性过程：Dev-> Test-> Deploy，每个阶段有几个操作）更复杂。 构建管理程序需要能够帮助并行化部分流的构造，运行循环，执行重试等等。 换言之，构建管理程序希望编程结构来定义流水线.
+* *Manual interventions*: Pipelines cross intra-organizational boundaries
+  necessitating manual handoffs and interventions. Build managers seek
+  capabilities such as being able to pause a pipeline for a human to intervene
+  and make manual decisions.
 
-* *Manual interventions*: 流水线跨越组织内边界，需要手动切换和干预。 构建管理程序寻求能力，例如能够暂停流水线以供人类介入并作出人工决策。
+The Pipeline plugin allows users to create such a pipeline through a new job
+type called Pipeline. The flow definition is captured in a Groovy script, thus
+adding control flow capabilities such as loops, forks and retries. Pipeline
+allows for stages with the option to set concurrencies, preventing multiple
+builds of the same pipeline from trying to access the same resource at the same
+time.
 
-流水线插件允许用户通过称为流水线的新工作类型创建这样的流水线。 流定义在Groovy脚本中捕获，因此添加了循环，分叉和重试等控制流功能。 流水线允许阶段选择设置并发性，防止同一流水线的多个构建尝试同时访问相同的资源。
-
-==== 概念
+==== Concepts
 
 .Pipeline Job Type
 
-只需要一份工作来捕获组织中的整个软件交付流水线。 当然，如果需要，仍然可以将两个流水线作业类型连接在一起。 流水线作业类型使用基于Groovy的DSL作业定义。
-    DSL提供了以编程方式定义作业的优势:
+There is just one job to capture the entire software delivery pipeline in an
+organization. Of course, you can still connect two Pipeline job types together
+if you want. A Pipeline job type uses a Groovy-based DSL for job definitions.
+    The DSL affords the advantage of defining jobs programmatically:
 
 
 [source, groovy]
@@ -233,15 +327,31 @@ node(‘linux’){
 
 .Stages
 
-组织内（或概念上）的边界通过一个称为“阶段”的原语来捕获。 部署流水线由各个阶段组成，其中每个后续阶段都基于前一阶段。 这个想法是尽早花费尽可能少的资源，发现明显的问题，而不是花费大量计算资源来处理最终被破坏的事物。
+Intra-organizational (or conceptual) boundaries are captured through a primitive
+called "stages." A deployment pipeline consists of various stages, where each
+subsequent stage builds on the previous one. The idea is to spend as few
+resources as possible early in the pipeline and find obvious issues, rather than
+spend a lot of computing resources for something that is ultimately discovered
+to be broken.
 
 [[throttled-concurrent]]
 .Throttled stage concurrency with Pipeline
 image::stage-concurrency.png[scaledwidth="90%"]
 
-考虑一个有三个阶段的简单流水线。 这个流水线的天真实现可以在每次提交时顺序触发每个阶段。 因此，部署步骤在Selenium测试步骤完成后立即触发。 但是，这意味着从提交2开始的部署覆盖了从提交之一开始的最后一次部署。 正确的做法是提交2和3等待从提交1到完成的部署，合并自提交1以来发生的所有更改并触发部署。 如果有问题，开发人员可以很容易地确定问题是在提交2还是提交3时引入的。
+Consider a simple pipeline with three stages. A naive implementation of this
+pipeline can sequentially trigger each stage on every commit. Thus, the
+deployment step is triggered immediately after the Selenium test steps are
+complete. However, this would mean that the deployment from commit two overrides
+the last deployment in motion from commit one. The right approach is for commits
+two and three to wait for the deployment from commit one to complete,
+consolidate all the changes that have happened since commit one and trigger the
+deployment. If there is an issue, developers can easily figure out if the issue
+was introduced in commit two or commit three.
 
-Pipeline通过增强阶段基元来提供此功能。 例如，一个阶段可以定义一个并发级别，以表明在任何时刻只有一个线程应该在阶段中运行。 这实现了运行部署所需的状态，尽可能快地运行。
+Pipeline provides this functionality by enhancing the stage primitive.  For
+example, a stage can have a concurrency level of one defined to indicate that at
+any point only one thread should be running through the stage. This achieves the
+desired state of running a deployment as fast as it should run.
 
 [source, groovy]
 ----
@@ -255,7 +365,12 @@ Pipeline通过增强阶段基元来提供此功能。 例如，一个阶段可�
 
 .Gates and Approvals
 
-持续交付意味着二进制文件处于发布就绪状态，而持续部署意味着将二进制文件推送到生产或自动部署。 虽然连续部署是一个性感的术语和理想的状态，但实际上组织仍然希望人在批量生产前进行最终批准。 这是通过流水线中的“输入”基元捕获的。 输入步骤可以无限期地等待人员介入。
+Continuous delivery means having binaries in a release ready state whereas
+continuous deployment means pushing the binaries to production - or automated
+deployments. Although continuous deployment is a sexy term and a desired state,
+in reality organizations still want a human to give the final approval before
+bits are pushed to production.  This is captured through the "input" primitive
+in Pipeline. The input step can wait indefinitely for a human to intervene.
 
 [source, groovy]
 ----
@@ -264,10 +379,15 @@ input message: "Does http://localhost:8888/staging/ look good?"
 
 .Deployment of Artifacts to Staging/Production
 
-二进制文件的部署是流水线中的最后一英里。 组织内部使用的众多服务器以及市场上的服务器使得难以采用统一的部署步骤。 今天，这些解决方案由第三方部署者产品解决，他们的工作是专注于将特定堆栈部署到数据中心。 团队也可以编写自己的扩展来挂钩到流水线作业类型，并使部署更容易。
+Deployment of binaries is the last mile in a pipeline. The numerous servers
+employed within the organization and available in the market make it difficult
+to employ a uniform deployment step. Today, these are solved by third-party
+deployer products whose job it is to focus on deployment of a particular stack
+to a data center. Teams can also write their own extensions to hook into the
+Pipeline job type and make the deployment easier.
 
-同时，作业创建者可以编写一个普通的旧Groovy函数来定义可以部署（或取消部署）生产工件的任何自定义步骤。
-
+Meanwhile, job creators can write a plain old Groovy function to define any
+custom steps that can deploy (or undeploy) artifacts from production.
 
 [source, groovy]
 ----
@@ -278,41 +398,71 @@ def deploy(war, id) {
 
 .Restartable flows
 
-所有流水线都是可恢复的，因此如果Jenkins需要在流程运行时重新启动，那么在Jenkins开始备份后，它应该在执行时的同一点恢复。 同样，如果某个流程在代理程序意外断开连接时运行冗长的sh或bat步骤，则恢复连接时不应丢失任何进度。
+All Pipelines are resumable, so if Jenkins needs to be restarted while a flow is
+running, it should resume at the same point in its execution after Jenkins
+starts back up. Similarly, if a flow is running a lengthy sh or bat step when an
+agent unexpectedly disconnects, no progress should be lost when connectivity is
+restored.
 
-在某些情况下，流构建会做很多工作，并进入发生瞬间错误的地步：一个不能反映此构建的输入，如源代码更改。 例如，在完成软件组件的冗长构建和测试之后，由于网络问题，最终部署到服务器可能会失败。
+There are some cases when a flow build will have done a great deal of work and
+proceeded to a point where a transient error occurred: one which does not
+reflect the inputs to this build, such as source code changes. For example,
+after completing a lengthy build and test of a software component, final
+deployment to a server might fail because of network problems.
 
 
 .Pipeline Stage View
 
-当您有复杂的构建流水线时，查看每个阶段的进度以及查看流水线中发生构建失败的位置非常有用。 这可以使用户能够调试哪些测试在哪个阶段失败，或者如果他们流水线中有其他问题。 许多组织还希望让他们的流水线对于非开发人员而言更加便于用户使用，而无需开发自己开发的本地用户界面，这可以证明是一项漫长而持续的开发工作。
+When you have complex builds pipelines, it is useful to see the progress of each
+stage and to see where build failures are occurring in the pipeline. This can
+enable users to debug which tests are failing at which stage or if there are
+other problems in their pipeline. Many organization also want to make their
+pipelines user-friendly for non-developers without having to develop a homegrown
+UI, which can prove to be a lengthy and ongoing development effort.
 
-流水线阶段视图功能在流项目的索引页面上提供了流水线生成历史的扩展可视化。 这种可视化还包括一些有用的指标，如平均运行时间和构建时间，以及用于与输入步骤交互的用户友好界面。
+The Pipeline Stage View feature offers extended visualization of Pipeline build
+history on the index page of a flow project. This visualization also includes
+helpful metrics like average run time by stage and by build, and a user-friendly
+interface for interacting with input steps.
 
 .Pipeline Stage View plugin
 image::workflow-big-responsive.png[scaledwidth="90%"]
 
-此插件的唯一先决条件是具有流程中已定义阶段的流水线。 可以根据需要设置多个阶段，并且它们可以按照线性顺序排列，并且阶段名称将在Stage View界面中显示为列。
+The only prerequisite for this plugin is a pipeline with defined stages in the
+flow. There can be as many stages as you desired and they can be in a linear
+sequence, and the stage names will be displayed as columns in the Stage View
+interface.
 
-===== 工件可追溯性和指纹
+===== Artifact traceability and with fingerprints
 
-可追踪性对于需要能够跟踪代码从提交到部署的DevOps团队来说非常重要。 它通过显示工件之间的关系来实现影响分析，并允许从工件的代码存储库到工件最终在生产中部署的工件的完整生命周期的可见性。
+Traceability is important for DevOps teams who need to be able to trace code
+from commit to deployment. It enables impact analysis by showing relationships
+between artifacts and allows for visibility into the full lifecycle of an
+artifact, from its code repository to where the artifact is eventually deployed
+in production.
 
-Jenkins和Pipeline功能支持使用文件指纹识别跟踪工件版本，该工具允许用户跟踪哪些下游构建使用了任何给定的工件。 要使用流水线进行指纹，只需在任何工件归档步骤中添加“指纹：真”参数即可。 例如:
+Jenkins and the Pipeline feature support tracking versions of artifacts using
+file fingerprinting, which allows users to trace which downstream builds are
+using any given artifact. To fingerprint with Pipeline, simply add a
+"fingerprint: true" argument to any artifact archiving step. For example:
 
 [source, groovy]
 ----
 archiveArtifacts artifacts: '**', fingerprint: true
 ----
 
-将归档在流水线中创建的任何WAR工件并为其进行指纹追踪。 这个工件的跟踪日志以及构建中所有指纹的工件列表将在Jenkins的左侧菜单中提供：
+will archive any WAR artifacts created in the Pipeline and fingerprint them for
+traceability. This trace log of this artifact and a list of all fingerprinted
+artifacts in a build will then be available in the left-hand menu of Jenkins:
 
-要查找使用和部署的工件的位置，只需按照工件名称中的“更多详细信息”链接，并在其“使用情况”列表中查看该工件的条目即可。
+To find where an artifact is used and deployed to, simply follow the "more
+details" link through the artifact’s name and view the entires for the artifact
+in its "Usage" list.
 
 [[fingerprinting]]
 .Fingerprint of a WAR
 image::fingerprinting.png[scaledwidth="90%"]
 
-欲了解更多信息，请访问
+For more information, visit the
 https://wiki.jenkins-ci.org/display/JENKINS/Fingerprint[fingerprint
-documentation] 了解更多关于指纹如何工作的信息。
+documentation] to learn more about how fingerprints work.
