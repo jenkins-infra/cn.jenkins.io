@@ -68,7 +68,7 @@ try {
                     chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                    cat ./content/_data/_generated/update_center.yml
+                   
                     make cn-site
                     make pdfs
                     make archive
@@ -82,6 +82,7 @@ try {
                     '''                
             } catch (Exception e) {
                 sh '''
+                   cat ./content/_data/_generated/update_center.yml
                    cat ./content/.awestruct/error.log
                 '''
             }
