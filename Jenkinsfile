@@ -69,7 +69,7 @@ try {
                     docker ps
                     make fetch-reset 
                     make prepare 
-                   
+                   docker ps
                     make cn-site
                     make pdfs
                     make archive
