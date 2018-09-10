@@ -66,10 +66,10 @@ try {
                     cp -r ./tmp/content/doc/* ./content/doc/
                     rm -rf ./vendor
                     chmod -R 755 *
-                    docker images
+                   
                     make fetch-reset 
                     make prepare 
-                    docker images
+                   
                     make cn-site
                     make pdfs
                     make archive
