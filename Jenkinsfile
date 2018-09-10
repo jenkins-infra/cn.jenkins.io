@@ -66,10 +66,9 @@ try {
                     cp -r ./tmp/content/doc/* ./content/doc/
                    
                     chmod -R 755 *
-                    rm -rf ./vendor
                     make fetch-reset 
                     make prepare 
-                    /bin/cp -f ./scripts/datadir.rb ./vendor/gems/ruby/2.3.0/gems/awestruct-ibeams-0.4.1/lib/awestruct/ibeams/datadir.rb
+                   
                     make cn-site
                     make pdfs
                     make archive
