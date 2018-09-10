@@ -64,7 +64,7 @@ try {
                     rm -rf ./content/_tmp/examples/pipeline-examples
                     rm -rf ./content/doc/*
                     cp -r ./tmp/content/doc/* ./content/doc/
-                    /bin/cp -f ./tmp/content/_data/_generated/update_center.yml ./content/_data/_generated/
+                   
                     chmod -R 755 *
                     rm -rf ./vendor
                     make fetch-reset 
