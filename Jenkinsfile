@@ -64,11 +64,11 @@ try {
                     rm -rf ./content/_tmp/examples/pipeline-examples
                     rm -rf ./content/doc/*
                     cp -r ./tmp/content/doc/* ./content/doc/
-                   
+                    rm -rf ./vendor
                     chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                   
+                    cat ./content/_data/_generated/update_center.yml
                     make cn-site
                     make pdfs
                     make archive
