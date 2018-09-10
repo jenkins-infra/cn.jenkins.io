@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 FILENAME=$1
+OUTPUTFILE="${FILENAME}_pngcrush_`date '+%Y%m%d%H%M'`"
 
-if [ -z "$FILENAME" ]; then
+if [ -z $FILENAME ]; then
     echo "Need a filename as the first argument"
     exit 1;
 fi;
@@ -14,9 +15,12 @@ if [ $? -ne 0 ]; then
     exit 1;
 fi;
 
-pngcrush -ow -noforce -reduce "$FILENAME"
+
+pngcrush -reduce $FILENAME $OUTPUTFILE
 
 if [ $? -ne 0 ]; then
-    echo "Error crushing ${FILENAME}"
+    echo "Error crushing ${FILENAME} to ${OUTPUTFILE}"
     exit 1;
 fi;
+
+mv $OUTPUTFILE $FILENAME
