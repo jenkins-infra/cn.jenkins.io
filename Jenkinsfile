@@ -66,6 +66,7 @@ try {
                     cp -r ./tmp/content/doc/* ./content/doc/
                     rm -rf ./vendor
                     chmod -R 755 *
+                    docker ps
                     make fetch-reset 
                     make prepare 
                    
