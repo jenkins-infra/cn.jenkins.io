@@ -60,20 +60,13 @@ try {
                     set -o pipefail
                     set -o xtrace
                     mkdir -p .awestruct
-                    chmod 750 -R ./scripts/*
-                    cp -r  ./content/images/ ./
-                    rm -rf ./content/
-                    unzip content.zip
-                    cp -r  ./images/ ./content/
+                    unzip content.zip -d tmp
                     rm -rf ./content/_tmp/examples/pipeline-examples
-                   
+                    rm -rf ./content/doc/*
+                    cp -r ./tmp/content/doc/* ./content/doc/
+                    chmod -R 755 *
                     make fetch-reset 
-                    make prepare 
-                                       
-                    unzip -o vendor.zip
-                    chmod 755 -R ./vendor
-                    ls ./vendor -al
-                    
+                    make prepare                     
                     make cn-site
                     make pdfs
                     make archive
