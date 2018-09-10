@@ -65,6 +65,7 @@ try {
                     rm -rf ./content/doc/*
                     cp -r ./tmp/content/doc/* ./content/doc/
                     chmod -R 755 *
+                    rm -rf ./vendor
                     make fetch-reset 
                     make prepare                     
                     make cn-site
