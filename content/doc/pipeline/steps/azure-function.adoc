@@ -1,0 +1,62 @@
+---
+layout: pipelinesteps
+title: "Azure Function Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Azure Function Plugin
+
+plugin:azure-function[View this plugin on the Plugins Index]
+
+=== +azureFunctionAppPublish+: Publish an Azure Function App
+++++
+<ul><li><code>azureCredentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceGroup</code>
+<div><div>
+  The resource group name that the app will be associated with. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>appName</code>
+<div><div>
+  The Azure Function App name. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deployOnlyIfSuccessful</code> (optional)
+<div><div>
+  If checked, application will only be deployed to Azure if the build was successful. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>filePath</code> (optional)
+<div><div> 
+ <p>The file paths that will be deployed.</p> 
+ <p>You can use wildcards like <code>**/*.js</code>. See the includes attribute of <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow">Ant fileset</a> for the exact format. Multiple files can be separated by '<code>,</code>'. The base directory is the workspace. You can only deploy files that are located in your workspace.</p> 
+ <p>Example: <code>**/*.js,**/*.json</code></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceDirectory</code> (optional)
+<div><div>
+  Source directory relative to the workspace. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetDirectory</code> (optional)
+<div><div>
+  Target directory relative to the site root. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

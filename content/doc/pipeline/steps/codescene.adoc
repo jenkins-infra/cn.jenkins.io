@@ -1,0 +1,47 @@
+---
+layout: pipelinesteps
+title: "CodeScene Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== CodeScene Plugin
+
+plugin:codescene[View this plugin on the Plugins Index]
+
+=== +codescene+: Run CodeScene Delta Analysis
+++++
+<ul><li><code>credentialsId</code>
+<div>Select username/password credentials defined in Jenkins configuration. This is a safe way to use credentials in Jenkins plugin. See 
+<a href="https://support.cloudbees.com/hc/en-us/articles/203802500-Injecting-Secrets-into-Jenkins-Build-Jobs" rel="nofollow">Injecting Secrets into Jenkins Build Jobs</a> for more details.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deltaAnalysisUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>repository</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>analyzeBranchDiff</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>analyzeLatestIndividually</code> (optional)
+<div><div>
+  Commits not seen in previous successful builds will be used for separate delta analyses. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>baseRevision</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>couplingThresholdPercent</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>markBuildAsUnstable</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>riskThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

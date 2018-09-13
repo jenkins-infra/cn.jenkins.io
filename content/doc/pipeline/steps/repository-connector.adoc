@@ -1,0 +1,63 @@
+---
+layout: pipelinesteps
+title: "Repository Connector"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Repository Connector
+
+plugin:repository-connector[View this plugin on the Plugins Index]
+
+=== +artifactResolver+: Artifact Resolver
+++++
+<div><div> 
+ <p> Define the artifacts you would like to download.<br> The target directory defines where the artifacts should be copied to. The coordinates are as you know it from maven or ivy: </p> 
+ <ul> 
+  <li>GroupId: This is generally unique amongst an organization or a project.</li> 
+  <li>ArtifactId: The artifactId is generally the name that the project is known by.</li> 
+  <li>Version: The version of the artifact to be resolved. The dynamic definitions 'RELEASE' (the latest release) and 'LATEST' (the latest build) are allowed too.</li> 
+  <li>Classifier: It is some optional and arbitrary string that - if present - is appended to the artifact name just after the version number.</li> 
+  <li>Extension: This is the extension of the artifact to be resolved. Important: this is not always the same as 'packaging' in maven! (although it might be the same e.g. for 'jar')</li> 
+  <li>Target file name: should the file have a different name after downloading? You can also define a subdirectory.</li> 
+ </ul> 
+</div></div>
+<ul><li><code>artifacts</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>groupId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>classifier</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>extension</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetFileName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>enableRepoLogging</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>releaseChecksumPolicy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>releaseUpdatePolicy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>snapshotChecksumPolicy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>snapshotUpdatePolicy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetDirectory</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

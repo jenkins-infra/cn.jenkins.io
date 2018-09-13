@@ -1,0 +1,54 @@
+---
+layout: pipelinesteps
+title: "Contrast Continuous Application Security"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Contrast Continuous Application Security
+
+plugin:contrast-continuous-application-security[View this plugin on the Plugins Index]
+
+=== +contrastAgent+: Download latest Contrast agent
+++++
+<div><div>
+  Pipeline step for adding a Contrast agent to your build.
+ <br> Usage Example: 
+ <br> 
+ <code> contrastAgent profile: 'Localhost', outputDirectory: "${project.build.directory} + '/tmp'" </code> 
+</div></div>
+<ul><li><code>profile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>outputDirectory</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>agentType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +contrastVerification+: Verify vulnerabilities in a build
+++++
+<div><div>
+  Pipeline step for verifying your build with Contrast.
+ <br> Usage Example: 
+ <br> 
+ <code> contrastVerification profile: 'Localhost', count: 10, rule: xss, severity: High </code> 
+</div></div>
+<ul><li><code>profile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>count</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>rule</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>severity</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

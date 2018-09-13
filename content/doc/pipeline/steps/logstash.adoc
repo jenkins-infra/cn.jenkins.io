@@ -1,0 +1,37 @@
+---
+layout: pipelinesteps
+title: "Logstash"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Logstash
+
+plugin:logstash[View this plugin on the Plugins Index]
+
+=== +logstashSend+: Send console log to Logstash
+++++
+<div><div> 
+ <p>Send the tail of the log to Logstash.</p> 
+</div></div>
+<ul><li><code>maxLines</code>
+<div><div> 
+ <p>The maximum number of log lines to send to Logstash.<br> If the log is bigger than this, only the most recent lines are sent.<br> -1 indicates there is no maximum (for very large logs, consider using the Logstash BuildWrapper instead).</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>failBuild</code>
+<div><div> 
+ <p>If checked, mark build as failed if this step fails.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

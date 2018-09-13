@@ -1,0 +1,1078 @@
+---
+layout: pipelinesteps
+title: "TraceTronic ECU-TEST Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== TraceTronic ECU-TEST Plugin
+
+plugin:ecutest[View this plugin on the Plugins Index]
+
+=== +publishATX+: [TT] Publish ATX Reports
+++++
+<div><div>
+  Publishes the ATX reports of all configured ECU-TEST packages or projects in this job.
+ <br> These ATX reports are generated automatically in this post-build step and uploaded to TEST-GUIDE. 
+</div></div>
+<ul><li><code>atxName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +downstreamPublisher+: [TT] Downstream Report Generation
+++++
+<div><div>
+  Generates report downstream-based on another Jenkins node. In order to work the ECU-TEST workspace has to be copied to that node with all relevant data (i.e. report directory) to generate reports.
+ <br> This can be achieved for free-style projects with the 
+ <a href="https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin" rel="nofollow">Copy Artifact Plugin</a> or in pipelines with the stash/unstash commands. 
+</div></div>
+<ul><li><code>workspace</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>publishers</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>publishATX</code></li>
+<div><div>
+  Publishes the ATX reports of all configured ECU-TEST packages or projects in this job.
+ <br> These ATX reports are generated automatically in this post-build step and uploaded to TEST-GUIDE. 
+</div></div>
+<ul><li><code>atxName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>publishETLogs</code></li>
+<div><div>
+  Publishes the ECU-TEST log files (ECU_TEST_OUT.log and ECU_TEST_ERR.log) and parses them for warning and errors. 
+</div></div>
+<ul><li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failedOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>testSpecific</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>unstableOnWarning</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>publishUNIT</code></li>
+<div><div>
+  Publishes the UNIT reports of all configured ECU-TEST packages or projects in this job.
+ <br> These UNIT reports are generated automatically in this post-build step. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failedThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>double</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>unstableThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>double</code></li></ul></li>
+</ul><li><code>publishGenerators</code></li>
+<div><div>
+  Publishes and generates reports by configuration of predefined and/or custom report generators.
+ <br> These reports will be generated for all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>customGenerators</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>settings</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>generators</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>settings</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>publishTMS</code></li>
+<div><div>
+  Publishes the test results of all configured ECU-TEST packages or projects in this job to a preconfigured test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>publishTRF</code></li>
+<div><div>
+  Publishes the TRF reports of all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>publishTraceAnalysis</code></li>
+<div><div>
+  Publishes the results of the trace analysis of all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>createReportDir</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>mergeReports</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++
+=== +publishETLogs+: [TT] Publish ECU-TEST Logs
+++++
+<div><div>
+  Publishes the ECU-TEST log files (ECU_TEST_OUT.log and ECU_TEST_ERR.log) and parses them for warning and errors. 
+</div></div>
+<ul><li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failedOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>testSpecific</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>unstableOnWarning</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +exportPackages+: [TT] Export Packages
+++++
+<div><div>
+  Exports ECU-TEST packages and their attributes to a test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>exportConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ExportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportPackageConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectArchiveConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importConfigPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>replaceFiles</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importMissingPackages</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++
+=== +exportProjects+: [TT] Export Projects
+++++
+<div><div>
+  Exports ECU-TEST projects and their attributes to a test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>exportConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ExportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportPackageConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectArchiveConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importConfigPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>replaceFiles</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importMissingPackages</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++
+=== +importPackages+: [TT] Import Packages
+++++
+<div><div>
+  Imports ECU-TEST packages and their attributes from a test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>importConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ExportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportPackageConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectArchiveConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importConfigPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>replaceFiles</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importMissingPackages</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++
+=== +importProjects+: [TT] Import Projects
+++++
+<div><div>
+  Imports ECU-TEST projects and their attributes from an archive or a test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>importConfigs</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ExportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportPackageConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ExportProjectConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>exportPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createNewPath</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportPackageDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectArchiveConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importConfigPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>replaceFiles</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectAttributeConfig'</code></li>
+<ul><li><code>filePath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importMissingPackages</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ImportProjectDirConfig'</code></li>
+<ul><li><code>tmsPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>importPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul>
+
+
+++++
+=== +publishUNIT+: [TT] Publish UNIT Reports
+++++
+<div><div>
+  Publishes the UNIT reports of all configured ECU-TEST packages or projects in this job.
+ <br> These UNIT reports are generated automatically in this post-build step. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failedThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>double</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>unstableThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>double</code></li></ul></li>
+</ul>
+
+
+++++
+=== +publishGenerators+: [TT] Publish Generator Reports
+++++
+<div><div>
+  Publishes and generates reports by configuration of predefined and/or custom report generators.
+ <br> These reports will be generated for all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>customGenerators</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>settings</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>generators</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>settings</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +startET+: [TT] Start ECU-TEST
+++++
+<div><div>
+  Configure and start a preconfigured ECU-TEST installation. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>debugMode</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepInstance</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>settingsDir</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>workspaceDir</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +startTS+: [TT] Start Tool-Server
+++++
+<div><div>
+  Configure and start Tool-Server. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>keepInstance</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>tcpPort</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>toolLibsIni</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +stopET+: [TT] Stop ECU-TEST
+++++
+<div><div>
+  Shutdown ECU-TEST. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +stopTS+: [TT] Stop Tool-Server
+++++
+<div><div>
+  Shutdown Tool-Server. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +publishTMS+: [TT] Publish to Test Management System
+++++
+<div><div>
+  Publishes the test results of all configured ECU-TEST packages or projects in this job to a preconfigured test management system like RQM or ALM. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +publishTRF+: [TT] Publish TRF Reports
+++++
+<div><div>
+  Publishes the TRF reports of all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +testFolder+: [TT] Run Test Folder
+++++
+<div><div>
+  Execute a test folder. 
+</div></div>
+<ul><li><code>testFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>executionConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stopOnError</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>checkTestFile</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>packageConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>runTest</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runTraceAnalysis</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>parameters</code>
+<div><div>
+  Definition of ECU-TEST package parameters consisting of a unique name and a value.
+ <br> Numeric value entries will be automatically converted to 
+ <i>Numeric</i> type in ECU-TEST.
+ <br> For now only 
+ <i>Numeric</i> and 
+ <i>String</i> types are supported. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>projectConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>execInCurrentPkgDir</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>filterExpression</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>jobExecMode</code>
+<ul><li><b>Values:</b> <code>NO_EXECUTION</code>, <code>SEQUENTIAL_EXECUTION</code>, <code>PARALLEL_EXECUTION</code>, <code>SEPARATE_SEQUENTIAL_EXECUTION</code>, <code>SEPARATE_PARALLEL_EXECUTION</code>, <code>NO_TESTCASE_EXECUTION</code></li></ul></li>
+</ul></li>
+<li><code>recursiveScan</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>scanMode</code> (optional)
+<ul><li><b>Values:</b> <code>PACKAGES_ONLY</code>, <code>PROJECTS_ONLY</code>, <code>PACKAGES_AND_PROJECTS</code></li></ul></li>
+<li><code>testConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>tbcFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tcfFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forceReload</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>loadOnly</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepConfig</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>constants</code>
+<div><div>
+  Definition of global constants consisting of an unique name and a value. Numeric value entries will be automatically converted to a 
+ <i>Python integer literal</i>, or to a 
+ <i>Python string literal</i>.
+ <br> If the global constant does not exist it is created and saved in the current test configuration. This requires always a configuration reload independent of other settings. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +testPackage+: [TT] Run Package
+++++
+<div><div>
+  Execute a ECU-TEST package. 
+</div></div>
+<ul><li><code>testFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>executionConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stopOnError</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>checkTestFile</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>packageConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>runTest</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runTraceAnalysis</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>parameters</code>
+<div><div>
+  Definition of ECU-TEST package parameters consisting of a unique name and a value.
+ <br> Numeric value entries will be automatically converted to 
+ <i>Numeric</i> type in ECU-TEST.
+ <br> For now only 
+ <i>Numeric</i> and 
+ <i>String</i> types are supported. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>testConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>tbcFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tcfFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forceReload</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>loadOnly</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepConfig</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>constants</code>
+<div><div>
+  Definition of global constants consisting of an unique name and a value. Numeric value entries will be automatically converted to a 
+ <i>Python integer literal</i>, or to a 
+ <i>Python string literal</i>.
+ <br> If the global constant does not exist it is created and saved in the current test configuration. This requires always a configuration reload independent of other settings. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +testProject+: [TT] Run Project
+++++
+<div><div>
+  Execute a ECU-TEST project. 
+</div></div>
+<ul><li><code>testFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>executionConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stopOnError</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>checkTestFile</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>projectConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>execInCurrentPkgDir</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>filterExpression</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>jobExecMode</code>
+<ul><li><b>Values:</b> <code>NO_EXECUTION</code>, <code>SEQUENTIAL_EXECUTION</code>, <code>PARALLEL_EXECUTION</code>, <code>SEPARATE_SEQUENTIAL_EXECUTION</code>, <code>SEPARATE_PARALLEL_EXECUTION</code>, <code>NO_TESTCASE_EXECUTION</code></li></ul></li>
+</ul></li>
+<li><code>testConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>tbcFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tcfFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>forceReload</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>loadOnly</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepConfig</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>constants</code>
+<div><div>
+  Definition of global constants consisting of an unique name and a value. Numeric value entries will be automatically converted to a 
+ <i>Python integer literal</i>, or to a 
+ <i>Python string literal</i>.
+ <br> If the global constant does not exist it is created and saved in the current test configuration. This requires always a configuration reload independent of other settings. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +publishTraceAnalysis+: [TT] Publish Trace Analysis
+++++
+<div><div>
+  Publishes the results of the trace analysis of all configured ECU-TEST packages or projects in this job. 
+</div></div>
+<ul><li><code>toolName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiving</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>createReportDir</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepAll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>mergeReports</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>runOnFailed</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

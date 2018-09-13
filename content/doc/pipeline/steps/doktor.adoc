@@ -1,0 +1,36 @@
+---
+layout: pipelinesteps
+title: "Doktor"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Doktor
+
+plugin:doktor[View this plugin on the Plugins Index]
+
+=== +doktor+: Publish documentation to Confluence
+++++
+<ul><li><code>server</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>markdownIncludePatterns</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>markdownExcludePatterns</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>asciidocIncludePatterns</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>asciidocExcludePatterns</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

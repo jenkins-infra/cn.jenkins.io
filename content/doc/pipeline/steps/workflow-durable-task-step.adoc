@@ -1,0 +1,191 @@
+---
+layout: pipelinesteps
+title: "Pipeline: Nodes and Processes"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Pipeline: Nodes and Processes
+
+plugin:workflow-durable-task-step[View this plugin on the Plugins Index]
+
+=== +bat+: Windows Batch Script
+++++
+<ul><li><code>script</code>
+<div><div>
+  Executes a Batch script. Multiple lines allowed. When using the 
+ <code>returnStdout</code> flag, you probably wish to prefix this with 
+ <code>@</code>, lest the command itself be included in the output. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>encoding</code> (optional)
+<div><div>
+  Encoding of standard output, if it is being captured. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>returnStatus</code> (optional)
+<div><div>
+  Normally, a script which exits with a nonzero status code will cause the step to fail with an exception. If this option is checked, the return value of the step will instead be the status code. You may then compare it to zero, for example. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>returnStdout</code> (optional)
+<div><div>
+  If checked, standard output from the task is returned as the step value as a 
+ <code>String</code>, rather than being printed to the build log. (Standard error, if any, will still be printed to the log.) You will often want to call 
+ <code>.trim()</code> on the result to strip off a trailing newline. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +node+: Allocate node
+++++
+<div><div>
+  Allocates an executor on a node (typically a slave) and runs further code in the context of a workspace on that slave. 
+</div></div>
+<ul><li><code>label</code>
+<div><div>
+  Computer name, label name, or any other label expression like 
+ <code>linux &amp;&amp; 64bit</code> to restrict where this step builds. May be left blank, in which case any available executor is taken.  
+ <h3>Valid Operators</h3> 
+ <p> The following operators are supported, in the order of precedence. </p>
+ <dl> 
+  <dt>
+   (expr)
+  </dt> 
+  <dd>
+   parenthesis
+  </dd> 
+  <dt>
+   !expr
+  </dt> 
+  <dd>
+   negation
+  </dd> 
+  <dt>
+   expr&amp;&amp;expr
+  </dt> 
+  <dd>
+    and 
+  </dd> 
+  <dt>
+   expr||expr
+  </dt> 
+  <dd>
+    or 
+  </dd> 
+  <dt>
+   a -&gt; b
+  </dt> 
+  <dd>
+    "implies" operator. Equivalent to !a|b. For example, windows-&gt;x64 could be thought of as "if run on a Windows slave, that slave must be 64bit." It still allows Jenkins to run this build on linux. 
+  </dd> 
+  <dt>
+   a &lt;-&gt; b
+  </dt> 
+  <dd>
+    "if and only if" operator. Equivalent to a&amp;&amp;b || !a&amp;&amp;!b. For example, windows&lt;-&gt;sfbay could be thought of as "if run on a Windows slave, that slave must be in the SF bay area, but if not on Windows, it must not be in the bay area." 
+  </dd> 
+ </dl> 
+ <p> All operators are left-associative (i.e., a-&gt;b-&gt;c &lt;-&gt; (a-&gt;b)-&gt;c ) An expression can contain whitespace for better readability, and it'll be ignored. </p>
+ <p> Label names or slave names can be quoted if they contain unsafe characters. For example, "jenkins-solaris (Solaris)" || "Windows 2008" </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +powershell+: PowerShell Script
+++++
+<ul><li><code>script</code>
+<div><div>
+  Executes a PowerShell script. Multiple lines allowed. This plugin supports Microsoft PowerShell 3+. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>encoding</code> (optional)
+<div><div>
+  Encoding of standard output, if it is being captured. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>returnStatus</code> (optional)
+<div><div>
+  Normally, a script which exits with a nonzero status code will cause the step to fail with an exception. If this option is checked, the return value of the step will instead be the status code. You may then compare it to zero, for example. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>returnStdout</code> (optional)
+<div><div>
+  If checked, standard output from the task is returned as the step value as a 
+ <code>String</code>, rather than being printed to the build log. (Standard error, if any, will still be printed to the log.) You will often want to call 
+ <code>.trim()</code> on the result to strip off a trailing newline. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +sh+: Shell Script
+++++
+<ul><li><code>script</code>
+<div><div> 
+ <p> Runs a Bourne shell script, typically on a Unix node. Multiple lines are accepted. </p> 
+ <p> An interpreter selector may be used, for example: <code>#!/usr/bin/perl</code> </p> 
+ <p> Otherwise the system default shell will be run, using the <code>-xe</code> flags (you can specify <code>set +e</code> and/or <code>set +x</code> to disable those). </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>encoding</code> (optional)
+<div><div>
+  Encoding of standard output, if it is being captured. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>returnStatus</code> (optional)
+<div><div>
+  Normally, a script which exits with a nonzero status code will cause the step to fail with an exception. If this option is checked, the return value of the step will instead be the status code. You may then compare it to zero, for example. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>returnStdout</code> (optional)
+<div><div>
+  If checked, standard output from the task is returned as the step value as a 
+ <code>String</code>, rather than being printed to the build log. (Standard error, if any, will still be printed to the log.) You will often want to call 
+ <code>.trim()</code> on the result to strip off a trailing newline. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +ws+: Allocate workspace
+++++
+<div><div>
+  Allocates a workspace. Note that a workspace is automatically allocated for you with the 
+ <code>node</code> step. 
+</div></div>
+<ul><li><code>dir</code>
+<div><p> A workspace is automatically allocated for you with the <code>node</code> step, or you can get an alternate workspace with this <code>ws</code> step, but by default the location is chosen automatically. (Something like <code>SLAVE_ROOT/workspace/JOB_NAME@2</code>.) </p> 
+<p> You can instead specify a path here and that workspace will be locked instead. (The path may be relative to the slave root, or absolute.) </p> 
+<p> If concurrent builds ask for the same workspace, a directory with a suffix such as <code>@2</code> may be locked instead. Currently there is no option to wait to lock the exact directory requested; if you need to enforce that behavior, you can either fail (<code>error</code>) when <code>pwd</code> indicates that you got a different directory, or you may enforce serial execution of this part of the build by some other means such as <code>stage name: '…', concurrency: 1</code>. </p> 
+<p> If you do not care about locking, just use the <code>dir</code> step to change current directory. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

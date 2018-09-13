@@ -1,0 +1,194 @@
+---
+layout: pipelinesteps
+title: "Upload to pgyer"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Upload to pgyer
+
+plugin:upload-pgyer[View this plugin on the Plugins Index]
+
+=== +upload-pgyer+: Upload to pgyer
+++++
+<div><div> 
+ <p> <a href="https://github.com/jenkinsci/upload-pgyer-plugin" rel="nofollow">click to get the documents</a> </p> 
+</div></div>
+<ul><li><code>uKey</code>
+<div><div>
+  (Required) User Key, used to identify the current user's identity,
+ <br> for the same pgyer registered users, the value of the fixed!
+ <br> 
+ <a href="https://www.pgyer.com/account/api" rel="nofollow">Click to get pgyer uKey</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiKey</code>
+<div><div>
+  (Required) API Key, used to identify the identity of the API caller,
+ <br> if not specified, each interface needs to contain this parameter.
+ <br> For the same pgyer registered users, this value is fixed.
+ <br> 
+ <a href="https://www.pgyer.com/account/api" rel="nofollow">Click to get pgyer api_key</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>scanDir</code>
+<div><div>
+  (Required) need to upload ipa or apk file base dir path!
+ <br> The default is ${WORKSPACE}, It means the path of the current project!
+ <br> It is using ant's DirectoryScanner class,
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html" rel="nofollow"> click to see DirectoryScanner class</a>
+ <br> It is equivalent to the parameters of the basedir method in the DirectoryScanner class!
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html#basedir" rel="nofollow"> click to see basedir method</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>wildcard</code>
+<div><div>
+  (Required) need to upload ipa or apk file name, Support wildcards,
+ <br> like this: **/Test?/*.apk
+ <br> It is using ant's DirectoryScanner class,
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html" rel="nofollow"> click to see DirectoryScanner class</a>
+ <br> It is equivalent to the parameters of the includes method in the DirectoryScanner class!
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html#includes" rel="nofollow"> click to see includes method</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>installType</code>
+<div><div>
+  (Optional) application installation, the value is (1,2,3).
+ <br> 1: public,
+ <br> 2: password installed,
+ <br> 3: invitation to install.
+ <br> The default is 1 public! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<div><div>
+  (Optional) set the App installation password,
+ <br> if you do not want to set the password, please pass empty string, or not pass. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>updateDescription</code>
+<div><div>
+  (Optional) version update description, please pass empty string, or not pass.
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>qrcodePath</code>
+<div><div>
+  (Optional) If you need to download the qrcode, 
+ <br> please enter the save path of the qrcode!
+ <br> otherwise, not download! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVarsPath</code>
+<div><div>
+  (Optional) if you need to save info, please enter save file path!
+ <br> otherwise, not save! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +upload-pgyer+: Upload to pgyer
+++++
+<div><div> 
+ <p> <a href="https://github.com/jenkinsci/upload-pgyer-plugin" rel="nofollow">click to get the documents</a> </p> 
+</div></div>
+<ul><li><code>uKey</code>
+<div><div>
+  (Required) User Key, used to identify the current user's identity,
+ <br> for the same pgyer registered users, the value of the fixed!
+ <br> 
+ <a href="https://www.pgyer.com/account/api" rel="nofollow">Click to get pgyer uKey</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apiKey</code>
+<div><div>
+  (Required) API Key, used to identify the identity of the API caller,
+ <br> if not specified, each interface needs to contain this parameter.
+ <br> For the same pgyer registered users, this value is fixed.
+ <br> 
+ <a href="https://www.pgyer.com/account/api" rel="nofollow">Click to get pgyer api_key</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>scanDir</code>
+<div><div>
+  (Required) need to upload ipa or apk file base dir path!
+ <br> The default is ${WORKSPACE}, It means the path of the current project!
+ <br> It is using ant's DirectoryScanner class,
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html" rel="nofollow"> click to see DirectoryScanner class</a>
+ <br> It is equivalent to the parameters of the basedir method in the DirectoryScanner class!
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html#basedir" rel="nofollow"> click to see basedir method</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>wildcard</code>
+<div><div>
+  (Required) need to upload ipa or apk file name, Support wildcards,
+ <br> like this: **/Test?/*.apk
+ <br> It is using ant's DirectoryScanner class,
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html" rel="nofollow"> click to see DirectoryScanner class</a>
+ <br> It is equivalent to the parameters of the includes method in the DirectoryScanner class!
+ <a href="https://ant.apache.org/manual/api/org/apache/tools/ant/DirectoryScanner.html#includes" rel="nofollow"> click to see includes method</a> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>installType</code>
+<div><div>
+  (Optional) application installation, the value is (1,2,3).
+ <br> 1: public,
+ <br> 2: password installed,
+ <br> 3: invitation to install.
+ <br> The default is 1 public! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<div><div>
+  (Optional) set the App installation password,
+ <br> if you do not want to set the password, please pass empty string, or not pass. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>updateDescription</code>
+<div><div>
+  (Optional) version update description, please pass empty string, or not pass.
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>qrcodePath</code>
+<div><div>
+  (Optional) If you need to download the qrcode, 
+ <br> please enter the save path of the qrcode!
+ <br> otherwise, not download! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVarsPath</code>
+<div><div>
+  (Optional) if you need to save info, please enter save file path!
+ <br> otherwise, not save! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,152 @@
+---
+layout: pipelinesteps
+title: "Performance Signature: Dynatrace AppMon"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Performance Signature: Dynatrace AppMon
+
+plugin:performance-signature-dynatrace[View this plugin on the Plugins Index]
+
+=== +createDeploymentEvent+: create Dynatrace Deployment event
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +activateDTConfiguration+: activate Dynatrace profile configuration
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configuration</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +createMemoryDump+: create memory dump
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>agent</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>host</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>autoPostProcess</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>capturePrimitives</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>captureStrings</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>dogc</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>lockSession</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>type</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +perfSigReports+: Publish Performance Signature reports
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configurationTestCases</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'GenericTestCase'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>singleDashboards</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>dashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>comparisonDashboards</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>dashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>xmlDashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clientDashboard</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'UnitTestCase'</code></li>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>singleDashboards</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>dashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>comparisonDashboards</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>dashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>xmlDashboard</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clientDashboard</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>deleteSessions</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>exportSessions</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>nonFunctionalFailure</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>removeConfidentialStrings</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +startSession+: Start Dynatrace session recording
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testCase</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>lockSession</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>recordingOption</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +stopSession+: Stop Dynatrace session recording
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +createThreadDump+: create thread dump
+++++
+<ul><li><code>dynatraceProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>agent</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>host</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>lockSession</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

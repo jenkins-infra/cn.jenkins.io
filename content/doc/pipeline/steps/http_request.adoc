@@ -1,0 +1,79 @@
+---
+layout: pipelinesteps
+title: "HTTP Request Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== HTTP Request Plugin
+
+plugin:http_request[View this plugin on the Plugins Index]
+
+=== +httpRequest+: Perform an HTTP Request and return a response object
+++++
+<div><div> 
+ <p> Performs an HTTP request, and returns a response object. </p>
+ <p>Usage example:</p> 
+ <pre>
+        def response = httpRequest 'http://localhost:8080/jenkins/api/json?pretty=true'
+        println("Status: "+response.status)
+        println("Content: "+response.content)
+        </pre> 
+ <p>If Jenkins restarts after the HTTP request is made, but before the HTTP response is received, the HTTP request fails.</p> 
+ <p></p> 
+ <p> The methods of the response object are: </p>
+ <ul> 
+  <li> String getContent(): The HTTP Response entity. This means the text of the response without the headers. If the response does not contain an entity, getContent() returns null. </li> 
+  <li> int getStatus(): The HTTP status code. </li> 
+ </ul> 
+ <p></p> 
+</div></div>
+<ul><li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>acceptType</code> (optional)
+<ul><li><b>Values:</b> <code>NOT_SET</code>, <code>TEXT_HTML</code>, <code>TEXT_PLAIN</code>, <code>APPLICATION_FORM</code>, <code>APPLICATION_JSON</code>, <code>APPLICATION_JSON_UTF8</code>, <code>APPLICATION_TAR</code>, <code>APPLICATION_ZIP</code>, <code>APPLICATION_OCTETSTREAM</code></li></ul></li>
+<li><code>authentication</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>consoleLogResponseBody</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>contentType</code> (optional)
+<ul><li><b>Values:</b> <code>NOT_SET</code>, <code>TEXT_HTML</code>, <code>TEXT_PLAIN</code>, <code>APPLICATION_FORM</code>, <code>APPLICATION_JSON</code>, <code>APPLICATION_JSON_UTF8</code>, <code>APPLICATION_TAR</code>, <code>APPLICATION_ZIP</code>, <code>APPLICATION_OCTETSTREAM</code></li></ul></li>
+<li><code>customHeaders</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maskValue</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>httpMode</code> (optional)
+<ul><li><b>Values:</b> <code>GET</code>, <code>HEAD</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, <code>OPTIONS</code>, <code>PATCH</code></li></ul></li>
+<li><code>httpProxy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreSslErrors</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>outputFile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>quiet</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>requestBody</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>responseHandle</code> (optional)
+<ul><li><b>Values:</b> <code>NONE</code>, <code>LEAVE_OPEN</code>, <code>STRING</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>validResponseCodes</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>validResponseContent</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

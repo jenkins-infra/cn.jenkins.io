@@ -1,0 +1,44 @@
+---
+layout: pipelinesteps
+title: "Snyk Security Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Snyk Security Plugin
+
+plugin:snyk-security-scanner[View this plugin on the Plugins Index]
+
+=== +snykSecurity+: Snyk Security report
+++++
+<ul><li><code>dockerImage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVars</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>httpProxy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>httpsProxy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>monitor</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>organization</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>targetFile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>token</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tokenCredentialId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

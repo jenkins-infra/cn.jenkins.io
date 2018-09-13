@@ -1,0 +1,49 @@
+---
+layout: pipelinesteps
+title: "Pipeline: Declarative"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Pipeline: Declarative
+
+plugin:pipeline-model-definition[View this plugin on the Plugins Index]
+
+=== +script+: Run arbitrary Pipeline script
+++++
+<ul></ul>
+
+
+++++
+=== +validateDeclarativePipeline+: Validate a file containing a Declarative Pipeline
+++++
+<div><div>
+  Checks if the given file (as relative path to current directory) contains a valid Declarative Pipeline. Returns 
+ <code>true | false</code>. 
+</div></div>
+<ul><li><code>path</code>
+<div><div>
+  Relative (
+ <code>/</code>-separated) path to file within a workspace to validate as a Declarative Pipeline. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +envVarsForTool+: Fetches the environment variables for a given tool in a list of 'FOO=bar' strings suitable for the withEnv step.
+++++
+<ul><li><code>toolId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>toolVersion</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,28 @@
+---
+layout: pipelinesteps
+title: "Kubernetes Cli Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Kubernetes Cli Plugin
+
+plugin:kubernetes-cli[View this plugin on the Plugins Index]
+
+=== +withKubeConfig+: Setup Kubernetes CLI (kubectl)
+++++
+<ul><li><code>caCertificate</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverUrl</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

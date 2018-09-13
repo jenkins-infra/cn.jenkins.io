@@ -1,0 +1,26 @@
+---
+layout: pipelinesteps
+title: "Pragprog Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Pragprog Plugin
+
+plugin:pragprog[View this plugin on the Plugins Index]
+
+=== +pragprog+: Activate tips from The Pragmatic Programmer
+++++
+<ul><li><code>displayLanguageCode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>indicateBuildResult</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

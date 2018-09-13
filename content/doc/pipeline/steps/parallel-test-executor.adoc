@@ -1,0 +1,56 @@
+---
+layout: pipelinesteps
+title: "Parallel Test Executor Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Parallel Test Executor Plugin
+
+plugin:parallel-test-executor[View this plugin on the Plugins Index]
+
+=== +splitTests+: Split Test Runs
+++++
+<div><div>
+  Asks Jenkins to analyze the timing of tests from the last build and divide the tests for this build into roughly equal subsets for 
+ <code>parallel</code> execution. 
+ <a href="https://github.com/jenkinsci/parallel-test-executor-plugin/blob/master/demo/repo/Jenkinsfile" rel="nofollow">example <code>Jenkinsfile</code></a> 
+</div></div>
+<ul><li><code>parallelism</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>count</code></li>
+<div><div>
+  Always divide the tests into N parallel sub-tasks of about equal size. This mode is useful if your build slaves are not elastic to control the resource consumption by this task. 
+</div></div>
+<ul><li><code>size</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul><li><code>time</code></li>
+<div><div>
+  Divide the tests into parallel sub-tasks each no bigger than N minutes. Combined with elastic slaves, such as EC2, the turn-around time of the tests will remain the same no matter how many tests you add. 
+ <p> This value counts just the time spent on executing tests, and not including other time such as checking out the code, building the test, etc. For example, if your test job spends 50 minutes in tests and 60 minutes total from start to finish, then you have 10 minutes "fixed" overhead regardless of the number of tests it executes. If you use this mode and set the value to "10 minutes", then you'll have 5 parallel sub-tasks that all ends in roughly 20 minutes (20 mins = 10 mins tests time + 10 mins overhead.) </p>
+ <p> "N minutes per a sub-task" is a goal, not a hard constraint. So a sub-task can take longer (for example if you have a single test that takes more than N minutes.) </p>
+</div></div>
+<ul><li><code>mins</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></ul></li>
+<li><code>generateInclusions</code> (optional)
+<div><p>If disabled, the splitStep call will return a <i>List&lt;List&lt;String&gt;&gt;</i> containing the exclusion patterns for the different buckets.</p> 
+<p>If enabled, the splitStep call won't return a <i>List&lt;List&lt;String&gt;&gt;</i>.<br> Instead it will return a <i>List</i> of a structure with : </p>
+<ul> 
+ <li><i>boolean includes</i> whether the following list is an inclusion or an exclusion list</li> 
+ <li><i>List&lt;String&gt; list</i> the list of patterns</li> 
+</ul> 
+<p></p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>stage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

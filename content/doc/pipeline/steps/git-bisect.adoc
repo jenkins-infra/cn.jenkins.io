@@ -1,0 +1,42 @@
+---
+layout: pipelinesteps
+title: "Git Bisect Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Git Bisect Plugin
+
+plugin:git-bisect[View this plugin on the Plugins Index]
+
+=== +gitbisect+: Git Bisect
+++++
+<ul><li><code>jobToRun</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>goodStartCommit</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>badEndCommit</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>searchIdentifier</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>revisionParameterName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>retryCount</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>continuesBuild</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>minSuccessfulIterations</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>overrideGitCommand</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>gitCommand</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

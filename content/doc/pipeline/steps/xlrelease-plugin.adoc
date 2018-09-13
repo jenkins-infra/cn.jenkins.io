@@ -1,0 +1,71 @@
+---
+layout: pipelinesteps
+title: "XebiaLabs XL Release Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== XebiaLabs XL Release Plugin
+
+plugin:xlrelease-plugin[View this plugin on the Plugins Index]
+
+=== +xlrCreateRelease+: Create and invoke a XLR release
+++++
+<div><div>
+  Adds a step to create and start a release on an XL Release server using Jenkins. 
+</div></div>
+<ul><li><code>serverCredentials</code>
+<div><div>
+  XL Release server credentials used to connect to the XL Release server. This must be configured under Manage Jenkins &gt;&gt; Configure System &gt;&gt; XL Release. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>template</code>
+<div><div>
+  Template name or path to use when creating a new release in XL Release. For example: Samples &amp; Tutorials/Configure XL Release or Sample Release Template 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>releaseTitle</code>
+<div><div>
+  Title of the release in XL Release. Jenkins environment variables can be used to specify this value. For example: Release for $BUILD_TAG 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code> (optional)
+<div><div>
+  Title of the newly created release in XL Release. Jenkins environment variables can be used to specify this value. For example: Release for $BUILD_TAG 
+ <br> 
+ <div> 
+  <b>Warning:</b> This parameter is deprecated and will be removed in a future release. Use releaseTitle instead. 
+ </div> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>variables</code> (optional)
+<div><div>
+  If the template has variables, define them using this parameter. For example: variables: [[propertyName: 'QA environment', propertyValue: 'QA'], [propertyName: 'packageId', propertyValue: '1.0']] 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>propertyName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>propertyValue</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>startRelease</code> (optional)
+<div><div>
+  Set to true to start the release after it is created. Set to false to create the release without starting it. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

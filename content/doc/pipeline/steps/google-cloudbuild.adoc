@@ -1,0 +1,116 @@
+---
+layout: pipelinesteps
+title: "Google Cloud Container Builder Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Google Cloud Container Builder Plugin
+
+plugin:google-cloudbuild[View this plugin on the Plugins Index]
+
+=== +googleCloudBuild+: Execute Google Cloud Container Builder
+++++
+<div><div>
+  This build step invokes Google Cloud Container Builder. 
+</div></div>
+<ul><li><code>input</code>
+<ul><b>Nested Object</b>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>request</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>file</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  The path to the YAML build request file to pass to Google Cloud Container Builder. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>inline</code></li>
+<ul><li><code>request</code>
+<div><div>
+  The YAML Build Request to pass to Google Cloud Container Builder. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>source</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>local</code></li>
+<ul><li><code>path</code>
+<div><div>
+  The source to use in the build request. This may be either: 
+ <ul> 
+  <li> <b>A path to a file within the workspace.</b> The file must be a compressed gzipped tarball (<code>.tgz</code> or <code>.tar.gz</code>) or zip file (<code>.zip</code>), or </li> 
+  <li> <b>A path to a directory within the workspace.</b> The contents of the directory will be archived as a gzipped tarball (<code>.tgz</code>) and uploaded to a temporary Cloud Storage bucket. </li> 
+ </ul> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>repo</code></li>
+<ul><li><code>branch</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commit</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectId</code> (optional)
+<div><div>
+  ID of the project that owns the repo. If omitted, the project ID requesting the build is assumed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>repoName</code> (optional)
+<div><div>
+  Name of the repo. If omitted, the name "default" is assumed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tag</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>storage</code></li>
+<ul><li><code>bucket</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>object</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>substitutionList</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>items</code>
+<div><div>
+  User-defined substitutions to be added to the build request. The set of user-defined substitutions referenced in the build request must exactly match the set of substitutions defined here. For details, see 
+ <a href="https://cloud.google.com/container-builder/docs/concepts/build-requests#user-defined_substitutions" rel="nofollow"> Build Requests - User-defined substitutions</a>. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<div><div>
+  The name of the user-defined substitution. This must begin with an underscore (
+ <code>_</code>) and use only numbers, uppercase letters, and underscores (respecting the regular expression 
+ <code>_[A-Z0-9_]+</code>). The key may not be longer than 100 characters. For details, see 
+ <a href="https://cloud.google.com/container-builder/docs/concepts/build-requests#user-defined_substitutions" rel="nofollow"> Build Requests - User-defined substitutions</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div><div>
+  The value of the user-defined substitution. This must not expand to longer than 100 characters. For details, see 
+ <a href="https://cloud.google.com/container-builder/docs/concepts/build-requests#user-defined_substitutions" rel="nofollow"> Build Requests - User-defined substitutions</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>substitutions</code> (optional)
+<ul><code>java.lang.String></code>
+</ul></li>
+</ul></li>
+</ul>
+
+
+++++

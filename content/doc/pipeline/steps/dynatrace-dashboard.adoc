@@ -1,0 +1,70 @@
+---
+layout: pipelinesteps
+title: "Dynatrace Application Monitoring Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Dynatrace Application Monitoring Plugin
+
+plugin:dynatrace-dashboard[View this plugin on the Plugins Index]
+
+=== +appMonPublishTestResults+: Dynatrace AppMon - Finish Registered Tests Runs and Publish Results
+++++
+<div><div>
+  This plugin fetches analysis data from the 
+ <a href="https://www.dynatrace.com/support/doc/appmon/" rel="nofollow">AppMon Server</a> (Test Center Edition) REST interface. It displays a chart with a trend on passed/degraded/failing/... etc. tests, and also provides a detailed view for each test case showing the metrics recorded by Dynatrace Application Monitoring. 
+</div></div>
+<ul><li><code>printXmlReportForDebug</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>statusNameIfDegraded</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>statusNameIfVolatile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +appMonRegisterTestRun+: Dynatrace AppMon - Register Test Run
+++++
+<div><div> 
+ <p> This step registers new Test Run with given category and returns test run id </p> 
+</div></div>
+<ul><li><code>category</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>platform</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +appMonBuildEnvironment+: Use Dynatrace AppMon to monitor tests
+++++
+<div><div> 
+ <p> The below properties will be available as build variables in all the build steps during build. You can use them to register test run on your own (in your scripts). </p> 
+ <p> Also the properties set in global plugin configuration ("Dynatrace Application Monitoring" config section) will be available as build variables: <i>'dtServerUrl'</i>, <i>'dtUsername'</i> and <i>'dtPassword'</i>. </p> 
+ <p> NOTE:<br> If you decide not to use the below properties in your scripts and to register test runs on your own, please fill at least the <i>"System profile"</i> field to have the post-build action working properly. </p> 
+</div></div>
+<ul><li><code>systemProfile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>marker</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>recordSession</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>versionMajor</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionMilestone</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionMinor</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionRevision</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

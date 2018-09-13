@@ -1,0 +1,59 @@
+---
+layout: pipelinesteps
+title: "GitLab Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== GitLab Plugin
+
+plugin:gitlab-plugin[View this plugin on the Plugins Index]
+
+=== +acceptGitLabMR+: Accept GitLab Merge Request
+++++
+<ul><li><code>mergeCommitMessage</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +addGitLabMRComment+: Add comment on GitLab Merge Request
+++++
+<ul><li><code>comment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +gitlabBuilds+: Notify gitlab about pending builds
+++++
+<ul><li><code>builds</code> (optional)
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +gitlabCommitStatus+: Update the commit status in GitLab depending on the build status
+++++
+<ul><li><code>name</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +updateGitlabCommitStatus+: Update the commit status in GitLab
+++++
+<ul><li><code>name</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>state</code> (optional)
+<ul><li><b>Values:</b> <code>pending</code>, <code>running</code>, <code>canceled</code>, <code>success</code>, <code>failed</code></li></ul></li>
+</ul>
+
+
+++++

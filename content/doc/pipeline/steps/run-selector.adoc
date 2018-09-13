@@ -1,0 +1,2248 @@
+---
+layout: pipelinesteps
+title: "Run Selector Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Run Selector Plugin
+
+plugin:run-selector[View this plugin on the Plugins Index]
+
+=== +selectRun+: Select Run
+++++
+<div><div>
+  This step selects a specific run from the job identified by the 
+ <i>Project name</i> parameter. The run is selected based on the provided 
+ <i>Run Selector</i> parameter. Additional conditions for selecting the build may be specified by using the 
+ <i>Run Filter</i>. 
+</div></div>
+<ul><li><code>job</code>
+<div><div>
+  The name of the source project from which to select a specific run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filter</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+<li><code>selector</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>buildNumber</code></li>
+<ul><li><code>buildNumber</code>
+<div><div>
+  While this selector is for build numbers (e.g. "22" for build #22), you can also resolve build parameters or environment variables (e.g. "${PARAM}"). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>fallback</code></li>
+<ul><li><code>entryList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>runSelector</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>buildNumber</code></li>
+<ul><li><code>buildNumber</code>
+<div><div>
+  While this selector is for build numbers (e.g. "22" for build #22), you can also resolve build parameters or environment variables (e.g. "${PARAM}"). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>fallback</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameterName</code>
+<div><div>
+  Name of the "build selector" parameter. A parameter with this name should be added in the build parameters section above. There is a special parameter type for choosing the build selector. 
+ <p> You can pass not only the parameter name, but also the parameter value itself. This is useful especially used with workflow-plugin. </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>permalink</code></li>
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>status</code></li>
+<ul><li><code>buildStatus</code>
+<ul><li><b>Values:</b> <code>STABLE</code>, <code>SUCCESSFUL</code>, <code>UNSTABLE</code>, <code>FAILED</code>, <code>COMPLETED</code>, <code>ANY</code></li></ul></li>
+</ul><li><code>triggering</code></li>
+<ul><li><code>allowUpstreamDependencies</code> (optional)
+<div><div>
+  Tracks upstream builds not only with build-triggering relations, but also with relations via artifacts. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>upstreamFilterStrategy</code> (optional)
+<div><div>
+  Jenkins launches only one build when multiple upstreams triggered the same project at the same time. This field specifies from which upstream build to copy artifacts in those cases. "Use the oldest" copies artifacts from the upstream build with the smallest build number (that is, oldest). "Use the newest" copies artifacts from the upstream build with the largest build number (that is, newest). The default value is "Use global setting", which behaves as configured in "Manage Jenkins" &gt; "Configure System". 
+</div></div>
+
+<ul><li><b>Values:</b> <code>UseGlobalSetting</code>, <code>UseOldest</code>, <code>UseNewest</code></li></ul></li>
+</ul></ul></li>
+<li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<ul><li><code>runFilter</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<ul><li><code>runFilterList</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>and</code></li>
+<li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>displayName</code></li>
+<ul><li><code>runDisplayName</code>
+<div><div>
+  Filter the run based on its display name. It accepts the first run that has the display name matching the given parameter. The iteration is done from newest to oldest run. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'DownstreamRunFilter'</code></li>
+<ul><li><code>upstreamProjectName</code>
+<div><div> 
+ <p> Copy artifacts from a build that is a downstream of a build of the specified project. You can use variable expressions. </p> 
+ <p> Downstream builds are found using fingerprints of files. That is, a build that is triggerd from a build isn't always considered downstream, but you need to fingerprint files used in builds to let Jenkins track them. </p> 
+ <p> Note: "Downsteram build of" is applicable only to AbstractProject based projects (both upstream and downstream projects). </p>
+ <dl> 
+  <dt>
+   AbstractProject based projects:
+  </dt> 
+  <dd>
+   Freestyle projects
+  </dd> 
+  <dd>
+   Multi-configuration projects
+  </dd> 
+  <dd>
+   Maven projects
+  </dd> 
+  <dt>
+   Non AbstractProject based projects:
+  </dt> 
+  <dd>
+   Pipeline jobs (aka. Workflow jobs)
+  </dd> 
+ </dl> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>upstreamBuildNumber</code>
+<div><div>
+  The number of the build to find its downstream build. You can also specify display names. You can use variable expressions. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>not</code></li>
+<li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>or</code></li>
+<li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameter</code>
+<div><div>
+  Specify the value passed via the parameter "Build filter for Copy Artifact". E.g. You specified "Build filter for Copy Artifact" as 
+ <code>PARAM</code>, specify 
+ <code>${PARAM}</code> here. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>parameters</code></li>
+<ul><li><code>paramsToMatch</code>
+<div><div> 
+ <p> Jobs may be filtered to select only builds matching particular parameters or other build variables. Use PARAM=VALUE,... to list the parameter filter; this is the same syntax as described for multiconfiguration jobs in <i>Project name</i> except with parameters instead of axis values. For example, FOO=bar,BAZ=true examines only builds that ran with parameter FOO set to bar and the checkbox for BAZ was checked. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>saved</code></li>
+<ul></ul></ul></li>
+</ul></li>
+</ul><li><code>parameterized</code></li>
+<ul><li><code>parameterName</code>
+<div><div>
+  Name of the "build selector" parameter. A parameter with this name should be added in the build parameters section above. There is a special parameter type for choosing the build selector. 
+ <p> You can pass not only the parameter name, but also the parameter value itself. This is useful especially used with workflow-plugin. </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>permalink</code></li>
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>status</code></li>
+<ul><li><code>buildStatus</code>
+<ul><li><b>Values:</b> <code>STABLE</code>, <code>SUCCESSFUL</code>, <code>UNSTABLE</code>, <code>FAILED</code>, <code>COMPLETED</code>, <code>ANY</code></li></ul></li>
+</ul><li><code>triggering</code></li>
+<ul><li><code>allowUpstreamDependencies</code> (optional)
+<div><div>
+  Tracks upstream builds not only with build-triggering relations, but also with relations via artifacts. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>upstreamFilterStrategy</code> (optional)
+<div><div>
+  Jenkins launches only one build when multiple upstreams triggered the same project at the same time. This field specifies from which upstream build to copy artifacts in those cases. "Use the oldest" copies artifacts from the upstream build with the smallest build number (that is, oldest). "Use the newest" copies artifacts from the upstream build with the largest build number (that is, newest). The default value is "Use global setting", which behaves as configured in "Manage Jenkins" &gt; "Configure System". 
+</div></div>
+
+<ul><li><b>Values:</b> <code>UseGlobalSetting</code>, <code>UseOldest</code>, <code>UseNewest</code></li></ul></li>
+</ul></ul></li>
+<li><code>verbose</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

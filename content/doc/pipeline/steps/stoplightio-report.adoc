@@ -1,0 +1,26 @@
+---
+layout: pipelinesteps
+title: "Stoplight Report Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Stoplight Report Plugin
+
+plugin:stoplightio-report[View this plugin on the Plugins Index]
+
+=== +publishStoplight+: Publish Stoplight Report
+++++
+<ul><li><code>consoleOrFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resultFile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
