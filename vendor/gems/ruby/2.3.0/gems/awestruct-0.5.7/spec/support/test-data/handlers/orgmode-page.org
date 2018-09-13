@@ -1,6 +1,0 @@
-* Fruit 
-** Apples 
-Apples are red 
-** Oranges 
-Oranges are orange 
-*Vegetables
