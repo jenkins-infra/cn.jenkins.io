@@ -1,0 +1,40 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# ElasticBox CI插件中定义的扩展点
+
+plugin:elasticbox[ElasticBox CI Plugin]
+
+## 构建管理器
++jenkinsdoc:elasticbox:com.elasticbox.jenkins.triggers.BuildManager[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:elasticbox[ElasticBox CI插件]: com.+++<wbr/>+++elasticbox.+++<wbr/>+++jenkins.+++<wbr/>+++triggers.+++<wbr/>+++github.+++<wbr/>+++**PullRequestManager** (link:https://github.com/jenkinsci/elasticbox-plugin/search?q=PullRequestManager&type=Code[在GitHub上查看])
+
+
+## BuilderListener
++jenkinsdoc:elasticbox:com.elasticbox.jenkins.builders.BuilderListener[]+
+
++++ Receives notification about ElasticBox instances/boxes that were deployed/managed by the ElasticBox build steps.+++
+
+
+**Implementations:**
+
+* plugin:elasticbox[ElasticBox CI插件]: com.+++<wbr/>+++elasticbox.+++<wbr/>+++jenkins.+++<wbr/>+++triggers.+++<wbr/>+++github.+++<wbr/>+++**PullRequestManager.+++<wbr/>+++BuilderListenerImpl** (link:https://github.com/jenkinsci/elasticbox-plugin/search?q=PullRequestManager.BuilderListenerImpl&type=Code[在GitHub上查看])
+
+
+## ElasticBoxExecutor.+++<wbr/>+++Workload
++jenkinsdoc:elasticbox:com.elasticbox.jenkins.ElasticBoxExecutor.Workload[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:elasticbox[ElasticBox CI插件]: com.+++<wbr/>+++elasticbox.+++<wbr/>+++jenkins.+++<wbr/>+++triggers.+++<wbr/>+++github.+++<wbr/>+++**DeleteInstancesWorkload** (link:https://github.com/jenkinsci/elasticbox-plugin/search?q=DeleteInstancesWorkload&type=Code[在GitHub上查看])
+* plugin:elasticbox[ElasticBox CI Plugin]: com.+++<wbr/>+++elasticbox.+++<wbr/>+++jenkins.+++<wbr/>+++**ElasticBoxSlaveHandler** (link:https://github.com/jenkinsci/elasticbox-plugin/search?q=ElasticBoxSlaveHandler&type=Code[在GitHub上查看])
+

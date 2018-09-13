@@ -1,0 +1,35 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Persona插件中定义的扩展点
+
+plugin:persona[Persona Plugin]
+
+## 位置选择器
++jenkinsdoc:persona:hudson.plugins.persona.selector.LocationSelector[]+
+
++++ LocationSelector+++
+
+
+**Implementations:**
+
+* plugin:persona[Persona 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++selector.+++<wbr/>+++**BottomLeftSelector** (link:https://github.com/jenkinsci/persona-plugin/search?q=BottomLeftSelector&type=Code[在 GitHub上查看])
+* plugin:persona[Persona Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++selector.+++<wbr/>+++**BottomRightSelector** (link:https://github.com/jenkinsci/persona-plugin/search?q=BottomRightSelector&type=Code[在 GitHub上查看])
+* plugin:persona[Persona Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++selector.+++<wbr/>+++**RightSideSelector** (link:https://github.com/jenkinsci/persona-plugin/search?q=RightSideSelector&type=Code[在 GitHub上查看])
+
+
+## Persona
++jenkinsdoc:persona:hudson.plugins.persona.Persona[]+
+
++++ A person and his/her set of quotes.+++ +++
+<p>+++ +++ Normally a persona is someone famous, funny, or both (such as Chuck Norris.)+++ </p>
+
+
+**Implementations:**
+
+* plugin:persona[Persona 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++random.+++<wbr/>+++**RandomPersona** (link:https://github.com/jenkinsci/persona-plugin/search?q=RandomPersona&type=Code[在 GitHub上查看])
+* plugin:persona[Persona Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++simple.+++<wbr/>+++**SimplePersona** (link:https://github.com/jenkinsci/persona-plugin/search?q=SimplePersona&type=Code[在 GitHub上查看])
+* plugin:persona[Persona Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++persona.+++<wbr/>+++xml.+++<wbr/>+++**XmlBasedPersona** (link:https://github.com/jenkinsci/persona-plugin/search?q=XmlBasedPersona&type=Code[在 GitHub上查看])
+

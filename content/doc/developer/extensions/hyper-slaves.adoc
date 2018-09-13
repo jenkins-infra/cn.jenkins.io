@@ -1,0 +1,18 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Hyper.sh Slaves插件中定义的扩展点
+
+plugin:hyper-slaves[Hyper.sh Slaves插件]
+
+## 集装箱司机工厂
++jenkinsdoc:hyper-slaves:sh.hyper.hyperslaves.spi.ContainerDriverFactory[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:hyper-slaves[Hyper.sh Slaves插件]: sh.+++<wbr/>+++hyper.+++<wbr/>+++hyperslaves.+++<wbr/>+++drivers.+++<wbr/>+++**PlainHyperAPIContainerDriverFactory** (link:https://github.com/jenkinsci/hyper-slaves-plugin/search?q=PlainHyperAPIContainerDriverFactory&type=Code[在GitHub上查看])
+

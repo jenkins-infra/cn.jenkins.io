@@ -1,0 +1,277 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在REST API中为Blue Ocean 插件定义的扩展点
+
+plugin:blueocean-rest[Blue Ocean 插件的REST API]
+
+## AdditionalAnalyticsProperties
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.analytics.AdditionalAnalyticsProperties[]+
+
++++ Enhance a request with properties when tracking an analytics event+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST 实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**BrowserAndOperatingSystemAnalyticsProperties** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BrowserAndOperatingSystemAnalyticsProperties&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**ServerInfoAdditionalAnalyticsProperties** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ServerInfoAdditionalAnalyticsProperties&type=Code[在GitHub上查看])
+
+
+## Analytics
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.analytics.Analytics[]+
+
++++ Facade for reporting user analytics+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**AbstractAnalytics** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=AbstractAnalytics&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**KeenAnalyticsImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=KeenAnalyticsImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++analytics.+++<wbr/>+++**NullAnalytics** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=NullAnalytics&type=Code[在GitHub上查看])
+
+
+## ApiRoutable
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.ApiRoutable[]+
+
++++ Marks the REST API endpoints that are exposed by+++ jenkinsdoc:ApiHead[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-editor[Blue Ocean流水线编辑插件]: io.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++pipeline.+++<wbr/>+++editor.+++<wbr/>+++**PipelineMetadataService** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineMetadataService&type=Code[在GitHub上查看])
+* plugin:blueocean-i18n[i18n for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++i18n.+++<wbr/>+++**BlueI18n** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueI18n&type=Code[在GitHub上查看])
+* plugin:blueocean-rest[REST API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++analytics.+++<wbr/>+++**AnalyticsRoute** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=AnalyticsRoute&type=Code[在GitHub上查看])
+* plugin:blueocean-rest[REST API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++model.+++<wbr/>+++**BlueExtensionClassContainer** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueExtensionClassContainer&type=Code[在GitHub上查看])
+* plugin:blueocean-rest[REST API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++model.+++<wbr/>+++**BlueOrganizationContainer** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOrganizationContainer&type=Code[在GitHub上查看])
+* plugin:blueocean-rest[REST API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++model.+++<wbr/>+++**BlueUserContainer** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueUserContainer&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**ExtensionClassContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ExtensionClassContainerImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**OrganizationContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationContainerImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**UserContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=UserContainerImpl&type=Code[在GitHub上查看])
+
+
+## BlueExtensionClassContainer
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.model.BlueExtensionClassContainer[]+
+
++++ Map representation of+++ jenkinsdoc:BlueExtensionClass[] +++es+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**ExtensionClassContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ExtensionClassContainerImpl&type=Code[在GitHub上查看])
+
+
+## BlueFavoriteResolver
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueFavoriteResolver[]+
+
++++ Resolves favorite for a given model object+++ jenkinsdoc:Item[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**MultiBranchPipelineImpl.+++<wbr/>+++FavoriteResolverImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MultiBranchPipelineImpl.FavoriteResolverImpl&type=Code[在GitHub上查看])
+
+
+## 蓝色问题工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueIssueFactory[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:blueocean-github-pipeline[Blue Ocean 插件的GitHu流水线]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++blueocean_github_pipeline.+++<wbr/>+++**GithubIssue.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=GithubIssue.FactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-jira[JIRA Integration for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++jira.+++<wbr/>+++**BlueJiraIssue.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJiraIssue.FactoryImpl&type=Code[在GitHub上查看])
+
+
+## Blue Ocean配置工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueOceanConfigFactory[]+
+
++++ Blue Ocean configuration factory which allows different extensions to return configuration values.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-config[Blue Ocean插件的配置API]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++config.+++<wbr/>+++**BlueOceanConfigImpl.+++<wbr/>+++BlueOceanConfigFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanConfigImpl.BlueOceanConfigFactoryImpl&type=Code[在GitHub上查看])
+
+
+## Blue Ocean UI提供者
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.BlueOceanUIProvider[]+
+
++++ BlueOcean UI provider.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++**BlueOceanRootAction.+++<wbr/>+++BlueOceanUIProviderImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanRootAction.BlueOceanUIProviderImpl&type=Code[在GitHub上查看])
+
+
+## Blue Ocean Url映射
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueOceanUrlMapper[]+
+
++++ Maps Jenkins+++ jenkinsdoc:ModelObject[] +++to BlueOcean front end URL+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++**BlueOceanUrlMapperImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanUrlMapperImpl&type=Code[在GitHub上查看])
+
+
+## Blue Ocean Url对象工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueOceanUrlObjectFactory[]+
+
+++++++ jenkinsdoc:hudson.ExtensionPoint[] +++to provide+++ jenkinsdoc:BlueOceanUrlObject[] +++for Jenkins model object+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++**BlueOceanUrlObjectFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanUrlObjectFactoryImpl&type=Code[在GitHub上查看])
+
+
+## BlueOrganizationContainer
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.model.BlueOrganizationContainer[]+
+
++++ Container of BlueOcean+++ jenkinsdoc:BlueOrganization[] +++s+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**OrganizationContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationContainerImpl&type=Code[在GitHub上查看])
+
+
+## 蓝色流水线工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BluePipelineFactory[]+
+
++++ Factory that gives instance of+++ jenkinsdoc:BluePipeline[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-github-pipeline[Blue Ocean 插件的GitHub流水线]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++blueocean_github_pipeline.+++<wbr/>+++**GithubOrganizationFolder.+++<wbr/>+++OrganizationFolderFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=GithubOrganizationFolder.OrganizationFolderFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**BranchImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BranchImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**MatrixProjectImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MatrixProjectImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**MultiBranchPipelineImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=MultiBranchPipelineImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**OrganizationFolderPipelineImpl.+++<wbr/>+++OrganizationFolderFactory** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationFolderPipelineImpl.OrganizationFolderFactory&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**PipelineImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**AbstractPipelineImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=AbstractPipelineImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**FreeStylePipeline.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=FreeStylePipeline.FactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**PipelineFolderImpl.+++<wbr/>+++PipelineFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineFolderImpl.PipelineFactoryImpl&type=Code[在GitHub上查看])
+
+
+## 蓝色运行工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueRunFactory[]+
+
++++ Factory that gives instance of+++ jenkinsdoc:BlueRun[] ++++++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**PipelineRunImpl.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineRunImpl.FactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**DefaultRunImpl.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=DefaultRunImpl.FactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**FreeStyleRunImpl.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=FreeStyleRunImpl.FactoryImpl&type=Code[在GitHub上查看])
+
+
+## 蓝色测试结果工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueTestResultFactory[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++junit.+++<wbr/>+++**BlueJUnitTestResult.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJUnitTestResult.FactoryImpl&type=Code[在GitHub上查看])
+
+
+## BlueTrendFactory
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.BlueTrendFactory[]+
+
++++ Allows extensions to attach+++ jenkinsdoc:BlueTrend[] +++data to a+++ jenkinsdoc:BluePipeline[] +++for reports and visualization.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**StageDurationTrend.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=StageDurationTrend.FactoryImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++junit.+++<wbr/>+++**BlueJUnitTrend.+++<wbr/>+++FactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJUnitTrend.FactoryImpl&type=Code[在GitHub上查看])
+
+
+## 蓝色用户容器
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.model.BlueUserContainer[]+
+
++++ User API.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**UserContainerImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=UserContainerImpl&type=Code[在GitHub上查看])
+
+
+## 链接解析器
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.hal.LinkResolver[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++**LinkResolverImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=LinkResolverImpl&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++**LinkResolverImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=LinkResolverImpl&type=Code[在GitHub上查看])
+
+
+## 全方位搜索
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.OmniSearch[]+
+
++++ Extension point to contribute the search capability+++
+
+
+**Implementations:**
+
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++credential.+++<wbr/>+++**CredentialSearch** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=CredentialSearch&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**PipelineSearch** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineSearch&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**RunSearch** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=RunSearch&type=Code[在GitHub上查看])
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++rest.+++<wbr/>+++**UserSearch** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=UserSearch&type=Code[在GitHub上查看])
+
+
+## 组织工厂
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.factory.organization.OrganizationFactory[]+
+
++++ Maps BlueOcean organization and+++ jenkinsdoc:ItemGroup[] +++s.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-rest-impl[Blue Ocean 插件的REST实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++service.+++<wbr/>+++embedded.+++<wbr/>+++**OrganizationFactoryImpl** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationFactoryImpl&type=Code[在GitHub上查看])
+
+
+## 组织路线
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.OrganizationRoute[]+
+
++++ Route contributing to+++ jenkinsdoc:io.jenkins.blueocean.rest.model.BlueOrganization[] +++: url path /organization/:id/:organizationRoute.urlName()+++
+
+
+**Implementations:**
+
+* plugin:blueocean-executor-info[Blue Ocean 执行者信息插件]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++executor.+++<wbr/>+++**Computers** 
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++credential.+++<wbr/>+++**CredentialContainer** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=CredentialContainer&type=Code[在GitHub上查看])
+* plugin:blueocean-pipeline-api-impl[Blue Ocean 插件的流水线实现]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++impl.+++<wbr/>+++pipeline.+++<wbr/>+++scm.+++<wbr/>+++**ScmContainer** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ScmContainer&type=Code[在GitHub上查看])
+
+
+## RootRoutable
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.RootRoutable[]+
+
++++ Additional+++ jenkinsdoc:Routable[] +++s that augment+++ jenkinsdoc:BlueOceanUIProvider#getUrlBasePrefix()[] +++root object.+++
+
+
+**Implementations:**
+
+* plugin:blueocean-git-pipeline[Blue Ocean 插件的Git流水线]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++blueocean_git_pipeline.+++<wbr/>+++**RepositoryCloneProgressEndpoint** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=RepositoryCloneProgressEndpoint&type=Code[在GitHub上查看])
+* plugin:blueocean-rest[REST API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++rest.+++<wbr/>+++**ApiHead** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=ApiHead&type=Code[在GitHub上查看])
+
+
+## 用户路线
++jenkinsdoc:blueocean-rest:io.jenkins.blueocean.rest.UserRoute[]+
+
++++ Route contributing to+++ jenkinsdoc:io.jenkins.blueocean.rest.model.BlueUser[] +++: url path /organization/:id/users/:user/:userRoute.urlName()+++
+
+
+**Implementations:**
+
+* plugin:blueocean-git-pipeline[Blue Ocean 插件的Git流水线]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++ssh.+++<wbr/>+++**UserPublicKeyRoute** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=UserPublicKeyRoute&type=Code[在GitHub上查看])
+

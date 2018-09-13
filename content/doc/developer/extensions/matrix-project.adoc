@@ -1,0 +1,190 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 矩阵项目插件中定义的扩展点
+
+plugin:matrix-project[矩阵项目插件]
+
+## 轴
++jenkinsdoc:matrix-project:hudson.matrix.Axis[]+
+
++++ Configuration axis.+++
+
+
+**Implementations:**
+
+* plugin:browser-axis-plugin[浏览器轴插件]: jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++browseraxis.+++<wbr/>+++**BrowserAxis** (link:https://github.com/jenkinsci/browser-axis-plugin/search?q=BrowserAxis&type=Code[在 GitHub上查看])
+* plugin:browser-axis-plugin[Browser axis Plugin]: jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++browseraxis.+++<wbr/>+++**BrowserExpAxis** (link:https://github.com/jenkinsci/browser-axis-plugin/search?q=BrowserExpAxis&type=Code[在 GitHub上查看])
+* plugin:dynamic-axis[Dynamic Axis Plugin]: ca.+++<wbr/>+++silvermaplesolutions.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++daxis.+++<wbr/>+++**DynamicAxis** (link:https://github.com/jenkinsci/dynamic-axis-plugin/search?q=DynamicAxis&type=Code[在 GitHub上查看])
+* plugin:ec2-cloud-axis[ec2-cloud-axis Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++ec2axis.+++<wbr/>+++**EC2Axis** (link:https://github.com/jenkinsci/ec2-cloud-axis-plugin/search?q=EC2Axis&type=Code[在 GitHub上查看])
+* plugin:elastic-axis[elastic-axis Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++elasticaxisplugin.+++<wbr/>+++**ElasticAxis** (link:https://github.com/jenkinsci/elastic-axis-plugin/search?q=ElasticAxis&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**JDKAxis** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=JDKAxis&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**LabelAxis** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=LabelAxis&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**LabelExpAxis** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=LabelExpAxis&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**TextAxis** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=TextAxis&type=Code[在 GitHub上查看])
+* plugin:sauce-ondemand[Sauce OnDemand Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++sauce_ondemand.+++<wbr/>+++**AppiumAxis** (link:https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=AppiumAxis&type=Code[在 GitHub上查看])
+* plugin:sauce-ondemand[Sauce OnDemand Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++sauce_ondemand.+++<wbr/>+++**BrowserAxis** (link:https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=BrowserAxis&type=Code[在 GitHub上查看])
+* plugin:sauce-ondemand[Sauce OnDemand Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++sauce_ondemand.+++<wbr/>+++**WebDriverAxis** (link:https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=WebDriverAxis&type=Code[在 GitHub上查看])
+* plugin:shiningpanda[ShiningPanda Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++shiningpanda.+++<wbr/>+++matrix.+++<wbr/>+++**PythonAxis** (link:https://github.com/jenkinsci/shiningpanda-plugin/search?q=PythonAxis&type=Code[在 GitHub上查看])
+* plugin:shiningpanda[ShiningPanda Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++shiningpanda.+++<wbr/>+++matrix.+++<wbr/>+++**ToxAxis** (link:https://github.com/jenkinsci/shiningpanda-plugin/search?q=ToxAxis&type=Code[在 GitHub上查看])
+* plugin:yaml-axis[Yaml Axis Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++yamlaxis.+++<wbr/>+++**YamlAxis** (link:https://github.com/jenkinsci/yaml-axis-plugin/search?q=YamlAxis&type=Code[在 GitHub上查看])
+
+
+## 矩阵可聚合
++jenkinsdoc:matrix-project:hudson.matrix.MatrixAggregatable[]+
+
+++++++ jenkinsdoc:Publisher[] +++,+++ jenkinsdoc:JobProperty[] +++,+++ jenkinsdoc:BuildWrapper[] +++可以选择实现这个接口+++ +++ 来执行结果聚合+++ jenkinsdoc:MatrixRun[] +++.+++
+
+
+**Implementations:**
+
+* plugin:android-lint[Android Lint 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++android_lint.+++<wbr/>+++**LintPublisher** (link:https://github.com/jenkinsci/android-lint-plugin/search?q=LintPublisher&type=Code[在 GitHub上查看])
+* plugin:brakeman[Brakeman Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++brakeman.+++<wbr/>+++**BrakemanPublisher** (link:https://github.com/jenkinsci/brakeman-plugin/search?q=BrakemanPublisher&type=Code[在 GitHub上查看])
+* plugin:build-alias-setter[Build Alias Setter Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildaliassetter.+++<wbr/>+++**BuildAliasSetter** (link:https://github.com/jenkinsci/build-alias-setter-plugin/search?q=BuildAliasSetter&type=Code[在 GitHub上查看])
+* plugin:build-failure-analyzer[Build Failure Analyzer Plugin]: com.+++<wbr/>+++sonyericsson.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bfa.+++<wbr/>+++model.+++<wbr/>+++**ScannerJobProperty** (link:https://github.com/jenkinsci/build-failure-analyzer-plugin/search?q=ScannerJobProperty&type=Code[在 GitHub上查看])
+* plugin:build-name-setter[build-name-setter Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildnamesetter.+++<wbr/>+++**BuildNameSetter** (link:https://github.com/jenkinsci/build-name-setter-plugin/search?q=BuildNameSetter&type=Code[在 GitHub上查看])
+* plugin:build-publisher[Build-Publisher Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++build_publisher.+++<wbr/>+++**BuildPublisher** (link:https://github.com/jenkinsci/build-publisher-plugin/search?q=BuildPublisher&type=Code[在 GitHub上查看])
+* plugin:ccm[CCM Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++ccm.+++<wbr/>+++**CcmPublisher** (link:https://github.com/jenkinsci/ccm-plugin/search?q=CcmPublisher&type=Code[在 GitHub上查看])
+* plugin:CFLint[CFLint Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++cflint.+++<wbr/>+++**LintPublisher** (link:https://github.com/jenkinsci/CFLint-plugin/search?q=LintPublisher&type=Code[在 GitHub上查看])
+* plugin:checkstyle[Checkstyle Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++checkstyle.+++<wbr/>+++**CheckStylePublisher** (link:https://github.com/jenkinsci/checkstyle-plugin/search?q=CheckStylePublisher&type=Code[在 GitHub上查看])
+* plugin:chef-identity[Chef Identity Plugin]: io.+++<wbr/>+++chef.+++<wbr/>+++jenkins.+++<wbr/>+++**ChefIdentityCleanup** (link:https://github.com/jenkinsci/chef-identity-plugin/search?q=ChefIdentityCleanup&type=Code[在 GitHub上查看])
+* plugin:codeclimate-plugin[Codeclimate Plugin]: suryagaddipati.+++<wbr/>+++codeclimate.+++<wbr/>+++**CodeClimatePublisher** 
+* plugin:cucumber-testresult-plugin[Cucumber json test reporting. Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++cucumber.+++<wbr/>+++jsontestsupport.+++<wbr/>+++**CucumberTestResultArchiver** (link:https://github.com/jenkinsci/cucumber-testresult-plugin//search?q=CucumberTestResultArchiver&type=Code[在 GitHub上查看])
+* plugin:description-setter[description setter Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++descriptionsetter.+++<wbr/>+++**DescriptionSetterPublisher** (link:https://github.com/jenkinsci/description-setter-plugin/search?q=DescriptionSetterPublisher&type=Code[在 GitHub上查看])
+* plugin:downstream-ext[Downstream-Ext Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++downstream_ext.+++<wbr/>+++**DownstreamTrigger** (link:https://github.com/jenkinsci/downstream-ext-plugin/search?q=DownstreamTrigger&type=Code[在 GitHub上查看])
+* plugin:doxygen[Doxygen Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++doxygen.+++<wbr/>+++**DoxygenArchiver** (link:https://github.com/jenkinsci/doxygen-plugin/search?q=DoxygenArchiver&type=Code[在 GitHub上查看])
+* plugin:dry[DRY Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++dry.+++<wbr/>+++**DryPublisher** (link:https://github.com/jenkinsci/dry-plugin/search?q=DryPublisher&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++**ExtendedEmailPublisher** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ExtendedEmailPublisher&type=Code[在 GitHub上查看])
+* plugin:environment-script[Environment Script Plugin]: com.+++<wbr/>+++lookout.+++<wbr/>+++jenkins.+++<wbr/>+++**EnvironmentScript** (link:https://github.com/jenkinsci/environment-script-plugin/search?q=EnvironmentScript&type=Code[在 GitHub上查看])
+* plugin:findbugs[FindBugs Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++findbugs.+++<wbr/>+++**FindBugsPublisher** (link:https://github.com/jenkinsci/findbugs-plugin/search?q=FindBugsPublisher&type=Code[在 GitHub上查看])
+* plugin:flexible-publish[Flexible Publish Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++flexible_publish.+++<wbr/>+++**FlexiblePublisher** (link:https://github.com/jenkinsci/flexible-publish-plugin/search?q=FlexiblePublisher&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitPublisher** (link:https://github.com/jenkinsci/git-plugin/search?q=GitPublisher&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**GitLabAcceptMergeRequestPublisher** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabAcceptMergeRequestPublisher&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**GitLabCommitStatusPublisher** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabCommitStatusPublisher&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**GitLabMessagePublisher** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabMessagePublisher&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**GitLabVotePublisher** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabVotePublisher&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**MergeRequestNotifier** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=MergeRequestNotifier&type=Code[在 GitHub上查看])
+* plugin:groovy-postbuild[Groovy Postbuild Plugin]: org.+++<wbr/>+++jvnet.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++groovypostbuild.+++<wbr/>+++**GroovyPostbuildRecorder** (link:https://github.com/jenkinsci/groovy-postbuild-plugin/search?q=GroovyPostbuildRecorder&type=Code[在 GitHub上查看])
+* plugin:hipchat[HipChat Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++hipchat.+++<wbr/>+++**HipChatNotifier** (link:https://github.com/jenkinsci/hipchat-plugin/search?q=HipChatNotifier&type=Code[在 GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++**IMPublisher** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=IMPublisher&type=Code[在 GitHub上查看])
+* plugin:ircbot[IRC Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++ircbot.+++<wbr/>+++**IrcPublisher** (link:https://github.com/jenkinsci/ircbot-plugin/search?q=IrcPublisher&type=Code[在 GitHub上查看])
+* plugin:jenkins-reviewbot[jenkins-reviewbot Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jenkinsreviewbot.+++<wbr/>+++**ReviewboardNotifier** 
+* plugin:jira[JIRA Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++**JiraIssueUpdater** (link:https://github.com/jenkinsci/jira-plugin/search?q=JiraIssueUpdater&type=Code[在 GitHub上查看])
+* plugin:join[Join Plugin]: join.+++<wbr/>+++**JoinTrigger** (link:https://github.com/jenkinsci/join-plugin/search?q=JoinTrigger&type=Code[在 GitHub上查看])
+* plugin:labeled-test-groups-publisher[Labeled Test Groups Publisher Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++labeledgroupedtests.+++<wbr/>+++**LabeledTestResultGroupPublisher** (link:https://github.com/jenkinsci/labeled-test-groups-publisher-plugin/search?q=LabeledTestResultGroupPublisher&type=Code[在 GitHub上查看])
+* plugin:dependency-check-jenkins-plugin[OWASP Dependency-Check Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++DependencyCheck.+++<wbr/>+++**DependencyCheckPublisher** (link:https://github.com/jenkinsci/dependency-check-plugin/search?q=DependencyCheckPublisher&type=Code[在 GitHub上查看])
+* plugin:perfpublisher[Performance Publisher Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++PerfPublisher.+++<wbr/>+++**PerfPublisherPublisher** (link:https://github.com/jenkinsci/perfpublisher-plugin/search?q=PerfPublisherPublisher&type=Code[在 GitHub上查看])
+* plugin:pmd[PMD Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++pmd.+++<wbr/>+++**PmdPublisher** (link:https://github.com/jenkinsci/pmd-plugin/search?q=PmdPublisher&type=Code[在 GitHub上查看])
+* plugin:pretested-integration[Pretested Integration Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pretestedintegration.+++<wbr/>+++**PretestedIntegrationPostCheckout** (link:https://github.com/jenkinsci/pretested-integration-plugin/search?q=PretestedIntegrationPostCheckout&type=Code[在 GitHub上查看])
+* plugin:project-description-setter[Project Description Setter Plugin]: org.+++<wbr/>+++jenkinsCi.+++<wbr/>+++plugins.+++<wbr/>+++projectDescriptionSetter.+++<wbr/>+++**DescriptionSetterWrapper** (link:https://github.com/jenkinsci/project-description-setter-plugin/search?q=DescriptionSetterWrapper&type=Code[在 GitHub上查看])
+* plugin:qc[Quality Center Plugin]: com.+++<wbr/>+++michelin.+++<wbr/>+++cio.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++qc.+++<wbr/>+++**QualityCenterResultArchiver** (link:https://github.com/jenkinsci/qc-plugin/search?q=QualityCenterResultArchiver&type=Code[在 GitHub上查看])
+* plugin:release[Release Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++release.+++<wbr/>+++**ReleaseWrapper** (link:https://github.com/jenkinsci/release-plugin/search?q=ReleaseWrapper&type=Code[在 GitHub上查看])
+* plugin:robot[Robot Framework Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++robot.+++<wbr/>+++**RobotPublisher** (link:https://github.com/jenkinsci/robot-plugin/search?q=RobotPublisher&type=Code[在 GitHub上查看])
+* plugin:secondary-timestamper-plugin[secondary timestamper Plugin]: org.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++secondarytimestamper.+++<wbr/>+++**SecondaryTimestampPostBuildAction** (link:https://github.com/jenkinsci/secondary-timestamper-plugin/search?q=SecondaryTimestampPostBuildAction&type=Code[在 GitHub上查看])
+* plugin:skype-notifier[Skype notifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++skype.+++<wbr/>+++im.+++<wbr/>+++transport.+++<wbr/>+++**SkypePublisher** (link:https://github.com/jenkinsci/skype-im-plugin/search?q=SkypePublisher&type=Code[在 GitHub上查看])
+* plugin:analysis-collector[Static Analysis Collector Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++analysis.+++<wbr/>+++collector.+++<wbr/>+++**AnalysisPublisher** (link:https://github.com/jenkinsci/analysis-collector-plugin/search?q=AnalysisPublisher&type=Code[在 GitHub上查看])
+* plugin:analysis-core[Static Analysis Utilities Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++analysis.+++<wbr/>+++core.+++<wbr/>+++**HealthAwarePublisher** (link:https://github.com/jenkinsci/analysis-core-plugin/search?q=HealthAwarePublisher&type=Code[在 GitHub上查看])
+* plugin:analysis-core[Static Analysis Utilities Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++analysis.+++<wbr/>+++core.+++<wbr/>+++**HealthAwareRecorder** (link:https://github.com/jenkinsci/analysis-core-plugin/search?q=HealthAwareRecorder&type=Code[在 GitHub上查看])
+* plugin:suite-test-groups-publisher[suite-test-groups-publisher Plugin]: com.+++<wbr/>+++cwctravel.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++suitegroupedtests.+++<wbr/>+++**SuiteGroupResultPublisher** (link:https://github.com/jenkinsci/suite-test-groups-publisher-plugin/search?q=SuiteGroupResultPublisher&type=Code[在 GitHub上查看])
+* plugin:tap[TAP Plugin]: org.+++<wbr/>+++tap4j.+++<wbr/>+++plugin.+++<wbr/>+++**TapPublisher** (link:https://github.com/jenkinsci/tap-plugin/search?q=TapPublisher&type=Code[在 GitHub上查看])
+* plugin:tasks[Task Scanner Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++tasks.+++<wbr/>+++**TasksPublisher** (link:https://github.com/jenkinsci/tasks-plugin/search?q=TasksPublisher&type=Code[在 GitHub上查看])
+* plugin:warnings[Warnings Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++warnings.+++<wbr/>+++**WarningsPublisher** (link:https://github.com/jenkinsci/warnings-plugin/search?q=WarningsPublisher&type=Code[在 GitHub上查看])
+* plugin:ws-cleanup[Workspace Cleanup Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++ws_cleanup.+++<wbr/>+++**WsCleanup** (link:https://github.com/jenkinsci/ws-cleanup-plugin/search?q=WsCleanup&type=Code[在 GitHub上查看])
+
+
+## 矩阵聚合器
++jenkinsdoc:matrix-project:hudson.matrix.MatrixAggregator[]+
+
++++ Performs the aggregation of+++ jenkinsdoc:MatrixRun[] +++results+++ +++ into+++ jenkinsdoc:MatrixBuild[] +++.+++
+
+
+**Implementations:**
+
+* plugin:android-lint[Android Lint 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++android_lint.+++<wbr/>+++**LintAnnotationsAggregator** (link:https://github.com/jenkinsci/android-lint-plugin/search?q=LintAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:build-alias-setter[Build Alias Setter Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildaliassetter.+++<wbr/>+++**BuildAliasSetter** (link:https://github.com/jenkinsci/build-alias-setter-plugin/search?q=BuildAliasSetter.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:build-failure-analyzer[Build Failure Analyzer Plugin]: com.+++<wbr/>+++sonyericsson.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bfa.+++<wbr/>+++**FailureCauseMatrixAggregator** (link:https://github.com/jenkinsci/build-failure-analyzer-plugin/search?q=FailureCauseMatrixAggregator&type=Code[在 GitHub上查看])
+* plugin:build-name-setter[build-name-setter Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildnamesetter.+++<wbr/>+++**BuildNameSetter** (link:https://github.com/jenkinsci/build-name-setter-plugin/search?q=BuildNameSetter.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:build-publisher[Build-Publisher Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++build_publisher.+++<wbr/>+++**BuildPublisher** (link:https://github.com/jenkinsci/build-publisher-plugin/search?q=BuildPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:ccm[CCM Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++ccm.+++<wbr/>+++**CcmAnnotationsAggregator** (link:https://github.com/jenkinsci/ccm-plugin/search?q=CcmAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:CFLint[CFLint Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++cflint.+++<wbr/>+++**LintAnnotationsAggregator** (link:https://github.com/jenkinsci/CFLint-plugin/search?q=LintAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:checkstyle[Checkstyle Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++checkstyle.+++<wbr/>+++**CheckStyleAnnotationsAggregator** (link:https://github.com/jenkinsci/checkstyle-plugin/search?q=CheckStyleAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:chef-identity[Chef Identity Plugin]: Anonymous class in io.+++<wbr/>+++chef.+++<wbr/>+++jenkins.+++<wbr/>+++**ChefIdentityCleanup** (link:https://github.com/jenkinsci/chef-identity-plugin/search?q=ChefIdentityCleanup.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:conditional-buildstep[Conditional BuildStep Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++conditionalbuildstep.+++<wbr/>+++matrix.+++<wbr/>+++**DummyMatrixAggregator** (link:https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=DummyMatrixAggregator&type=Code[在 GitHub上查看])
+* plugin:conditional-buildstep[Conditional BuildStep Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++conditionalbuildstep.+++<wbr/>+++matrix.+++<wbr/>+++**MatrixAggregatorChain** (link:https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=MatrixAggregatorChain&type=Code[在 GitHub上查看])
+* plugin:description-setter[description setter Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++descriptionsetter.+++<wbr/>+++**DescriptionSetterPublisher** (link:https://github.com/jenkinsci/description-setter-plugin/search?q=DescriptionSetterPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:downstream-ext[Downstream-Ext Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++downstream_ext.+++<wbr/>+++**DownstreamTrigger** (link:https://github.com/jenkinsci/downstream-ext-plugin/search?q=DownstreamTrigger.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:doxygen[Doxygen Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++doxygen.+++<wbr/>+++**DoxygenArchiver** (link:https://github.com/jenkinsci/doxygen-plugin/search?q=DoxygenArchiver.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:dry[DRY Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++dry.+++<wbr/>+++**DryAnnotationsAggregator** (link:https://github.com/jenkinsci/dry-plugin/search?q=DryAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++**ExtendedEmailPublisher** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ExtendedEmailPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:environment-script[Environment Script Plugin]: Anonymous class in com.+++<wbr/>+++lookout.+++<wbr/>+++jenkins.+++<wbr/>+++**EnvironmentScript** (link:https://github.com/jenkinsci/environment-script-plugin/search?q=EnvironmentScript.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:findbugs[FindBugs Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++findbugs.+++<wbr/>+++**FindBugsAnnotationsAggregator** (link:https://github.com/jenkinsci/findbugs-plugin/search?q=FindBugsAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:flexible-publish[Flexible Publish Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++flexible_publish.+++<wbr/>+++**ConditionalMatrixAggregator** (link:https://github.com/jenkinsci/flexible-publish-plugin/search?q=ConditionalMatrixAggregator&type=Code[在 GitHub上查看])
+* plugin:flexible-publish[Flexible Publish Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++flexible_publish.+++<wbr/>+++**FlexibleMatrixAggregator** (link:https://github.com/jenkinsci/flexible-publish-plugin/search?q=FlexibleMatrixAggregator&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitPublisher** (link:https://github.com/jenkinsci/git-plugin/search?q=GitPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: Anonymous class in com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**GitLabCommitStatusPublisher** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabCommitStatusPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:gitlab-plugin[GitLab Plugin]: Anonymous class in com.+++<wbr/>+++dabsquared.+++<wbr/>+++gitlabjenkins.+++<wbr/>+++publisher.+++<wbr/>+++**MergeRequestNotifier** (link:https://github.com/jenkinsci/gitlab-plugin/search?q=MergeRequestNotifier.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:groovy-postbuild[Groovy Postbuild Plugin]: Anonymous class in org.+++<wbr/>+++jvnet.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++groovypostbuild.+++<wbr/>+++**GroovyPostbuildRecorder** (link:https://github.com/jenkinsci/groovy-postbuild-plugin/search?q=GroovyPostbuildRecorder.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:hipchat[HipChat Plugin]: Anonymous class in jenkins.+++<wbr/>+++plugins.+++<wbr/>+++hipchat.+++<wbr/>+++**HipChatNotifier** (link:https://github.com/jenkinsci/hipchat-plugin/search?q=HipChatNotifier.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++**IMPublisher** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=IMPublisher.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:jenkins-reviewbot[jenkins-reviewbot Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jenkinsreviewbot.+++<wbr/>+++**ReviewboardNotifier** 
+* plugin:jira[JIRA Plugin]: Anonymous class in hudson.+++<wbr/>+++plugins.+++<wbr/>+++jira.+++<wbr/>+++**JiraIssueUpdater** (link:https://github.com/jenkinsci/jira-plugin/search?q=JiraIssueUpdater.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:join[Join Plugin]: Anonymous class in join.+++<wbr/>+++**JoinTrigger** (link:https://github.com/jenkinsci/join-plugin/search?q=JoinTrigger.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++tasks.+++<wbr/>+++test.+++<wbr/>+++**TestResultAggregator** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=TestResultAggregator&type=Code[在 GitHub上查看])
+* plugin:dependency-check-jenkins-plugin[OWASP Dependency-Check Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++DependencyCheck.+++<wbr/>+++**DependencyCheckAnnotationsAggregator** (link:https://github.com/jenkinsci/dependency-check-plugin/search?q=DependencyCheckAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:perfpublisher[Performance Publisher Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++PerfPublisher.+++<wbr/>+++**PerfPublisherResultAggregator** (link:https://github.com/jenkinsci/perfpublisher-plugin/search?q=PerfPublisherResultAggregator&type=Code[在 GitHub上查看])
+* plugin:pmd[PMD Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++pmd.+++<wbr/>+++**PmdAnnotationsAggregator** (link:https://github.com/jenkinsci/pmd-plugin/search?q=PmdAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:pretested-integration[Pretested Integration Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pretestedintegration.+++<wbr/>+++**PretestedIntegrationPostCheckout** (link:https://github.com/jenkinsci/pretested-integration-plugin/search?q=PretestedIntegrationPostCheckout.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:project-description-setter[Project Description Setter Plugin]: Anonymous class in org.+++<wbr/>+++jenkinsCi.+++<wbr/>+++plugins.+++<wbr/>+++projectDescriptionSetter.+++<wbr/>+++**DescriptionSetterWrapper** (link:https://github.com/jenkinsci/project-description-setter-plugin/search?q=DescriptionSetterWrapper.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:release[Release Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++release.+++<wbr/>+++**ReleaseWrapper.+++<wbr/>+++ReleaseAggregator** (link:https://github.com/jenkinsci/release-plugin/search?q=ReleaseWrapper.ReleaseAggregator&type=Code[在 GitHub上查看])
+* plugin:robot[Robot Framework Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++robot.+++<wbr/>+++**RobotResultAggregator** (link:https://github.com/jenkinsci/robot-plugin/search?q=RobotResultAggregator&type=Code[在 GitHub上查看])
+* plugin:secondary-timestamper-plugin[secondary timestamper Plugin]: Anonymous class in org.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++secondarytimestamper.+++<wbr/>+++**SecondaryTimestampPostBuildAction** (link:https://github.com/jenkinsci/secondary-timestamper-plugin/search?q=SecondaryTimestampPostBuildAction.createAggregator.&type=Code[在 GitHub上查看])
+* plugin:analysis-collector[Static Analysis Collector Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++analysis.+++<wbr/>+++collector.+++<wbr/>+++**AnalysisAnnotationsAggregator** (link:https://github.com/jenkinsci/analysis-collector-plugin/search?q=AnalysisAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:analysis-core[Static Analysis Utilities Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++analysis.+++<wbr/>+++core.+++<wbr/>+++**AnnotationsAggregator** (link:https://github.com/jenkinsci/analysis-core-plugin/search?q=AnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:tasks[Task Scanner Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++tasks.+++<wbr/>+++**TasksAnnotationsAggregator** (link:https://github.com/jenkinsci/tasks-plugin/search?q=TasksAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:warnings[Warnings Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++warnings.+++<wbr/>+++**WarningsAnnotationsAggregator** (link:https://github.com/jenkinsci/warnings-plugin/search?q=WarningsAnnotationsAggregator&type=Code[在 GitHub上查看])
+* plugin:ws-cleanup[Workspace Cleanup Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++ws_cleanup.+++<wbr/>+++**WsCleanupMatrixAggregator** (link:https://github.com/jenkinsci/ws-cleanup-plugin/search?q=WsCleanupMatrixAggregator&type=Code[在 GitHub上查看])
+
+
+## 矩阵构建监听器
++jenkinsdoc:matrix-project:hudson.matrix.listeners.MatrixBuildListener[]+
+
++++ Controls which subset of+++ jenkinsdoc:MatrixRun[] +++s to rebuild.+++
+
+
+**Implementations:**
+
+* plugin:matrix-combinations-parameter[矩阵配置参数插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++matrix_configuration_parameter.+++<wbr/>+++**MatrixCombinationsParameterMatrixBuildListener** (link:https://github.com/jenkinsci/matrix-combinations-plugin/search?q=MatrixCombinationsParameterMatrixBuildListener&type=Code[在 GitHub上查看])
+* plugin:matrix-reloaded[Matrix Reloaded Plugin]: net.+++<wbr/>+++praqma.+++<wbr/>+++jenkins.+++<wbr/>+++plugin.+++<wbr/>+++reloaded.+++<wbr/>+++**MatrixReloadedBuildListener** (link:https://github.com/jenkinsci/matrix-reloaded-plugin/search?q=MatrixReloadedBuildListener&type=Code[在 GitHub上查看])
+* plugin:naginator[Naginator Plugin]: com.+++<wbr/>+++chikli.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++naginator.+++<wbr/>+++**NaginatorMatrixBuildListner** (link:https://github.com/jenkinsci/naginator-plugin/search?q=NaginatorMatrixBuildListner&type=Code[在 GitHub上查看])
+* plugin:parameterized-trigger[Parameterized Trigger Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++parameterizedtrigger.+++<wbr/>+++matrix.+++<wbr/>+++**MatrixBuildListenerImpl** (link:https://github.com/jenkinsci/parameterized-trigger-plugin/search?q=MatrixBuildListenerImpl&type=Code[在 GitHub上查看])
+
+
+## 矩阵配置分拣机
++jenkinsdoc:matrix-project:hudson.matrix.MatrixConfigurationSorter[]+
+
++++ Add sorting for configurations+++ jenkinsdoc:MatrixConfiguration[] +++s of matrix job+++ jenkinsdoc:MatrixProject[] ++++++
+
+
+**Implementations:**
+
+* plugin:matrix-project[矩阵项目插件]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**NoopMatrixConfigurationSorter** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=NoopMatrixConfigurationSorter&type=Code[在 GitHub上查看])
+* plugin:Matrix-sorter-plugin[Matrix sorter Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++matrixconfigsorter.+++<wbr/>+++**LastAxisSorter** (link:https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=LastAxisSorter&type=Code[在 GitHub上查看])
+* plugin:Matrix-sorter-plugin[Matrix sorter Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++matrixconfigsorter.+++<wbr/>+++**ShorterFirstAxisSorter** (link:https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=ShorterFirstAxisSorter&type=Code[在 GitHub上查看])
+* plugin:Matrix-sorter-plugin[Matrix sorter Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++matrixconfigsorter.+++<wbr/>+++**TimeStampAxisSorter** (link:https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=TimeStampAxisSorter&type=Code[在 GitHub上查看])
+
+
+## 矩阵执行策略
++jenkinsdoc:matrix-project:hudson.matrix.MatrixExecutionStrategy[]+
+
++++ Controls the execution sequence of+++ jenkinsdoc:MatrixConfiguration[] +++when+++ jenkinsdoc:MatrixProject[] +++builds,+++ +++ including what degree it gets serialized/parallelled, how the whole build is abandoned when+++ +++ some fails, etc.+++
+
+
+**Implementations:**
+
+* plugin:matrix-project[矩阵项目插件]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**DefaultMatrixExecutionStrategyImpl** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=DefaultMatrixExecutionStrategyImpl&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++matrix.+++<wbr/>+++**MatrixOptions** (link:https://github.com/jenkinsci/p4-plugin/search?q=MatrixOptions&type=Code[在 GitHub上查看])
+* plugin:yaml-axis[Yaml Axis Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++yamlaxis.+++<wbr/>+++**BaseMES** (link:https://github.com/jenkinsci/yaml-axis-plugin/search?q=BaseMES&type=Code[在 GitHub上查看])
+* plugin:yaml-axis[Yaml Axis Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++yamlaxis.+++<wbr/>+++**YamlMatrixExecutionStrategy** (link:https://github.com/jenkinsci/yaml-axis-plugin/search?q=YamlMatrixExecutionStrategy&type=Code[在 GitHub上查看])
+

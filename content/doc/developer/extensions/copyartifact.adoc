@@ -1,0 +1,41 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 复制工件插件中定义的扩展点
+
+plugin:copyartifact[复制工件插件]
+
+## 构建选择器
++jenkinsdoc:copyartifact:hudson.plugins.copyartifact.BuildSelector[]+
+
++++ Extension point for selecting the build to copy artifacts from.+++ +++ In a subclass override just isSelectable() for a standard loop through completed+++ +++ builds, starting with the most recent. Otherwise override getBuild() to provide+++ +++ different build selection logic.+++
+
+
+**Implementations:**
+
+* plugin:copyartifact[复制工件插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**DownstreamBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=DownstreamBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**LastCompletedBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=LastCompletedBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**ParameterizedBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=ParameterizedBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**PermalinkBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=PermalinkBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**SavedBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=SavedBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**SpecificBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=SpecificBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**StatusBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=StatusBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**TriggeredBuildSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=TriggeredBuildSelector&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**WorkspaceSelector** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=WorkspaceSelector&type=Code[在 GitHub上查看])
+* plugin:jenkins-multijob-plugin[Multijob Plugin]: com.+++<wbr/>+++tikal.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multijob.+++<wbr/>+++**MultiJobBuildSelector** (link:https://github.com/jenkinsci/tikal-multijob-plugin/search?q=MultiJobBuildSelector&type=Code[在 GitHub上查看])
+* plugin:promoted-builds-simple[Promoted Builds (Simple) Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds_simple.+++<wbr/>+++**PromotedBuildSelector** (link:https://github.com/jenkinsci/promoted-builds-simple-plugin/search?q=PromotedBuildSelector&type=Code[在 GitHub上查看])
+
+
+## 复印机
++jenkinsdoc:copyartifact:hudson.plugins.copyartifact.Copier[]+
+
++++ Extension point for how files are copied.+++ +++ CopyArtifact plugin provides a default implementation using methods+++ +++ available in the Jenkins FilePath class.+++
+
+
+**Implementations:**
+
+* plugin:copyartifact[复制工件插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**FilePathCopyMethod** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=FilePathCopyMethod&type=Code[在 GitHub上查看])
+* plugin:copyartifact[Copy Artifact Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++copyartifact.+++<wbr/>+++**FingerprintingCopyMethod** (link:https://github.com/jenkinsci/copyartifact-plugin/search?q=FingerprintingCopyMethod&type=Code[在 GitHub上查看])
+

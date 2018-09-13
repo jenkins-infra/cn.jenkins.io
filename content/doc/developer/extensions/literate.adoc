@@ -1,0 +1,42 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Literate插件中定义的扩展点
+
+plugin:literate[Literate 插件]
+
+## 代理
++jenkinsdoc:literate:org.cloudbees.literate.jenkins.publishers.Agent[]+
+
++++ An agent will find a build it's+++ jenkinsdoc:Publisher[] +++.+++
+
+
+**Implementations:**
+
+* plugin:literate[Literate 插件]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++publishers.+++<wbr/>+++**ArtifactsAgent** (link:https://github.com/jenkinsci/literate-plugin/search?q=ArtifactsAgent&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++publishers.+++<wbr/>+++**DefaultXmlAgent** (link:https://github.com/jenkinsci/literate-plugin/search?q=DefaultXmlAgent&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++publishers.+++<wbr/>+++**JUnitReportAgent** (link:https://github.com/jenkinsci/literate-plugin/search?q=JUnitReportAgent&type=Code[在GitHub上查看])
+
+
+## 提升条件
++jenkinsdoc:literate:org.cloudbees.literate.jenkins.promotions.PromotionCondition[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:literate[Literate 插件]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++promotions.+++<wbr/>+++conditions.+++<wbr/>+++**ManualCondition** (link:https://github.com/jenkinsci/literate-plugin/search?q=ManualCondition&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++promotions.+++<wbr/>+++conditions.+++<wbr/>+++**SelfPromotionCondition** (link:https://github.com/jenkinsci/literate-plugin/search?q=SelfPromotionCondition&type=Code[在GitHub上查看])
+
+
+## 提升设置
++jenkinsdoc:literate:org.cloudbees.literate.jenkins.promotions.PromotionSetup[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:literate[Literate 插件]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++promotions.+++<wbr/>+++setup.+++<wbr/>+++**RestoreArchivedFiles** (link:https://github.com/jenkinsci/literate-plugin/search?q=RestoreArchivedFiles&type=Code[在GitHub上查看])
+

@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在Blue Ocean插件的Bitbucket流水线中定义的扩展点
+
+plugin:blueocean-bitbucket-pipeline[Blue Ocean插件的Bitbucket流水线]
+
+## Bitbucket Api工厂
++jenkinsdoc:blueocean-bitbucket-pipeline:io.jenkins.blueocean.blueocean_bitbucket_pipeline.BitbucketApiFactory[]+
+
++++ Factory for Bitbucket API. Bitbucket server and cloud APIs are different and+++ +++ different factories are needed to handle it+++
+
+
+**Implementations:**
+
+* plugin:blueocean-bitbucket-pipeline[Bitbucket Pipeline for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++blueocean_bitbucket_pipeline.+++<wbr/>+++cloud.+++<wbr/>+++**BitbucketCloudApi.+++<wbr/>+++BitbucketCloudApiFactory** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BitbucketCloudApi.BitbucketCloudApiFactory&type=Code[在 GitHub上查看])
+* plugin:blueocean-bitbucket-pipeline[Bitbucket Pipeline for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++blueocean_bitbucket_pipeline.+++<wbr/>+++server.+++<wbr/>+++**BitbucketServerApi.+++<wbr/>+++BitbucketServerApiFactory** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BitbucketServerApi.BitbucketServerApiFactory&type=Code[在 GitHub上查看])
+

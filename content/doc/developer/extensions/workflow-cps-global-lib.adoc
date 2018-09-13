@@ -1,0 +1,55 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 流水线：共享Groovy库插件中定义的扩展点
+
+plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]
+
+## 类路径加法器
++jenkinsdoc:workflow-cps-global-lib:org.jenkinsci.plugins.workflow.libs.ClasspathAdder[]+
+
++++ Allows libraries to be mapped to actual classpath additions.+++
+
+
+**Implementations:**
+
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**LibraryAdder** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryAdder&type=Code[在GitHub上查看])
+
+
+## 存储库解析器
++jenkinsdoc:workflow-cps-global-lib:org.jenkinsci.plugins.workflow.libs.LibraryResolver[]+
+
++++ Allows a provider of libraries to indicate which libraries should be visible to a given job.+++
+
+
+**Implementations:**
+
+* plugin:pipeline-github-lib[流水线: GitHub Groovy 库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++github.+++<wbr/>+++library.+++<wbr/>+++**GitHubLibraryResolver** (link:https://github.com/jenkinsci/pipeline-github-lib-plugin/search?q=GitHubLibraryResolver&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**FolderLibraries.+++<wbr/>+++ForJob** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=FolderLibraries.ForJob&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**GlobalLibraries.+++<wbr/>+++ForJob** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=GlobalLibraries.ForJob&type=Code[在GitHub上查看])
+
+
+## 库猎犬
++jenkinsdoc:workflow-cps-global-lib:org.jenkinsci.plugins.workflow.libs.LibraryRetriever[]+
+
++++ A way in which a library can be physically obtained for use in a build.+++
+
+
+**Implementations:**
+
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**SCMRetriever** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=SCMRetriever&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**SCMSourceRetriever** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=SCMSourceRetriever&type=Code[在GitHub上查看])
+
+
+## 工作流Lib库监听器
++jenkinsdoc:workflow-cps-global-lib:org.jenkinsci.plugins.workflow.cps.global.WorkflowLibRepositoryListener[]+
+
++++ A listener to respond to the receipt of packs by the+++ jenkinsdoc:WorkflowLibRepository[] ++++++
+
+
+**Implementations:**
+
+* plugin:workflow-cps-global-lib[流水线：共享Groovy库插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**UserDefinedGlobalVariableRepoListener** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=UserDefinedGlobalVariableRepoListener&type=Code[在GitHub上查看])
+

@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# suite-test-groups-publisher插件中定义的扩展点
+
+plugin:suite-test-groups-publisher[suite-test-groups-publisher插件]
+
+## 测试数据发布者
++jenkinsdoc:suite-test-groups-publisher:com.cwctravel.hudson.plugins.suitegroupedtests.TestDataPublisher[]+
+
++++ Contributes+++ jenkinsdoc:TestAction[] +++s to test results. This enables plugins to annotate test results and provide richer UI, such as letting users claim+++ +++ test failures, allowing people to file bugs, or more generally, additional actions, views, etc.+++ +++
+<p>+++ +++ To register your implementation, put+++ jenkinsdoc:Extension[] +++on your descriptor implementation.+++ </p>
+
+
+**Implementations:**
+
+_(no known implementations)_
+

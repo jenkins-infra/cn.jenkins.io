@@ -1,0 +1,41 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Performance 插件中定义的扩展点
+
+plugin:performance[Performance 插件]
+
+## 抽象约束
++jenkinsdoc:performance:hudson.plugins.performance.constraints.AbstractConstraint[]+
+
++++ Parent class for AbsoluteConstraint and RelativeConstraint+++
+
+
+**Implementations:**
+
+* plugin:performance[Performance 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++constraints.+++<wbr/>+++**AbsoluteConstraint** (link:https://github.com/jenkinsci/performance-plugin/search?q=AbsoluteConstraint&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++constraints.+++<wbr/>+++**RelativeConstraint** (link:https://github.com/jenkinsci/performance-plugin/search?q=RelativeConstraint&type=Code[在 GitHub上查看])
+
+
+## PerformanceReportParser
++jenkinsdoc:performance:hudson.plugins.performance.parsers.PerformanceReportParser[]+
+
++++ Parses performance result files into+++ jenkinsdoc:PerformanceReport[] +++s. This object+++ +++ is persisted with+++ jenkinsdoc:PerformancePublisher[] +++into the project+++ +++ configuration.+++ +++
+<p>+++ +++ </p>
+<p>+++ +++ Subtypes can define additional parser-specific parameters as instance fields.+++ </p>
+
+
+**Implementations:**
+
+* plugin:performance[Performance 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**AbstractParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=AbstractParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**IagoParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=IagoParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**JMeterCsvParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=JMeterCsvParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**JMeterParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=JMeterParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**JUnitParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=JUnitParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**JmeterSummarizerParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=JmeterSummarizerParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**LoadRunnerParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=LoadRunnerParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**TaurusParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=TaurusParser&type=Code[在 GitHub上查看])
+* plugin:performance[Performance Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++performance.+++<wbr/>+++parsers.+++<wbr/>+++**WrkSummarizerParser** (link:https://github.com/jenkinsci/performance-plugin/search?q=WrkSummarizerParser&type=Code[在 GitHub上查看])
+

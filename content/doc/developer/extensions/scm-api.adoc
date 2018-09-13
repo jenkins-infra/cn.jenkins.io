@@ -1,0 +1,161 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# SCM API插件中定义的扩展点
+
+plugin:scm-api[SCM API插件]
+
+## SCM事件监听器
++jenkinsdoc:scm-api:jenkins.scm.api.SCMEventListener[]+
+
++++ Base class for listeners to+++ jenkinsdoc:SCMEvent[] +++s+++
+
+
+**Implementations:**
+
+* plugin:branch-api[分支 API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**MultiBranchProject.+++<wbr/>+++SCMEventListenerImpl** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=MultiBranchProject.SCMEventListenerImpl&type=Code[在 GitHub上查看])
+* plugin:branch-api[Branch API Plugin]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**OrganizationFolder.+++<wbr/>+++SCMEventListenerImpl** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=OrganizationFolder.SCMEventListenerImpl&type=Code[在 GitHub上查看])
+* plugin:scm-api[SCM API Plugin]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++impl.+++<wbr/>+++**SCMTriggerListener** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=SCMTriggerListener&type=Code[在 GitHub上查看])
+
+
+## SCMFileSystem.+++<wbr/>+++Builder
++jenkinsdoc:scm-api:jenkins.scm.api.SCMFileSystem.Builder[]+
+
++++ Extension point that allows different plugins to implement+++ jenkinsdoc:SCMFileSystem[] +++classes for the same+++ jenkinsdoc:SCM[] ++++++ +++ or+++ jenkinsdoc:SCMSource[] +++and let Jenkins pick the most capable for any specific+++ jenkinsdoc:SCM[] +++implementation.+++
+
+
+**Implementations:**
+
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket 分支源插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++filesystem.+++<wbr/>+++**BitbucketSCMFileSystem.+++<wbr/>+++BuilderImpl** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMFileSystem.BuilderImpl&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitSCMFileSystem.+++<wbr/>+++BuilderImpl** (link:https://github.com/jenkinsci/git-plugin/search?q=GitSCMFileSystem.BuilderImpl&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitSCMTelescope** (link:https://github.com/jenkinsci/git-plugin/search?q=GitSCMTelescope&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaSCMFileSystem.+++<wbr/>+++BuilderImpl** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMFileSystem.BuilderImpl&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**GitHubSCMFileSystem.+++<wbr/>+++BuilderImpl** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMFileSystem.BuilderImpl&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**P4SCMFileSystem.+++<wbr/>+++BuilderImpl** (link:https://github.com/jenkinsci/p4-plugin/search?q=P4SCMFileSystem.BuilderImpl&type=Code[在 GitHub上查看])
+
+
+## SCMHead.+++<wbr/>+++HeadByItem
++jenkinsdoc:scm-api:jenkins.scm.api.SCMHead.HeadByItem[]+
+
++++ Means of locating a head given an item.+++
+
+
+**Implementations:**
+
+* plugin:branch-api[分支 API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**BranchProjectFactory.+++<wbr/>+++HeadByItemImpl** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=BranchProjectFactory.HeadByItemImpl&type=Code[在 GitHub上查看])
+
+
+## SCM主管迁移
++jenkinsdoc:scm-api:jenkins.scm.api.SCMHeadMigration[]+
+
++++ If a+++ jenkinsdoc:SCMSource[] +++plugin needs to migrate the implementation classes for+++ jenkinsdoc:SCMHead[] +++this extension+++ +++ point allows the plugin to register type migrations. For speed of migration implementations should just jump directly+++ +++ to the final end-point and not expect recursive chain walking.+++
+
+
+**Implementations:**
+
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket 分支源插件]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**PullRequestSCMHead.+++<wbr/>+++FixLegacyMigration1** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=PullRequestSCMHead.FixLegacyMigration1&type=Code[在 GitHub上查看])
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket Branch Source Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**PullRequestSCMHead.+++<wbr/>+++FixLegacyMigration2** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=PullRequestSCMHead.FixLegacyMigration2&type=Code[在 GitHub上查看])
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket Branch Source Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**SCMHeadWithOwnerAndRepo.+++<wbr/>+++GitMigrationImpl** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=SCMHeadWithOwnerAndRepo.GitMigrationImpl&type=Code[在 GitHub上查看])
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket Branch Source Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**SCMHeadWithOwnerAndRepo.+++<wbr/>+++HgMigrationImpl** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=SCMHeadWithOwnerAndRepo.HgMigrationImpl&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**BranchSCMHead.+++<wbr/>+++MigrationImpl** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=BranchSCMHead.MigrationImpl&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**PullRequestSCMHead.+++<wbr/>+++FixMetadataMigration** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=PullRequestSCMHead.FixMetadataMigration&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**PullRequestSCMHead.+++<wbr/>+++FixOriginMigration** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=PullRequestSCMHead.FixOriginMigration&type=Code[在 GitHub上查看])
+
+
+## SCM导航器
++jenkinsdoc:scm-api:jenkins.scm.api.SCMNavigator[]+
+
++++ An API for discovering new and navigating already discovered+++ jenkinsdoc:SCMSource[] +++s within an organization.+++ +++ An implementation does not need to cache existing discoveries, but some form of caching is strongly recommended+++ +++ where the backing provider of repositories has a rate limiter on API calls.+++
+
+
+**Implementations:**
+
+* plugin:aws-codecommit-jobs[AWS代码提交作业插件]: com.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++awscodecommit.+++<wbr/>+++navigator.+++<wbr/>+++**AWSCodeCommitSCMNavigator** (link:https://github.com/jenkinsci/aws-codecommit-jobs-plugin/search?q=AWSCodeCommitSCMNavigator&type=Code[在 GitHub上查看])
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket Branch Source Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**BitbucketSCMNavigator** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMNavigator&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaSCMNavigator** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMNavigator&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**GitHubSCMNavigator** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMNavigator&type=Code[在 GitHub上查看])
+* plugin:scm-api[SCM API Plugin]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++impl.+++<wbr/>+++**SingleSCMNavigator** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=SingleSCMNavigator&type=Code[在 GitHub上查看])
+
+
+## SCM导航器拥有者
++jenkinsdoc:scm-api:jenkins.scm.api.SCMNavigatorOwners[]+
+
++++ Provides a means to lookup the+++ jenkinsdoc:SCMNavigatorOwners[] +++that own+++ jenkinsdoc:SCMNavigatorOwner[] +++instances.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## SCMNavigatorOwners.+++<wbr/>+++Enumerator
++jenkinsdoc:scm-api:jenkins.scm.api.SCMNavigatorOwners.Enumerator[]+
+
++++ Extension point to allow for access to embedded+++ jenkinsdoc:SCMSourceOwner[] +++instances that+++ ++++++ jenkinsdoc:SCMNavigatorOwners.JenkinsItemEnumerator[] +++will not find.+++
+
+
+**Implementations:**
+
+* plugin:scm-api[SCM API 插件]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++api.+++<wbr/>+++**SCMNavigatorOwners.+++<wbr/>+++JenkinsItemEnumerator** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=SCMNavigatorOwners.JenkinsItemEnumerator&type=Code[在 GitHub上查看])
+
+
+## SCM源
++jenkinsdoc:scm-api:jenkins.scm.api.SCMSource[]+
+
++++ A+++ jenkinsdoc:SCMSource[] +++is responsible for fetching+++ jenkinsdoc:SCMHead[] +++and corresponding+++ jenkinsdoc:SCMRevision[] +++instances from+++ +++ which it can build+++ jenkinsdoc:SCM[] +++instances that are configured to check out the specific+++ jenkinsdoc:SCMHead[] +++at the+++ +++ specified+++ jenkinsdoc:SCMRevision[] +++.+++
+
+
+**Implementations:**
+
+* plugin:backlog[Backlog 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++backlog.+++<wbr/>+++pipeline.+++<wbr/>+++**BacklogPullRequestSCMSource** (link:https://github.com/jenkinsci/backlog-plugin/search?q=BacklogPullRequestSCMSource&type=Code[在 GitHub上查看])
+* plugin:cloudbees-bitbucket-branch-source[Bitbucket Branch Source Plugin]: com.+++<wbr/>+++cloudbees.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++bitbucket.+++<wbr/>+++**BitbucketSCMSource** (link:https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMSource&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**AbstractGitSCMSource** (link:https://github.com/jenkinsci/git-plugin/search?q=AbstractGitSCMSource&type=Code[在 GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitSCMSource** (link:https://github.com/jenkinsci/git-plugin/search?q=GitSCMSource&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaSCMSource** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMSource&type=Code[在 GitHub上查看])
+* plugin:github-branch-source[GitHub Branch Source Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github_branch_source.+++<wbr/>+++**GitHubSCMSource** (link:https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMSource&type=Code[在 GitHub上查看])
+* plugin:mercurial[Mercurial Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++mercurial.+++<wbr/>+++**MercurialSCMSource** (link:https://github.com/jenkinsci/mercurial-plugin/search?q=MercurialSCMSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**AbstractP4ScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=AbstractP4ScmSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**BranchesScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=BranchesScmSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**GlobalLibraryScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=GlobalLibraryScmSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**GraphScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=GraphScmSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**StreamsScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=StreamsScmSource&type=Code[在 GitHub上查看])
+* plugin:p4[P4 Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++p4.+++<wbr/>+++scm.+++<wbr/>+++**SwarmScmSource** (link:https://github.com/jenkinsci/p4-plugin/search?q=SwarmScmSource&type=Code[在 GitHub上查看])
+* plugin:scm-api[SCM API Plugin]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++impl.+++<wbr/>+++**NullSCMSource** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=NullSCMSource&type=Code[在 GitHub上查看])
+* plugin:scm-api[SCM API Plugin]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++impl.+++<wbr/>+++**SingleSCMSource** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=SingleSCMSource&type=Code[在 GitHub上查看])
+* plugin:subversion[Subversion Plugin]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++impl.+++<wbr/>+++subversion.+++<wbr/>+++**SubversionSCMSource** (link:https://github.com/jenkinsci/subversion-plugin/search?q=SubversionSCMSource&type=Code[在 GitHub上查看])
+
+
+## SCMSource.+++<wbr/>+++SourceByItem
++jenkinsdoc:scm-api:jenkins.scm.api.SCMSource.SourceByItem[]+
+
++++ Means of locating a head given an item.+++
+
+
+**Implementations:**
+
+* plugin:branch-api[分支 API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**BranchProjectFactory.+++<wbr/>+++SourceByItemImpl** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=BranchProjectFactory.SourceByItemImpl&type=Code[在 GitHub上查看])
+
+
+## SCM源拥有者
++jenkinsdoc:scm-api:jenkins.scm.api.SCMSourceOwners[]+
+
++++ Provides a means to lookup the+++ jenkinsdoc:SCMSourceOwners[] +++that own+++ jenkinsdoc:SCMSource[] +++instances.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## SCMSourceOwners.+++<wbr/>+++Enumerator
++jenkinsdoc:scm-api:jenkins.scm.api.SCMSourceOwners.Enumerator[]+
+
++++ Extension point to allow for access to embedded+++ jenkinsdoc:SCMSourceOwner[] +++instances that+++ ++++++ jenkinsdoc:SCMSourceOwners.JenkinsItemEnumerator[] +++will not find.+++
+
+
+**Implementations:**
+
+* plugin:scm-api[SCM API 插件]: jenkins.+++<wbr/>+++scm.+++<wbr/>+++api.+++<wbr/>+++**SCMSourceOwners.+++<wbr/>+++JenkinsItemEnumerator** (link:https://github.com/jenkinsci/scm-api-plugin/search?q=SCMSourceOwners.JenkinsItemEnumerator&type=Code[在 GitHub上查看])
+

@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Puppet插件中定义的扩展点
+
+plugin:puppet[Puppet插件]
+
+## Puppet报告处理器
++jenkinsdoc:puppet:org.jenkinsci.plugins.puppet.track.PuppetReportProcessor[]+
+
++++ Extension point for other plugins to look at submitted puppet resources and find intereting MD5 checksums.+++
+
+
+**Implementations:**
+
+* plugin:puppet[Puppet插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++puppet.+++<wbr/>+++track.+++<wbr/>+++**FileReportProcessor** (link:https://github.com/jenkinsci/puppet-plugin/search?q=FileReportProcessor&type=Code[在GitHub上查看])
+* plugin:puppet[Puppet Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++puppet.+++<wbr/>+++track.+++<wbr/>+++**TrackReportProcessor** (link:https://github.com/jenkinsci/puppet-plugin/search?q=TrackReportProcessor&type=Code[在GitHub上查看])
+

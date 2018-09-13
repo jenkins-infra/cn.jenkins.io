@@ -1,0 +1,39 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 促进构建插件中定义的扩展点
+
+plugin:promoted-builds[促进构建插件]
+
+## ItemPathResolver.+++<wbr/>+++ResolverManager
++jenkinsdoc:promoted-builds:hudson.plugins.promoted_builds.util.ItemPathResolver.ResolverManager[]+
+
++++ External manager, which allows the alter behavior on-demand.+++ +++ Currently this+++ jenkinsdoc:ExtensionPoint[] +++is designed for the internal use only+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## 促进条件
++jenkinsdoc:promoted-builds:hudson.plugins.promoted_builds.PromotionCondition[]+
+
++++ Extension point for defining a promotion criteria.+++
+
+
+**Implementations:**
+
+* plugin:deployment-notification[部署通知插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++deployment.+++<wbr/>+++promoted_builds.+++<wbr/>+++**DeploymentPromotionCondition** (link:https://github.com/jenkinsci/deployment-notification-plugin/search?q=DeploymentPromotionCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**DownstreamPassCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=DownstreamPassCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**GroovyCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=GroovyCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++integrations.+++<wbr/>+++jobdsl.+++<wbr/>+++**JobDslManualCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=JobDslManualCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**ManualCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=ManualCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**ParameterizedSelfPromotionCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=ParameterizedSelfPromotionCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++integrations.+++<wbr/>+++jobdsl.+++<wbr/>+++**ReleasePromotionCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=ReleasePromotionCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**SelfPromotionCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=SelfPromotionCondition&type=Code[在GitHub上查看])
+* plugin:promoted-builds[promoted builds Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++promoted_builds.+++<wbr/>+++conditions.+++<wbr/>+++**UpstreamPromotionCondition** (link:https://github.com/jenkinsci/promoted-builds-plugin/search?q=UpstreamPromotionCondition&type=Code[在GitHub上查看])
+* plugin:release[Release Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++release.+++<wbr/>+++promotion.+++<wbr/>+++**ReleasePromotionCondition** (link:https://github.com/jenkinsci/release-plugin/search?q=ReleasePromotionCondition&type=Code[在GitHub上查看])
+

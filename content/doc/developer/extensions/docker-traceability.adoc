@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# CloudBees Docker可追踪性插件中定义的扩展点
+
+plugin:docker-traceability[CloudBees Docker可追踪性插件]
+
+## Docker可追踪性报告监听器
++jenkinsdoc:docker-traceability:org.jenkinsci.plugins.docker.traceability.model.DockerTraceabilityReportListener[]+
+
++++ An extension point, which allows to subscribe to+++ jenkinsdoc:DockerTraceabilityReport[] +++s in Jenkins.+++
+
+
+**Implementations:**
+
+* plugin:docker-traceability[CloudBees Docker可追踪性插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++docker.+++<wbr/>+++traceability.+++<wbr/>+++core.+++<wbr/>+++**DockerTraceabilityReportListenerImpl** (link:https://github.com/jenkinsci/docker-traceability-plugin/search?q=DockerTraceabilityReportListenerImpl&type=Code[在GitHub上查看])
+* plugin:docker-traceability[CloudBees Docker Traceability Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++docker.+++<wbr/>+++traceability.+++<wbr/>+++core.+++<wbr/>+++**DockerTraceabilityReportLogger** (link:https://github.com/jenkinsci/docker-traceability-plugin/search?q=DockerTraceabilityReportLogger&type=Code[在GitHub上查看])
+

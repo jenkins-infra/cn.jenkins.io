@@ -1,0 +1,24 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 标签验证程序插件中定义的扩展点
+
+plugin:label-verifier[标签验证程序插件]
+
+## 标签验证程序
++jenkinsdoc:label-verifier:hudson.plugins.label_verifier.LabelVerifier[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:label-verifier[标签验证程序插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++logic.+++<wbr/>+++**AlwaysFalse** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=AlwaysFalse&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++logic.+++<wbr/>+++**AlwaysTrue** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=AlwaysTrue&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++logic.+++<wbr/>+++**And** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=And&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++logic.+++<wbr/>+++**Not** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=Not&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++logic.+++<wbr/>+++**Or** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=Or&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++verifiers.+++<wbr/>+++**RegexNameVerifier** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=RegexNameVerifier&type=Code[在GitHub上查看])
+* plugin:label-verifier[Label Verifier Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++label_verifier.+++<wbr/>+++verifiers.+++<wbr/>+++**ShellScriptVerifier** (link:https://github.com/jenkinsci/label-verifier-plugin/search?q=ShellScriptVerifier&type=Code[在GitHub上查看])
+

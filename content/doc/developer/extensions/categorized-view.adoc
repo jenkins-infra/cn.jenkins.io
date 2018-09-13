@@ -1,0 +1,18 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在分类视图插件中定义的扩展点
+
+plugin:categorized-view[分类视图插件]
+
+## 分类标准
++jenkinsdoc:categorized-view:org.jenkinsci.plugins.categorizedview.CategorizationCriteria[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:categorized-view[分类视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++categorizedview.+++<wbr/>+++**GroupingRule** (link:https://github.com/jenkinsci/categorized-view-plugin/search?q=GroupingRule&type=Code[在GitHub上查看])
+

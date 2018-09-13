@@ -1,0 +1,27 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 可扩展选择参数插件中定义的扩展点
+
+plugin:extensible-choice-parameter[Extensible Choice Parameter Plugin]
+
+## 选择列表提供者
++jenkinsdoc:extensible-choice-parameter:jp.ikedam.jenkins.plugins.extensible_choice_parameter.ChoiceListProvider[]+
+
++++ The abstract base class of modules provides choices.+++
+
+
+**Implementations:**
+
+* plugin:extensible-choice-parameter[可扩展选择参数插件]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++extensible_choice_parameter.+++<wbr/>+++**AddEditedChoiceListProvider** (link:https://github.com/jenkinsci/extensible-choice-parameter-plugin/search?q=AddEditedChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:extensible-choice-parameter[Extensible Choice Parameter Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++extensible_choice_parameter.+++<wbr/>+++**FilenameChoiceListProvider** (link:https://github.com/jenkinsci/extensible-choice-parameter-plugin/search?q=FilenameChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:extensible-choice-parameter[Extensible Choice Parameter Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++extensible_choice_parameter.+++<wbr/>+++**GlobalTextareaChoiceListProvider** (link:https://github.com/jenkinsci/extensible-choice-parameter-plugin/search?q=GlobalTextareaChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:extensible-choice-parameter[Extensible Choice Parameter Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++extensible_choice_parameter.+++<wbr/>+++**SystemGroovyChoiceListProvider** (link:https://github.com/jenkinsci/extensible-choice-parameter-plugin/search?q=SystemGroovyChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:extensible-choice-parameter[Extensible Choice Parameter Plugin]: jp.+++<wbr/>+++ikedam.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++extensible_choice_parameter.+++<wbr/>+++**TextareaChoiceListProvider** (link:https://github.com/jenkinsci/extensible-choice-parameter-plugin/search?q=TextareaChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++**AbstractMavenArtifactChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=AbstractMavenArtifactChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++artifactory.+++<wbr/>+++**ArtifactoryChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=ArtifactoryChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++central.+++<wbr/>+++**MavenCentralChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=MavenCentralChoiceListProvider&type=Code[在GitHub上查看])
+* plugin:maven-artifact-choicelistprovider[Maven Artifact ChoiceListProvider (Nexus) Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++maven_artifact_choicelistprovider.+++<wbr/>+++nexus.+++<wbr/>+++**NexusChoiceListProvider** (link:https://github.com/jenkinsci/maven-artifact-choicelistprovider-plugin/search?q=NexusChoiceListProvider&type=Code[在GitHub上查看])
+

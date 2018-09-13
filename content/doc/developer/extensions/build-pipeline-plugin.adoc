@@ -1,0 +1,52 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 构建流水线插件中定义的扩展点
+
+plugin:build-pipeline-plugin[构建流水线插件]
+
+## 构建卡片扩展
++jenkinsdoc:build-pipeline-plugin:au.com.centrumsystems.hudson.plugin.buildpipeline.extension.BuildCardExtension[]+
+
++++
+<p>+++ +++ This class is an extension point for a plugin to provide their own behavior for the 'build cards'+++ +++ that show up in the 构建流水线插件.+++ +++ </p>+++
+
+
+**Implementations:**
+
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**StandardBuildCard** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=StandardBuildCard&type=Code[在GitHub上查看])
+
+
+## 流水线标题扩展
++jenkinsdoc:build-pipeline-plugin:au.com.centrumsystems.hudson.plugin.buildpipeline.extension.PipelineHeaderExtension[]+
+
++++ An extension point to provide column and/or row headers for the build pipeline+++
+
+
+**Implementations:**
+
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**AbstractNameValueHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=AbstractNameValueHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**BuildVariablesHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=BuildVariablesHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**FilteredVariablesHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=FilteredVariablesHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**NullColumnHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=NullColumnHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**ParametersActionHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=ParametersActionHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**SimpleColumnHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=SimpleColumnHeader&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**SimpleRowHeader** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=SimpleRowHeader&type=Code[在GitHub上查看])
+
+
+## 流水线标题扩展描述符
++jenkinsdoc:build-pipeline-plugin:au.com.centrumsystems.hudson.plugin.buildpipeline.extension.PipelineHeaderExtensionDescriptor[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**BuildVariablesHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=BuildVariablesHeader.DescriptorImpl&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**FilteredVariablesHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=FilteredVariablesHeader.DescriptorImpl&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**NullColumnHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=NullColumnHeader.DescriptorImpl&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**ParametersActionHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=ParametersActionHeader.DescriptorImpl&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**SimpleColumnHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=SimpleColumnHeader.DescriptorImpl&type=Code[在GitHub上查看])
+* plugin:build-pipeline-plugin[构建流水线插件]: au.+++<wbr/>+++com.+++<wbr/>+++centrumsystems.+++<wbr/>+++hudson.+++<wbr/>+++plugin.+++<wbr/>+++buildpipeline.+++<wbr/>+++extension.+++<wbr/>+++**SimpleRowHeader.+++<wbr/>+++DescriptorImpl** (link:https://github.com/jenkinsci/build-pipeline-plugin/search?q=SimpleRowHeader.DescriptorImpl&type=Code[在GitHub上查看])
+

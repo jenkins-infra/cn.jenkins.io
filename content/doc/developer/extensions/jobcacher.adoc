@@ -1,0 +1,31 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Job Cacher插件中定义的扩展点
+
+plugin:jobcacher[JJob Cacher插件]
+
+## 缓存
++jenkinsdoc:jobcacher:jenkins.plugins.jobcacher.Cache[]+
+
++++ This class provides the Cache extension point that when implemented provides the caching logic for saving files+++ +++ from the executor to the master and sending them back to the executor.+++
+
+
+**Implementations:**
+
+* plugin:jobcacher[Job Cacher 插件]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jobcacher.+++<wbr/>+++**ArbitraryFileCache** (link:https://github.com/jenkinsci/jobcacher-plugin/search?q=ArbitraryFileCache&type=Code[在GitHub上查看])
+
+
+## 项目存储
++jenkinsdoc:jobcacher:jenkins.plugins.itemstorage.ItemStorage[]+
+
++++ Extension point for providing a new implementation of item storage that plugins can use to store data associated+++ +++ with an item in whatever storage mechanism the storage implementation provides.+++
+
+
+**Implementations:**
+
+* plugin:jobcacher[Job Cacher 插件]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++itemstorage.+++<wbr/>+++local.+++<wbr/>+++**LocalItemStorage** (link:https://github.com/jenkinsci/jobcacher-plugin/search?q=LocalItemStorage&type=Code[在GitHub上查看])
+* plugin:jobcacher[Job Cacher Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++itemstorage.+++<wbr/>+++s3.+++<wbr/>+++**S3ItemStorage** (link:https://github.com/jenkinsci/jobcacher-plugin/search?q=S3ItemStorage&type=Code[在GitHub上查看])
+

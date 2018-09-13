@@ -1,0 +1,43 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 运行选择器插件中定义的扩展点
+
+plugin:run-selector[运行选择器插件]
+运行过滤器
++jenkinsdoc:run-selector:org.jenkinsci.plugins.runselector.RunFilter[]+
+
++++ Additional filters used by+++ jenkinsdoc:RunSelector[] +++.+++ +++ Use+++ jenkinsdoc:RunFilterDescriptor[] +++for its descriptor.+++
+
+
+**Implementations:**
+
+* plugin:run-selector[运行选择器插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**AndRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=AndRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**DisplayNameRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=DisplayNameRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**DownstreamRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=DownstreamRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**NoRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=NoRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**NotRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=NotRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**OrRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=OrRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**ParameterizedRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=ParameterizedRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**ParametersRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=ParametersRunFilter&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++filters.+++<wbr/>+++**SavedRunFilter** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=SavedRunFilter&type=Code[在GitHub上查看])
+
+
+## 运行选择器
++jenkinsdoc:run-selector:org.jenkinsci.plugins.runselector.RunSelector[]+
+
++++ Extension point for enumerating builds to copy artifacts from.+++ +++ Subclasses should override+++ jenkinsdoc:#getNextBuild(Job, RunSelectorContext)[] +++.+++ +++ use+++ jenkinsdoc:RunSelectorDescriptor[] +++for its descriptor.+++
+
+
+**Implementations:**
+
+* plugin:run-selector[运行选择器插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**AbstractSpecificRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=AbstractSpecificRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**BuildNumberRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=BuildNumberRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**FallbackRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=FallbackRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**ParameterizedRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=ParameterizedRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**PermalinkRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=PermalinkRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**StatusRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=StatusRunSelector&type=Code[在GitHub上查看])
+* plugin:run-selector[Run Selector Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++runselector.+++<wbr/>+++selectors.+++<wbr/>+++**TriggeringRunSelector** (link:https://github.com/jenkinsci/run-selector-plugin/search?q=TriggeringRunSelector&type=Code[在GitHub上查看])
+

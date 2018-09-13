@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# HipChat插件中定义的扩展点
+
+plugin:hipchat[HipChat插件]
+
+## 卡提供商
++jenkinsdoc:hipchat:jenkins.plugins.hipchat.CardProvider[]+
+
++++ An extension point that can be used to allow full control over HipChat notification cards for individual+++ +++ notifications. The provider itself is globally configured, so any job-specific behavior would be the responsibility+++ +++ of the plugin itself.+++
+
+
+**Implementations:**
+
+* plugin:hipchat[HipChat 插件]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++hipchat.+++<wbr/>+++impl.+++<wbr/>+++**DefaultCardProvider** (link:https://github.com/jenkinsci/hipchat-plugin/search?q=DefaultCardProvider&type=Code[在GitHub上查看])
+* plugin:hipchat[HipChat Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++hipchat.+++<wbr/>+++impl.+++<wbr/>+++**NoopCardProvider** (link:https://github.com/jenkinsci/hipchat-plugin/search?q=NoopCardProvider&type=Code[在GitHub上查看])
+

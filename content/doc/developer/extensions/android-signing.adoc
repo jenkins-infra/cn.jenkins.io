@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Android签名插件中定义的扩展点
+
+plugin:android-signing[Android签名插件]
+
+## 签名的Apk映射策略
++jenkinsdoc:android-signing:org.jenkinsci.plugins.androidsigning.SignedApkMappingStrategy[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:android-signing[Android签名插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++androidsigning.+++<wbr/>+++**SignedApkMappingStrategy.+++<wbr/>+++UnsignedApkBuilderDirMapping** (link:https://github.com/jenkinsci/android-signing-plugin/search?q=SignedApkMappingStrategy.UnsignedApkBuilderDirMapping&type=Code[在 GitHub上查看])
+* plugin:android-signing[Android Signing Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++androidsigning.+++<wbr/>+++**SignedApkMappingStrategy.+++<wbr/>+++UnsignedApkSiblingMapping** (link:https://github.com/jenkinsci/android-signing-plugin/search?q=SignedApkMappingStrategy.UnsignedApkSiblingMapping&type=Code[在 GitHub上查看])
+

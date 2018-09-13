@@ -1,0 +1,33 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Dependency Graph Viewer插件中定义的扩展点
+
+plugin:depgraph-view[Dependency Graph Viewer插件]
+
+## 边缘提供商
++jenkinsdoc:depgraph-view:hudson.plugins.depgraph_view.model.graph.EdgeProvider[]+
+
++++ This is an extension point which makes it possible to add edges+++ +++ to the DependencyGraph which gets drawn. Note that in order to add your own+++ +++ EdgeProvider you must not annotate the corresponding subclass with+++ jenkinsdoc:hudson.Extension[] ++++++ +++ but instead add a+++ jenkinsdoc:com.google.inject.Module[] +++with a+++ jenkinsdoc:com.google.inject.multibindings.Multibinder[] ++++++ +++ which has the+++ jenkinsdoc:hudson.Extension[] +++annotation. For example see+++ jenkinsdoc:DependencyGraphModule[] ++++++ +++ and+++ jenkinsdoc:DependencyGraphEdgeProvider[] ++++++
+
+
+**Implementations:**
+
+* plugin:depgraph-view[Dependency Graph Viewer插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++depgraph_view.+++<wbr/>+++model.+++<wbr/>+++graph.+++<wbr/>+++**CopyArtifactEdgeProvider** (link:https://github.com/jenkinsci/depgraph-view-plugin/search?q=CopyArtifactEdgeProvider&type=Code[在 GitHub上查看])
+* plugin:depgraph-view[Dependency Graph Viewer Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++depgraph_view.+++<wbr/>+++model.+++<wbr/>+++graph.+++<wbr/>+++**DependencyGraphEdgeProvider** (link:https://github.com/jenkinsci/depgraph-view-plugin/search?q=DependencyGraphEdgeProvider&type=Code[在 GitHub上查看])
+* plugin:maven-release-cascade[Maven Cascade Release Plugin]: com.+++<wbr/>+++barchart.+++<wbr/>+++jenkins.+++<wbr/>+++cascade.+++<wbr/>+++**GraphEdgeProvider** (link:https://github.com/jenkinsci/maven-release-cascade-plugin/search?q=GraphEdgeProvider&type=Code[在 GitHub上查看])
+
+
+## 子项目提供者
++jenkinsdoc:depgraph-view:hudson.plugins.depgraph_view.model.graph.SubProjectProvider[]+
+
++++ This is an extension point which makes it possible to subprojects+++ +++ to the DependencyGraph which gets drawn. Note that in order to add your own+++ +++ EdgeProvider you must not annotate the corresponding subclass with+++ jenkinsdoc:hudson.Extension[] ++++++ +++ but instead add a+++ jenkinsdoc:com.google.inject.Module[] +++with a+++ jenkinsdoc:com.google.inject.multibindings.Multibinder[] ++++++ +++ which has the+++ jenkinsdoc:hudson.Extension[] +++annotation. For example see+++ jenkinsdoc:DependencyGraphModule[] ++++++ +++ and+++ jenkinsdoc:ParameterizedTriggerSubProjectProvider[] ++++++
+
+
+**Implementations:**
+
+* plugin:depgraph-view[Dependency Graph Viewer插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++depgraph_view.+++<wbr/>+++model.+++<wbr/>+++graph.+++<wbr/>+++**ParameterizedTriggerSubProjectProvider** (link:https://github.com/jenkinsci/depgraph-view-plugin/search?q=ParameterizedTriggerSubProjectProvider&type=Code[在 GitHub上查看])
+* plugin:maven-release-cascade[Maven Cascade Release Plugin]: com.+++<wbr/>+++barchart.+++<wbr/>+++jenkins.+++<wbr/>+++cascade.+++<wbr/>+++**GraphSubProjectProvider** (link:https://github.com/jenkinsci/maven-release-cascade-plugin/search?q=GraphSubProjectProvider&type=Code[在 GitHub上查看])
+

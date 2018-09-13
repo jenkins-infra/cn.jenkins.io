@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# ClearCase插件中定义的扩展点
+
+plugin:clearcase[ClearCase 插件]
+
+## 查看存储
++jenkinsdoc:clearcase:hudson.plugins.clearcase.viewstorage.ViewStorage[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:clearcase[ClearCase 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++clearcase.+++<wbr/>+++viewstorage.+++<wbr/>+++**DefaultViewStorage** (link:https://github.com/jenkinsci/clearcase-plugin/search?q=DefaultViewStorage&type=Code[在GitHub上查看])
+* plugin:clearcase[ClearCase Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++clearcase.+++<wbr/>+++viewstorage.+++<wbr/>+++**ServerViewStorage** (link:https://github.com/jenkinsci/clearcase-plugin/search?q=ServerViewStorage&type=Code[在GitHub上查看])
+* plugin:clearcase[ClearCase Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++clearcase.+++<wbr/>+++viewstorage.+++<wbr/>+++**SpecificViewStorage** (link:https://github.com/jenkinsci/clearcase-plugin/search?q=SpecificViewStorage&type=Code[在GitHub上查看])
+
