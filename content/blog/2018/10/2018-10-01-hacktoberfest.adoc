@@ -1,0 +1,142 @@
+---
+layout: post
+title: "Hacktoberfest 2018. 给 Jenkins 做贡献！"
+tags:
+- hacktoberfest
+- event
+- community
+- newcomer
+author: oleg_nenashev
+---
+
+又到了十月。这意味着 link:https://hacktoberfest.digitalocean.com[Hacktoberfest] 活动的回归！今年已经是第五期。为期一个月的黑客马拉松中，您可以支持开源并赢得一件限量版礼品。
+
+我们邀请您以 Jenkins 项目的名义参与到 Hacktoberfest。我们欢迎所有的贡献者，不论背景以及 Jenkins 的相关经验。
+
+image::/images/post-images/2018-hacktoberfest/social-card.png[Hacktoberfest, role=center]
+
+
+== 给 Jenkins 做贡献
+
+在 Hacktoberfest 期间有很多途径给 Jenkins link:https://jenkins.io/participate/[贡献]。通常来说，Github 中到任意 PR 都是可以的。您可以：
+
+* **编码** - 贡献代码或自动化测试
+** Jenkins 项目代码库包括很多编程语言，大部分为：Java、Groovy 和 JavaScript 以及 Go。
+** 您也可以找到基于 Ruby/Kotlin 的组件，甚至包括本地库 C/C++
+* **文档** - 改善文档
+* **博客** - 写关于 Jenkins的 link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#adding-a-blog-post[博客]
+* **本地化** -  link:https://wiki.jenkins.io/display/JENKINS/Internationalization[本地化] Jenkins 组件
+* **设计** - link:/artwork[artwork] 以及 UI 改进也可以！
+* **组织** - 为 Jenkins 和 Hacktoberfest （查看下文）组织一次本地 Meetup
+
+查看 link:/participate/[贡献和参与] 页面获取更多信息。
+
+== 项目
+
+Jenkins 项目分布在 Github 上的几个组织（jenkinsci、jenkins-x、jenkins-infra）中。欢迎给**任意**组织中的**任意**仓库做贡献，然而 Jenkins 不同的组件有不同的复查和交付效率。这里有一个 Jenkins 子项目以及维护者的清单。
+
+|=========================================================
+|项目（组件） | 想法及链接
+
+| link:https://github.com/jenkinsci/jenkins[Jenkins 核心]
+| Jenkins 核心总会有需要改进的地方。您可以记录问题、改进代码以及添加新的特性。
+
+  link:https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md[贡献]，
+  link:https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20labels%20in%20(newbie-friendly)%20AND%20component%20in%20(core)[对新人友好的问题]
+
+
+| link:https://jenkins.io[Jenkins 网站]
+| 扩展并改进 Jenkins 文档，编写博客。
+
+  link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc[贡献指导]
+
+| link:https://jenkins-x.io/[Jenkins X]
+| 尝试该项目并创建新的示例，增加文档，并为您的工具链创建新的 Builder。
+
+  link:https://jenkins-x.io/zh/contribute/[贡献指导],
+  link:https://github.com/jenkins-x/jx/blob/master/docs/contributing/hacking.md[Quick start],
+  link:https://jenkins-x.io/zh/getting-started/create-custom-builder/[创建自定义 Builder],
+  link:https://github.com/jenkins-x/jx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22[对新人友好的问题]
+
+| link:https://github.com/jenkinsci/configuration-as-code-plugin[Jenkins Configuration-as-Code Plugin]
+| 给这个新插件做贡献：改进代码，增加示例以及 link:https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20labels%20in%20(jcasc-compatibility)[插件集成]。
+
+  link:https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/CONTRIBUTING.md[给 JCasC 贡献]
+
+| link:/projects/evergreen/[Jenkins Evergreen]
+| 尝试改进最近发布的项目 Evergreen - 自动滚动更新 Jenkins 的系统。
+
+  link:https://github.com/jenkins-infra/evergreen/blob/master/HACKING.adoc[Quick start],
+  link:https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20labels%20in%20(newbie-friendly)%20AND%20component%20in%20(evergreen%2C%20evergreen-plugin)[对新人友好的问题]。
+
+| Docker 打包
+| 增加新的特性并改进 Jenkins 的 Docker 打包：
+  link:https://github.com/jenkinsci/docker[Jenkins Master]，
+  link:https://github.com/jenkinsci/docker-jnlp-slave[代理]，以及其他组件
+
+| link:link:/sigs/chinese-localization/[中文本地化 SIG]
+| 给新的 link:https://github.com/jenkins-infra/cn.jenkins.io[网站] 以及
+  link:https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文本地化插件]做贡献。
+
+| link:/artwork[Jenkins Artwork]
+| 为 link:/projects/jam/[Jenkins area meetups],link:/projects/[子项目]以及插件添加新的图片以及 Logo。
+  您也可以给插件贡献新的图片。
+
+|=========================================================
+
+注意，这不是完整清单，这会根据维护者的兴趣而扩展。欢迎您给已有的插件做贡献，甚至创建一个新的。
+
+=== 本地活动
+
+Hacktoberfest 是一个在线活动，但有很多由开源社区组织的活动。您可以从这里的
+link:https://hacktoberfest.digitalocean.com/#events[活动]选择一个并加入。
+
+我们也鼓励 link:/projects/jam/[Jenkins Area Meetup] 组织者在十月组织 Jenkins 相关的活动(workshops, hackergartens)。
+如果您并不是一个 meetup 组织者，但是希望组织一次 meetup，您也可以通过 meetup.com (您可以在 JAM link:https://www.meetup.com/pro/jenkins[这里]找到 JAM)并联系组织者。
+查看 link:https://hacktoberfest.digitalocean.com/eventkit[Hacktoberfest Event Kit] 获取更多信息。
+
+=== FAQ
+
+==== Q: 我怎么注册？
+
+1. 在这个link:https://hacktoberfest.digitalocean.com[网站]注册 Hacktoberfest
+2. 加入 Gitter 的 link:https://gitter.im/jenkinsci/hacktoberfest-help[Hacktoberfest] 通道
+3. 所有已经就绪，开始贡献！
+
+==== Q: 我刚接触 Jenkins，该如何开始？
+
+如果您刚接触 Jenkins，您可以从修复一些小的描述完善的问题开始。有一些这样对新手友好的问题，查看上面表格中的链接。
+您也可以提交自己的问题并提出修复方案。
+
+==== Q: 如何查找文档？
+
+Jenkins 项目包含很多如何贡献的材料。这里有些链接可能会有帮助：
+
+* link:/participate/[Participate] - 新加入的贡献者首页
+* link:/blog/2017/08/07/intro-to-plugin-development/[插件开发指导]
+* link:/doc/developer/[开发者文档]
+* link:https://gitter.im/jenkinsci/jenkins[Gitter 通道] Q&A
+
+上面表格中的项目也有他们自己帮助新人的文档。
+
+==== Q: 如何标记 Issues 和 PR？
+
+Hacktoberfest 需要在问题以及 PR 上添加 `hacktoberfest` 标签。您自己可能没有权限来设置标签，但是不用担心！
+在 Github 的 Jenkins 组织中只需要在标题中提到  `Hacktoberfest` 后，我们将会为您设置标签。
+
+==== Q: 如何得到复查？
+
+上面所有的项目都会有维护者来关注，您可能会在几天内得到复查。在其他仓库和插件中时间可能会更长。
+为了避免延迟，请在 Gitter 的通道 link:https://gitter.im/jenkinsci/hacktoberfest-help[hacktoberfest-help] 中告诉我们。
+在 Hacktoberfest 中未合并的 PR 也会计算，因此延迟合并不会影响您获得奖励。
+
+==== Q: 遇到了困难，该如何寻求帮助？
+
+* 对于非技术性问题（流程以及方向），请使用我们在 Gitter 中的 link:https://gitter.im/jenkinsci/hacktoberfest-help[hacktoberfest-help]
+* 对于技术问题，请使用 link:/chat[IRC chat] 或 link:https://gitter.im/jenkinsci/jenkins[jenkinsci/jenkins]。
+很多子项目也有他们自己的聊天室。
+
+==== Q: Jenkins 项目会有特殊的礼品吗？
+
+对于所有创建了至少五个 PR 的参与者将会从 Hacktoberfest 组织者中得到奖品，Jenkins 项目可能也会给前几个贡献者发放奖励，
+但这要受到预算和贡献的影响。
