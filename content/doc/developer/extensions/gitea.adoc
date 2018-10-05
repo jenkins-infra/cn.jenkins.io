@@ -1,0 +1,21 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Gitea插件中定义的扩展点
+
+plugin:gitea[Gitea 插件]
+
+## Gitea Webhook处理程序
++jenkinsdoc:gitea:org.jenkinsci.plugin.gitea.GiteaWebhookHandler[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:gitea[Gitea 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaCreateSCMEvent.+++<wbr/>+++HandlerImpl** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaCreateSCMEvent.HandlerImpl&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaPullSCMEvent.+++<wbr/>+++HandlerImpl** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaPullSCMEvent.HandlerImpl&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaPushSCMEvent.+++<wbr/>+++HandlerImpl** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaPushSCMEvent.HandlerImpl&type=Code[在 GitHub上查看])
+* plugin:gitea[Gitea Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugin.+++<wbr/>+++gitea.+++<wbr/>+++**GiteaRepositorySCMEvent.+++<wbr/>+++HandlerImpl** (link:https://github.com/jenkinsci/gitea-plugin/search?q=GiteaRepositorySCMEvent.HandlerImpl&type=Code[在 GitHub上查看])
+

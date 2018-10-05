@@ -1,0 +1,105 @@
+---
+layout: pipelinesteps
+title: "CloudShell Sandbox Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== CloudShell Sandbox Plugin
+
+plugin:cloudshell-sandbox[View this plugin on the Plugins Index]
+
+=== +startSandbox+: starts a CloudShell Sandbox
+++++
+<div><div>
+  A CloudShell Sandbox will be created. The Sandbox Id will be accessible as an environment variable, as seen in the example code. 
+</div></div>
+<ul><li><code>name</code>
+<div><div>
+  The name of the blueprint to use for the new sandbox. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>params</code>
+<div><div>
+  Blueprint Parameter in this syntax: "input1=my_name; input2=30" 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sandboxName</code>
+<div><div>
+  Sandboxes will be created with this name instead of the blueprint name. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>duration</code>
+<div><div>
+  Defines a timeout for the sandbox. The sandbox will automatically ended once the max duration time is exceeded. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>timeout</code>
+<div><div>
+  Enter the number of minutes to wait until the Sandbox becomes available in case no resources are available to reserve it. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +stopSandbox+: stops a cloudshell sandbox
+++++
+<div><div>
+  Stop a sandbox in cloudshell. 
+</div></div>
+<ul><li><code>reservationId</code>
+<div><div>
+  The ID of the sandbox to stop. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +withSandbox+: Use sandbox in a specific scope
+++++
+<div><div>
+  This step will execute the code in the closure in the context of a new sandbox. A CloudShell Sandbox will be created and set up prior to executing the code. The Sandbox Id will be accessible inside the closure as an environment variable, as seen in the example code. The Sandbox will always be ended after exiting the closure. NOTE: This step was designed for demo purposes only and not suitable for production usage. 
+</div></div>
+<ul><li><code>name</code>
+<div><div>
+  The name of the blueprint to use for the new sandbox. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>maxDuration</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>params</code>
+<div><div>
+  Blueprint Parameter in this syntax: "input1=my_name; input2=30" 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sandboxName</code>
+<div><div>
+  Sandboxes will be created with this name instead of the blueprint name. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<div><div>
+  Enter the number of minutes to wait until the Sandbox becomes available in case no resources are available to reserve it. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

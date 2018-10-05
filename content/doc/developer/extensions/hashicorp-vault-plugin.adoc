@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# HashiCorp Vault插件中定义的扩展点
+
+plugin:hashicorp-vault-plugin[ashiCorp Vault插件]
+
+## Vault配置解析器
++jenkinsdoc:hashicorp-vault-plugin:com.datapipe.jenkins.vault.configuration.VaultConfigResolver[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:hashicorp-vault-plugin[ashiCorp Vault插件]: com.+++<wbr/>+++datapipe.+++<wbr/>+++jenkins.+++<wbr/>+++vault.+++<wbr/>+++configuration.+++<wbr/>+++**FolderVaultConfiguration.+++<wbr/>+++ForJob** (link:https://github.com/jenkinsci/hashicorp-vault-plugin/search?q=FolderVaultConfiguration.ForJob&type=Code[在GitHub上查看])
+* plugin:hashicorp-vault-plugin[HashiCorp Vault Plugin]: com.+++<wbr/>+++datapipe.+++<wbr/>+++jenkins.+++<wbr/>+++vault.+++<wbr/>+++configuration.+++<wbr/>+++**GlobalVaultConfiguration.+++<wbr/>+++ForJob** (link:https://github.com/jenkinsci/hashicorp-vault-plugin/search?q=GlobalVaultConfiguration.ForJob&type=Code[在GitHub上查看])
+

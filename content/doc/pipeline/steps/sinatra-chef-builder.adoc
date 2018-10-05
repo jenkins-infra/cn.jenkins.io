@@ -1,0 +1,40 @@
+---
+layout: pipelinesteps
+title: "Chef Sinatra Jenkins plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Chef Sinatra Jenkins plugin
+
+plugin:sinatra-chef-builder[View this plugin on the Plugins Index]
+
+=== +chefSinatraStep+: Execute chef-client on remote nodes
+++++
+<ul><li><code>url</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sinatraurl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>filter</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>port</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>command</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>privatekey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>parallel</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>fail</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

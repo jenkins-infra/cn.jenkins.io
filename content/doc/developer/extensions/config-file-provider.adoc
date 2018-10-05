@@ -1,0 +1,69 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 配置文件提供程序插件中定义的扩展点
+
+plugin:config-file-provider[配置文件提供程序插件]
+
+## 配置文件提供程序
++jenkinsdoc:config-file-provider:org.jenkinsci.lib.configprovider.ConfigProvider[]+
+
++++ A ConfigProvider represents a configuration file (such as Maven's settings.xml) where the user can choose its actual content among several {@linkplain Config concrete contents} that are+++ +++ pre-configured.+++ +++
+<p>+++ +++ </p>
+<p>+++ ++++++ jenkinsdoc:ConfigProvider[] +++是一个扩展点, 并且应该通过各种配置来实施和实例化。 这个抽象没有定义配置的位置, 或+++ +++ 如何/何时使用 - 这些语义应该由+++ jenkinsdoc:ConfigProvider[] +++的特定实例引入 。+++ </p>
+
+
+**Implementations:**
+
+* plugin:config-file-provider[配置文件提供程序插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++lib.+++<wbr/>+++configprovider.+++<wbr/>+++**AbstractConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=AbstractConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++lib.+++<wbr/>+++configprovider.+++<wbr/>+++**AbstractConfigProviderImpl** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=AbstractConfigProviderImpl&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++maven.+++<wbr/>+++**AbstractMavenSettingsProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=AbstractMavenSettingsProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++custom.+++<wbr/>+++**CustomConfig.+++<wbr/>+++CustomConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=CustomConfig.CustomConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++maven.+++<wbr/>+++**GlobalMavenSettingsConfig.+++<wbr/>+++GlobalMavenSettingsConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=GlobalMavenSettingsConfig.GlobalMavenSettingsConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++groovy.+++<wbr/>+++**GroovyScript.+++<wbr/>+++GroovyConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=GroovyScript.GroovyConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++json.+++<wbr/>+++**JsonConfig.+++<wbr/>+++JsonConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=JsonConfig.JsonConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++maven.+++<wbr/>+++**MavenSettingsConfig.+++<wbr/>+++MavenSettingsConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=MavenSettingsConfig.MavenSettingsConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++maven.+++<wbr/>+++**MavenToolchainsConfig.+++<wbr/>+++MavenToolchainsConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=MavenToolchainsConfig.MavenToolchainsConfigProvider&type=Code[在GitHub上查看])
+* plugin:config-file-provider[Config File Provider Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++configfiles.+++<wbr/>+++xml.+++<wbr/>+++**XmlConfig.+++<wbr/>+++XmlConfigProvider** (link:https://github.com/jenkinsci/config-file-provider-plugin/search?q=XmlConfig.XmlConfigProvider&type=Code[在GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++**GroovyTemplateConfig.+++<wbr/>+++GroovyTemplateConfigProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=GroovyTemplateConfig.GroovyTemplateConfigProvider&type=Code[在GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++**JellyTemplateConfig.+++<wbr/>+++JellyTemplateConfigProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=JellyTemplateConfig.JellyTemplateConfigProvider&type=Code[在GitHub上查看])
+* plugin:ivy[Ivy Plugin]: Anonymous class in hudson.+++<wbr/>+++ivy.+++<wbr/>+++**IvyConfig** (link:https://github.com/jenkinsci/ivy-plugin/search?q=IvyConfig.provider.&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**AbstractJCloudsConfigProviderImpl** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=AbstractJCloudsConfigProviderImpl&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataBoothook.+++<wbr/>+++UserDataBoothookProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataBoothook.UserDataBoothookProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataInclude.+++<wbr/>+++UserDataIncludeProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataInclude.UserDataIncludeProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataIncludeOnce.+++<wbr/>+++UserDataIncludeOnceProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataIncludeOnce.UserDataIncludeOnceProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataPartHandler.+++<wbr/>+++UserDataPartHandlerProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataPartHandler.UserDataPartHandlerProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataScript.+++<wbr/>+++UserDataScriptProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataScript.UserDataScriptProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataUpstart.+++<wbr/>+++UserDataUpstartProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataUpstart.UserDataUpstartProvider&type=Code[在GitHub上查看])
+* plugin:jclouds-jenkins[JClouds Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++jclouds.+++<wbr/>+++config.+++<wbr/>+++**UserDataYaml.+++<wbr/>+++UserDataYamlProvider** (link:https://github.com/jenkinsci/jclouds-plugin/search?q=UserDataYaml.UserDataYamlProvider&type=Code[在GitHub上查看])
+* plugin:managed-scripts[Managed Scripts Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++managedscripts.+++<wbr/>+++**PowerShellConfig.+++<wbr/>+++PowerShellConfigProvider** (link:https://github.com/jenkinsci/managed-scripts-plugin/search?q=PowerShellConfig.PowerShellConfigProvider&type=Code[在GitHub上查看])
+* plugin:managed-scripts[Managed Scripts Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++managedscripts.+++<wbr/>+++**ScriptConfig.+++<wbr/>+++ScriptConfigProvider** (link:https://github.com/jenkinsci/managed-scripts-plugin/search?q=ScriptConfig.ScriptConfigProvider&type=Code[在GitHub上查看])
+* plugin:managed-scripts[Managed Scripts Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++managedscripts.+++<wbr/>+++**WinBatchConfig.+++<wbr/>+++WinBatchConfigProvider** (link:https://github.com/jenkinsci/managed-scripts-plugin/search?q=WinBatchConfig.WinBatchConfigProvider&type=Code[在GitHub上查看])
+* plugin:nodejs[NodeJS Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++nodejs.+++<wbr/>+++configfiles.+++<wbr/>+++**NPMConfig.+++<wbr/>+++NPMConfigProvider** (link:https://github.com/jenkinsci/nodejs-plugin/search?q=NPMConfig.NPMConfigProvider&type=Code[在GitHub上查看])
+* plugin:openstack-cloud[Openstack Cloud Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++openstack.+++<wbr/>+++compute.+++<wbr/>+++**UserDataConfig.+++<wbr/>+++UserDataConfigProvider** (link:https://github.com/jenkinsci/openstack-cloud-plugin/search?q=UserDataConfig.UserDataConfigProvider&type=Code[在GitHub上查看])
+* plugin:xpath-config-viewer[XPath Configuration Viewer Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++viewer.+++<wbr/>+++**XPathConfigProvider** (link:https://github.com/jenkinsci/xpath-config-viewer-plugin/search?q=XPathConfigProvider&type=Code[在GitHub上查看])
+
+
+## 全局配置文件
++jenkinsdoc:config-file-provider:org.jenkinsci.plugins.configfiles.GlobalConfigFiles[]+
+
++++ ConfigFileStore holding config files saved on top level (Jenkins instance).+++ +++
+<p>+++ +++ Created by domi on 17/09/16.+++ </p>
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## 托管文件
++jenkinsdoc:config-file-provider:org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+_(no known implementations)_
+

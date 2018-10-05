@@ -1,0 +1,72 @@
+---
+layout: pipelinesteps
+title: "Benchmark Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Benchmark Plugin
+
+plugin:benchmark[View this plugin on the Plugins Index]
+
+=== +benchmark+: Benchmark results
+++++
+<div><div> 
+ <p> The Benchmark Plugin collect and display boolean and numeral results. The results may come from one or multiple files. The result may be either in XML or JSON format. The content of the file may follow either a standard or a custom schema. The schema type may be selected using the drop-down menu and the custom schema entered in the associated text area. </p> In addition, the Benchmark Plugin provides the capability to associate different types of thresholds on numerical values to one or multiple results. If crossed, the thresholds will identify results as failures and ultimately trigger the build failure. 
+ <p> The Benchmark Plugin, if successful, provides access to two pages where results are displayed. One with tables compiling information on all results and one with the details for a specific result. </p> 
+</div></div>
+<ul><li><code>inputLocation</code>
+<div><div>
+  Location of the result files relative to the 
+ <a rel="nofollow">workspace</a>.
+ <br> The locations may include wildcards using the character "*".
+ <br> JSON and XML formats supported. Must match the selected schema format.
+ <br> Create a list of locations in a file with the "*.list" extension. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>schemaSelection</code>
+<div><div>
+  The schema defines the content of the result files.
+ <br> JSON and XML formats supported.
+ <br> Note: xUnit is an XML format. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>truncateStrings</code>
+<div><div>
+  Truncate strings to 512 characters. Strongly suggested. Affects storage processing and loading time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>altInputSchema</code>
+<div><div>
+  Custom schema. JSON and XML formats supported. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>altInputSchemaLocation</code>
+<div><div>
+  Location of custom schema relative to the 
+ <a rel="nofollow">workspace</a>.
+ <br> JSON and XML formats supported. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>thresholds</code> (optional)
+<div><div>
+  This field is meant to define additional result thresholds, not located inside the result file. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<code>org.jenkinsci.plugins.benchmark.thresholds.Threshold</code>
+</ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,93 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 分支API插件中定义的扩展点
+
+plugin:branch-api[分支API 插件]
+
+## 分支构建策略
++jenkinsdoc:branch-api:jenkins.branch.BranchBuildStrategy[]+
+
++++ An extension point that allows controlling whether a specific+++ jenkinsdoc:SCMHead[] +++should be automatically built when+++ +++ discovered.+++ +++
+<p>+++ +++ Methods marked as {@code SPI:} are intended to be implemented by implementers of+++ jenkinsdoc:BranchBuildStrategy[] +++.+++ +++ Methods marked as {@code API:} are intended to be invoked consumers of+++ jenkinsdoc:BranchBuildStrategy[] +++.+++ +++ A consumer invoking a {@code SPI:} method may get a+++ jenkinsdoc:UnsupportedOperationException[] +++.+++ </p>
+
+
+**Implementations:**
+
+* plugin:basic-branch-build-strategies[基本分支构建策略插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++buildstrategies.+++<wbr/>+++basic.+++<wbr/>+++**BranchBuildStrategyImpl** (link:https://github.com/jenkinsci/basic-branch-build-strategies-plugin/search?q=BranchBuildStrategyImpl&type=Code[在GitHub上查看])
+* plugin:basic-branch-build-strategies[基本分支构建策略插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++buildstrategies.+++<wbr/>+++basic.+++<wbr/>+++**ChangeRequestBuildStrategyImpl** (link:https://github.com/jenkinsci/basic-branch-build-strategies-plugin/search?q=ChangeRequestBuildStrategyImpl&type=Code[在GitHub上查看])
+* plugin:basic-branch-build-strategies[基本分支构建策略插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++buildstrategies.+++<wbr/>+++basic.+++<wbr/>+++**NamedBranchBuildStrategyImpl** (link:https://github.com/jenkinsci/basic-branch-build-strategies-plugin/search?q=NamedBranchBuildStrategyImpl&type=Code[在GitHub上查看])
+* plugin:basic-branch-build-strategies[基本分支构建策略插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++buildstrategies.+++<wbr/>+++basic.+++<wbr/>+++**TagBuildStrategyImpl** (link:https://github.com/jenkinsci/basic-branch-build-strategies-plugin/search?q=TagBuildStrategyImpl&type=Code[在GitHub上查看])
+* plugin:ignore-committer-strategy[Ignore Committer Strategy Plugin]: au.+++<wbr/>+++com.+++<wbr/>+++versent.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++ignoreCommitterStrategy.+++<wbr/>+++**IgnoreCommitterStrategy** (link:https://github.com/jenkinsci/jenkins-ignore-committer-strategy-plugin/search?q=IgnoreCommitterStrategy&type=Code[在GitHub上查看])
+
+
+## 分支项目工厂
++jenkinsdoc:branch-api:jenkins.branch.BranchProjectFactory[]+
+
++++ Creates instances of the branch projects for a specific+++ jenkinsdoc:Branch[] +++and also provides some utility methods for+++ +++ updating the branch specific projects.+++
+
+
+**Implementations:**
+
+* plugin:literate[Literate插件]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++**LiterateMultibranchProject.+++<wbr/>+++ProjectFactoryImpl** (link:https://github.com/jenkinsci/literate-plugin/search?q=LiterateMultibranchProject.ProjectFactoryImpl&type=Code[在GitHub上查看])
+* plugin:multi-branch-project-plugin[Multi-Branch Project Plugin (DEPRECATED) Plugin]: com.+++<wbr/>+++github.+++<wbr/>+++mjdetullio.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multibranch.+++<wbr/>+++**FreeStyleBranchProjectFactory** (link:https://github.com/jenkinsci/multi-branch-project-plugin/search?q=FreeStyleBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:multi-branch-project-plugin[Multi-Branch Project Plugin (DEPRECATED) Plugin]: com.+++<wbr/>+++github.+++<wbr/>+++mjdetullio.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multibranch.+++<wbr/>+++**IvyBranchProjectFactory** (link:https://github.com/jenkinsci/multi-branch-project-plugin/search?q=IvyBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:multi-branch-project-plugin[Multi-Branch Project Plugin (DEPRECATED) Plugin]: com.+++<wbr/>+++github.+++<wbr/>+++mjdetullio.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multibranch.+++<wbr/>+++**MatrixBranchProjectFactory** (link:https://github.com/jenkinsci/multi-branch-project-plugin/search?q=MatrixBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:multi-branch-project-plugin[Multi-Branch Project Plugin (DEPRECATED) Plugin]: com.+++<wbr/>+++github.+++<wbr/>+++mjdetullio.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multibranch.+++<wbr/>+++**MavenBranchProjectFactory** (link:https://github.com/jenkinsci/multi-branch-project-plugin/search?q=MavenBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:multi-branch-project-plugin[Multi-Branch Project Plugin (DEPRECATED) Plugin]: com.+++<wbr/>+++github.+++<wbr/>+++mjdetullio.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++multibranch.+++<wbr/>+++**TemplateDrivenBranchProjectFactory** (link:https://github.com/jenkinsci/multi-branch-project-plugin/search?q=TemplateDrivenBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**AbstractWorkflowBranchProjectFactory** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=AbstractWorkflowBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**WorkflowBranchProjectFactory** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=WorkflowBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:pipeline-multibranch-defaults[Pipeline: Multibranch with defaults Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++multibranch.+++<wbr/>+++defaults.+++<wbr/>+++**PipelineBranchDefaultsProjectFactory** (link:https://github.com/jenkinsci/pipeline-multibranch-defaults-plugin/search?q=PipelineBranchDefaultsProjectFactory&type=Code[在GitHub上查看])
+* plugin:yaml-project[YAML Project support Plugin]: com.+++<wbr/>+++google.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++dsl.+++<wbr/>+++**YamlProjectFactory** 
+
+
+## 分支属性
++jenkinsdoc:branch-api:jenkins.branch.BranchProperty[]+
+
++++ Additional information associated with+++ jenkinsdoc:Branch[] +++.+++ +++
+<p>+++ ++++++ jenkinsdoc:jenkins.scm.api.SCMSource[] +++s can use properties to convey additional implementation/SCM specific+++ +++ information that's not captured in the base+++ jenkinsdoc:Branch[] +++class.+++ </p>
+
+
+**Implementations:**
+
+* plugin:backlog[Backlog 插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++backlog.+++<wbr/>+++pipeline.+++<wbr/>+++**BacklogPullRequestBranchProperty** (link:https://github.com/jenkinsci/backlog-plugin/search?q=BacklogPullRequestBranchProperty&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**BuildRetentionBranchProperty** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=BuildRetentionBranchProperty&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**NoTriggerBranchProperty** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=NoTriggerBranchProperty&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**ParameterDefinitionBranchProperty** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=ParameterDefinitionBranchProperty&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**RateLimitBranchProperty** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=RateLimitBranchProperty&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**UntrustedBranchProperty** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=UntrustedBranchProperty&type=Code[在GitHub上查看])
+* plugin:github-pr-comment-build[GitHub PR Comment Build Plugin]: com.+++<wbr/>+++adobe.+++<wbr/>+++jenkins.+++<wbr/>+++github_pr_comment_build.+++<wbr/>+++**TriggerPRCommentBranchProperty** (link:https://github.com/jenkinsci/github-pr-comment-build-plugin/search?q=TriggerPRCommentBranchProperty&type=Code[在GitHub上查看])
+* plugin:github-pr-comment-build[GitHub PR Comment Build Plugin]: com.+++<wbr/>+++adobe.+++<wbr/>+++jenkins.+++<wbr/>+++github_pr_comment_build.+++<wbr/>+++**TriggerPRUpdateBranchProperty** (link:https://github.com/jenkinsci/github-pr-comment-build-plugin/search?q=TriggerPRUpdateBranchProperty&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++**LiterateBranchProperty** (link:https://github.com/jenkinsci/literate-plugin/search?q=LiterateBranchProperty&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++**ParametersDefinitionBranchProperty** (link:https://github.com/jenkinsci/literate-plugin/search?q=ParametersDefinitionBranchProperty&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++promotions.+++<wbr/>+++**PromotionBranchProperty** (link:https://github.com/jenkinsci/literate-plugin/search?q=PromotionBranchProperty&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**DurabilityHintBranchProperty** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=DurabilityHintBranchProperty&type=Code[在GitHub上查看])
+
+
+## 分支属性策略
++jenkinsdoc:branch-api:jenkins.branch.BranchPropertyStrategy[]+
+
++++ A strategy for determining the properties that apply to a specific+++ jenkinsdoc:SCMHead[] +++.+++
+
+
+**Implementations:**
+
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**DefaultBranchPropertyStrategy** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=DefaultBranchPropertyStrategy&type=Code[在GitHub上查看])
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**NamedExceptionsBranchPropertyStrategy** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=NamedExceptionsBranchPropertyStrategy&type=Code[在GitHub上查看])
+
+
+## 多分支项目工厂
++jenkinsdoc:branch-api:jenkins.branch.MultiBranchProjectFactory[]+
+
++++ Creates+++ jenkinsdoc:MultiBranchProject[] +++s for repositories where recognized.+++
+
+
+**Implementations:**
+
+* plugin:branch-api[分支API 插件]: jenkins.+++<wbr/>+++branch.+++<wbr/>+++**MultiBranchProjectFactory.+++<wbr/>+++BySCMSourceCriteria** (link:https://github.com/jenkinsci/branch-api-plugin/search?q=MultiBranchProjectFactory.BySCMSourceCriteria&type=Code[在GitHub上查看])
+* plugin:literate[Literate Plugin]: org.+++<wbr/>+++cloudbees.+++<wbr/>+++literate.+++<wbr/>+++jenkins.+++<wbr/>+++**LiterateMultibranchProjectFactory** (link:https://github.com/jenkinsci/literate-plugin/search?q=LiterateMultibranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**AbstractWorkflowMultiBranchProjectFactory** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=AbstractWorkflowMultiBranchProjectFactory&type=Code[在GitHub上查看])
+* plugin:workflow-multibranch[Pipeline: Multibranch Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++multibranch.+++<wbr/>+++**WorkflowMultiBranchProjectFactory** (link:https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=WorkflowMultiBranchProjectFactory&type=Code[在GitHub上查看])
+

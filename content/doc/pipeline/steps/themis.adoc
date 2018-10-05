@@ -1,0 +1,54 @@
+---
+layout: pipelinesteps
+title: "Themis Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Themis Plugin
+
+plugin:themis[View this plugin on the Plugins Index]
+
+=== +themisRefresh+: Refresh Themis Project
+++++
+<ul><li><code>instanceName</code>
+<div><div>
+  The instance where the project to refresh is located. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectKey</code>
+<div><div>
+  The key of the project to refresh. You can find it in the project administration page of Themis. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>onlyOnSuccess</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +themisReport+: Send report files to Themis
+++++
+<ul><li><code>instanceName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>reports</code> (optional)
+<ul><b>Array/List</b><br/>
+<code>java.lang.String></code>
+</ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,43 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在Pub-Sub"轻"总线插件中定义的扩展点
+
+plugin:pubsub-light[Pub-Sub"轻"总线插件]
+
+## 抽象频道订购者
++jenkinsdoc:pubsub-light:org.jenkinsci.plugins.pubsub.AbstractChannelSubscriber[]+
+
++++ Simple asynchronous+++ jenkinsdoc:ChannelSubscriber[] ++++++ jenkinsdoc:ExtensionPoint[] +++for Jenkins.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## 信息更丰富
++jenkinsdoc:pubsub-light:org.jenkinsci.plugins.pubsub.MessageEnricher[]+
+
++++ Message enricher extension point.+++ +++
+<p>+++ +++ This extension point should only be used to add enough additional event data+++ +++ to allow an event consumer make a decision on whether or not it is interested in+++ +++ this event i.e. where the default min data on the event was not enough.+++ +++ Please use sparingly!!+++ </p>
+
+
+**Implementations:**
+
+* plugin:blueocean-events[Events API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++events.+++<wbr/>+++**BlueMessageEnricher** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=BlueMessageEnricher&type=Code[在GitHub上查看])
+* plugin:blueocean-events[Events API for Blue Ocean Plugin]: io.+++<wbr/>+++jenkins.+++<wbr/>+++blueocean.+++<wbr/>+++events.+++<wbr/>+++**JobIndexingMessageEnricher** (link:https://github.com/jenkinsci/blueocean-plugin/search?q=JobIndexingMessageEnricher&type=Code[在GitHub上查看])
+
+
+## PubsubBus
++jenkinsdoc:pubsub-light:org.jenkinsci.plugins.pubsub.PubsubBus[]+
+
++++ Abstract Pub-sub bus.+++
+
+
+**Implementations:**
+
+* plugin:pubsub-light[Pub-Sub"轻"总线插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pubsub.+++<wbr/>+++**GuavaPubsubBus** (link:https://github.com/jenkinsci/pubsub-light-module/search?q=GuavaPubsubBus&type=Code[在GitHub上查看])
+

@@ -1,0 +1,118 @@
+---
+layout: pipelinesteps
+title: "Last Changes Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Last Changes Plugin
+
+plugin:last-changes[View this plugin on the Plugins Index]
+
+=== +getLastChangesPublisher+: Get Last Changes Publisher
+++++
+<ul><li><code>since</code>
+<ul><li><b>Values:</b> <code>PREVIOUS_REVISION</code>, <code>LAST_SUCCESSFUL_BUILD</code>, <code>LAST_TAG</code></li></ul></li>
+<li><code>format</code>
+<ul><li><b>Values:</b> <code>LINE</code>, <code>SIDE</code></li></ul></li>
+<li><code>matching</code>
+<ul><li><b>Values:</b> <code>NONE</code>, <code>LINE</code>, <code>WORD</code></li></ul></li>
+<li><code>showFiles</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>synchronisedScroll</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>matchWordsThreshold</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>matchingMaxComparisons</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>specificRevision</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vcsDir</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>specificBuild</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +publishLastChanges+: publish the changes
+++++
+<ul><li><code>publisher</code>
+<ul><code>com.github.jenkins.lastchanges.pipeline.LastChangesPublisherScript</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +lastChanges+: Publish Last Changes
+++++
+<div><p>Shows build last changes via rich VCS diff between revisions using <a href="https://github.com/rtfpessoa/diff2html#configuration" rel="nofollow">Diff2Html</a>. </p> 
+<p>This plugin expects a <b>.git or .svn folder</b> on your job workspace.</p> 
+<p>After job execution the plugin will generate a <b>html diff</b> from <code>current</code> and a <code>previous</code> revision. </p>
+<div> 
+ <p>Note that the <code>previous revision</code> can be:</p> 
+ <div> 
+  <ul> 
+   <li> <p>A <code>provided revision</code> id;</p> </li> 
+   <li> <p>Revision of <code>Last successful build</code>;</p> </li> 
+   <li> <p>Revision of an<code>specific build</code>;</p> </li> 
+   <li> <p>Revision of <code>Last tag</code>;</p> 
+    <div> 
+     <table> 
+      <tbody>
+       <tr> 
+        <td> 
+         <div>
+          <img alt=":information_source:" height="20" width="20" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2139.png">
+         </div> </td> 
+        <td> By default previous revision is <b>current revision -1</b>. </td> 
+       </tr> 
+      </tbody>
+     </table> 
+    </div> 
+    <div> 
+     <table> 
+      <tbody>
+       <tr> 
+        <td> 
+         <div>
+          <img alt=":bulb:" height="20" width="20" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a1.png">
+         </div> </td> 
+        <td> You can use <a href="https://wiki.jenkins.io/display/JENKINS/Parameterized+Build" rel="nofollow">parameters</a> in <code>SpecificRevision</code>. In case of git, expressions like <code>HEAD^^</code> can be used. </td> 
+       </tr> 
+      </tbody>
+     </table> 
+    </div> </li> 
+  </ul> 
+ </div> 
+</div> 
+<p> To get most from this plugin use <b>periodically SCM pooling</b> to Trigger your Build, <a href="http://www.nailedtothex.org/roller/kyle/entry/articles-jenkins-poll" rel="nofollow"> more details here.</a> </p></div>
+<ul><li><code>since</code> (optional)
+<ul><li><b>Values:</b> <code>PREVIOUS_REVISION</code>, <code>LAST_SUCCESSFUL_BUILD</code>, <code>LAST_TAG</code></li></ul></li>
+<li><code>format</code> (optional)
+<ul><li><b>Values:</b> <code>LINE</code>, <code>SIDE</code></li></ul></li>
+<li><code>matching</code> (optional)
+<ul><li><b>Values:</b> <code>NONE</code>, <code>LINE</code>, <code>WORD</code></li></ul></li>
+<li><code>showFiles</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>synchronisedScroll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>matchWordsThreshold</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>matchingMaxComparisons</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>specificRevision</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>vcsDir</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>specificBuild</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

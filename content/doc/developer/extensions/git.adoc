@@ -1,0 +1,38 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Git插件中定义的扩展点
+
+plugin:git[Git插件]
+
+## 构建选择器
++jenkinsdoc:git:hudson.plugins.git.util.BuildChooser[]+
+
++++ Interface defining an API to choose which revisions ought to be+++ +++ considered for building.+++
+
+
+**Implementations:**
+
+* plugin:git-chooser-alternative[替代构建选择器插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++chooser.+++<wbr/>+++alternative.+++<wbr/>+++**AlternativeBuildChooser** (link:https://github.com/jenkinsci/git-chooser-alternative-plugin/search?q=AlternativeBuildChooser&type=Code[在GitHub上查看])
+* plugin:flaky-test-handler[Flaky Test Handler Plugin]: com.+++<wbr/>+++google.+++<wbr/>+++jenkins.+++<wbr/>+++flakyTestHandler.+++<wbr/>+++plugin.+++<wbr/>+++deflake.+++<wbr/>+++**DeflakeGitBuildChooser** (link:https://github.com/jenkinsci/flaky-test-handler-plugin/search?q=DeflakeGitBuildChooser&type=Code[在GitHub上查看])
+* plugin:gerrit-trigger[Gerrit Trigger Plugin]: com.+++<wbr/>+++sonyericsson.+++<wbr/>+++hudson.+++<wbr/>+++plugins.+++<wbr/>+++gerrit.+++<wbr/>+++trigger.+++<wbr/>+++hudsontrigger.+++<wbr/>+++**GerritTriggerBuildChooser** (link:https://github.com/jenkinsci/gerrit-trigger-plugin/search?q=GerritTriggerBuildChooser&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**AbstractGitSCMSource.+++<wbr/>+++SpecificRevisionBuildChooser** (link:https://github.com/jenkinsci/git-plugin/search?q=AbstractGitSCMSource.SpecificRevisionBuildChooser&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++util.+++<wbr/>+++**AncestryBuildChooser** (link:https://github.com/jenkinsci/git-plugin/search?q=AncestryBuildChooser&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++util.+++<wbr/>+++**DefaultBuildChooser** (link:https://github.com/jenkinsci/git-plugin/search?q=DefaultBuildChooser&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++util.+++<wbr/>+++**InverseBuildChooser** (link:https://github.com/jenkinsci/git-plugin/search?q=InverseBuildChooser&type=Code[在GitHub上查看])
+
+
+## GitStatus.+++<wbr/>+++Listener
++jenkinsdoc:git:hudson.plugins.git.GitStatus.Listener[]+
+
++++ Other plugins may be interested in listening for these updates.+++
+
+
+**Implementations:**
+
+* plugin:backlog[Backlog Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++backlog.+++<wbr/>+++pipeline.+++<wbr/>+++**BacklogPullRequestSCMSource.+++<wbr/>+++ListenerImpl** (link:https://github.com/jenkinsci/backlog-plugin/search?q=BacklogPullRequestSCMSource.ListenerImpl&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: jenkins.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitSCMSource.+++<wbr/>+++ListenerImpl** (link:https://github.com/jenkinsci/git-plugin/search?q=GitSCMSource.ListenerImpl&type=Code[在GitHub上查看])
+* plugin:git[Git Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++git.+++<wbr/>+++**GitStatus.+++<wbr/>+++JenkinsAbstractProjectListener** (link:https://github.com/jenkinsci/git-plugin/search?q=GitStatus.JenkinsAbstractProjectListener&type=Code[在GitHub上查看])
+

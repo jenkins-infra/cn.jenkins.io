@@ -1,0 +1,239 @@
+---
+layout: pipelinesteps
+title: "Google Play Android Publisher Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Google Play Android Publisher Plugin
+
+plugin:google-play-android-publisher[View this plugin on the Plugins Index]
+
+=== +androidApkUpload+: Upload Android APK to Google Play
+++++
+<ul><li><code>apkFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more APKs that should be uploaded to Google Play. 
+ <p></p> You can use wildcards like "**/build/outputs/*/*-release.apk".
+ <br> See 
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated. 
+ <p></p> The base directory is 
+ <a rel="nofollow">the build's workspace</a>. You can only upload APKs that are located in your workspace. 
+ <p></p> Applications which have several APKs per release, taking advantage of 
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, must have all of their APKs uploaded together, and all APKs must have the same application identifier (APK package name).
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deobfuscationFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more ProGuard mapping files that should be uploaded to Google Play, so that it can automatically deobfuscate stacktraces from crash reports. 
+ <p></p> You can use wildcards like "**/build/**/mapping.txt".
+ <br> See 
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated. 
+ <p></p> The base directory is 
+ <a rel="nofollow">the build's workspace</a>. You can only upload mapping files that are located in your workspace. 
+ <p></p> If there are multiple APKs being uploaded, and only one mapping.txt file is found, then this file will be associated with each of the APKs being uploaded. If there are multiple mapping.txt files, this plugin will make a basic attempt to associate each mapping file with the corresponding APK.
+ <br> Otherwise, if the number of mapping files found is not equal to the number of APKs being uploaded, the build will fail, as this situation is not supported. 
+ <p></p> For more information on deobfuscating crash stacktraces, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/6295281" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/6295281 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>expansionFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching zero or more 
+ <a href="https://developer.android.com/google/play/expansion-files.html" rel="nofollow"> expansion files</a> that should be associated with the APK files being uploaded to Google Play. 
+ <p></p> You can list as many or as few expansion files as you like — you have the option of associating previously-uploaded expansion files with the new APKs being uploading here. 
+ <h2>Naming</h2> Files 
+ <b>must</b> be named in the format [main|patch].&lt;expansion-version&gt;.&lt;application-id&gt;.obb 
+ <p></p> For example: 
+ <ul> 
+  <li>main.1000.com.example.mygame.obb</li> 
+  <li>patch.1002.com.example.mygame.obb</li> 
+ </ul> 
+ <h2>Patterns</h2> You can use wildcards like "**/build/**/*.obb".
+ <br> See 
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated. 
+ <p></p> The base directory is 
+ <a rel="nofollow">the build's workspace</a>. You can only upload OBB files that are located in your workspace. 
+ <h2>Re-using existing expansion files</h2> If you don't provide a main or patch expansion file for every APK that you want to upload, enabling the "Re-use expansion files from existing APKs where necessary" option will automatically associate existing expansion file(s) with the APK(s) being uploaded. 
+ <p></p> With this option enabled, if not enough expansion files are provided for all of the APK(s) being uploaded, this plugin will search for the 
+ <i>newest</i>, previously-uploaded APKs on Google Play with main or patch expansion files, and will associate those files with the new APK(s) being uploaded here. 
+ <p></p> For example: If you want to upload a new APK, but the expansion files have not changed at all, you should leave the "Expansion files" field blank, but enable the checkbox.
+ <br> At build time, the latest existing main (and patch, if available) expansion files will be associated with the newly-uploaded APK. 
+ <p></p> Similarly, if you have a new build, but only want to change the patch file, then just provide the patch expansion file and make sure this option is checked. The uploaded APK will have the existing main expansion file associated with it, along with the newly-uploaded patch file.  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>googleCredentialsId</code> (optional)
+<div><div>
+  Specifies which credential to use in order to connect to Google Play. 
+ <p></p> The selected credential must be a "Google Service Account from private key" — if you have not added one already, refer to the documentation on 
+ <a href="https://plugins.jenkins.io/google-play-android-publisher" rel="nofollow">this plugin's page</a>. 
+ <p></p> By choosing the "Parameter expression" option, you can also provide a credential at build time, either from an environment variable, or from a build parameter, e.g. the Credentials Parameter type.
+ <br> But you can use any type of expression, so long as it expands to the name of a "Google Service Account from private key" credential at build time.  This field supports substituting environment variables in the form ${SOME_VARIABLE} at build time.
+ <br> Note that variables in the form $SOME_VARIABLE are 
+ <em>not</em> accepted by the Credentials Plugin. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>recentChangeList</code> (optional)
+<div><div>
+  You can optionally apply "What's new" text to the uploaded APK(s), in order to inform your user of changes contained in the new app version. 
+ <p></p> You add entries for as many or as few of your supported language as you wish, but each language must already have been added to your app, under the "Store Listing" section in the Google Play Developer Console. 
+ <p></p> The language must match the language code shown in the Developer Console, e.g. "en-GB" for British English, or "ar" for Arabic. 
+ <p></p> The text may be between zero and 500 characters. 
+ <p></p> For more information on describing what's new in your app, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/189724" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/189724 </a>  Both fields support substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>language</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>rolloutPercentage</code> (optional)
+<div><div>
+  The percentage of existing production users to which the uploaded APK(s) should be rolled out. 
+ <p></p> Google Play limits the percentage values to: 
+ <ul> 
+  <li>0.5%</li> 
+  <li>1%</li> 
+  <li>5%</li> 
+  <li>10%</li> 
+  <li>20%</li> 
+  <li>50%</li> 
+ </ul> If you enter no value here, or 100%, the app will be rolled out to all users. 
+ <p></p> This field is ignored if you choose a release track other than 'production'; releases to other tracks are always rolled out to 100% of the existing users. 
+ <p></p> For more information on staged rollouts, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trackName</code> (optional)
+<div><div>
+  The release track to which the given APK file(s) will be assigned. 
+ <p></p> This can be one of: 
+ <ul> 
+  <li>alpha</li> 
+  <li>beta</li> 
+  <li>production</li> 
+ </ul> For production releases, you have the choice of rolling your new version out to all existing users simultaneously, or doing a staged rollout so that only a fraction of your existing userbase will be able to download the new version. 
+ <p></p> For more information on alpha and beta testing, or staged rollouts, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>usePreviousExpansionFilesIfMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +androidApkMove+: Move Android APKs to a different release track
+++++
+<div><div>
+  If you have already uploaded APKs to Google Play, whether manually, via the "Upload Android APK to Google Play" post-build action, or by other means, this build step allows you to change the release track for specific APKs. 
+ <p></p> For example, you can use this to promote an app currently in alpha testing to the beta release track, once you've decided it's ready for a wider audience. 
+ <p></p> Similarly, once you're ready for release, you can move from beta to a staged rollout, or directly to production. 
+ <p></p> Note that "downgrading" release tracks, e.g. from production to alpha is not possible. 
+</div></div>
+<ul><li><code>apkFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more APK files from which the version codes should be read, in order to determine which APK versions should be re-assigned to a new release track. 
+ <p></p> Note that these APKs should have already been uploaded — this build step will not do any uploading of APKs; it will only move existing APKs from one release track to another. To upload APKs, use the "Upload Android APK to Google Play" post-build action. 
+ <p></p> You can use wildcards like "**/build/outputs/*/*-release.apk".
+ <br> See 
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated. 
+ <p></p> The base directory is 
+ <a rel="nofollow">the build's workspace</a>. You can only reference APKs that are located in your workspace. 
+ <p></p> Applications which have several APKs per release, taking advantage of 
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, should list all of the APK files here.
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>applicationId</code> (optional)
+<div><div>
+  Application ID (i.e. APK package name) of the app being assigned to a new release track.  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fromVersionCode</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>googleCredentialsId</code> (optional)
+<div><div>
+  Specifies which credential to use in order to connect to Google Play. 
+ <p></p> The selected credential must be a "Google Service Account from private key" — if you have not added one already, refer to the documentation on 
+ <a href="https://plugins.jenkins.io/google-play-android-publisher" rel="nofollow">this plugin's page</a>. 
+ <p></p> By choosing the "Parameter expression" option, you can also provide a credential at build time, either from an environment variable, or from a build parameter, e.g. the Credentials Parameter type.
+ <br> But you can use any type of expression, so long as it expands to the name of a "Google Service Account from private key" credential at build time.  This field supports substituting environment variables in the form ${SOME_VARIABLE} at build time.
+ <br> Note that variables in the form $SOME_VARIABLE are 
+ <em>not</em> accepted by the Credentials Plugin. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>rolloutPercentage</code> (optional)
+<div><div>
+  The percentage of existing production users to which the given version code(s) should be rolled out. 
+ <p></p> Google Play limits the percentage values to: 
+ <ul> 
+  <li>0.5%</li> 
+  <li>1%</li> 
+  <li>5%</li> 
+  <li>10%</li> 
+  <li>20%</li> 
+  <li>50%</li> 
+ </ul> If you enter no value here, or 100%, the app will be rolled out to all users. 
+ <p></p> This field is ignored if you choose a release track other than 'production'; releases to other tracks are always rolled out to 100% of the existing users. 
+ <p></p> For more information on staged rollouts, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trackName</code> (optional)
+<div><div>
+  The release track to which the given APK version(s) will be re-assigned. 
+ <p></p> This can be one of: 
+ <ul> 
+  <li>alpha</li> 
+  <li>beta</li> 
+  <li>production</li> 
+ </ul> For production releases, you have the choice of rolling the version(s) out to all existing users simultaneously, or doing a staged rollout so that only a fraction of your existing userbase will be able to download the new version. 
+ <p></p> For more information on alpha and beta testing, or staged rollouts, see the Google Play documentation:
+ <br> 
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionCodes</code> (optional)
+<div><div>
+  This specifies which APK versions should be assigned to a new release track. 
+ <br> Note that multiple entries must be comma-separated. 
+ <p></p> Applications which have several APKs in production, taking advantage of 
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, should list the version codes of all APKs here.
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

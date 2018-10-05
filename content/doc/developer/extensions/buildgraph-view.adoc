@@ -1,0 +1,22 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 构建图形视图插件中定义的扩展点
+
+plugin:buildgraph-view[构建图形视图插件]
+
+## 下游运行申报人
++jenkinsdoc:buildgraph-view:org.jenkinsci.plugins.buildgraphview.DownStreamRunDeclarer[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:buildgraph-view[构建图形视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildgraphview.+++<wbr/>+++**FlowDownStreamRunDeclarer** (link:https://github.com/jenkinsci/buildgraph-view-plugin/search?q=FlowDownStreamRunDeclarer&type=Code[在GitHub上查看])
+* plugin:buildgraph-view[构建图形视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildgraphview.+++<wbr/>+++**MatrixBuildDownstreamDeclarer** (link:https://github.com/jenkinsci/buildgraph-view-plugin/search?q=MatrixBuildDownstreamDeclarer&type=Code[在GitHub上查看])
+* plugin:buildgraph-view[构建图形视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildgraphview.+++<wbr/>+++**ParameterizedBuildTriggerDownStreamRunDeclarer** (link:https://github.com/jenkinsci/buildgraph-view-plugin/search?q=ParameterizedBuildTriggerDownStreamRunDeclarer&type=Code[在GitHub上查看])
+* plugin:buildgraph-view[构建图形视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildgraphview.+++<wbr/>+++**PromotedBuildTriggerDownStreamRunDeclarer** (link:https://github.com/jenkinsci/buildgraph-view-plugin/search?q=PromotedBuildTriggerDownStreamRunDeclarer&type=Code[在GitHub上查看])
+* plugin:buildgraph-view[构建图形视图插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++buildgraphview.+++<wbr/>+++**UpstreamCauseDonwStreamRunDeclarer** (link:https://github.com/jenkinsci/buildgraph-view-plugin/search?q=UpstreamCauseDonwStreamRunDeclarer&type=Code[在GitHub上查看])
+

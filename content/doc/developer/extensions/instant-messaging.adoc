@@ -1,0 +1,35 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 即时通讯插件中定义的扩展点
+
+plugin:instant-messaging[即时通讯插件]
+
+## 机器人命令
++jenkinsdoc:instant-messaging:hudson.plugins.im.bot.BotCommand[]+
+
++++ Command pattern contract for IM bot commands.+++
+
+
+**Implementations:**
+
+* plugin:instant-messaging[即时通讯插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**AbortCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=AbortCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**AbstractMultipleJobCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=AbstractMultipleJobCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**AbstractSingleJobCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=AbstractSingleJobCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**AbstractTextSendingCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=AbstractTextSendingCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**Bot.+++<wbr/>+++HelpCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=Bot.HelpCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**BuildCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=BuildCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**CommentCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=CommentCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**CurrentlyBuildingCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=CurrentlyBuildingCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**HealthCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=HealthCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**QueueCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=QueueCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**SetAliasCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=SetAliasCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**SetAliasCommand.+++<wbr/>+++AliasCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=SetAliasCommand.AliasCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**SnackCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=SnackCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**StatusCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=StatusCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**TestResultCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=TestResultCommand&type=Code[在GitHub上查看])
+* plugin:instant-messaging[instant-messaging Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++im.+++<wbr/>+++bot.+++<wbr/>+++**UserStatCommand** (link:https://github.com/jenkinsci/instant-messaging-plugin/search?q=UserStatCommand&type=Code[在GitHub上查看])
+* plugin:log-command[Log Command Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++commands.+++<wbr/>+++**ShowLogIMCommand** (link:https://github.com/jenkinsci/log-command-plugin/search?q=ShowLogIMCommand&type=Code[在GitHub上查看])
+

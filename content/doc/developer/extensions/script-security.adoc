@@ -1,0 +1,82 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 脚本安全插件中定义的扩展点
+
+plugin:script-security[脚本安全插件]
+
+## 审核监听器
++jenkinsdoc:script-security:org.jenkinsci.plugins.scriptsecurity.scripts.ApprovalListener[]+
+
++++ Receives notifications on approval-related events.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## 语言
++jenkinsdoc:script-security:org.jenkinsci.plugins.scriptsecurity.scripts.Language[]+
+
++++ A language for which we can request+++ jenkinsdoc:ScriptApproval[] +++.+++
+
+
+**Implementations:**
+
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**GroovyLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=GroovyLanguage&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**GroovyShellLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=GroovyShellLanguage&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**GroovyXmlLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=GroovyXmlLanguage&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**JellyLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=JellyLanguage&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**JexlLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=JexlLanguage&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++**ScriptApproval** (link:https://github.com/jenkinsci/script-security-plugin/search?q=ScriptApproval.PendingScript.getLanguage.&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++languages.+++<wbr/>+++**SystemCommandLanguage** (link:https://github.com/jenkinsci/script-security-plugin/search?q=SystemCommandLanguage&type=Code[在 GitHub上查看])
+
+
+## 白名单
++jenkinsdoc:script-security:org.jenkinsci.plugins.scriptsecurity.sandbox.Whitelist[]+
+
++++ Determines which methods and similar members which scripts may call.+++
+
+
+**Implementations:**
+
+* plugin:email-ext[邮件扩展插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**EmailExtScriptTokenMacroWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=EmailExtScriptTokenMacroWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**MimeMessageInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=MimeMessageInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**ObjectInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ObjectInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**PrintStreamInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=PrintStreamInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**PropertiesInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=PropertiesInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**StaticJavaxMailWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=StaticJavaxMailWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**StaticProxyInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=StaticProxyInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++groovy.+++<wbr/>+++sandbox.+++<wbr/>+++**TaskListenerInstanceWhitelist** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=TaskListenerInstanceWhitelist&type=Code[在 GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++model.+++<wbr/>+++workflow.+++<wbr/>+++**OwnershipGlobalVariable.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/ownership-plugin/search?q=OwnershipGlobalVariable.MiscWhitelist&type=Code[在 GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**JXPipelinesWhitelist** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=JXPipelinesWhitelist&type=Code[在 GitHub上查看])
+* plugin:jx-pipelines[JX Pipelines Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++jx.+++<wbr/>+++pipelines.+++<wbr/>+++dsl.+++<wbr/>+++**PipelineDSLGlobal.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/jx-pipelines-plugin/search?q=PipelineDSLGlobal.MiscWhitelist&type=Code[在 GitHub上查看])
+* plugin:kubernetes-pipeline-arquillian-steps[Kubernetes :: Pipeline :: Arquillian Steps Plugin]: io.+++<wbr/>+++fabric8.+++<wbr/>+++kubernetes.+++<wbr/>+++pipeline.+++<wbr/>+++arquillian.+++<wbr/>+++cube.+++<wbr/>+++kubernetes.+++<wbr/>+++**CubeDSL.+++<wbr/>+++PlugiWhiteList** (link:https://github.com/jenkinsci/kubernetes-pipeline-plugin/search?q=CubeDSL.PlugiWhiteList&type=Code[在 GitHub上查看])
+* plugin:kubernetes-pipeline-steps[Kubernetes :: Pipeline :: Kubernetes Steps Plugin]: io.+++<wbr/>+++fabric8.+++<wbr/>+++kubernetes.+++<wbr/>+++pipeline.+++<wbr/>+++**KubernetesDSL.+++<wbr/>+++PlugiWhiteList** (link:https://github.com/jenkinsci/kubernetes-pipeline-plugin/search?q=KubernetesDSL.PlugiWhiteList&type=Code[在 GitHub上查看])
+* plugin:matrix-project[Matrix Project Plugin]: hudson.+++<wbr/>+++matrix.+++<wbr/>+++**FilterScript.+++<wbr/>+++ImpliesWhitelist** (link:https://github.com/jenkinsci/matrix-project-plugin/search?q=FilterScript.ImpliesWhitelist&type=Code[在 GitHub上查看])
+* plugin:permissive-script-security[Permissive 脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++permissivescriptsecurity.+++<wbr/>+++**PermissiveWhitelist** (link:https://github.com/jenkinsci/permissive-script-security-plugin/search?q=PermissiveWhitelist&type=Code[在 GitHub上查看])
+* plugin:workflow-remote-loader[Pipeline Remote Loader Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++remoteloader.+++<wbr/>+++**FileLoaderDSL.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/workflow-remote-loader-plugin/search?q=FileLoaderDSL.MiscWhitelist&type=Code[在 GitHub上查看])
+* plugin:pipeline-utility-steps[Pipeline Utility Steps Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++utility.+++<wbr/>+++steps.+++<wbr/>+++maven.+++<wbr/>+++**ReadMavenPomStep.+++<wbr/>+++WhiteLister** (link:https://github.com/jenkinsci/pipeline-utility-steps-plugin/search?q=ReadMavenPomStep.WhiteLister&type=Code[在 GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**CpsWhitelist** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=CpsWhitelist&type=Code[在 GitHub上查看])
+* plugin:workflow-cps[Pipeline: Groovy Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++**GroovyClassLoaderWhitelist** (link:https://github.com/jenkinsci/workflow-cps-plugin/search?q=GroovyClassLoaderWhitelist&type=Code[在 GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++libs.+++<wbr/>+++**LibraryStep.+++<wbr/>+++LoadedClassesWhitelist** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryStep.LoadedClassesWhitelist&type=Code[在 GitHub上查看])
+* plugin:puppet-enterprise-pipeline[Puppet Enterprise Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++steps.+++<wbr/>+++**PuppetDSL.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/puppet-enterprise-pipeline-plugin/search?q=PuppetDSL.MiscWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**AbstractWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=AbstractWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**AclAwareWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=AclAwareWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**AnnotatedWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=AnnotatedWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**AnnotatedWhitelist.+++<wbr/>+++Impl** (link:https://github.com/jenkinsci/script-security-plugin/search?q=AnnotatedWhitelist.Impl&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**BlanketWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=BlanketWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++groovy.+++<wbr/>+++**ClassLoaderWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=ClassLoaderWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**EnumeratingWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=EnumeratingWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**GenericWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=GenericWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**JenkinsWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=JenkinsWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**ProxyWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=ProxyWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: Anonymous class in org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**ProxyWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=ProxyWhitelist.reset.&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++scripts.+++<wbr/>+++**ScriptApproval.+++<wbr/>+++ApprovedWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=ScriptApproval.ApprovedWhitelist&type=Code[在 GitHub上查看])
+* plugin:script-security[脚本安全插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++scriptsecurity.+++<wbr/>+++sandbox.+++<wbr/>+++whitelists.+++<wbr/>+++**StaticWhitelist** (link:https://github.com/jenkinsci/script-security-plugin/search?q=StaticWhitelist&type=Code[在 GitHub上查看])
+* plugin:simple-build-for-pipeline[Simple Build DSL for Pipeline Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++simplebuild.+++<wbr/>+++**SimpleBuildDSL.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/simple-build-for-pipeline-plugin/search?q=SimpleBuildDSL.MiscWhitelist&type=Code[在 GitHub上查看])
+* plugin:simple-travis-runner[Simple Travis Pipeline Runner Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++simpletravisrunner.+++<wbr/>+++**SimpleTravisRunnerDSL.+++<wbr/>+++MiscWhitelist** (link:https://github.com/jenkinsci/simple-travis-runner-plugin/search?q=SimpleTravisRunnerDSL.MiscWhitelist&type=Code[在 GitHub上查看])
+

@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 存储库连接器插件中定义的扩展点
+
+plugin:repository-connector[存储库连接器插件]
+
+##人工品
++jenkinsdoc:repository-connector:org.jvnet.hudson.plugins.repositoryconnector.Artifact[]+
+
++++ Represents an artifact to be resolved or uploaded.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

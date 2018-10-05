@@ -1,0 +1,83 @@
+---
+layout: pipelinesteps
+title: "XebiaLabs XL Deploy Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== XebiaLabs XL Deploy Plugin
+
+plugin:deployit-plugin[View this plugin on the Plugins Index]
+
+=== +xldCreatePackage+: Create a deployment package
+++++
+<div><div>
+  Adds a step to package a DAR file. 
+</div></div>
+<ul><li><code>artifactsPath</code>
+<div><div>
+  Path to the artifact directory, relative to the workspace. Jenkins environment variables can be used to specify this value. For example: build/distribution 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>manifestPath</code>
+<div><div>
+  Path of the deployit-manifest.xml file, relative to the workspace. Jenkin's environment variables can be used to specify values in the manifest file. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>darPath</code>
+<div><div>
+  Path for the newly created DAR file, relative to the workspace. Jenkins environment variables can be used to specify this value. For example: $JOB_NAME-$BUILD_NUMBER.0.dar 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +xldDeploy+: Deploy a package to a environment
+++++
+<div><div>
+  Adds a step to deploy artifacts on environments in the XL Deploy server using Jenkins. 
+</div></div>
+<ul><li><code>serverCredentials</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>packageId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentId</code>
+<div><div>
+  ID of the environment in XL Deploy to which the artifact should be deployed. Jenkins environment variables can be used to specify this value. For example: Environments/Dev 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +xldPublishPackage+: Publish a deployment package to XLDeploy
+++++
+<div><div>
+  Adds a step to publish the DAR file to the XL Deploy server using Jenkins. 
+</div></div>
+<ul><li><code>darPath</code>
+<div><div>
+  Path to the DAR file (relative to the workspace) that should be published on the XL Deploy server. For example: $JOB_NAME-$BUILD_NUMBER.0.dar 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>serverCredentials</code>
+<div><div>
+  XL Deploy server credentials used to connect to the XL Deploy server. This must be configured under Manage Jenkins &gt;&gt; Configure System &gt;&gt; XL Deploy. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

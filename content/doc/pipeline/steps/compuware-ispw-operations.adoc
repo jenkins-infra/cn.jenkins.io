@@ -1,0 +1,61 @@
+---
+layout: pipelinesteps
+title: "Compuware ISPW Operations Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Compuware ISPW Operations Plugin
+
+plugin:compuware-ispw-operations[View this plugin on the Plugins Index]
+
+=== +ispwOperation+: Perform a Compuware ISPW Rest API Request and return a JSON object
+++++
+<div><div> 
+ <p> Performs an ISPW Rest API request, and returns a JSON object. </p> 
+</div></div>
+<ul><li><code>connectionId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>consoleLogResponseBody</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ispwAction</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ispwRequestBody</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +ispwRegisterWebhook+: Creates and returns a ISPW webhook that can be used by an external system to notify a pipeline
+++++
+<div><div>
+  Returns a unique webhook that can be used with 
+ <code>waitForWebhook</code> to block pipeline execution until external notification. The returned webhook has 
+ <code>String getToken()</code> and 
+ <code>String getURL()</code> methods. 
+</div></div>
+<ul></ul>
+
+
+++++
+=== +ispwWaitForWebhook+: Wait for ISPW webhook to be posted to by external system
+++++
+<div><div>
+  Blocks on a webhook created with 
+ <code>registerWebhook</code> until the registered webhook is posted to. In general, should not be used inside of a 
+ <code>node</code> block. 
+</div></div>
+<ul><li><code>webhookToken</code>
+<ul><code>com.compuware.ispw.restapi.WebhookToken</code>
+</ul></li>
+</ul>
+
+
+++++

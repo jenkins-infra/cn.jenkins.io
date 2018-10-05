@@ -1,0 +1,29 @@
+---
+layout: pipelinesteps
+title: "JMH Report"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== JMH Report
+
+plugin:jmh-report[View this plugin on the Plugins Index]
+
+=== +jmhReport+: JMH Report
+++++
+<ul><li><code>resultPath</code>
+<div><div>
+  The path were the build stores the JMH result. E.g. 
+ <i>build/reports/jmh/result.json</i>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

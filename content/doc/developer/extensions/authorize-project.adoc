@@ -1,0 +1,23 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在授权项目插件中定义的扩展点
+
+plugin:authorize-project[授权项目插件]
+
+## 授权项目策略
++jenkinsdoc:authorize-project:org.jenkinsci.plugins.authorizeproject.AuthorizeProjectStrategy[]+
+
++++ Extension point to define a new strategy to authorize builds configured in project configuration pages.+++
+
+
+**Implementations:**
+
+* plugin:authorize-project[授权项目插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++authorizeproject.+++<wbr/>+++strategy.+++<wbr/>+++**AnonymousAuthorizationStrategy** (link:https://github.com/jenkinsci/authorize-project-plugin/search?q=AnonymousAuthorizationStrategy&type=Code[在 GitHub上查看])
+* plugin:authorize-project[Authorize Project Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++authorizeproject.+++<wbr/>+++strategy.+++<wbr/>+++**SpecificUsersAuthorizationStrategy** (link:https://github.com/jenkinsci/authorize-project-plugin/search?q=SpecificUsersAuthorizationStrategy&type=Code[在 GitHub上查看])
+* plugin:authorize-project[Authorize Project Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++authorizeproject.+++<wbr/>+++strategy.+++<wbr/>+++**SystemAuthorizationStrategy** (link:https://github.com/jenkinsci/authorize-project-plugin/search?q=SystemAuthorizationStrategy&type=Code[在 GitHub上查看])
+* plugin:authorize-project[Authorize Project Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++authorizeproject.+++<wbr/>+++strategy.+++<wbr/>+++**TriggeringUsersAuthorizationStrategy** (link:https://github.com/jenkinsci/authorize-project-plugin/search?q=TriggeringUsersAuthorizationStrategy&type=Code[在 GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: com.+++<wbr/>+++synopsys.+++<wbr/>+++arc.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++security.+++<wbr/>+++authorizeproject.+++<wbr/>+++**OwnershipAuthorizeProjectStrategy** (link:https://github.com/jenkinsci/ownership-plugin/search?q=OwnershipAuthorizeProjectStrategy&type=Code[在 GitHub上查看])
+

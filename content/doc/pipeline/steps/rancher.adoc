@@ -1,0 +1,40 @@
+---
+layout: pipelinesteps
+title: "Rancher Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Rancher Plugin
+
+plugin:rancher[View this plugin on the Plugins Index]
+
+=== +rancher+: Deploy/Upgrade Rancher Service
+++++
+<ul><li><code>environmentId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>endpoint</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>image</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>confirm</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>ports</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environments</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

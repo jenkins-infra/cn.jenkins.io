@@ -1,0 +1,47 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# vSphere插件中定义的扩展点
+
+plugin:vsphere-cloud[vSphere 插件]
+
+## 重新配置步骤
++jenkinsdoc:vsphere-cloud:org.jenkinsci.plugins.vsphere.builders.ReconfigureStep[]+
+
++++ Define a base class for all Reconfigure Acion steps. All Reconfigure Action steps should extend+++ +++ this class.+++
+
+
+**Implementations:**
+
+* plugin:vsphere-cloud[vSphere 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ReconfigureCpu** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ReconfigureCpu&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ReconfigureDisk** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ReconfigureDisk&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ReconfigureMemory** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ReconfigureMemory&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ReconfigureNetworkAdapters** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ReconfigureNetworkAdapters&type=Code[在GitHub上查看])
+
+
+## VSphere构建步骤
++jenkinsdoc:vsphere-cloud:org.jenkinsci.plugins.vsphere.VSphereBuildStep[]+
+
++++ Define a base class for all vSphere build steps. All vSphere build steps should extend +++ +++ this class, as it contains server information required by all.+++
+
+
+**Implementations:**
+
+* plugin:vsphere-cloud[vSphere 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**Clone** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=Clone&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ConvertToTemplate** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ConvertToTemplate&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ConvertToVm** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ConvertToVm&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**Delete** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=Delete&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**DeleteSnapshot** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=DeleteSnapshot&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**Deploy** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=Deploy&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**ExposeGuestInfo** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=ExposeGuestInfo&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**PowerOff** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=PowerOff&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**PowerOn** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=PowerOn&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**Reconfigure** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=Reconfigure&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**Rename** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=Rename&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**RenameSnapshot** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=RenameSnapshot&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**RevertToSnapshot** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=RevertToSnapshot&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**SuspendVm** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=SuspendVm&type=Code[在GitHub上查看])
+* plugin:vsphere-cloud[vSphere Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++vsphere.+++<wbr/>+++builders.+++<wbr/>+++**TakeSnapshot** (link:https://github.com/jenkinsci/vsphere-cloud-plugin/search?q=TakeSnapshot&type=Code[在GitHub上查看])
+

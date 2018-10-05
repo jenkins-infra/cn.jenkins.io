@@ -1,0 +1,52 @@
+---
+layout: pipelinesteps
+title: "Performance Signature: Viewer"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Performance Signature: Viewer
+
+plugin:performance-signature-viewer[View this plugin on the Plugins Index]
+
+=== +triggerInputStep+: trigger input step remotely
+++++
+<ul><li><code>jenkinsJob</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>triggerId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +pullPerfSigReports+: Pull Performance Signature reports
+++++
+<ul><li><code>jenkinsJob</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nonFunctionalFailure</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +triggerJob+: Trigger Jenkins job
+++++
+<ul><li><code>jenkinsJob</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +waitForJob+: Wait for Jenkins Job till finished
+++++
+<ul><li><code>jenkinsJob</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

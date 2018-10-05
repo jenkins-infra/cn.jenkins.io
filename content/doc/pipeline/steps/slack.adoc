@@ -1,0 +1,97 @@
+---
+layout: pipelinesteps
+title: "Slack Notification Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Slack Notification Plugin
+
+plugin:slack[View this plugin on the Plugins Index]
+
+=== +slackSend+: Send Slack Message
+++++
+<div><div>
+  Simple step for sending a Slack message to specified channel.
+ <br> Use the advanced settings to override the Slack Plugin global configuration to include: 
+ <code>token</code> and 
+ <code>channel</code>.
+ <br> Please see the Slack Plugin global configuration for more details on the fields. Usage Example:
+ <br> 
+ <code> slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (&lt;${env.BUILD_URL}|Open&gt;)" </code> 
+</div></div>
+<ul><li><code>message</code>
+<div><div>
+  This is the main text in a message attachment, and can contain standard message markup. The content will automatically collapse if it contains 700+ characters or 5+ linebreaks, and will display a "Show more..." link to expand the content. Message may include global variables, for example environment and currentBuild variables:
+ <br> 
+ <code> slackSend "started ${env.JOB_NAME} ${env.BUILD_NUMBER} (&lt;${env.BUILD_URL}|Open&gt;)" </code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>attachments</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>baseUrl</code> (optional)
+<div><div>
+  Allows overriding the Slack Plugin Integration Base Url specified in the global configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>botUser</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>channel</code> (optional)
+<div><div>
+  Allows overriding the Slack Plugin channel specified in the global configuration.
+ <br> 
+ <code>slackSend channel: "#channel-name", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>color</code> (optional)
+<div><div>
+  An 
+ <b>optional</b> value that can either be one of 
+ <b>good</b>, 
+ <b>warning</b>, 
+ <b>danger</b>, or any 
+ <b>hex color code</b> (eg. #439FE0). This value is used to color the border along the left side of the message attachment.
+ <br> 
+ <code>slackSend color: "#439FE0", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<div><div>
+  If set to true, then the step will abort the Workflow run if there is an error sending message.
+ <br> 
+ <code>slackSend failOnError: true, message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>teamDomain</code> (optional)
+<div><div>
+  Allows overriding the Slack Plugin Integration Team Domain specified in the global configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>token</code> (optional)
+<div><div>
+  Allows overriding the Slack Plugin Integration Token specified in the global configuration. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>tokenCredentialId</code> (optional)
+<div><div> 
+ <p>The ID for the integration token from the Credentials plugin to be used to send notifications to Slack. The "Kind" of the credential must be "Secret text." If both "Integration Token" and "Integration Token Credential ID" are set, the "Integration Token Credential ID" will take precedence for security reasons.</p> 
+ <p>This overrides the global setting.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

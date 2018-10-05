@@ -1,0 +1,93 @@
+---
+layout: pipelinesteps
+title: "Team Concert Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Team Concert Plugin
+
+plugin:teamconcert[View this plugin on the Plugins Index]
+
+=== +teamconcert+: Team Concert
+++++
+<ul><li><code>buildType</code>
+<ul><b>Nested Object</b>
+<li><code>value</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildDefinition</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildWorkspace</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildSnapshot</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildStream</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>acceptBeforeLoad</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>buildSnapshotContext</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>snapshotOwnerType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>processAreaOfOwningStream</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>owningStream</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>owningWorkspace</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>clearLoadDirectory</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>componentLoadConfig</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>componentsToExclude</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>createFoldersForComponents</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>currentSnapshotOwnerType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>customizedSnapshotName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>generateChangelogWithGoodBuild</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>loadDirectory</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>loadPolicy</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>overrideDefaultSnapshotName</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>pathToLoadRuleFile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>processArea</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>useDynamicLoadRules</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></li>
+<li><code>changelog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>overrideConfig</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>serverURI</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildTool</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>avoidUsingToolkit</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>serverUri</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeout</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul></li>
+<li><code>poll</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

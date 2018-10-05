@@ -1,0 +1,85 @@
+---
+layout: pipelinesteps
+title: "Publish Over Dropbox"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Publish Over Dropbox
+
+plugin:publish-over-dropbox[View this plugin on the Plugins Index]
+
+=== +dropbox+: Publish to Dropbox folder
+++++
+<ul><li><code>sourceFiles</code>
+<div><div> 
+ <p>Files to upload to the Dropbox location.</p> 
+ <p>The string is a comma separated list of includes for an Ant fileset eg. '**/*.jar' (see <a href="http://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Patterns</a> in the Ant manual).<br> The base directory for this fileset is the workspace. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>remoteDirectory</code>
+<div><div> 
+ <p>Destination folder.</p> 
+ <p>This folder will be below the one in the global configuration. The folder will be created if does not exist.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configName</code>
+<div><div> 
+ <p>Select an Dropbox location from the list configured in the global configuration of this Jenkins.</p> 
+ <p>The configuration defines the account properties and base directory of the Dropbox location.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cleanRemote</code> (optional)
+<div><div> 
+ <p>Select to delete all files and directories within the remote directory before transferring files.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>excludes</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>flatten</code> (optional)
+<div><div> 
+ <p>Only create files on the server, do not create directories (except for the remote directory).</p> 
+ <p>All files that have been selected to transfer must have unique filenames. Publishing will stop and fail as soon as a duplicate filename is found when using the flatten option.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>pruneDays</code> (optional)
+<div><div> 
+ <p>Directory created more then this number of days ago are considered old for pruning of root.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>pruneRoot</code> (optional)
+<div><div> 
+ <p>Directories older then the max days will be deleted.</p> 
+ <p> A date format directory format can lead to a long list of directories. Removing old directories in the remote root will allow you to prune that list. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>remoteDirectorySDF</code> (optional)
+<div><div> 
+ <p>Select this to include the timestamp in the remote directory.</p> 
+ <p> The timestamp is the date of build. This setting turns the remote directory option into a java SimpleDateFormat. The SimpleDateFormat(SDF) uses letters to represent components of the date, like the month, year, or day of the week. The <a href="http://download.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html" rel="nofollow">SimpleDateFormat documentation</a> has more information about the date patterns. As the SDF reserves all of the letters [A-Z][a-z], any that you want to appear literally in the directory that is created will need to be quoted. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>removePrefix</code> (optional)
+<div><div> 
+ <p>First part of the file path that should not be created on the remote server.</p> 
+ <p>Directory structures are created relative to the base directory, which is usually the workspace.You normally do not want the full path to these files to be created on the server. For example if Source files were target/deployment/images/**/ then you may want Remove prefix to be target/deployment This would create the images folder under the remote directory, and not target/deployment If you use remove prefix, then ALL source file paths MUST start with the prefix.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

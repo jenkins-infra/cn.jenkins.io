@@ -1,0 +1,88 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# GitHub集成插件中定义的扩展点
+
+plugin:github-pullrequest[GitHub集成插件]
+
+## GitHub分支提交检查
++jenkinsdoc:github-pullrequest:com.github.kostyasha.github.integration.branch.events.impl.commitchecks.GitHubBranchCommitCheck[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++commitchecks.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchCommitMessageCheck** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchCommitMessageCheck&type=Code[在 GitHub上查看])
+
+
+## GitHub分支提交消息检查
++jenkinsdoc:github-pullrequest:com.github.kostyasha.github.integration.branch.events.impl.commitchecks.impl.GitHubBranchCommitMessageCheck[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## GitHub分支事件
++jenkinsdoc:github-pullrequest:com.github.kostyasha.github.integration.branch.events.GitHubBranchEvent[]+
+
++++ Different "events" that may want trigger run for branch.+++
+
+
+**Implementations:**
+
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchCommitEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchCommitEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchCreatedEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchCreatedEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchDeletedEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchDeletedEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchHashChangedEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchHashChangedEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++branch.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubBranchRestrictionFilter** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubBranchRestrictionFilter&type=Code[在 GitHub上查看])
+
+
+## GitHub错误
++jenkinsdoc:github-pullrequest:com.github.kostyasha.github.integration.generic.errors.GitHubError[]+
+
++++ Custom errors that participate in list of+++ jenkinsdoc:GitHubErrorsAction[] +++.+++ +++ index.groovy+++
+
+
+**Implementations:**
+
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++generic.+++<wbr/>+++errors.+++<wbr/>+++impl.+++<wbr/>+++**GitHubHookRegistrationError** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubHookRegistrationError&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++generic.+++<wbr/>+++errors.+++<wbr/>+++impl.+++<wbr/>+++**GitHubRepoProviderError** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubRepoProviderError&type=Code[在 GitHub上查看])
+
+
+## GitHub PR事件
++jenkinsdoc:github-pullrequest:org.jenkinsci.plugins.github.pullrequest.events.GitHubPREvent[]+
+
++++ Extension point for various GH PR events that may trigger run.+++
+
+
+**Implementations:**
+
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRCloseEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRCloseEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRCommentEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRCommentEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRCommitEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRCommitEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRDescriptionEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRDescriptionEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRLabelAddedEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRLabelAddedEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRLabelExistsEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRLabelExistsEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRLabelNotExistsEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRLabelNotExistsEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRLabelPatternExistsEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRLabelPatternExistsEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRLabelRemovedEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRLabelRemovedEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRNonMergeableEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRNonMergeableEvent&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPRNumber** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPRNumber&type=Code[在 GitHub上查看])
+* plugin:github-pullrequest[GitHub集成插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++github.+++<wbr/>+++pullrequest.+++<wbr/>+++events.+++<wbr/>+++impl.+++<wbr/>+++**GitHubPROpenEvent** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPROpenEvent&type=Code[在 GitHub上查看])
+
+
+## GitHub仓库提供商
++jenkinsdoc:github-pullrequest:com.github.kostyasha.github.integration.generic.GitHubRepoProvider[]+
+
++++ Extension for providing GH connection for specified repository with job context.+++ +++ You can extract additional information from job to define what connection provide.+++
+
+
+**Implementations:**
+
+* plugin:github-pullrequest[GitHub集成插件]: com.+++<wbr/>+++github.+++<wbr/>+++kostyasha.+++<wbr/>+++github.+++<wbr/>+++integration.+++<wbr/>+++generic.+++<wbr/>+++repoprovider.+++<wbr/>+++**GitHubPluginRepoProvider** (link:https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubPluginRepoProvider&type=Code[在 GitHub上查看])
+

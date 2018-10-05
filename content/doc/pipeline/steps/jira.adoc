@@ -1,0 +1,52 @@
+---
+layout: pipelinesteps
+title: "JIRA plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== JIRA plugin
+
+plugin:jira[View this plugin on the Plugins Index]
+
+=== +jiraComment+: JIRA: Add a comment to issue(s)
+++++
+<ul><li><code>issueKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraIssueSelector+: JIRA: Issue selector
+++++
+<ul><li><code>issueSelector</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>$class: 'DefaultIssueSelector'</code></li>
+<ul></ul><li><code>$class: 'ExplicitIssueSelector'</code></li>
+<ul><li><code>issueKeys</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'JqlIssueSelector'</code></li>
+<ul><li><code>jql</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'P4JobIssueSelector'</code></li>
+<ul></ul><li><code>$class: 'PerforceJobIssueSelector'</code></li>
+<ul></ul></ul></li>
+</ul>
+
+
+++++
+=== +jiraSearch+: JIRA: Search issues
+++++
+<ul><li><code>jql</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

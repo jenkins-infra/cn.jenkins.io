@@ -1,0 +1,64 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 交付流水线插件中定义的扩展点
+
+plugin:delivery-pipeline-plugin[交付流水线插件]
+
+## 抽象提升状态提供商
++jenkinsdoc:delivery-pipeline-plugin:se.diabol.jenkins.pipeline.domain.status.promotion.AbstractPromotionStatusProvider[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:delivery-pipeline-plugin[交付流水线插件]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++domain.+++<wbr/>+++status.+++<wbr/>+++promotion.+++<wbr/>+++**PromotionStatusProvider** 
+
+
+## 原因解析器
++jenkinsdoc:delivery-pipeline-plugin:se.diabol.jenkins.pipeline.CauseResolver[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:delivery-pipeline-plugin[交付流水线插件]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++resolver.+++<wbr/>+++**CoreCauseResolver** 
+* plugin:delivery-pipeline-plugin[Delivery Pipeline Plugin]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++resolver.+++<wbr/>+++**GitCauseResolver** 
+
+
+## 组件比较器
++jenkinsdoc:delivery-pipeline-plugin:se.diabol.jenkins.pipeline.sort.ComponentComparator[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:delivery-pipeline-plugin[交付流水线插件]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++sort.+++<wbr/>+++**FailedJobComparator** 
+* plugin:delivery-pipeline-plugin[Delivery Pipeline Plugin]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++sort.+++<wbr/>+++**LatestActivityComparator** 
+* plugin:delivery-pipeline-plugin[Delivery Pipeline Plugin]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++sort.+++<wbr/>+++**NameComparator** 
+
+
+## 手动触发解析器
++jenkinsdoc:delivery-pipeline-plugin:se.diabol.jenkins.pipeline.trigger.ManualTriggerResolver[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:delivery-pipeline-plugin[交付流水线插件]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++trigger.+++<wbr/>+++**BPPManualTriggerResolver** 
+
+
+## 关系解析器
++jenkinsdoc:delivery-pipeline-plugin:se.diabol.jenkins.pipeline.RelationshipResolver[]+
+
++++ Defines a ExtensionPoint for resolving a projects downstream relationships.+++
+
+
+**Implementations:**
+
+* plugin:delivery-pipeline-plugin[交付流水线插件]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++resolver.+++<wbr/>+++**ProjectRelationshipResolver** 
+* plugin:delivery-pipeline-plugin[Delivery Pipeline Plugin]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++resolver.+++<wbr/>+++**PromotedBuildRelationshipResolver** 
+* plugin:delivery-pipeline-plugin[Delivery Pipeline Plugin]: se.+++<wbr/>+++diabol.+++<wbr/>+++jenkins.+++<wbr/>+++pipeline.+++<wbr/>+++resolver.+++<wbr/>+++**SubProjectRelationshipResolver** 
+

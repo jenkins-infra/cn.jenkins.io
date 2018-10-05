@@ -1,0 +1,20 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# GIT服务器插件中定义的扩展点
+
+plugin:git-server[GIT 服务器插件]
+
+## 存储库解析器
++jenkinsdoc:git-server:org.jenkinsci.plugins.gitserver.RepositoryResolver[]+
+
++++ Resolves the full name of the repository as given by Git clients to actual+++ jenkinsdoc:Repository[] +++.+++
+
+
+**Implementations:**
+
+* plugin:git-userContent[/Git插件中的用户内容]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++gitUserContent.+++<wbr/>+++**GitUserContentRepositorySSHAccess** (link:https://github.com/jenkinsci/git-userContent-plugin/search?q=GitUserContentRepositorySSHAccess&type=Code[在GitHub上查看])
+* plugin:workflow-cps-global-lib[Pipeline: Shared Groovy Libraries Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++workflow.+++<wbr/>+++cps.+++<wbr/>+++global.+++<wbr/>+++**WorkflowLibSshRepository** (link:https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=WorkflowLibSshRepository&type=Code[在GitHub上查看])
+

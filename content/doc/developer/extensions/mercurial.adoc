@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Mercurial插件中定义的扩展点
+
+plugin:mercurial[Mercurial 插件]
+
+## 更改比较器
++jenkinsdoc:mercurial:hudson.plugins.mercurial.ChangeComparator[]+
+
++++ An extension point that allows plugins to override the built in compare +++ +++ functionality when deciding whether to trigger a build or not.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

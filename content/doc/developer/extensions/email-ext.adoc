@@ -1,0 +1,58 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 电子邮件扩展插件中定义的扩展点
+
+plugin:email-ext[Email Extension Plugin]
+
+## 电子邮件触发器
++jenkinsdoc:email-ext:hudson.plugins.emailext.plugins.EmailTrigger[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:email-ext[电子邮件扩展插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**AbortedTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=AbortedTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**AbstractScriptTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=AbstractScriptTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**AlwaysTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=AlwaysTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**BuildingTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=BuildingTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**FailureTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FailureTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**FirstFailureTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FirstFailureTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**FirstUnstableTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FirstUnstableTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**FixedTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FixedTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**FixedUnhealthyTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FixedUnhealthyTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**ImprovementTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ImprovementTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**NotBuiltTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=NotBuiltTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**NthFailureTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=NthFailureTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**PreBuildScriptTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=PreBuildScriptTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**PreBuildTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=PreBuildTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**RegressionTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=RegressionTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**ScriptTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ScriptTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**SecondFailureTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=SecondFailureTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**StatusChangedTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=StatusChangedTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**StillFailingTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=StillFailingTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**StillUnstableTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=StillUnstableTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**SuccessTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=SuccessTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**UnstableTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=UnstableTrigger&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++trigger.+++<wbr/>+++**XNthFailureTrigger** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=XNthFailureTrigger&type=Code[在 GitHub上查看])
+* plugin:run-condition-extras[Run Condition Extras Plugin]: com.+++<wbr/>+++synopsys.+++<wbr/>+++arc.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++run_condition_extras.+++<wbr/>+++adapters.+++<wbr/>+++mail_ext.+++<wbr/>+++**RunConditionEmailTrigger** (link:https://github.com/jenkinsci/run-condition-extras-plugin/search?q=RunConditionEmailTrigger&type=Code[在 GitHub上查看])
+
+
+## 收件人提供商
++jenkinsdoc:email-ext:hudson.plugins.emailext.plugins.RecipientProvider[]+
+
++++ Created by acearl on 12/24/13.+++
+
+
+**Implementations:**
+
+* plugin:email-ext[电子邮件扩展插件]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**CulpritsRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=CulpritsRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**DevelopersRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=DevelopersRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**FailingTestSuspectsRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FailingTestSuspectsRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**FirstFailingBuildSuspectsRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=FirstFailingBuildSuspectsRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**ListRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=ListRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**RequesterRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=RequesterRecipientProvider&type=Code[在 GitHub上查看])
+* plugin:email-ext[Email Extension Plugin]: hudson.+++<wbr/>+++plugins.+++<wbr/>+++emailext.+++<wbr/>+++plugins.+++<wbr/>+++recipients.+++<wbr/>+++**UpstreamComitterRecipientProvider** (link:https://github.com/jenkinsci/email-ext-plugin/search?q=UpstreamComitterRecipientProvider&type=Code[在 GitHub上查看])
+

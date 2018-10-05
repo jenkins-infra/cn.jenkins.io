@@ -1,0 +1,44 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 流水线：声明性插件中定义的扩展点
+
+plugin:pipeline-model-definition[流水线：声明性插件]
+
+## 凭证绑定处理程序
++jenkinsdoc:pipeline-model-definition:org.jenkinsci.plugins.pipeline.modeldefinition.model.CredentialsBindingHandler[]+
+
++++ Simplified+++ jenkinsdoc:org.jenkinsci.plugins.credentialsbinding.Binding[] +++handler for use in {@code environment {} }+++
+
+
+**Implementations:**
+
+* plugin:pipeline-model-definition[流水线：声明性插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++model.+++<wbr/>+++**CredentialsBindingHandler.+++<wbr/>+++FileCredentialsHandler** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=CredentialsBindingHandler.FileCredentialsHandler&type=Code[在GitHub上查看])
+* plugin:pipeline-model-definition[Pipeline: Declarative Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++model.+++<wbr/>+++**CredentialsBindingHandler.+++<wbr/>+++StringCredentialsHandler** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=CredentialsBindingHandler.StringCredentialsHandler&type=Code[在GitHub上查看])
+* plugin:pipeline-model-definition[Pipeline: Declarative Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++model.+++<wbr/>+++**CredentialsBindingHandler.+++<wbr/>+++UsernamePasswordHandler** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=CredentialsBindingHandler.UsernamePasswordHandler&type=Code[在GitHub上查看])
+
+
+## Docker标签提供程序
++jenkinsdoc:pipeline-model-definition:org.jenkinsci.plugins.pipeline.modeldefinition.config.DockerLabelProvider[]+
+
++++ Provider of label expressions to use for {@code agent: docker} when no other label is provided.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+
+
+## Docker属性提供程序
++jenkinsdoc:pipeline-model-definition:org.jenkinsci.plugins.pipeline.modeldefinition.config.DockerPropertiesProvider[]+
+
++++ Provider of configuration options to use for {@code agent docker}.+++
+
+
+**Implementations:**
+
+* plugin:pipeline-model-definition[流水线：声明性插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++config.+++<wbr/>+++**FolderConfig.+++<wbr/>+++FolderDockerPropertiesProvider** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=FolderConfig.FolderDockerPropertiesProvider&type=Code[在GitHub上查看])
+* plugin:pipeline-model-definition[Pipeline: Declarative Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++pipeline.+++<wbr/>+++modeldefinition.+++<wbr/>+++config.+++<wbr/>+++**GlobalConfig.+++<wbr/>+++GlobalConfigDockerPropertiesProvider** (link:https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=GlobalConfig.GlobalConfigDockerPropertiesProvider&type=Code[在GitHub上查看])
+

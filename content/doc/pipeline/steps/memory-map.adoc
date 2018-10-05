@@ -1,0 +1,109 @@
+---
+layout: pipelinesteps
+title: "Memory Map Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Memory Map Plugin
+
+plugin:memory-map[View this plugin on the Plugins Index]
+
+=== +memoryMap+: Memory Map Publisher
+++++
+<ul><li><code>chosenParsers</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>gccParser</code></li>
+<ul><li><code>parserUniqueName</code>
+<div><p>A unique parser name. This has to be unique among the parsers chosen in this job otherwise results will get mixed together, renaming this invalidates previous results.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>mapFile</code>
+<div><p>An Ant file pattern, pointing to a map file, which describes the location of code in the specified memory layout</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configurationFile</code>
+<div><p>An Ant file pattern, pointing to a command file, which describes the memory layout of the target device</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>wordSize</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>bytesOnGraph</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>graphConfiguration</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>graphDataList</code>
+<div><h1>Graph data settings</h1> 
+<h3>The <em>data</em> to be harvested</h3> 
+<p>You can add several data values to one graph, with a comma separator, i.e <em>DATA,CONST</em></p> 
+<p>This will create a graph with two datapoints</p> 
+<p>You can also ADD the values of the sections together like so: <em>DATA+CONST</em> this will generate one combined dataset with the combined value of CONST and DATA</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>graphCaption</code>
+<div><p>The <em>title</em> of the graph</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>parserTitle</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>tiParser</code></li>
+<ul><li><code>parserUniqueName</code>
+<div><p>A unique parser name. This has to be unique among the parsers chosen in this job otherwise results will get mixed together, renaming this invalidates previous results.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>mapFile</code>
+<div><p>An Ant file pattern, pointing to a map file, which describes the location of code in the specified memory layout</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configurationFile</code>
+<div><p>An Ant file pattern, pointing to a command file, which describes the memory layout of the target device</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>wordSize</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>graphConfiguration</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>graphDataList</code>
+<div><h1>Graph data settings</h1> 
+<h3>The <em>data</em> to be harvested</h3> 
+<p>You can add several data values to one graph, with a comma separator, i.e <em>DATA,CONST</em></p> 
+<p>This will create a graph with two datapoints</p> 
+<p>You can also ADD the values of the sections together like so: <em>DATA+CONST</em> this will generate one combined dataset with the combined value of CONST and DATA</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>graphCaption</code>
+<div><p>The <em>title</em> of the graph</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>bytesOnGraph</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>parserTitle</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>scale</code> (optional)
+<div><p>Scale for y-axis</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>showBytesOnGraph</code> (optional)
+<div><p>Show "Bytes" on y-axis rather than "Words"</p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>wordSize</code> (optional)
+<div><p>The word size of the processor</p> 
+<p><em>Default value is 8</em></p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

@@ -1,0 +1,132 @@
+---
+layout: pipelinesteps
+title: "Kubernetes :: Pipeline :: Arquillian Steps"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Kubernetes :: Pipeline :: Arquillian Steps
+
+plugin:kubernetes-pipeline-arquillian-steps[View this plugin on the Plugins Index]
+
+=== +createEnvironment+: Creates the testing environment. Locates, installs and waits for installed resources to become ready
+++++
+<ul><li><code>cloud</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>prefix</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>annotations</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>scriptEnvironmentVariables</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>environmentSetupScriptUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentTeardownScriptUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentDependencies</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>waitTimeout</code>
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitForServiceList</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>namespaceLazyCreateEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>namespaceCleanupEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>namespaceDestroyEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +currentNamespace+: Returns the current namespace
+++++
+<ul><li><code>fallbackNamespace</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +inNamespace+: Run build steps inside an arquillian cube kubernetes managed namespace
+++++
+<ul><li><code>cloud</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<div>The name of the namespace/project to use/create.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>prefix</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>annotations</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>namespaceLazyCreateEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>namespaceDestroyEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +inSession+: Run build steps inside an Arquillian Cube Kubernetes Session
+++++
+<ul><li><code>cloud</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<div>The name of the namespace/project to use/create.</div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>prefix</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>annotations</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>scriptEnvironmentVariables</code>
+<ul><code>java.lang.String></code>
+</ul></li>
+<li><code>environmentSetupScriptUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentTeardownScriptUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigUrl</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentDependencies</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>waitTimeout</code>
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>waitForServiceList</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>namespaceLazyCreateEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>namespaceCleanupEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>namespaceDestroyEnabled</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++

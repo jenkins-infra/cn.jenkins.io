@@ -1,0 +1,38 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Perfecto Mobile 插件中定义的扩展点
+
+plugin:perfectomobile[Perfecto Mobile插件]
+
+## 构建选择器
++jenkinsdoc:perfectomobile:com.perfectomobile.jenkins.copyartifact.BuildSelector[]+
+
++++ Extension point for selecting the build to copy artifacts from.+++ +++ In a subclass override just isSelectable() for a standard loop through completed+++ +++ builds, starting with the most recent. Otherwise override getBuild() to provide+++ +++ different build selection logic.+++
+
+
+**Implementations:**
+
+* plugin:perfectomobile[Perfecto Mobile 插件]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**ParameterizedBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=ParameterizedBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**PermalinkBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=PermalinkBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**SavedBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=SavedBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**SpecificBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=SpecificBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**StatusBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=StatusBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**TriggeredBuildSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=TriggeredBuildSelector&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**WorkspaceSelector** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=WorkspaceSelector&type=Code[在GitHub上查看])
+
+
+## 复印机
++jenkinsdoc:perfectomobile:com.perfectomobile.jenkins.copyartifact.Copier[]+
+
++++ Extension point for how files are copied.+++ +++ CopyArtifact plugin provides a default implementation using methods+++ +++ available in the Jenkins FilePath class.+++
+
+
+**Implementations:**
+
+* plugin:perfectomobile[Perfecto Mobile 插件]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**FilePathCopyMethod** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=FilePathCopyMethod&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++copyartifact.+++<wbr/>+++**FingerprintingCopyMethod** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=FingerprintingCopyMethod&type=Code[在GitHub上查看])
+* plugin:perfectomobile[Perfecto Mobile Plugin]: com.+++<wbr/>+++perfectomobile.+++<wbr/>+++jenkins.+++<wbr/>+++**FingerprintingUploadMethod** (link:https://github.com/jenkinsci/perfectomobile-plugin/search?q=FingerprintingUploadMethod&type=Code[在GitHub上查看])
+

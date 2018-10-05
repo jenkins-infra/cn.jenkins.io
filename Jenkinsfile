@@ -60,20 +60,10 @@ try {
                     set -o pipefail
                     set -o xtrace
                     mkdir -p .awestruct
-                    chmod 750 -R ./scripts/*
-                    cp -r  ./content/images/ ./
-                    rm -rf ./content/
-                    unzip content.zip
-                    cp -r  ./images/ ./content/
                     rm -rf ./content/_tmp/examples/pipeline-examples
-                   
+                    chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                                       
-                    unzip -o vendor.zip
-                    chmod 755 -R ./vendor
-                    ls ./vendor -al
-                    
                     make cn-site
                     make pdfs
                     make archive
@@ -87,6 +77,7 @@ try {
                     '''                
             } catch (Exception e) {
                 sh '''
+                   cat ./content/_data/_generated/update_center.yml
                    cat ./content/.awestruct/error.log
                 '''
             }

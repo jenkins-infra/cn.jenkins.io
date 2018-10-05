@@ -1,0 +1,269 @@
+---
+layout: pipelinesteps
+title: "Email Extension Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Email Extension Plugin
+
+plugin:email-ext[View this plugin on the Plugins Index]
+
+=== +emailext+: Extended Email
+++++
+<div><div>
+  Step for sending email via the email-ext plugin. 
+</div></div>
+<ul><li><code>subject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>body</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>attachLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>attachmentsPattern</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>compressLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>from</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>mimeType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postsendScript</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>presendScript</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>recipientProviders</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'CulpritsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users who committed a change since the last non-broken build till now. This list at least always include people who made changes in this build, but if the previous build was a failure it also includes the culprit list from there. 
+</div></div>
+<ul></ul><li><code>$class: 'DevelopersRecipientProvider'</code></li>
+<div><div>
+  Sends email to all the people who caused a change in the change set. 
+</div></div>
+<ul></ul><li><code>$class: 'FailingTestSuspectsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users suspected of causing a unit test to begin failing. This list includes committers and requestors of the build where the test began to fail, and those for any consecutive failed builds prior to the build in which the test began to fail. 
+ <table> 
+  <tbody>
+   <tr> 
+    <th>Build Number</th> 
+    <td>1</td> 
+    <td>2</td> 
+    <td>3</td> 
+    <td>4</td> 
+    <td>5</td> 
+   </tr> 
+   <tr> 
+    <th>Requestor</th> 
+    <td>Alice</td> 
+    <td></td> 
+    <td></td> 
+    <td></td> 
+    <td>Alice</td> 
+   </tr> 
+   <tr> 
+    <th>Committers</th> 
+    <td></td> 
+    <td>Bob<br>Clay</td> 
+    <td>Clay<br>Dan</td> 
+    <td>Bob<br>Ed</td> 
+    <td>Ed</td> 
+   </tr> 
+   <tr> 
+    <th>foo</th> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>Passed</td> 
+    <td>N/A</td> 
+    <td>Failed</td> 
+   </tr> 
+   <tr> 
+    <th>bar</th> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>Passed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>baz</th> 
+    <td>Passed</td> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>qux</th> 
+    <td>Passed</td> 
+    <td>Passed</td> 
+    <td>Failed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>new</th> 
+    <td></td> 
+    <td></td> 
+    <td></td> 
+    <td>N/A</td> 
+    <td>Failed</td> 
+   </tr> 
+   <tr> 
+    <th>Suspects</th> 
+    <td>Alice (foo, bar)</td> 
+    <td>Alice (foo, bar)<br>Bob (baz)<br>Clay (baz)</td> 
+    <td>Bob (baz)<br>Clay (baz, qux)<br>Dan (qux)</td> 
+    <td>N/A<br>(build failed)</td> 
+    <td>Alice (foo, new)<br>Bob (foo, new)<br>Ed (foo, new)</td> 
+   </tr> 
+  </tbody>
+ </table> 
+</div></div>
+<ul></ul><li><code>$class: 'FirstFailingBuildSuspectsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users suspected of causing the build to begin failing. 
+</div></div>
+<ul></ul><li><code>$class: 'ListRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of recipients defined in the "Project Recipient List." 
+</div></div>
+<ul></ul><li><code>$class: 'RequesterRecipientProvider'</code></li>
+<div><div>
+  Sends email to the user who initiated the build. 
+</div></div>
+<ul></ul><li><code>$class: 'UpstreamComitterRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users who committed changes in upstream builds that triggered this build. 
+</div></div>
+<ul></ul></ul></li>
+<li><code>replyTo</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>to</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +emailextrecipients+: Extended Email Recipients
+++++
+<ul><li><code>recipientProviders</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'CulpritsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users who committed a change since the last non-broken build till now. This list at least always include people who made changes in this build, but if the previous build was a failure it also includes the culprit list from there. 
+</div></div>
+<ul></ul><li><code>$class: 'DevelopersRecipientProvider'</code></li>
+<div><div>
+  Sends email to all the people who caused a change in the change set. 
+</div></div>
+<ul></ul><li><code>$class: 'FailingTestSuspectsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users suspected of causing a unit test to begin failing. This list includes committers and requestors of the build where the test began to fail, and those for any consecutive failed builds prior to the build in which the test began to fail. 
+ <table> 
+  <tbody>
+   <tr> 
+    <th>Build Number</th> 
+    <td>1</td> 
+    <td>2</td> 
+    <td>3</td> 
+    <td>4</td> 
+    <td>5</td> 
+   </tr> 
+   <tr> 
+    <th>Requestor</th> 
+    <td>Alice</td> 
+    <td></td> 
+    <td></td> 
+    <td></td> 
+    <td>Alice</td> 
+   </tr> 
+   <tr> 
+    <th>Committers</th> 
+    <td></td> 
+    <td>Bob<br>Clay</td> 
+    <td>Clay<br>Dan</td> 
+    <td>Bob<br>Ed</td> 
+    <td>Ed</td> 
+   </tr> 
+   <tr> 
+    <th>foo</th> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>Passed</td> 
+    <td>N/A</td> 
+    <td>Failed</td> 
+   </tr> 
+   <tr> 
+    <th>bar</th> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>Passed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>baz</th> 
+    <td>Passed</td> 
+    <td>Failed</td> 
+    <td>Failed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>qux</th> 
+    <td>Passed</td> 
+    <td>Passed</td> 
+    <td>Failed</td> 
+    <td>N/A</td> 
+    <td>Passed</td> 
+   </tr> 
+   <tr> 
+    <th>new</th> 
+    <td></td> 
+    <td></td> 
+    <td></td> 
+    <td>N/A</td> 
+    <td>Failed</td> 
+   </tr> 
+   <tr> 
+    <th>Suspects</th> 
+    <td>Alice (foo, bar)</td> 
+    <td>Alice (foo, bar)<br>Bob (baz)<br>Clay (baz)</td> 
+    <td>Bob (baz)<br>Clay (baz, qux)<br>Dan (qux)</td> 
+    <td>N/A<br>(build failed)</td> 
+    <td>Alice (foo, new)<br>Bob (foo, new)<br>Ed (foo, new)</td> 
+   </tr> 
+  </tbody>
+ </table> 
+</div></div>
+<ul></ul><li><code>$class: 'FirstFailingBuildSuspectsRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users suspected of causing the build to begin failing. 
+</div></div>
+<ul></ul><li><code>$class: 'ListRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of recipients defined in the "Project Recipient List." 
+</div></div>
+<ul></ul><li><code>$class: 'RequesterRecipientProvider'</code></li>
+<div><div>
+  Sends email to the user who initiated the build. 
+</div></div>
+<ul></ul><li><code>$class: 'UpstreamComitterRecipientProvider'</code></li>
+<div><div>
+  Sends email to the list of users who committed changes in upstream builds that triggered this build. 
+</div></div>
+<ul></ul></ul></li>
+</ul>
+
+
+++++

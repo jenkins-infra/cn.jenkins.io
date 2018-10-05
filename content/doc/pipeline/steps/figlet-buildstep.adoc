@@ -1,0 +1,24 @@
+---
+layout: pipelinesteps
+title: "Figlet Buildstep"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Figlet Buildstep
+
+plugin:figlet-buildstep[View this plugin on the Plugins Index]
+
+=== +figlet+: Figlet
+++++
+<ul><li><code>message</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

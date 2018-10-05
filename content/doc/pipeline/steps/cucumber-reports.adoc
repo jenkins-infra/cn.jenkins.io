@@ -1,0 +1,107 @@
+---
+layout: pipelinesteps
+title: "Cucumber reports"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Cucumber reports
+
+plugin:cucumber-reports[View this plugin on the Plugins Index]
+
+=== +cucumber+: Cucumber reports
+++++
+<div><p><b>Publishes Cucumber results</b></p> 
+<p>This plugin requires that you use <b>cucumber</b> library to generate a <b>json</b> report. The plugin uses the json report to produce html reports that are available from jenkins on the build page after a build has run.</p> 
+<pre>
+	import cucumber.junit.Cucumber;
+	import org.junit.runner.RunWith;
+
+	@RunWith(Cucumber.class)
+	@Cucumber.Options(format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
+	public class MyTest {
+
+	}
+</pre></div>
+<ul><li><code>fileIncludePattern</code>
+<div><p>Filter for the files that should be processed. Leave empty to use default pattern <code>**/*.json</code>.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildStatus</code> (optional)
+<div><p>Build <a href="http://javadoc.jenkins-ci.org/hudson/model/Result.html" rel="nofollow">result</a> to which the build should be set when the report becomes failed or unstable.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>classifications</code> (optional)
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<div><p>Pairs key-value which are passed to the report to be displayed.</p></div>
+<li><code>key</code>
+<div><p>Name of the classification.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div><p>Value of the classification. Can be plain text, hyperlink or <a href="https://plugins.jenkins.io/token-macro" rel="nofollow">macro</a>..</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>classificationsFilePattern</code> (optional)
+<div><p>Filter for the properties files that should be processed as classifications. Leave empty to use default pattern <code>**/*.properties</code>.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failedFeaturesNumber</code> (optional)
+<div><p>Maximum number of failed features above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>failedScenariosNumber</code> (optional)
+<div><p>Maximum number of failed scenarios above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>failedStepsNumber</code> (optional)
+<div><p>Maximum number of failed steps above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>fileExcludePattern</code> (optional)
+<div><p>Filter for the files that should be excluded from the report.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>jsonReportDirectory</code> (optional)
+<div><p>Directory where the JSON cucumber reports are located. By default and for empty value whole workspace is scanned.</p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>parallelTesting</code> (optional)
+<div><p>Defines when provided reports have been generated during parallel testing (eg. multiple devices).</p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>pendingStepsNumber</code> (optional)
+<div><p>Maximum number of pending steps above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>skippedStepsNumber</code> (optional)
+<div><p>Maximum number of skipped steps above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>sortingMethod</code> (optional)
+<div><p>Result sorting order</p> 
+<ul> 
+ <li>NATURAL - keeps same order as it was in JSON file</li> 
+ <li>ALPHABETICAL - sort rows alphabetically</li> 
+</ul></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trendsLimit</code> (optional)
+<div><p>Number of past reports that should be presented. Zero means unlimited number of builds.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>undefinedStepsNumber</code> (optional)
+<div><p>Maximum number of undefined steps above which build result is changed.</p></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

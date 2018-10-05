@@ -1,0 +1,26 @@
+---
+layout: pipelinesteps
+title: "NodeJS Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== NodeJS Plugin
+
+plugin:nodejs[View this plugin on the Plugins Index]
+
+=== +nodejs+: Provide Node & npm bin/ folder to PATH
+++++
+<ul><li><code>nodeJSInstallationName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>configId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

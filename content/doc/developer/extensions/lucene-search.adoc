@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Lucene-Search插件中定义的扩展点
+
+plugin:lucene-search[Lucene-Search 插件]
+
+## 免费的文本搜索扩展
++jenkinsdoc:lucene-search:org.jenkinsci.plugins.lucene.search.FreeTextSearchExtension[]+
+
++++ Extend this+++ jenkinsdoc:ExtensionPoint[] +++to add more data that can be searched.+++
+
+
+**Implementations:**
+
+* plugin:lucene-search[Lucene-Search 插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++lucene.+++<wbr/>+++search.+++<wbr/>+++extensionimplementations.+++<wbr/>+++**JunitFreeTextSearchExtension** (link:https://github.com/jenkinsci/lucene-search-plugin/search?q=JunitFreeTextSearchExtension&type=Code[在 GitHub上查看])
+

@@ -1,0 +1,23 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在构建守护者插件中定义的扩展点
+
+plugin:build-keeper-plugin[构建守护者插件]
+
+## 构建守护者策略
++jenkinsdoc:build-keeper-plugin:org.jenkins_ci.plugins.build_keeper.BuildKeeperPolicy[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:build-keeper-plugin[构建守护者插件]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**BuildNumberPolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=BuildNumberPolicy&type=Code[在 GitHub上查看])
+* plugin:build-keeper-plugin[Build Keeper Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**ByDayPolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=ByDayPolicy&type=Code[在 GitHub上查看])
+* plugin:build-keeper-plugin[Build Keeper Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**KeepFirstFailedPolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=KeepFirstFailedPolicy&type=Code[在 GitHub上查看])
+* plugin:build-keeper-plugin[Build Keeper Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**KeepSincePolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=KeepSincePolicy&type=Code[在 GitHub上查看])
+* plugin:build-keeper-plugin[Build Keeper Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**PeriodAndFailedPolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=PeriodAndFailedPolicy&type=Code[在 GitHub上查看])
+* plugin:build-keeper-plugin[Build Keeper Plugin]: org.+++<wbr/>+++jenkins_ci.+++<wbr/>+++plugins.+++<wbr/>+++build_keeper.+++<wbr/>+++**RunConditionPolicy** (link:https://github.com/jenkinsci/build-keeper-plugin/search?q=RunConditionPolicy&type=Code[在 GitHub上查看])
+

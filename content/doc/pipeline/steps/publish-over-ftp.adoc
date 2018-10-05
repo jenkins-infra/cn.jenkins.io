@@ -1,0 +1,244 @@
+---
+layout: pipelinesteps
+title: "Publish Over FTP"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Publish Over FTP
+
+plugin:publish-over-ftp[View this plugin on the Plugins Index]
+
+=== +ftpPublisher+: Send build artifacts over FTP
+++++
+<div><div>
+ Send build artifacts over FTP
+</div></div>
+<ul><li><code>publishers</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>configName</code>
+<div><div> 
+ <p>Select an FTP configuration from the list configured in the global configuration of this Jenkins.</p> 
+ <p>The configuration defines the connection properties and base directory of the FTP server.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>verbose</code>
+<div><div>
+ Select to enable logging of all commands sent to, and responses received from the FTP server in the Jenkins console.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>transfers</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>sourceFiles</code>
+<div><div> 
+ <p>Files to upload to a server.</p> 
+ <p>The string is a comma separated list of includes for an Ant fileset eg. '**/*.jar' (see <a href="http://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Patterns</a> in the Ant manual).<br> The base directory for this fileset is the workspace. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>excludes</code>
+<div><div> 
+ <p>Exclude files from the Transfer set.</p> 
+ <p>The string is a comma separated list of excludes for an Ant fileset eg. '**/*.log,**/*.tmp,.git/' (see <a href="http://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Patterns</a> in the Ant manual) </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>remoteDirectory</code>
+<div><div> 
+ <p>Optional destination folder.</p> 
+ <p>This folder will be below the one in the global configuration, if present.<br> The folder will be created if does not exist.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>removePrefix</code>
+<div><div> 
+ <p>First part of the file path that should not be created on the remote server.</p> 
+ <p>Directory structures are created relative to the base directory, which is usually the workspace.<br> You normally do not want the full path to these files to be created on the server.<br> For example if Source files were <code>target/deployment/images/**/</code> then you may want Remove prefix to be <code>target/deployment</code> This would create the images folder under the remote directory, and not target/deployment<br> Jenkins environment variables can be used in this path.</p> 
+ <p><strong>If you use remove prefix, then ALL source file paths MUST start with the prefix.</strong></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>asciiMode</code>
+<div><div> 
+ <p>Select to enable ASCII mode for the transfer, otherwise binary transfer mode will be used.</p> 
+ <p>Use with ASCII text files to fix the line terminators when transferring between different operating systems.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>remoteDirectorySDF</code>
+<div><div> 
+ <p>Select this to include the timestamp in the remote directory.</p> 
+ <p>The timestamp is the date of build. If this publisher is being used during a promotion, then the timestamp is that of the build that is being promoted. <br>This setting turns the remote directory option into a java SimpleDateFormat. <br>The SimpleDateFormat(SDF) uses letters to represent components of the date, like the month, year, or day of the week. <a href="http://download.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html" rel="nofollow">Click here for more information about the date patterns.</a> <br>As the SDF reserves all of the letters [A-Z][a-z], any that you want to appear literally in the directory that is created will need to be quoted.</p> 
+ <p>Some examples follow - all examples are based on a build with a timestamp of 3:45 pm and 55 seconds on the 7th November 2010. <br> </p>
+ <table> 
+  <tbody>
+   <tr> 
+    <th>Remote directory</th> 
+    <th>Directories created</th> 
+   </tr> 
+   <tr> 
+    <td><code>'qa-approved/'yyyyMMddHHmmss</code></td> 
+    <td><code>qa-approved/20101107154555</code></td> 
+   </tr> 
+   <tr> 
+    <td><code>'builds/'yyyy/MM/dd/'build-${BUILD_NUMBER}'</code></td> 
+    <td><code>builds/2010/11/07/build-456</code> (if the build was number 456)</td> 
+   </tr> 
+   <tr> 
+    <td><code>yyyy_MM/'build'-EEE-d-HHmmss</code></td> 
+    <td><code>2010_11/build-Sun-7-154555</code></td> 
+   </tr> 
+   <tr> 
+    <td><code>yyyy-MM-dd_HH-mm-ss</code></td> 
+    <td><code>2010-11-07_15-45-55</code></td> 
+   </tr> 
+  </tbody>
+ </table> 
+ <p></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>flatten</code>
+<div><div> 
+ <p>Only create files on the server, don't create directories (except for the remote directory, if present)</p> 
+ <p><strong>All files that have been selected to transfer must have unique filenames.</strong> The publisher will stop and fail as soon as a duplicate filename is found when using the flatten option.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>cleanRemote</code>
+<div><div> 
+ <p>Select to delete all files and directories within the remote directory before transferring files.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>noDefaultExcludes</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>makeEmptyDirs</code>
+<div><div> 
+ <p>The default behaviour of this plugin is to match files, and then create any directories required to preserve the paths to the files.<br> Selecting this option will create any directories that match the Source files pattern, even if empty.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>patternSeparator</code>
+<div><div> 
+ <p>The regular expression that is used to separate the Source files and Exclude files patterns.</p> 
+ <p>The Source files and Exclude files both accept multiple patterns that by default are split using </p>
+ <pre>[, ]+</pre> which is how Ant, by default, handles multiple patterns in a single string. 
+ <p></p> 
+ <p>The above expression makes it difficult to reference files or directories that contain spaces. This option allows the expression to be set to something that will preserve the spaces in a pattern eg. a single comma. </p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>useWorkspaceInPromotion</code>
+<div><div> 
+ <p>Set the root directory for the Source files to the workspace</p> 
+ <p>By default this plugin uses the artifacts directory (where archived artifacts are stored). This allows the artifacts from the build number that you are promoting to be sent somewhere else.</p> 
+ <p>If you run tasks that produce files in the workspace during the promotion and you want to publish them, then set this option.</p> 
+ <p>If you need to send files from both the workspace and the archive directory, then you need to add a second server, even if you want to send the files to the same place. This is due to the fact that the workspace is not necessarily on the same host as the archive directory</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>usePromotionTimestamp</code>
+<div><div> 
+ <p>Use the build time of the promotion when the remote directory is a date format</p> 
+ <p>By default this plugin uses the time of the original build (the one that is being promoted) when formatting the remote directory. Setting this option will mean that if you use the remote directory is a date format option, it will use the time that the promotion process runs, instead of the original build.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>ftpRetry</code>
+<div><div> 
+ <p>If publishing to this server fails, try again.</p> 
+ <p>Files that were successfully transferred will not be re-sent.<br> If the <em>Clean remote</em> option is selected, and succeeds, it will not be attempted again.</p> 
+</div></div>
+
+<ul><b>Nested Object</b>
+<li><code>retries</code>
+<div><div>
+ The number of times to retry this server in the event of failure
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>retryDelay</code>
+<div><div>
+ The time to wait, in milliseconds, before attempting another transfer
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul></li>
+<li><code>ftpLabel</code>
+<div><div> 
+ <p>Set the label for this Server instance - for use with Parameterized publishing</p> 
+ <p>Expand the help for Parameterized publishing for more details</p> 
+</div></div>
+
+<ul><b>Nested Object</b>
+<li><code>label</code>
+<div><div> 
+ <p>Set the label for this Server instance - for use with Parameterized publishing</p> 
+ <p>Expand the help for Parameterized publishing for more details</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>ftpCredentials</code>
+<div><div>
+  Set the username and password to use with this connection. 
+ <p>If you want to use different credentials from those configured for this server, or if the credentials have not been specified for this server, then enable this option and set the username and password to use.</p> 
+</div></div>
+
+<ul><b>Nested Object</b>
+<li><code>username</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>password</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>continueOnError</code>
+<div><div>
+ Select to continue publishing to the other FTP servers after a problem with a previous server
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code>
+<div><div>
+ Select to mark the build as a failure if there is a problem publishing to a server. The default is to mark the build as unstable
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>alwaysPublishFromMaster</code>
+<div><div> 
+ <p>Select to publish from the Jenkins master.</p> 
+ <p>The default is to publish from the server that holds the files to transfer (workspace on the slave, or artifacts directory on the master)<br> Enabling this option could help dealing with strict network configurations and firewall rules.<br> This option will cause the files to be transferred through the master before being sent to the remote server, this may increase network traffic, and could increase the build time.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>masterNodeName</code>
+<div><div> 
+ <p>Set the NODE_NAME for the master Jenkins.</p> 
+ <p>Set this option to give a value to the NODE_NAME environment variable when the value is missing (the Jenkins master).<br> This is useful if you use the $NODE_NAME variable in the remoteDirectory option and the build may occur on the master.</p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>paramPublish</code>
+<ul><b>Nested Object</b>
+<li><code>parameterName</code>
+<div><div>
+  The name of the parameter or environment variable that will contain the expression for matching the labels. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++

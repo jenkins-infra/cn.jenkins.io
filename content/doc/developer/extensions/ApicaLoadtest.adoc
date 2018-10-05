@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 在Apica Loadtest插件中定义的扩展点
+
+plugin:ApicaLoadtest[Apica Loadtest Plugin]
+
+## Loadtest环境
++jenkinsdoc:ApicaLoadtest:com.apica.apicaloadtest.environment.LoadtestEnvironment[]+
+
+_This extension point has no Javadoc documentation._
+
+**Implementations:**
+
+* plugin:ApicaLoadtest[Apica Loadtest插件]: com.+++<wbr/>+++apica.+++<wbr/>+++apicaloadtest.+++<wbr/>+++environment.+++<wbr/>+++**LoadtestProductionEnvironment** 
+* plugin:ApicaLoadtest[Apica Loadtest Plugin]: com.+++<wbr/>+++apica.+++<wbr/>+++apicaloadtest.+++<wbr/>+++environment.+++<wbr/>+++**LoadtestTrialEnvironment** 
+

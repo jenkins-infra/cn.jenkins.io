@@ -1,0 +1,66 @@
+---
+layout: pipelinesteps
+title: "AWS CodeBuild Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== AWS CodeBuild Plugin
+
+plugin:aws-codebuild[View this plugin on the Plugins Index]
+
+=== +awsCodeBuild+: Invoke an AWS CodeBuild build
+++++
+<ul><li><code>projectName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactLocationOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactNameOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactNamespaceOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactPackagingOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactPathOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>artifactTypeOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>awsAccessKey</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>awsSecretKey</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildSpecFile</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>buildTimeoutOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envParameters</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVariables</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>gitCloneDepthOverride</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxyHost</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>proxyPort</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>region</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceControlType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceVersion</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sseAlgorithm</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

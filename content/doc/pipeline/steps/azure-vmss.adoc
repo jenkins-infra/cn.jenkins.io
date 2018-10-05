@@ -1,0 +1,112 @@
+---
+layout: pipelinesteps
+title: "Azure Virtual Machine Scale Set Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Azure Virtual Machine Scale Set Plugin
+
+plugin:azure-vmss[View this plugin on the Plugins Index]
+
+=== +azureVMSSUpdate+: Update Azure Virtual Machine Scale Set
+++++
+<ul><li><code>azureCredentialsId</code>
+<div><div>
+  The Azure Service Principal credentials used to communicate with the Azure services. Check the following documentation for more information about the service principal: 
+ <ul> 
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal" rel="nofollow"> Use portal to create an Azure Active Directory application and service principal that can access resources </a></li> 
+ </ul> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceGroup</code>
+<div><div>
+  The resource group name that the Virtual Machine Scale Set is associated with. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<div><div>
+  The Azure Virtual Machine Scale Set name. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>imageReference</code>
+<ul><b>Nested Object</b>
+<li><code>id</code> (optional)
+<div><div> 
+ <p>Resource ID or VHD URI of the custom image.</p> 
+ <p>Example Resource ID: <code>/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.Compute/images/your-image-name</code></p> 
+ <p>Example VHD URI: <code>http://your-storage-account.blob.core.windows.net/vhds/your-disk-image.vhd</code></p> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>offer</code> (optional)
+<div><div>
+  Offer of the image. For example, UbuntuServer. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>publisher</code> (optional)
+<div><div>
+  Publisher of the image. For example, Canonical. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sku</code> (optional)
+<div><div>
+  SKU of the image. For example, 16.04-LTS. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code> (optional)
+<div><div>
+  Version of the image. For example, 16.04.201611150. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+
+
+++++
+=== +azureVMSSUpdateInstances+: Update Azure Virtual Machine Scale Set Instances
+++++
+<ul><li><code>azureCredentialsId</code>
+<div><div>
+  The Azure Service Principal credentials used to communicate with the Azure services. Check the following documentation for more information about the service principal: 
+ <ul> 
+  <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal" rel="nofollow"> Use portal to create an Azure Active Directory application and service principal that can access resources </a></li> 
+ </ul> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourceGroup</code>
+<div><div>
+  The resource group name that the Virtual Machine Scale Set is associated with. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>name</code>
+<div><div>
+  The Azure Virtual Machine Scale Set name. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>instanceIds</code>
+<div><div>
+  Instance IDs to be updated, separated by '
+ <code>,</code>'. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

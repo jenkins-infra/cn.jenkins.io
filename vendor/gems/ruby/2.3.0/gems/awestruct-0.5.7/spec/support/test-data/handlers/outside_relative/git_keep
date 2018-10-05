@@ -1,3 +1,0 @@
-Just here to keep the directory for git
-
-Used in tilt_handler_spec.rb to test relative_source_path nil handling

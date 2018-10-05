@@ -1,0 +1,30 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# Keychain和Provisioning Profiles管理插件中定义的扩展点
+
+plugin:kpp-management-plugin[Keychain和Provisioning Profiles管理插件]
+
+## KPP基础Keychain提供商
++jenkinsdoc:kpp-management-plugin:com.sic.plugins.kpp.provider.KPPBaseKeychainsProvider[]+
+
++++ An extension point for providing+++ jenkinsdoc:KPPKeychain[] +++.+++
+
+
+**Implementations:**
+
+* plugin:kpp-management-plugin[Keychain和Provisioning Profiles管理插件]: com.+++<wbr/>+++sic.+++<wbr/>+++plugins.+++<wbr/>+++kpp.+++<wbr/>+++provider.+++<wbr/>+++**KPPKeychainsProvider** (link:https://github.com/jenkinsci/kpp-management-plugin/search?q=KPPKeychainsProvider&type=Code[在GitHub上查看])
+
+
+## KPP基础Provisioning Profiles提供商
++jenkinsdoc:kpp-management-plugin:com.sic.plugins.kpp.provider.KPPBaseProvisioningProfilesProvider[]+
+
++++ An extension point for providing+++ jenkinsdoc:KPPProvisioningProfile[] ++++++
+
+
+**Implementations:**
+
+* plugin:kpp-management-plugin[Keychain和Provisioning Profiles管理插件]: com.+++<wbr/>+++sic.+++<wbr/>+++plugins.+++<wbr/>+++kpp.+++<wbr/>+++provider.+++<wbr/>+++**KPPProvisioningProfilesProvider** (link:https://github.com/jenkinsci/kpp-management-plugin/search?q=KPPProvisioningProfilesProvider&type=Code[在GitHub上查看])
+

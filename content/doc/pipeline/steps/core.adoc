@@ -1,0 +1,248 @@
+---
+layout: pipelinesteps
+title: "Core"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Core
+
+plugin:core[View this plugin on the Plugins Index]
+
+=== +archiveArtifacts+: Archive the artifacts
+++++
+<div><div>
+  Archives the build artifacts (for example, distribution zip files or jar files) so that they can be downloaded later. Archived files will be accessible from the Jenkins webpage. 
+ <br> Normally, Jenkins keeps artifacts for a build as long as a build log itself is kept, but if you don't need old artifacts and would rather save disk space, you can do so. 
+</div> 
+<br> 
+<div>
+  Note that the Maven job type automatically archives any produced Maven artifacts. Any artifacts configured here will be archived on top of that. Automatic artifact archiving can be disabled under the advanced Maven options. 
+</div></div>
+<ul><li><code>artifacts</code>
+<div><div>
+  You can use wildcards like 'module/dist/**/*.zip'. See 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the includes attribute of Ant fileset</a> for the exact format. The base directory is 
+ <a rel="nofollow">the workspace</a>. You can only archive files that are located in your workspace. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>allowEmptyArchive</code> (optional)
+<div><div>
+  Normally, a build fails if archiving returns zero artifacts. This option allows the archiving process to return nothing without failing the build. Instead, the build will simply throw a warning. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>caseSensitive</code> (optional)
+<div><div>
+  Artifact archiver uses Ant 
+ <code>org.apache.tools.ant.DirectoryScanner</code> which by default is case sensitive. For instance, if the job produces *.hpi files, pattern "**/*.HPI" will fail to find them.
+ <br>
+ <br> This option can be used to disable case sensitivity. When it's unchecked, pattern "**/*.HPI" will match any *.hpi files, or pattern "**/cAsEsEnSiTiVe.jar" will match a file called caseSensitive.jar. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>defaultExcludes</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>excludes</code> (optional)
+<div><div>
+  Optionally specify 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow">the 'excludes' pattern</a>, such as "foo/bar/**/*". A file that matches this mask will not be archived even if it matches the mask specified in 'files to archive' section. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fingerprint</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>onlyIfSuccessful</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+
+
+++++
+=== +fingerprint+: Record fingerprints of files to track usage
+++++
+<div><div>
+  Jenkins can record the 'fingerprint' of files (most often jar files) to keep track of where/when those files are produced and used. When you have inter-dependent projects on Jenkins, this allows you to quickly find out answers to questions like: 
+ <ul> 
+  <li> I have foo.jar on my HDD but which build number of FOO did it come from? </li> 
+  <li> My BAR project depends on foo.jar from the FOO project. </li> 
+  <li>
+   <ul> 
+    <li> Which build of foo.jar is used in BAR #51? </li> 
+    <li> Which build of BAR contains my bug fix to foo.jar #32? </li> 
+   </ul></li> 
+ </ul> 
+ <p> To use this feature, all of the involved projects (not just the project in which a file is produced, but also the projects in which the file is used) need to use this and record fingerprints. </p>
+ <p> See <a href="http://wiki.jenkins-ci.org/display/JENKINS/Fingerprint" rel="nofollow">this document</a> for more details. </p>
+</div></div>
+<ul><li><code>targets</code>
+<div><div>
+  Can use wildcards like 
+ <code>module/dist/**/*.zip</code> (see the 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow">@includes of Ant fileset</a> for the exact format). The base directory is 
+ <a rel="nofollow">the workspace</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +perfpublisher+: Activate PerfPublisher for this project
+++++
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>threshold</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>healthy</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>unhealthy</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>metrics</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +s3Upload+: Publish artifacts to S3 Bucket
+++++
+<ul><li><code>profileName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>entries</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>bucket</code>
+<div><div>
+ Destination bucket. It will be created if doesn't exist. Environment variable can be used, for example my-artifact-bucket/${JOB_NAME}-${BUILD_NUMBER}.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sourceFile</code>
+<div><div>
+  Files to be uploaded. This field follows 
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow">the Ant glob syntax</a>, such as **/build/test-reports/*.xml. The base directory is 
+ <a rel="nofollow">the workspace</a>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>excludedFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>storageClass</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>selectedRegion</code>
+<div><div>
+ Region location of the Bucket. By default plugin uses value provided by system property "hudson.plugins.s3.DEFAULT_AMAZON_S3_REGION"
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>noUploadOnFailure</code>
+<div><div>
+ If Enabled, the artifacts won't be published if the build failed.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>uploadFromSlave</code>
+<div><div>
+ Upload directly from the slave, instead of proxying the upload to the master.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>managedArtifacts</code>
+<div><div>
+  When enabled, this lets Jenkins fully manage the artifacts, exactly like it does when the artifacts are published to the master. 
+ <br> In this case, the artifacts are stored in the "jobs/[job]/[build-number]/" path in the selected bucket and prefix path. This means the following features are enabled: 
+ <ul> 
+  <li>artifacts are finger printed and linked to the build</li> 
+  <li>artifacts can be downloaded directly from the build page in the S3 Artifact section</li> 
+  <li>artifacts are automatically deleted when the build is deleted</li> 
+  <li>the <em>S3 Copy Artifact</em> build step can be used to download artifacts from S3 automatically, helping build complex pipelines</li> 
+ </ul> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>useServerSideEncryption</code>
+<div><div>
+ Use S3 AES-256 server side encryption support.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>flatten</code>
+<div><div>
+  When enabled, Jenkins will ignore the directory structure of the artifacts in the source project and copy all matching artifacts directly into the specified bucket. By default the artifacts are copied in the same directory structure as the source project. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>gzipFiles</code>
+<div><div>
+  When enabled, files will be compressed with GZIP and "Content-Encoding" header will be set to "gzip". 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keepForever</code>
+<div><div>
+  By default, artifacts will be cleaned up as part of job history rotation policy. If you want to keep artifacts after removing job history, you need to enable this option. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>showDirectlyInBrowser</code>
+<div><div>
+ If option is enabled, content of artifact would be displayed directly in browser. Otherwise, it would be attached and user could download it.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>userMetadata</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<div><div>
+  Metadata key for the files from this build. It will be prefixed by "x-amz-meta-" when uploaded to S3. Can contain macros (e.g. environment variables). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div><div>
+  Metadata value for the files from this build. Can contain macros (e.g. environment variables). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul></li>
+<li><code>userMetadata</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>key</code>
+<div><div>
+  Metadata key for the files from this build. It will be prefixed by "x-amz-meta-" when uploaded to S3. Can contain macros (e.g. environment variables). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>value</code>
+<div><div>
+  Metadata value for the files from this build. Can contain macros (e.g. environment variables). 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>dontWaitForConcurrentBuildCompletion</code>
+<div><div>
+  When disabled, only publish to S3 after completion of concurrent builds to prevent overriding published artifact. You can enable this to publish to S3 at the end of each concurrent build. Published artifact should then have a different name for each build to prevent unnecessary uploads. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>consoleLogLevel</code>
+<div><div>
+  Allows filtering log messages by level of severity: INFO, WARNING and SEVERE. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pluginFailureResultConstraint</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

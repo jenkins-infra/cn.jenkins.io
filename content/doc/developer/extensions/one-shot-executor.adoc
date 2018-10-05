@@ -1,0 +1,19 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 一次执行插件中定义的扩展点
+
+plugin:one-shot-executor[一次执行插件]
+
+## 一次性提供者
++jenkinsdoc:one-shot-executor:org.jenkinsci.plugins.oneshot.OneShotProvisioner[]+
+
++++ This provisioner is responsible to create $+++ jenkinsdoc:OneShotSlave[] +++s.+++ +++ Plugins to manage lightweight agents can use this extension point to determine jobs which require.+++
+
+
+**Implementations:**
+
+_(no known implementations)_
+

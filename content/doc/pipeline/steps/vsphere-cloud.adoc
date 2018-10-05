@@ -1,0 +1,432 @@
+---
+layout: pipelinesteps
+title: "vSphere Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== vSphere Plugin
+
+plugin:vsphere-cloud[View this plugin on the Plugins Index]
+
+=== +vSphere+: Invoke an vSphere action, exposing the VM IP under some actions
+++++
+<div><div>
+  Execute vCenter actions. Reusing vSphereBuildStep forms, cut properly exposing VSPHERE_IP for PowerOn, Deploy and Clone options. 
+</div></div>
+<ul><li><code>buildStep</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>$class: 'Clone'</code></li>
+<ul><li><code>sourceName</code>
+<div><div>
+  The name of the vSphere VM or template to clone. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clone</code>
+<div><div>
+  The name of the cloned VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>linkedClone</code>
+<div><div>
+  Linked clones will re-use any read-only disk backings (like snapshots) and create new children for your clone. This will drastically save time, but the disk backings will be shared. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>resourcePool</code>
+<div><div>
+  The Resource Pool to be used by the VM. Leave it blank to use the same resource pool as the source VM. Must be specified if source VM is a template. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cluster</code>
+<div><div>
+  The vCenter cluster to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>datastore</code>
+<div><div>
+  The data store to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>folder</code>
+<div><div>
+  (Optional) VSphere folder path or unique folder name where VM is going to be created. 
+ <br> If blank, it will be created in the same folder as the original VM. 
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>powerOn</code>
+<div><div>
+  Specifies whether or not the new VirtualMachine should be powered on after creation. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>timeoutInSeconds</code>
+<div><div>
+  The length of time, in seconds, to wait for the new VirtualMachine to be assigned an IP address after it has been powered on. If this value is zero, no attempt will be made to determine the IP address. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>customizationSpec</code>
+<div><div>
+  The customization specification name, as defined under 'Policies and Profiles' 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ConvertToTemplate'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to be converted to a template. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<div><div>
+  Check this if you want to force the conversion in the case where the VM is not already powered down. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ConvertToVm'</code></li>
+<ul><li><code>template</code>
+<div><div>
+  The name of the template to be converted to a Virtual Machine. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>resourcePool</code>
+<div><div>
+  The Resource Pool to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cluster</code>
+<div><div>
+  The vCenter cluster to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'Delete'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to be destroyed. This is a destructive operation that cannot be undone! 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnNoExist</code>
+<div><div>
+  If the VM you are trying to delete doesnt exist, fail this build step. Sometimes, the job doesnt care if deletion was successful and only wants it gone---if this is the case, leave unchecked. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'DeleteSnapshot'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>snapshotName</code>
+<div><div>
+  The name of the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>consolidate</code>
+<div><div>
+  Consolidate all redundant redo logs for this VM? 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnNoExist</code>
+<div><div>
+  If the snapshot you are trying to delete doesnt exist, fail this build step. Sometimes, the job doesnt care if deletion was successful and only wants it gone---if this is the case, leave unchecked. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'Deploy'</code></li>
+<ul><li><code>template</code>
+<div><div>
+  The name of the vSphere template to clone. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clone</code>
+<div><div>
+  The name of the cloned VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>linkedClone</code>
+<div><div>
+  Linked clones will re-use any read-only disk backings (like snapshots) and create new children for your clone. This will drastically save time, but the disk backings will be shared. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>resourcePool</code>
+<div><div>
+  The Resource Pool to be used by the VM. If no resource pool is being used, then leave blank. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cluster</code>
+<div><div>
+  The vCenter cluster to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>datastore</code>
+<div><div>
+  The data store to be used by the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>folder</code>
+<div><div>
+  (Optional) VSphere folder path or unique folder name where VM is going to be created. 
+ <br> If blank, it will be created in the same folder as the original VM. 
+ <br> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>customizationSpec</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeoutInSeconds</code>
+<div><div>
+  The length of time, in seconds, to wait for the new VirtualMachine to be assigned an IP address after it has been powered on. If this value is zero, no attempt will be made to determine the IP address. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>powerOn</code>
+<div><div>
+  Specifies whether or not the new VirtualMachine should be powered on after creation. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'ExposeGuestInfo'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to expose guest info for.
+ <br> Variables IpAddress, Hostname, ToolsStatus, ToolsRunningStatus, ToolsVersion, ToolsVersionStatus, GuestState, GuestId, GuestFamily, GuestFullName, AppHeartbeatStatus, GuestOperationsReady, InteractiveGuestOperationsReady are exposed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>envVariablePrefix</code>
+<div><div>
+  Prefix for guest info environmental variables. E.g. for prefix VM1, variables would be VM1_IpAddress, VM1_HostName etc. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>waitForIp4</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'PowerOff'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to shut down. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>evenIfSuspended</code>
+<div><div>
+  If the VM is currently suspended, it will still be shutdown. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>shutdownGracefully</code>
+<div><div>
+  If the VM is powered on and VMware Tools is runing, a gracefully shutdown will be attempted by performing a Guest Shutdown. If the VM is still running after 3 minutes, a hard power off will be performed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>ignoreIfNotExists</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul><li><code>$class: 'PowerOn'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to power on. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeoutInSeconds</code>
+<div><div>
+  The maximum number of seconds to wait for the IP. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul><li><code>$class: 'Reconfigure'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM or template to reconfigure. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>reconfigureSteps</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>$class: 'ReconfigureCpu'</code></li>
+<ul><li><code>cpuCores</code>
+<div><div>
+  The number of CPU Cores. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>coresPerSocket</code>
+<div><div>
+  The number of CPU Cores per Socket. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ReconfigureDisk'</code></li>
+<ul><li><code>diskSize</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>datastore</code>
+<div><div>
+  The data store to be used by the disk. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ReconfigureMemory'</code></li>
+<ul><li><code>memorySize</code>
+<div><div>
+  The amount of memory (RAM) in megabytes. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'ReconfigureNetworkAdapters'</code></li>
+<ul><li><code>deviceAction</code>
+<ul><li><b>Values:</b> <code>ADD</code>, <code>EDIT</code>, <code>REMOVE</code></li></ul></li>
+<li><code>deviceLabel</code>
+<div><div>
+  The name of the network device, such as "Network adapter 1". If blank, the first network adapter will be used. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>macAddress</code>
+<div><div>
+  The new MAC address for this network adapter. Leave blank to keep existing or default value. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>standardSwitch</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>portGroup</code>
+<div><div>
+  The name of the network port group to use. Leave blank to keep existing or default value. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>distributedSwitch</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>distributedPortGroup</code>
+<div><div>
+  Specifies the Distributed Switch Port Group. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>distributedPortId</code>
+<div><div>
+  Port Id to be used from the specified Distributed Switch Port Group. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul><li><code>$class: 'Rename'</code></li>
+<ul><li><code>oldName</code>
+<div><div>
+  The old name of the VM or template to be renamed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>newName</code>
+<div><div>
+  The new name of the VM or template. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'RenameSnapshot'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM or template. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>oldName</code>
+<div><div>
+  The old name of the snapshot to be renamed. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>newName</code>
+<div><div>
+  The new name of the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>newDescription</code>
+<div><div>
+  The new description of the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'RevertToSnapshot'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>snapshotName</code>
+<div><div>
+  The name of the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'SuspendVm'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM to suspend. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>$class: 'TakeSnapshot'</code></li>
+<ul><li><code>vm</code>
+<div><div>
+  The name of the VM you'd like to take a snapshot of. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>snapshotName</code>
+<div><div>
+  The name of the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code>
+<div><div>
+  The description to be saved with the snapshot. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>includeMemory</code>
+<div><div>
+  Would you like to save the active memory in the snapshot? 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul></ul></li>
+<li><code>serverName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

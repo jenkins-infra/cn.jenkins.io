@@ -1,0 +1,33 @@
+---
+layout: developerextension
+uneditable: true
+---
+:toc:
+# 作业和节点所有权插件中定义的扩展点
+
+plugin:ownership[作业和节点所有权插件]
+
+## 作业和节点所有权插件
++jenkinsdoc:ownership:com.synopsys.arc.jenkins.plugins.ownership.extensions.ItemOwnershipPolicy[]+
+
++++ Implements an ownership changes policy for+++ jenkinsdoc:Item[] +++s. +++ +++ This policy defines actions to be implemented if specific changes in jobs occur.+++
+
+
+**Implementations:**
+
+* plugin:ownership[作业和节点所有权插件]: com.+++<wbr/>+++synopsys.+++<wbr/>+++arc.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++extensions.+++<wbr/>+++item_ownership_policy.+++<wbr/>+++**AssignCreatorPolicy** (link:https://github.com/jenkinsci/ownership-plugin/search?q=AssignCreatorPolicy&type=Code[在GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: com.+++<wbr/>+++synopsys.+++<wbr/>+++arc.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++extensions.+++<wbr/>+++item_ownership_policy.+++<wbr/>+++**DropOwnershipPolicy** (link:https://github.com/jenkinsci/ownership-plugin/search?q=DropOwnershipPolicy&type=Code[在GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++config.+++<wbr/>+++**PreserveOwnershipPolicy** (link:https://github.com/jenkinsci/ownership-plugin/search?q=PreserveOwnershipPolicy&type=Code[在GitHub上查看])
+
+
+## 所有权助手定位器
++jenkinsdoc:ownership:org.jenkinsci.plugins.ownership.model.OwnershipHelperLocator[]+
+
++++ Extension point, which allows to identify+++ jenkinsdoc:IOwnershipHelper[] +++for particular classes.+++
+
+
+**Implementations:**
+
+* plugin:ownership[作业和节点所有权插件]: org.+++<wbr/>+++jenkinsci.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++model.+++<wbr/>+++folders.+++<wbr/>+++**FolderOwnershipHelper.+++<wbr/>+++LocatorImpl** (link:https://github.com/jenkinsci/ownership-plugin/search?q=FolderOwnershipHelper.LocatorImpl&type=Code[在GitHub上查看])
+* plugin:ownership[Job and Node ownership Plugin]: com.+++<wbr/>+++synopsys.+++<wbr/>+++arc.+++<wbr/>+++jenkins.+++<wbr/>+++plugins.+++<wbr/>+++ownership.+++<wbr/>+++jobs.+++<wbr/>+++**JobOwnerHelper.+++<wbr/>+++LocatorImpl** (link:https://github.com/jenkinsci/ownership-plugin/search?q=JobOwnerHelper.LocatorImpl&type=Code[在GitHub上查看])
+

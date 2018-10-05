@@ -1,0 +1,582 @@
+---
+layout: pipelinesteps
+title: "JIRA Pipeline Steps"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== JIRA Pipeline Steps
+
+plugin:jira-steps[View this plugin on the Plugins Index]
+
+=== +jiraAddComment+: JIRA Steps: Add Comment
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>comment</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraAddWatcher+: JIRA Steps: Add Watcher
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>userName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraAssignIssue+: JIRA Steps: Assign Issue
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>userName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraAssignableUserSearch+: JIRA Steps: Searches assignable JIRA Users by username, name or email address for the given project/issueKey
+++++
+<ul><li><code>project</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>issueKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>maxResults</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>queryStr</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>startAt</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraDeleteIssueLink+: JIRA Steps: Delete IssueLink
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraDeleteIssueRemoteLink+: JIRA Steps: Delete Issue's Remote Link by linkId.
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>linkId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraDeleteIssueRemoteLinks+: JIRA Steps: Delete Issue's Remote Links by globalId.
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>globalId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraEditComment+: JIRA Steps: Edit Issue Comment
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commentId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>comment</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraEditComponent+: JIRA Steps: Edit Component
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>component</code>
+
+
+
+++++
+=== +jiraEditIssue+: JIRA Steps: Edit Issue
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>issue</code>
+
+
+
+++++
+=== +jiraEditVersion+: JIRA Steps: Edit Version
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>version</code>
+
+
+
+++++
+=== +jiraGetComment+: JIRA Steps: Get Issue Comment
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>commentId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetComments+: JIRA Steps: Get Issue Comments
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetComponent+: JIRA Steps: Get Component
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetComponentIssueCount+: JIRA Steps: Get Component Issue Count
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetFields+: JIRA Steps: Get Fields
+++++
+<ul><li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssue+: JIRA Steps: Get Issue
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueLink+: JIRA Steps: Get IssueLink
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueLinkTypes+: JIRA Steps: Get Issue Link Types
+++++
+<ul><li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueRemoteLink+: JIRA Steps: Get Issue's Remote Link by linkId.
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>linkId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueRemoteLinks+: JIRA Steps: Get Issue's Remote Links by globalId.
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>globalId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueTransitions+: JIRA Steps: Get Issue Transitions
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetIssueWatches+: JIRA Steps: Get Issue Watches
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetProject+: JIRA Steps: Get Project
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetProjectComponents+: JIRA Steps: Get Project Components
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetProjectStatuses+: JIRA Steps: Get Project Statuses
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetProjectVersions+: JIRA Steps: Get Project Versions
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetProjects+: JIRA Steps: Get Projects
+++++
+<ul><li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraGetVersion+: JIRA Steps: Get Version
+++++
+<ul><li><code>id</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraJqlSearch+: JIRA Steps: JQL Search
+++++
+<ul><li><code>jql</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>maxResults</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>startAt</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraLinkIssues+: JIRA Steps: Link Issues
+++++
+<ul><li><code>type</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>inwardKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>outwardKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>comment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraNewComponent+: JIRA Steps: Create New Component
+++++
+<ul><li><code>component</code>
+
+
+
+++++
+=== +jiraNewIssue+: JIRA Steps: Create New Issue
+++++
+<ul><li><code>issue</code>
+<ul><b>Nested Object</b>
+<li><code>update</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+<li><code>fields</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+</ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraNewIssueRemoteLink+: JIRA Steps: Create new remote link for given issue.
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>remoteLink</code>
+
+
+
+++++
+=== +jiraNewIssues+: JIRA Steps: Create New Issues
+++++
+<ul><li><code>issues</code>
+<ul><b>Nested Object</b>
+<li><code>issueUpdates</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>update</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+<li><code>fields</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+</ul></li>
+<li><code>issues</code>
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>update</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+<li><code>fields</code>
+<ul><code>java.lang.Object></code>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +jiraNewVersion+: JIRA Steps: Create New Version
+++++
+<ul><li><code>version</code>
+
+
+
+++++
+=== +jiraNotifyIssue+: JIRA Steps: Notify Issue
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>notify</code>
+
+
+
+++++
+=== +jiraTransitionIssue+: JIRA Steps: Transition Issue
+++++
+<ul><li><code>idOrKey</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>input</code>
+
+
+
+++++
+=== +jiraUserSearch+: JIRA Steps: Search Active JIRA Users by username, name or email address.
+++++
+<ul><li><code>queryStr</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>auditLog</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>failOnError</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>maxResults</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>site</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>startAt</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

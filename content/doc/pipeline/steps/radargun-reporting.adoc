@@ -1,0 +1,22 @@
+---
+layout: pipelinesteps
+title: "RadarGun Reporting Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== RadarGun Reporting Plugin
+
+plugin:radargun-reporting[View this plugin on the Plugins Index]
+
+=== +radargunreporting+: Report RadarGun Performance Test
+++++
+<ul></ul>
+
+
+++++

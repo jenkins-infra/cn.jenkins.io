@@ -1,0 +1,71 @@
+---
+layout: pipelinesteps
+title: "Puppet Enterprise Pipeline"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Puppet Enterprise Pipeline
+
+plugin:puppet-enterprise-pipeline[View this plugin on the Plugins Index]
+
+=== +puppetCode+: Deploy Puppet Environment Code
+++++
+<div><div> 
+ <p> Puppet Enterprise code deployment step. This instructs Puppet Enterprise's code management to pull and deploy new Puppet environment code. </p> 
+</div></div>
+<ul><li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environments</code> (optional)
+<ul><code>java.util.ArrayList</code>
+</ul></li>
+</ul>
+
+
+++++
+=== +puppetHiera+: Set Hiera data.
+++++
+<ul>
+
+
+++++
+=== +puppetJob+: Create Puppet Orchestrator Job
+++++
+<ul><li><code>application</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>concurrency</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environment</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>nodes</code> (optional)
+<ul><code>java.util.ArrayList</code>
+</ul></li>
+<li><code>noop</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>query</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>target</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +puppetQuery+: Query PuppetDB with the Puppet Query Language (PQL)
+++++
+<ul><li><code>credentialsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>query</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

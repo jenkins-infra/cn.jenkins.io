@@ -1,0 +1,30 @@
+---
+layout: pipelinesteps
+title: "Pipeline: Stage Step"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Pipeline: Stage Step
+
+plugin:pipeline-stage-step[View this plugin on the Plugins Index]
+
+=== +stage+: Stage
+++++
+<div><div>
+  Creates a labeled block. 
+ <p> An older, deprecated mode of this step did not take a block argument, and accepted a <code>concurrency</code> parameter. </p>
+</div></div>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>concurrency</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+
+
+++++

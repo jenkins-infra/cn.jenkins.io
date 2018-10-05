@@ -1,0 +1,56 @@
+---
+layout: pipelinesteps
+title: "Codebeamer xUnit Importer Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Codebeamer xUnit Importer Plugin
+
+plugin:codebeamer-xunit-importer[View this plugin on the Plugins Index]
+
+=== +xUnitImporter+: Codebeamer xUnit Importer
+++++
+<ul><li><code>uri</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testSetTrackerId</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>testCaseTrackerId</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>testRunTrackerId</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>testConfigurationId</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>bugTrackerId</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>build</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>excludedPackages</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>includedPackages</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>numberOfBugsToReport</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>releaseId</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>requirementDepth</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>requirementParentId</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>requirementTrackerId</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>testCaseParentId</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>truncatePackageTree</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++

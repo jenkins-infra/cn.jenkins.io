@@ -1,0 +1,123 @@
+---
+layout: pipelinesteps
+title: "Android Signing Plugin"
+---
+
+:notitle:
+:description:
+:author:
+:email: jenkinsci-users@googlegroups.com
+:sectanchors:
+:toc: left
+
+== Android Signing Plugin
+
+plugin:android-signing[View this plugin on the Plugins Index]
+
+=== +signAndroidApks+: Sign Android APKs
+++++
+<ul><li><code>androidHome</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apksToSign</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveSignedApks</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiveUnsignedApks</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keyAlias</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>keyStoreId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>signedApkMapping</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>unsignedApkNameDir</code></li>
+<ul></ul><li><code>unsignedApkSibling</code></li>
+<ul></ul></ul></li>
+<li><code>skipZipalign</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>zipalignPath</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
+=== +signAndroidApks+: Sign Android APKs
+++++
+<ul><li><code>androidHome</code> (optional)
+<div><div>
+  Override the path of the Android SDK installation this build step should 
+ <a href="https://github.com/jenkinsci/android-signing-plugin#usage" rel="nofollow">use to find</a> the 
+ <code><a href="https://developer.android.com/studio/command-line/zipalign.html" rel="nofollow">zipalign</a></code> tool. You can also set the 
+ <code>ANDROID_HOME</code> environment variable in your Jenkins system or node configuration. E.g., 
+ <code>/usr/local/android-sdk</code>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>apksToSign</code> (optional)
+<div><div>
+  An 
+ <a href="https://ant.apache.org/manual/dirtasks.html" rel="nofollow">Ant-style glob</a>, or multiple comma-separated globs, selecting the APK files relative to the workspace. For example, 
+ <code>myApp/build/outputs/apk/myApp-unsigned.apk</code> or 
+ <code>**/*-unsigned.apk</code> or 
+ <code>app1/**/*-unsigned.apk, app2/**/*-unsigned.apk</code>. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveSignedApks</code> (optional)
+<div><div>
+  Check this option to add all signed APKs this build step 
+ <a href="https://github.com/jenkinsci/android-signing-plugin#usage" rel="nofollow">generates</a> to the build's archived artifacts. If you don't want this step to archive the signed APK artifacts, downstream build steps can access signed APKs in the workspace at paths like 
+ <code>SignApksBuilder-out/myApp-unsigned.apk/myApp-signed.apk</code>, where 
+ <code>myApp-unsigned.apk</code> is a directory named for the input unsigned APK. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archiveUnsignedApks</code> (optional)
+<div><div>
+  Check this option to add all input unsigned APKs to the build's archived artifacts. These will be the APK files selected with glob pattern(s) of the 
+ <i>APKs to Sign</i> setting. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>keyAlias</code> (optional)
+<div><div>
+  The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store credentials the 
+ <code>Key Store ID</code> references. If your key store contains only one key entry, which is the most common case, you can leave this field blank. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>keyStoreId</code> (optional)
+<div><div>
+  The ID of a 
+ <a href="https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin" rel="nofollow">certificate credential</a>. This build step expects the referenced certificate credential to be a password-protected PKCS12 file containing a key protected by the same password. See 
+ <a href="https://github.com/jenkinsci/android-signing-plugin/blob/master/src/test/resources/create_key_store.sh" rel="nofollow">this plugin's script</a> if you need help creating such a key store to add to Jenkins, or 
+ <a href="https://www.google.com/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#q=convert+android+release+keystore+to+pkcs12&amp;*" rel="nofollow">Google</a> how to convert your Android release key to a PKCS12 file. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>signedApkMapping</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+<li><code>unsignedApkNameDir</code></li>
+<ul></ul><li><code>unsignedApkSibling</code></li>
+<ul></ul></ul></li>
+<li><code>skipZipalign</code> (optional)
+<div><div>
+  Skip the 
+ <a href="https://developer.android.com/studio/command-line/zipalign.html" rel="nofollow">Zipalign</a> step of signing the APK(s). This is primarily for the case of signing debug APKs, for which the zipalign command fails. 
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>zipalignPath</code> (optional)
+<div><div>
+  Override the full path of the Android 
+ <code><a href="https://developer.android.com/studio/command-line/zipalign.html" rel="nofollow">zipalign</a></code> executable this build step should 
+ <a href="https://github.com/jenkinsci/android-signing-plugin#usage" rel="nofollow">use to align</a> the target APKs. You can also set the 
+ <code>ANDROID_ZIPALIGN</code> environment variable in your Jenkins system or node configuration. E.g., 
+ <code>/opt/android-tools/bin/zipalign</code> 
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+
+
+++++
