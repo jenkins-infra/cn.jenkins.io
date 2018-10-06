@@ -74,7 +74,7 @@ Jenkins 项目分布在 Github 上的几个组织（jenkinsci、jenkins-x、jenk
   link:https://github.com/jenkinsci/docker[Jenkins Master]，
   link:https://github.com/jenkinsci/docker-jnlp-slave[代理]，以及其他组件
 
-| link:link:/sigs/chinese-localization/[中文本地化 SIG]
+| link:/sigs/chinese-localization/[中文本地化 SIG]
 | 给新的 link:https://github.com/jenkins-infra/cn.jenkins.io[网站] 以及
   link:https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文本地化插件]做贡献。
 
