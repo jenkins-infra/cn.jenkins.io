@@ -11,14 +11,14 @@ author: oleg_nenashev
 
 又到了十月。这意味着 link:https://hacktoberfest.digitalocean.com[Hacktoberfest] 活动的回归！今年已经是第五期。为期一个月的黑客马拉松中，您可以支持开源并赢得一件限量版礼品。
 
-我们邀请您以 Jenkins 项目的名义参与到 Hacktoberfest。我们欢迎所有的贡献者，不论背景以及 Jenkins 的相关经验。
+我们代表 Jenkins 项目邀请您参加 Hacktoberfest 活动并为之做出贡献。不论背景和 Jenkins 经验，我们欢迎所有的贡献者参与其中。
 
 image::/images/post-images/2018-hacktoberfest/social-card.png[Hacktoberfest, role=center]
 
 
 == 给 Jenkins 做贡献
 
-在 Hacktoberfest 期间有很多途径给 Jenkins link:https://jenkins.io/participate/[贡献]。通常来说，Github 中到任意 PR 都是可以的。您可以：
+在 Hacktoberfest 期间可以通过多种途径给 Jenkins link:https://jenkins.io/participate/[贡献]。一般来说，在  GitHub 发起的任意类型 PR 都符合条件。您可以：
 
 * **编码** - 贡献代码或自动化测试
 ** Jenkins 项目代码库包括很多编程语言，大部分为：Java、Groovy 和 JavaScript 以及 Go。
