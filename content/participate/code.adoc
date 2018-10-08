@@ -11,14 +11,14 @@ section: participate
 
 查看贡献者的这些现有资源：
 
-* link:https://wiki.jenkins-ci.org/display/JENKINS/Beginners+Guide+to+Contributing#BeginnersGuidetoContributing-Areyouinterestedinwritingcode%3F[初学者贡献指南].
+* link:https://wiki.jenkins-ci.org/display/JENKINS/Beginners+Guide+to+Contributing#BeginnersGuidetoContributing-Areyouinterestedinwritingcode%3F[初学者贡献指南]
 * https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins[托管和发布插件的完整指南]
-* https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial[插件教程将帮助您开始使用Jenkins插件开发]
-* https://wiki.jenkins-ci.org/display/JENKINS/Adopt+a+Plugin[使用插件]
-* https://wiki.jenkins-ci.org/display/JENKINS/Before+starting+a+new+plugin[创建新插件之前的建议]
-* https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[我们如何处理对插件存储库的拉取请求]
-* 查看 GitHub 上的 https://github.com/jenkinsci[jenkinsci] 组织，了解插件和其他组件。
-* link:https://issues.jenkins-ci.org/issues/?jql=labels+%3D+newbie-friendly[用Jira查询我们认为对初学者友好的问题]
+* https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial[插件教程将帮助您开始使用 Jenkins 插件开发]
+* https://wiki.jenkins-ci.org/display/JENKINS/Adopt+a+Plugin[维护已有的插件]
+* https://wiki.jenkins-ci.org/display/JENKINS/Before+starting+a+new+plugin[开始一个新插件之前的建议]
+* https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[我们如何处理对插件存储库的 PR 请求]
+* 查看 GitHub 上的 https://github.com/jenkinsci[jenkinsci] 组织，了解插件和其他组件
+* link:https://issues.jenkins-ci.org/issues/?jql=labels+%3D+newbie-friendly[用 Jira 查询我们认为对初学者友好的问题]
 
 ////
 
