@@ -26,13 +26,13 @@ cn-run: prepare scripts/awestruct
 generate: site pdfs
 
 site: scripts/awestruct
-	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG)
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG)
 
 cn-site: scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG)
 
 user-site: prepare scripts/awestruct
-	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
 	./scripts/user-site-deploy.sh $(BRANCH)
 	@echo SUCCESS: Published to $(USER_SITE_URL)index.html
 
