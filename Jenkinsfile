@@ -1,10 +1,18 @@
 #!/usr/bin/env groovy
 
+@Library('pipeline-library@master') _
+
 /* Only keep the 10 most recent builds. */
 def projectProperties = [
     [$class: 'BuildDiscarderProperty',strategy: [$class: 'LogRotator', numToKeepStr: '5']],
 ]
-def imageName = 'jenkinsciinfra/jenkinsio'
+
+def profile = 'cn-site'
+
+if (infra.isTrusted()) {
+  profile = 'jenkinsio-cn'
+}
+
 
 if (!env.CHANGE_ID) {
     if (env.BRANCH_NAME == null) {
@@ -54,7 +62,7 @@ try {
             * something is very wrong
             */
                 try {
-                 sh '''#!/usr/bin/env bash
+                 sh """#!/usr/bin/env bash
                     set -o errexit
                     set -o nounset
                     set -o pipefail
@@ -64,34 +72,22 @@ try {
                     chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                    make cn-site
+                    make $profile
                     make pdfs
                     make archive
                     
-                    illegal_htaccess_content="$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
-                    if [[ -n "$illegal_htaccess_content" ]] ; then
+                    illegal_htaccess_content="\$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
+                    if [[ -n "\$illegal_htaccess_content" ]] ; then
                         echo "Failing build due to illegal content in .htaccess files, only ErrorDocument is allowed:" >&2
-                        echo "$illegal_htaccess_content" >&2
+                        echo "\$illegal_htaccess_content" >&2
                         exit 1
                     fi
-                    '''                
+                    """
             } catch (Exception e) {
                 sh '''
                    cat ./content/_data/_generated/update_center.yml
                    cat ./content/.awestruct/error.log
                 '''
-            }
-        }
-
-        def container
-        stage('Build docker image'){
-            timestamps {
-                dir('docker'){
-                    /* Only update docker tag when docker files change*/
-                    def imageTag = sh(script: 'tar cf - docker | md5sum', returnStdout: true).take(6)
-                    echo "Creating the container ${imageName}:${imageTag}"
-                    container = docker.build("${imageName}:${imageTag}")
-                }
             }
         }
 
@@ -105,17 +101,12 @@ try {
 
         /* The Jenkins which deploys doesn't use multibranch or GitHub Org Folders
         */
-        if (env.BRANCH_NAME == null) {
+        if (infra.isTrusted()) {
             stage('Publish on Azure') {
                 /* -> https://github.com/Azure/blobxfer
                 Require credential 'BLOBXFER_STORAGEACCOUNTKEY' set to the storage account key */
                 withCredentials([string(credentialsId: 'BLOBXFER_STORAGEACCOUNTKEY', variable: 'BLOBXFER_STORAGEACCOUNTKEY')]) {
-                    sh './scripts/blobxfer upload --local-path /data/_site --storage-account-key $BLOBXFER_STORAGEACCOUNTKEY --storage-account prodjenkinsio --remote-path jenkinsio --recursive --mode file --skip-on-md5-match --file-md5'
-                }
-            }
-            stage('Publish docker image') {
-                infra.withDockerCredentials {
-                    timestamps { container.push() }
+                    sh './scripts/blobxfer upload --local-path /data/_site --storage-account-key $BLOBXFER_STORAGEACCOUNTKEY --storage-account prodjenkinsio --remote-path cnjenkinsio --recursive --mode file --skip-on-md5-match --file-md5'
                 }
             }
         }

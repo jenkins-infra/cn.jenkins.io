@@ -31,6 +31,9 @@ site: scripts/awestruct
 cn-site: scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG)
 
+jenkinsio-cn: scripts/awestruct
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P jenkinsio-cn --verbose $(AWESTRUCT_CONFIG)
+
 user-site: prepare scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
 	./scripts/user-site-deploy.sh $(BRANCH)
