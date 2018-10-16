@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Google Summer of Code"
+title: "Google 编程夏令营"
 section: projects
 tags:
 - gsoc
@@ -8,77 +8,64 @@ tags:
 
 image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=right]
 
-link:https://developers.google.com/open-source/gsoc/[Google Summer of Code]
-(GSoC) is an annual, international, program which encourages
-college-aged students to participate with open source projects during the summer
-break between classes. 
+link:https://developers.google.com/open-source/gsoc/[Google Summer of Code] (GSoC) Google 编程夏令营项目是一个年度性的全球化活动，该项目旨在鼓励高校学生在暑假期间参与到开源项目中来。
 
-Students accepted into the program receive a stipend,
-paid by Google, to work well-defined projects to improve or enhance the Jenkins
-project. 
-In exchange, numerous Jenkins community members volunteer as "mentors"
-for students to help integrate them into the open source community and succeed
-in completing their summer projects.
+通过审核的学生会收到由 Google 提供的带薪工作，参与到设计好的项目中以改进或提升 Jenkins 项目。作为回报，数名 Jenkins 社区成员会志愿作为学生“导师”来帮助他们融入开源社区并成功完成他们的夏令营项目。
 
 == GSoC 2018
 
-Jenkins project participates in Google Summer of Code 2018.
+Jenkins 项目参加了 Google Summer of Code 2018。
 
-* link:https://summerofcode.withgoogle.com/organizations/5572716199936000/[Jenkins page on GSoC website]
-* link:/projects/gsoc/students[Information for students]
-* link:/projects/gsoc/mentors[Information for mentors]
+* link:https://summerofcode.withgoogle.com/organizations/5572716199936000/[GSoC网站上的 Jenkins 主页]
+* link:/projects/gsoc/students[学生信息]
+* link:/projects/gsoc/mentors[导师信息]
 * link:/projects/gsoc/gsoc2018-project-ideas[GSoC 2018 Project ideas]
-* link:/blog/2018/01/06/gsoc2018-call-for-mentors[Call for Mentors]
+* link:/blog/2018/01/06/gsoc2018-call-for-mentors[导师征集]
 
-=== Timeline
+=== 时间线
 
-See link:https://developers.google.com/open-source/gsoc/timeline[GSoC Timeline].
+参考 link:https://developers.google.com/open-source/gsoc/timeline[GSoC Timeline] 。
 
-**Current state**: students and mentors discuss project ideas.
-We are ready to accept new project ideas from mentors till **March 05**.
-Student application phase starts on **March 12**.
+**当前状态**: 学生与导师讨论项目主题。
+我们在 **March 05** 之前接收导师提交的新项目主题。
+学生应用阶段开始于 **March 12** 。
 
-=== Contacts
+=== 联络
 
-* Public mailing list: link:https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public[jenkinsci-gsoc-all-public@googlegroups.com]
-* Jenkins Org Admins mailing list: jenkinsci-gsoc-orgs@googlegroups.com
-* Chats: standard channels on Freenode IRC network (link:/chat/[more info])
-** `#jenkins` for technical topics
-** `#jenkins-community` for organizational ones
+* 公共邮件列表： link:https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public[jenkinsci-gsoc-all-public@googlegroups.com]
+* Jenkins 组织管理邮件列表：jenkinsci-gsoc-orgs@googlegroups.com
+* 聊天：Freenode IRC 网络上的标准频道 (link:/chat/[更多信息])
+** `#jenkins` 用于技术性话题
+** `#jenkins-community` 用于组织相关话题
 
-=== Office hours
+=== 工作时间
 
-Although we use mailing lists as the main communication channel,
-we also define regular timeslots aka "office hours".
-During these timeslots Jenkins GSoC admins and mentors will be also available
-in Google Hangouts (https://jenkins.io/hangout[link]) and in the link:/chat[#jenkins IRC channel].
+虽然我们使用邮件列表作为主要的沟通渠道，但也定义了规范的时间窗口，或者叫“工作时间”。在这些时间窗口内 Jenkins GSoC 管理员和导师都可以通过 Google Hangouts (https://jenkins.io/hangout[链接]) 和 link:/chat[#jenkins IRC 频道] 联络到。
 
-Schedule:
+进度表：
 
 * APAC/Europe: Every Wednesday, 08:00-09:00 AM UTC
-** link:https://calendar.google.com/event?action=TEMPLATE&tmeid=MHBmazVubGc3MTN1N3VtMXI0cGV1dnJibXJfMjAxODAyMjhUMDgwMDAwWiBvLnYubmVuYXNoZXZAbQ&tmsrc=o.v.nenashev%40gmail.com&scp=ALL[Add to your calendar]
+** link:https://calendar.google.com/event?action=TEMPLATE&tmeid=MHBmazVubGc3MTN1N3VtMXI0cGV1dnJibXJfMjAxODAyMjhUMDgwMDAwWiBvLnYubmVuYXNoZXZAbQ&tmsrc=o.v.nenashev%40gmail.com&scp=ALL[添加到日历]
 * Americas/Europe: Every Wednesday, 07:30-09:00 PM UTC
-** link:https://calendar.google.com/event?action=TEMPLATE&tmeid=M2FrZjhjOTM3Y2diajhlOWg5YnE5YmcwbmJfMjAxODAzMDdUMTkzMDAwWiBvLnYubmVuYXNoZXZAbQ&tmsrc=o.v.nenashev%40gmail.com&scp=ALL[Add to your calendar]
+** link:https://calendar.google.com/event?action=TEMPLATE&tmeid=M2FrZjhjOTM3Y2diajhlOWg5YnE5YmcwbmJfMjAxODAzMDdUMTkzMDAwWiBvLnYubmVuYXNoZXZAbQ&tmsrc=o.v.nenashev%40gmail.com&scp=ALL[添加到日历]
 
-More meetings may be scheduled on-demand.
-All meetings will be announced in the public GSoC mailing list.
+更多会议可以按需规划。所有的会议都会在公告 GSOC 邮件列表通知。
 
-Note that the number of participants in the Hangouts channel is limited.
-If you cannot join, use IRC as a fallback.
+注意 Hangouts 频道有参与人数上限。如果无法加入，请使用 IRC 代替。
 
-=== Mentors and org admins
 
-The mentors team is being formed now.
-See link:/projects/gsoc/gsoc2018-project-ideas[GSoC 2018 Project ideas] for the list of potential mentors.
+=== 导师和组织管理 
 
-Organization admins:
+导师团队正在组建中。参考 link:/projects/gsoc/gsoc2018-project-ideas[GSoC 2018 Project ideas] 了解候选导师名单。
+
+组织管理：
 
 * link:https://github.com/oleg-nenashev/[Oleg Nenashev]
 * link:https://github.com/martinda[Martin d'Anjou]
 * link:https://github.com/christ66[Steven Christou]
 
-== Previous years
+== 往年
 
-* link:/projects/gsoc/gsoc2017[GSoC 2017] - not accepted
-* link:/projects/gsoc/gsoc2016[GSoC 2016] - 5 student projects
-* link:https://wiki.jenkins.io/display/JENKINS/Google+Summer+of+Code+2009[GSoC 2009] - as Hudson, not accepted
+* link:/projects/gsoc/gsoc2017[GSoC 2017] - 不接受
+* link:/projects/gsoc/gsoc2016[GSoC 2016] - 5个学生项目
+* link:https://wiki.jenkins.io/display/JENKINS/Google+Summer+of+Code+2009[GSoC 2009] - Hudson，不接受 
