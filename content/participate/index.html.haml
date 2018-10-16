@@ -1,40 +1,38 @@
 ---
 layout: simplepage
-title: Participate and contribute
+title: 参与和贡献
 section: participate
 ---
 
 %p
-  There are many ways to engage with the Jenkins project and community.
-  Here are the most common ways to get you started.
-  Welcome aboard!
+  参与 Jenkins 项目和社区有很多种方式，以下列举了常见的几种，欢迎加入！
 
 
 .container
   .row
     .col-lg-6
       %h2
-        Participate
+        参与
 
       %p
-        As a participant, you take an active role in the community.
+        参与者在社区中扮演一个非常活跃的角色。
 
       %h3
-        Meet
+        结识
       %p
-        Meet other Jenkins users and share your experiences.
+        结识其他 Jenkins 用户并分享你的经验。
       %ul
         %li
-          Organize or attend
+          组织或参与
           %a{:href => '/projects/jam/'}
-            Jenkins Area Meetups.
+            Jenkins Area Meetups。
         %li
-          Attend other events with a Jenkins presence, like SCALE or FOSDEM.
+          参加其他 Jenkin 活动，比如 SCALE 或 FOSDEM。
 
       %h3
-        Help
+        互助
       %p
-        As an experienced user, you can help others get the most out of Jenkins.
+        作为一个有经验的用户，你可以帮助更多人从 Jenkins 受益。
       %ul
         %li
           %a{:href => '/mailing-lists'}
@@ -50,102 +48,101 @@ section: participate
             Jenkins on Stack Overflow
 
       %h3
-        Discuss
+        探讨
       %ul
         %li
           %a{:href => '/mailing-lists'}
-            Mailing lists
+            邮件列表
         %li
           %a{:href => '/chat'}
-            IRC channels
+            IRC 频道
 
       %h3
-        Review changes
+        审核变更
       %p
-        Help review changes to code or documentation.
+        帮助审核代码或审阅文档的变更。
       %ul
         %li
           %a{:href => 'https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+team%3Ajenkinsci%2Fcode-reviewers'}
-            List of open pull requests for which
+            请求
             %strong
-              code reviews
-            have been requested
+              代码审核
+            的开放 Pull Request 列表
         %li
           %a{:href => 'https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+team%3Ajenkins-infra%2Fcopy-editors'}
-            List of open pull requests for which
+            请求
             %strong
-              copy editing
-            has been requested
+              审阅文档
+            的开放 Pull Request 列表
 
       %h3
-        Provide feedback
+        给予反馈
       %p
-        We cannot fix what we don't know is broken. So let us know about it!
+        我们无法修复未知的问题，所以如果有任何问题敬请反馈！
       %ul
         %li
           %a{:href => 'https://wiki.jenkins.io/display/JENKINS/How+to+report+an+issue'}
-            How to report an issue in Jenkins
+            如何提交问题给Jenkins
         %li
-          The
           %a{:href => '/changelog'}
-            changelog
-          has an integrated feedback mechanism. Just select
+            变更日志
+          已经集成了反馈机制，只需选择
           %em
-            Community ratings
-          and vote using the weather icons.
+            社区等级
+          并通过天气图标投票即可。
         %li
-          Likewise, the
+          同样地，
           %a{:href => '/changelog-stable'}
-            LTS changelog
-          provides the same functionality.
+            LTS 变更日志
+          也提供相同的功能。
 
     .col-lg-6
       %h2
-        Contribute
+        贡献
 
       %p
-        As a contributor, you actively help improve Jenkins and plugins by contributing code, documentation, translations, or tests.
+        作为一名贡献者，可以积极地帮助改进 Jenkins 及其插件，包括贡献代码、文档、翻译或测试。
 
       %h3
-        Write code
+        编写代码
       %p
-        Do you enjoy writing code? There are numerous plugins and components for you to contribute to.
+        你享受编程吗？这里有许多的插件和组件等你来贡献代码。
         %a{:href => 'code'}
-          Learn more.
+          了解更多。
       %p
-        Are you an established contributor to Jenkins and looking for a new challenge?
-        The Jenkins Security Team is looking for members willing to help improve Jenkins security.
+        你已经是一名 Jenkins 贡献者正在寻找新的挑战？
+        Jenkins 安全小组正在寻找有志于帮助提升 Jenkins 安全性的成员。
         %a{:href => expand_link('security#team')}
-          Learn more.
+          了解更多。
 
       %h3
-        Translate
+        翻译
       %p
-        Jenkins is used all over the world by speakers of dozens of different languages. If you're fluent in languages other than English, consider improving support for those languages
+        Jenkins 正被全世界讲很多不同语言的人广泛使用。如果你流利地掌握英语之外的其他语言，可以考虑通过
         %a{:href => 'https://wiki.jenkins.io/display/JENKINS/Internationalization'}
-          by contributing to core or plugin localizations.
+          core 或插件的本地化来帮助提升对该语言的支持。
 
       %h3
-        Document
+        文档
       %p
-        Improve the documentation of Jenkins and plugins to make it easier for others to get started.
+        改善 Jenkins 及其插件的文档，方便其他人更易上手。
 
       %ul
         %li
-          We coordinate and discuss documenting efforts using the
+          我们通过
           %a{:href => 'https://groups.google.com/forum/#!forum/jenkinsci-docs'}
             jenkinsci-docs
-          mailing list and the
+          邮件列表和
           %a{:href => '/chat/'}
-            \#jenkins-community IRC channel.
+            \#jenkins-community IRC 频道来协作和讨论文档相关工作。
         %li
           %a{:href => 'https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#adding-documentation'}
-            Learn how to contribute documentation to jenkins.io
+            了解如何共享文档到 jenkins.io
 
       %h3
-        Test
+        测试
       %p
-        The Jenkins project relies heavily on automated tests to ensure stability and consistency of features. By contributing automated tests that match your use cases, you can help prevent regressions that would affect you.
+        Jenkins 项目重度依赖于自动化测试来保证功能稳定性和一致性。通过贡献适配自身用例的自动化测试，有助于防止有影响的回归。
       %ul
         %li
           %a{:href => 'https://github.com/jenkinsci/acceptance-test-harness'}
