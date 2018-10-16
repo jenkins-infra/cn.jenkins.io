@@ -46,4 +46,4 @@ profiles:
   cn-site:
     base_url: http://cn.jenkins.io/
   jenkinsio-cn:
-    base_url: http://jenkins.io/cn/
+    base_url: https://jenkins.io/cn/
