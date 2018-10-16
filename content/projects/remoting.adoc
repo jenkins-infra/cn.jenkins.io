@@ -8,67 +8,55 @@ tags:
 - agents
 ---
 
-Jenkins Remoting is a library, and executable Java archive, which implements the communication layer in Jenkins. 
-This includes the TCP-based communication protocols, remote procedure calls, class loading, data streaming, etc. 
-Currently Remoting is primarily used in master/agent communications.
+Jenkins Remoting 是一个类库，也是一个可执行 Java 归档文件，实现了 Jenkins 中的通讯层。它包括了基于 TCP 的通讯协议、远程过程调用、类加载以及数据流等。目前 Remoting 主要用于 master/agent 之间通信。
 
-The Remoting sub-project includes the Remoting library itself, package for agents, and a number of Remoting-specific plugins and core modules.
-
+Remoting 子项目包括 Remoting 类库本身，代理包以及一系列 Remoting 相关的插件和核心模块。
 
 :toc:
 
-== Remoting Usage in Jenkins
+== Jenkins 中的 Remoting 用法 
 
-* Agent executables (`remoting.jar` is a named `agent.jar` or `slave.jar` in Jenkins)
-* Master to Agent communication protocols being used in various Agent types, including Java Web Start (aka JNLP) and plugin:ssh-slaves[SSH] agents 
-* link:/doc/book/managing/cli/[Jenkins CLI], Remoting mode is **deprecated since 2.54** (link:/blog/2017/04/11/new-cli/[announcement])
-* Communication with Maven instance in the plugin:maven-plugin[Maven Integration plugin].
+* 代理可执行文件（在 Jenkins 中 `remoting.jar` 是一个指定的 `agent.jar` 或 `slave.jar` ）
+* Master 到 代理的通信协议用于各种代理类型，包括 Java Web Start （又叫 JNLP）和 plugin:ssh-slaves[SSH] 代理 
+* link:/doc/book/managing/cli/[Jenkins CLI]， Remoting 模式 **从 2.54版本 开始被废弃** (link:/blog/2017/04/11/new-cli/[公告])
+* 在 plugin:maven-plugin[Maven 集成插件] 中与 Maven 实例通讯。
 
-== Project Components
+== 项目组件
 
-=== Remoting Library
+=== Remoting 库
 
-Remoting Library is the main component of the the sub-project.
-The code base is located in a link:https://github.com/jenkinsci/remoting[separate repository],
-which also contains Remoting developer and user documentation.
-This library also has an independent release cycle and LTS release lines.
+Remoting 库是该子项目的主要组件。代码基线在一个 link:https://github.com/jenkinsci/remoting[独立仓库]，同时包含了 Remoting 开发者和用户文档。该类库也有着独立的发布周期和 LTS 发布线。
 
-Links:
+链接：
 
-* link:/redirect/project/remoting[Home Page]
-* link:/redirect/project/remoting/changelog[Release Notes]
-* link:/redirect/project/remoting/protocols[Remoting Protocols]
-* link:/redirect/project/remoting/troubleshooting[Troubleshooting] (under construction)
+* link:/redirect/project/remoting[主页]
+* link:/redirect/project/remoting/changelog[发布说明]
+* link:/redirect/project/remoting/protocols[Remoting 协议]
+* link:/redirect/project/remoting/troubleshooting[疑难问题排除] （建设中）
 
-=== Jenkins Core and Modules
+=== Jenkins 核心与模块
 
-Although Remoting library is a standalone component, 
-Jenkins core includes some extensions and modules for working with Remoting.
-Core extensions also allow implementing custom protocols on-demand (e.g. for Jenkins CLI).
-There is ongoing activity on detaching these core components to Jenkins plugins 
-(see link:https://issues.jenkins-ci.org/browse/JENKINS-44099[JENKINS-44099]),
-but in the meantime upgrading of Jenkins core may be required to fix Remoting issues.
+虽然 Remoting 库是一个独立组件，但 Jenkins 核心也有着一些扩展和模块来配合 Remoting 工作。核心扩展也支持按需实现自定义协议（比如针对 Jenkins CLI）。 将这些核心组件分拆为 Jenkins 插件的工作正在进行中（参见 link:https://issues.jenkins-ci.org/browse/JENKINS-44099[JENKINS-44099]），不过与其同时 Jenkins 核心的升级也可能要求修复 Remoting 相关的问题。
 
-Jenkins core extensions:
+Jenkins 核心扩展：
 
-* link:/doc/developer/extensions/jenkins-core/#agentprotocol[Agent Protocol] - Protocol Implementations
-* link:/doc/developer/extensions/jenkins-core/#jnlpagentreceiver[JNLP Agent Receiver] - Receives Incoming connections
+* link:/doc/developer/extensions/jenkins-core/#agentprotocol[Agent 协议] - 协议实现
+* link:/doc/developer/extensions/jenkins-core/#jnlpagentreceiver[JNLP Agent 接收器] - 接收连入请求
 
-Modules:
+模块：
 
-* link:https://github.com/jenkinsci/slave-installer-module[Agent Installer Module] - Generic API for Remoting Agent installations
-* link:https://github.com/jenkinsci/windows-slave-installer-module[Windows Agent Installer Module] - Provides logic for installing Jenkins agents as Windows services, powered by link:https://github.com/kohsuke/winsw/[WinSW project]
-* etc.
+* link:https://github.com/jenkinsci/slave-installer-module[Agent Installer 模块] - Remoting 代理安装的通用 API
+* link:https://github.com/jenkinsci/windows-slave-installer-module[Windows Agent Installer 模块] - 提供把 Jenkins 代理安装为 Windows 服务的逻辑，参考链接  link:https://github.com/kohsuke/winsw/[WinSW 项目]
+* 等等。
 
-=== Packaging
+=== 打包
 
-There are several packages which bundle the Remoting library and allow connecting Jenkins agents
-via one of remoting protocols.
+有多个包绑定了 Remoting 库，支持通过某一个远程协议连接到 Jenkins 代理。
 
-* link:https://hub.docker.com/r/jenkinsci/slave/[Docker Agent]: Base image, which bundles Remoting
-* link:https://hub.docker.com/r/jenkinsci/jnlp-slave/[Docker JNLP Agent]: Image, which can be used to connect JNLP
-* Jenkins CLI executable (Requires Remoting CLI to be enabled on the master side)
-* Swarm Agent Connector executable in link:https://plugins.jenkins.io/swarm[Swarm Plugin]
+* link:https://hub.docker.com/r/jenkinsci/slave/[Docker Agent]: 基础镜像，绑定了 Remoting
+* link:https://hub.docker.com/r/jenkinsci/jnlp-slave/[Docker JNLP Agent]: 可用于连接 JNLP 的镜像
+* Jenkins CLI 可执行的（需要在 master 一侧启用 Remoting CLI）
+* Swarm 代理连接器在 link:https://plugins.jenkins.io/swarm[Swarm 插件] 可执行的
 
-WARNING: Docker Agent Images will be moved to the `jenkins` organization instead soon
+WARNING: Docker Agent 镜像不久将会迁移到 `jenkins` 组织
 (link:https://issues.jenkins-ci.org/browse/JENKINS-42846[JENKINS-42846]).
