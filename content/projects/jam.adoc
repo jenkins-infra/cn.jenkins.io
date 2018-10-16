@@ -7,84 +7,70 @@ tags:
 - jams
 ---
 
-Jenkins Area Meetups (JAMs) are local meetups intended to bring Jenkins users
-and contributors together for socializing and learning.
-JAMs are organized by local Jenkins community members who have a passion for
-sharing new Jenkins concepts, patterns and tools. JAMs can be found
-link:http://www.meetup.com/pro/jenkins/[around the world], and if there isn't a
-JAM in your city, you could be the one to start it!
+Jenkins Area Meetups (JAMs) 是本地化的沙龙活动，旨在聚集当地的 Jenkins 用户和贡献者并相互交流和学习。
+JAM 通常由本地乐于分享 Jenkins 新概念、模式及工具的活跃 Jenkins 社区成员来组织。这里是 link:http://www.meetup.com/pro/jenkins/[全球的 JAM 沙龙活动] ，如果你所在的城市还没有 JAM ，那就从你开始组织第一次活动吧！
 
-Jenkins Area Meetups are driven by local organizers but receive support from
-the Jenkins project via swag (stickers, etc), promotion, and help bootstrapping
-and operating the meetup group.
+JAM 活动一般由本地组织者推动，但得到 Jenkins 项目的官方支持，比如纪念品（贴纸等）、推广以及帮助一步步组织并建立沙龙活动小组。
 
-== Getting Started
+== 新手入门
 
-Send us an email jenkinsci-jam@googlegroups.com to get started. Let us know the
-city in which you’d like to host the JAM. Our team will create a meetup page on
-meetup.com and we will work with you to organize your JAM.
+在最开始请发送邮件到 jenkinsci-jam@googlegroups.com ，告知我们你希望举办 JAM 活动的城市。我们的团队将会在 meetup.com 上为你创建专用页面，并与你一起组织该 JAM 活动。
 
-*JAM Support*
+*JAM 支持*
 
-* Swag - We will send you cool swags (stickers, t-shirts, Jenkins bobble-heads, etc) to share with members
-* Promote - We give every JAM continuous social media love via Twitter, blog posts, Facebook, newsletter, and post on the jenkinsci.org events calendar.
-* Jenkins Expertise - We will help you to schedule a Jenkins expert as the key speaker at your JAM, or provide you with presentation materials.
-* Outreach - We will assist in reaching out to your local community for food/venue sponsorship.
+* 纪念品 - 我们会提供很酷的纪念品（贴纸、T恤、Jenkins 玩偶等）分享给与会成员。
+* 推广 - 我们为每一个 JAM 持续提供社交媒体支持，比如通过 Twitter、博客文章、Facebook、 通讯文章以及发布在 jenkinsci.org 网站的活动日历上。
+* Jenkins 专家支持 - 我们会帮助你邀请一位 Jenkins 专家作为 JAM 活动的关键分享嘉宾，或者提供演讲资料。
+* 拓展 - 我们会协助联络当地社区提供茶歇/场地赞助。
 
-=== Best Practices
+=== 最佳实践
 
-* Attend existing meetup groups to gauge Jenkins interest/market within your area.
-* Reach out to existing JAM organizer(s) to learn best practices and time commitment.
-* Set up a Twitter account (for example, #JenkinsNYC). Email your group’s Twitter ID to jenkinsci-jam@googlegroups.com so we can help to promote your JAM.
-* Promote, tweet and post your JAM in advance.
-* Avoid product pitches. Keep it real, it’s not about promotions. This is about - and for - learning opportunities for the community.
-* Shake up the format. Have presentations, panel discussions, roundtables, workshops, hackathons, etc.
-* Set a consistent date, time and location so members will plan for it. Avoid cancelling your meeting as people will lose faith and stop RSVPing for your JAM.
+* 加入现有沙龙活动小组并关注评估本地区的 Jenkins 热度和氛围。
+* 联络现有 JAM 活动组织者并学习最佳实践和时间投入。
+* 注册一个Twitter账户（比如 #JenkinsShenzhen）并将该 ID 以邮件形式发送至 jenkinsci-jam@googlegroups.com 以便我们帮助推广你的 JAM 活动。
+* 提前推广、宣传并发布你的 JAM 活动。
+* 避免产品偏见。保持纯粹，这不是促销活动，只是关于社区以及为社区提供的学习机会。
+* 不限形式，比如有主题分享、小组讨论、圆桌论坛、工作坊、黑客马拉松等等。
+* 设置统一的日期、时间和地点，方便与会成员制定参加计划。避免取消活动，否则人们可能失去信息而不再支持你的 JAM 活动。
 
-=== Stepping Down
+=== 退出机制
 
-In the event you can no longer be a JAM organizer, we ask that you nominate a
-replacement organizer in your place. If this is not possible please send email
-to jenkinsci-jam@googlegroups.com, we will work with you to find a replacement.
+如果你无法继续担任 JAM 活动组织者，我们希望你能指定一位候选的本地组织者。如果没有合适人选，请发送邮件到 jenkinsci-jam@googlegroups.com ，我们会与你一起寻找候选人。
 
-== Supporting a JAM
+== 支持一场 JAM 活动
 
-If you are not able to be a JAM organizer, speakers, food or venue, or recording sponsors are always needed. If your company is interested in sponsoring any of these items pls email jenkinsci-jam@googlegroups.com or reach out to the local JAM organizer via meetup.com or fill out link:https://docs.google.com/a/cloudbees.com/forms/d/1dGpwxpwoJDHR3fTlIcFXO8GZVpx5i_dWUlbi9LKolX4/edit[this form]. 
+如果你不能担任一名 JAM 活动组织者，也可以考虑提供分享嘉宾、茶歇或媒体记录赞助。如果你的公司有意赞助这些内容，可以直接发送邮件到 jenkinsci-jam@googlegroups.com 或者通过 meetup.com 联络当地的 JAM 活动组织者，或者填写 link:https://docs.google.com/a/cloudbees.com/forms/d/1dGpwxpwoJDHR3fTlIcFXO8GZVpx5i_dWUlbi9LKolX4/edit[这个表单] 。 
 
-*Benefits of Being a Food or Venue or Recording Sponsor:*
+*赞助茶歇、场地或媒体记录的权益：*
 
-* Logo and link on the meetup page.
-* Verbal acknowledgement at the opening/closing remark by the host.
-* Sponsor table at the meeting to display collaterals, signage, swag.
-* Opportunity to host a drawing.
-* Mention in social media.
-* A two minute talk to address the attendees.
+* 活动网站上的 Logo 和链接展示。
+* 主持人在活动开场/结束时的公开鸣谢。
+* 提供展位来展示营销物料、标牌及纪念品等。
+* Opportunity to host a drawing. 主持展览的机会。
+* 社交媒体提及。
+* 向参会者提供2分钟时间的介绍。
 
-*Food Sponsor:*
+*茶歇赞助：*
 
-Sponsor food and beverages for the specific month's meetup. The cost is about
-$200 to $600 depending on the number of attendees. The money is used to
-purchase pizza, soft drinks and paperware. One sponsor is needed for each
-monthly meeting.
+在某些月份举行的沙龙活动需要赞助茶歇，根据参会人数不同花费一般在200到600美元。这些费用主要用于购买披萨、软饮和纸巾等。每场月度沙龙活动都需要一个赞助商。
 
-*Venue Sponsor:*
+*场地赞助：*
 
-Venue sponsors provide the facility to host the meeting for free. One venue sponsor is needed per meeting. A meeting room with chairs and a couple of six feet tables with open space for food/beverages and mingling would be sufficient. Access to a public bathroom would be needed as well. A meetup will need such equipments as projection and screen. In the event where a meeting has more than 50 attendees an audio system will be needed.
+场地赞助商免费提供沙龙活动所需的基本场地设施。每次沙龙活动都需要一个场地赞助商。推荐使用带有椅子和几个6英尺长桌的会议室，带有可用于茶歇的开放空间，最好再有公共洗手间。一场沙龙活动还需要诸如投影仪等显示设备。对于一场超过50人参加的活动，还需要使用麦克风。
 
-*Recording Sponsor:*
+*摄录赞助：*
 
-Recording sponsor volunteer his/her recording equipments and time to record a
-meeting and make it public after the meeting.
+摄录赞助商可提供其记录设备和时间来帮助记录一次沙龙活动，并在活动结束后公开发布。
 
 
-== JAMs Around the World
+== 全球 JAM 活动
 
-The list below is manually curated, for the most up-to-date information,
-consult this link:https://www.meetup.com/pro/jenkins/[meetup.com page].
+以下列表是手动维护的，最新信息可参考链接： https://www.meetup.com/pro/jenkins/[meetup.com 网页] 。
 
-We also have the link:http://www.meetup.com/Jenkins-online-meetup/[Jenkins Online Meetup].
+也可以参考链接： http://www.meetup.com/Jenkins-online-meetup/[Jenkins Online Meetup] 。
 
-=== North America
+
+=== 北美
 
 * link:https://www.meetup.com/Albuquerque-Jenkins-Area-Meetup/[Albuquerque, NM]
 * link:http://www.meetup.com/Atlanta-Jenkins-Meetup/[Atlanta, GA]
@@ -103,7 +89,7 @@ We also have the link:http://www.meetup.com/Jenkins-online-meetup/[Jenkins Onlin
 * link:https://www.meetup.com/Toronto-Jenkins-Area-Meetup/[Toronto, CAN]
 * link:http://www.meetup.com/Washington-DC-Jenkins-Area-Meetup/[Washington, DC]
 
-=== Europe
+=== 欧洲
 
 * link:http://www.meetup.com/Amsterdam-Jenkins-Area-Meetup/[Amsterdam, Netherlands]
 * link:http://www.meetup.com/Barcelona-Jenkins-Area-Meetup/[Barcelona, Spain]
@@ -135,23 +121,23 @@ We also have the link:http://www.meetup.com/Jenkins-online-meetup/[Jenkins Onlin
 * link:https://www.meetup.com/Sophia-Antipolis-Jenkins-Area-Meetup/[Valbonne, France]
 * link:https://www.meetup.com/Swiss-Jenkins-Area-Meetup/[Zurich, Switzerland]
 
-=== Asia
+=== 亚洲
 
 * link:https://www.meetup.com/jenkinsBLR/[Bangalore, India]
 * link:https://www.meetup.com/Chennai-Jenkins-Area-Meetup/[Chennai, India]
 * link:http://www.meetup.com/Delhi-Jenkins-Meetup/[Delhi, India]
 * link:https://www.meetup.com/Jenkins-Hyderabad/[Hyderabad, India]
-* link:https://www.meetup.com/Shenzhen-Jenkins-Area-Meetup/[Shenzhen, China]
+* link:https://www.meetup.com/Shenzhen-Jenkins-Area-Meetup/[深圳，中国 ]
 * link:https://www.meetup.com/Jenkins-User-Group-Singapore/[Singapore, Singapore]
 * link:http://www.meetup.com/Tel-Aviv-Jenkins-Area-Meetup/[Tel Aviv, Israel]
 * link:https://www.meetup.com/Tokyo-Jenkins-Area-Meetup/[Tokyo, Japan]
 
-=== Australia
+=== 澳洲
 
 * link:https://www.meetup.com/Melbourne-Jenkins-Area-Meetup/[Melbourne, AUS]
 * link:https://www.meetup.com/Sydney-Jenkins-Area-Meetup/[Sydney, AUS]
 
-=== South America
+=== 南美
 
 * link:https://www.meetup.com/Brasilia-Jenkins-Area-Meetup/[Brasilia, Brazil]
 * link:https://www.meetup.com/Buenos-Aires-Jenkins-Area-Meetup/[Buenos Aires, Argentina]
