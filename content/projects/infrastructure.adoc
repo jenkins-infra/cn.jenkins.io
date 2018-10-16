@@ -1,75 +1,53 @@
 ---
 layout: project
-title: "Infrastructure"
+title: "基础设施"
 section: projects
 tags:
 - infra
 - infrastructure
 ---
 
-As an independent open source project, Jenkins maintains most of its own
-infrastructure including services which help keep the project running.
-The kinds of things that fall into "infrastructure" can span from operating
-virtual machines and distribution networks, to project-specific applications
-developed to make the development of Jenkins core and plugins more efficient.
+作为一个独立的开源项目，Jenkins 维护了大部分自身的基础设施，包括维持项目运行所需的各种服务。所谓“基础设施”其跨度从运行虚拟机和分布式网络，到帮助 Jenkins 核心和插件更加高效开发的专用应用开发。
 
+== 概览
 
-== Overview
+大部分情况下，Jenkins 项目的基础设施通过 link:https://github.com/jenkins-infra/jenkins-infra[Puppet 仓库] 来管理和编排。
 
-For the most part, the Jenkins project's infrastructure is managed and
-orchestrated via our
-link:https://github.com/jenkins-infra/jenkins-infra[Puppet repository].
+== 应用
 
+Jenkins 项目通过运行许多的脚本和应用来推进项目目标。虽然下文并未罗列出所有的脚本和应用，但已列举出的覆盖了足够的范围/大小，值得一览。
 
-== Applications
+=== 账户应用
 
-The Jenkins project operates a number of scripts and applications to further
-the project's goals. Not all the scripts or applications are listed below, but
-those that are listed are of sufficient scope/size to merit an overview.
+link:https://github.com/jenkins-infra/account-app[GitHub 地址]
 
-=== Account app
+我们使用 LDAP 给跨 Jenkins 项目的多个服务提供中心化的身份管理。为了给项目成员提高一系列自助服务，账户应用创建后支持用户登录并在 LDAP 中编辑部分用户属性。生产环境的账户应用实例在这里 link:https://accounts.jenkins.io[accounts.jenkins.io] 。
 
-link:https://github.com/jenkins-infra/account-app[On GitHub]
+=== IRC 机器人
 
-In order to provide centralized identity management across a variety of Jenkins
-project services, we use LDAP. To provide some amount of self-service to
-members of the project, the account app was created to allow users to log in
-and edit some of their own properties in LDAP. The production instance of this
-application can be found at:
-link:https://accounts.jenkins.io[accounts.jenkins.io].
+link:https://github.com/jenkins-infra/ircbot[GitHub 地址]
 
-=== IRC Bot(s)
-
-link:https://github.com/jenkins-infra/ircbot[On GitHub]
-
-The primary Jenkins IRC Channel (`#jenkins` on the
+Jenkins IRC 主频道（ 
 link:http://freenode.net[Freenode]
-network) uses an administrator bot "jenkins-admin" so that some of the project
-operation work can be done by the community. This bot is available for anyone
-in the channel with "voice", which is an IRC jargon for those users who are
-trusted.
+网络上的 `#jenkins`）使用了一个管理员机器人 "jenkins-admin" ，这样一些项目维护工作可以通过社区来完成。任何人在频道中通过一个为可信用户开发的 IRC术语 “voice” 即可唤起该机器人。 
 
-link:/projects/infrastructure/ircbot[Learn more about the IRC bot].
+link:/projects/infrastructure/ircbot[了解 IRC 机器人的更多信息].
 
 
 === Jenkins
 
-Naturally, the Jenkins project runs Jenkins itself for a variety of
-build/test/release tasks, in addition to some periodic or batch tasks. The only
-publicly visible Jenkins cluster can be found at
-link:https://ci.jenkins.io[ci.jenkins.io]
-whereas other clusters require escalated access and are not publicly available.
+Jenkins 项目顺理成章地在 Jenkins 上运行自身的一系列构建/测试/发布任务，以及一些周期性或批处理任务。唯一的公开 Jenkins 集群在这里 link:https://ci.jenkins.io[ci.jenkins.io] 。 
 
 
-See also:
+参考：
 
 * link:https://github.com/jenkins-infra/documentation/blob/master/ci.adoc[Available nodes/tools/labels/etc]
 * link:https://github.com/jenkinsci/puppet-jenkins[puppet-jenkins module]
 
-=== Plugin site
+=== Plugin 站点
 
-link:https://github.com/jenkins-infra/plugin-site-api[On GitHub]
+link:https://github.com/jenkins-infra/plugin-site-api[GitHub 地址]
 
-=== Rating app
+=== 评分 app
 
-link:https://github.com/jenkins-infra/rating[On GitHub]
+link:https://github.com/jenkins-infra/rating[GitHub 地址]
