@@ -67,13 +67,12 @@ try {
                     set -o nounset
                     set -o pipefail
                     set -o xtrace
+                    export AWESTRUCT_PROFILE=$profile
                     mkdir -p .awestruct
                     rm -rf ./content/_tmp/examples/pipeline-examples
                     chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                    make $profile
-                    make pdfs
                     make archive
                     
                     illegal_htaccess_content="\$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
