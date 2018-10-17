@@ -18,7 +18,7 @@ Blue Ocean 项目对 Jenkins 的用户体验、建模和软件交付流程呈现
 Blue Ocean也包含了 “The Jenkins Design Language (JDL)” ，这是一系列标准化的组件集，也是一种风格指南，可以帮助开发者无需花费太多力气即可开发出保持 Blue Ocean 视觉和交互风格的插件。
 
 
-link:blueocean[*Learn more*]
+link:blueocean[*了解更多*]
 
 ---
 
