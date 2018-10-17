@@ -20,6 +20,9 @@ participants:
 - name: "李连强"
   id: "xuesea"
   github: "xuesea"
+- name: "杨振涛"
+  id: "node"
+  github: "node"
 
 links:
   gitter: jenkinsci/chinese-localization-sig
