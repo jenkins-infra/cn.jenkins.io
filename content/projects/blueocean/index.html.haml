@@ -19,11 +19,11 @@ opengraph:
           %h1.intro-title
             Jenkins Blue Ocean
           %a.btn.btn-secondary{:href => expand_link('doc/book/blueocean')}
-            Documentation
+            文档
           %a.btn.btn-secondary{:href => expand_link('projects/blueocean/roadmap')}
-            Roadmap
+            路线图
           %a.btn.btn-primary{:href => expand_link('doc/book/blueocean/getting-started')}
-            Get started
+            新手入门
 
 %section.intro.wow.fadeInUp{"data-wow-delay" => "0.7s"}
   .container
@@ -36,10 +36,10 @@ opengraph:
           %span.ion-play
       .col-xs-12.col-sm-10.push-sm-2.col-md-8.push-md-4.col-lg-5.push-lg-7
         .introblurb.wow.fadeInUp{"data-wow-delay" => "0.1s"}
-          %h2 Continuous Delivery is no longer for the experts
-          %p That’s why we’ve built Blue Ocean; the continuous delivery tool for teams just like yours.
+          %h2 持续集成不再是专家才可胜任
+          %p 这就是我们构建 Blue Ocean 的原因，为像你这样的团队提供持续集成工具。
           %p
-            It’s a brand new way to use Jenkins that even your boss’s boss can understand.
+            这是使用 Jenkins 的全新方式，甚至老板的老板都能理解。
             %span.emoji 😉
             %span.emoji 🙌
           %a.btn.btn-secondary{:href => expand_link('doc/book/blueocean/getting-started'), :role => "button"} Get started
@@ -48,51 +48,51 @@ opengraph:
     .row
       .col-xl-10.push-xl-1
         .featuresblurb.col-md-10.push-md-1.col-lg-8.push-lg-2
-          %h2 Continuous Delivery for every team
-          %p Blue Ocean puts Continuous Delivery in reach of any team without sacrificing the power and sophistication of Jenkins.
+          %h2 为每一个团队持续交付
+          %p Blue Ocean 让任何团队都可以持续交付，而无需牺牲 Jenkins 的力量和精明。 TODO sacrificing the power and sophistication of Jenkins.
           %br/
         .row
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.1s"}
             .icon
               %span.ion-edit
-            %h3 Visual Pipeline Editor
-            %p.smaller Create your first Continuous Delivery pipeline from start to finish.
+            %h3 可视化的 Pipeline 编辑器
+            %p.smaller 从头开始创建你的第一个持续集成 Pipeline 直到完成。
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.2s"}
             .icon
               %span.ion-eye
-            %h3 Pipeline visualization
+            %h3 Pipeline 可视化
             %p.smaller
-              Visually represent pipelines so that even your boss’s boss can understand.
+              可视化地呈现 Pipeline ，让老板的老板都可以看懂。
           .clearfix.hidden-lg-up
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.3s"}
             .icon
               %span.ion-ios-pulse-strong
-            %h3 Diagnosis
+            %h3 诊断
             %p.smaller
-              Diagnose problems instantly and say
+              立即诊断问题，从无止尽的日志扫描中
               %br.hidden-lg-down/
-              %em good-riddance
-              to endlessly scanning through logs.
+              %em 解脱
+              。
           .clearfix.hidden-md-down
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.4s"}
             .icon
               %span.ion-social-github
-            %h3 Github & Git
-            %p.smaller Run the pipeline for every feature branch and pull request.
+            %h3 Github 与 Git
+            %p.smaller 为每一个特性分支和提交请求执行 Pipeline 。
           .clearfix.hidden-lg-up
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.5s"}
             .icon
               %span.ion-person
-            %h3 Personalization
-            %p.smaller Customize your dashboard so that you only see pipelines that matter to you.
+            %h3 个性化
+            %p.smaller 自定义你的面板，只关注你关心的 Pipeline 。
           .col-lg-4.col-md-6.col-sm-6.wow.fadeIn{"data-wow-delay" => "0.6s"}
             .icon
               %svg{:height => "24px", :version => "1.1", :viewbox => "0 0 24 24", :width => "24px", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
                 %path#Combined-Shape{:d => "M7.38341175,23.0798118 C3.04752489,21.2711041 0,16.9914458 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 C24,16.9914458 20.9524751,21.2711041 16.6165883,23.0798118 L13.5388628,15.6932706 C14.9841584,15.090368 16,13.6638153 16,12 C16,9.790861 14.209139,8 12,8 C9.790861,8 8,9.790861 8,12 C8,13.6638153 9.01584163,15.090368 10.4611372,15.6932706 L7.38341175,23.0798118 Z", :fill => "#000000", "fill-rule" => "evenodd", :stroke => "none"}
-            %h3 100% Open Source
+            %h3 100% 开源
             %p.smaller
-              Blue Ocean is 100% free and open source software. Yup, you heard right —
-              %em free!
+              Blue Ocean 是 100% 自由开源软件。是的，你没听错 —
+              %em 自由！
 %section.props
   .skew
     .container
@@ -128,14 +128,15 @@ opengraph:
   .container
     .row
       .col-md-10.push-md-1.col-lg-8.push-lg-2.col-xl-6.push-xl-3.wow.fadeIn{"data-wow-delay" => "0.3s"}
-        %h2 Continuous Delivery shouldn’t be hard
+        %h2 持续集成不再困难
         %p
-          Blue Ocean focuses on the needs of regular developers
+          Blue Ocean 专注于
           = succeed "." do
-            %em just like you
-        %p We do all the hard work making things simple so you can get back to building your next big thing.
+            %em 像你这样的
+		  常规开发者的需求。
+        %p 我们尽全力让事情更简单，这样你就可以回头继续构建你的下一件大事。
         %a.btn.btn-secondary{:href => expand_link('doc/book/blueocean/getting-started'), :role => "button"}
-          Get started
+          新手入门
 .socials.wow.fadeIn{"data-wow-delay" => "4s", "data-wow-duration" => ".5s"}
   %a.socialLinks.socialsFacebook{:href => "https://www.facebook.com/sharer/sharer.php?u=https%3A//jenkins.io/projects/blueocean/", :onclick => "doyourthang(this); return false;", :target => "_blank"}
     %i.icon.ion-social-facebook
