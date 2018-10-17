@@ -10,7 +10,7 @@ def projectProperties = [
 def profile = 'cn-site'
 
 if (infra.isTrusted()) {
-  profile = 'jenkinsio-cn'
+  profile = 'jenkinsio-zh'
 }
 
 
