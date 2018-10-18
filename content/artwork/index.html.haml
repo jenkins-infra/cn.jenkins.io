@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Jenkins Artwork
+title: Jenkins 艺术作品
 ---
 
 / Please add new logo meta-data to content/images/logos and content/_data/logo
@@ -11,30 +11,26 @@ title: Jenkins Artwork
   .row
     .col-12
       %h1.text-center
-        Artwork
+        艺术作品
 
       %p
-        The original Jenkins logo was created by our friends at
+        原始的 Jenkins logo 是由社区朋友们在 
         %a{:href => 'http://frontside.io/'}
-          Frontside.
-        Special thanks to
+          Frontside
+        创建的。
+        尤其感谢
         %a{:href => 'https://github.com/cowboyd'}
           Charles Lowell
-        for his efforts championing the logo's original design. Usage
-        guidelines for the original logo can be found on our
+        提出的原始设计主意。 原始 logo 的使用参考可以在
         %a{:href => '/press'}
-          Press
-        page. This page simply catalogues the many clever variations of Jenkins
-        created by members of the Jenkins community.
+          新闻
+        页找到。本页面只是展示了一些由 Jenkins 社区成员创造的有明显差异的 logo。
 
       %p
-        These images are also available in various sizes and SVG formats
-        online, or as a zip file.  These are licensed under the
+        本页也提供一些不同尺寸的 SVG 或 zip 格式的图标文件。使用的许可证为
         %a{:href => 'https://creativecommons.org/licenses/by-sa/3.0/'}
-          Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        Under the terms of this license, you must include an attribution to the
-        Jenkins project, with a link (https://jenkins.io/), if you display
-        these logos or derivates thereof.
+          Creative Commons Attribution-ShareAlike 3.0 Unported License。
+        在此许可证下, 如果你要使用这些作品或其衍生物，你必须提供其归属于 Jenkins(https://jenkins.io/) 的链接声明。
 
 %hr/
 
@@ -49,12 +45,13 @@ title: Jenkins Artwork
             %img{:src => logo['url_256'], :alt => logo['name']}
           %p
             -if logo['credit']
-              Created by
+              由
               - if logo['credit_url']
                 %a{:href => logo['credit_url']}
                   = logo['credit']
               - else
                 = logo['credit']
+              创建
             - if logo['source']
               %br/
               %a{:href => logo['source_url'], :target => '_blank'}
@@ -63,7 +60,7 @@ title: Jenkins Artwork
               %br/
               %small
                 %a{:href => logo['vector']}
-                  SVG format
+                  SVG 格式
 
 %hr/
 
@@ -71,15 +68,16 @@ title: Jenkins Artwork
   .row
     .col-md-12
       %h3
-        Adding a Logo
+        添加作品
       %p
-        In order to add a new logo, please submit a pull request, adding a new
-        %code
-          \.yml
-        file in
+        想要添加新的 logo，请创建一个 pull request，在
         %code
           content/_data/logo
-        and a new directory containing the logo assets into
+        目录添加一个
+        %code
+          \.yml
+        文件。另外把这图标件放到
         %code
           content/images/logos/<logoname>
+        目录下。
 

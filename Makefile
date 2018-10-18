@@ -9,6 +9,7 @@ GITHUB_USER=$(USER)
 BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 USER_SITE_URL=https://$(GITHUB_USER).github.io/jenkins.io/$(BRANCH)/
 AWESTRUCT_USER_SITE=-P user-site --url "$(USER_SITE_URL)"
+AWESTRUCT_PROFILE ?= cn-site
 
 
 # Generate everything
@@ -26,13 +27,13 @@ cn-run: prepare scripts/awestruct
 generate: site pdfs
 
 site: scripts/awestruct
-	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG)
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P $(AWESTRUCT_PROFILE) --verbose $(AWESTRUCT_CONFIG)
 
 cn-site: scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P cn-site --verbose $(AWESTRUCT_CONFIG)
 
 user-site: prepare scripts/awestruct
-	./scripts/awestruct --generate --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
+	SITE_LANG=zh-CN ./scripts/awestruct --generate -P $(AWESTRUCT_PROFILE) --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
 	./scripts/user-site-deploy.sh $(BRANCH)
 	@echo SUCCESS: Published to $(USER_SITE_URL)index.html
 
