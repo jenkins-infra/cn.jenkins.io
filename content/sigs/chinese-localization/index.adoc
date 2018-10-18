@@ -61,7 +61,7 @@ link:https://github.com/jenkinsci/cloudbees-folder-plugin[cloudbees-folder-plugi
 link:https://github.com/jenkinsci/github-organization-folder-plugin[github-organization-folder-plugin] +
 link:https://github.com/jenkinsci/blueocean-plugin[blueocean-plugin] +
 link:https://github.com/jenkinsci/pipeline-plugin[pipeline-plugin] +
-link:https://github.com/jenkinsci/workflow-cps-plugin[pipeline-plugin] +
+link:https://github.com/jenkinsci/workflow-cps-plugin[workflow-cps-plugin] + 
 link:https://github.com/jenkinsci/workflow-scm-step-plugin[workflow-scm-step-plugin] +
 link:https://github.com/jenkinsci/workflow-support-plugin[workflow-support-plugin] +
 link:https://github.com/jenkinsci/pipeline-model-definition-plugin[pipeline-model-definition-plugin] +
