@@ -1,6 +1,6 @@
 ---
 layout: simplepage
-title: Contribute code
+title: 贡献源码
 section: participate
 ---
 
