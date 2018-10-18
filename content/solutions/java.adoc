@@ -1,33 +1,23 @@
 ---
 layout: solution
-title: "Jenkins与Java"
+title: "Jenkins 与 Java"
 ---
+Jenkins 从一开始就支持构建 Java 项目，这是有原因的！
+不仅是因为 Jenkins 是用 Java 编写的，还因为 Kohsuke Kawaguchi 多年前创造这个工具时想要监测的许多（如果不是全部）项目也使用了 Java。
 
-Jenkins supports building Java projects since its inception, and for a
-reason! It's both the language Jenkins is written in, plus the language in
-use by many if not all the projects Kohsuke Kawaguchi wanted to watch out
-when he created the tool many years ago.
-
-If you want to build a Java project, there are a bunch of different
-options.  The most typical ones nowadays are generally Apache Maven, or
-Gradle.
+如果你想要构建一个 Java 项目，存在有很多不同的选择。目前最典型的就是 Apache Maven 或者 Gradle。
 
 == Apache Maven
 
-In any FreeStyle job, as *currently* Maven is supported in standard, you can
-use the dedicated step. One advantage is, as for all Jenkins tools, that you
-can select a specific Maven version and have Jenkins automatically install
-it on the build node it's going to run on.
+由于 Maven **目前**在 Jenkins 标准中被支持，在任何一个 FreeStyle 项目中，你可以使用专有的Step。这带来的好处之一是对于所有的 Jenkins 工具，你可以选择特定的 Maven 版本，然后 Jenkins 将会在项目构建所在的节点上自动安装它。
 
 
 image::/images/solution-images/jenkins-maven-step.png["'Jenkins Maven step'", role=center]
 
 == Gradle
 
-As the associated plugin is not installed by default, first install the
-link:https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin[Gradle
-plugin].  Once done, you should be able to add a Gradle step.
-
+由于与 Gradle 相关的插件默认并没有安装，你首先需要安装 link:https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin[Gradle
+plugin]。一旦安装完成，你就可以使用 Gradle step。
 
 image::/images/solution-images/jenkins-gradle-step.png["'Jenkins Gradle step'", role=center]
 
