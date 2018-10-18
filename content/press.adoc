@@ -1,132 +1,115 @@
 ---
 layout: simplepage
-title: "Jenkins Press Information"
+title: "Jenkins 媒体信息"
 section: press
 ---
 
 :toc:
 
-If you're a journalist, blogger or anybody else who might consider themselves
-"press" this page should help you refer to, explain or otherwise cite the
-Jenkins project correctly. If this page does not sufficiently answer a question
-you may have, or you're seeking comment, please reach out to one of our <<Press Contacts>> below.
+如果你是记者，博主，或者任何认为自己与媒体相关的人，本页可以帮您正确的参考，解释，或者引用 Jenkins 项目。
+如果本页不能解答您的问题，或者您在查找相关评论，您可以联系下面的 <<媒体联系人>>
 
 
-== About Jenkins
+== 关于 Jenkins
 
 
-.Elevator Pitch
+.综述
 ""
-Jenkins is an open source automation server which enables developers around the
-world to reliably build, test, and deploy their software.
+Jenkins 是一个开源的自动化服务，它可以为全世界的开发者提供软件的构建，测试，发布功能。
 ""
 
-.Blurb
+.简介
 ""
-Jenkins, originally founded in 2006 as "Hudson", is one of the leading
-automation servers available. Using an extensible, plugin-based architecture
-developers have created hundreds of plugins to adapt Jenkins to a multitude of
-build, test, and deployment automation workloads. In 2015, Jenkins surpassed
-100,000 known installations making it the most widely deployed automation server.
+Jenkins 最开始叫 Hudson，创建于 2006 年，是自动化服务的一种。
+Jenkins 使用可拓展，插件化的架构，这让开发者可以拓展它，且已经创建了成百上千的插件，广泛的应用到自动化的构建，测试，和部署。在 2015 年，Jenkins 以超过 10,000 的安装量成为使用最广泛的自动化服务。
 ""
 
 
-=== Governance
+=== 管理
 
-Our
-link:/project/governance/[Governance
-Document] outlines the project's philosophy, structure and guidelines. This
-also includes information on the
-link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[Governance
-Board], which is the group with acting executive authority. While board members
-are available for comment, we encourage you to reach out to our <<Press Contacts>>
-as an initial point of contact for press inquiries.
+我们的
+link:/project/governance/[管理文档] 解释了 Jenkins 项目的哲学，架构，和指导方针。其也包含了有管理权力的
+link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理委员会]的信息。
+除非我们管理人员正方便的时候, 我们建议您先联系我们的<<媒体联系人>>作为媒体信息获取的起始点。
 
 
-The Jenkins project is part of link:http://spi-inc.org/[Software in the Public
-Interest], a 501 (c) (3) non-profit organization, which holds the Jenkins
-trademark and acts as a legal umbrella organization.
+Jenkins 项目是link:http://spi-inc.org/[Software in the Public
+Interest]成员, 一个 501 (c) (3) 非盈利组织。它作为一个保护伞组织，掌握着 Jenkins 的商标。
 
-=== Branding
+=== 品牌
 
-We ask that the following branding guidelines be used when referring to or
-writing about the Jenkins project:
+当您报道或提及的时候，希望您可以遵守以下方式来指代本项目：
 
-*Correct:*
+*正确:*
 
 * the Jenkins project
 * Jenkins
 
-*Incorrect:*
+*错误:*
 
 * Jenkins CI
 * Jenkins server
 * Mr. Jenkins
 
 
-==== Artwork
+==== 艺术作品
 
 image::/images/logo_128.png[title="Jenkins", float=right]
 
-On our link:https://wiki.jenkins-ci.org/display/JENKINS/Logo[Logo] page we have
-documented some versions of our logo, including the color palette our branding
-uses. Our logos can be downloaded in a number of sizes, or as vector graphics,
-from link:http://mirrors.jenkins-ci.org/art/[here]. Please do not use any of
-our "fun logo" variations like Ninja or Superhero Jenkins in publications.
+在 link:https://wiki.jenkins-ci.org/display/JENKINS/Logo[Logo] 页， 我们列出了一些不同的 logo，也包括品牌正在使用的调色板。
+你可以从 link:http://mirrors.jenkins-ci.org/art/[这里]下载不同尺寸的图片。请不要使用我们的"乐趣 logo"如 Ninja 或者 Superhero Jenkins 在出版物中。
 
-When embedding our logo in an article, we prefer the `logo.png` (see Figure 1)
-to be used over the `headshot.png` image.
+当把我们的图标插入文章中的时候，我们倾向于`logo.png` (见 Figure 1)
+而不是 `headshot.png`。
 
-If you have any questions about artwork, please ask one of the <<Press Contacts>>.
+任何疑问，请联系<<媒体联系人>>。
 
-== About Blue Ocean
+== 关于 Blue Ocean
 
-.Elevator Pitch
+.综述
 ""
-Blue Ocean is a new user experience for Jenkins based on a personalizable,
-modern design that allows users to graphically create, visualize and diagnose
-Continuous Delivery (CD) Pipelines
+Blue Ocean 是一个更个性化，现代化的交互体验，它可以让用户图形化的创建，可视化的查看，调试和交付流水线。
 ""
 
-=== Screenshots
+=== 截图
 
-.Pipeline Editor
+.流水线编辑
 
 ""
-Developers of any skill level can create Continuous Delivery pipelines from start to finish using the intuitive and visual pipeline editor.
+任何水平的人员，都可以通过这个直观的可视化流水线编辑器来创建可持续交付的流水线。
 ""
 image:/images/blueocean/press/pipeline-editor.png[Editor, role=center]
 image:/images/blueocean/press/pipeline-editor-step.png[Editor with open step, role=center]
 
-.Pipeline visualization
+.流水线可视化
 ""
-Enables developers to visually represent pipelines in a way even their boss's boss can understand, improving clarity into the CD process for the whole organization
+提供一种更清晰的流水线处理过程的展示，让开发者的上级，或整个组织内的人员都能更直观的理解产品的交付过程。
 ""
 image:/images/blueocean/press/pipeline-visualization.png[Pipeline visualization, role=center]
 
-.Pipeline diagnosis
+.流水线诊断
 ""
-Developers locate automation problems instantly without endlessly scanning through logs or navigating through many screens.
+使开发者更快速的定位问题，而不是查看成堆的日志，或在不同页面间翻来翻去。
 ""
 image:/images/blueocean/press/pipeline-diagnosis.png[Pipeline diagnosis, role=center]
 
-.Personalized dashboard
+.个人面板
 
 ""
-Developers can make Jenkins their own by customizing their dashboard so that they only see the Pipelines that matter to them.
+开发者可以定制化自己的面板，把注意力放在自己关心的内容上。
 ""
 image:/images/blueocean/press/personalization.png[Personalized dashboard, role=center]
 
-.Github integration
+.Github 集成
 
 ""
-Pipelines are run for all feature branches and pull requests, with their status reported back to Github, so the whole team knows if your changes need work or are good to go.
+流水线可以运行在所有功能分支或 pull request 上，且可以反馈结果给 Github，以便团队人员可以及时的了解你的变更和产生的影响。
 ""
 image:/images/blueocean/press/github-status.png[Github integration, role=center]
 
-=== Video
+=== 视频
 
-Also available for download in link:https://www.dropbox.com/s/1824kdeh0czdgna/Blue_Ocean_01_End_Bumper.mov?dl=0[full high definition].
+提供 link:https://www.dropbox.com/s/1824kdeh0czdgna/Blue_Ocean_01_End_Bumper.mov?dl=0[高清]下载。
 ++++
 <center>
 <iframe width="853" height="480"
@@ -135,22 +118,20 @@ allowfullscreen></iframe>
 </center>
 ++++
 
-== Press Contacts
+== 媒体联系人
 
-The following individuals can be reached out to for comment, clarification
-or questions about the Jenkins project. Please bear in mind that many are
-volunteers so availability and time may be limited.
+您可以就相关于 Jenkins 的评论，或不清楚的问题联系以下的个人。但是请注意他们有些人只是志愿者，所以时间是有限的。
 
-=== US press contacts
+=== 美国
 
-* link:https://github.com/rtyler[R. Tyler Croy] (_english_) - Board member - `tyler[at]monkeypox.org`
-* link:https://github.com/kohsuke[Kohsuke Kawaguchi] (_english, japanese_) - Project founder / board member - `kk[at]kohsuke.org`
+* link:https://github.com/rtyler[R. Tyler Croy] (_英语_) - 管理者 - `tyler[at]monkeypox.org`
+* link:https://github.com/kohsuke[Kohsuke Kawaguchi] (_英语, 日语_) - 项目创始人 / 管理者 - `kk[at]kohsuke.org`
 
-=== EU press contacts
+=== 欧洲
 
-* link:https://github.com/batmat[Baptiste Mathus] (_french, english_) - Contributor / Meetup Organizer - `bmathus[at]batmat.net`
-* link:https://github.com/orrc[Christopher Orr] (_english, german_) - Contributor / Speaker - `chris[at]orr.me.uk`
+* link:https://github.com/batmat[Baptiste Mathus] (_法语, 英语_) - 参与贡献者 / 聚会组织人员 - `bmathus[at]batmat.net`
+* link:https://github.com/orrc[Christopher Orr] (_英语, 德语_) - 参与贡献者 / 对外演讲人 - `chris[at]orr.me.uk`
 
-=== link:https://en.wikipedia.org/wiki/Commonwealth_of_Independent_States[CIS] press contacts
+=== link:https://en.wikipedia.org/wiki/Commonwealth_of_Independent_States[CIS]
 
-* link:https://github.com/oleg-nenashev[Oleg Nenashev] (_russian, english_) - Contributor / Meetup Organizer - `o.v.nenashev[at]gmail.com`
+* link:https://github.com/oleg-nenashev[Oleg Nenashev] (_俄语, 英语_) - 参与贡献者 / 聚会组织人员 - `o.v.nenashev[at]gmail.com`
