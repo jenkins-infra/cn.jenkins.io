@@ -9,7 +9,7 @@ Jenkins 从一开始就支持构建 Java 项目，这是有原因的！
 
 == Apache Maven
 
-由于 Maven **目前**在 Jenkins 标准中被支持，在任何一个 FreeStyle 项目中，你可以使用专有的Step。这带来的好处之一是对于所有的 Jenkins 工具，你可以选择特定的 Maven 版本，然后 Jenkins 将会在项目构建所在的节点上自动安装它。
+由于 Maven **目前**在 Jenkins 标准中被支持，在任何一个 FreeStyle 项目中，你可以使用专有的 Step。这带来的好处之一是对于所有的 Jenkins 工具，你可以选择特定的 Maven 版本，然后 Jenkins 将会在项目构建所在的节点上自动安装它。
 
 
 image::/images/solution-images/jenkins-maven-step.png["'Jenkins Maven step'", role=center]
