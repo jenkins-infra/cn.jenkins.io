@@ -1,26 +1,26 @@
 ---
 layout: simplepage
-title: LTS Release Line
+title: 长期支持发行版路线
 ---
 :toc:
 
-The weekly Jenkins releases deliver bug fixes and new features rapidly to users and plugin developers who need them.
-But for more conservative users, it's preferable to stick to a release line which changes less often and only receives important bug fixes, even if such a release line lags behind in terms of features.
-Several companies maintain their own private branches off of Jenkins for stabilization and internal customizations.
-We encourage everybody to shift a part of the effort to this release line.
+每周更新一次的 Jenkins 版本为需要它们的用户和插件开发人员快速提供错误修复和新功能。
+但是对于更保守的用户来说，最好坚持使用不经常更改的发行版且只接收重要的错误修复，即使这样的发行版功能落后。
+有几家公司为了稳定和内部自定义而维护他们自己的私有 Jenkins 分支。
+我们鼓励每个人将部分工作转移到此发行路线 。
 
-This is called the Jenkins *Long-Term Support* release, or *LTS*. The concept is very similar to the link:https://wiki.ubuntu.com/LTS[LTS concepts in Ubuntu] and our model is described below.
+这称为 Jenkins 长期支持版本，即 LTS。 这个概念与 Ubuntu 中的 LTS 概念非常相似，我们的模型如下所述。
 
-## Model
+## 模型
 
-Every 12 weeks, the community will pick one of the relatively recent releases by consensus and mark it as the baseline for the next "stable but older" release line.
-Let's say this was version X.
-We'll create a branch from X to produce stable but older patch releases of *X.1*, *X.2*, and *X.3*.
-Changes to this branch will be restricted to backported cherry-picked bug fixes from the trunk that are "battle-tested" — meaning those commits that have already been a part of a main line release for more than a week.
-There are 3 minor releases for a baseline published in four week cycles.
-A release candidate is published two weeks before a minor release.
+每隔12周，社区将以协商一致的方式选择一个相对较新的版本，并将其标记为下一个“稳定但较旧”的版本线的基线。
+假设这是版本 X 。
+我们将 X 为基础创建一个分支用来生成如 *X.1*, *X.2*, 和 *X.3* 的稳定但是较旧的版本。
+对于此分支的更改将仅限于在主干上经过“战斗测试”的最好的 Bug 解决方案移植回此版本 — 意味着这些提交在主线发行版上作为一部分已超过一周以上。
+在四周的周期中发布的基线有3个次要版本。
+发布的候选版本会在次要发布前两周发布。
 
-The following table demonstrates release dates within the 12 week cycle:
+下表显示了12周周期内的发行版发布日期：
 
 ++++
 <style>
@@ -32,7 +32,7 @@ The following table demonstrates release dates within the 12 week cycle:
 </style>
 <table id="process">
   <tr>
-    <th>Week</th>
+    <th>周数</th>
     <th>0</th>
     <th>2</th>
     <th>4</th>
@@ -48,7 +48,7 @@ The following table demonstrates release dates within the 12 week cycle:
     <th>24</th>
   </tr>
   <tr>
-    <th>Release</th>
+    <th>发行版</th>
     <td>W.3</td>
     <td>X.1 RC</td>
     <td>X.1</td>
@@ -64,7 +64,7 @@ The following table demonstrates release dates within the 12 week cycle:
     <td>Y.3</td>
   </tr>
   <tr>
-    <th>Baseline Selection</th>
+    <th>基线选择</th>
     <td>X chosen</td>
     <td></td>
     <td></td>
@@ -82,47 +82,47 @@ The following table demonstrates release dates within the 12 week cycle:
 </table>
 ++++
 
-The cycle starts with picking an LTS baseline at week 0.
-Then, there is a two week period for backporting followed by two weeks for testing the release candidate resulting in the release of X.1.
-Backporting and RC testing is repeated twice, producing X.2 and X.3.
-This concludes the cycle for a given baseline and the new one is started immediately.
+该周期从第0周选择 LTS 基线开始。
+然后有两周的后向移植时间,紧跟着两周用来测试发行候选版本来产生 X.1 版本。
+后向移植和 RC 测试重复两次， 产生 X.2 和 X.3 版本。
+给定基线的循环结束后立即开始新的循环。
 
-The baseline release is typically between 2-5 weeks old when it is chosen, so X.1 LTS releases are published about 6-9 weeks after their baseline.
+选择基线发行版通常持续2-5周，所以 X.1 LTS 发行版在其基线发行6-9周后发布。
 
-See the link:https://jenkins.io/content/event-calendar[event calendar] for the specific LTS RC/release dates in the near future.
+查看 link:https://jenkins.io/content/event-calendar[活动日历] 来了解不久后特定的 LTS RC /发布日期。
 
-## Backporting Process
+## 后向移植过程
 
-Any user can propose that a bug fix be backported to LTS by labeling with link:https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=labels+%3D+lts-candidate[lts-candidate].
-Backporters use link:https://issues.jenkins-ci.org/issues/?filter=12146[this query] to list up issues that need to be attended once resolved.
+任何用户都可以使用 link:https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=labels+%3D+lts-candidate[lts-candidate] 标签提出修复错误并后向移植到 LTS 版本中。
+申请后向移植的人使用 link:https://issues.jenkins-ci.org/issues/?filter=12146[此查询] 来列出解决问题后需要注意的问题。
 
-Aside from the model set out above, backporters apply some subjective selection — for example whether a fix is easy and safe to backport, confidence in the fix, importance/impact of the problem, how much time is left until the end of backporting window and so on.
+除了上面提到的模型， 申请后向移植的人可采用一些主观选项 — 如修复是否简单且安全地后向移植，修复的可信度，问题的影响/重要性,距离后向移植窗口关闭的时间等等。
 
-If backported, a label like +2.46.2-fixed+ is applied to communicate to the user what LTS version(s) it's going to be in.
-If the backport is rejected, a label like +2.46.2-rejected+ is used to indicate that this ticket will not be backported to that specific release -- but it may still be picked up in a later LTS release.
+如果后向移植了，则应该使用像 +2.46.2-fixed+ 这样的标签来告知用户它将要进入的 LTS 版本。
+如果后向移植被拒绝了, 使用像 +2.46.2-rejected+ 这样的标签表示此项不会被移植到指定的版本 -- 但它可能在后续的 LTS 版本中被使用。
 
-## Switching Between Release Lines
+## 在发行路线中切换
 
-Due to how Jenkins stores data internally, users are generally able to upgrade to newer releases, but not downgrade to older releases.
-In the context of LTS, the _baseline_ is almost always the deciding factor that determines to which releases of the other line a Jenkins instance can be migrated.
+由于 Jenkins 储存内部数据的方式, 用户通常可以升级到较新的版本, 而不会降级到旧版本。
+在 LTS 的上下文中, _基线_ 总是其他哪些发行版中 Jenkins 可以迁移的决定性因素。
 
-### Switching From LTS to Weekly
+### 从 LTS （长期支持版）切换到每周更新版
 
-Make sure that the weekly release you're migrating to has been released after the LTS version you're migrating from.
+确保您迁移到的每周更新版本已在您使用的的 LTS 版本之后发布。
 
-While almost always any weekly more recent than the LTS baseline release will be compatible, important fixes that are in the LTS release, such as security fixes, may not be present in older weekly releases.
+虽然几乎比 LTS 基线发行版更新的每周更新版是兼容的，但 LTS 中的重要性修复（如安全性修复）可能不会出现在较旧的每周更新版中.
 
-### Switching From Weekly to LTS
+### 从每周更新版切换到 LTS （长期支持版）
 
-Make sure that the LTS baseline you're migrating to is more recent (compared numerically) than the weekly release you're migrating from.
-For example, if you're using Jenkins 2.5, 2.18, or 2.46, you will be able to upgrade to Jenkins LTS 2.46.x without major problems.
-However, if you're using Jenkins 2.47 or Jenkins 2.56, you may have problems downgrading to Jenkins LTS 2.46.x, even if the specific LTS releases were created at a later date than the weekly release you're using.
+确保您要迁移到的 LTS 基线版本比您的每周更新版新（通过比较数字）。
+例如，如果您使用的是 Jenkins 2.5，2.18或者2.46，则可以在不出现重大问题的情况下升级到Jenkins LTS 2.46.X.
+但是，如果你使用的是 Jenkins 2.47 或 Jenkins 2.56, 您可能在降级到 Jenkins LTS 2.46.X 时出现问题, 即使 LTS 版本比您正在使用的每周更新版本更晚发布。
 
-### Switching Update Sites
+### 切换更新站点
 
-The Jenkins project operates multiple update sites that inform Jenkins about available updates to Jenkins and plugins.
-As Jenkins sends its current version when requesting new data, the same link:https://updates.jenkins.io/current/update-center.json[URL] can be used for all releases of Jenkins, and will always serve the most appropriate update information.
-For example, instances running an LTS release of Jenkins will only be offered LTS versions of Jenkins to upgrade to.
+Jenkins 项目使用多个升级站点来通知 Jenkins 和插件可用的升级。
+由于 Jenkins 在请求数据的时候发送它的当前版本信息，相同的 link:https://updates.jenkins.io/current/update-center.json[URL] 可以被所有 Jenkins 发行版使用，并将始终提供最合适的版本信息。
+例如, 在运行 LTS 发行版时只会提供能够升级的 Jenkins LTS 版本。
 
-After switching between release lines, it's recommend to update the update site metadata cached in Jenkins by hitting the "Check now" button in the Plugins Manager (further instructions link:https://jenkins.io/doc/book/managing/plugins/#from-the-web-ui[here]).
-Otherwise, Jenkins may offer to update or install plugins whose newer versions are incompatible with the installed version.
+在发行路线之间切换完成后, 建议通过点击插件管理器中的“立即检查”按钮来更新在 Jenkins 中缓存的更新站点元数据( link:https://jenkins.io/doc/book/managing/plugins/#from-the-web-ui[此处]) 有更多说明。
+否则，Jenkins 可能会提供与安装版本不兼容的升级或插件安装。
