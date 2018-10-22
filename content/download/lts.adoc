@@ -96,7 +96,7 @@ title: 长期支持发行版路线
 任何用户都可以使用 link:https://issues.jenkins-ci.org/secure/IssueNavigator.jspa?reset=true&jqlQuery=labels+%3D+lts-candidate[lts-candidate] 标签提出修复错误并后向移植到 LTS 版本中。
 申请后向移植的人使用 link:https://issues.jenkins-ci.org/issues/?filter=12146[此查询] 来列出解决问题后需要注意的问题。
 
-除了上面提到的模型， 申请后向移植的人可采用一些主观选项 — 如修复是否简单且安全地后向移植，修复的可信度，问题的影响/重要性,距离后向移植窗口关闭的时间等等。
+除了上面提到的模型，申请后向移植的人可采用一些主观选项 — 如修复是否简单且安全地后向移植，修复的可信度，问题的影响/重要性,距离后向移植窗口关闭的时间等等。
 
 如果后向移植了，则应该使用像 +2.46.2-fixed+ 这样的标签来告知用户它将要进入的 LTS 版本。
 如果后向移植被拒绝了, 使用像 +2.46.2-rejected+ 这样的标签表示此项不会被移植到指定的版本 -- 但它可能在后续的 LTS 版本中被使用。
