@@ -27,8 +27,8 @@ Jenkins 项目参加了 Google Summer of Code 2018。
 参考 link:https://developers.google.com/open-source/gsoc/timeline[GSoC Timeline] 。
 
 **当前状态**: 学生与导师讨论项目主题。
-我们在 **March 05** 之前接收导师提交的新项目主题。
-学生应用阶段开始于 **March 12** 。
+我们在 **3月5号** 之前接收导师提交的新项目主题。
+学生应用阶段开始于 **3月12号** 。
 
 === 联络
 
