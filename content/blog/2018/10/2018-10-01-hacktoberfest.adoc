@@ -18,7 +18,7 @@ image::/images/post-images/2018-hacktoberfest/social-card.png[Hacktoberfest, rol
 
 == 给 Jenkins 做贡献
 
-在 Hacktoberfest 期间可以通过多种途径给 Jenkins link:https://jenkins.io/participate/[贡献]。一般来说，在  GitHub 发起的任意类型 PR 都符合条件。您可以：
+在 Hacktoberfest 期间可以通过多种途径给 Jenkins link:https://jenkins.io/zh/participate/[贡献]。一般来说，在  GitHub 发起的任意类型 PR 都符合条件。您可以：
 
 * **编码** - 贡献代码或自动化测试
 ** Jenkins 项目代码库包括很多编程语言，大部分为：Java、Groovy 和 JavaScript 以及 Go。
@@ -26,10 +26,10 @@ image::/images/post-images/2018-hacktoberfest/social-card.png[Hacktoberfest, rol
 * **文档** - 改善文档
 * **博客** - 写关于 Jenkins的 link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#adding-a-blog-post[博客]
 * **本地化** -  link:https://wiki.jenkins.io/display/JENKINS/Internationalization[本地化] Jenkins 组件
-* **设计** - link:/artwork[artwork] 以及 UI 改进也可以！
+* **设计** - link:/zh/artwork[artwork] 以及 UI 改进也可以！
 * **组织** - 为 Jenkins 和 Hacktoberfest （查看下文）组织一次本地 Meetup
 
-查看 link:/participate/[贡献和参与] 页面获取更多信息。
+查看 link:/zh/participate/[贡献和参与] 页面获取更多信息。
 
 == 项目
 
@@ -45,12 +45,12 @@ Jenkins 项目分布在 Github 上的几个组织（jenkinsci、jenkins-x、jenk
   link:https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20labels%20in%20(newbie-friendly)%20AND%20component%20in%20(core)[对新人友好的问题]
 
 
-| link:https://jenkins.io[Jenkins 网站]
+| link:https://jenkins.io/zh/[Jenkins 网站]
 | 扩展并改进 Jenkins 文档，编写博客。
 
   link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc[贡献指导]
 
-| link:https://jenkins-x.io/[Jenkins X]
+| link:https://jenkins-x.io/zh/[Jenkins X]
 | 尝试该项目并创建新的示例，增加文档，并为您的工具链创建新的 Builder。
 
   link:https://jenkins-x.io/zh/contribute/[贡献指导],
@@ -74,12 +74,12 @@ Jenkins 项目分布在 Github 上的几个组织（jenkinsci、jenkins-x、jenk
   link:https://github.com/jenkinsci/docker[Jenkins Master]，
   link:https://github.com/jenkinsci/docker-jnlp-slave[代理]，以及其他组件
 
-| link:/sigs/chinese-localization/[中文本地化 SIG]
+| link:/zh/sigs/chinese-localization/[中文本地化 SIG]
 | 给新的 link:https://github.com/jenkins-infra/cn.jenkins.io[网站] 以及
   link:https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文本地化插件]做贡献。
 
-| link:/artwork[Jenkins Artwork]
-| 为 link:/projects/jam/[Jenkins area meetups],link:/projects/[子项目]以及插件添加新的图片以及 Logo。
+| link:/zh/artwork[Jenkins Artwork]
+| 为 link:/zh/projects/jam/[Jenkins area meetups],link:/projects/[子项目]以及插件添加新的图片以及 Logo。
   您也可以给插件贡献新的图片。
 
 |=========================================================
@@ -91,7 +91,7 @@ Jenkins 项目分布在 Github 上的几个组织（jenkinsci、jenkins-x、jenk
 Hacktoberfest 是一个在线活动，但有很多由开源社区组织的活动。您可以从这里的
 link:https://hacktoberfest.digitalocean.com/#events[活动]选择一个并加入。
 
-我们也鼓励 link:/projects/jam/[Jenkins Area Meetup] 组织者在十月组织 Jenkins 相关的活动(workshops, hackergartens)。
+我们也鼓励 link:/zh/projects/jam/[Jenkins Area Meetup] 组织者在十月组织 Jenkins 相关的活动(workshops, hackergartens)。
 如果您并不是一个 meetup 组织者，但是希望组织一次 meetup，您也可以通过 meetup.com (您可以在 JAM link:https://www.meetup.com/pro/jenkins[这里]找到 JAM)并联系组织者。
 查看 link:https://hacktoberfest.digitalocean.com/eventkit[Hacktoberfest Event Kit] 获取更多信息。
 
@@ -112,9 +112,9 @@ link:https://hacktoberfest.digitalocean.com/#events[活动]选择一个并加入
 
 Jenkins 项目包含很多如何贡献的材料。这里有些链接可能会有帮助：
 
-* link:/participate/[Participate] - 新加入的贡献者首页
-* link:/blog/2017/08/07/intro-to-plugin-development/[插件开发指导]
-* link:/doc/developer/[开发者文档]
+* link:/zh/participate/[Participate] - 新加入的贡献者首页
+* link:/zh/blog/2017/08/07/intro-to-plugin-development/[插件开发指导]
+* link:/zh/doc/developer/[开发者文档]
 * link:https://gitter.im/jenkinsci/jenkins[Gitter 通道] Q&A
 
 上面表格中的项目也有他们自己帮助新人的文档。

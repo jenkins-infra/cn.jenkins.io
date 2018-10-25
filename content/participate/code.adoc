@@ -1,24 +1,24 @@
 ---
 layout: simplepage
-title: Contribute code
+title: 贡献源码
 section: participate
 ---
 
 [NOTE]
 ====
-This page is still a work in progress.
+此页面仍在进行中。
 ====
 
-Check out these existing resources for contributors:
+查看贡献者的这些现有资源：
 
-* link:https://wiki.jenkins-ci.org/display/JENKINS/Beginners+Guide+to+Contributing#BeginnersGuidetoContributing-Areyouinterestedinwritingcode%3F[Beginners Guide to Contributing].
-* https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins[The complete guide to hosting and publishing plugins]
-* https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial[The plugin tutorial will get you started with Jenkins plugin development]
-* https://wiki.jenkins-ci.org/display/JENKINS/Adopt+a+Plugin[Adopt a plugin]
-* https://wiki.jenkins-ci.org/display/JENKINS/Before+starting+a+new+plugin[Advice before creating a new plugin]
-* https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[How we handle pull requests to plugin repositories]
-* Check out the https://github.com/jenkinsci[jenkinsci] organization on GitHub for plugins and other components to contribute to.
-* link:https://issues.jenkins-ci.org/issues/?jql=labels+%3D+newbie-friendly[Jira query for issues we believe are beginner-friendly]
+* link:https://wiki.jenkins-ci.org/display/JENKINS/Beginners+Guide+to+Contributing#BeginnersGuidetoContributing-Areyouinterestedinwritingcode%3F[初学者贡献指南]
+* https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins[托管和发布插件的完整指南]
+* https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial[插件教程将帮助您开始使用 Jenkins 插件开发]
+* https://wiki.jenkins-ci.org/display/JENKINS/Adopt+a+Plugin[认领一个插件]
+* https://wiki.jenkins-ci.org/display/JENKINS/Before+starting+a+new+plugin[开始一个新插件之前的建议]
+* https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[我们如何处理对插件存储库的 PR 请求]
+* 查看 GitHub 上的 https://github.com/jenkinsci[jenkinsci] 组织，了解插件和其他组件
+* link:https://issues.jenkins-ci.org/issues/?jql=labels+%3D+newbie-friendly[用 Jira 查询我们认为对初学者友好的问题]
 
 ////
 

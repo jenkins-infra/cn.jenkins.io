@@ -10,7 +10,7 @@ def projectProperties = [
 def profile = 'cn-site'
 
 if (infra.isTrusted()) {
-  profile = 'jenkinsio-cn'
+  profile = 'jenkinsio-zh'
 }
 
 
@@ -67,13 +67,12 @@ try {
                     set -o nounset
                     set -o pipefail
                     set -o xtrace
+                    export AWESTRUCT_PROFILE=$profile
                     mkdir -p .awestruct
                     rm -rf ./content/_tmp/examples/pipeline-examples
                     chmod -R 755 *
                     make fetch-reset 
                     make prepare 
-                    make $profile
-                    make pdfs
                     make archive
                     
                     illegal_htaccess_content="\$( find content -name '.htaccess' -type f -exec grep --extended-regexp --invert-match '^(#|ErrorDocument)' {} \\; )"
@@ -106,7 +105,7 @@ try {
                 /* -> https://github.com/Azure/blobxfer
                 Require credential 'BLOBXFER_STORAGEACCOUNTKEY' set to the storage account key */
                 withCredentials([string(credentialsId: 'BLOBXFER_STORAGEACCOUNTKEY', variable: 'BLOBXFER_STORAGEACCOUNTKEY')]) {
-                    sh './scripts/blobxfer upload --local-path /data/_site --storage-account-key $BLOBXFER_STORAGEACCOUNTKEY --storage-account prodjenkinsio --remote-path cnjenkinsio --recursive --mode file --skip-on-md5-match --file-md5'
+                    sh './scripts/blobxfer upload --local-path /data/_site --storage-account-key $BLOBXFER_STORAGEACCOUNTKEY --storage-account prodjenkinsio --remote-path zhjenkinsio --recursive --mode file --skip-on-md5-match --file-md5'
                 }
             }
         }
