@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Jenkins installation and setup
+title: Jenkins 的安装
 ---
 
 :ruby
@@ -17,73 +17,70 @@ title: Jenkins installation and setup
     .col-md-1
     .col-md-10
       %h2
-        Getting started with Jenkins
+        开始使用 Jenkins
 
       .container
         .row
           %p
-            The Jenkins project produces two release lines, LTS and weekly.
-            Depending on your organization's needs, one may be preferred over
-            the other.
+            Jenkins 项目产生两个发行线, 长期支持版本 (LTS) 和每周更新版本。
+            根据你的组织需求, 一个可能比另一个更受欢迎。
           %p
-            Both release lines are distributed as
+            两个版本都以
             %code
               \.war
-            files, native packages, installers, and Docker containers. Packages with the
+            文件, 原生包, 安装程序, 和 Docker 容器的形式分发。带有
             %span.icon-gear-menu-o
-            gear icon are maintained by third parties.
+            齿轮的包由第三方维护。
         .row
           .col-md-6
             %h4
-              Long-term Support (LTS)
+              长期支持版本 (LTS)
             %p
-              LTS (Long-Term Support) releases are chosen every 12 weeks from the
-              stream of regular releases as the stable release for that time period.
+              LTS (长期支持) 版本每12周从常规版本流中选择，作为该时间段的稳定版本。
 
               %a{'href' => 'lts'}
-                Learn more…
+                了解更多…
 
               %p.details
                 %a.item{:href=>'/changelog-stable'}
-                  Changelog
+                  变更日志
                 |
                 %a.item{:href=>'/doc/upgrade-guide'}
-                  Upgrade Guide
+                  升级指南
                 |
                 %a.item{:href=>'http://mirrors.jenkins.io/war-stable/'}
-                  Past Releases
+                  以前的发行版
 
           .col-md-6
             %h4
-              Weekly
+              每周更新版
             %p
-              A new release is produced weekly to deliver bug fixes and
-              features to users and plugin developers.
+              每周都会发布一个新版本，为用户和插件开发人员提供错误修复和功能。
 
             %p.details
               %a.item{:href=>'/changelog'}
-                Changelog
+                变更日志
               |
               %a.item{:href=>'http://mirrors.jenkins.io/war/'}
-                Past Releases
+                以前的发行版
         .row
           .col-md-6
             %strong
               %i.icon-box-add
-              Deploy Jenkins
+              部署 Jenkins
               = site.jenkins.stable
 
               .container
                 .row
                   .m-3
                     %a{:href => 'https://aka.ms/jenkins-on-azure'}
-                      - # Contact azdevopspub@microsoft.com if issues arise
+                      - # 如果有问题出现请联系 azdevopspub@microsoft.com
                       %img{:src => '/images/azure-deploy-button.png'}/
 
             .list-group
             %strong
               %i.icon-box-add
-              Download Jenkins
+              下载 Jenkins
               = site.jenkins.stable
               for:
 
@@ -135,7 +132,7 @@ title: Jenkins installation and setup
           .col-md-6
             %strong
               %i.icon-box-add
-              Download Jenkins
+              下载 Jenkins
               = site.jenkins.latest
               for:
 
@@ -204,8 +201,8 @@ title: Jenkins installation and setup
         .row
           .col-md-12
             %p
-              Once a Jenkins package has been downloaded, proceed to the
+              下载软件包后, 请前往用户手册的
               %strong
                 %a{:href => '/doc/book/getting-started/installing/'}
-                  Installing Jenkins
-              section of the User Handbook.
+                  安装 Jenkins
+              部分。
