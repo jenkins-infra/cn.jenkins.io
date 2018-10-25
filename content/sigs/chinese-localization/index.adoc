@@ -35,6 +35,7 @@ overview: >
   Jenkins 核心和插件以及官方网站。欢迎加入！
 
 ---
+:encoding: UTF-8
 
 中文本地化组（Chinese Localization Group）的贡献者和协作者致力于改善 Jenkins 的中文用户的使用体验。涉及的范围包括：
 Jenkins 核心和插件以及官方网站。欢迎加入！
