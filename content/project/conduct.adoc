@@ -1,6 +1,6 @@
 ---
 layout: simplepage
-title: "Jenkins 行为守则"
+title: "Jenkins 行为准则"
 section: conduct
 ---
 
@@ -17,9 +17,9 @@ section: conduct
 
 例如，如下行为是不可接受的：
 
-* 使用与性相关的词汇
-* 人身攻击
-* 欺骗，侮辱或贬低性的评论
+* 使用与性有关的言语或是图像，以及不受欢迎的性骚扰
+* 人身攻击及政治攻击
+* 捣乱/煽动/造谣的行为或进行侮辱/贬损的评论
 * 公开或私下的骚扰
 * 在没有明确许可的情况下，公布他人的具体地址或网络联系方式
 * 不道德或不专业的行为
@@ -67,7 +67,7 @@ link:http://contributor-covenant.org/[Contributor Covenant]， 1.3.0 版本，
 ==== 邮件组
 
 使用 Google group （见
-link:/mailing-lists[here]）且自托管在 link:http://lists.jenkins-ci.org/mailman/listinfo[lists.jenkins-ci.org].
+link:/mailing-lists[这里]）且自托管在 link:http://lists.jenkins-ci.org/mailman/listinfo[lists.jenkins-ci.org].
 
 ==== IRC 频道
 
@@ -92,9 +92,9 @@ link:https://wiki.jenkins-ci.org/display/JENKINS/IRC+Channel[IRC Channel] wiki
 
 == 举报
 
-如果有人违规了，可以发送邮件到 jenkinsci-board@googlegroups.com，它会被 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理人员] 看到。
+如果有人违规了，可以发送邮件到 jenkinsci-board@googlegroups.com，它会被 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理人员]看到。
 
-请注意，每个人的时间是有限的，所以反馈的时候请竟可能的提供详细的信息。
+请注意，每个人的时间是有限的，所以反馈的时候请尽可能的提供详细的信息。
 
 如果你认为管理者有违反上述准则的，可以发送邮件个其他管理者，联系信息见：link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理人员]
 
@@ -104,7 +104,7 @@ link:https://wiki.jenkins-ci.org/display/JENKINS/IRC+Channel[IRC Channel] wiki
 
 === 谴责
 
-如果影响较小，管理者会告知相关人员，他的行为是错误的需要改变。
+如果影响较小，管理者会告知相关人员，他的行为是错误的且需要改变。
 
 === 惩戒
 
@@ -131,7 +131,7 @@ link:https://wiki.jenkins-ci.org/display/JENKINS/IRC+Channel[IRC Channel] wiki
 
 
 
-NOTE: 本页引用自
+注意: 本页引用自
 link:https://wiki.jenkins-ci.org/display/JENKINS/Code+of+Conduct[Code of
 Conduct] wiki 页， 作为 `v15` , 在管理人员内通过
 link:http://meetings.jenkins-ci.org/jenkins-meeting/2016/jenkins-meeting.2016-01-06-19.01.html[2016-01-06]
