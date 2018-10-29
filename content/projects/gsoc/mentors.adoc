@@ -26,7 +26,7 @@ image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=
 
 == 防范利益冲突
 
-我们非常感谢 Jenkins 贡献者能提供指导。同时，我们希望避免与GSoC规则和精神以及各方之间的利益发生任何冲突。
+我们非常感谢 Jenkins 贡献者能提供指导。同时，我们希望避免与 GSoC 规则和精神以及各方之间的利益发生任何冲突。
 
 * 根据GSoC规则，只有个人贡献者才能成为导师。公司的代表只能以个人贡献者的身份行事。
 * 所有的导师和组织管理者都被认为是 Jenkins 的代表，他们必须遵守 link:/conduct[行为守则]。
