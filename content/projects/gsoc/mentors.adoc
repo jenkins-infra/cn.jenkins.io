@@ -7,7 +7,7 @@ tags:
 
 image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=right]
 
-这个页面包含了导师所需的外部和内部资源的链接。学生相关的资源可以在 link:/projects/gsoc/students[这里] 找到。
+这个页面包含了导师所需的外部和内部资源的链接。学生相关的资源可以在link:/projects/gsoc/students[这里]找到。
 
 :toc:
 
@@ -51,7 +51,7 @@ image:/images/gsoc/jenkins-gsoc-logo_small.png[Jenkins GSoC, role=center, float=
 ** 也许可以，请咨询竞争方案的开发者。尝试联合起来，让他们成为导师。
 * “我想指导这个项目，但我看到另一家公司提供了类似的闭源解决方案。”
 ** 可以，但是请让 GSoC 组织管理联系这个公司。也许他们会同意将它开源（或者指派一个 Mentor）。假如不的话，那是他们的问题。
-* “我想基于专利算法/技术实现一个功能。 它是开源的，所以我们可以自由地做任何事情。”
+* “我想基于专利算法/技术实现一个功能。它是开源的，所以我们可以自由地做任何事情。”
 ** 不行，Jenkins 项目遵守法律。我们处于 Software In Public Interest 组织的保护之下，该组织是美国和国际立法的一个部分。请联系专利持有人获取许可证（需要 Jenkins Governance 会议的审查）。
 * “我看完了列表，但是还是有疑虑。”
 ** 也许可以，请咨询 GSoC 组织管理。
