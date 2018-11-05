@@ -1,7 +1,13 @@
+<-- Comment:
+如果您添加的是翻译类 PR，请查看下面的检查项：
+Please take a look the checklist below if your PR belong to a translation:
+-->
+
 ### 检查项（Submitter checklist）
 
 - [ ] 已添加 Issue
 - [ ] 已阅读[翻译规范](https://github.com/jenkins-x/jx-docs/blob/master/CONTRIBUTING.md)
+- [ ] [原文地址](https://github.com/jenkins-x/jx-docs/blob/master/sample.md)
 
 <-- Comment:
 Fix #0
