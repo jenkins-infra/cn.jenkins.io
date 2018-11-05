@@ -1,146 +1,131 @@
 ---
 layout: simplepage
-title:  Project Governance Document
+title:  管理文档
 section: project
 ---
 
 :sectanchors:
 
-== Who we are
+== 我们是谁
 
-The Jenkins project as a community revolves around Jenkins as a piece of software. We are a group of open-source developers and users who develop, use, promote Jenkins, software around Jenkins, and other related activities for our mutual benefit.
+Jenkins 项目是一个相关于 Jenkins 软件的社区。我们是一群热爱开源，着眼于开发，使用，提升 Jenkins 软件功能开发者，以及其他进行相关利益活动的人员。
 
-The project is affiliated with link:http://www.spi-inc.org/[Software in the Public Interest] (SPI), a non-profit organization that provides legal representation and other necessities for running an open-source software project. SPI also acts as our treasury, and legally owns the project assets.
+本项目附属于 link:http://www.spi-inc.org/[Software in the Public Interest] (SPI)。SPI 是一个非盈利组织，提供必要的法律保护和开源软件运作需要的帮助。它也是本项目的法律上的拥有者和资产管理者。
 
-== Our Philosophy
+== 我们的哲学
 
-=== Lower barrier of entry
+=== 低门槛
 
-We strive for lower barrier of entry to the project. This is partly achieved by not requiring new contributors to “prove themselves” before they are admitted to the committership. Instead, we assume they are good until proven otherwise, and this principle applies to anybody without arbitrary discrimination. We recognize that every contribution is precious, and we recognize that every added process turn away some potential contributors.
+我们努力的降低加入本项目的门槛，就如我们接纳所有人的提交，而不要求提交者通过某些方式来证明其有这个能力。另外我们认为每个人都是优秀的，除非他们自己经常犯错，我们对所有人都一视同仁。我们认为每个人的贡献都非常珍贵，所以任何多余的流程都是对吸引潜在的贡献者的阻碍。
 
-The lower barrier of entry is partly achieved by structuring the project to core, plugins, modules, and other independent pieces, thereby reducing the need for collaboration and communication. We try to let everyone have their own turf where they can work efficiently without bogged down by discussions and compromises. We believe everyone has the right to express their idea in their own plugins.
+Jenkins 核心项目，插件，模块，以及独立的相关项目都采取低门槛策略，以便于减少参与和交流的阻碍。我们也努力的让每个人都找到他们自己舒适的工作方式，以便于高效，没有冲突的合作。我们认为每个人都有表达他们自己想法的权利。
 
-The lower barrier of entry is also partly achieved by recognizing that people move on. Lots of code in the project is maintained by people other than the original author. We encourage new contributors to take over existing projects that aren’t actively maintained. We believe that “old” contributors deserve respect from “new” contributors, but the inaction on the part of the original contributors shall not block new contributors from making changes.
+相信人们的进步也是低门槛策略的原因。本项目的很多代码都是不原作者在维护。我们也鼓励新来者接管老的项目。我们认为早的贡献者应该充分的尊重新的贡献者，原始贡献者的不作为不应阻止新贡献者做出改变。
 
-=== Meritocracy
+=== 任人唯贤
 
-Our striving to lower barrier of entry doesn’t mean everyone has the equal voice. We value those who contribute more to the project, namely link:https://en.wikipedia.org/wiki/Meritocracy[Meritocracy]. Contribution shouldn’t be narrowly interpreted just to code changes, but rather it includes such activities as helping others in the community, doing PR, running infrastructure, and so on.
+我们推行低门槛方式，并不意味着每个人在社区里都有相同分量。我们会衡量每个人的贡献价值，来给与不同的责任和权力，即 link:https://en.wikipedia.org/wiki/Meritocracy[任人唯贤]。贡献不仅仅停留在代码修改，还包括对其他人的帮助，如 PR，维护基础设施等等。
 
-=== Transparency
+=== 公开透明
 
-We believe in running the project transparently. This includes everything from decision-making to defects in the code.
+我们公开透明的管理项目，这包括从决策到代码变更的所有事情。
 
-=== Compatibility matters
+=== 兼容性问题
 
-We recognize that users expect their existing data, accumulated under past versions (including Hudson up to 1.395) to continue working under future versions of Jenkins. This includes jobs configurations, build records, and plugin binaries that they are using. The Jenkins project places high value on maintaining this compatibility, and will be very careful in removing functionality.
+我们认识到，用户希望现有的版本可以兼容现他们过去积累的数据（包括Hudson 升级到 1.395），包括在 Jenkins 的未来版本中也能正常运作。这写数据包括他们正在使用的作业配置，构建记录和插件二进制文件。Jenkins项目非常重视维护这种兼容性，并且在删除功能时会非常小心。
 
-To enable the above goal, we also recognize that plugin developers expect APIs and other code that they depend on to remain available in future versions of Jenkins. This is not to say we don’t ever remove anything, but we do it very carefully.
+我们还认识到插件开发人员希望他们所依赖的API和其他代码在 Jenkins 的未来版本中仍然可用。这并不是说我们永远不会删除任何内容，但我们会非常谨慎地执行此操作。
 
-Because one plugin can depend on another, we expect the same principle from plugins that many other plugins depend on.
+因为一个插件可以依赖于另一个插件，所以我们期望许多其他插件所依赖的插件具有相同的原理。
 
-=== Automation
+=== 自动化
 
-One of the goals of the Jenkins project is to enable more automation, and we apply the same principle in developing Jenkins. Accordingly, we develop and use a number of daemons, bots, and scripts to perform house-keeping activities and day-to-day operations, we use Jenkins ourselves to run many of those.
+Jenkins 项目的目标之一是实现更多自动化，我们在开发 Jenkins 时应用相同的原则。因此，我们开发并使用许多守护进程，机器人和脚本来执行本务活动和日常操作。
 
-This not only frees our time to do more creative work, but it also helps reduce the barrier to entry by reducing the blockage of one developer by another. Plus it has the added benefit of eating our own dogfood.
+这不仅节省了我们做更多创造性工作的时间，而且还通过减少一个开发人员被另一个开发人员的阻塞来帮助减少进入障碍。此外，它还使我们的测试受益。
 
-== License
+== 许可证
 
-The Jenkins project uses the link:http://opensource.org/licenses/MIT[MIT License] as the primary license of choice, for the code that we develop. Unless otherwise stated, all the code is under the MIT license.
+Jenkins项目使用 link:http://opensource.org/licenses/MIT[MIT 许可证] 作为我们开发的代码的首选许可证。除非另有说明，否则所有代码均在 MIT 许可下。
 
-The link:https://github.com/jenkinsci/jenkins[core of Jenkins] is entirely under the MIT license, as is the majority of our link:https://github.com/jenkins-infra[infrastructure code] (that runs the project itself), as well as many plugins. We encourage hosted plugins to use the same MIT license, to simplify the story for users, but plugins are free to choose their own licenses, so long as it’s an OSI-approved open-source license.
+link:https://github.com/jenkinsci/jenkins[Jenkins 的核心]完全在MIT许可下，我们的大多数基础设施代码（运行项目本身的）以及许多插件都是如此。我们鼓励托管插件使用相同的 MIT 许可证，以简化用户使用流程，但插件可以自由选择自己的许可证，只要它是 OSI 批准的开源许可证。
 
-This is not to be confused with proprietary plugins --- we recognize and encourage plugins that people write on their own for their internal use, without necessarily making the source code available. But no such plugins will be hosted by the Jenkins project.
+这不应该与专有插件相混淆 - 我们认识并鼓励人们自己编写以供内部使用的插件，而不必使源代码可用。但 Jenkins 项目不会托管这样的插件。
 
 [[cla]]
 
-=== Contributor License Agreement (CLA)
+=== 贡献者许可协议 (CLA)
 
-To further clarify the intellectual property rights around the project, we require that core committers sign a contributor agreement. This CLA is the same as Apache's CLA with "Apache" replaced by "SPI". This agreement explicitly assigns a set of rights to SPI, such as the effective joint copyright ownership, patent grant, as well as acknowledging that you have the necessary rights to contribute changes.
+为了进一步明确项目的知识产权，我们要求核心提交者签署贡献者协议。此 CLA 与 Apache 的 CLA 相同。本协议明确赋予 SPI 一组权利，例如有效的联合版权所有权，专利授权，以及承认您拥有贡献的权限。
 
-The assignment of these rights to SPI helps Jenkins being neutral to any particular vendor, and it'll also make legal departments happy especially in large organizations who want to use Jenkins.
+将这些权利分配给SPI有助于Jenkins对任何特定供应商保持中立，并且它还会使法律部门感到高兴，特别是在想要使用Jenkins的大型组织中。
 
-CLAs come in two flavors. Every core contributor needs to sign an Individual CLA (ICLA), and in cases where you as an individual do not own the work you are contributing (such as when your company assigns you to work on Jenkins and therefore your company owns the hard work you produced), the corporation also needs to sign a Corporate CLA (CCLA). See link:https://www.apache.org/licenses/#clas[the discussion in Apache for more details]. The CLA forms can be obtained from the following URLs:
+CLA 有两种类型。每个核心贡献者都需要签署个人 CLA（ICLA），如果您不独自拥有您的贡献（例如当您的公司指派您参与 Jenkins 工作，因此如果您的公司拥有您的辛勤贡献，则公司也需要签署公司 CLA（CCLA）。有关更多详细信息，请参阅 link:https://www.apache.org/licenses/#clas[Apache 中的讨论]。可以从以下URL获取CLA表单：
 
 * link:https://raw.github.com/jenkinsci/infra-cla/approved/icla.txt[ICLA]
 * link:https://raw.github.com/jenkinsci/infra-cla/approved/ccla.txt[CCLA]
 
-To balance the additional overhead with the lower barrier to entry, this policy only applies to the core, although we welcome anyone who's willing to submit a CLA for their work on plugins.
+为了平衡额外的开销和较低的进入门槛，此政策仅适用于核心，我们欢迎任何愿意为插件贡献者提交 CLA。
 
-Details to submit CLAs are documented in link:https://github.com/jenkinsci/infra-cla/blob/master/README.md[infra-cla README].
+提交CLA的详细信息记录在 link:https://github.com/jenkinsci/infra-cla/blob/master/README.md[infra-cla README] 自述文件中。
 
-=== 3rd party library licenses in the core
+=== 核心中的第三方库许可证
 
-The Jenkins project depends heavily on 3rd party libraries. We believe it's better to reuse what we can than to reinvent, so that our precious resources can be spent elsewhere.
+Jenkins 项目在很大程度上依赖于第三方库。我们认为，重用我们的能力比重新发明更好，这样我们的宝贵资源就可以用在其他地方。
 
-Jenkins as a whole needs to be an open-source project, so we've been restricting ourselves to only use 3rd party libraries that are link:http://www.opensource.org/[OSI-approved open-source licenses] (such as Apache Software License, BSD license, MIT license, Eclipse Public License, and Lesser GNU Public License.) In addition, to keep the core reusable for the widest possible use cases, we refuse so-called link:http://en.wikipedia.org/wiki/Copyleft[copyleft licenses] that restrict the overall license to a specific license (such as GNU Public License.) To that end, we designated the following licenses as approved licenses that we can depend on. Additional licenses are subject to the approval by the board:
+Jenkins 作为一个整体需要成为一个开源项目，所以我们一直限制自己只使用 link:http://www.opensource.org/[OSI 认可的开源许可证的第三方库]（例如 Apache 软件许可证，BSD 许可证，MIT 许可证，Eclipse Public）许可证和较​​小的 GNU 公共许可证。）此外，为了使核心可以重复使用最广泛的用例，我们拒绝所谓的 link:http://en.wikipedia.org/wiki/Copyleft[copyleft licenses] 许可证，将许可证限制为特定许可证（例如 GNU 公共许可证）。最终，我们将以下许可证指定为我们可以依赖的已批准许可证。其他许可证需经董事会批准：
 
-* link:http://www.apache.org/licenses/[Apache Software License]
-* link:http://opensource.org/licenses/bsd-license.php[BSD license], link:http://opensource.org/licenses/mit-license.php[MIT license]
-* link:http://opensource.org/licenses/W3C.php[W3C software license]
-* link:http://opensource.org/licenses/cddl1.php[CDDL], link:http://opensource.org/licenses/cpl1.0.php[CPL], link:http://opensource.org/licenses/eclipse-1.0.php[EPL], and link:http://opensource.org/licenses/mozilla1.0.php[MPL], and link:http://opensource.org/licenses/lgpl-license.php[LGPL] (these licenses require that derivative works to be under the same license as the original license, so the source code needs to be separated into its own repository, but binaries can be used as dependencies to the core.)
+* link:http://www.apache.org/licenses/[Apache 软件许可证]
+* link:http://opensource.org/licenses/bsd-license.php[BSD 许可证], link:http://opensource.org/licenses/mit-license.php[MIT 许可证]
+* link:http://opensource.org/licenses/W3C.php[W3C 软件许可证]
+* link:http://opensource.org/licenses/cddl1.php[CDDL], link:http://opensource.org/licenses/cpl1.0.php[CPL], link:http://opensource.org/licenses/eclipse-1.0.php[EPL], 和 link:http://opensource.org/licenses/mozilla1.0.php[MPL], 以及 link:http://opensource.org/licenses/lgpl-license.php[LGPL] 这些许可证要求衍生产品与原始许可证的许可证相同，因此源代码需要分离到自己的存储库中，但二进制文件可以用作依赖项核心。）
 
 In core, the build process ensure that all the licenses of the dependency libraries are accounted for. In other words, we require that dependency POMs declare their own licenses in the Maven way, or use link:https://github.com/jenkinsci/jenkins/blob/master/licenseCompleter.groovy[the license completion script] to supply one where the POM is missing that information. The completion script is also used in case the library is dual-licensed to pick a specific license. This is done so that the summary list of the 3rd party library licenses do not include copy-left licenses.
 
-The result is packaged into the core and is visible from link:https://ci.jenkins-ci.org/about[within the application itself]. It is also available in the XML format inside the war file.
+结果打包到核心中，并且可以从 link:https://ci.jenkins-ci.org/about[应用程序本身] 中看到。它也可以在 war 文件中以 XML 格式提供。
 
-=== 3rd party library licenses in the plugins
+=== 插件中的第三方库许可证
 
-Plugins do not necessarily follow the same formality when it comes to the 3rd party license policy. They obviously need to honor the licenses of the libraries they use, but for example they need not run the same license completion scheme that the core uses.
+在涉及第三方许可证政策时，插件不一定遵循相同的形式。显然他们需要尊重他们使用的库的许可证，所以他们不需要使用与核心使用的相同许可证方案。
 
-We encourage plugins to follow the same 3rd party license policy as the core. You may vary from it at your own risk. For example, see link:https://www.gnu.org/licenses/gpl-faq.html#NFUseGPLPlugins[FSF's opinion about GPL plugins with a non-GPL core].
+我们鼓励插件遵循相同的第三方许可证策略作为核心。但是后果需要自负，更多信息 link:https://www.gnu.org/licenses/gpl-faq.html#NFUseGPLPlugins[FSF 对使用非GPL核心的GPL插件的看法]。
 
-== Trademark
+== 商标
 
-The name "Jenkins" is a registered trademark in the USA
-(link:https://trademarks.justia.com/854/47/jenkins-85447465.html[#4664929],
-held by
-link:http://spi-inc.org[Software in the Public Interest, Inc.])
-in order to protect the project and users from confusing use of the term. To
-reduce the process overhead and uphold our open-source spirit, we adopt the
-Linux kernel policy on trademark usage.
+为了保护项目和用户不会混淆使用该术语，“Jenkins” 这个名称是美国的注册商标(link:https://trademarks.justia.com/854/47/jenkins-85447465.html[#4664929]，由 link:http://spi-inc.org[Software in the Public Interest, Inc.] 持有）。为了减少流程开销并维护我们的开源精神，我们采用Linux内核策略来使用商标。
 
-You need to apply for a link:https://wiki.jenkins-ci.org/display/JENKINS/Trademark+Sublicense[sublicense] if you are using the term "Jenkins" as part of your own trademark or brand identifier for Jenkins-based software goods or services. It doesn’t matter if your trademark is unregistered, or if you do not plan to make any money using the mark.
+如果您使用术语 “Jenkins” 作为您自己的基于Jenkins的软件商品或服务的商标或品牌标识符的一部分，则需要申请 link:https://wiki.jenkins-ci.org/display/JENKINS/Trademark+Sublicense[sublicense]。如果您的商标未注册，或者您不打算使用该商标赚钱，则无关所谓。
 
-Answering the following questions (which break out each of the key issues) may help you determine if you need a sublicense. If you are still in doubt, please contact the board and we will work with you to determine whether you need to apply for a sublicense.
+回答以下问题可以帮助您确定是否需要子许可证。如果您仍有疑问，请联系董事会，我们将与您一起确定是否需要申请子许可。
 
-If the answer to all three of the following questions is "yes," then you need to apply for a sublicense. If the answer to any of these questions is "no," then you do not need to apply for a sublicense.
+如果以下所有三个问题的答案都是“是”，那么您需要申请一个子许可证。如果这些问题的答案都是“否”，那么您不需要申请子许可证。
 
-- Is my mark a trademark (see how Linux Foundation define "trademark" in link:http://www.linuxfoundation.org/programs/legal/trademark/faq[FAQ])?
-- Does my mark contain the following string of adjacent letters, in this order: "Jenkins"? These letters may or may not be capitalized, and in the case of foreign characters, phonetic translations also apply.
-- Do I use my mark to identify software-related goods or services (see how that phrase is link:http://www.linuxfoundation.org/programs/legal/trademark/faq[defined] again in LF)?
+- 我的商标是否为商标（请参阅 Linux 基金会“商标”定义 link:http://www.linuxfoundation.org/programs/legal/trademark/faq[FAQ])？
+- 我的标记是否按以下顺序包含以下相邻字符串：“Jenkins”，这些字母可包括各种类型的大小写，而在外国字符的情况下，也可以使用语音翻译。
+- 我是否使用我的标记来识别与软件相关的商品或服务（请参阅如何在LF中再次link:http://www.linuxfoundation.org/programs/legal/trademark/faq[定义]该短语）？
 
-A list of trademark usages approved by the project can be found on the link:https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage[Approved Trademark Usage] page.
+可以在link:https://wiki.jenkins-ci.org/display/JENKINS/Approved+Trademark+Usage[已批准的商标使用]页面上找到项目批准的商标用法列表。
 
+=== 商标归属
 
-=== Trademark Attribution
+商标归属指南主要源自Linux Foundation link:https://lmi.linuxfoundation.org/programs/legal/trademark/attribution[trademark attribution]。
 
-These trademark attribution guidelines are largely derived from the Linux
-Foundation's
-link:https://lmi.linuxfoundation.org/programs/legal/trademark/attribution[trademark attribution]
-guidelines.
+==== 通用归属
 
-==== Attribution is For Everyone
+即使你使用 Jenkins 商标不在子 Jenkins 许可证的范围内，你仍需要注明所有权。有两种方式：
 
-Even if your use of the Jenkins trademark doesn't fall under the scope of the
-Jenkins Sublicense Agreement, you should still attribute ownership of the mark to
-Software in the Public Interest, Inc. in two ways:
-
-For each web page, advertisement, or publication, the first prominent
-appearance of "Jenkins" should feature the "circle R" character adjacent to the "s",
-as follows:
+对于每个网页，广告或出版物，Jenkins 应该有相邻的“圆圈R”字符，如下所示：
 
 Jenkins(R)
 
-At the end of your web page, advertisement, publication or media broadcast,
-include the following text in a legible font and size:
+在您的网页末尾，广告，出版物或媒体广播，包括以清晰易读的字体和大小的以下文字：
 
 [quote]
 ____
-Jenkins(R) is a registered trademark of Software in the Public Interest, Inc.
+Jenkins(R) 是 Software in the Public Interest, Inc 的注册商标。
 ____
 
-==== Attribution for Sublicensees
+==== 子许可证持有人的归属
 
 The Jenkins Sublicense Agreement sets forth how the mark should be attributed by
 sublicensees. Sublicensees are required to place the following legend
@@ -382,6 +367,8 @@ As discussed above, Jenkins project uses pull requests as one of the main workfl
 
 We do try to be attentive to inbound pull requests, but as you can see link:https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests[here], unfortunately we can fail to resolve some of them in a timely fashion. If you notice that your pull requests aren’t getting attended to within a week or two, please drop us a note at the dev list, and please consider becoming a committer and push the changes directly. See link:https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[Pull Request to Repositories] for more.
 
-== This document
+== 本文说明
 
-This document is owned by the community and substantial changes are approved via the project meeting. Send your questions to the dev list, or add an item to the link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda[next meeting's agenda].
+本文件为社区所有，如果您有疑问或变更可以提议到 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda[下个会议议程]中。
+
+注意：本页为中文译文，仅供参考，如有疑问请以英文站点的原文为主。
