@@ -4,34 +4,34 @@ title: 构建并运行插件
 references: []
 ---
 
-- link:../prepare[Step 1: Preparing for Plugin Development]
-- link:../create[Step 2: Create a Plugin]
-- link:../run[*Step 3: Build and Run the Plugin*]
-- link:../extend[Step 4: Extend the Plugin]
+- link:../prepare[Step 1: 为开发插件做准备]
+- link:../create[Step 2: 创建一个插件]
+- link:../run[*Step 3: 构建并运行插件*]
+- link:../extend[Step 4: 扩展你的插件]
 
-Maven HPI插件用于构建和打包Jenkins插件。
-它还提供了一个使用插件运行Jenkins实例的便捷方式:
+Maven HPI 插件用于构建和打包 Jenkins 插件。
+它还提供了一个使用插件运行 Jenkins 实例的便捷方式:
 
 [listing]
 mvn hpi:run
 
-NOTE: 了解更多关于Maven HPI插件及其提供的目标, 参阅 link:https://jenkinsci.github.io/maven-hpi-plugin/[它的文档]。
+NOTE: 了解更多关于 Maven HPI 插件及其要实现的功能, 参阅 link:https://jenkinsci.github.io/maven-hpi-plugin/[文档]。
 
-这将在`http://localhost:8080/jenkins/`建立一个Jenkins实例。等待以下控制台输出，然后打开Web浏览器并查看插件的功能。
+这将在 `http://localhost:8080/jenkins/` 建立一个 Jenkins 实例。等待以下控制台输出，然后打开 Web 浏览器并查看插件的功能。
 
 [listing]
-INFO: Jenkins已经完全运转起来
+信息: Jenkins is fully up and running
 
-NOTE: 使用的Jenkins主目录是插件目录中的`work/`目录。 这意味着后续运行将保留其数据。
+NOTE: 使用的 Jenkins 主目录是插件目录中的 `work/` 目录。这意味着后续运行将保留其数据。
 
-在Jenkins创建一个新的自由式项目，并给它任意一个名称。
+在 Jenkins 创建一个自由风格的项目，并给它任意起一个名称。
 
-然后添加“Say hello world”构建步骤。 它看起来像这样:
+然后添加 “Say hello world” 构建步骤。如下:
 
 image::developer/tutorial/job-config.png[Freestyle job configuration]
 
-输入名称，保存项目并开始新的构建。 导航到UI上的构建，然后单击_Console Output_查看构建日志。
-它将包含由刚刚配置的构建步骤编写的消息:
+输入名称，保存项目并开始新的构建。找到 UI 上的构建，然后单击查看 _构建日志_。
+它将包含由刚刚配置的构建步骤输出的消息:
 
 [listing]
 ----
@@ -47,11 +47,11 @@ Finished: SUCCESS
 //
 //image::developer/tutorial/system-config.png[系统配置]
 
-让我们通过按下终端中的+ Ctrl-C +（或您系统的等价物）来停止Jenkins。
+让我们通过按下终端中的 +Ctrl-C+ （或您操作系统对应的快捷键）来停止 Jenkins。
 
-下一步: link:../extend[扩展插件]。
+下一步: link:../extend[扩展你的插件]。
 
 
 == 故障排除
 
-NOTE: 没有适合你的东西？ 寻求帮助 link:/chat[chat] 或 link:/mailing-lists[在jenkinsci-dev邮件列表上]。
+NOTE: 没有适合你的东西？ 在 link:/chat[chat] 或 link:/mailing-lists[jenkinsci-dev 邮件列表上]寻求帮助 。
