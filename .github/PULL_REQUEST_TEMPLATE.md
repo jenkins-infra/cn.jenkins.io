@@ -1,6 +1,6 @@
 <-- Comment:
 如果您添加的是翻译类 PR，请查看下面的检查项：
-Please take a look the checklist below if your PR belong to a translation:
+Please take a look at the checklist below if your PR belongs to a translation:
 -->
 
 ### 检查项（Submitter checklist）
