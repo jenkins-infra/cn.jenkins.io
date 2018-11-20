@@ -32,7 +32,7 @@ Jenkins 核心项目，插件，模块，以及独立的相关项目都采取低
 
 === 兼容性问题
 
-我们认识到，用户希望现有的版本可以兼容现他们过去积累的数据（包括Hudson 升级到 1.395），包括在 Jenkins 的未来版本中也能正常运作。这写数据包括他们正在使用的作业配置，构建记录和插件二进制文件。Jenkins项目非常重视维护这种兼容性，并且在删除功能时会非常小心。
+我们认识到，用户希望现有的版本可以兼容现他们过去积累的数据（包括 Hudson 升级到 1.395），包括在 Jenkins 的未来版本中也能正常运作。这写数据包括他们正在使用的作业配置，构建记录和插件二进制文件。Jenkins 项目非常重视维护这种兼容性，并且在删除功能时会非常小心。
 
 我们还认识到插件开发人员希望他们所依赖的API和其他代码在 Jenkins 的未来版本中仍然可用。这并不是说我们永远不会删除任何内容，但我们会非常谨慎地执行此操作。
 
@@ -46,11 +46,11 @@ Jenkins 项目的目标之一是实现更多自动化，我们在开发 Jenkins 
 
 == 许可证
 
-Jenkins项目使用 link:http://opensource.org/licenses/MIT[MIT 许可证] 作为我们开发的代码的首选许可证。除非另有说明，否则所有代码均在 MIT 许可下。
+Jenkins 项目使用 link:http://opensource.org/licenses/MIT[MIT 许可证] 作为我们开发的代码的首选许可证。除非另有说明，否则所有代码均在 MIT 许可下。
 
 link:https://github.com/jenkinsci/jenkins[Jenkins 的核心]完全在MIT许可下，我们的大多数基础设施代码（运行项目本身的）以及许多插件都是如此。我们鼓励托管插件使用相同的 MIT 许可证，以简化用户使用流程，但插件可以自由选择自己的许可证，只要它是 OSI 批准的开源许可证。
 
-这不应该与专有插件相混淆 - 我们认识并鼓励人们自己编写以供内部使用的插件，而不必使源代码可用。但 Jenkins 项目不会托管这样的插件。
+这不应该与专有插件相混淆，我们鼓励人们自己编写以供内部使用的插件，而不必使源代码可用。但 Jenkins 项目不会托管这样的插件。
 
 [[cla]]
 
@@ -58,37 +58,37 @@ link:https://github.com/jenkinsci/jenkins[Jenkins 的核心]完全在MIT许可�
 
 为了进一步明确项目的知识产权，我们要求核心提交者签署贡献者协议。此 CLA 与 Apache 的 CLA 相同。本协议明确赋予 SPI 一组权利，例如有效的联合版权所有权，专利授权，以及承认您拥有贡献的权限。
 
-将这些权利分配给SPI有助于Jenkins对任何特定供应商保持中立，并且它还会使法律部门感到高兴，特别是在想要使用Jenkins的大型组织中。
+将这些权利分配给 SPI 有助于 Jenkins 对任何特定供应商保持中立，并且它还会使法律部门感到高兴，特别是在想要使用 Jenkins 的大型组织中。
 
-CLA 有两种类型。每个核心贡献者都需要签署个人 CLA（ICLA），如果您不独自拥有您的贡献（例如当您的公司指派您参与 Jenkins 工作，因此如果您的公司拥有您的辛勤贡献，则公司也需要签署公司 CLA（CCLA）。有关更多详细信息，请参阅 link:https://www.apache.org/licenses/#clas[Apache 中的讨论]。可以从以下URL获取CLA表单：
+CLA 有两种类型。每个核心贡献者都需要签署个人 CLA（ICLA），如果您不独自拥有您的贡献（例如当您的公司指派您参与 Jenkins 工作，因此如果您的公司拥有您的辛勤贡献，则公司也需要签署公司 CLA（CCLA）。有关更多详细信息，请参阅 link:https://www.apache.org/licenses/#clas[Apache 中的讨论]。可以从以下 URL 获取 CLA 表单：
 
 * link:https://raw.github.com/jenkinsci/infra-cla/approved/icla.txt[ICLA]
 * link:https://raw.github.com/jenkinsci/infra-cla/approved/ccla.txt[CCLA]
 
 为了平衡额外的开销和较低的进入门槛，此政策仅适用于核心，我们欢迎任何愿意为插件贡献者提交 CLA。
 
-提交CLA的详细信息记录在 link:https://github.com/jenkinsci/infra-cla/blob/master/README.md[infra-cla README] 自述文件中。
+提交 CLA 的详细信息记录在 link:https://github.com/jenkinsci/infra-cla/blob/master/README.md[infra-cla README] 自述文件中。
 
 === 核心中的第三方库许可证
 
 Jenkins 项目在很大程度上依赖于第三方库。我们认为，重用我们的能力比重新发明更好，这样我们的宝贵资源就可以用在其他地方。
 
-Jenkins 作为一个整体需要成为一个开源项目，所以我们一直限制自己只使用 link:http://www.opensource.org/[OSI 认可的开源许可证的第三方库]（例如 Apache 软件许可证，BSD 许可证，MIT 许可证，Eclipse Public）许可证和较​​小的 GNU 公共许可证。）此外，为了使核心可以重复使用最广泛的用例，我们拒绝所谓的 link:http://en.wikipedia.org/wiki/Copyleft[copyleft licenses] 许可证，将许可证限制为特定许可证（例如 GNU 公共许可证）。最终，我们将以下许可证指定为我们可以依赖的已批准许可证。其他许可证需经董事会批准：
+Jenkins 作为一个整体需要成为一个开源项目，所以我们一直限制自己只使用 link:http://www.opensource.org/[OSI 认可的开源许可证的第三方库]（例如 Apache 软件许可证，BSD 许可证，MIT 许可证，Eclipse Public）许可证和较​​小的 GNU 公共许可证。）此外，为了使核心可以重复使用最广泛的用例，我们拒绝所谓的 link:http://en.wikipedia.org/wiki/Copyleft[copyleft licenses] 许可证，将许可证限制为特定许可证（例如 GNU 公共许可证）。最终，我们将以下许可证指定为我们可以依赖的已批准许可证。其他许可证需经委员会批准：
 
 * link:http://www.apache.org/licenses/[Apache 软件许可证]
 * link:http://opensource.org/licenses/bsd-license.php[BSD 许可证], link:http://opensource.org/licenses/mit-license.php[MIT 许可证]
 * link:http://opensource.org/licenses/W3C.php[W3C 软件许可证]
 * link:http://opensource.org/licenses/cddl1.php[CDDL], link:http://opensource.org/licenses/cpl1.0.php[CPL], link:http://opensource.org/licenses/eclipse-1.0.php[EPL], 和 link:http://opensource.org/licenses/mozilla1.0.php[MPL], 以及 link:http://opensource.org/licenses/lgpl-license.php[LGPL] 这些许可证要求衍生产品与原始许可证的许可证相同，因此源代码需要分离到自己的存储库中，但二进制文件可以用作依赖项核心。）
 
-In core, the build process ensure that all the licenses of the dependency libraries are accounted for. In other words, we require that dependency POMs declare their own licenses in the Maven way, or use link:https://github.com/jenkinsci/jenkins/blob/master/licenseCompleter.groovy[the license completion script] to supply one where the POM is missing that information. The completion script is also used in case the library is dual-licensed to pick a specific license. This is done so that the summary list of the 3rd party library licenses do not include copy-left licenses.
+在核心中，构建过程确保考虑依赖库的所有许可证。 换句话说，我们要求依赖 POM 以 Maven 方式声明自己的许可证，或使用 link:https：//github.com/jenkinsci/jenkins/blob/master/licenseCompleter.groovy[许可证完成脚本]提供一个 POM 缺少的信息。 
 
 结果打包到核心中，并且可以从 link:https://ci.jenkins-ci.org/about[应用程序本身] 中看到。它也可以在 war 文件中以 XML 格式提供。
 
 === 插件中的第三方库许可证
 
-在涉及第三方许可证政策时，插件不一定遵循相同的形式。显然他们需要尊重他们使用的库的许可证，所以他们不需要使用与核心使用的相同许可证方案。
+在涉及第三方许可证政时，插件不一定遵循相同的形式。显然他们需要尊重他们使用的库的许可证，所以他们不需要使用与核心使用的相同许可证方案。
 
-我们鼓励插件遵循相同的第三方许可证策略作为核心。但是后果需要自负，更多信息 link:https://www.gnu.org/licenses/gpl-faq.html#NFUseGPLPlugins[FSF 对使用非GPL核心的GPL插件的看法]。
+我们鼓励插件遵循相同的第三方许可证作为核心。但是后果需要自负，更多信息 link:https://www.gnu.org/licenses/gpl-faq.html#NFUseGPLPlugins[FSF 对使用非 GPL 核心的 GPL 插件的看法]。
 
 == 商标
 
@@ -96,7 +96,7 @@ In core, the build process ensure that all the licenses of the dependency librar
 
 如果您使用术语 “Jenkins” 作为您自己的基于Jenkins的软件商品或服务的商标或品牌标识符的一部分，则需要申请 link:https://wiki.jenkins-ci.org/display/JENKINS/Trademark+Sublicense[sublicense]。如果您的商标未注册，或者您不打算使用该商标赚钱，则无关所谓。
 
-回答以下问题可以帮助您确定是否需要子许可证。如果您仍有疑问，请联系董事会，我们将与您一起确定是否需要申请子许可。
+回答以下问题可以帮助您确定是否需要子许可证。如果您仍有疑问，请联系委员会，我们将与您一起确定是否需要申请子许可。
 
 如果以下所有三个问题的答案都是“是”，那么您需要申请一个子许可证。如果这些问题的答案都是“否”，那么您不需要申请子许可证。
 
@@ -108,7 +108,7 @@ In core, the build process ensure that all the licenses of the dependency librar
 
 === 商标归属
 
-商标归属指南主要源自Linux Foundation link:https://lmi.linuxfoundation.org/programs/legal/trademark/attribution[trademark attribution]。
+商标归属指南主要源自 Linux Foundation link:https://lmi.linuxfoundation.org/programs/legal/trademark/attribution[trademark attribution]。
 
 ==== 通用归属
 
@@ -145,7 +145,7 @@ ____
 
 如果无法通过常规项目社区会议解决争议，委员会也可以作为最终决策权。委员会的决策能力更具象征性和尊重性，并且像英国女王一样“统治”而不是独裁统治。
 
-该 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理委员会] 页面提供更多信息，包括当前的董事会成员，以及如何与董事会的名单。
+该 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理委员会] 页面提供更多信息，包括当前的委员会成员，以及如何与委员会的名单。
 
 您可以在这里查看link:https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process[选举程序]
 
@@ -290,19 +290,19 @@ Jenkins 项目使用双周项目会议作为需要达成共识的事项的决策
 
 === 从其他地方复制代码
 
-如果您拥有许可证，并且该许可证与MIT许可证兼容，则可以将代码从其他地方复制到 Jenkins 中。
+如果您拥有许可证，并且该许可证与 MIT 许可证兼容，则可以将代码从其他地方复制到 Jenkins 中。
 
 最典型的情况是原始代码是在开源许可证的某个子集下许可的，例如 ASL，BSD 和 MIT 许可证。Copyleft 许可证即使是开源许可证也无法复制，例如 EPL 和 GPL。
 
 要复制的代码必须使用其所在的许可证进行清楚标记，并且在复制时，您需要在标题中保留版权/许可证属性。还请将副本的来源指明为提交消息的一部分。
 
-特别是，这意味着我们可以在MIT许可下复制 Oracle Hudson 的源代码，但不能在 EPL 下复制 Eclipse Hudson 的源代码。
+特别是，这意味着我们可以在 MIT 许可下复制 Oracle Hudson 的源代码，但不能在 EPL 下复制 Eclipse Hudson 的源代码。
 
 === 本地补丁依赖项
 
 有时，有必要在我们使用的库中进行错误修复和更改。如果库对Jenkins很重要并且对我们的用户影响很大，我们选择将本地补丁集维护到上游库，就像Linux发行版为其包维护这样的补丁一样。
 
-我们通常打算将这些本地补丁集成到上游，因此我们将票据上游归档并提供差异。当这工作时，这使我们可以在将来的某个时刻回到原始的上游版本。这些补丁集作为并行分支在我们的git存储库中维护。
+我们通常打算将这些本地补丁集成到上游，因此我们将票据上游归档并提供差异。当这工作时，这使我们可以在将来的某个时刻回到原始的上游版本。这些补丁集作为并行分支在我们的 git 存储库中维护。
 
 在某些情况下，所谓的“临时”补丁集由于我们无法控制的各种原因而变得更加永久，例如上游的停止开发，但这仅仅是因为它的结果，而不是因为我们在一开始就打算这样做。使用分布式版本控制系统，为Jenkins维护并行补丁发布并不像以前那么难。
 
@@ -314,7 +314,7 @@ Jenkins 项目使用双周项目会议作为需要达成共识的事项的决策
 
 === 更改现有插件
 
-如果您只想进行少量更改而无意留下来感兴趣。通过GitHub发送拉取请求最简单。有关详细信息，请参阅<<pull-request,使用 pull request>>。如果你的拉取请求没有及时得到关注，请通过开发人员的邮件列表ping我们，以便我们解决这个问题。
+如果您只想进行少量更改而无意留下来感兴趣。通过GitHub发送拉取请求最简单。有关详细信息，请参阅<<pull-request,使用 pull request>>。如果你的拉取请求没有及时得到关注，请通过开发人员的邮件列表 ping 我们，以便我们解决这个问题。
 
 如果您想更加认真地参与，除了拉取请求之外，我们建议您考虑成为提交者。在IRC频道或开发列表中给我们留言，我们将为您设置提交访问权限。尝试通过向他们提出单挑并与他们协调来对现有开发人员保持礼貌，但如果他们没有回应，请不要让阻止您的进展。开发人员的资历是通过持续参与获得的。
 
@@ -322,7 +322,7 @@ Jenkins 项目使用双周项目会议作为需要达成共识的事项的决策
 
 通常情况下，一旦插件变得足够好（或者如果原作者改变了工作并且不再有动力去研究技术），原始开发人员会转移到其他事物上。所以我们鼓励新的开发人员或开发者不同的插件可以插入其他插件的待处理请求或处理针对它们的问题。
 
-为此，我们还鼓励人们拿起休眠插件并将其视为自己的插件。为此，请在开发列表中给我们留言，并尝试联系上一个维护者，以了解他们是否仍然对驱动插件感兴趣。在接手之前尝试坚持联系最新的显然不活跃的维护者是我们的一项重要实践。通常的做法是在CC上将它们添加到对dev ML的维护请求中。
+为此，我们还鼓励人们拿起休眠插件并将其视为自己的插件。为此，请在开发列表中给我们留言，并尝试联系上一个维护者，以了解他们是否仍然对驱动插件感兴趣。在接手之前尝试坚持联系最新的显然不活跃的维护者是我们的一项重要实践。通常的做法是在 CC 上将它们添加到对 dev ML 的维护请求中。
 
 许多不太活跃的插件并没有真正拥有任何明显的所有者，并且它们由人们进行协作维护，进行小的更改并在需要时释放它们。如有疑问，请在开发列表中询问。
 
