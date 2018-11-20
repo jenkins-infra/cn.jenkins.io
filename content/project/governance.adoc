@@ -127,245 +127,230 @@ ____
 
 ==== 子许可证持有人的归属
 
-The Jenkins Sublicense Agreement sets forth how the mark should be attributed by
-sublicensees. Sublicensees are required to place the following legend
-conspicuously on each piece of authorized goods, and at least once in the area
-of the title page of any documentation or sales literature accompanying each
-authorized good or service:
+Jenkins 子许可协议规定了商标应如何归属于子许可证。子许可证持有者必须在每件授权商品上醒目地放置以下图例，并且在每个授权商品或服务随附的任何文档或销售文献的标题页区域内至少放置一次
 
 [quote]
 ____
-The registered trademark Jenkins(R) is used pursuant to a sublicense from the
-Jenkins project and Software in the Public Interest, Inc.
+依据来自于 Jenkins 项目和 Public Interest, Inc 的软件的子许可证使用注册商标 Jenkins(R)。
 ____
 
 
-The Jenkins project understands that space limitations can make including these
-attributions difficult. When made necessary by space limitations, any
-reasonable facsimile of these attributions may be used. In case of doubt as to
-the proper shortened form, examples may be submitted to the Jenkins project for
-approval.
+我们理解由于地理空间因素，取得这种授权可能会很困难，所以必要时传真形式的授权也是可用的。如有任何对于这种便捷形式的不满意，可以提给我们你的意见，以做参考。
+
+== 项目角色/利益相关者
+
+=== 管理委员会
+
+管理委员会由三个人组成，当需要时，他们充当项目的公共代表，例如可以是对内联系的途径，如 SPI。
+
+如果无法通过常规项目社区会议解决争议，委员会也可以作为最终决策权。委员会的决策能力更具象征性和尊重性，并且像英国女王一样“统治”而不是独裁统治。
+
+该 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[管理委员会] 页面提供更多信息，包括当前的董事会成员，以及如何与董事会的名单。
+
+您可以在这里查看link:https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process[选举程序]
 
 
-== Project roles/stakeholders
+=== 基础设施管理员
 
-=== Governance board
+基础结构管理员具有对各种服务器的 root 访问权限，并构建运行的从属服务器 jenkins-ci.org 和其他子域。他们保持这些服务器正常运行，安装新软件，协调镜像，处理密钥和证书，并确保我们可以继续产出代码。
 
-The governance board consists of three people who act as public representatives of the project, when such representation is necessary, for example to interface external entities such as SPI.
+由于这项工作的敏感性，基础设施管理员只能通过邀请，有些活动是闭门的。基础结构管理员经常委派给其他人对系统的部分访问权以完成某些任务。
 
-The board also acts as the ultimate decision-making authority in case disputes cannot be resolved via the regular project community meeting. The decision-making ability of the board is more symbolic and honorific, and it “rules” like British queens rather than a dictatorship.
-
-The link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Board[Governance Board] page provides further information, including a list of current board members, and how to contact the board.
-
-The process by which the Governance Board is elected can be reviewed in the link:https://wiki.jenkins-ci.org/display/JENKINS/Board+Election+Process[Board Election Process]
+可以在此处找到一些公共基础架构组件的管理员列表：link:https://wiki.jenkins-ci.org/display/JENKINS/Infrastructure+Admins[基础架构管理员]
 
 
-=== Infrastructure admins
+=== 核心提交者
 
-Infrastructure administrators have root access to the various servers and build slaves that run +jenkins-ci.org+ and other sub-domains. They keep those servers up and running, installing new software, coordinating mirrors, handling keys and certificates, and making sure that we can keep churning out code.
+核心提交者是那些对link:https://github.com/jenkinsci/jenkins[主要的 Jenkins 库]（构建在 jenkins.war 中）具有推送访问权限的人。要成为核心提交者，需要签署贡献者许可协议。在被授予提交访问权限之前，不需要具有经过验证的贡献历史记录，但这并不意味着其他核心提交者永远不会还原您的更改。
 
-Because of the sensitive nature of this work, infrastructure admins are by invitation only, and some of the activity happen behind closed doors. Infrastructure admins often appoint others to delegate some partial access to the system to complete some tasks.
-
-A list of admins of some of the public infrastructure components can be found here: link:https://wiki.jenkins-ci.org/display/JENKINS/Infrastructure+Admins[Infrastructure Admins]
+CLA签名者列表将在此处维护：https：//github.com/jenkinsci/infra-cla
 
 
-=== Core committers
+=== 插件提交者
 
-Core committers are those who have push access to link:https://github.com/jenkinsci/jenkins[the main Jenkins repository] that produces +jenkins.war+. To become a core committer, one needs to sign the <<cla,contributor license agreement>>. One is not required to have a proven history of contributions before being granted commit access, but that doesn’t mean other core committers will never revert your changes.
+插件提交者是那些对 jenkinsci GitHub 组织下托管的特定插件存储库具有推送访问权限的人。在被授予提交访问权限之前，不需要具有已证实的贡献历史。你所要做的就是申请。但这并不意味着其他现有的提交者永远不会还原您的更改。
 
-The list of CLA signers is be maintained here: https://github.com/jenkinsci/infra-cla
+=== 本地化贡献者
 
+本地化贡献者可以同时访问核心和托管插件。他们对代码和资源进行本地化/国际化相关的更改，他们推动这些更改而不寻求核心/插件提交者的批准。
 
-=== Plugin committers
+=== 用户
 
-Plugin committers are those who have push access to specific plugin repositories hosted under the jenkinsci GitHub organization. One is not required to have a proven history of contributions before being granted commit access. All you have to do is to ask. But that doesn’t mean other existing committers will never revert your changes.
+用户使用 Jenkins 及其插件。他们通过提供反馈，提交错误报告，为开发人员确定功能和修复程序的优先级，帮助其他用户以及让提交者感觉他们的工作是值得的，为项目做出贡献。
 
-=== Localization contributors
+== 通讯
 
-Localization contributors have push access to both the core and hosted plugins. They make localization/internationalization related changes to the code and resources, and they push those changes without seeking approval from the core/plugin committers.
+社区中人们之间的沟通对于项目的一致性至关重要。Jenkins项目的人员在几个不同的地方相互沟通。
 
-=== Users
+=== 邮件列表
 
-Users use Jenkins and its plugins. They contribute to the project by providing feedback, filing bug reports, prioritizing features and fixes for developers, helping other users, and making committers feel like their work is worth while.
-
-== Communication
-
-The communication among people in the community is crucial to the oneness of the project. People in the Jenkins project communicates with each other in several different places.
-
-=== Mailing lists
-
-We encourage mailing lists as the primary means of developer & user discussion, because of their asynchrony and ability to search the archive. The project website lists link:/mailing-lists[the active mailing lists and their purposes].
+我们鼓励将邮件列表作为开发人员和用户讨论的主要方式，因为它们具有异步性和搜索存档的能力。项目网站列出了link:/mailing-lists[活动邮件列表及其用途]。
 
 === IRC
 
-Jenkins project uses link:/chat[an IRC channel] for real time interactive communications. This is also the place where active members bond with each other.
+Jenkins 项目使用 link:/chat[IRC] 频道进行实时交互式通信。这也是活跃成员彼此联系的地方。
 
 === Twitter
 
-link:https://twitter.com/jenkinsci[@jenkinsci] is the official Twitter account of the Jenkins project, run by the infrastructure admins.
+link:https://twitter.com/jenkinsci[@jenkinsci] 是Jenkins项目的官方Twitter帐户，由基础架构管理员运行。
 
-== Infrastructure
+== 基础设施
 
-=== Source code
+=== 源代码
 
-The link:https://github.com/jenkinsci/[GitHub JenkinsCI organization] is where we host most of our code (see link:https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Repositories[the list of repositories] for easier navigation.) Because we previously used Subversion as the primary source code repository, we also have link:https://svn.jenkins-ci.org/[the subversion repository] that contains all the original project history. Some plugins are still actively maintained inside the Subversion repository.
+link:https://github.com/jenkinsci/[GitHub JenkinsCI organization] 是我们举办我们的大多数代码（见link:https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Repositories[资料库的名单]，便于浏览）。因为我们在以前使用 Subversion 作为主源代码库，我们也有 link:https://svn.jenkins-ci.org/[subversion 库]，其中包含所有原始项目的历史数据。一些插件仍在Subversion存储库中主动维护。
 
-To aid classifying our 1000+ Git repositories, some naming conventions have been adopted:
+为了帮助对1000多个Git存储库进行分类，我们采用了一些命名约定：
 
-* plugins are named "*-plugin"
-* libraries are named "lib-*"
-* backend infrastructure programs are named "backend-*"
+* 插件被命名为“* -plugin”
+* 库被命名为“lib- *”
+* 后端基础设施程序命名为“backend- *”
 
-To encourage migration of plugins from Subversion to Git, a daemon is used to mirror plugins individually to GitHub. See link:https://wiki.jenkins-ci.org/display/JENKINS/Moving+from+Subversion+%28svn%29+to+Github[this page] for more about how to migrate your plugin to GitHub.
+为了鼓励将插件从 Subversion 迁移到 Git，守护进程用于将插件单独镜像到GitHub。有关如何将插件迁移到GitHub的更多信息，请参阅link:https://wiki.jenkins-ci.org/display/JENKINS/Moving+from+Subversion+%28svn%29+to+Github[此页面]。
 
-=== User Accounts
+=== 用户帐户
 
-The infrastructure admins run an LDAP server and link:https://jenkins-ci.org/account[a small frontend program] to let users create accounts on jenkins-ci.org. This account is used for all the software that we run ourselves.
+基础架构管理员运行 LDAP 服务器和一个link:https://jenkins-ci.org/account[小前端程序]，让用户在jenkins-ci.org上创建帐户。此帐户用于我们自己运行的所有软件。
 
 === Wiki
 
-This wiki that you are reading is our primary collaboration mechanism for documentation. This uses the LDAP server described above for access.
+您正在阅读的这个wiki是我们用于文档的主要协作机制。这使用上述 LDAP 服务器进行访问。
 
-=== Bug tracker
+=== Bug 跟踪
 
-link:https://issues.jenkins-ci.org/[Our primary bug tracker] is maintained by the infra admins. This uses the LDAP server described above for access.
+link:https://issues.jenkins-ci.org/[我们主要的 Bug 跟踪] 由infra管理员维护。这使用上述LDAP服务器进行访问。
 
-=== Jenkins on Jenkins
+=== Jenkins 运行在 Jenkins 上
 
-We link:https://ci.jenkins-ci.org/[run Jenkins for our own development] and to automate various infrastructure tasks. Because of the sensitive nature of setting up jobs, only the infra admins have full write access.
+我们为自己的开发link:https://ci.jenkins-ci.org/[运行 Jenkins ]并自动执行各种基础架构任务。由于设置作业的敏感性，只有infra管理员才具有完全写入权限。
 
 [[meeting]]
-== Decision making
+== 做决定
 
-The Jenkins project uses biweekly project meetings as the primary forum of decision making for matters that need consensus.
-The meeting is link:/chat/#meeting[conducted on IRC] and open to anyone.
-Agenda items can be added by anyone by simply adding your topic to link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda[the Governance Meeting Agenda wiki page].
-Be sure to include your user name (so we know who proposed a topic).
+Jenkins 项目使用双周项目会议作为需要达成共识的事项的决策主要论坛。会议在 link:/chat/#meeting[IRC] 上进行，对所有人开放。只需将您的主题添加到 link:https://wiki.jenkins-ci.org/display/JENKINS/Governance+Meeting+Agenda[Governance Meeting Agenda wiki] 页面，任何人都可以添加议程项目。请务必提供您的用户名（以便我们知道是谁提出了主题）。
 
-The meeting minutes are public:
+是公开的会议纪要：
 
-* link:http://meetings.jenkins-ci.org/jenkins/[2011 to September 2015]
-* link:http://meetings.jenkins-ci.org/jenkins-meeting/[September 2015 to today]
+* link:http://meetings.jenkins-ci.org/jenkins/[2011 年至 2015 年 9 月]
+* link:http://meetings.jenkins-ci.org/jenkins-meeting/[2015 年 9 月至今]
 
-The board serves as the ultimate decision-making body in case the project meeting fails to reach a consensus on a particular topic.
+如果项目会议未能就特定主题达成共识，委员会将成为最终决策机构。
 
-== How we develop code
+== 我们如何开发代码
 
-=== Core
+=== 核心
 
-The core refers to a set of code and libraries that result in the +jenkins.war+ binary. link:https://github.com/jenkinsci/jenkins[The official core repository] is hosted on GitHub.
+核心指的是一组产出 jenkins.war 二进制文件的代码和库。官方核心存储库托管在 GitHub 上。
 
-Long time committers push changes directly into this repository, although other core committers can still revert their changes and discuss them when they feel that is necessary. New committers can also do the same when they feel good about their changes, or if the changes are trivial.
+提交者将更改直接推送到此存储库，尽管其他核心提交者仍可以在他们认为必要时还原他们的更改并进行讨论。新的提交者也可以在他们对自己的变化感觉良好时，或者如果变化微小的情况下也这样做。
 
-Committers old and new who feel their changes need review use link:https://github.com/jenkinsci/jenkins/pulls[GitHub pull requests] as a way to solicit feedback. People without commit access also use pull requests to get their changes into the core. Core committers are expected to be attentive to pending pull requests, and try to act on them quickly.
+感觉需要审核的新旧提交者需要使用 GitHub 的 pull request 作为征求反馈的方式。没有提交访问权限的人也使用 pull request 将他们的更改发送到核心。核心提交者应该关注待处理的 pull request，并尝试快速采取行动。
 
-Core committers generally use their own judgement to decide what to work on.
+核心提交者通常自己决定要做什么。
 
-=== Releases
+=== 发版
 
-Every weekend a new release is built from the master branch and released, in various forms, including +jenkins.war+ and native packages. This allows us to get new features and bug fixes into the hands of users relatively quickly.
+每个周末都会从主分支构建一个新版本，并以各种形式（包括 jenkins.war 本机包）发布。这使我们能够相对快速地将新功能和错误修复发送到用户手中。
 
-=== LTS Releases
+=== LTS 发版
 
-Every three months or so we pick a prior release as the new long-term support (LTS) release and then create the ‘stable’ branch, from that release point. This branch gets important bug fixes backported from the master branch, and further patch releases are built roughly every two weeks until the next LTS baseline is chosen. See link:https://wiki.jenkins-ci.org/JENKINS/LTS+Release+Line[LTS Release Line] for more details.
+我们每三个月左右选择一个先前版本作为新的长期支持（LTS）版本，然后从该版本点开始创建“稳定”分支。此分支从主分支向后移植重要的错误修复，并且大约每两周构建一次补丁版本，直到选择下一个 LTS 基线。有关详细信息，请参阅link:https://wiki.jenkins-ci.org/JENKINS/LTS+Release+Line[LTS Release Line]。
 
-=== Core Coding Convention
+=== 核心编码公约
 
-We roughly follow link:http://www.oracle.com/technetwork/java/codeconvtoc-136057.html[Sun coding convention] in the source code, and we use 4 space indentation and don’t use tabs. It's generally more practical and appreciated if you submit changes that don't change the code format too much as it eases the coding review job. Try submitting formatting changes and functional changes in separate commits.
+我们大致遵循源代码中的 Sun 编码约定，我们使用 4 个空格缩进而不使用制表符。如果您提交的更改不会过多地更改代码格式，那么通常会更加实用和受欢迎，因为它可以简化编码审查工作。尝试在单独的提交中提交格式更改和功能更改。
 
-With that said, we do not believe in rigorously enforcing coding convention, and we don’t want to turn down contributions because their code format doesn’t match what we use. So consider this informational.
+话虽如此，我们也不依赖严格编码约定，我们不想拒绝贡献，仅仅因为他们的代码格式与我们使用的不匹配。
 
+=== 插件
 
-=== Plugins
+插件是由插件工作人员自主开发的。每个人都有自己的存储库，自己的 Jenkins-on-Jenkins 工作，自己的 bug 跟踪器组件，并维护自己的发布计划。
 
-Plugins are developed autonomously by the people working on the plugin. Each gets its own repository, its own Jenkins-on-Jenkins job, its own bug tracker component, and maintain their own release schedules.
+一些插件由少数人主动维护，他们可能有自己的本地化，例如不同的编码约定，额外的提交策略。我们这样做是为了让人们能够感受到他们作品的所有权和归属感，并且他们不会觉得他们必须遵循外部决定的规则。
 
-Some plugins are actively maintained by a small number of people and they may have their own local culture, such as different coding convention, additional commit policies. We do this so that people can feel ownership and attachment to their effort, and so that they won’t feel like they have to follow externally decided rules.
+由于大部分此类本地化都是隐含的，因此通常很难从外部了解给定插件的运营文化。安全的经验法则是在进行任何提交之前提前联系现有开发人员（但如果一周内没有及时响应，那么您应该随意提交。）不太积极维护的插件往往没有这样的本地化，所以在那些您觉得可以的地方，您可以提前进行更改并同时发送提示（并接受更改被恢复的可能性。）
 
-Since much of such local culture is implicit, it's often difficult to tell from outside the operating culture of a given plugin. The safe rule of thumb is to contact existing developers upfront before doing any commit (but if there's no timely response in a week so, you should feel free to commit.) Less actively maintained plugins tend not to have such local culture, so in those cases, if you feel lucky you can commit changes ahead and send a heads-up simultaneously, (and accept the possibility that the changes get reverted.)
+维护者信息应列在插件维基页面的信息框中。如果您无法确定联系人，那么良好的后备选项就是开发人员的邮件列表。
 
-Maintainer information should be listed in the info box of the plugin's wiki page. If you have trouble figuring out who to contact, the good fallback option is the developers' mailing list.
+=== 插件 Wiki 页面
 
-=== Plugin Wiki Page
+每个插件在 https://wiki.jenkins-ci.org/ 都有自己的 Wiki 页面，例如link:https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin[这个]。插件维基页面应该是描述插件的作用，以及发布历史/更改日志。可以看看一些插件维基页面作为你应该做什么的指导。
 
-Each plugin has its own Wiki page in https://wiki.jenkins-ci.org/, such as link:https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin[this]. Plugin wiki pages should the macro that produces the stock header table, describing what the plugin does, along with the release history / changelog. Take a look at some plugin wiki pages as a guideline of what you should do.
+这些 wiki 页面是从 Jenkins 内置的更新中心引用的，它们是用户发现插件信息的主要方式。
 
-These wiki pages are referenced from the update center built in to Jenkins, and they are the primary means through which users discover information about plugins.
+=== 模块
 
-=== Modules
+模块是与核心分开构建的库（很像插件），但是作为JAR文件捆绑到 WAR 文件中 WEB-INF/lib，因此从用户的角度来看它就像是核心的一部分。模块可以被认为是库和插件之间的东西。它有自己的 POM，一组源代码，并且像库一样单独构建，但它获得与插件相同的编译时处理。
 
-Modules are libraries that are built separately from the core (much like plugins are), but are bundled into the WAR file as a JAR file in +WEB-INF/lib+ and therefore it behaves as if it's a part of the core from the users' point of view. Modules can be thought of as something in between a library and a plugin. It has its own POM, a set of source code, and built separately, like a library, but it gets the same compile-time processing as plugins do.
+这有助于将大毛球（即核心）分成更易处理的小块，并允许OEM分别添加/删除功能。
 
-This assists splitting a big hair ball (that is the core) into more manageable smaller pieces, and allow OEMs to add/remove functionalities separately.
+=== 提交指南
 
-=== Commit guidelines
+有关向Jenkins提交代码的指南，请参阅 <<pull-request, pull请求清单>>。
 
-See <<pull-request,the pull request checklist>> for guidelines on submitting code to Jenkins.
+=== 从其他地方复制代码
 
-=== Copying code from elsewhere
+如果您拥有许可证，并且该许可证与MIT许可证兼容，则可以将代码从其他地方复制到 Jenkins 中。
 
-When you have a license to do so, and when that license is compatible with the MIT license, you can copy the code from elsewhere into Jenkins.
+最典型的情况是原始代码是在开源许可证的某个子集下许可的，例如 ASL，BSD 和 MIT 许可证。Copyleft 许可证即使是开源许可证也无法复制，例如 EPL 和 GPL。
 
-The most typical case of this is that the original code is licensed under a certain subset of the open-source licenses, such as ASL, BSD, and MIT license. Copyleft licenses, even though they are open-sourced, cannot be copied, such as EPL and GPL.
+要复制的代码必须使用其所在的许可证进行清楚标记，并且在复制时，您需要在标题中保留版权/许可证属性。还请将副本的来源指明为提交消息的一部分。
 
-The code to be copied must be clearly marked with the license it is under, and when copying, you need to maintain the copyright/license attribution in the header. Please also indicate the origin of the copy as a part of the commit message.
+特别是，这意味着我们可以在MIT许可下复制 Oracle Hudson 的源代码，但不能在 EPL 下复制 Eclipse Hudson 的源代码。
 
-In particular, this means we can copy Oracle Hudson's source code under the MIT license, but not Eclipse Hudson's source code under EPL.
+=== 本地补丁依赖项
 
-=== Locally patching dependencies
+有时，有必要在我们使用的库中进行错误修复和更改。如果库对Jenkins很重要并且对我们的用户影响很大，我们选择将本地补丁集维护到上游库，就像Linux发行版为其包维护这样的补丁一样。
 
-Sometimes, it is necessary to make bug fixes and changes in the libraries that we use. Where the library is significant to Jenkins and the impact is considerable to our users, we choose to maintain local patch sets to upstream libraries, just like Linux distributions maintain such patches for its packages.
+我们通常打算将这些本地补丁集成到上游，因此我们将票据上游归档并提供差异。当这工作时，这使我们可以在将来的某个时刻回到原始的上游版本。这些补丁集作为并行分支在我们的git存储库中维护。
 
-We normally intend such local patches to be integrated into upstream, so we file tickets upstream and provide our diff. When this works, this allows us to go back to the pristine upstream release at some point in the future. Those patch sets are maintained in our git repositories as a parallel branch.
+在某些情况下，所谓的“临时”补丁集由于我们无法控制的各种原因而变得更加永久，例如上游的停止开发，但这仅仅是因为它的结果，而不是因为我们在一开始就打算这样做。使用分布式版本控制系统，为Jenkins维护并行补丁发布并不像以前那么难。
 
-In some cases, the supposed "temporary" patch sets became more permanent for various reasons beyond our control, such as the ceased development in the upstream, but that's only because that's how it turned out, not because we intended it at the outset. With the distributed version control system, maintaining parallel patch release for Jenkins isn't as hard as it used to be.
+== 如何加入项目
 
-== How to join the project
+=== 引入新的插件/工具/库
 
-=== Bringing in new plugins/tools/libraries
+如果您开发插件，我们鼓励您与 Jenkins 项目共同维护，以便社区中的其他人可以参与。有关详细信息，请参阅link:https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins[托管的插件]。
 
-If you develop a plugin, we encourage you to co-host that with the Jenkins project so that other people in the community can participate. See link:https://wiki.jenkins-ci.org/display/JENKINS/Hosting+Plugins[Hosting Plugins] for more details.
+=== 更改现有插件
 
-=== Making changes to existing plugins
+如果您只想进行少量更改而无意留下来感兴趣。通过GitHub发送拉取请求最简单。有关详细信息，请参阅<<pull-request,使用 pull request>>。如果你的拉取请求没有及时得到关注，请通过开发人员的邮件列表ping我们，以便我们解决这个问题。
 
-If you are interested in just making a small number of changes without an intent to stay. It’s the easiest to send in pull requests through GitHub. See <<pull-request,using pull requests>> for more details. If your pull requests are not getting timely attention, please ping us via the developers' mailing list, so that we can resolve that.
+如果您想更加认真地参与，除了拉取请求之外，我们建议您考虑成为提交者。在IRC频道或开发列表中给我们留言，我们将为您设置提交访问权限。尝试通过向他们提出单挑并与他们协调来对现有开发人员保持礼貌，但如果他们没有回应，请不要让阻止您的进展。开发人员的资历是通过持续参与获得的。
 
-If you’d like to be involved more seriously, in addition to the pull request, we encourage you to consider becoming a committer. Drop us a note in the IRC channel or the dev list, and we’ll set you up with commit access. Try to be courteous to existing developers by sending them heads-up and coordinating with them, but if they aren’t responding, don’t let that block your progress. The seniority of the developers are earned through on-going participation.
+=== 帮助和接管休眠插件
 
-=== Helping and taking over dormant plugins
+通常情况下，一旦插件变得足够好（或者如果原作者改变了工作并且不再有动力去研究技术），原始开发人员会转移到其他事物上。所以我们鼓励新的开发人员或开发者不同的插件可以插入其他插件的待处理请求或处理针对它们的问题。
 
-It is often the case that the original developer moves onto other things once the plugin becomes good enough for them (or if the original author changes the job and no longer has incentive to work on the technology.) So we encourage new developers or developers of different plugin to pitch in on other plugins’ pending pull requests or work on issues filed against them.
+为此，我们还鼓励人们拿起休眠插件并将其视为自己的插件。为此，请在开发列表中给我们留言，并尝试联系上一个维护者，以了解他们是否仍然对驱动插件感兴趣。在接手之前尝试坚持联系最新的显然不活跃的维护者是我们的一项重要实践。通常的做法是在CC上将它们添加到对dev ML的维护请求中。
 
-To that end, we also encourage people to pick up dormant plugins and consider them theirs. To do this, drop us a note at the dev list, and try to contact the previous maintainer to find out if they are still interested in driving the plugin. Trying insistently to contact the latest apparently inactive maintainer(s) before taking over is is an important practice to us. The practice is generally to add them in CC on your maintainership requests to the dev ML.
+许多不太活跃的插件并没有真正拥有任何明显的所有者，并且它们由人们进行协作维护，进行小的更改并在需要时释放它们。如有疑问，请在开发列表中询问。
 
-Many less active plugins do not really have any obvious owner, and they are collaboratively maintained by people making small changes and releasing them whenever the need arises. If in doubt, ask on the dev list.
+=== 对核心进行更改
 
-=== Making changes to core
+如果您只想进行小的更改且不想在社区驻足，那么同样的过程也适用于插件，如上所述。但是，由于核心更改会影响更多人，因此，请您在 pull request 中净可能提供详细的信息，我们将不胜感激。
 
-If you are interested in just making small changes without an intent to stay, the same process applies as plugins, described above. However, because core changes affect larger number of people, we’d be grateful if you’d try to go extra distance on the notes described in <<pull-request,using pull requests>>.
+如果您想更加认真地参与，请考虑获取提交权限。请参阅有关如何成为插件开发人员的部分。此外，我们需要您签<<cla, 贡献者许可协议>>（CLA）。
 
-If you’d like to be involved more seriously, consider getting commit access. See the section about becoming a plugin developer for how to get this. In addition, we need to ask you to <<cla,sign the contributor license agreement>> (CLA).
+进行更改时，请使用惯例。例如，如果您正在考虑进行重大更改，建议您先与开发人员讨论您的更改。或者，如果您发现您想要处理的部分已被其他人积极修改，请给他们一个提醒。
 
-When making changes, use your common sense. For example, if you are thinking about making a big change, it is recommended that you discuss your changes with the developers upfront. Or if you see that the part you’d like to work on has been actively modified by others, give them a heads-up.
+=== 贡献本地化
 
-=== Contributing localizations
-
-We are always looking for people who can help localize Jenkins to different languages. If you are interested in helping, drop us a note in the dev list to get commit access, and see link:https://wiki.jenkins-ci.org/display/JENKINS/Internationalization[Internationalization] for the details of how to make changes.
+我们一直在寻找能够帮助 Jenkins 本地化为不同语言的人。如果您有兴趣提供帮助，请在开发列表中留言以获取提交权限，并查看link:https://wiki.jenkins-ci.org/display/JENKINS/Internationalization[国际化]以了解如何进行更改的详细信息。
 
 [[pull-request]]
 
-=== Using pull requests
+=== 使用 pull request
 
-As discussed above, Jenkins project uses pull requests as one of the main workflow to get the changes in. When you prepare your pull request, consider the following checklist as the best practice.
+如上所述，Jenkins 项目使用 pull request 作为获取更改的主要工作流之一。当您准备提交 pull request 时，请考虑以下清单作为最佳实践。
 
-* See link:https://help.github.com/articles/creating-a-pull-request/[the github online help] for how to create a pull request
-* We encourage you to file a ticket in link:https://issues.jenkins-ci.org/[the issue tracker] to describe the bug that you are fixing or the feature you are implementing. This creates a permanent record on our system that allows future developers to understand how the code came into the current shape. This is not a requirement (especially for small changes), but we appreciate if you do that.
-* Refer to the ticket in your commit message by using the notation +[JENKINS-1234]+ where _JENKINS-1234_ is the ticket ID. This allows our scripts to understand the history and generate changelogs without human help. If you use the notation +[FIX JENKINS-1234]+, our bot will close the ticket automatically when the change is merged into the repository, and when the change is tested in our CI server. These notations create useful cross-references across systems, and are therefore highly recommended.
-* We encourage you to have a test case for the code you added to avoid future regressions. See link:https://wiki.jenkins-ci.org/display/JENKINS/Unit+Test[Unit Test] for more details about how to write tests.
-* Try to describe your changes so that other people understand what you did.
-* Make sure you didn’t modify portions that aren’t related to your changes (most often caused by IDE auto-fixing import statements and other code formats.)
+* 有关如何创建 pull request，请参阅 link:https://help.github.com/articles/creating-a-pull-request/[github online help]
+* 我们建议您在link:https://issues.jenkins-ci.org/[问题跟踪器]中提交问题单，以描述您正在修复的错误或正在实施的功能。这在我们的系统上创建了一个永久记录，使未来的开发人员能够理解代码如何进入当前形状。这不是必要条件（特别是对于小的更改），但如果您这样做，我们表示感谢。
+* 使用 JENKINS-1234 作为故障单 ID 的表示法 +[JENKINS-1234]+，在提交消息中引用故障单。这允许我们的脚本在没有人工帮助的情况下理解历史记录并生成更改日志。如果您使用该表示法 +[FIX JENKINS-1234]+，我们的机器人将在将更改合并到存储库时以及在我们的 CI 服务器中测试更改时自动关闭依据。这些表示法可以跨系统创建有用的交叉引用，因此强烈建议使用。
+* 尝试描述您的更改，以便其他人了解您的操作。
+* 确保您没有修改与更改无关的部分（通常由IDE自动修复导入语句和其他代码格式引起）。
 
-We do try to be attentive to inbound pull requests, but as you can see link:https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests[here], unfortunately we can fail to resolve some of them in a timely fashion. If you notice that your pull requests aren’t getting attended to within a week or two, please drop us a note at the dev list, and please consider becoming a committer and push the changes directly. See link:https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[Pull Request to Repositories] for more.
+我们确实试图关注产生的 pull requests，但正如您在link:https://wiki.jenkins-ci.org/display/JENKINS/Pending+Pull+Requests[此处]所见，我们很遗憾无法及时解决其中的一些问题。如果您注意到您的 pull request 在一两周内没有得到处理，请在开发人员列表中给我们留言，请考虑成为提交者并直接推送更改。有关更多信息，请参阅 link:https://wiki.jenkins-ci.org/display/JENKINS/Pull+Request+to+Repositories[Pull Request]。
 
 == 本文说明
 
