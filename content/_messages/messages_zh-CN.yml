@@ -7,7 +7,7 @@ zh-CN:
       use_jenkins: 使用Jenkins
       extend_jenkins: 扩展Jenkins
       plugins: 插件
-      usecases: 用户案例
+      community: 社区
       participate: 参与
       subprojects: 子项目
       overview: 总览
@@ -17,12 +17,16 @@ zh-CN:
       issue_tracker: 问题
       mailing_lists: 邮件列表
       wiki: Wiki
+      meet: 聚会
+      events: 活动
       about: 关于
       security: 安全 
       press: 媒体
       awards: 奖项
-      conduct: 守则
+      conduct: 准则
       artwork: 艺术作品
       download: 下载
       nbsp: "&nbsp;"
+      sig: 特别兴趣小组
+      usecase: 用户案例
 
