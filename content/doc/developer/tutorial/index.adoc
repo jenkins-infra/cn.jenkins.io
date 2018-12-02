@@ -20,13 +20,13 @@ references: []
 wip: true
 ---
 
-Jenkins有一个功能强大的扩展和插件系统，允许开发人员编写影响Jenkins行为几乎每个方面的插件。 即使是大部分“核心”功能都是以扩展名的形式编写的 -- 扩展名也可以由插件提供。
+Jenkins 有一个功能强大的扩展和插件系统，允许开发人员编写影响 Jenkins 几乎每个方面行为的插件。 即使是大部分“核心”功能都是以扩展的形式编写的 -- 扩展也可以由插件提供。
 
-一些更明显的扩展点包括*SCM implementations*，将Git，Subversion或Perforce等SCM集成到Jenkins中; *build steps*，提供从方便的用户界面到配置构建工具，到发送电子邮件等所有内容; 或*authentication realms*，将Jenkins与单点登录系统或外部用户目录（如LDAP或Active Directory）集成。
+一些比较明显的扩展点包括 *SCM implementations*：将 Git、Subversion 或 Perforce 等 SCM 集成到 Jenkins 中; *build steps*：提供从方便的用户界面到配置构建工具、到发送电子邮件等所有内容; 还有 *authentication realms*：将 Jenkins 与单点登录系统或外部用户目录（如 LDAP 或 Active Directory）集成。
 
-但它比这更进一步：*Job types* --管道在插件中实现 --; *annotating console output or changelogs*，例如添加链接到问题跟踪器中引用的错误; 影响Jenkins *build queue*优先考虑队列项目并将构建分配给代理; 或者添加*node monitors*，度量提供者Jenkins定期查询以确定每个构建节点的健康状况都可以使用插件中的扩展来完成。 这些仅仅是Jenkins中扩展点的几个例子。
+但接下来的更加强大：*Job types* -- 流水线在插件中实现; *annotating console output or changelogs*：例如，在问题跟踪器中添加链接把错误引入; 影响 Jenkins *build queue* 优先考虑队列项目并将构建分配给代理; 或者添加 *node monitors*，Jenkins 作为度量提供者定期查询以确定每个构建节点的健康状况等都可以使用插件中的扩展来完成。 这些仅仅是 Jenkins 中扩展点的几个例子。
 
-本教程是Jenkins插件开发的起点：它解释了如何准备您的构建环境，如何创建插件以及如何实现通用功能。
+本教程是 Jenkins 插件开发的起点：它解释了如何准备您的构建环境，如何创建插件以及如何实现通用功能。
 
 == 章节
 
