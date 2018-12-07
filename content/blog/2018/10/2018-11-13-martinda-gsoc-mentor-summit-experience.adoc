@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Google Summer of Code Mentor Summit 2018"
+title: "2018年 Google 编程夏令营导师峰会"
 tags:
 - community
 - events
