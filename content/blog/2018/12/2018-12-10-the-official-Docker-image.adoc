@@ -29,7 +29,7 @@ link:https://hub.docker.com/_/jenkins/[`jenkins`]::
 已经废弃了很久。
 我们停止使用和更新该镜像的简短原因是，我们每次发版时都需要人工参与。
 link:https://hub.docker.com/r/jenkinsci/jenkins[`jenkinsci/jenkins`]::
-同样已经废弃了很久，但为了过渡，我们会同时更新 `jenkins/jenkins`（正确的哪个） 和 `jenkinsci/jenkins`。
+同样已经废弃了很久，但为了过渡，我们会同时更新 `jenkins/jenkins`（正确的那个） 和 `jenkinsci/jenkins`。
 2018年12月初，我们停止更新 `jenkinsci/jenkins`（如果您感兴趣的话，查看 link:https://issues.jenkins-ci.org/browse/INFRA-1934[INFRA-1934] 可以获取更多详情）。
 
 感谢您的阅读！
