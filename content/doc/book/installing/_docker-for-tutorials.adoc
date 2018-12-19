@@ -13,7 +13,7 @@ the sibling file _docker.adoc (used in index.adoc).
 . 打开终端窗口
 . 使用下面的
   link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
- 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果没有完成，这个命令会自动下载镜像):
+ 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果本地没有镜像，这个命令会自动下载):
 +
 [source]
 ----
@@ -31,7 +31,7 @@ link:https://docs.docker.com/engine/admin/volumes/volumes/[volume] ，并将其�
 `jenkins-data`。如果该卷不存在, 那么 `docker run` 命令会自动为你创建卷。
 <2> 将主机上的`$HOME` 目录 (即你的本地)映射到  (通常是 `/Users/<your-username>` 目录) 到容器的 `/home` 目录。
 +
-*Note:* 如果复制或粘贴上面的命令片段不起作用, 尝试复制和粘贴这个注释免费的版本:
+*Note:* 如果复制或粘贴上面的命令片段不起作用, 尝试复制和粘贴这个没有注释的版本:
 +
 [source]
 ----
@@ -52,7 +52,7 @@ docker run \
 . 打开命令提示窗口。
 . 使用下面的
   link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
- 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果没有完成，这个命令会自动下载镜像):
+ 命令运行 `jenkinsci/blueocean` 镜像作为Docker中的一个容器(记住，如果本地没有镜像，这个命令会自动下载):
 +
 ----
 docker run ^
@@ -70,15 +70,15 @@ docker run ^
 
 ==== 访问 Jenkins/Blue Ocean Docker 容器
 
-如果你有一些 Docker 的经验，希望或需要使用
+如果你有一些使用 Docker 的经验，希望或需要使用
 link:https://docs.docker.com/engine/reference/commandline/exec/[`docker exec`]
 命令通过一个终端/命令提示符来访问
-Jenkins/Blue Ocean Docker 容器, 你可以添加如 `--name jenkins-tutorials` 的选项(与上面的
+Jenkins/Blue Ocean Docker 容器, 你可以添加如 `--name jenkins-tutorials` 选项(与上面的
 link:https://docs.docker.com/engine/reference/commandline/run/[`docker run`]
 ), 这将会给Jenkins/Blue Ocean Docker容器一个名字
 "jenkins-tutorials"。
 
 这意味着你可以通过 `docker exec` 命令访问Jenkins/Blue Ocean 容器(通过一个单独的终端
-/命令提示窗口) :
+/命令提示窗口) ，例如:
 
 `docker exec -it jenkins-tutorials bash`
