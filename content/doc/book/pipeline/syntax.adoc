@@ -16,11 +16,11 @@ endif::[]
 
 = 流水线语法
 
-本节是建立在 link:../getting-started[流水线入门]信息的基础上，and should be treated
-solely as a reference. 对于在实际示例中如何使用流水线语法的更多信息, 请参阅本章的
-link:../jenkinsfile[Using a Jenkinsfile] 部分在流水线插件的2.5版本中, 流水线支持两种离散的语法，具体如下对于每种的优缺点, 参见<<compare>>。
+本节是建立在 link:../getting-started[流水线入门]内容的基础上，而且，应当被当作一个参考。
+对于在实际示例中如何使用流水线语法的更多信息, 请参阅本章在流水线插件的2.5版本中的
+link:../jenkinsfile[使用 Jenkinsfile]部分, 流水线支持两种离散的语法，具体如下对于每种的优缺点, 参见<<compare>>。
 
-正如 link:../[本章开始]讨论的, 流水线最基础的部分是 "步骤". 基本上, 步骤告诉Jenkins 要做_what_ 以及作为声明式和脚本化流水线语法的基本构建块。
+正如 link:../[本章开始]讨论的, 流水线最基础的部分是 "步骤"。基本上, 步骤告诉 Jenkins 要做什么，以及作为声明式和脚本化流水线语法的基本构建块。
 
 对于可用步骤的概述, 请参考
 link:/doc/pipeline/steps[流水线步骤引用]，它包含了一个构建到流水线的步骤和
@@ -29,7 +29,7 @@ link:/doc/pipeline/steps[流水线步骤引用]，它包含了一个构建到流
 [role=syntax]
 == 声明式流水线
 
-D声明式流水线是最近添加到Jenkins流水线的
+声明式流水线是最近添加到 Jenkins 流水线的
 footnoteref:[declarative-version, Version 2.5 of the "Pipeline plugin" introduces support for Declarative Pipeline syntax]，它在流水线子系统之上提供了一种更简单，更有主见的语法。
 
 所有有效的声明式流水线必须包含在一个 `pipeline` 块中, 比如:
