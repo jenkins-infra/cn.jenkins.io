@@ -31,7 +31,7 @@ link:/blog/2018/09/13/speaker-blog-evergreen-safely-upgrading/[Baptiste's 的演
 
 随着持续集成和持续交付变得越来越普遍，并且是现代软件工程的基础 ，Jenkins 倾向于对不同的组织
 提供两种不同的方式。在一些组织当中，Jenkins 通过 Chef ，Puppet 等自动化工具有条不紊的
-管理着部署。然而在许多其他组织当中， Jenkins 更像是一个 _设备_ ，与办公室的无线路由器不同。
+被管理和部署着。然而在许多其他组织当中， Jenkins 更像是一个 _设备_ ，与办公室的无线路由器不同。
 当安装完毕，只要它能继续完成工作，人们就不会关注这个设备太多。
 
 Jenkins Evergreen 发行版通过确保最新的功能更新，bug 修复以及安全性修复始终能安装到 Jenkins
