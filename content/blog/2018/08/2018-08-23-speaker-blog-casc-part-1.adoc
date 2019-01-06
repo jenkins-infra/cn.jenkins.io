@@ -23,7 +23,7 @@ Jenkins 管理员在负责维护基础设施的同时，还要为一个巨大的
 
 在这种情况下，Jenkins 管理员的角色怎么样？他们是否还要花费数小时来点击网页表单上的复选框？也许他们已经采用了一些自动化、依赖于 Groovy 脚本或一些自己写的 XML 模板。
 
-今年早些时候我们发布了第一个 alpha 版本的 “Jenkins Configuration-as-Code” （JCasC），它是一种基于 YAML 配置文件和自动模型发现的 Jenkins 配置管理新方法。Jenkins 已经升级为link:https://jenkins.io/projects/[顶级] Jenkins 项目。 同时，对应的
+今年早些时候我们发布了第一个 alpha 版本的 “Jenkins Configuration-as-Code” （JCasC），它是一种基于 YAML 配置文件和自动模型发现的 Jenkins 配置管理新方法。"JCasC" 已经升级为link:https://jenkins.io/projects/[顶级] Jenkins 项目。 同时，对应的
 link:https://github.com/jenkinsci/jep/tree/master/jep/201/[Jenkins 增强提案]已经被接受。
 
 == JCasC 能为 Jenkins 管理员做些什么？
