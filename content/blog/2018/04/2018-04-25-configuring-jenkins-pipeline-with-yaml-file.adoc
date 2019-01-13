@@ -16,10 +16,11 @@ translator: Zhijun Zhai
 * 更改每个作业运行的命令也不是一件简单的任务，并且有权限更改的人并不多。 Wolox拥有广泛的项目，语言种类繁多，使得这个问题尤为突显。
 
 考虑到这些问题，我们开始深入研究最新版的Jenkins，看看如何提升我们的CI服务。我们需要构建一个新的CI服务，至少要解决以下问题：
+
 * 支持Docker构建。我们的项目依赖的一个或多个Docker镜像的执行（应用，数据库，Redis等）
 * 如有必要，易于配置和复制
 * 易于增加新项目
-* 易于修改构建步骤。工作在项目上的所有人都应该能修改它，如果他们希望执行`npm install`或`yarn install`
+* 易于修改构建步骤。工作在项目上的所有人都应该能修改它，如果他们希望执行 `npm install` 或 `yarn install`
 
 === 安装Jenkins和Docker
 
@@ -97,6 +98,7 @@ docker rmi `docker images --filter 'dangling=true' -q --no-trunc` &> /dev/null |
 使用当前的Jenkins版本，我们可以利用https://jenkins.io/doc/book/pipeline/[Jenkins pipeline]对我们的构建流进行建模，并保存到一个文件中。 该文件会被签入代码库，因此，任何有权访问它的人都可以修改其中的步骤。棒极了。
 
 Jenkins pipeline还支持：
+
 * Docker及多个镜像可用于构建
 * 使用`withEnv`设置环境变量，还支持很多其它内建的 https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/[函数]
 
