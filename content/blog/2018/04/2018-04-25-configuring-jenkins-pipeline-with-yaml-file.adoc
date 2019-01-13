@@ -7,26 +7,26 @@ author: Matias De Santi
 translator: Zhijun Zhai
 ---
 
-几年前，我们的CTO写了一篇关于https://medium.com/wolox-driving-innovation/ruby-on-rails-continuous-integration-with-jenkins-and-docker-compose-8dfd24c3df57[使用Jenkins和Docker为Ruby On Rails应用提供持续集成服务]的文章。这些年，我们一直使用这个CI流水线解决方案，直到我们最近决定做一次升级。为什么呢？
+几年前，我们的CTO 写了一篇关于https://medium.com/wolox-driving-innovation/ruby-on-rails-continuous-integration-with-jenkins-and-docker-compose-8dfd24c3df57[使用Jenkins和Docker为Ruby On Rails应用提供持续集成服务]的文章。这些年，我们一直使用这个CI流水线解决方案，直到我们最近决定做一次升级。为什么呢？
 
-* Jenkins的版本过低，已经很难升级
+* Jenkins 的版本过低，已经很难升级
 * http://www.wolox.co/[Wolox]过去几年增长显著，一直面临着如何伸缩的问题
 * 只有极少数人如何修复Jenkins服务的问题
-* 配置Jenkins任务不是一件简单的任务，使我们的项目启动过程变慢
+* 配置Jenkins 任务不是一件简单的任务，使我们的项目启动过程变慢
 * 更改每个作业运行的命令也不是一件简单的任务，并且有权限更改的人并不多。 Wolox拥有广泛的项目，语言种类繁多，使得这个问题尤为突显。
 
 考虑到这些问题，我们开始深入研究最新版的Jenkins，看看如何提升我们的CI服务。我们需要构建一个新的CI服务，至少要解决以下问题：
 
-* 支持Docker构建。我们的项目依赖的一个或多个Docker镜像的执行（应用，数据库，Redis等）
+* 支持Docker 构建。我们的项目依赖的一个或多个Docker 镜像的执行（应用，数据库，Redis 等）
 * 如有必要，易于配置和复制
 * 易于增加新项目
 * 易于修改构建步骤。工作在项目上的所有人都应该能修改它，如果他们希望执行 `npm install` 或 `yarn install`
 
 === 安装Jenkins和Docker
 
-安装Jenkins非常简单，直接从https://jenkins.io/download/[官方教程]选择一种方式安装。
+安装Jenkins 非常简单，直接从https://jenkins.io/download/[官方教程]选择一种方式安装。
 
-以下是我们在AWS上的安装步骤：
+以下是我们在AWS 上的安装步骤：
 
 [source,shell]
 ----
@@ -42,11 +42,11 @@ sudo yum install -y docker
 
 === 从GitHub 上自动添加项目
 
-从Github上自动添加项目可以通过https://plugins.jenkins.io/github-branch-source[GitHub Branch Source]插件实现。它能将GitHub的组织中符合规则的项目自动添加到Jenkins中。唯一的约束就是在每一个分支下都必须有一个Jenkinsfile，用于描述如何构建项目。
+从Github上自动添加项目可以通过https://plugins.jenkins.io/github-branch-source[GitHub Branch Source]插件实现。它能将GitHub 的组织中符合规则的项目自动添加到Jenkins 中。唯一的约束就是在每一个分支下都必须有一个Jenkinsfile，用于描述如何构建项目。
 
 === 易于修改的配置
 
-我们之前使用Jenkins 最痛苦的是修改项目的构建步骤。在Jenkins任务中，你会看到像以下代码（用于构建）：
+我们之前使用Jenkins 最痛苦的是修改项目的构建步骤。在Jenkins 任务中，你会看到像以下代码（用于构建）：
 
 [source,shell]
 ----
@@ -99,10 +99,10 @@ docker rmi `docker images --filter 'dangling=true' -q --no-trunc` &> /dev/null |
 
 Jenkins 流水线还支持：
 
-* Docker及多个镜像可用于构建
+* Docker 及多个镜像可用于构建
 * 使用`withEnv`设置环境变量，还支持很多其它内建的 https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/[函数]
 
-这为Wolox 提供了完美的用例。我们可以将构建配置写入到一个检入到代码库的文件中，并且允许任务有权限访问的人修改。但是，一个简单的Rails项目的Jenkinsfile看起来却像这样：
+这为Wolox 提供了完美的用例。我们可以将构建配置写入到一个检入到代码库的文件中，并且允许任务有权限访问的人修改。但是，一个简单的Rails 项目的Jenkinsfile 看起来却像这样：
 
 [source,groovy]
 ----
@@ -195,7 +195,7 @@ node {
 }
 ----
 
-Groovy语言足够灵活，能在在运行时创建声明性代码，这使我们能使用YAML来配置我们的流水线！
+Groovy 语言足够灵活，能在在运行时创建声明性代码，这使我们能使用YAML来配置我们的流水线！
 
 === Wolox-CI介绍
 
@@ -273,12 +273,12 @@ image:/images/pipeline/stages-ui.png[Jenkins pipeline stage ui, role=center, flo
 
 === 总结
 
-目前，WoloxCI还在我们所有项目中一小部分项目进行测试。这让有权限访问它的人通过YAML文件更改构建步骤。这是对我们CI工作流程来说是一个重大改进。
+目前，WoloxCI 还在我们所有项目中一小部分项目进行测试。这让有权限访问它的人通过YAML文件更改构建步骤。这是对我们CI工作流程来说是一个重大改进。
 
-Docker使我们轻松更换编程语言，而不用对Jenkins安装做任何的更改。并且，当检查到GitHub组织中的新项目（项目中有Jenkinsfile）时，Jenkins GitHub Branch Source插件会自动添加新的Jenkins项目。
+Docker 使我们轻松更换编程语言，而不用对Jenkins 安装做任何的更改。并且，当检查到GitHub组织中的新项目（项目中有Jenkinsfile）时，Jenkins GitHub Branch Source 插件会自动添加新的Jenkins项目。
 
-所有这些改进节约了我们维护Jenkins的大量时间，并使我们可以轻松扩展而无需任何额外配置。
+所有这些改进节约了我们维护Jenkins 的大量时间，并使我们可以轻松扩展而无需任何额外配置。
 
 === 译者小结
 
-本文最大的亮点是它介绍了一种实现自定义构建语言的方式。通过Jenkins 的共享库技术，将构建逻辑从Jenkinsfile中移到了YAML文件中。同样的，我们可以将构建逻辑移动JSON文件中，或者任何格式的文件中，只你的共享库能解析它，并将它转换成Jenkins 能理解的格式。
+本文最大的亮点是它介绍了一种实现自定义构建语言的方式。通过Jenkins 的共享库技术，将构建逻辑从Jenkinsfile 中移到了YAML文件中。同样的，我们可以将构建逻辑移动JSON文件中，或者任何格式的文件中，只你的共享库能解析它，并将它转换成Jenkins 能理解的格式。
