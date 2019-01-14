@@ -9,7 +9,7 @@ author: michaelneale
 translator: linuxsuren
 ---
 
-在这篇文章中，我想展示给你的是，如何让运行在防火墙内的 Jenkins 依然可以实时地收到 GitHub 的 WebHook.你也可以把这个推广到其他服务，例如：BitBucket 或 DockerHub 以及任何可以推送 WebHook 的服务。但是，下面的步骤适用于托管在 GitHub 上的项目。
+在这篇文章中，我想展示给你的是，如何让运行在防火墙内的 Jenkins 依然可以实时地收到 GitHub 的 WebHook.你也可以把这个应用到其他服务，例如：BitBucket 或 DockerHub 以及任何可以推送 WebHook 的服务。但是，下面的步骤适用于托管在 GitHub 上的项目。
 
 ### 什么是 WebHook
 
