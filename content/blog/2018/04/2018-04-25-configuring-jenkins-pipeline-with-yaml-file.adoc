@@ -7,10 +7,10 @@ author: Matias De Santi
 translator: Zhijun Zhai
 ---
 
-几年前，我们的 CTO 写了一篇关于https://medium.com/wolox-driving-innovation/ruby-on-rails-continuous-integration-with-jenkins-and-docker-compose-8dfd24c3df57[使用Jenkins和Docker为Ruby On Rails应用提供持续集成服务]的文章。这些年，我们一直使用这个 CI 流水线解决方案，直到我们最近决定做一次升级。为什么呢？
+几年前，我们的 CTO 写了一篇关于 https://medium.com/wolox-driving-innovation/ruby-on-rails-continuous-integration-with-jenkins-and-docker-compose-8dfd24c3df57[使用Jenkins和Docker为Ruby On Rails应用提供持续集成服务] 的文章。这些年，我们一直使用这个 CI 流水线解决方案，直到我们最近决定做一次升级。为什么呢？
 
 * Jenkins 的版本过低，已经很难升级
-* http://www.wolox.co/[Wolox]过去几年增长显著，一直面临着如何伸缩的问题
+* http://www.wolox.co/[Wolox] 过去几年增长显著，一直面临着如何伸缩的问题
 * 只有极少数人如何修复 Jenkins 服务的问题
 * 配置 Jenkins 任务不是一件简单的任务，使我们的项目启动过程变慢
 * 更改每个作业运行的命令也不是一件简单的任务，并且有权限更改的人并不多。 Wolox 拥有广泛的项目，语言种类繁多，使得这个问题尤为突显。
@@ -24,7 +24,7 @@ translator: Zhijun Zhai
 
 === 安装Jenkins和Docker
 
-安装 Jenkins 非常简单，直接从https://jenkins.io/download/[官方教程]选择一种方式安装。
+安装 Jenkins 非常简单，直接从 https://jenkins.io/download/[官方教程] 选择一种方式安装。
 
 以下是我们在 AWS 上的安装步骤：
 
@@ -42,7 +42,7 @@ sudo yum install -y docker
 
 === 从GitHub 上自动添加项目
 
-从 Github 上自动添加项目可以通过https://plugins.jenkins.io/github-branch-source[GitHub Branch Source]插件实现。它能将 GitHub 的组织中符合规则的项目自动添加到 Jenkins 中。唯一的约束就是在每一个分支下都必须有一个 Jenkinsfile，用于描述如何构建项目。
+从 Github 上自动添加项目可以通过 https://plugins.jenkins.io/github-branch-source[GitHub Branch Source] 插件实现。它能将 GitHub 的组织中符合规则的项目自动添加到 Jenkins 中。唯一的约束就是在每一个分支下都必须有一个 Jenkinsfile，用于描述如何构建项目。
 
 === 易于修改的配置
 
@@ -95,7 +95,7 @@ docker rmi `docker images --filter 'dangling=true' -q --no-trunc` &> /dev/null |
 
 === Jenkinsfile的成与败
 
-使用当前的 Jenkins 版本，我们可以利用https://jenkins.io/doc/book/pipeline/[Jenkins pipeline]对我们的构建流进行建模，并保存到一个文件中。 该文件会被签入代码库，因此，任何有权访问它的人都可以修改其中的步骤。棒极了。
+使用当前的 Jenkins 版本，我们可以利用 https://jenkins.io/doc/book/pipeline/[Jenkins pipeline] 对我们的构建流进行建模，并保存到一个文件中。 该文件会被签入代码库，因此，任何有权访问它的人都可以修改其中的步骤。棒极了。
 
 Jenkins 流水线还支持：
 
