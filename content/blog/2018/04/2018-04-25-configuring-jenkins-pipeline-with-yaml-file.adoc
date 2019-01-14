@@ -4,7 +4,7 @@ title: "使用 YAML 文件配置 Jenkins 流水线"
 tags:
 - pipeline
 author: Matias De Santi
-translator: Zhijun Zhai
+translator: zacker330
 ---
 
 几年前，我们的 CTO 写了一篇关于 https://medium.com/wolox-driving-innovation/ruby-on-rails-continuous-integration-with-jenkins-and-docker-compose-8dfd24c3df57[使用Jenkins和Docker为Ruby On Rails应用提供持续集成服务] 的文章。这些年，我们一直使用这个 CI 流水线解决方案，直到我们最近决定做一次升级。为什么呢？
