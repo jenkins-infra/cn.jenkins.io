@@ -40,7 +40,7 @@ sudo yum install -y docker
 
 ----
 
-=== 从GitHub 上自动添加项目
+=== 从 GitHub 上自动添加项目
 
 从 Github 上自动添加项目可以通过 https://plugins.jenkins.io/github-branch-source[GitHub Branch Source] 插件实现。它能将 GitHub 的组织中符合规则的项目自动添加到 Jenkins 中。唯一的约束就是在每一个分支下都必须有一个 Jenkinsfile，用于描述如何构建项目。
 
@@ -95,14 +95,14 @@ docker rmi `docker images --filter 'dangling=true' -q --no-trunc` &> /dev/null |
 
 === Jenkinsfile的成与败
 
-使用当前的 Jenkins 版本，我们可以利用 https://jenkins.io/doc/book/pipeline/[Jenkins pipeline] 对我们的构建流进行建模，并保存到一个文件中。 该文件会被签入代码库，因此，任何有权访问它的人都可以修改其中的步骤。棒极了。
+使用当前的 Jenkins 版本，我们可以利用 https://jenkins.io/doc/book/pipeline/[Jenkins pipeline] 对我们的构建流进行建模，并保存到一个文件中。 该文件会被签入代码库。因此，任何有权访问它的人都可以修改其中的步骤。棒极了。
 
 Jenkins 流水线还支持：
 
 * Docker 及多个镜像可用于构建
 * 使用 `withEnv` 设置环境变量，还支持很多其它内建的 https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/[函数]
 
-这为 Wolox 提供了完美的用例。我们可以将构建配置写入到一个检入到代码库的文件中，并且允许任务有权限访问的人修改。但是，一个简单的 Rails 项目的 Jenkinsfile 看起来却像这样：
+这为 Wolox 提供了完美的用例。我们可以将构建配置写入到一个被检入到代码库的文件中，并且允许任务有权限访问的人修改。但是，一个简单的 Rails 项目的 Jenkinsfile 看起来却像这样：
 
 [source,groovy]
 ----
@@ -131,7 +131,7 @@ node {
 
 === 通过 YAML 配置 Jenkins 流水线
 
-就个人而言，我总是期望为 CI 配置简单的配置文件。这次我们有机会构建使用 YAML 文件配置的 CI。经过分析，我们结论出以下这样的 YAML 已经能满足我们的需求：
+就个人而言，我总是期望为 CI 配置简单的配置文件。这次我们有机会构建使用 YAML 文件配置的 CI。经过分析，我们总结出以下这样的 YAML，它已经能满足我们的需求：
 
 [source,yaml]
 ----
@@ -195,7 +195,7 @@ node {
 }
 ----
 
-Groovy 语言足够灵活，能在在运行时创建声明性代码，这使我们能使用 YAML 来配置我们的流水线！
+Groovy 语言足够灵活，能在在运行时创建声明式代码，这使我们能使用 YAML 来配置我们的流水线！
 
 === Wolox-CI介绍
 
@@ -212,8 +212,10 @@ node {
 }
 ----
 
-它会检出代码，然后调用wolox-ci。共享库代码会读取到YAML 文件，如下：
-```yaml
+它会检出代码，然后调用 wolox-ci。共享库代码会读取到 YAML 文件，如下：
+
+[source,yaml]
+----
 config:
  dockerfile: .woloxci/Dockerfile
  project_name: some-project-name
@@ -241,13 +243,13 @@ environment:
  GIT_COMMITTER_NAME: a
  GIT_COMMITTER_EMAIL: b
  LANG: C.UTF-8
-```
+----
 
 然后，Jenkins 就会执行你的构建任务。
 
 共享库有一个好处是我们可以集中扩展和修改我们的共享库代码。一旦添加新代码，Jenkins 就会自动更新它，还会通知所有的任务。
 
-由于我们有不同语言的项目，我们使用Docker来构建测试环境。WoloxCI 假设有一个 Dockerfile 要构建，并将在容器内运行所有指定的命令。
+由于我们有不同语言的项目，我们使用 Docker 来构建测试环境。WoloxCI 假设有一个 Dockerfile 要构建，并将在容器内运行所有指定的命令。
 
 === config.yml 各部分介绍
 
@@ -257,13 +259,13 @@ environment:
 
 ==== Services 部分
 
-这部分定义了哪些服务被暴露到容器中。WoloxCI 支持以下开箱即用的服务：postgresql、mssql 和r edis。你还可以指定 Docker 镜像的版本。
+这部分定义了哪些服务被暴露到容器中。WoloxCI 支持以下开箱即用的服务：postgresql、mssql 和 redis。你还可以指定 Docker 镜像的版本。
 
 增加一个新的服务类型也不难。你只需要在该目录下（https://github.com/Wolox/wolox-ci/tree/development/vars）添加，然后告诉共享库该服务是如何被转换的，如https://github.com/Wolox/wolox-ci/blob/development/src/com/wolox/parser/ConfigParser.groovy#L76
 
 ==== Steps 部分
 
-在此部分列出的命令，都会被运行在 Docker 容器中。你可以在Jenkins界面上看到每一步的执行结果。
+在此部分列出的命令，都会被运行在 Docker 容器中。你可以在 Jenkins 界面上看到每一步的执行结果。
 
 image:/images/pipeline/stages-ui.png[Jenkins pipeline stage ui, role=center, float=right]
 
@@ -275,7 +277,7 @@ image:/images/pipeline/stages-ui.png[Jenkins pipeline stage ui, role=center, flo
 
 目前，WoloxCI 还在我们所有项目中一小部分项目进行测试。这让有权限访问它的人通过 YAML 文件更改构建步骤。这是对我们 CI 工作流程来说是一个重大改进。
 
-Docker 使我们轻松更换编程语言，而不用对 Jenkins 安装做任何的更改。并且，当检查到 GitHub 组织中的新项目（项目中有 Jenkinsfile ）时，Jenkins GitHub Branch Source 插件会自动添加新的 Jenkins 项目。
+Docker 使我们轻松更换编程语言，而不用对 Jenkins 安装做任何的更改。并且，当检查到 GitHub 组织中的新项目（项目中有 Jenkinsfile）时，Jenkins GitHub Branch Source 插件会自动添加新的 Jenkins 项目。
 
 所有这些改进节约了我们维护 Jenkins 的大量时间，并使我们可以轻松扩展而无需任何额外配置。
 
