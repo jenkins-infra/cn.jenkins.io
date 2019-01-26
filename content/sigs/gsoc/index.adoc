@@ -60,8 +60,8 @@ overview: >
 
 可以在 link:/projects/gsoc[这里] 找到更多关于 Jenkins GSoC 的信息。
 
-=== Meetings
+=== 会议
 
-* GSoC 特别兴趣小组讨论每月进行一次
+* GSoC 特别兴趣小组会议每月进行一次
 * Google Summer of Code 期间的事件时间表请参阅 link:/projects/gsoc[GSoC 子项目]
-* 其他讨论会在 GSoC 邮件列表中公布
+* 其他会议在 GSoC 邮件列表中公布
