@@ -55,7 +55,7 @@ overview: >
 ---
 
 此特别兴趣小组专注于 link:https://summerofcode.withgoogle.com/[Google Summer of Code] 和其他类似活动。
-该小组在Jenkins中推动 link:/projects/gsoc[GSoC 子项目] 。
+该小组在 Jenkins 中推动 link:/projects/gsoc[GSoC 子项目]。
 工作范围包括组织活动以及与潜在的导师和学生合作，以组建 GSoC 团队。
 
 可以在 link:/projects/gsoc[这里] 找到更多关于 Jenkins GSoC 的信息。
@@ -63,5 +63,5 @@ overview: >
 === Meetings
 
 * GSoC 特别兴趣小组讨论每月进行一次
-* Google Summer of Code 期间的事件时间表请参阅 link:/projects/gsoc[GSoC 子项目]。
+* Google Summer of Code 期间的事件时间表请参阅 link:/projects/gsoc[GSoC 子项目]
 * 其他讨论会在 GSoC 邮件列表中公布
