@@ -135,7 +135,3 @@ allowfullscreen></iframe>
 === link:https://en.wikipedia.org/wiki/Commonwealth_of_Independent_States[CIS]
 
 * link:https://github.com/oleg-nenashev[Oleg Nenashev] (_俄语, 英语_) - 参与贡献者 / 聚会组织人员 - `o.v.nenashev[at]gmail.com`
-
-=== 中国
-
-* link:https://github.com/linuxsuren[赵晓杰] (_中文, 英语_) - 参与贡献者 / 聚会组织人员 - `linuxsuren[at]gmail.com`
