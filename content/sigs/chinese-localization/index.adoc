@@ -1,9 +1,9 @@
 ---
 layout: sig
-title: "Chinese Localization"
+title: "中文本地化"
 section: sigs
 sigId: "chinese-localization"
-logo: /images/user.gif
+logo: /images/logos/kongfu/256.png
 tags:
 - Chinese
 - localization
@@ -23,19 +23,20 @@ participants:
 - name: "杨振涛"
   id: "node"
   github: "node"
+organizations:
+- name: "灵雀云"
+  github: "alauda"
 
 links:
   gitter: jenkinsci/chinese-localization-sig
   googlegroup: jenkins-chinese-localization-sig
-meetings:
-  text: To be announced
-  link: TODO
+  meetings: "/projects/sigs/chinese-localization/#meetings"
+
 overview: >
   中文本地化组（Chinese Localization Group）的贡献者和协作者致力于改善 Jenkins 的中文用户的使用体验。涉及的范围包括：
   Jenkins 核心和插件以及官方网站。欢迎加入！
 
 ---
-:encoding: UTF-8
 
 中文本地化组（Chinese Localization Group）的贡献者和协作者致力于改善 Jenkins 的中文用户的使用体验。涉及的范围包括：
 Jenkins 核心和插件以及官方网站。欢迎加入！
@@ -44,45 +45,26 @@ Jenkins 核心和插件以及官方网站。欢迎加入！
 
 Jenkins 的用户以及开发者都可以加入。
 
-=== Jenkins 核心
+=== Jenkins 官网
 
-当前进度如下：
+如果您有兴趣本地化 Jenkins 官网，请 fork 仓库 link:https://github.com/jenkins-infra/cn.jenkins.io[cn.jenkins.io] 然后提 PR 给我们。
 
-简体中文： 66.54% +
-繁体中文： 65.69%
+=== Jenkins 核心及其插件
 
-=== Jenkins 插件列表
+我们会在 link:https://github.com/jenkinsci/localization-zh-cn-plugin[这里]维护包括 Jenkins 核心以及所有插件的简体中文资源文件。
 
-我们优先本地化下面的插件：
+=== 微信公众号
 
-link:https://github.com/jenkinsci/credentials-plugin[credentials-plugin] +
-link:https://github.com/jenkinsci/plain-credentials-plugin[plain-credentials-plugin] +
-link:https://github.com/jenkinsci/ssh-credentials-plugin[ssh-credentials-plugin] +
-link:https://github.com/jenkinsci/cloudbees-folder-plugin[cloudbees-folder-plugin] +
-link:https://github.com/jenkinsci/github-organization-folder-plugin[github-organization-folder-plugin] +
-link:https://github.com/jenkinsci/blueocean-plugin[blueocean-plugin] +
-link:https://github.com/jenkinsci/pipeline-plugin[pipeline-plugin] +
-link:https://github.com/jenkinsci/workflow-cps-plugin[pipeline-plugin] +
-link:https://github.com/jenkinsci/workflow-scm-step-plugin[workflow-scm-step-plugin] +
-link:https://github.com/jenkinsci/workflow-support-plugin[workflow-support-plugin] +
-link:https://github.com/jenkinsci/pipeline-model-definition-plugin[pipeline-model-definition-plugin] +
-link:https://github.com/jenkinsci/pipeline-stage-view-plugin[pipeline-stage-view-plugin] +
-link:https://github.com/jenkinsci/pipeline-utility-steps-plugin[pipeline-utility-steps-plugin] +
-link:https://github.com/jenkinsci/pipeline-input-step-plugin[pipeline-input-step-plugin] +
-link:https://github.com/jenkinsci/pipeline-view-plugin[pipeline-view-plugin] +
-link:https://github.com/jenkinsci/github-plugin[github-plugin] +
-link:https://github.com/jenkinsci/github-branch-source-plugin[github-branch-source-plugin] +
-link:https://github.com/jenkinsci/bitbucket-plugin[bitbucket-plugin] + 
-link:https://github.com/jenkinsci/bitbucket-branch-source-plugin[bitbucket-branch-source-plugin] +
-link:https://github.com/jenkinsci/bitbucket-build-status-notifier-plugin[bitbucket-build-status-notifier-plugin] +
-link:https://github.com/jenkinsci/configuration-as-code-plugin[configuration-as-code-plugin] +
-link:https://github.com/jenkinsci/kubernetes-plugin[kubernetes-plugin] +
-link:https://github.com/jenkinsci/cmakebuilder[cmakebuilder]
+Jenkins 微信公众号会作为一个重要的平台，用于发布 Jenkins 活动、最新动态。你可以在 link:https://github.com/jenkins-infra/jenkins.wechat[这里]找到更多的细节。扫描下面的二维码关注官方公众号：
+
+image::/images/jenkins-wechat.png[Jenkins WeChat,129,float="center"]
+
+鉴于微信公众号的商标使用政策，我们收到了来自 Jenkins 创始人 Kohsuke Kawaguchi 的 link:/wechat.pdf[授权书]。
 
 === 会议
 
 将会定期发起 SIG 会议。
 初期，每月发起一次会议，之后也会根据情况进行调整。
 
-会议将通过 Jenkins Hangouts-on-Air 进行，并做记录。
+会议将通过 Jenkins Hangouts-on-Air 进行，并做 link:https://docs.google.com/document/d/1v1eFP5E5BOnzxO0JDloTmFdYi0pFYxVjydGJA4D_Nvk/edit#[文档记录]。
 
