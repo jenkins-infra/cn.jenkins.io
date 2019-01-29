@@ -88,6 +88,14 @@
             %a.dropdown-item{:href => expand_link('artwork')}
               = t('.artwork')
 
+        %li.nav-item.dropdown
+          .nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+            = t('.chinese')
+
+          .dropdown-menu
+            %a.dropdown-item{:href => expand_link('..')}
+              English
+
         %li.nav-item
           %a.nav-link.btn.btn-outline-secondary{:href => expand_link('download')}
             = t('.download')
