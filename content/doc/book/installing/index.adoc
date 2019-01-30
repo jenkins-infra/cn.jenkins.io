@@ -24,7 +24,7 @@ Jenkins通常作为一个独立的应用程序在其自己的流程中运行，
 Jenkins也可以运行在不同的Java servlet容器(（如link:http://tomcat.apache.org/[Apache Tomcat]
 或 link:https://javaee.github.io/glassfish/[GlassFish]）)中作为servlet运行.但是设置这些类型的安装的说明超出了本页的范围
 
-*注意:*：尽管此页面重点关注Jenkins的本地安装，但此内容也可用于帮助在生产环境中设置Jenkins。
+*注意:*尽管此页面重点关注Jenkins的本地安装，但此内容也可用于帮助在生产环境中设置Jenkins。
 
 
 == 系统要求
