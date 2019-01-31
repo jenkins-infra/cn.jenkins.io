@@ -1,0 +1,67 @@
+---
+layout: sig
+title: "Google Summer of Code"
+section: sigs
+sigId: "platform"
+logo: /images/gsoc/jenkins-gsoc-logo_small.png
+tags:
+  - gsoc
+leads:
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+  irc: "oleg_nenashev"
+  twitter: "oleg_nenashev"
+- name: "Martin d'Anjou"
+  id: "deepchip"
+  github: "martinda"
+  irc: "martinda"
+- name: "Lloyd Chang"
+  id: "lloydchang"
+  github: "lloydchang"
+- name: "Jeff Pearce"
+  id: "jeffpearce"
+  github: "jeffpearce"
+participants:
+- name: "Steven Christou"
+  id: "schristou"
+  github: "christ66"
+  irc: "schristou"
+- name: "Kristin Whetstone"
+  id: "kwhetstone"
+  github: "kwhetstone"
+- name: "Pham Vu Tuan"
+  id: "pvtuan10"
+  github: "pvtuan10"
+- name: "Supun Wanniarachchi"
+  github: "supun94"
+- name: "Tracy Miranda"
+  id: "tracymiranda"
+  github: "tracymiranda"
+  irc: "tracymiranda"
+- name: "Zhao Xiaojie (Rick)"
+  id: "surenpi"
+  github: "LinuxSuRen"
+links:
+  gitter: "jenkinsci/gsoc-sig"
+  googlegroup: "jenkinsci-gsoc-all-public"
+meetings:
+  text: Every month, to be announced
+  link: TODO
+overview: >
+  这个特别兴趣小组在 Jenkins 中负责组织 Google Summer of Code。
+  工作范围包括协调 GSoC 并与潜在的导师和学生合作，以组建 GSoC 项目团队。
+
+---
+
+此特别兴趣小组专注于 link:https://summerofcode.withgoogle.com/[Google Summer of Code] 和其他类似活动。
+该小组在 Jenkins 中推动 link:/projects/gsoc[GSoC 子项目]。
+工作范围包括组织活动以及与潜在的导师和学生合作，以组建 GSoC 团队。
+
+可以在 link:/projects/gsoc[这里] 找到更多关于 Jenkins GSoC 的信息。
+
+=== 会议
+
+* GSoC 特别兴趣小组会议每月进行一次
+* Google Summer of Code 期间的事件时间表请参阅 link:/projects/gsoc[GSoC 子项目]
+* 其他会议在 GSoC 邮件列表中公布
