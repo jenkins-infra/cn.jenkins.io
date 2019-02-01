@@ -39,7 +39,7 @@ Jenkins 安全团队是由 link:https://wiki.jenkins-ci.org/display/JENKINS/Team
 
 加入的资格，通常要求需要对 Jenkins 项目有积极贡献的人，且需 Jenkins 安全官批准。要加入，您需要：
 
-. 已经在 Github 上 link:https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/[开启两步授权认证],
+. 已经在 GitHub 上 link:https://help.github.com/articles/securing-your-account-with-two-factor-authentication-2fa/[开启两步授权认证],
 . 有 link:https://github.com/jenkinsci/infra-cla/[a CLA] 和
 . 有 link:https://freenode.net/kb/answer/registration[注册的 IRC 昵称]。
 
