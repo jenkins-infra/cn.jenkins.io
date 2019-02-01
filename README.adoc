@@ -15,4 +15,4 @@ document]
 How to make: +
 make cn-site
 
-visit link:http://cn.jenkins.io[http://cn.jenkins.io] to see the result
+visit link:http://jenkins.io/zh/[http://jenkins.io/zh/] to see the result
