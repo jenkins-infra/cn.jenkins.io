@@ -1,0 +1,78 @@
+---
+layout: sig
+title: "宣传和推广"
+section: sigs
+sigId: "advocacy-and-outreach"
+logo: /images/user.gif
+tags:
+  - advocacy-and-outreach
+  - advocacy-and-outreach-sig
+  - community
+  - outreach
+  - events
+leads:
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+  irc: "oleg_nenashev"
+  twitter: "oleg_nenashev"
+- name: "Liam Newman"
+  id: "bitwiseman"
+  github: "bitwiseman"
+  twitter: bitwiseman
+- name: "Marky Jackson"
+  github: "markyjackson-taulia"
+participants:
+- name: "Tracy Miranda"
+  id: "tracymiranda"
+  github: "tracymiranda"
+  irc: "tracymiranda"
+- name: "Matt Sicker"
+  twitter: "jvz"
+  github: "jvz"
+- name: "赵晓杰"
+  id: "linuxsuren"
+  github: "linuxsuren"
+- name: "Ewelina Wilkosz"
+  id: "ewelinawilkosz"
+  github: "ewelinawilkosz"
+- name: "Nicolas De loof"
+  id: "ndeloof"
+  github: "ndeloof"
+- name: "Mark Waite"
+  id: "markewaite"
+  github: "markewaite"
+
+
+links:
+  gitter: "jenkinsci/advocacy-and-outreach-sig"
+  googlegroup: "jenkins-advocacy-and-outreach-sig"
+  meetings: "/projects/sigs/advocacy-and-outreach/#meetings"
+overview: >
+  此特别兴趣小组负责商议 Jenkins 社区的宣传和推广工作。
+  讨论的内容包括 jenkins.io ，活动事件和流程，如何吸引新人加入 Jenkins 社区，
+  以及如何让 Jenkins 社区更加开放和包容使人们乐意加入进来。
+---
+
+
+=== 议题
+
+* 吸引并接纳新的个人或企业贡献者
+* 为新人编写开发文档
+* 协调社区的外联活动：GSoC、Outreachy、Google Code-In、
+  Hacktoberfest、Jenkins 线上聚会、JAMs、黑客马拉松，等等
+* 促进社区活动，包括 JEP Process、SIGs 等等
+* 开源社区布道（Jenkins 大使等）
+* 社区基础建设： Community metrics & Co, Hosting/Plugin adoption tooling
+
+=== 进行中的项目
+
+INFO: TODO
+
+=== 会议
+
+INFO: TBD
+
+会议通过 Jenkins Hangouts-on-Air 进行和记录。
+参与者链接将至少在会议开始前10分钟发布在SIG Gitter Chat中。
+
