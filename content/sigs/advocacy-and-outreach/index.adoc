@@ -1,6 +1,6 @@
 ---
 layout: sig
-title: "Advocacy and Outreach"
+title: "宣传和推广"
 section: sigs
 sigId: "advocacy-and-outreach"
 logo: /images/user.gif
