@@ -49,7 +49,7 @@ links:
   googlegroup: "jenkins-advocacy-and-outreach-sig"
   meetings: "/projects/sigs/advocacy-and-outreach/#meetings"
 overview: >
-  此特别兴趣小组负责商议 Jenkins 社区的宣传和外联工作。
+  此特别兴趣小组负责商议 Jenkins 社区的宣传和推广工作。
   讨论的内容包括 jenkins.io ，活动事件和流程，如何吸引新人加入 Jenkins 社区，
   以及如何让 Jenkins 社区更加开放和包容使人们乐意加入进来。
 ---
