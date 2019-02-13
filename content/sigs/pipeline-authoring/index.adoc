@@ -79,7 +79,7 @@ overview: >
 
 === 专注领域
 * 语法 - 如何编写 Jenkinsfile 和共享库
-* 代码共享和复用 - 已发布的共享库和未来的改进
+* 代码共享和复用 - 不断改进的共享库
 * 测试 - 对 Jenkinsfile 和共享库的单元测试和功能测试
 * IDE 集成，编辑器和其他开发工具 - IDE 插件，可视化编辑器等
 * 文档 - 参考文献，教程等
@@ -89,7 +89,7 @@ overview: >
 
 === 交流
 我们的目标群体是有兴趣提升或策划编写 Jenkins 流水线体验的任何人。
-因此，对以上任一有兴趣（或两者）的人都欢迎加入我们的SIG会议或Gitter频道！
+因此，对以上任一有兴趣（或两者）的人都欢迎加入我们的 SIG 会议或 Gitter 频道！
 
 ==== Gitter 频道 （gitter: jenkinsci/pipeline-authoring-sig）
 在编写 Jenkins 流水线时遇到的任何问题，都欢迎到我们的 Gitter 频道上讨论，
@@ -106,7 +106,7 @@ overview: >
 
 ==== 常见问题解答
 
-WARNING: 即将到来...
+WARNING: 筹备中...
 
 
 === 会议
@@ -116,4 +116,4 @@ SIG 会议的链接在 Gitter 频道和邮件列表中公布。
 
 * **2018-12-12**:
   link:https://www.youtube.com/watch?v=VEaAJrV3RYs[视频] -
-  link:https://docs.google.com/document/d/1R8tR7HzD9eFUELy4K7J5hnZ5AuoEaPNBddAU0qL9g60/edit?usp=sharing[笔记]
+  link:https://docs.google.com/document/d/1R8tR7HzD9eFUELy4K7J5hnZ5AuoEaPNBddAU0qL9g60/edit?usp=sharing[记录]
