@@ -39,7 +39,7 @@ Jenkins 作为领先的开源自动化服务器之一，目前仍然只支持到
 你可能还记得，在 2018 年 6 月我们举办了一个针对 Java 10+ 支持的link:/blog/2018/06/08/jenkins-java10-hackathon/[在线黑客马拉松]。
 作为黑客马拉松的一部分，我们提供了 link:/blog/2018/06/17/running-jenkins-with-java10-11/[Java 11 的实验性支持]。
 这次活动对我们来说非常成功。我们可以在 Java 10 和 Java 11-ea 环境下运行 Jenkins 以及一些主要的功能 —— 包括流水线、JobDSL、Docker/Kubernetes plugin、Configuration as Code、BlueOcean 等。
-它让我们相信我们可以在 Jenkins 中提供Java 11支持而不会发生破坏性变化。在这场马拉松之后 link:https://github.com/oleg-nenashev/[Oleg Nenashev] 创建了 JEP-211: Java 10+ support in Jenkins（之后修改为只针对支持 Java 11）。
+它让我们相信我们可以在 Jenkins 中提供Java 11支持而不会发生破坏性变化。在这场马拉松之后 link:https://github.com/oleg-nenashev/[Oleg Nenashev] 创建了 jep:211["Java 10+ support in Jenkins"]（之后修改为只针对支持 Java 11）。
 link:/sigs/platform[Jenkins Platform SIG] 也已成立，以协调 Java 11 的支持工作和其他平台的支持工作（打包，操作系统支持等）。
 
 一组贡献者一直持续致力于 Java 11 支持，
@@ -110,7 +110,7 @@ Equivalent of link:https://hub.docker.com/r/jenkins/jenkins/[jenkins/jenkins]
 ** 这个镜像是从 Jenkins core 的 `java11-support` 分支中发布的
 ** 这个分支可能轻微的领先或落后于 `master` 分支，我们可能会用这个分支去快速发布补丁给 Java 11 用户
 
-我们最终会把这个实验性流水线移到新的在 jep:217 中创建的 `jenkins4eval` 组织中去。
+我们最终会把这个实验性流水线移到新的在 jep:217[] 中创建的 `jenkins4eval` 组织中去。
 
 === 在 Java 11 中运行 jenkins.war
 
