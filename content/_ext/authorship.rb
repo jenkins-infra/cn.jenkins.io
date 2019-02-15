@@ -69,7 +69,7 @@ module Authorship
         end
       end
 
-      return "<a href=\"#{link}\" target="_blank">#{full_name}</a>"
+      return "<a href=\"#{link}\" target=\"_blank\">#{full_name}</a>"
     end
 
     return node.translator
