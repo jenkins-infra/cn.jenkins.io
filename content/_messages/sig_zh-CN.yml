@@ -1,0 +1,10 @@
+---
+zh-CN:
+  _layouts:
+    sig:
+      members: 成员
+      overview: 概览
+      organizations: 组织：
+      participants: 参与：
+      description: 描述
+      back-to-home: （返回 Jenkins 特别兴趣小组列表）

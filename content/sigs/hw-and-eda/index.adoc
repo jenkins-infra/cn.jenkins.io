@@ -1,0 +1,48 @@
+---
+layout: sig
+title: "硬件和电子设计自动化（EDA）"
+section: sigs
+logo: /images/user.gif
+tags:
+- hardware
+- eda
+leads:
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+  irc: "oleg_nenashev"
+  twitter: "oleg_nenashev"
+- name: "Martin d'Anjou"
+  id: "deepchip"
+  github: "martinda"
+  irc: "martinda"
+participants:
+
+links:
+  gitter: jenkinsci/hw-and-eda-sig
+  googlegroup: jenkins-hw-and-eda-sig
+  meetings: "/projects/sigs/hw-and-eda/#meetings"
+
+overview: >
+  Jenkins 用户和从业者的特别兴趣小组专注于使用或利用 Jenkins  ，
+  以及在硬件上完成持续集成/持续部署 （CI/CD） 。
+
+---
+
+Jenkins 用户和从业者的特别兴趣小组专注于使用或利用 Jenkins  ，
+以及在硬件上持续集成/持续部署 （CI/CD） 。
+
+=== 关注领域
+
+* 在硬件上持续集成/持续部署 （CI/CD）
+* 使用或利用 Jenkins
+* 特定应用集成电路 （ASIC） 和现场可编程门阵列 （FPGA RDF） 都和 Jenkins 适配
+* 可基于 Jenkins 硬件在环 (HIL) 仿真测试
+* 本领域相关的插件
+* 协调与本领域相关的开发项目
+  （例如 link:/projects/gsoc[Google Summer of Code] 项目）
+
+=== 会议
+
+SIG 会议将每月举行一次。
+关注邮件列表和 Gitter 中的日程来参加会议。

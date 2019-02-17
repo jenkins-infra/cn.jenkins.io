@@ -10,7 +10,7 @@ author: rtyler
 
 
 当我第一次 link:/blog/2018/04/06/jenkins-essentials/[写 Jenkins
-Evergreen 相关的文章]， 后来被称为 "Jenkins Essentials"，我提到的一系列的未来的发展在接下来的
+Evergreen 相关的文章]， 当时被称为 "Jenkins Essentials"，我提到的一系列的未来的发展在接下来的
 几个月里已经变成了
 _现实_。 今年在旧金山举办的 DevOps World - Jenkins World 会议上，我会介绍 Jenkins Evergreen 背后哲学的更多细节，
 展示我们已经做了什么，并且讨论这个激进的 Jenkins 发行版的走向。

@@ -12,12 +12,14 @@ gem 'haml', '~> 4.0.7'
 gem 'liquid', '~> 3.0'
 gem 'kramdown', '~> 1.9.0'
 gem "haml-i18n-extractor", "~>0.5.9"
+gem 'rack', '>=1.6.11'
+gem 'ffi', '>=1.9.24'
 
 # Gems necessary for running scripts/fetch-external-resources
 group :fetcher do
   gem 'faraday', '~> 0.9.2'
   gem 'faraday_middleware', '~> 0.9.2'
-  gem 'rubyzip', '~> 1.2.0'
+  gem 'rubyzip', '~> 1.2.2'
 end
 
 group :pdfs do
