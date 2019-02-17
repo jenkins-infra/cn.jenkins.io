@@ -17,7 +17,7 @@ endif::[]
 
 = 流水线入门
 
-正如 link:../[previously]提到的, Jenkins流水线是一套插件，它支持s实现和集成持续交付流水线到Jenkins。P流水线提供了一组可扩展的工具，用于通过流水线 DSL将简单到复杂的交付流水线建模为 "代码"。
+正如 link:../[previously]提到的, Jenkins流水线是一套插件，它支持实现和集成持续交付流水线到 Jenkins。流水线提供了一组可扩展的工具，用于通过流水线 DSL将简单到复杂的交付流水线建模为 "代码"。
 footnoteref:[dsl,link:https://en.wikipedia.org/wiki/Domain-specific_language[Domain-specific language]]
 
 本节描述了如何在Jenkins中开始创建你的流水线并介绍创建和存储 `Jenkinsfile` 的各种方式。
@@ -70,8 +70,7 @@ link:../../blueocean/getting-started[Getting started with Blue Ocean] 页面。
 通过Jenkins经典UI创建一个基本流水线:
 
 . I如果需要的话, 确保你已登录进 Jenkins。
-. 从Jenkins 主页 (即Jenkins经典 UI 的仪表盘),
-  点击左上的 *New Item*。
+. 从Jenkins 主页 (即Jenkins经典 UI 的仪表盘)，点击左上的 *New Item*。
 +
 [.boxshadow]
 image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%]
@@ -126,7 +125,7 @@ image:pipeline/example-pipeline-in-classic-ui.png[alt="Example Pipeline in the c
 +
 [.boxshadow]
 image:pipeline/classic-ui-left-column-on-item.png[alt="Classic UI left column on an item",width=35%]
-. 在左侧的*Build History* 下面, 点击 *#1* 来访问这个特定流水线运行的详细信息。
+. 在左侧的 *Build History* 下面, 点击 *#1* 来访问这个特定流水线运行的详细信息。
 . 点击 *Console Output* 来查看流水线运行的全部输出。下面的输出显示你的流水线已成功运行。
 +
 [.boxshadow]
@@ -134,15 +133,14 @@ image:pipeline/hello-world-console-output.png[alt="*Console Output* for the Pipe
 +
 *Notes:*
 
-* 你也可以直接从仪表盘上访问控制台输出 通过点击构建号左边的
- 彩色的地球仪(不如 *#1*)。
+* 你也可以直接从仪表盘上访问控制台输出 通过点击构建号左边的彩色的地球仪(例如 *#1*)。
 * 通过经典的UI定义流水线可以很方便的测试流水线代码片段, 或处理简单的流水线或 不需要从仓库中检出/clone源代码的流水线。 正如上面提到的, 不像通过Blue Ocean
   (link:#through-blue-ocean[above])或在版本控制中
-  (link:#defining-a-pipeline-in-scm[below])定义的`Jenkinsfile`&zwj;s , `Jenkinsfile`&zwj;s 进入流水线项目的*Script* 文本区域，
+  (link:#defining-a-pipeline-in-scm[below])定义的 ``Jenkinsfile`` , ``Jenkinsfile`` 进入流水线项目的 *Script* 文本区域，
   被Jenkins自己存储在Jenkins主目录下。因此, 为了更大的控制和灵活性o, 特别是对于那些可能获得复杂性源代码控制项目
   , 建议使用
   link:#through-blue-ocean[Blue Ocean] 或
-  link:#defining-a-pipeline-in-scm[source control] 来定义你的 `Jenkinsfile`文件。
+  link:#defining-a-pipeline-in-scm[source control] 来定义你的 `Jenkinsfile` 文件。
 
 
 // Despite :sectanchors:, explicitly defining an anchor because it will be
