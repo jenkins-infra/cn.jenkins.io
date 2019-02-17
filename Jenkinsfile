@@ -43,7 +43,7 @@ try {
             * For a standalone workflow script, we would use the `git` step
             *
             *
-            * git url: 'git://github.com/jenkinsci/jenkins.io',
+            * git url: 'git@github.com:jenkins-infra/cn.jenkins.io.gi',
             *     branch: 'master'
             */
 
@@ -61,7 +61,7 @@ try {
             /* If the agent can't gather resources and build the site in 60 minutes,
             * something is very wrong
             */
-                try {
+            try {
                  sh """#!/usr/bin/env bash
                     set -o errexit
                     set -o nounset
@@ -95,7 +95,7 @@ try {
             * which we can use for the deployment of the site. This stage will archive
             * that artifact so we can pick it up later
             */
-            archiveArtifacts artifacts: 'build/**/*.zip,build/_site/*.pdf', fingerprint: true
+            archiveArtifacts artifacts: 'build/**/*.zip,build/_site/*.pdf', fingerprint: true, allowEmptyArchive: true
         }
 
         /* The Jenkins which deploys doesn't use multibranch or GitHub Org Folders

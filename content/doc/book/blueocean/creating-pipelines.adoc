@@ -71,7 +71,7 @@ Blue Ocean 找不到任何 `Jenkinsfile`, 将提示你开始通过<<pipeline-edi
 
 ==== 远程仓库
 
-由于流水线编辑器将经过编辑的流水线作为`Jenkinsfile`保存到 Git 仓库&zwj;, Blue Ocean 只支持通过SSH协议连接到远程Git仓库。
+由于流水线编辑器将经过编辑的流水线作为 ``Jenkinsfile`` 保存到 Git 仓库, Blue Ocean 只支持通过SSH协议连接到远程Git仓库。
 
 如果你的 URL 是远程 Git 仓库的路径, 当你开始输入URL时, 你可以从以下两种方式开始:
 
@@ -158,7 +158,7 @@ image:blueocean/creating-pipelines/choose-a-repository.png['Choose a
 repository',width=70%]
 . 点击 *Create Pipeline*。 +
   Blue Ocean 将会扫描你本地仓库的分支来获得 `Jenkinsfile`
-  并为每个包含`Jenkinsfile`的分支运行流水线。
+  并为每个包含 `Jenkinsfile` 的分支运行流水线。
   如果Blue Ocean 找不到任何 `Jenkinsfile`, 会提示你通过 link:../pipeline-editor[流水线编辑器] (通过再次点击
   *Create Pipeline*)创建一个。 +
   *Note:* U在引擎下, 通过Blue Ocean创建的流水线项目实际上是
@@ -212,8 +212,8 @@ Bitbucket',width=70%]
 image:blueocean/creating-pipelines/choose-a-repository.png['Choose a
 repository',width=70%]
 . 点击 *Create Pipeline*。 +
- Blue Ocean就会扫描你本地仓库的分支来获取`Jenkinsfile`，
-  并为每一个含有 `Jenkinsfile`的分支开始运行流水线。
+ Blue Ocean就会扫描你本地仓库的分支来获取 `Jenkinsfile`，
+  并为每一个含有 `Jenkinsfile` 的分支开始运行流水线。
   如果Blue Ocean找不到任何 `Jenkinsfile`, 会提示你
   通过 link:../pipeline-editor[流水线编辑器] (通过再次点击
   *Create Pipeline* )创建一个。+
