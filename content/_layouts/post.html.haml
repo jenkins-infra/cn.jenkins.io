@@ -26,10 +26,13 @@ layout: default
         .post-attrs
           - if page.date
             %span.submitted
-              Published on
-              = page.date.strftime('%Y-%m-%d')
-              by
+              作者
               = display_author_for(page, "#about-the-author")
+              - if page.translator
+                译者
+                = display_translator_for(page)
+              发布于
+              = page.date.strftime('%Y-%m-%d')
           - if page.tags
             %ul.list-inline.tags
               - page.tags.each do |tag|
