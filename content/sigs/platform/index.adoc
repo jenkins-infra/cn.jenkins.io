@@ -1,0 +1,163 @@
+---
+layout: sig
+title: "平台"
+section: sigs
+sigId: "platform"
+logo: /images/logos/formal/256.png
+tags:
+  - java
+  - windows
+  - docker
+  - linux
+  - platform_sig
+  - platform-sig
+  - platform
+leads:
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+  irc: "oleg_nenashev"
+  twitter: "oleg_nenashev"
+- name: "Mark Waite"
+  id: "markewaite"
+  github: "markewaite"
+- name: "Baptiste Mathus"
+  id: "batmat"
+  github: "batmat"
+participants:
+- name: "Tracy Miranda"
+  id: "tracymiranda"
+  github: "tracymiranda"
+  irc: "tracymiranda"
+- name: "Samuel Van Oort"
+  id: "svanoort"
+  github: "svanoort"
+- name: "Nicolas De Loof"
+  id: "ndeloof"
+  github: "ndeloof"
+- name: "Devin Nusbaum"
+  id: "dnusbaum"
+  github: "dwnusbaum"
+- name: "Alex Earl"
+  id: "slide"
+  github: "slide"
+- name: "Durgadas Kamath"
+  github: "imdurgadas"
+- name: "Robert Sandell"
+  id: "rsandell"
+  github: "rsandell"
+- name: "Liam Newman"
+  id: "bitwiseman"
+  github: "bitwiseman"
+- name: "David Currie"
+  id: "dcurrie"
+  github: "davidcurrie"
+- name: "Adrien Lecharpentier"
+  id: "alecharp"
+  github: "alecharp"
+- name: "Ramon Leon"
+  id: "MRamonLeon"
+  github: "MRamonLeon"
+links:
+  gitter: "jenkinsci/platform-sig"
+  googlegroup: "jenkins-platform-sig"
+  meetings: "/projects/sigs/platform/#meetings"
+overview: >
+  这个特别兴趣小组提供了一个场所，用于讨论对各种平台的支持：
+  Java、操作系统、架构、Docker、打包和 Web 容器等。
+  此小组致力于定义平台支持策略，
+  协调与贡献者和外部社区的平台支持工作，以及审查该领域的提案。
+---
+
+这个特别兴趣小组提供了一个场所，用于讨论对各种平台的支持：Java、操作系统、架构、Docker、打包和 Web 容器等。
+
+此小组主要关注于在 Jenkins 中使用的以下技术：
+
+* Java 虚拟机: 版本、兼容性和优化
+* 操作系统: 原生组件和打包
+* 架构和平台
+* Web 容器
+
+平台小组也正在与其他特别兴趣小组合作。例如，如果议题与 Kubernetes 或 Docker 等云原生平台相关，
+我们将与 link:/sigs/cloud-native[云原生 Jenkins 小组]合作。
+
+=== 议题
+
+* 定义平台支持策略 (例如 “定义 Windows 支持策略”)
+* 协调在对新平台支持的工作 (例如 jep:211[Java 11 Support in Jenkins])
+* 与外部社区合作，以此提供更好的平台支持和打包
+(例如 改进对 IBM Java 的支持、实现 OpenIndiana 打包、
+ARM 体系结构支持、使 RedHat 打包得到最佳效果。)
+* 审查在该领域中提交的 JEPs
+
+=== 正在进行中的项目
+
+* Jenkins 对 Java 11 的支持 (jep:211[])
+* 多架构 Docker 镜像
+** 让官方镜像能够在 Arm、IBM s390x 和其他平台上运行
+* 重构 Windows 安装程序
+** 适用于64位平台的新版安装程序
+** 移除 Java 捆绑
+** 创建官方 link:https://chocolatey.org/packages/jenkins[Jenkins Chocolatey] 包
+* 为 Jenkins 打包启用持续交付
+** 试验性的 DockerHub 组织，以及从 ci.jenkins.io 部署镜像(jep:217[])
+
+有关正在进行中项目的更多信息，请参阅特别兴趣小组会议记录。
+
+=== 会议
+
+我们会在每两周的周四 *2PM UTC* 举行定期会议，
+时间表请参阅 link:/event-calendar/[Jenkins 事件日历]。
+在这些会议中，我们会讨论项目状态并进行演示。
+您可以在link:https://docs.google.com/document/d/1bDfUdtjpwoX0HO2PRnfqns_TROBOK8tmP6SgVhubr2Y/edit?usp=sharing[这里]找到并对即将召开的会议的议程提出修改建议。
+
+会议将在 Jenkins Hangouts-on-Air 进行并录制下来。
+参与者链接将在会议开始前10分钟内发布在特别兴趣小组的 Gitter Chat 中。
+
+==== 2018-12-04
+
+Java 11 preview 可用性 sign-off  和 Docker 打包
+
+* link:https://docs.google.com/document/d/1s4XhfmhgVa6ZHcwGhOIrwL-6wc9v9qXhym96BiwWUrQ/edit?usp=sharing[会议记录]
+* link:https://www.youtube.com/watch?v=RohXaGiDViw[Youtube 视频]
+
+==== 2018-11-19. 项目同步
+
+项目同步： Windows 安装程序， Java 11 打包, 多架构 Docker 镜像。
+
+* link:https://docs.google.com/document/d/1FARi55vDjsdzi6Nj9ZB9e1wh2dU8nyWK6mq_cge0ceg/edit?usp=sharing[会议记录]
+* link:https://youtu.be/Rv-KvlGvnio[Youtube 视频]
+* link:https://docs.google.com/presentation/d/1lw4unaFhsQk7a8HzhxhgTK4X2X2ocv_W_VW7aoH2WkM/edit?usp=sharing[Slides: Java 11 Status update]
+
+==== 2018-09-27. 项目同步
+
+项目同步： Java 11 打包， 多架构 Docker 镜像。
+
+* link:https://docs.google.com/document/d/1nIz1STmwOVMJ3vx68m6Xc4pv2oEKDRdyeYUNI8zZJsg/edit?usp=sharing[会议记录]
+* link:https://www.youtube.com/watch?v=JmOnJopFix0[视频记录]
+
+==== 2018-08-29. 多架构 Docker 镜像
+
+对 jira:52785[在 Jenkins 中支持多架构 Docker 镜像]的同步。
+我们讨论了在 Jenkins 项目中构建或托管这些镜像的方法。
+
+* link:https://docs.google.com/document/d/1YofL2uhy7xAa1mx_qFdDvDg4P-molmhDwFD0-8xX8mI/edit?usp=sharing[会议记录]
+* link:https://www.youtube.com/watch?v=6SeDJXgzUCA[Youtube 视频]
+
+==== 2018-08-23. Eclipse OpenJ9 和 Jenkins
+
+这个线上会面主要关于 Eclipse OpenJ9 和 Jenkins。
+讨论将由 Steve Poole (Eclipse Openj9) 和 Tracy Miranda 组织，他们目的在于揭示一些问题：
+Jenkins 可以通过利用 Eclipse OpenJ9 及其优化的方法来获得性能提升吗？
+两个开源社区如何协作，从而使在云中运行的 Jenkins 获得改进？
+
+* link:https://www.meetup.com/Jenkins-online-meetup/events/253769950/[Jenkins 线上会面的页面]
+* link:https://docs.google.com/document/d/1RuD5f78bpakBmWy0bwap424IysxV1B3uj2-NbkTC9E0/edit#[会议记录]
+
+==== 2018-08-15. 状态会议
+
+状态同步: Jenkins 中的 Java 10+ 支持(JEP-211)，
+64-bit Windows 安装程序， 巧克力打包（Chocolatey packaging）和其他议题。
+
+* link:https://www.youtube.com/watch?v=bbWO89HPMUM[Youtube 视频]
+* link:https://docs.google.com/document/d/1OgQCeyHNEV2GVx6phsNX_RtzpAiJWtKLUdAm1NDF6vY/edit[会议议程和说明]
