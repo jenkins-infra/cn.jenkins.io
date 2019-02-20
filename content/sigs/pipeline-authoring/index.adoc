@@ -1,0 +1,119 @@
+---
+layout: sig
+title: "流水线设计"
+section: sigs
+sigId: "pipeline-authoring"
+logo: /images/user.gif
+tags:
+- pipeline
+- ux
+- authoring
+leads:
+- name: "Andrew Bayer"
+  id: "abayer"
+  github: "abayer"
+participants:
+- name: "Liam Newman"
+  id: "bitwiseman"
+  github: "bitwiseman"
+- name: "Austin Witt"
+  id: "awitt"
+  github: "awittha"
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+- name: "Devin Nusbaum"
+  id: "dnusbaum"
+  github: "dwnusbaum"
+- name: "赵晓杰"
+  id: "surenpi"
+  github: "linuxsuren"
+- name: "Michael Werner"
+  id: "xaseron"
+  github: "xaseron"
+- name: "Marky Jackson"
+  id: "jequals5"
+  github: "markyjackson-taulia"
+- name: "Rob Pickerill"
+  id: "rbpckr"
+  github: "robpickerill"
+- name: "Christian Chavez"
+  id: "x10an14"
+  github: "x10an14"
+- name: "Sam Van Oort"
+  id: "svanoort"
+  github: "svanoort"
+- name: "David Chwalisz"
+  id: "dchwalisz"
+  github: "dcfsc"
+- name: "Jon Brohauge"
+  id: "jnz_topdanmark"
+  github: "jonbrohauge"
+- name: "Christian Rasp"
+  id: "crasp"
+  github: "crasp"
+- name: "Peter Salvatore"
+  id: "psftw"
+  github: "psftw"
+- name: "Mauro Ferratello"
+  id: "ferratello"
+  github: "ferratello"
+
+organizations:
+- name: "CloudBees"
+  github: "cloudbees"
+
+links:
+  gitter: jenkinsci/pipeline-authoring-sig
+  googlegroup: jenkins-pipeline-authoring-sig
+  meetings: "/projects/sigs/pipeline-authoring/#meetings"
+
+overview: >
+  此特别兴趣小组旨在策划和改善设计 Jenkins 流水线的体验。
+  包括 Jenkinsfile 和共享库的语法，代码共享和复用，对流水线和共享库的测试，
+  IDE 集成和其他开发工具，文档，最佳实践和示例。
+
+---
+
+此特别兴趣小组专注于改进 Jenkins 流水线和提高设计 Jenkins 流水线时的用户体验。
+
+=== 专注领域
+* 语法 - 如何编写 Jenkinsfile 和共享库
+* 代码共享和复用 - 不断改进的共享库
+* 测试 - 对 Jenkinsfile 和共享库的单元测试和功能测试
+* IDE 集成，编辑器和其他开发工具 - IDE 插件，可视化编辑器等
+* 文档 - 参考文献，教程等
+* 最佳实践 - 定义，维护和推广 Jenkins 流水线的最佳实践
+* 示例 - 用真实的 Jenkinsfile 和共享库来演示如何利用流水线的各种功能，
+  帮助新手快速开始的基础知识或入门 Jenkinsfile 的常用模式。
+
+=== 交流
+我们的目标群体是有兴趣提升或策划编写 Jenkins 流水线体验的任何人。
+因此，对以上任一有兴趣（或两者）的人都欢迎加入我们的 SIG 会议或 Gitter 频道！
+
+==== Gitter 频道 （gitter: jenkinsci/pipeline-authoring-sig）
+在编写 Jenkins 流水线时遇到的任何问题，都欢迎到我们的 Gitter 频道上讨论，
+我们要求在提交给我们之前对该问题已经进行了__一些__研究。
+事实上，互联网上有许多博客或教程讨论了如何以有建设性的方式__提问__，以及如何有建设性地__回答__。
+
+这些博文/教程的例子：
+
+* http://www.catb.org/esr/faqs/smart-questions.html （简短而有趣的博文/教程）
+* https://www.biostars.org/p/75548/ （更全面的博客文章/教程）
+* https://docs.plone.org/askforhelp.html （一份文档指南，说明如何在特定工具上寻求帮助 - 例如 Jenkins 流水线）
+
+**以下的常见问题解答列出了典型的问题和答案。如果在提出问题之前先前往我们的 Gitter 频道我们将非常感激。**
+
+==== 常见问题解答
+
+WARNING: 筹备中...
+
+
+=== 会议
+
+会议将于每月的第二个星期三下午 4:00（ UTC ）举行。
+SIG 会议的链接在 Gitter 频道和邮件列表中公布。
+
+* **2018-12-12**:
+  link:https://www.youtube.com/watch?v=VEaAJrV3RYs[视频] -
+  link:https://docs.google.com/document/d/1R8tR7HzD9eFUELy4K7J5hnZ5AuoEaPNBddAU0qL9g60/edit?usp=sharing[记录]
