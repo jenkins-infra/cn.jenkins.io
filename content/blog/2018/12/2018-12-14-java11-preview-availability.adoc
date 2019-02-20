@@ -8,6 +8,7 @@ tags:
 - community
 - platform-sig
 author: oleg_nenashev
+translator: cizezsy
 links:
   gitter: /jenkinsci/platform-sig
   googlegroup: jenkins-platform-sig
@@ -104,9 +105,8 @@ docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:jdk11
 ** 这个镜像捆绑了在 Java 11 上运行时需要的所有的 Jenkins 流水线和 Blue Ocean 的补丁
 ** 如果你想要使用流水线，使用这个镜像
 * link:https://hub.docker.com/r/jenkins/jenkins-experimental/[jenkins/jenkins-experimental] -
-Equivalent of link:https://hub.docker.com/r/jenkins/jenkins/[jenkins/jenkins]
+等同于 link:https://hub.docker.com/r/jenkins/jenkins/[jenkins/jenkins]
 ** 标签: `latest-jdk11`
-** The image is released from the `java11-support` feature branch in the Jenkins core
 ** 这个镜像是从 Jenkins core 的 `java11-support` 分支中发布的
 ** 这个分支可能轻微的领先或落后于 `master` 分支，我们可能会用这个分支去快速发布补丁给 Java 11 用户
 
@@ -186,8 +186,7 @@ link:https://github.com/orgs/jenkinsci/teams/java11-support[Java 11 支持团队
 我们推荐你在你的其中一个测试实例中尝试 Java 11 支持。
 我们对这样的测试感激不尽。
 我们在link:/blog/2018/12/14/java11-preview-availability/#报告兼容性问题[上面]提供了问题报告的准则。
-* If you are a plugin developer/maintainer,
-假如你是一个插件的开发者/维护者，
+* 假如你是一个插件的开发者/维护者，
 我们非常感谢你能在 Java 11 中测试你的插件。
 为了帮助你，我们创建了 link:https://wiki.jenkins.io/display/JENKINS/Java+11+Developer+Guidelines[Java 11 Developer guidelines]。
 这个页面阐述了如何在 Java 11 下测试你的插件，同时它也列出了在开发工具中的已知的问题。
