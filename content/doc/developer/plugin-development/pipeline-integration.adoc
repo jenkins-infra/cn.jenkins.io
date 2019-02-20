@@ -60,14 +60,14 @@ NOTE: 如果你担心你的插件依赖于最近的Jenkins版本，
 
 ==== 变量替换
 
-没有与`WorkflowRun`的`AbstractBuild.getBuildVariables（）`等价的东西（任何Groovy本地变量都不可以这样访问）。
+没有与 `WorkflowRun` 的 `AbstractBuild.getBuildVariables（）` 等价的东西（任何Groovy本地变量都不可以这样访问）。
 另外，`WorkflowRun.getEnvironment(TaskListener)` _is_被实现，但只产生初始构建环境，而不考虑`withEnv`块等。
 
-TIP: 要在 `Step`中获取_contextual_环境, 可以使用 `@StepContextParameter`注入 `EnvVars`；
+TIP: 要在 `Step` 中获取 _contextual_ 环境, 可以使用 `@StepContextParameter` 注入 `EnvVars`；
 
 WARNING: 
-在 https://issues.jenkins-ci.org/browse/JENKINS-29144[JENKINS-29144]之前 没有一个 `SimpleBuildStep`的等价物。
-但是，如果需要，`SimpleBuildWrapper` 可以访问`initialEnvironment`。
+在 https://issues.jenkins-ci.org/browse/JENKINS-29144[JENKINS-29144]之前 没有一个 `SimpleBuildStep` 的等价物。
+但是，如果需要，`SimpleBuildWrapper` 可以访问 `initialEnvironment`。
 
 无论如何，从Pipeline运行的代码应该将任何配置值作为字符串并且不要尝试执行
 变量替换（包括通过`token-macro`插件），
@@ -102,7 +102,7 @@ NOTE: https://issues.jenkins-ci.org/browse/JENKINS-35671[JENKINS-35671] 会简�
 
 ==== 构造函数与setter方法
 
-用一个简短的`@DataBoundConstructor`替换一个真正必需的参数是一个好主意
+用一个简短的 `@DataBoundConstructor` 替换一个真正必需的参数是一个好主意
 （如服务器位置）。
 
 对于所有可选参数，创建一个用`@ DataBoundSetter`标记的公共setter
