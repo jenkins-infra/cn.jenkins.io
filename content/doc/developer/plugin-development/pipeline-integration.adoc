@@ -23,7 +23,7 @@ references:
 
 === 一般准则
 
-各种 metasteps 有几个共同的考虑。
+不同的 metasteps 之间有几个共同的设计考量。
 
 ==== Jenkins核心依赖
 
@@ -212,19 +212,19 @@ TIP: 作为对新用户的暗示，您仍然可以在配置表单中使用 `defa
 并且至少应该使用 `Secret`。
 `Secret` 值域更安全，但并不适合源代码中定义的项目，例如流水线任务。
 
-相反，你应该与 https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin[Credentials 插件] 集成。
+相反，你应该与 https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin[凭据插件] 集成。
 之后你的构建器通常会有一个 `credentialsId` 字段，它指的是证书的 ID。
 （用户可以选择用于脚本任务的助记符 ID。）
 通常，_Snippet Generator_ 中使用的 `config.jelly` 将有一个 `<c:select/>` 控件，
-由 `Descriptor` 上的 `doFillCredentialsId` 网络方法支持以枚举当前可用的凭证的预期类型
+由 `Descriptor` 上的 `doFillCredentialsId` 网络方法支持以枚举当前可用的凭据的预期类型
 （例如 `StandardUsernamePasswordCredentials` ），也许只限于某个域
 （例如通过来自附近表单字段的 `@QueryParameter` 获得的主机名）。
 
-在运行时，您将通过 ID 查找凭证并使用它们。
+在运行时，您将通过 ID 查找凭据并使用它们。
 
 以前使用 `Secret` 的插件通常需要使用 `@Initializer` 来迁移自由式项目的配置到可以使用凭据。
 
-NOTE: 采用凭证的细节太多，无法在此处列出。 请参阅凭证插件文档
+NOTE: 采用凭据的细节太多，无法在此处列出。 请参阅凭据插件文档
 
 ==== 定义符号
 
