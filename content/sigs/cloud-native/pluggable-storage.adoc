@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Cloud Native SIG - 可插拔存储"
+title: "云原生特别兴趣小组（Cloud Native SIG） - 可插拔式存储"
 tags:
 - pluggable-storage
 - cloud-native
@@ -9,8 +9,8 @@ tags:
 - external-artifacts
 ---
 
-默认将所有内容存储到文件系统中是 Jenkins 不适合 “Cloud Native” 模型的主要原因，具有HA、零停机时间或按使用付费等功能。
-尽管有很多插件实现了这一部分，但这对于用户来说变得很麻烦，而且是噩梦般的可用性，正如 jep:300[] 所指出的那样。
+将所有内容存储到文件系统中，是导致 Jenkins 无法实现 "Cloud Native" 模型中 HA、零停机时间或按使用付费等功能的主要原因。
+尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，从可用性角度来看，甚至可以说是噩梦，正如 jep:300[] 所指出的那样。
 在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
 和 link:https://github.com/jenkins-infra/evergreen[Jenkins Evergreen]，
 它们将从 Jenkins 的 Cloud Native 存储中受益匪浅。
@@ -19,81 +19,78 @@ tags:
 主要的症结是将本地磁盘用作通用存储，这会导致在容器化或分布式运行环境中有问题，需要高性能的文件系统，所有的配置都很痛苦，如初始大小调整和停机时间调整大小。
 我们相信，通过使用云服务，可以提高整体可用性、性能和可扩展性，同时实现新的需求功能。
 
-您可以在 link:/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
-link:/sigs/cloud-native[Cloud Native SIG] 中提供了Jenkins 增强建议的完整列表 。
+您可以在 link:https://jenkins.io/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
+link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins 增强建议的完整列表 。
 
-=== 摘要状态
+=== 状态摘要
 
 以下是正在进行的活动及其现状的摘要:
 
 |=========================================================
-|类型 | 状态 | JEPs | 评论
+|类型 | 状态 | JEPs | 备注
 
-| Artifacts
-| Available
+| 制品
+| 可用
 | jep:202[]
 |
 
-| Credentials
-| Available
+| 凭据
+| 可用
 | N/A
-| Completed before the JEP process was introduced
+| 在 JEP 流程推出之前完成
 
-| Build logs
-| In progress
+| 构建日志
+| 执行中
 | jep:207[], jep:210[], jep:212[]
 |
 
-| System logs
-| Available
+| 系统日志
+| 可用
 | N/A
-| Jenkins supports custom log appenders using standard `java.util.logging`
-  link:http://tutorials.jenkov.com/java-logging/configuration.html[configuration options].
+| Jenkins 支持使用 `java.util.logging` link:http://tutorials.jenkov.com/java-logging/configuration.html[标准配置] 自定义输出日志
 
 
-| Task logs
-| Not started
+| 任务日志
+| 没开始
 |
-| Storage of system logs and various tasks (e.g. agent connection or SCM polling)
+| 存储系统日志和各种任务(例如代理连接或 SCM 轮询)
 
-| Configurations
-| In progress
+| 配置
+| 执行中
 | jep:213[]
 |
 
-| Test results
-| In progress
-| Coming soon
+| 测试结果
+| 执行中
+| 即将到来
 |
 
-| Code coverage results
-| In exploration
+| 代码统计率结果
+| 探索中
 | TBD
 |
 
-| Runs
-| Not started
+| 运行
+| 没开始
 |
-| Storage of full run records in an external database
+| 在外部数据库中存储完整运行记录
 
-| Jobs
-| Not started
+| 任务
+| 没开始
 |
-| Storage of Job configurations and job-specific metadata in an external database.
-  Existing plugins like Jenkins Pipeline and JobDSL partially address this case
-  by keeping configurations in SCM.
+| 在外部数据库中存储任务配置和特定的元数据。像 Jenkins Pipeline 和 JobDSL，通过在 SCM 中保存配置来解决这种情况。
 
-| Fingerprints
-| Not started
+| 指纹
+| 没开始
 |
-| Proposed as a GSoC 2019 project:
-  link:/projects/gsoc/2019/project-ideas/external-fingerprint-storage-for-jenkins/[External Fingerprint Storage for Jenkins]
+| 建议作为GSoC 2019项目：
+  link:/projects/gsoc/2019/project-ideas/external-fingerprint-storage-for-jenkins/[Jenkins 的外部指纹存储]
 
-| Workspaces
-| Not started
+| 工作空间
+| 没开始
 |
-| Proposed as a GSoC 2019 project:
-  link:/projects/gsoc/2019/project-ideas/ext-workspace-manager-cloud-features/[Cloud Features for External Workspace Manager Plugin]
+| 建议作为GSoC 2019项目：
+  link:/projects/gsoc/2019/project-ideas/ext-workspace-manager-cloud-features/[外部工作空间管理器插件的云特性]
 
 |=========================================================
 
@@ -163,7 +160,7 @@ Jenkins 中的其他凭据 API（如 jenkinsdoc：hudson.util.Secret）不受支
 
 === 测试结果
 
-在常见的 CI/CD 用例中，测试报告正在消耗大量空间。此数据存储在其中 `JENKINS_HOME`，当前存储格式在检索统计信息，尤其是趋势信息时需要巨大的开销。
+在常见的 CI/CD 用例中，测试报告正在消耗大量空间。`JENKINS_HOME` 指向该数据存储，当前存储格式在检索统计信息，尤其是趋势信息时需要巨大的开销。
 为了显示趋势信息，必须加载每个报告，然后在内存中处理。
 
 外部化测试结果的主要目的是通过从专用外部存储器（例如来自 Elasticsearch 等基于文档的数据库）查询所需数据来优化 Jenkins 逻辑。
@@ -176,5 +173,5 @@ Jenkins 中的其他凭据 API（如 jenkinsdoc：hudson.util.Secret）不受支
 
 === 其他可插拔存储描述
 
-本页仅总结了正在进行的工作的状态。我们在 Cloud Native SIG 中考虑了其他可插入存储描述。有关更多详细信息和链接，请参见 link:/sigs/cloud-native[SIG 页面]。
+本页仅总结了正在进行的工作的状态。我们在云原生特别兴趣小组（Cloud Native SIG）中考虑了其他可插入存储描述。有关更多详细信息和链接，请参见 link:/sigs/cloud-native[SIG 页面]。
 
