@@ -64,7 +64,7 @@ image:images/post-images/2019-01-08-mpl-modular-pipeline-library/fig02-the-mpl-p
 
 === 流水线在 MPL 中执行的示例
 
-假设你有一个常见的 Java Maven 项目。你在项目中创建 Jenkinsfile，并希望使用 DevOps 团队准备的默认流水线。MPL 本身就提供一个简单的流水线：核心 MPLPipeline 。这是一个非常简单的流水线，但对于想要尝试 MPL 的人来说，这是一个很好的开端。我们来看一下这个简单的 Jenkinsfile 文件：
+假设你有一个常规的 Java Maven 项目。你在项目中创建 Jenkinsfile，并希望使用 DevOps 团队准备的默认流水线。MPL 本身就提供一个简单的流水线：核心 MPLPipeline 。这是一个非常简单的流水线，但对于想要尝试 MPL 的人来说，这是一个很好的开端。我们来看一下这个简单的 Jenkinsfile 文件：
 
 [source,groovy]
 ----
