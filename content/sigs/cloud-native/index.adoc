@@ -113,7 +113,7 @@ SIG 有以下主要领域：
 === 可插拔式存储
 
 将所有内容存储到文件系统中，是导致 Jenkins 无法实现 "Cloud Native" 模型中 HA、零停机时间或按使用付费等功能的主要原因。
-尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，而且是噩梦般的可用性，正如 jep:300[] 所指出的那样。
+尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，从可用性角度来看，甚至可以说是噩梦，正如 jep:300[] 所指出的那样。
 在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。
 其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
 和 link:https://github.com/jenkins-infra/evergreen[Jenkins Evergreen]，
