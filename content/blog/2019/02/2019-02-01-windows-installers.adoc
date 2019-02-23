@@ -6,11 +6,11 @@ tags:
 - platform-sig
 - installers
 author: slide_o_mix
-translator: 周杨
+translator: raychou1203
 ---
 
 Jenkins 的 Windows 安装程序已经存在很多年了，它是用户在 Windows 上安装 Jenkins Master 作为服务的一种方式。
-从被开发出来至今，它还没有什么更新和新的 features，但现在是时候做出改变了。
+从被开发出来至今，它还没有什么新特性，但现在是时候做出改变了。
 
 首先，让我们瞧瞧现版本安装程序的使用经验。
 
@@ -34,10 +34,10 @@ image:/images/post-images/2019-02-01-windows-installer/old_installer_3.png[安�
 
 ## 问题
 
-现在的安装程序存在一些问题，平台特别兴趣小组会在为用户提供新的安装体验时修复它们。
+现在的安装程序存在一些问题，平台特别兴趣小组会修复这些问题，并为用户提供新的安装体验。
 
  1. 安装程序只支持32位安装。
- 2. 用户启动服务时不能选择端口和用户账户。
+ 2. 用户不能选择 Jenkins 作为 Windows 服务启动时的端口以及账户。
  3. 安装程序捆绑了32位的 Java runtime，而没有使用已存在的 JRE。
  4. 安装程序不支持 Jenkins for Java 11中的实验性支持。
  5. JENKINS_HOME 目录并不适合现代 Windows。
@@ -45,7 +45,7 @@ image:/images/post-images/2019-02-01-windows-installer/old_installer_3.png[安�
  
 ## 前进
 
-使用实验性的 Jenkins Windows Installer，大部分问题都已解决！
+使用实验性的 Jenkins Windows 安装程序，大部分问题都已解决！
 
  1. 安装程序将只支持64位系统，这也是如今大多数 Windows 系统的现状，所以能让更多的用户能够使用安装包来安装 Jenkins。
  2. 用户能够为服务输入用户信息，同时选择端口以便于 Jenkins 验证端口是否可用。
@@ -86,7 +86,7 @@ image:/images/post-images/2019-02-01-windows-installer/new_installer_4.png[端�
 
 image:/images/post-images/2019-02-01-windows-installer/new_installer_5.png[JRE 选择, role=center]
 
-安装程序现在不再捆绑 JRE，而是在系统上搜索兼容的JRE （现在是 JRE 8）。 如果你想使用与安装程序搜索到不同的 JRE，你可以浏览目录并指定它。只支持 JRE 8 和 JRE 11 runtime。如果发现选定的 JRE 是版本11，安装程序将自动添加必要的参数和其他 jar 文件，以便在 Java 11下运行。
+安装程序现在不再捆绑 JRE，而是在系统上搜索兼容的 JRE （现在是 JRE 8）。 如果你想使用与安装程序搜索到不同的 JRE，你可以浏览目录并指定它。只支持 JRE 8 和 JRE 11 Runtime。如果发现选定的 JRE 是版本11，安装程序将自动添加必要的参数和其他 jar 文件，以便在 Java 11下运行。
 
 ### 第6步
 
