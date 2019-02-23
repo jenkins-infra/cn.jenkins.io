@@ -1,0 +1,122 @@
+---
+:layout: post
+:title: "Using Jenkins X DevPods for development"
+:tags:
+- jenkinsx
+- developer
+:author: michaelneale
+---
+
+我每天都在使用macOS, 经常纠结是否更新我的开发工具.
+这不是packaging和tools的错,主要是因为我厌倦看到这个菊花球:
+
+image:/images/post-images/2018-06-21-devpods/beachball.png[title="beachball", role="center"]
+
+随着开发者现在使用的技术越来越丰富，不再像以前那样局限于JVM或者单一的脚本语言，对开发机的需求越来越高。
+
+这样不断跟随的做法会浪费时间(也就是浪费金钱).
+开发工作会关系到很多方面的成本, 我
+link:https://www.cloudbees.com/blog/dont-install-kubernetes[已经写过关于]
+开发所使用的机器的成本（如何使用像GKE这样的东西比购买新机器便宜得多）,以及开发人员的时间成本.
+值得庆幸的, 有一些方法看起来同样巧妙的节省时间和金钱.
+ 时间和金钱相等吗?
+
+在自动检测和安装所需要的工具，环境和库的所有工作完成方面，当你在link:http://jenkins.io/projects/jenkins-x[Jenkins X]运行‘jx import’，他会使他们在开发时可用，并且诞生了“DevPods”概念。
+
+_名称中`pod`部分来自于Kubernetes概念中的pods (使用Jenkins X时候你并不需要了解Kubernetes或者pods.Jenkins X的目标是提供给开发者一个体验，但是不需要开发者去了解Kubernetes)._
+
+在你提交代码或者打开一个PR之前，为什么不从代码编辑一直到生产都使用Jenkins X。
+所有的工具和环境随时都可以使用 (就像使用CI的时候一样!).
+
+这样营造出一系列画面:Jenkins X的目标是为你处理整个的软件生命周期，从 ideas/issues, change requests, testing, CI/CD, security and compliance verification,rollout和监控。所以包含实际的开发时间工具是完全有意义的。
+
+如果您有现有项目，则可以通过运行（使用jx命令）创建DevPod：
+
+[source, bash]
+----
+jx create devpod
+----
+
+
+这将 _检测_ 项目的类型（使用构建包）并为您创建一个DevPod，并预先安装并准备好所有工具。
+
+
+显然, 此时您希望可以对您的应用作出修改并且尝试。
+要么在DevPod中运行单元测试，或者可以在浏览器中看到应用的一些开发版本（web应用的场景）。
+基于Web的代码编辑器已经出现有一段时间了，但在主流开发人员中从来没有完全开始使用它（尽管有很多优点，大多数开发人员更喜欢在他们的桌面上开发）。
+讽刺的是，当下最流行的编辑器是基于 link:https://github.com/electron/electron[“electron”] ，它实际上是web技术栈，但是却运行在本地（Visual Studio Code是我个人最喜爱的），
+实际上Visual Studio Code有一个Jenkins X 的扩展插件（不过你不曾使用过）：
+
+
+image:/images/post-images/2018-06-21-devpods/jx-tools.png[title="jx tools", role="center"]
+
+要在新的shell运行中将更改升级到Dev Pod（并使其保持运行）：
+
+[source, bash]
+----
+jx sync
+----
+
+这将在本地监视任何更改（假设您要在桌面上本地编辑文件）并将它们同步到Dev Pod。
+
+最后，您可以让Dev Pod自动的部署您编辑器中的每一个变化作为“编辑”版本的应用：
+
+[source, bash]
+----
+jx create devpod --sync --reuse
+./watch.sh
+----
+
+第一个命令将创建或者重用一个存在的Dev Pod，并且为它打开一个shell，
+然后 _watch_ 命令将获取任何的更改，并且部署他们到“编辑”应用中。
+您可以在浏览器打开，进行修改，然后刷新它。
+您本地不需要运行任何的开发工具，也不需要手动执行命令。
+
+您可以运行很多DevPods（jx get devpods），你也可以在晚上结束它们（jx delete devpods），如果您需要（或者像我说的：在喝咖啡和啤酒时候让他们运行），在一开始就启动它们。
+集群中一个pod使用着资源，并且随着Jenkins X项目充分利用其对开发工具的支持（通过VS代码扩展等功能），您可以预期即使这几个步骤也可以在不久的将来自动化，以上很多不需要说明！
+
+
+
+### 端到端的体验
+
+所以把它放在一起，让我们来展示一个非常广泛的（您可能需要缩小）这个工作流程的截图：
+
+image:/images/post-images/2018-06-21-devpods/end-end.png[title="end to end", role="center"]
+
+
+从 `左` 到 `右`:
+
+* 我有我的编辑器（如果你仔细观察，你可以发现Jenkins X扩展展示了应用的状态，流水线和部署的环境）
+* 中途我有jx sync运行，从编辑器推送修改到云端，以及DevPod中运行的 ‘watch’脚本。这意味着我在编辑器的每一个修改，对应一个应用的临时版本（以及它的依赖关系都已经部署）
+* 在右边是我浏览器中“编辑”版本的应用。Jenkins X自动的为实时修改创建一个“编辑”环境，所以如果我在左边修改我的源头，代码会同步，构建/测试并且更新，所以我能在右边看到变化（不过我不能在本地构建任何东西，因为所有的操作都发生在Jenkins X中的DevPod）。
+
+_在Visual studio code：Jenkins X 为visual studio code扩展插件可以自动创建devpods和同步。预计很快这个编辑器以及其他会得到广泛的支持。_
+
+
+### 用图片解释事物
+
+通过一张大图全面了解关联：
+
+image:/images/post-images/2018-06-21-devpods/picture.png[title="big picture", role="center"]
+
+在我的例子中，GitHub一直参与的，不过我不推送回任何修改，直到我对我的“编辑应用”的状态和修改满意。
+我在我本地的工作站运行编辑器，并且jx维护着其他的事情。
+这位修改提供了紧密的反馈循环。当然，你可以按照个人喜好使用任何编辑器，并且在本地构建测试更改（这不要求使用DevPods来使用Jenkins X）。
+
+Jenkins X 自带一些随时可用的环境：development，staging和production（你可以增加更多的）。
+这些是作为Kubernetes namespaces实现的，避免错误的应用在错误的地方进行交互。
+开发环境是开发工具的所在地：这也是DevPods的所在地。
+正是因为如此所有工具都可用，并且避免了在本地使用与您在流水线中使用的工具版本不同的麻烦。
+
+devpods是一个有趣的想法，至少是一个炫酷的名字！
+这方面会有很大的发胀空间，所以要关注它们。
+因为它们正在开发中，所以请通过文档来获取更好的使用方法。
+
+Some more reading:
+
+* Docs on link:https://jenkins-x.io/developing/devpods/[DevPods] on jenkins-x.io
+* The link:https://github.com/jenkins-x/vscode-jx-tools[Visual Studio Code extension]
+  for Jenkins X (what a different world: an open source editor by Microsoft!)
+* James Strachan’s link:https://jenkins-x.io/demos/devoxx-uk-2018/[great intro]
+  to Jenkins X talk at Devoxx-UK also   includes a DevPod demo
+
