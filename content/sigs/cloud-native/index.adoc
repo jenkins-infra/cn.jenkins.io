@@ -56,7 +56,7 @@ participants:
 - name: "Liam Newman"
   id: "Liam Newman"
   github: "bitwiseman"
-- name: "Rick"
+- name: "赵晓杰"
   id: "LinuxSuRen"
   github: "LinuxSuRen"
 - name: "David Currie"
@@ -68,7 +68,7 @@ participants:
 - name: "Dominic Gunn"
   id: "dgunn"
   github: "dominicgunn"
-- name: "RunZe Xia"
+- name: "夏润泽"
   id: "runzexia"
   github: "runzexia"
 - name: "Marky Jackson"
@@ -89,7 +89,7 @@ links:
   meetings: "/projects/sigs/cloud-native/#meetings"
 
 overview: >
-  Cloud Native 贡献者和合作者专注于改进 Jenkins 作为 “Cloud Native” 应用程序在云环境中运行。
+  Cloud Native 贡献者和协作者专注于改进 Jenkins 作为 “Cloud Native” 应用程序在云环境中运行。
   这些改进针对现有和新的 Jenkins 用户，这些用户使用或希望使用部署在其中一个云提供商中的 Jenkins，或使用云服务进行操作。
 
 ---
@@ -105,16 +105,17 @@ overview: >
 
 SIG 有以下主要领域：
 
-* 可插拔存储 - 外部化存储的数据 `JENKINS_HOME`
-* Cloud Native Jenkins - 面向 Jenkins 无状态体系结构更改和优化
+* 可插拔式存储 - 将 `JENKINS_HOME` 的数据存储外部化
+* 云原生 Jenkins - 面向 Jenkins 无状态体系结构更改和优化
 * 代码配置 - 简化创建 Jenkins 静态配置 
-* Jenkins Kubernetes 操作人员 - 在 Kubernetes 上管理 Jenkins
+* Jenkins Kubernetes Operator - 在 Kubernetes 上管理 Jenkins
 
-=== 可插拔存储
+=== 可插拔式存储
 
-默认将所有内容存储到文件系统中是 Jenkins 不适合 “Cloud Native” 模型的主要原因，具有HA、零停机时间或按使用付费等功能。
-尽管有很多插件实现了这一部分，但这对于用户来说变得很麻烦，而且是噩梦般的可用性，正如 jep:300[] 所指出的那样。
-在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
+将所有内容存储到文件系统中，是导致 Jenkins 无法实现 "Cloud Native" 模型中 HA、零停机时间或按使用付费等功能的主要原因。
+尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，而且是噩梦般的可用性，正如 jep:300[] 所指出的那样。
+在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。
+其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
 和 link:https://github.com/jenkins-infra/evergreen[Jenkins Evergreen]，
 它们将从 Jenkins 的 Cloud Native 存储中受益匪浅。
 
@@ -148,11 +149,11 @@ SIG 有以下主要领域：
 
 在需要时，Office Hours 会议上讨论的主题将在 Cloud Native SIG 会议上报告。
 
-=== Jenkins Kubernetes 运营商
+=== Jenkins Kubernetes Operator
 
 Jenkins Kubernetes Operator 可以实现 Jenkins 在 kubernetes 集群中的自动操作和维护。
 
-Jenkins 操作人员将与 CasC 插件、Groovy init 脚本等集成，以便在 kubernetes 集群中实现 Jenkins 的配置控制、状态控制和其他可能的改进。
+Jenkins Operator 将与 CasC 插件、Groovy init 脚本等集成，以便在 kubernetes 集群中实现 Jenkins 的配置控制、状态控制和其他可能的改进。
 
 操作人员将接到一个 yaml 文件，如
 link:https://github.com/jenkinsci/custom-war-packager#configuration-file[custom-war-packager yaml config]，并完成配置。
