@@ -20,7 +20,7 @@ tags:
 我们相信，通过使用云服务，可以提高整体可用性、性能和可扩展性，同时实现新的需求功能。
 
 您可以在 link:https://jenkins.io/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
-link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins 增强建议的完整列表 。
+link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins 提议的完整列表 。
 
 === 状态摘要
 
@@ -37,10 +37,10 @@ link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中�
 | 凭据
 | 可用
 | N/A
-| 在 JEP 流程推出之前完成
+| 在 JEP 流程提出之前完成
 
 | 构建日志
-| 执行中
+| 进行中
 | jep:207[], jep:210[], jep:212[]
 |
 
@@ -51,45 +51,45 @@ link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中�
 
 
 | 任务日志
-| 没开始
+| 未开始
 |
 | 存储系统日志和各种任务(例如代理连接或 SCM 轮询)
 
 | 配置
-| 执行中
+| 进行中
 | jep:213[]
 |
 
 | 测试结果
-| 执行中
+| 进行中
 | 即将到来
 |
 
-| 代码统计率结果
+| 代码覆盖率结果
 | 探索中
 | TBD
 |
 
 | 运行
-| 没开始
+| 未开始
 |
 | 在外部数据库中存储完整运行记录
 
 | 任务
-| 没开始
+| 未开始
 |
 | 在外部数据库中存储任务配置和特定的元数据。像 Jenkins Pipeline 和 JobDSL，通过在 SCM 中保存配置来解决这种情况。
 
 | 指纹
-| 没开始
+| 未开始
 |
-| 建议作为GSoC 2019项目：
+| 作为GSoC 2019项目：
   link:/projects/gsoc/2019/project-ideas/external-fingerprint-storage-for-jenkins/[Jenkins 的外部指纹存储]
 
 | 工作空间
-| 没开始
+| 未开始
 |
-| 建议作为GSoC 2019项目：
+| 作为GSoC 2019项目：
   link:/projects/gsoc/2019/project-ideas/ext-workspace-manager-cloud-features/[外部工作空间管理器插件的云特性]
 
 |=========================================================
