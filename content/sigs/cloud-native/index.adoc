@@ -1,0 +1,189 @@
+---
+layout: sig
+title: "云原生（Cloud Native）"
+section: sigs
+sigId: "cloud-native"
+logo: /images/user.gif
+tags:
+- cloud
+- docker
+- kubernetes
+- aws
+- azure
+- gce
+- cloud-native
+- cloud-native-sig
+- configuration-as-code
+- jcasc
+leads:
+- name: "Carlos Sanchez"
+  id: "csanchez"
+  github: "carlossg"
+participants:
+- name: "Jesse Glick"
+  id: "jglick"
+  github: "jglick"
+- name: "Oleg Nenashev"
+  id: "oleg_nenashev"
+  github: "oleg-nenashev"
+- name: "Tracy Miranda"
+  id: "tracymiranda"
+  github: "tracymiranda"
+- name: "Ewelina Wilkosz"
+  id: "ewelinawilkosz"
+  github: "ewelinawilkosz"
+- name: "Nicolas De loof"
+  id: "ndeloof"
+  github: "ndeloof"
+- name: "Olivier Vernin"
+  id: "olblak"
+  github: "olblak"
+- name: "Samuel Van Oort"
+  id: "svanoort"
+  github: "svanoort"
+- name: "Leonardo Rossetti"
+  id: "Leonardo Rossetti"
+  github: "odra"
+- name: "Baptiste Mathus"
+  id: "Baptiste Mathus"
+  github: "batmat"
+- name: "Vic Iglesias"
+  id: "Vic Iglesias"
+  github: "viglesiasce"
+- name: "Evan Brown"
+  id: "Evan Brown"
+  github: "evandbrown"
+- name: "Liam Newman"
+  id: "Liam Newman"
+  github: "bitwiseman"
+- name: "赵晓杰"
+  id: "LinuxSuRen"
+  github: "LinuxSuRen"
+- name: "David Currie"
+  id: "dcurrie"
+  github: "davidcurrie"
+- name: "Alex Nordlund"
+  id: "deepy"
+  github: "deepy"
+- name: "Dominic Gunn"
+  id: "dgunn"
+  github: "dominicgunn"
+- name: "夏润泽"
+  id: "runzexia"
+  github: "runzexia"
+- name: "Marky Jackson"
+  id: "markyjackson-taulia"
+  github: "markyjackson-taulia"
+
+organizations:
+- name: "CloudBees"
+  github: "cloudbees"
+- name: "Google Cloud Platform"
+  github: "GoogleCloudPlatform"
+- name: "Microsoft Azure"
+  github: "azure"
+
+links:
+  gitter: jenkinsci/cloud-native-sig
+  googlegroup: jenkins-cloud-native-sig
+  meetings: "/projects/sigs/cloud-native/#meetings"
+
+overview: >
+  Cloud Native 贡献者和协作者专注于改进 Jenkins 作为 “Cloud Native” 应用程序在云环境中运行。
+  这些改进针对现有和新的 Jenkins 用户，这些用户使用或希望使用部署在其中一个云提供商中的 Jenkins，或使用云服务进行操作。
+
+---
+
+这组贡献者和合作者专注于改进 Jenkins 作为 “Cloud Native” 应用程序在云环境中运行。
+
+=== 目标受众
+
+这些改进针对现有和新的 Jenkins 用户，这些用户使用或希望使用部署在其中一个云提供商中的 Jenkins ，或使用云服务进行操作。
+
+
+=== 需要改进的地方
+
+SIG 有以下主要领域：
+
+* 可插拔式存储 - 将 `JENKINS_HOME` 的数据存储外部化
+* 云原生 Jenkins - 面向 Jenkins 无状态体系结构更改和优化
+* 代码配置 - 简化创建 Jenkins 静态配置 
+* Jenkins Kubernetes Operator - 在 Kubernetes 上管理 Jenkins
+
+=== 可插拔式存储
+
+将所有内容存储到文件系统中，是导致 Jenkins 无法实现 "Cloud Native" 模型中 HA、零停机时间或按使用付费等功能的主要原因。
+尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，从可用性角度来看，甚至可以说是噩梦，正如 jep:300[] 所指出的那样。
+在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。
+其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
+和 link:https://github.com/jenkins-infra/evergreen[Jenkins Evergreen]，
+它们将从 Jenkins 的 Cloud Native 存储中受益匪浅。
+
+有几个明确的领域需要改进，这些领域在此进行了总结，并将在以后的文档中详细介绍。
+主要的症结是将本地磁盘用作通用存储，这会导致在容器化或分布式运行环境中有问题，需要高性能的文件系统，所有的配置都很痛苦，如初始大小调整和停机时间调整大小。
+我们相信，通过使用云服务，可以提高整体可用性、性能和可扩展性，同时实现新的需求功能。
+
+有关这些项目的更多信息，请参见 link:pluggable-storage[可插拔存储] 页面。
+你还可以在 link:/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
+
+=== Cloud Native Jenkins
+
+如果当前存储在文件系统中的所有数据都被移动到外部存储器，则可以使用复制的 Jenkins 服务，接下来的步骤是真正的高可用性，平滑或 canary 升级以及零停机时间。
+
+它也为无状态的 jenkins 开辟了一条道路。
+通过将 Jenkins 转换为“无状态”应用程序，期待已久的高可用性和复制等功能将有助于更有效地运行 Jenkins，无需停机，并通过使用 canary 或平滑升级降低升级操作的风险。
+
+目前没有与此主题相关的JEP。
+
+=== 代码配置
+
+作为代码相关主题的配置属于 Cloud Native SIG。代码配置（casc）组由贡献者组成，协作者专注于改进 Jenkins 配置，使其成为与代码相关的工具和实践。
+
+目标受众是现有的和新的 Jenkins 用户，他们使用或希望使用不同的方式将 Jenkins 代码配置。
+
+每周三(美国东部时间)上午9点有一个单独的 link:https://calendar.google.com/event?action=TEMPLATE&tmeid=a28yZTc0cGdxcHZwcHJ1aWNjZWcyMnU5ZGdfMjAxODA5MTJUMDcwMDAwWiBld2VAcHJhcW1hLm5ldA&tmsrc=ewe%40praqma.net&scp=ALL[办公时间会议] 。
+单击 link:https://calendar.google.com/event?action=TEMPLATE&tmeid=a28yZTc0cGdxcHZwcHJ1aWNjZWcyMnU5ZGdfMjAxODA5MTJUMDcwMDAwWiBld2VAcHJhcW1hLm5ldA&tmsrc=ewe%40praqma.net&scp=ALL[邀请链接] 。
+任何人都可以参加会议，会议将通过 Jenkins Hangouts-on-Air 录制。
+
+参与者链接将在会议开始前10分钟以 link:https://gitter.im/jenkinsci/configuration-as-code-plugin[Gitter] 中发布。 
+
+在需要时，Office Hours 会议上讨论的主题将在 Cloud Native SIG 会议上报告。
+
+=== Jenkins Kubernetes Operator
+
+Jenkins Kubernetes Operator 可以实现 Jenkins 在 kubernetes 集群中的自动操作和维护。
+
+Jenkins Operator 将与 CasC 插件、Groovy init 脚本等集成，以便在 kubernetes 集群中实现 Jenkins 的配置控制、状态控制和其他可能的改进。
+
+操作人员将接到一个 yaml 文件，如
+link:https://github.com/jenkinsci/custom-war-packager#configuration-file[custom-war-packager yaml config]，并完成配置。
+
+=== 会议
+
+将定期举行 SIG 会议。最初会议将每月进行一次，然后根据活动进行调整。
+
+会议将通过 Jenkins Hangouts-on-Air 进行和录制。
+
+==== 2018 年 9 月 17 日 在 Jenkins 贡献者峰会上见面
+
+我们将于 9 月 17 日在旧金山举行的 Jenkins 贡献者峰会上获得一张 BoF 表。没有录制，但是我们仍然会有这次活动的公开会议记录
+
+* link:https://docs.google.com/document/d/1Hw1mpXSpH8BAe2YK5SrCfFuHQLRf__KnjDBK_SbhGls/edit?usp=sharing[会议记录]
+
+==== 2018 年 8 月 16 日 会议状态
+
+状态同步：外部构建日志存储（JEP-207，JEP-210，JEP-212），外部配置存储（JEP-213），Jenkins 代码配置。
+
+* link:https://www.youtube.com/watch?v=aoJn4AgAEdk[Youtube 视频]
+* link:https://docs.google.com/document/d/1_lciDKHI7iKc6X043eWl1rMCcn_ixVgpwcKRLLu12Ts/edit[会议议程和记录]
+
+
+==== 2018 年 7 月 31 日 外部构建日志存储
+
+在这次开幕会议上，我们有来自 SIG 参与者的介绍。
+然后 link:https://github.com/oleg-nenashev[Oleg Nenashev] 和
+link:https://github.com/jglick[Jesse Glick] 提出并讨论了外部构建日志存储工作的当前状态 （link:https://issues.jenkins-ci.org/browse/JENKINS-38313[JENKINS-38313]）。
+
+* link:https://docs.google.com/presentation/d/1wcbvqmOhY0jIrKt_X9XEBfcXe29zycvhoWoI3qgSyDM/[幻灯片介绍]
+* link:https://www.youtube.com/watch?v=9lTOtC9wA_I[录制视频]
+* link:https://docs.google.com/document/d/1sWpIOY0jtHMTXa3H58Rmdp7untoTjKnpEfUbwIPdeQk/edit[会议记录]
