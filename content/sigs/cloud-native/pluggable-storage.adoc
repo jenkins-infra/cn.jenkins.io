@@ -20,7 +20,7 @@ tags:
 我们相信，通过使用云服务，可以提高整体可用性、性能和可扩展性，同时实现新的需求功能。
 
 您可以在 link:https://jenkins.io/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
-link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins 优化建议的完整列表。
+link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins JEP 的完整列表。
 
 === 状态摘要
 
