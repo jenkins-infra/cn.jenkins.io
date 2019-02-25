@@ -26,27 +26,27 @@ references:
   title: Sample extension implementations
 ---
 
-Jenkins的设计考虑了可扩展性，无论是内部（核心）还是插件。
-Jenkins的可扩展性是通过结合下面讨论的概念来实现的。
+Jenkins 的设计考虑了可扩展性，无论是内部（核心）还是插件。
+Jenkins 的可扩展性是通过结合下面讨论的概念来实现的。
 
 == 扩展注释
 
-+jenkinsdoc:Extension[]+ 是一个注释，它允许Jenkins发现类，实例化它们，并将它们注册到其超类型和接口的全局实现列表中。
++jenkinsdoc:Extension[]+ 是一个注释，它允许 Jenkins 发现类，实例化它们，并将它们注册到其超类型和接口的全局实现列表中。
 这适用于直接在核心实现，和由插件贡献的实现，以便插件可以提供在核心（或其他插件）中定义的扩展点的实现。
-每当Jenkins需要提供一个列表，例如 安全域实现的列表（LDAP，Jenkins用户数据库等），它可以查询所有`SecurityRealm`的子类型，这些子类型都用 `@Extension`注解。
+每当 Jenkins 需要提供一个列表，例如 安全域实现的列表（LDAP，Jenkins 用户数据库等），它可以查询所有 `SecurityRealm` 的子类型，这些子类型都用 `@Extension` 注解。
 
 // link:TODO[Learn more about `@Extension`].
 
 == 描述符和描述
 
 +jenkinsdoc:Descriptor[]+ 和 +jenkinsdoc:Describable[]+ （或其子类型）在需要某个扩展的多个实例时使用，例如构建步骤。
-`Descriptor`可以用来存储他们的全局配置，作为一个工厂，而`Describable`是具有独立实例特定配置的特定实例。
+`Descriptor` 可以用来存储他们的全局配置，作为一个工厂，而 `Describable` 是具有独立实例特定配置的特定实例。
 这与面向对象编程中的类/对象类似。
 // link:TODO[Learn more about `Descriptor` and `Describable`].
 
 == 可采取行动和行动
 
-+jenkinsdoc:Actionable[]+ 是一个抽象类，允许使用+jenkinsdoc:Action[]+ 实现扩展子类型。
++jenkinsdoc:Actionable[]+ 是一个抽象类，允许使用 +jenkinsdoc:Action[]+ 实现扩展子类型。
 +jenkinsdoc:Action[]+ 实现可以用于存储模型对象的任何数据, 或者为其演示文稿添加内容。
 具体细节取决于子类型，但通常情况下, +jenkinsdoc:Actionable[]+ 对象将在侧面板中显示动作, 并将请求路由到动作的 +getUrlName()+ 以便将网页贡献给 +jenkinsdoc:Actionable[]+ 对象。
 // link:TODO[详细了解 `Action` 和 `Actionable`].
