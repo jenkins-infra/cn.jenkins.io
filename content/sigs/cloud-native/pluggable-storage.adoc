@@ -1,0 +1,177 @@
+---
+layout: project
+title: "云原生特别兴趣小组（Cloud Native SIG） - 可插拔式存储"
+tags:
+- pluggable-storage
+- cloud-native
+- cloud-native-sig
+- external-logging
+- external-artifacts
+---
+
+将所有内容存储到文件系统中，是导致 Jenkins 无法实现 "Cloud Native" 模型中 HA、零停机时间或按使用付费等功能的主要原因。
+尽管有很多插件实现了这一部分，但这对于用户配置来说会变得很麻烦，从可用性角度来看，甚至可以说是噩梦，正如 jep:300[] 所指出的那样。
+在有意义的情况下使用云服务模型，在云或容器化环境中运行 Jenkins 的整体复杂性大大降低。其他相关项目包括 https://github.com/jenkinsci/jep/tree/master/jep/400[Jenkins X]
+和 link:https://github.com/jenkins-infra/evergreen[Jenkins Evergreen]，
+它们将从 Jenkins 的 Cloud Native 存储中受益匪浅。
+
+有几个明确的领域需要改进，这些领域在此进行了总结，并将在以后的文档中详细介绍。
+主要的症结是将本地磁盘用作通用存储，这会导致在容器化或分布式运行环境中有问题，需要高性能的文件系统，所有的配置都很痛苦，如初始大小调整和停机时间调整大小。
+我们相信，通过使用云服务，可以提高整体可用性、性能和可扩展性，同时实现新的需求功能。
+
+您可以在 link:https://jenkins.io/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到有关可插拔存储和优先级的更多信息。
+link:/sigs/cloud-native[云原生特别兴趣小组（Cloud Native SIG）] 中提供了 Jenkins JEP 的完整列表。
+
+=== 状态摘要
+
+以下是正在进行的活动及其现状的摘要:
+
+|=========================================================
+|类型 | 状态 | JEPs | 备注
+
+| 制品
+| 可用
+| jep:202[]
+|
+
+| 凭据
+| 可用
+| N/A
+| 在 JEP 流程提出之前完成
+
+| 构建日志
+| 进行中
+| jep:207[], jep:210[], jep:212[]
+|
+
+| 系统日志
+| 可用
+| N/A
+| Jenkins 支持使用 `java.util.logging` link:http://tutorials.jenkov.com/java-logging/configuration.html[标准配置] 自定义输出日志
+
+
+| 任务日志
+| 未开始
+|
+| 存储系统日志和各种任务(例如代理连接或 SCM 轮询)
+
+| 配置
+| 进行中
+| jep:213[]
+|
+
+| 测试结果
+| 进行中
+| 即将到来
+|
+
+| 代码覆盖率结果
+| 探索中
+| TBD
+|
+
+| 运行
+| 未开始
+|
+| 在外部数据库中存储完整运行记录
+
+| 任务
+| 未开始
+|
+| 在外部数据库中存储任务配置和特定的元数据。像 Jenkins Pipeline 和 JobDSL，通过在 SCM 中保存配置来解决这种情况。
+
+| 指纹
+| 未开始
+|
+| 提出作为 GSoC 2019 项目：
+  link:/projects/gsoc/2019/project-ideas/external-fingerprint-storage-for-jenkins/[Jenkins 的外部指纹存储]
+
+| 工作空间
+| 未开始
+|
+| 提出作为 GSoC 2019 项目：
+  link:/projects/gsoc/2019/project-ideas/ext-workspace-manager-cloud-features/[外部工作空间管理器插件的云特性]
+
+|=========================================================
+
+上面的列表并不完整。可以根据反馈考虑其他存储类型。
+你可以在 link:https://jenkins.io/blog/2018/07/30/introducing-cloud-native-sig/[此博客] 中找到更多关于可插拔存储和优先级的信息。
+
+=== 构件存储
+
+许多现有的插件允许从外部存储上传和下载工件（例如 S3、Artifactory、通过 SFTP 发布等等），但是没有插件可以在不使用新步骤的情况下透明地完成这项工作。
+在许多情况下，artifacts 也通过 master 上传，这会增加系统的负载。
+如果在外部存储 artifacts 的步骤时有一层允许使用 Archive Artifacts 等，那就太好了。
+
+Jenkins 2.118+ offers 提供了一个扩展的 jenkinsdoc:jenkins.util.VirtualFile[] API，允许使用 
+link:https://jenkins.io/doc/developer/extensions/jenkins-core/#artifactmanagerfactory[ArtifactManagerFactory] 
+扩展点实现外部工件管理器 。
+
+实施示例：
+
+* plugin:artifact-manager-s3[Artifact 管理 S3]
+
+实施示例：
+
+* jep:202[外部工件存储]
+
+=== 外部工件存储
+
+日志磁盘使用导致前面提到的工件相同的问题。
+此外，https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html[AWS CloudWatch Logs] 等外部集中日志存储允许所需的功能，如集中日志管理、日志保留策略、高级查询等。
+已经有外部将日志发送到后端的选项，或者像 aws 那样执行此操作的插件 https://github.com/jenkinsci/aws-cloudwatch-logs-publisher-plugin[aws-cloudwatch-logs-publisher-plugin]，但没有集成的方法来发送和显示来自外部日志存储的日志。
+外部日志存储工作将作为问题进行跟踪:38313[]。
+
+参考实施：
+
+* link:https://github.com/jenkinsci/pipeline-log-fluentd-cloudwatch-plugin[流水线日志 + CloudWatch 插件]
+* link:https://github.com/jenkinsci/external-logging-elasticsearch-plugin[Elasticsearch 的外部日志记录]
+
+相关JEP：
+
+* jep:207[Jenkins Core 中的外部构建日志支持]
+* jep:210[流水线的外部日志存储]
+* jep:212[外部日志 API 插件]
+* jep:206[流水线日志使用 UTF-8]
+
+=== 存储配置
+
+虽然配置不是很大，但是将它们外部化是获得高可用性或一次性 Jenkins master 的关键任务。
+在 Jenkins 中存储配置的方法有很多，但 95％ 的情况由 XmlFile 层覆盖，该层将对象序列化到磁盘并使用 XStream 库读取它们。
+外部化这些 XmlFile 将是向前迈出的一大步。
+
+外部化配置有几个原型，例如在 DotCI 中。还有其他实现可以被更新为 Jenkins core。
+
+相关JEP：
+
+* jep:213[Jenkins Core 中的配置存储API]
+
+=== 证书
+
+在 plugin:credentials[Credentials Plugin] 1.15+ 中，有一个 link:https://jenkins.io/doc/developer/extensions/credentials/#credentialsprovider[CredentialsProvider]
+扩展点，允许引用和解析外部凭据。
+此引擎允许为实现 Credentials API 的插件实现外部凭据。
+
+实施示例：
+
+* plugin:kubernetes-credentials-provider[Kubernetes 证书提供商]
+
+Jenkins 中的其他凭据 API（如 jenkinsdoc：hudson.util.Secret）不受支持。
+
+=== 测试结果
+
+在常见的 CI/CD 用例中，测试报告正在消耗大量空间。`JENKINS_HOME` 指向该数据存储，当前存储格式在检索统计信息，尤其是趋势信息时需要巨大的开销。
+为了显示趋势信息，必须加载每个报告，然后在内存中处理。
+
+外部化测试结果的主要目的是通过从专用外部存储器（例如来自 Elasticsearch 等基于文档的数据库）查询所需数据来优化 Jenkins 逻辑。
+根据当前的计划，plugin:junit[JUnit 插件]将被扩展，以便在其 API 中支持这种外部存储，这些 API 被测试报告插件广泛使用。
+
+状态：
+
+* 开始基础工作
+* 原型 API: https://github.com/jenkinsci/junit-plugin/pull/110
+
+=== 其他可插拔存储描述
+
+本页仅总结了正在进行的工作的状态。我们在云原生特别兴趣小组（Cloud Native SIG）中考虑了其他可插入存储描述。有关更多详细信息和链接，请参见 link:/sigs/cloud-native[SIG 页面]。
+
