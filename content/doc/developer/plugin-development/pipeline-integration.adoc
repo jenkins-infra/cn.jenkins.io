@@ -19,26 +19,26 @@ references:
 
 可以从流水线脚本中调用几种常见类型的插件功能（++@Extension++），而无需任何特殊的插件依赖
 只要你使用更新的Jenkins核心API。
-然后在流水线有“metastep”（`step`，`checkout`，`wrap`），它通过类名加载扩展并调用它。
+然后在流水线有 “metastep”（`step`，`checkout`，`wrap`），它通过类名加载扩展并调用它。
 
 === 一般准则
 
-各种metasteps有几个共同的考虑。
+不同的 metasteps 之间有几个共同的设计考量。
 
 ==== Jenkins核心依赖
 
-首先，确保`pom.xml`中的基线Jenkins版本足够新。
+首先，确保 `pom.xml` 中的基线 Jenkins 版本足够新。
 
 推荐的版本:
 
 - <<Basic update>>
 - <<Build wrappers>>
 
-这引入了一些新的API方法，并弃用了一些旧方法。
+这引入了一些新的 API 方法，并弃用了一些旧方法。
 
 NOTE: 如果你担心你的插件依赖于最近的Jenkins版本，
-请记住，您始终可以从以前的版本创建分支（将版本设置为`x.y.1-SNAPSHOT`）
-与旧版本的Jenkins一起工作，`git cherry-pick -x`中继根据需要更改;
+请记住，您始终可以从以前的版本创建分支（将版本设置为 `x.y.1-SNAPSHOT`）
+与旧版本的Jenkins一起工作，`git cherry-pick -x` 中继根据需要更改;
 或者如果更容易，则从一个分支合并到另一个分支。
 (`mvn -B release:prepare release:perform` 在分支上正常工作，并知道只增加最后一个版本组件)
 
@@ -60,18 +60,17 @@ NOTE: 如果你担心你的插件依赖于最近的Jenkins版本，
 
 ==== 变量替换
 
-没有与`WorkflowRun`的`AbstractBuild.getBuildVariables（）`等价的东西（任何Groovy本地变量都不可以这样访问）。
-另外，`WorkflowRun.getEnvironment(TaskListener)` _is_被实现，但只产生初始构建环境，而不考虑`withEnv`块等。
+没有与 `WorkflowRun` 的 `AbstractBuild.getBuildVariables（）` 等价的东西（任何 Groovy 本地变量都不可以这样访问）。
+另外，`WorkflowRun.getEnvironment(TaskListener)` 已经 _被_ 实现，但只产生初始构建环境，而不考虑 `withEnv` 块等。
 
-TIP: 要在 `Step`中获取_contextual_环境, 可以使用 `@StepContextParameter`注入 `EnvVars`；
+TIP: 要在 `Step` 中获取 _contextual_ 环境, 可以使用 `@StepContextParameter` 注入 `EnvVars`；
 
-WARNING: 
-在 https://issues.jenkins-ci.org/browse/JENKINS-29144[JENKINS-29144]之前 没有一个 `SimpleBuildStep`的等价物。
-但是，如果需要，`SimpleBuildWrapper` 可以访问`initialEnvironment`。
+WARNING: 在解决 https://issues.jenkins-ci.org/browse/JENKINS-29144[JENKINS-29144]之前，
+没有 `SimpleBuildStep` 的等价物。
+但是在必要时，`SimpleBuildWrapper` 可以访问 `initialEnvironment`。
 
-无论如何，从Pipeline运行的代码应该将任何配置值作为字符串并且不要尝试执行
-变量替换（包括通过`token-macro`插件），
-因为脚本作者会为任何期望的动态行为使用Groovy工具（`"like ${this}"`）。
+无论如何，从 Pipeline 运行的代码应该将所有配置值作为字符串并且不要尝试使用变量替换（包括通过 `token-macro` 插件），
+因为脚本作者会为任何可能的动态行为使用 Groovy 工具（`"like ${this}"`）。
 为了让单个代码段支持流水线和传统构建，可以使用习惯用法，如:
 
 [source,java]
@@ -102,23 +101,22 @@ NOTE: https://issues.jenkins-ci.org/browse/JENKINS-35671[JENKINS-35671] 会简�
 
 ==== 构造函数与setter方法
 
-用一个简短的`@DataBoundConstructor`替换一个真正必需的参数是一个好主意
+用一个简短的 `@DataBoundConstructor` 替换一个真正必需的参数是一个好办法
 （如服务器位置）。
-
-对于所有可选参数，创建一个用`@ DataBoundSetter`标记的公共setter
+对于所有可选参数，创建一个用 `@ DataBoundSetter` 标记的公共 setter
 （在构造函数或字段初始值设定项中设置任何非空默认值）。
 这允许大多数参数在流水线脚本中保留默认值，
 更不用说简化进行中的代码维护，因为以这种方式引入新选项更容易。
 
 对于Java级别的兼容性，保留以前的任何构造函数，但将它们标记为 `@Deprecated`。
-还要从中删除`@DataBoundConstructor`（只能有一个）。
+还要从中删除 `@DataBoundConstructor`（只能有一个）。
 
 ===== 处理默认值
 
-为了确保_Snippet Generator_只枚举用户实际从表单默认值进行了自定义的选项，
-确保Jelly `default`属性匹配从getter中看到的属性默认值。
-对于自由式项目中更干净的XStream序列表单，最好也将缺省值作为Java字段中的空值表示出来。
-例如，如果你想要一个明智的默认空白的文本属性，你的配置表单看起来就像
+为了确保 _Snippet Generator_ 只枚举用户实际从表单默认值进行了自定义的选项，
+确保 Jelly `default` 属性匹配从 getter 中看到的属性默认值。
+对于自由式项目中更干净的 XStream 序列表单，最好也将缺省值作为 Java 字段中的空值表示出来。
+例如，如果你想要一个合适的默认空白的文本属性，你的配置表单看起来就像
 
 [source,xml]
 ----
@@ -146,7 +144,7 @@ public void setStuff(@CheckForNull String stuff) {
 ----
 
 如果你想要一个非空白的默认值，它会更复杂一点。
-如果您不关心XStream卫生，例如因为`Describable`是一个流水线`Step` （或仅作为其中的一部分使用）:
+如果您不关心 XStream 的健壮性，例如当 `Describable` 是一个流水线 `Step` 时（或仅作为其中的一部分使用）:
 
 [source,xml]
 ----
@@ -177,12 +175,14 @@ public static class DescriptorImpl extends Descriptor<Whatever> {
 }
 ----
 
-TIP: `Descriptor`是从Jelly视图中放置常量的最方便的地方：`descriptor`总是被定义，即使`instance`为null，并且Jelly / JEXL允许使用实例字段表示法来加载`static`字段。
-从Groovy的角度来看，你可以使用Java支持的任何语法来引用一个常量，但Jenkins中的Jelly较弱：
-`getStatic`不适用于在插件中定义的类。
+TIP: `Descriptor` 是向 Jelly 视图中放置常量的最快捷的地方：
+`descriptor` 总是被定义，即使 `instance` 为 null，
+并且 Jelly / JEXL 允许使用实例字段表示来加载 `static` 字段。
+从 Groovy 的角度来看，你可以使用 Java 支持的任何语法来引用一个常量，但 Jenkins 中的 Jelly 较弱：
+`getStatic` 不适用于在插件中定义的类。
 
-为了确保未修改时从XStream表单中省略该字段，可以使用相同的`Descriptor`
-和配置表单，但 _null_超出默认值:
+为了确保未修改时从 XStream 表单中省略该字段，可以使用相同的 `Descriptor`
+和配置表单，但 _null_ 不在默认值中:
 
 [source,java]
 ----
@@ -201,36 +201,34 @@ public void setStuff(@Nonnull String stuff) {
 ----
 
 这些考虑都不适用于没有默认的强制性参数，
-这应该在`@DataBoundConstructor`中被请求并且有一个简单的getter。
+这应该在 `@DataBoundConstructor` 中被请求并且有一个简单的 getter 。
 
-TIP: 作为对新用户的暗示，您仍然可以在配置表单中使用`default`作为对`help-stuff.html`中
+TIP: 作为对新用户的提示，您仍然可以在配置表单中使用 `default` 作为对 `help-stuff.html` 中
 完整描述的补充，但所选的值将始终保存。
 
-==== 处理秘密
+==== 处理敏感信息
 
-如果你的插件曾经将秘密（例如密码）存储在一个普通的`String`值域中，那么它已经不安全了
+如果你的插件曾经将敏感信息（例如密码）存储在一个普通的 `字符串` 值域中，那么它已经不安全了，
 并且至少应该使用 `Secret`。
-秘密值域更安全，但并不适合源代码中定义的项目，
-像流水线工作。
+`Secret` 值域更安全，但并不适合源代码中定义的项目，例如流水线任务。
 
-相反，你应该与 https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin[Credentials 插件]集成。
-然后你的构建器等通常会有一个`credentialsId`字段，它只是指证书的ID。
-（用户可以选择用于脚本作业的助记符ID。）
-通常，_Snippet Generator_中使用的`config.jelly`将有一个`<c:select/>`控件，
-由`Descriptor`上的`doFillCredentialsId`网络方法支持以枚举当前可用的凭证的预期类型
-（例如`StandardUsernamePasswordCredentials`），也许只限于某个域
-（例如通过来自附近表单字段的`@QueryParameter`获得的主机名）。
+相反，你应该与 https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin[凭据插件] 集成。
+之后你的构建器通常会有一个 `credentialsId` 字段，它指的是证书的 ID。
+（用户可以选择用于脚本任务的助记符 ID。）
+通常，_Snippet Generator_ 中使用的 `config.jelly` 将有一个 `<c:select/>` 控件，
+由 `Descriptor` 上的 `doFillCredentialsId` 网络方法支持以枚举当前可用的凭据的预期类型
+（例如 `StandardUsernamePasswordCredentials` ），也许只限于某个域
+（例如通过来自附近表单字段的 `@QueryParameter` 获得的主机名）。
 
-在运行时，您将通过ID查找凭证并使用它们。
+在运行时，您将通过 ID 查找凭据并使用它们。
 
-以前使用`Secret`的插件通常需要使用`@ Initializer`来迁移自由式项目的配置
-到可以使用凭据。
+以前使用 `Secret` 的插件通常需要使用 `@Initializer` 来迁移自由式项目的配置到可以使用凭据。
 
-NOTE: 采用凭证的细节太多，无法在此处列出。 请参阅凭证插件文档
+NOTE: 凭据的类型太多，无法在此处全部列出。请参阅凭据插件文档
 
 ==== 定义符号
 
-默认情况下，使用插件的脚本需要引用扩展的（简单）Java类名称。
+默认情况下，使用插件的脚本需要引用扩展的（简单）Java 类名称。
 例如，如果你定义
 
 [source,java]
@@ -278,9 +276,9 @@ public class ForgetBuilder extends Builder implements SimpleBuildStep {
 step([$class: 'ForgetBuilder', what: 'everything'])
 ----
 
-为了使更具吸引力和助记符的使用风格，你可以依靠`org.jenkins-ci.plugins:structs`
-并在`Descriptor`中添加一个`@Symbol`，在其类型的扩展中唯一标识它
-（在这个例子中，++SimpleBuildStep++）:
+为了使助记符的使用更加多样化，你可以依靠 `org.jenkins-ci.plugins:structs`
+并在 `Descriptor` 中添加一个 `@Symbol` ，在其类型的扩展中唯一标识它
+（在这个例子中是 ++SimpleBuildStep++ ）:
 
 [source,java]
 ----
@@ -296,9 +294,9 @@ public static class DescriptorImpl extends BuildStepDescriptor<Builder> {
 forget 'everything'
 ----
 
-++@Symbol++不限于由metasteps在“顶级”使用的扩展，例。 `step`。
+++@Symbol++ 不限于由 metasteps 在“顶级”使用的扩展，例如 `step`。
 任何 `Descriptor` 可以有一个关联的符号。
-因此，如果您的插件使用其他 ++Describable++来进行任何类型的结构化配置，
+因此，如果您的插件使用其他 ++Describable++ 来进行任何类型的结构化配置，
 你也应该注释这些实现。
 例如，如果你已经定义了一个扩展点
 
@@ -400,70 +398,71 @@ NOTE: 有关背景信息，请参阅 https://github.com/jenkinsci/workflow-scm-s
 `checkout` metastep 使用 `SCM`。
 
 作为SCM插件的作者，您应该进行一些更改以确保您的插件可以流水线中使用。
-你可以使用`mercurial-plugin`作为一个相对直接的代码示例。
+你可以使用 `mercurial-plugin` 作为一个相对直接的代码示例。
 
 ==== 基本更新
 
-确保你的Jenkins基线至少是`1.568` (或 `1.580.1`, 下一个 LTS)。
-检查你的插件是否有与`hudson.scm.*`类有关的编译警告，以查看你需要做出的突出改变。
-最重要的是，`SCM`中的各种方法，以前采用`AbstractBuild`，现在采用了一个更加通用的`Run`
-（即可能是流水线构建）加上`FilePath` （即工作空间）。
-使用指定的工作空间而不是以前的`build.getWorkspace()`，它只适用于
+确保你的 Jenkins 基线至少是 `1.568` (或 `1.580.1`, 下一个 LTS)。
+检查你的插件是否有与 `hudson.scm.*` 类有关的编译警告，以查看你需要做出的突出改变。
+最重要的是，`SCM` 中的各种方法，以前采用 `AbstractBuild` ，现在采用了一个更加通用的 `Run`
+（即可能是流水线构建）加上 `FilePath`  （即工作空间）。
+使用指定的工作空间而不是以前的 `build.getWorkspace()` ，它只适用于
 只有一个工作区的传统项目。
-同样，一些方法以前采用`AbstractProject`，现在采用更通用的`Job`。
-请确保尽可能使用`@Override`，以确保您使用的是正确的重载。
+同样，一些方法以前采用 `AbstractProject` ，现在采用更通用的 `Job`。
+请确保尽可能使用 `@Override`，以确保您使用的是正确的重载。
 
-NOTE: `changelogFile`现在可以在`checkout`中为空。
+NOTE: `changelogFile` 现在可以在 `checkout` 中为空。
 如果是这样，只需跳过更新日志生成。
-`checkout`现在还需要一个`SCMRevisionState`，这样你就可以知道要比较什么，而不需要返回构建。
+`checkout` 现在还需要一个 `SCMRevisionState` ，这样你就可以知道要比较什么，而不需要返回构建。
 
-`SCMDescriptor.isApplicable`应该切换到`Job`重载。
-通常你会无条件地返回`true`。
+`SCMDescriptor.isApplicable` 应该切换到 `Job` 重载。
+通常你会无条件地返回 `true`。
 
 ==== 检出密钥
 
-你应该重写新的`getKey`。
+你应该重写新的 `getKey`。
 这使流水线工作可以与从构建到构建的检出相匹配，以便知道如何查找更改。
 
 ==== 浏览器选择
 
-您可以重写新的`guessBrowser`，以便脚本不需要指定要显示的更新日志浏览器。
+您可以重写新的 `guessBrowser`，以便脚本不需要指定要显示的更新日志浏览器。
 
 ==== 提交触发器
 
-如果你有一个提交触发器，通常是一个调度构建的`UnprotectedRootAction`，它将需要一些改变。
-使用`SCMTriggerItem`而不是弃用的`SCMedItem`;
-使用`SCMTriggerItem.SCMTriggerItems.asSCMTriggerItem`而不是检查`instanceof`。
-它的`getSCMs`方法可以用来枚举已配置的SCM，对于流水线来说，它们将在最后一次构建中运行。
-使用其`getSCMTrigger`方法查找已配置的触发器（例如，检查`isIgnorePostCommitHooks`）。
+如果你有一个提交触发器，通常是一个调度构建的 `UnprotectedRootAction` ，它将需要一些改变。
+使用 `SCMTriggerItem` 而不是弃用的 `SCMedItem`;
+使用 `SCMTriggerItem.SCMTriggerItems.asSCMTriggerItem` 而不是检查 `instanceof`。
+它的 `getSCMs` 方法可以用来枚举已配置的 SCM，对于流水线来说，它们将在最后一次构建中运行。
+使用其 `getSCMTrigger` 方法查找已配置的触发器（例如，检查 `isIgnorePostCommitHooks`）。
 
-理想情况下，您将已经与`scm-api`插件集成并实现`SCMSource`; 如果没有，现在是尝试它的好时机。
-将来，流水线可能会利用此API来支持为每个检测到的分支自动创建子项目。
+理想情况下，您将已经与 `scm-api` 插件集成并实现 `SCMSource` ; 如果没有，现在是尝试它的好时机。
+将来，流水线可能会利用此 API 来支持为每个检测到的分支自动创建子项目。
 
 
 
 
 ==== 显式集成
 
-如果您想通过通`scm`步骤为流水线用户提供更流畅的体验，
-你可以在你的插件上添加一个（可能是可选的）`workflow-scm-step`的依赖项。
-使用 `SCMStepDescriptor`定义一个`SCMStep`，你可以定义一个友好的，面向脚本的语法。
-您仍然需要进行上述更改，因为最终您只是预先配置了一个`SCM`。
+如果您想通过通 `scm` 步骤为流水线用户提供更流畅的体验，
+你可以在你的插件上添加一个（可能是可选的）`workflow-scm-step` 的依赖项。
+使用 `SCMStepDescriptor` 定义一个 `SCMStep`，你可以定义一个友好的，面向脚本的语法。
+您仍然需要进行上述更改，因为最终您只是预先配置了一个 `SCM`。
 
 === 构建步骤
 
 NOTE: 了解背景请参阅 https://github.com/jenkinsci/workflow-basic-steps-plugin/blob/master/CORE-STEPS.md[用户手册]。
 
-metastep 是 `step`。
+metastep 是一种 `step`。
 
-为了增加对使用流水线中`Builder`或`Publisher`的支持，依赖于Jenkins的`1.577+`，通常是`1.580.1`。
-然后按照 http://javadoc.jenkins-ci.org/jenkins/tasks/SimpleBuildStep.html[its Javadoc]中的指导实现`SimpleBuildStep`。
-还将 ++@DataBoundSetter++引用到一个庞大的`@DataBoundConstructor`（请参阅<<构造函数与setter方法 >>）。
+为了增加对使用流水线中 `Builder` 或 `Publisher` 的支持，
+依赖于 Jenkins 的 `1.577+`，通常是 `1.580.1`。
+按照 http://javadoc.jenkins-ci.org/jenkins/tasks/SimpleBuildStep.html[它的 Javadoc] 实现了 `SimpleBuildStep`。
+还将 ++@DataBoundSetter++ 扩展成 `@DataBoundConstructor`（请参阅<<构造函数与setter方法 >>）。
 
 ==== 强制性工作区上下文
 
-请注意，`SimpleBuildStep`被设计为可以在自由式项目中工作，因此假设
-`FilePath workspace`是可用的（以及一些相关的服务，如`Launcher`）。
+请注意，`SimpleBuildStep` 被设计为可以在自由式项目中工作，因此假设
+`FilePath workspace` 是可用的（以及一些相关的服务，如 `Launcher` ）。
 这在自由式构建中总是如此，但是对于使用流水线构建来说是一个潜在的限制。
 例如，您可能合法地想要在任何工作区的上下文之外采取某些操作:
 
@@ -477,7 +476,8 @@ input 'Ready to tell the world?' // could pause indefinitely, do not tie up a sl
 step([$class: 'FunkyNotificationBuilder', artifact: 'myapp.exe']) // ← FAILS!
 ----
 
-即使 `FunkyNotificationBuilder` 实现了 `SimpleBuildStep`,上述操作也将失败，因为`SimpleBuildStep.perform`所需的`workspace`是缺失的。
+即使 `FunkyNotificationBuilder` 实现了 `SimpleBuildStep`,上述操作也将失败，
+因为 `SimpleBuildStep.perform` 所需的 `workspace` 是缺失的。
 你可以抓住一个任意的工作空间来运行构建器:
 
 [source,groovy]
@@ -492,90 +492,90 @@ node {
 }
 ----
 
-但是如果`workspace` 无论如何都被忽略了（在这种情况下，因为`FunkyNotificationBuilder`只关心
+但是如果 `workspace` 无论如何都被忽略了（在这种情况下，因为 `FunkyNotificationBuilder` 只关心
 关于已经存档的工件），最好只写一个自定义步骤（如下所述）。
 
 ==== 运行监听器与发布者
 
-对于在构建完成后真正运行的代码，有`RunListener`。
+对于在构建完成后真正运行的代码，有 `RunListener` 。
 
-如果这个钩子的行为需要在作业级别上定制，那么通常的技巧就是定义一个`JobProperty`。
-（自由式项目的一个区别在于，对于Pipeline而言，无法反省“构建步骤列表”或“发布者列表”或“构建包装列表”，因此不可能基于此类元数据作出任何决定。）
+如果这个钩子的行为需要在作业级别上定制，那么通常的技巧就是定义一个 `JobProperty`。
+（自由式项目的一个区别在于，对于 Pipeline 而言，无法反省“构建步骤列表”或“发布者列表”或“构建包装列表”，因此不可能基于此类元数据作出任何决定。）
 
-在大多数其他情况下，您只需要在构建完成的某个_portion_之后运行一些代码，
-如果您希望与自由式项目共享代码库，通常使用`Publisher`处理。
-对于作为构建的一部分运行的常规++Publisher++，流水线脚本将使用 `step` metastep。
+在大多数其他情况下，您只需要在构建完成的某个 _portion_ 之后运行一些代码，
+如果您希望与自由式项目共享代码库，通常使用 `Publisher` 处理。
+对于作为构建的一部分运行的常规 ++Publisher++，流水线脚本将使用 `step` metastep。
 
 有两种子类型:
 
 * ++Recorder++通常应该按照任何有意义的顺序与其他构建步骤一起放置。
 * ++Notifier++可以放置在 `finally` 块中, 或者你可以使用 `catchError` 步骤。
 
-NOTE: https://github.com/jenkinsci/workflow-basic-steps-plugin/blob/master/CORE-STEPS.md#interacting-with-build-status[该文件]
-深入。
+NOTE: 参阅 https://github.com/jenkinsci/workflow-basic-steps-plugin/blob/master/CORE-STEPS.md#interacting-with-build-status[该文档]
+了解更多。
 
 === 构建包装
 
-这里metastep是 `wrap`。
-要添加对`BuildWrapper`的支持，取决于Jenkins的`1.599+`（通常是`1.609.1`），并实现`SimpleBuildWrapper`，
-遵循 http://javadoc.jenkins-ci.org/jenkins/tasks/SimpleBuildWrapper.html[its Javadoc]中的指导原则。
+这里 metastep 是 `wrap`。
+要添加对 `BuildWrapper` 的支持，需要于 Jenkins 版本 `1.599+`（通常是 `1.609.1` ），并实现 `SimpleBuildWrapper`，
+遵循 http://javadoc.jenkins-ci.org/jenkins/tasks/SimpleBuildWrapper.html[它的 Javadoc] 中的指导原则。
 
-像`SimpleBuildStep`一样，用这种方式编写的包装器总是需要一个工作区。
-如果这将是收缩，请考虑编写一个自定义步骤。
+像 `SimpleBuildStep` 一样，用这种方式编写的包装器总是需要一个工作区。
+如果使用受到限制，请考虑编写一个自定义步骤。
 
 == 触发器
 
-用`Trigger <X>`替换`Trigger<AbstractProject>`，其中`X`是`Job`或者`ParameterizedJob`
-或`SCMTriggerItem`并相应地实现`TriggerDescriptor.isApplicable`。
+用 `Trigger <X>` 替换 `Trigger<AbstractProject>`，其中 `X` 是 `Job` 或者 `ParameterizedJob`
+或 `SCMTriggerItem` 并相应地实现 `TriggerDescriptor.isApplicable`。
 
 使用 `EnvironmentContributor` 而不是 `RunListener.setUpEnvironment`.
 
 == 云
 
 不一定需要任何特殊的整合，
-但鼓励使用“一次性”风格的代理实现来使用`durable-task`中的`OnceRetentionStrategy`
-（或以其他方式使用`ExecutorListener`并考虑`ContinuableExecutable`）
-允许流水线构建以重新生存。
-你 _not_ 应该实现`EphemeralNode`或者监听`Run`事件。
+但鼓励使用“一次性”风格的代理实现来使用 `durable-task` 中的 `OnceRetentionStrategy`
+（或以其他方式使用 `ExecutorListener` 并考虑 `ContinuableExecutable`）
+使流水线构建以重新启动。
+你 _不应该_ 实现 `EphemeralNode` 或者监听 `Run` 事件。
 
 == 自定义步骤
 
 插件还可以实现具有专门行为的自定义流水线步骤。
 
-注意：有关更多信息，请参见 https://github.com/jenkinsci/workflow-step-api-plugin/blob/master/README.md[here]。
+注意：有关更多信息，请参见 https://github.com/jenkinsci/workflow-step-api-plugin/blob/master/README.md[这里]。
 
 == 历史背景
 
-传统的Jenkins ++Job++在相当深的类型层次结构中定义:
+传统的 Jenkins ++Job++ 在相当深的类型层次结构中定义:
 `FreestyleProject` → `Project` → `AbstractProject` → `Job` → `AbstractItem` → `Item`。
-(以及配对的 `Run` 类型: `FreestyleBuild`等)
-在旧版本的Jenkins中，很多有趣的实现都在`AbstractProject` (或 `AbstractBuild`)中,
-其中包含了许多不存在于`Job` (或 `Run`)中的特性。
+(以及配对的 `Run` 类型: `FreestyleBuild` 等)
+在旧版本的Jenkins中，很多有趣的实现都在 `AbstractProject` (或 `AbstractBuild`)中,
+其中包含了许多不存在于 `Job` (或 `Run` )中的特性。
 流水线也需要这些特性中的一些，例如使用编程方式启动构建（可选地使用参数），
-或延迟加载构建记录，或与SCM触发器集成。
-其他特性不适用于流水线，比如每个构建声明单个SCM和单个工作空间，
-或者绑定到特定的标签，或者在单个Java方法调用的范围内运行线性构建步骤序列，
+或延迟加载构建记录，或与 SCM 触发器集成。
+其他特性不适用于流水线，比如每个构建声明单个 SCM 和单个工作空间，
+或者绑定到特定的标签，或者在单个 Java 方法调用的范围内运行线性构建步骤序列，
 或者有一个简单的构建步骤和包装的列表，其配置保证从构建到构建保持不变。
 
 `WorkflowJob` 直接扩展 `Job`，因为它不能像一个 `AbstractProject`。
 
-因此需要进行一些重构，以使其它`Job`类型的相关特性可用，无需代码或API复制。
-而不是在类型层次中引入另一个层次（并且始终冻结哪一个功能比其他更“通用”的决定），mixin被引入。
-一组相关功能的每个封装最初绑定到`AbstractProject`，但现在也可用
-`WorkflowJob`（以及其他可能的`Job`类型）。
+因此需要进行一些重构，以使其它 `Job` 类型的相关特性可用，无需代码或 API 复制。
+而不是在类型层次中引入另一个层次（并且始终冻结哪一个功能比其他更“通用”的决定），mixin 被引入。
+一组相关功能的每个封装最初绑定到 `AbstractProject`，但现在也可用
+`WorkflowJob`（以及其他可能的 `Job` 类型）。
 
-* `ParameterizedJobMixIn`允许将作业调度到队列中（旧的`BuildableItem`不足），
+* `ParameterizedJobMixIn` 允许将作业调度到队列中（旧的 `BuildableItem` 不足），
 还要注意构建参数和REST构建触发器。
-* `SCMTriggerItem`集成了`SCMTrigger`，包括工作正在使用的SCM的定义，
-以及它应该如何执行轮询。 它还允许各种插件与多个SCM插件互操作
-而不需要明确的依赖关系。 取代并弃用`SCMedItem`。
-* `LazyBuildMixIn`处理延迟加载构建记录（在Jenkins `1.485`中引入的系统）的流水线。
+* `SCMTriggerItem` 集成了 `SCMTrigger`，包括工作正在使用的 SCM 的定义，
+以及它应该如何执行轮询。 它还允许各种插件与多个 SCM 插件互操作
+而不需要明确的依赖关系。 取代并弃用 `SCMedItem`。
+* `LazyBuildMixIn` 处理延迟加载构建记录（在Jenkins `1.485` 中引入的系统）的流水线。
 
-对于流水线兼容性，以前通常指的是`AbstractProject`/`AbstractBuild`的插件
-需要开始处理`Job`/`Run`，但也可能需要引用`ParameterizedJobMixIn`和/或`SCMTriggerItem`。
-（外部代码很少需要`LazyBuildMixIn`，因为`Job` /`Run`中定义的方法足以满足典型的需求。）
+对于流水线兼容性，以前通常指的是 `AbstractProject`/`AbstractBuild` 的插件
+需要开始处理 `Job`/`Run`，但也可能需要引用 `ParameterizedJobMixIn` 和/或 `SCMTriggerItem`。
+（外部代码很少需要 `LazyBuildMixIn` ，因为 `Job` /`Run` 中定义的方法足以满足典型的需求。）
 
-流水线的未来改进可能需要从`AbstractProject` /`AbstractBuild`中提取更多的实现代码。
+流水线的未来改进可能需要从 `AbstractProject` /`AbstractBuild` 中提取更多的实现代码。
 主要限制是需要重新调整二进制兼容性。
 
 
