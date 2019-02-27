@@ -4,7 +4,7 @@ title: 教程概览
 section: doc
 ---
 
-Jenkins用户文档的这一部分包含一系列的入门教程帮你使用Jenkins以自动化的方式开始构建你的应用程序。
+Jenkins 用户文档的这一部分包含一系列的入门教程帮你使用 Jenkins 以自动化的方式开始构建你的应用程序。
 
 如果你是一个想要提高对持续集成(CI) / 持续交付 (CD) 概念的理解的开发者, 或者你已经对这些概念很熟悉 但不知道如何使用Jenkins去实现, 那就从这些教程开始学习吧。
 
@@ -27,7 +27,7 @@ link:/doc/book/blueocean/[Blue Ocean]) 帮助实现 CI/CD
 
 == 高级教程
 
-该教程展示 Jenkins更高级的特性和如何管理你的更复杂更灵活的流水线项目。
+该教程展示 Jenkins 更高级的特性和如何管理你的更复杂更灵活的流水线项目。
 
 * link:build-a-multibranch-pipeline-project[构建多分支流水线项目]
 

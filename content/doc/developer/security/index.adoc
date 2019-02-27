@@ -16,21 +16,24 @@ references:
 
 == Jenkins的安全架构
 
-Jenkins有一个安全机制，以便Jenkins的管理员可以控制谁可以访问Jenkins的哪一部分。
+Jenkins 有一个安全机制，以便 Jenkins 的管理员可以控制谁可以访问 Jenkins 的哪一部分。
 该机制的关键组成部分如下:
 
 * jenkinsdoc:Permission[], 这表示需要安全权限的活动。
   这通常是一个动词，如“配置”，“管理”，“标签”等。
-* +Authentication+,代表他/她拥有的当前用户和角色（AKA组）。
-  当一个线程在Jenkins中运行时，它总是隐式地携带一个+Authentication+对象，它表示该线程正在服务的用户。 （如果线程是Jenkins的一部分，并且没有提供任何用户请求，例如+Executor {+}，那么它带有一个全能的“系统”的+Authentication+对象。）
-* jenkinsdoc:ACL[], 它决定当前线程携带的+Authentication+对象是否具有给定的权限。
-* jenkinsdoc:AccessControlled[], 这是由拥有ACL的对象实现的。
+* +Authentication+ ,代表他/她拥有的当前用户和角色（AKA组）。
+  当一个线程在 Jenkins 中运行时，它总是隐式地携带一个 +Authentication+ 对象，它表示该线程正在服务的用户。
+  （如果线程是 Jenkins 的一部分，并且没有提供任何用户请求，例如 +Executor {+}，
+  那么它带有一个全能的“系统”的 +Authentication+ 对象。）
+* jenkinsdoc:ACL[], 它决定当前线程携带的 +Authentication+ 对象是否具有给定的权限。
+* jenkinsdoc:AccessControlled[], 这是由拥有 ACL 的对象实现的。
 
-所以整体情况就是这样; Jenkins中的各种对象（例如jenkinsdoc:Job[], jenkinsdoc:Jenkins[], jenkinsdoc:User[], jenkinsdoc:View[]等）都是 jenkinsdoc:AccessControlled[]的对象，因此它们拥有ACL。
-然后以这样的方式编写的代码，在执行安全敏感操作之前，它会检查ACL。
+所以整体情况就是这样; Jenkins 中的各种对象（例如 jenkinsdoc:Job[], jenkinsdoc:Jenkins[], jenkinsdoc:User[], jenkinsdoc:View[] 等）
+都是 jenkinsdoc:AccessControlled[] 的对象，因此它们拥有 ACL。
+然后以这样的方式编写的代码，在执行安全敏感操作之前，它会检查 ACL。
 
 
-例如，下面的代码来自Jenkins类，它允许您通过请求+/exit+关闭JVM。
+例如，下面的代码来自 Jenkins 类，它允许您通过请求 +/exit+ 关闭 JVM。
 您可以轻松想象，在安全敏感的环境中，您不希望随机用户调用此操作，因此在继续执行此操作之前，请确保调用方具有系统的“管理员”权限:
 
 ----
@@ -49,23 +52,26 @@ Jenkins有一个安全机制，以便Jenkins的管理员可以控制谁可以访
         System.exit(0);
     }
 ----
-<1> 如果访问此URL的用户没有+Administer+权限，则会引发异常。
+<1> 如果访问此 URL 的用户没有 +Administer+ 权限，则会引发异常。
 
-如果管理员没有配置安全机制，checkPermission方法就会变成空操作。
-管理员可以配置基于矩阵的ACL，在这种情况下，每个+AccessControlled+对象将共享单个ACL（其内容由管理员完成的配置控制）。更详细的情况下，每个+AccessControlled+对象可能具有不同的ACL。
+如果管理员没有配置安全机制，checkPermission 方法就会变成空操作。
+管理员可以配置基于矩阵的ACL，在这种情况下，每个 +AccessControlled+ 对象将共享单个 ACL
+（其内容由管理员完成的配置控制）。
+更详细的情况下，每个 +AccessControlled+ 对象可能具有不同的 ACL。
 在所有情况下，这都是您需要编写的代码。
 
 == 插件需要做什么？
 
 * 确定可能对安全敏感的代码操作。
-  这包括任何可以改变服务器状态的内容。这些方法应该执行+checkPermission+。
-* 识别最近的+AccessControlled+对象来检查权限。
-  如果你的'this'对象已经被访问控制，那显然是这样。
+  这包括任何可以改变服务器状态的内容。这些方法应该执行 +checkPermission+。
+* 识别最近的 +AccessControlled+ 对象来检查权限。
+  如果你的 'this' 对象已经被访问控制，那显然是这样。
   否则，尝试寻找最近的逻辑祖先。
-  如果一切都失败了，请使用+Jenkins+单例。
-* 确定要使用的+Permission+对象。
-  如果从一个+ExtensionPoint+扩展，它们可能已经将一些权限对象定义为其中的公共静态常量字段。
-  如果你正在定义一个相当大的子系统，你可能需要创建新的+Permission+对象（参见本例的+View+类的末尾）。如果你不知道，可以使用+Jenkins.ADMINISTER+ 作为一个起点。
+  如果一切都失败了，请使用 +Jenkins+ 单例。
+* 确定要使用的 +Permission+ 对象。
+  如果从一个 +ExtensionPoint+ 扩展，它们可能已经将一些权限对象定义为其中的公共静态常量字段。
+  如果你正在定义一个相当大的子系统，你可能需要创建新的 +Permission+ 对象（参见本例的 +View+ 类的末尾）。
+  如果你不知道，可以使用 +Jenkins.ADMINISTER+ 作为一个起点。
 
 有了这三个信息，你现在可以插入:
 
@@ -77,31 +83,31 @@ ac.checkPermission(p)
 
 === 检查Jelly文件中的权限
 
-如果需要保护由Jelly呈现的整个HTML页面，则可以使用+<l:layout>+标记的属性，如下所示:
+如果需要保护由 Jelly 呈现的整个 HTML 页面，则可以使用 +<l:layout>+ 标记的属性，如下所示:
 
 ----
 <l:layout permission="${app.ADMINISTER}">
 ----
-该权限总是针对“it”对象进行检查，因此需要成为+AccessControlled+对象。
+该权限总是针对 “it” 对象进行检查，因此需要成为 +AccessControlled+ 对象。
 
 === 如果用户没有权限，则禁用页面呈现的一部分
 
 有时候，您想根据用户的权限更改页面呈现。
 例如，如果用户不能删除一个项目，那么显示一个链接来做到这一点是没有意义的。
-为此，请写下Jelly:
+为此，请写下 Jelly:
 ----
 <j:if test="${h.hasPermission(app.ADMINISTER)}">
   ...
 </j:if>
 ----
 
-NOTE: 这不会与您的操作中的+checkPermission+调用相混淆。
-用户仍然可以直接访问URL，因此除了禁用UI呈现之外，您仍然需要保护操作本身
+NOTE: 这不会与您的操作中的 +checkPermission+ 调用相混淆。
+用户仍然可以直接访问 URL，因此除了禁用 UI 呈现之外，您仍然需要保护操作本身
 
 === 认证方式
 
-在Jenkins中使用的安全引擎是Acegi Security（Spring Security的祖先）。
-没有任何特殊的插件来管理认证，Jenkins的一个实例
+在Jenkins中使用的安全引擎是 Acegi Security（Spring Security 的祖先）。
+没有任何特殊的插件来管理认证，Jenkins 的一个实例
 采用以下认证方式被打包:
 
 * Web UI
@@ -112,7 +118,7 @@ NOTE: 这不会与您的操作中的+checkPermission+调用相混淆。
 * Jenkins CLI jar
 ** （不建议使用）使用远程传输和登录/注销命令
 ** （不建议使用）用户名/密码作为每个命令的参数
-** 带 username:password 或 username:apiToken 的+-auth+ 参数它将执行类似HTTP调用的操作
+** 带 username:password 或 username:apiToken 的 +-auth+ 参数它将执行类似HTTP调用的操作
 ** 使用本地密钥的SSH传输模式
 * 通过SSH的CLI
 ** 直接使用本机SSH命令，无需Jenkins CLI
@@ -128,12 +134,12 @@ image:web_rest_flow.svg["Web UI and REST API flow", role=center]
 
 在上图中，每个箭头指示一种验证方式。
 
-使用登录名/密码的Web UI和REST API都将流入同一个+AbstractPasswordBasedSecurityRealm+
-将真正的检查委托给配置的+SecurityRealm+。
+使用登录名/密码的 Web UI 和 REST API 都将流入同一个 +AbstractPasswordBasedSecurityRealm+
+将真正的检查委托给配置的 +SecurityRealm+。
 第一种方法通过检索POST中的信息和第二种方法通过使用基本认证（在标题中）检索凭证。
-这里需要说明的一点很重要，Web UI是使用会话保存证书的唯一方式（不推荐使用）。
+这里需要说明的一点很重要，Web UI 是使用会话保存证书的唯一方式（不推荐使用）。
 
-对于login / apiToken调用，+BasicHeaderApiTokenAuthenticator+设法检查apiToken是否对应于具有给定登录名的用户。
+对于 login / apiToken 调用，+BasicHeaderApiTokenAuthenticator+ 设法检查 apiToken 是否对应于具有给定登录名的用户。
 
 ==== CLI (SSH 和 本机)
 
@@ -143,7 +149,7 @@ image:cli_flow.svg["CLI flow", role=center]
 
 第一种情况（远程处理）已被弃用，但被解释为可能仍在使用。
 原则是在登录命令和登出命令之间创建一种会话。
-使用与Web UI相同的类或使用密码的REST API检查身份验证。
+使用与 Web UI 相同的类或使用密码的 REST API 检查身份验证。
 验证完成后，凭证将存储在本地缓存中，以便将来的调用自动进行身份验证。 
 
 第二种方式是将用户名和密码作为命令的附加参数（+--username+ and +--password+）。
@@ -151,13 +157,13 @@ image:cli_flow.svg["CLI flow", role=center]
 对于第三种和第四种方式，我们将参数传递给连接，就像在标头中的HTTP调用一样。
 根据所提供的密码或令牌，对认证进行完全相同的REST API检查。
 
-Jenkins CLI的最后可能性是使用SSHD模块提供的SSH传输模式（也可用于插件）。
-它使用正常的SSH配置使用本地密钥进行身份验证。
-它与本地 CLI方式共享相同的验证器。
+Jenkins CLI 的最后可能性是使用 SSHD 模块提供的 SSH 传输模式（也可用于插件）。
+它使用正常的 SSH 配置使用本地密钥进行身份验证。
+它与本地 CLI 方式共享相同的验证器。
 
 
 ==== 其他方法
-该插件可以提出一个新的`SecurityRealm`或实现一些`ExtensionPoint`的
+该插件可以提出一个新的 `SecurityRealm` 或实现一些 `ExtensionPoint` 的
 （如 https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/jenkins/security/QueueItemAuthenticator.java[QueueItemAuthenticator]）
 为用户提供新的认证方式。
 

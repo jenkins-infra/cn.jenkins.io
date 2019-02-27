@@ -14,19 +14,19 @@ references:
 ---
 
 == 概述
-编写Jenkins及其插件的自动化测试对于确保一切按预期工作非常重要 —  在各种情况下，使用多个Java版本以及在不同的操作系统上 —  同时有助于防止在后续版本中引入回归。
+编写 Jenkins 及其插件的自动化测试对于确保一切按预期工作非常重要 —  在各种情况下，使用多个Java版本以及在不同的操作系统上 —  同时有助于防止在后续版本中引入回归。
 
-无论您是在编写一个新的Jenkins插件，还是只想  link:/participate/[参与Jenkins项目]，本指南都将涵盖您开始编写各种类型的自动化测试所需的一切。
-假设已有编写基于Java的测试的 link:http://junit.org/[JUnit测试框架]的经验。
+无论您是在编写一个新的 Jenkins 插件，还是只想 link:/participate/[参与Jenkins项目]，本指南都将涵盖您开始编写各种类型的自动化测试所需的一切。
+假设已有编写基于 Java 的测试的 link:http://junit.org/[JUnit测试框架] 的经验。
 
-为了简化测试的开发，Jenkins提供了基于JUnit测试框架的： link:https://github.com/jenkinsci/jenkins-test-harness/[测试工具]。
+为了简化测试的开发，Jenkins 提供了基于 JUnit 测试框架的： link:https://github.com/jenkinsci/jenkins-test-harness/[测试工具]。
 这提供了以下功能:
 
-1. Jenkins安装的自动设置和拆卸，允许每个测试方法在干净，隔离的环境中运行。Automated setup and teardown of a Jenkins installation, allowing each test method to run in a clean, isolated environment.
-2. Helper类和方法简化作业，代理，安全领域，SCM实现等的创建。Helper classes and methods to simplify the creation of jobs, agents, security realms, SCM implementations and more.
-3. 声明性注释来指定测试方法将使用的环境; 例如，设置`JENKINS_HOME`内容Declarative annotations to specify the environment a test method will use; for example, setting the `JENKINS_HOME` contents.
-4. 直接访问Jenkins对象模型。 这允许测试直接对抗Jenkins的内部状态。Direct access to the Jenkins object model. This allows tests to assert directly against the internal state of Jenkins.
-5. link:http://htmlunit.sourceforge.net/[HtmlUnit] support,使测试与Web UI和其他HTTP调用的交互变得简单。 making it simple to test interaction with the web UI and other HTTP calls.
+1. Jenkins 安装的自动设置和拆卸，允许每个测试方法在干净，隔离的环境中运行。
+2. Helper 类和方法简化作业，代理，安全领域，SCM实现等的创建。
+3. 声明性注释来指定测试方法将使用的环境; 例如，设置 `JENKINS_HOME`内容。
+4. 直接访问 Jenkins 对象模型。 这允许测试直接对抗 Jenkins 的内部状态。
+5. link:http://htmlunit.sourceforge.net/[HtmlUnit] support,使测试与Web UI和其他HTTP调用的交互变得简单。
 
 == 配置
 === 依赖关系
@@ -35,10 +35,11 @@ references:
 
 所有Jenkins插件都从 link:https://github.com/jenkinsci/plugin-pom/[插件父POM]继承，因此自动包含测试用具依赖项。
 
-同样，JUnit作为父POM的依赖项包含在内，因此不需要将它作为依赖项添加。
+同样，JUnit 作为父 POM 的依赖项包含在内，因此不需要将它作为依赖项添加。
 
 ===== 覆盖测试线束版本
-如果您使用的是插件父级POM的版本2.3或更新版本，如果您需要更新的功能，您可以通过覆盖`jenkins-test-harness.version`属性来更改测试用具版本。
+如果您使用的是插件父级 POM 的版本 2.3 或更新版本，如果您需要更新的功能，
+您可以通过覆盖 `jenkins-test-harness.version` 属性来更改测试用具版本。
 例如:
 [source,xml]
 ----
@@ -51,10 +52,11 @@ references:
 
 ==== 使用流水线
 
-我们鼓励您使用 link:/doc/pipeline/[流水线]测试您的插件。
+我们鼓励您使用 link:/doc/pipeline/[流水线] 测试您的插件。
 你可以做到这一点，而不必让你的插件本身依赖于各种与流水线相关的插件; 相反，您可以将它们包含为`test`依赖项，以便它们仅在编译和运行测试用例时使用。
 
-最简单的方法是添加 plugin:workflow-aggregator[`workflow-aggregator`]插件，即“父级”流水线插件到POM的`<dependencies>`部分，就像这样:
+最简单的方法是添加 plugin:workflow-aggregator[`workflow-aggregator`] 插件，
+即“父级”流水线插件到POM的 `<dependencies>` 部分，就像这样:
 
 [source,xml]
 ----
@@ -65,12 +67,13 @@ references:
   <scope>test</scope>
 </dependency>
 ----
-<1> 在撰写本文时，版本2.5是最新版本，至少需要Jenkins 2.7.3; plugin:workflow-aggregator[插件]的新版本现在可用。
-如果你的插件支持低于2.7.3的Jenkins基线，那么你最好增加它; 否则，您将不得不查找2.5以前版本的`workflow-aggregator`。
+<1> 在撰写本文时，版本 2.5 是最新版本，至少需要 Jenkins 2.7.3; plugin:workflow-aggregator[插件]的新版本现在可用。
+如果你的插件支持低于 2.7.3 的 Jenkins 基线，那么你最好增加它; 否则，您将不得不查找 2.5 以前版本的 `workflow-aggregator`。
 
 ==== 依赖其他插件
 
-在运行测试用例或使用 link:/doc/developer/tutorial/run/[`mvn hpi:run`]时创建的Jenkins安装中， 作为依赖项添加到您的带有`<scope> test </ scope>`的POM中的Jenkins插件将可用。
+在运行测试用例或使用 link:/doc/developer/tutorial/run/[`mvn hpi:run`] 时创建的 Jenkins 安装中，
+作为依赖项添加到您的带有 `<scope> test </ scope>` 的POM中的 Jenkins 插件将可用。
 
 您也可以将 link:http://javadoc.jenkins.io/component/jenkins-test-harness/?org/jvnet/hudson/test/recipes/WithPlugin.html[`@WithPlugin`]注解应用于单个测试用例，但这很少需要。
 

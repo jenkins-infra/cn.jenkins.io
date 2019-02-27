@@ -10,24 +10,24 @@ references:
   title: Design language repository with the styles and common components for Blue Ocean
 ---
 
-Jenkins的Blue Ocean插件旨在通过其他插件进行扩展。
-像许多其他插件一样，Blue Ocean有它自己的扩展点。
+Jenkins 的 Blue Ocean 插件旨在通过其他插件进行扩展。
+像许多其他插件一样，Blue Ocean 有它自己的扩展点。
 
-Blue Ocean是一个单页面的应用程序，它具有不同方面的应用程序，这些应用程序由特定于目标的插件提供，例如Blue Ocean的Dashboard或Blue Ocean插件的i18n。
+Blue Ocean 是一个单页面的应用程序，它具有不同方面的应用程序，这些应用程序由特定于目标的插件提供，
+例如 Blue Ocean 的 Dashboard 或 Blue Ocean 插件的 i18n。
 
-蓝海的主要区别在于插件的前端方面使用了大量的JavaScript，并且使用了JavaScript特定的扩展点。
+Blue Ocean 的主要区别在于插件的前端方面使用了大量的 JavaScript，并且使用了 JavaScript 特定的扩展点。
 
-Blue Ocean插件仍然只是Jenkins插件，通过常规方式交付，他们只是
-可以选择包含JavaScript。
+Blue Ocean 插件仍然只是 Jenkins 插件，通过常规方式交付，他们只是可以选择包含 JavaScript。
 
-由于Blue Ocean仍然是新的，JavaScript开发的可扩展性方面仍在不断发展。
+由于 Blue Ocean 仍然是新的，JavaScript 开发的可扩展性方面仍在不断发展。
 
-如果你想为Blue Ocean制作一个插件，可以从以下几个方面着手: 
+如果你想为 Blue Ocean 制作一个插件，可以从以下几个方面着手:
 
 * 介绍你自己到 https://gitter.im/jenkinsci/blueocean-plugin[gitter 聊天室]。这通常是最好的开始。那里有很多人帮助你走下去。
 * 请联系 http://groups.google.com/forum/#!forum/jenkinsci-ux[jenkins-ux 邮件列表] (东西快速移动，请求帮助)
 * 使用插件开发指针阅读 https://github.com/jenkinsci/blueocean-plugin#building-plugins-for-blue-ocean[README] 
-* 熟悉普通的Jenkins插件开发（至少是一个非常简单的插件）
+* 熟悉普通的 Jenkins 插件开发（至少是一个非常简单的插件）
 * 在 https://facebook.github.io/react/tutorial/tutorial.html[ReactJS] 阅读一下(不必要但不会有害)
 * 看看 https://www.npmjs.com/package/generator-blueocean-usain[Blue Ocean 插件] 生效
 * 看看一个真正的插件(非平凡) - https://github.com/jenkinsci/blueocean-pipeline-editor-plugin[the visual 流水线编辑器]。
