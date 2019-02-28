@@ -15,15 +15,15 @@ Jenkins 用户文档的这一部分包含一系列的入门教程帮你使用 Je
 
 选择与你的技术栈有关或你最熟悉的一个教程:
 
-* link:build-a-java-app-with-maven[使用Maven构建Java应用]
-* link:build-a-node-js-and-react-app-with-npm[使用npm构建 Node.js 和 React 应用]
-* link:build-a-python-app-with-pyinstaller[使用PyInstaller构建 Python 应用]
+* link:build-a-java-app-with-maven[使用 Maven 构建 Java 应用]
+* link:build-a-node-js-and-react-app-with-npm[使用 npm 构建 Node.js 和 React 应用]
+* link:build-a-python-app-with-pyinstaller[使用 PyInstaller 构建 Python 应用]
 
-本教程展示 如何使用 Jenkins的关键特性 (比如
-link:/doc/book/blueocean/[Blue Ocean]) 帮助实现 CI/CD
+本教程展示 如何使用 Jenkins 的关键特性 (比如
+link:/doc/book/blueocean/[Blue Ocean]) 帮助实现 CI / CD
 进程来构建你的应用:
 
-* link:create-a-pipeline-in-blue-ocean[使用 Blue Ocean构建流水线]
+* link:create-a-pipeline-in-blue-ocean[使用 Blue Ocean 构建流水线]
 
 == 高级教程
 

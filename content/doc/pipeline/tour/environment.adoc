@@ -8,7 +8,7 @@ title: 使用环境变量
 :imagesdir: ../../../book/resources
 :hide-uri-scheme:
 
-可以设置全局的和阶段stage的环境变量。
+可以设置全局的和阶段 stage 的环境变量。
 如你所料，阶段性的环境变量只能在阶段定义的地方使用。
 
 
@@ -47,7 +47,7 @@ node {
 
 环境变量的另一个常见用途是设置或者覆盖构建或测试脚本中的凭证。
 因为把凭证信息直接写入 `Makefile` 很显然是一个坏主意，
-Jenkins Pipeline允许用户快速安全地访问在 `Jenkinsfile` 中预定义的凭证信息，并且无需知道它们的的价值。
+Jenkins Pipeline 允许用户快速安全地访问在 `Jenkinsfile` 中预定义的凭证信息，并且无需知道它们的的价值。
 
 === 环境变量中的凭证信息
 

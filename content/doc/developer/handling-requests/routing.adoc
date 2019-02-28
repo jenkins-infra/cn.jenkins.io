@@ -28,11 +28,11 @@ references:
 
 另外，对象可以实现多个接口来进一步控制Stapler如何处理URL:
 
-* +staplerdoc:org.kohsuke.stapler.StaplerProxy[]+允许将URL的处理委托给另一个对象。所以,对于 `/foo/bar`, 如果 `getFoo()` 返回一个实现 `StaplerProxy`的 `getTarget()` 方法的对象 `x` , Stapler 将调用 `x.getTarget()` 并继续使用它来处理URL的其余部分（`bar`）。
+* +staplerdoc:org.kohsuke.stapler.StaplerProxy[]+ 允许将URL的处理委托给另一个对象。所以,对于 `/foo/bar`, 如果 `getFoo()` 返回一个实现 `StaplerProxy` 的 `getTarget()` 方法的对象 `x` , Stapler 将调用 `x.getTarget()` 并继续使用它来处理 URL 的其余部分（`bar`）。
   这在所有可能的URL处理选项中具有*highest priority*。
-  `getTarget()` 也返回 `this`, 例如执行权限检查：对于没有通过URL获得必要权限的任何人，任何getter或`x`视图都不可用。
+  `getTarget()` 也返回 `this`, 例如执行权限检查：对于没有通过URL获得必要权限的任何人，任何 getter 或 `x` 视图都不可用。
 * +staplerdoc:org.kohsuke.stapler.StaplerOverridable[]+ 是一个允许指定对象有选择地覆盖URL映射的接口。
   如果指定的重写对象没有处理请求，则宿主对象（实现`StaplerOverridable`）将处理请求。
-* +staplerdoc:org.kohsuke.stapler.StaplerFallback[]+ 允许将URL的处理委托给另一个对象，类似于`StaplerProxy`，但在所有可能的URL处理选项中具有*lowest priority*。
+* +staplerdoc:org.kohsuke.stapler.StaplerFallback[]+ 允许将URL的处理委托给另一个对象，类似于 `StaplerProxy`，但在所有可能的 URL 处理选项中具有 *lowest priority*。
 
-有关Stapler如何将Java对象模型绑定（或固定）到URL层次结构的更多信息，请参阅 link:http://stapler.kohsuke.org/reference.html[Stapler 引用文档]。
+有关 Stapler 如何将 Java 对象模型绑定（或固定）到URL层次结构的更多信息，请参阅 link:http://stapler.kohsuke.org/reference.html[Stapler 引用文档]。

@@ -9,18 +9,18 @@ section: doc
 
 === 什么是Jenkins Pipeline?
 
-Jenkins Pipeline (或简称为"Pipeline")是一套插件，将持续交付的实现和实施集成到Jenkins中。
+Jenkins Pipeline (或简称为 "Pipeline" )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。
 
 持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。
 
-Jenkins Pipeline提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。
-Jenkins Pipeline的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被检入到项目的源代码控制库中。
+Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。
+Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被检入到项目的源代码控制库中。
 footnoteref:[scm,https://en.wikipedia.org/wiki/Source_control_management[Source Control Management]]
 
 Pipeline和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/doc/book/pipeline[Pipeline] 和
 link:/doc/book/pipeline/jenkinsfile[Using a Jenkinsfile]
 
-快速开始使用Pipeline:
+快速开始使用 Pipeline:
 
 . 将以下示例 <<examples, examples below>> 复制到您的仓库中并命名为 `Jenkinsfile`
 . 单击Jenkins中的 *New Item* 菜单
@@ -31,14 +31,15 @@ image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%
 
 您可能需要修改 `Jenkinsfile` 以便应用在您自己的项目中。尝试修改 `sh` 命令，使其与您本地运行的命令相同。
 
-在配置好Pipeline之后，Jenkins会自动检测您仓库中创建的任何新的分支或合并请求，并开始为它们运行Pipelines。
+在配置好 Pipeline 之后，Jenkins 会自动检测您仓库中创建的任何新的分支或合并请求，
+并开始为它们运行 Pipelines。
 
 **link:../running-multiple-steps[继续去 "Run multiple steps"]**
 
 [[examples]]
 == 快速开始示例
 
-下面是一个简单的Pipeline各种语言的复制和粘贴示例。
+下面是一个简单的 Pipeline 各种语言的复制和粘贴示例。
 
 === Java
 
@@ -83,7 +84,7 @@ pipeline {
     }
 }
 // Scripted //
-/* 需要Docker Pipeline插件 */
+/* 需要 Docker Pipeline 插件 */
 node('docker') {
     checkout scm
     stage('Build') {
@@ -164,7 +165,7 @@ pipeline {
     }
 }
 // Scripted //
-/* 需要Docker Pipeline插件 */
+/* 需要 Docker Pipeline 插件 */
 node('docker') {
     checkout scm
     stage('Build') {
@@ -176,7 +177,7 @@ node('docker') {
 ----
 
 ---
-**link:../running-multiple-steps[继续“运行多重步骤steps”]**
+**link:../running-multiple-steps[继续“运行多重步骤 steps”]**
 
 '''
 ++++
