@@ -13,7 +13,7 @@ links:
   mailinglist: 'https://jenkins-x.io/community/#email'
 ---
 
-Jenkins X 是一个针对 Kubernetes 上的云应用持续集成/持续部署（CI/CD）的解决方案， 目前正通过 JEP-400 被提议为子项目。
+Jenkins X 是基于 Kubernetes 的现代云应用 CI/CD 解决方案，目前正通过 JEP-400 被提议为 Jenkins 的子项目。
 
 ---
 
@@ -22,35 +22,35 @@ Jenkins X 是一个针对 Kubernetes 上的云应用持续集成/持续部署（
 image:/images/jenkins-x-logo.png["Jenkins X"]
 
 
-link:https://jenkins-x.io[*入门文档指南*]
+link:https://jenkins-x.io/zh[*入门文档指南*]
 
-Jenkins X 内置了应用程序和环境的概念。您不需要安装 Jenkins 来使用 Jenkins X, Jenkins 流水线仅作为安装的一部分。Jenkins X 的目标并不是取代 Jenkins，而是以最好的开源工具为基础来构建它。
+Jenkins X 内置了应用程序和环境的概念。您不需要直接安装 Jenkins 来使用 Jenkins X, Jenkins 流水线作为安装的一部分。Jenkins X 的目标并不是取代 Jenkins，而是以最好的开源工具为基础来构建它。
 
-把它当成是一个不需要自己封装就已经实现了持续集成/持续部署（CI/CD）的方法。
+把它当成是一个不需要自己封装就已经实现了持续集成/持续部署（CI/CD）的方式。
 
-link:https://jenkins-x.io[Jenkins-X]文档站点提供了更多详细信息，阅读 link:/blog/2018/04/10/opinionated-cd-jenkins-x/[博客]上的精彩介绍。
+link:https://jenkins-x.io/zh[Jenkins-X]文档站点提供了更多详细信息，阅读 link:/blog/2018/04/10/opinionated-cd-jenkins-x/[博客]上的精彩介绍。
 
 
 == 自动化持续集成和持续部署
 
-Jenkins X 不需要对 Jenkins 流水线的内部结构有深入的了解，而是为您的项目实施提供完整持续集成和持续部署的流水线方式。
+您不需要深入了解 Jenkins 的流水线细节，Jenkins X 已经帮您的工程实现了一些非常好的持续集成、持续部署的流水线。
 
-== 应用程序、环境和推广
+== 应用程序、环境和升级
 
-每个团队都有一组环境。然后，Jenkins X 通过 GitOps 自动管理环境和在环境之间推广新版本的应用程序
+每个团队都有一组环境。然后，Jenkins X 通过 GitOps 自动管理环境和在环境之间升级新版本的应用。
 
-== 请求预览环境
+== Pull Request 预览环境
 
-Jenkins X 会自动为您的请求调整为可预览环境，以便在将更改合并到 master 之前获得快速反馈
+Jenkins X 自动地为你的 Pull Request 设置预览环境，因此可以在变更被合并到 master 之前快速得到反馈
 
-== 关于问题和请求的反馈
+== 反馈问题和 Pull Requests
 
-Jenkins X 会自动对您的提交，问题和请求请求进行评论，而且已准备好进行预览，为迁移到环境中或自动生成 Pull 请求以升级版本时提供反馈。
+当代码可以预览、环境升级或者是自动生成版本升级的 Pull Requests 时，Jenkins X 自动地在你的提交、Issues 和 Pull Requests 添加反馈评论
 
 
 == 入门
 
-* link:https://jenkins-x.io[*入门文档*] 
+* link:https://jenkins-x.io/zh[*入门文档*] 
 * 您可以在常规的 Jenkins 开发人员邮件列表中询问有关它的问题(只需在前面加上[Jenkins X]前缀)
 * 可以中 link:https://jenkins-x.io/community/[此]频道聊天
 * link:https://github.com/jenkins-x[源码]
