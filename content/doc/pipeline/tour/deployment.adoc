@@ -8,7 +8,7 @@ title: 部署
 :imagesdir: ../../../book/resources
 :hide-uri-scheme:
 
-大多数最基本的持续交付Pipeline至少会有三个阶段：构建、测试和部署，这些阶段被定义在 `Jenkinsfile` 中。
+大多数最基本的持续交付 Pipeline 至少会有三个阶段：构建、测试和部署，这些阶段被定义在 `Jenkinsfile` 中。
 这一小节我们将主要关注部署阶段，但应该指出稳定的构建和测试阶段是任何部署活动的重要前提。
 
 [pipeline]
@@ -51,7 +51,7 @@ node {
 == 阶段即为部署环境
 
 一个常见的模式是扩展阶段的数量以获取额外的部署环境信息，
-如“staging”或者“production”，如下例所示。
+如 “staging” 或者 “production”，如下例所示。
 
 [source,groovy]
 ----
@@ -69,7 +69,7 @@ stage('Deploy - Production') {
 ----
 
 在这个示例中，我们假定 `./run-smoke-tests` 脚本所运行的冒烟测试足以保证或者验证可以发布到生产环境。
-这种可以自动部署代码一直到生产环境的Pipeline可以认为是“持续部署”的一种实现。
+这种可以自动部署代码一直到生产环境的 Pipeline 可以认为是“持续部署”的一种实现。
 虽然这是一个伟大的想法，但是有很多理由表明“持续部署”不是一种很好的实践，
 即便如此，这种方式仍然可以享有“持续交付”带来的好处。
 footnote:[https://en.wikipedia.org/wiki/Continuous_delivery]
@@ -80,7 +80,7 @@ Jenkins Pipeline可以很容易支持两者。
 通常在阶段之间，特别是不同环境阶段之间，您可能需要人工确认是否可以继续运行。
 例如，判断应用程序是否在一个足够好的状态可以进入到生产环境阶段。
 这可以使用 `input` 步骤完成。
-在下面的例子中，“Sanity check”阶段会等待人工确认，并且在没有人工确认的情况下不会继续执行。
+在下面的例子中，“Sanity check” 阶段会等待人工确认，并且在没有人工确认的情况下不会继续执行。
 
 [pipeline]
 ----
@@ -132,12 +132,12 @@ node {
 
 == 结论
 
-本导读向您介绍了Jenkins和Jenkins Pipeline的基本使用。
-由于Jenkins是非常容易扩展的，它可以被修改和配置去处理任何类型的自动化。
-关于Jenkins可以做什么的更多相关信息，可以参考
+本导读向您介绍了 Jenkins 和 Jenkins Pipeline 的基本使用。
+由于 Jenkins 是非常容易扩展的，它可以被修改和配置去处理任何类型的自动化。
+关于 Jenkins 可以做什么的更多相关信息，可以参考
 link:/doc/book[用户手册],
-Jenkins最新事件、教程和更新可以访问
-link:/node[Jenkins博客]
+Jenkins 最新事件、教程和更新可以访问
+link:/node[Jenkins 博客]
 
 '''
 ++++

@@ -3,8 +3,8 @@ layout: documentation
 title: 清理和通知
 ---
 
-因为 `post` 部分保证在Pipeline结束的时候运行，
-所以我们可以添加通知或者其他的步骤去完成清理、通知或者其他的Pipeline结束任务。
+因为 `post` 部分保证在 Pipeline 结束的时候运行，
+所以我们可以添加通知或者其他的步骤去完成清理、通知或者其他的 Pipeline 结束任务。
 
 [pipeline]
 ----
@@ -58,7 +58,7 @@ node {
 ----
 
 有很多方法可以发送通知，
-下面是一些示例展示了如何通过电子邮件、Hipchat room或者Slack channel发送Pipeline的相关信息。
+下面是一些示例展示了如何通过电子邮件、Hipchat room 或者 Slack channel 发送 Pipeline 的相关信息。
 
 === 电子邮件
 
@@ -100,8 +100,8 @@ post {
 ----
 
 
-当Pipeline失败、不稳定甚至是成功时，团队都会收到通知，
-现在我们可以继续完成我们的持续交付Pipeline激动人心的部分：部署！
+当 Pipeline 失败、不稳定甚至是成功时，团队都会收到通知，
+现在我们可以继续完成我们的持续交付 Pipeline 激动人心的部分：部署！
 
 **link:../deployment[继续“部署”]**
 

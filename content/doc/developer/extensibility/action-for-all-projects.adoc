@@ -7,12 +7,13 @@ layout: developerguide
 
 这可以用于显示关于作业的信息，例如统计数据，而不需要额外的（持久存储的）数据。
 
-在这个例子中，我们将添加一个名为_Statistics_的链接，该链接将链接到显示有关该项目的一些信息的页面。
+在这个例子中，我们将添加一个名为 _Statistics_ 的链接，该链接将链接到显示有关该项目的一些信息的页面。
 
 
 ## 创建操作
 
-这个动作将是相当基础的：它会期望对一个作为构造函数参数的+jenkinsdoc:Project[]+  的引用，并且返回这个项目所具有的构建步骤和构建后步骤的数量。
+这个动作将是相当基础的：它会期望对一个作为构造函数参数的 +jenkinsdoc:Project[]+ 的引用，
+并且返回这个项目所具有的构建步骤和构建后步骤的数量。
 
 
 [source,java]
@@ -55,7 +56,7 @@ public class SampleAction implements Action {
 }
 ----
 
-同样，我们在与此类相对应的资源目录中为它创建`index.jelly` 视图 -- +src/main/resources/org/jenkinsci/plugins/sample/SampleAction/+ --  是非常基本的，只是显示来自获得者的信息:
+同样，我们在与此类相对应的资源目录中为它创建 `index.jelly` 视图 -- +src/main/resources/org/jenkinsci/plugins/sample/SampleAction/+ --  是非常基本的，只是显示来自获得者的信息:
 
 [source,xml]
 ----
@@ -82,9 +83,10 @@ public class SampleAction implements Action {
 ## 为所有项目添加动作
 
 
-+jenkinsdoc:TransientActionFactory[]+ 可用于将任意数量的动作添加到+jenkinsdoc:Actionable[]+子类型的给定实例。 +TransientActionFactory+ 定义:
++jenkinsdoc:TransientActionFactory[]+ 可用于将任意数量的动作添加到 +jenkinsdoc:Actionable[]+ 子类型的给定实例。
+ +TransientActionFactory+ 定义:
 
-1. 它适用于哪种+Actionable+ 类型
+1. 它适用于哪种 +Actionable+ 类型
 2. 他创建了哪种 +Action+ 动作
 
 类看起来是这样的:
@@ -106,14 +108,17 @@ public class SampleActionFactory extends TransientActionFactory<Project> {
     }
 }
 ----
-<1> 这只适用于+Project+实例。
-<2> 工厂可以根据+Project+创建不同的操作，在这种情况下，它不是必需的。
+<1> 这只适用于 +Project+ 实例。
+<2> 工厂可以根据 +Project+ 创建不同的操作，在这种情况下，它不是必需的。
 
 ## 限制访问
 
-为了只显示项目信息给那些通过查看作业配置能够获得的人，我们可以设置动作，以便链接仅显示给具有+Item.CONFIGURE+权限的人员
+为了只显示项目信息给那些通过查看作业配置能够获得的人，我们可以设置动作，
+以便链接仅显示给具有 +Item.CONFIGURE+ 权限的人员
 
-footnote:[另一种选择是 只能为拥有正确权限的人创建操作。 这种方法目前适用于工作，但Jenkins中的其他对象使用缓存来执行操作，因此不会在每个请求上重新创建瞬态操作。 当然，选择的方法需要更复杂的权限检查]
+footnote:[另一种选择是 只能为拥有正确权限的人创建操作。 这种方法目前适用于工作，
+但 Jenkins 中的其他对象使用缓存来执行操作，因此不会在每个请求上重新创建瞬态操作。
+当然，选择的方法需要更复杂的权限检查]
 
 [source,java]
 ----
@@ -124,11 +129,14 @@ footnote:[另一种选择是 只能为拥有正确权限的人创建操作。 �
     }
 (...)
 ----
-<1>对于+getIconFileName+，返回+null+是一种文档化的方式，使操作不会出现在侧面板中。
+<1>对于 +getIconFileName+，返回 +null+ 是一种文档化的方式，使操作不会出现在侧面板中。
 
-这不会阻止通过URL直接访问，所以我们需要确保限制谁可以访问该操作。
+这不会阻止通过 URL 直接访问，所以我们需要确保限制谁可以访问该操作。
 
-做到这些的一个可靠的方法是实现+staplerdoc:org.kohsuke.stapler.StaplerProxy[StaplerProxy]+，一个旨在允许对象将HTTP请求处理转发到另一个对象的接口。 通过实现+getTarget()+方法并返回 +this+，请求将继续由同一个对象处理，但我们能够在发生这种情况之前检查用户权限。
+做到这些的一个可靠的方法是实现 +staplerdoc:org.kohsuke.stapler.StaplerProxy[StaplerProxy]+，
+一个旨在允许对象将 HTTP 请求处理转发到另一个对象的接口。
+通过实现 +getTarget()+ 方法并返回 +this+，请求将继续由同一个对象处理，
+但我们能够在发生这种情况之前检查用户权限。
 [source,java]
 ----
 (...)
@@ -144,4 +152,5 @@ public class SampleAction implements Action, StaplerProxy {
     }
 }
 ----
-<1> 如果检查失败，将抛出+AccessDeniedException+，导致用户看到一条错误消息（或者，如果尚未登录，则看到登录的屏幕）。
+<1> 如果检查失败，将抛出 +AccessDeniedException+，
+导致用户看到一条错误消息（或者，如果尚未登录，则看到登录的屏幕）。

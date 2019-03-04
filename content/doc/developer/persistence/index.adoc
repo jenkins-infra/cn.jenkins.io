@@ -11,11 +11,12 @@ references:
 wip: true
 ---
 
-Jenkins使用文件系统来存储其数据。
-目录在+$JENKINS_HOME+中以对对象模型结构建模的方式创建。
-一些数据（如控制台输出）以纯文本文件形式存储，一些数据以Java属性文件的形式存储。
-但是大多数结构化数据（如配置项目的方式或构建的各种记录）通过使用XStream来持久化。
+Jenkins 使用文件系统来存储其数据。
+目录在 +$JENKINS_HOME+ 中以对对象模型结构建模的方式创建。
+一些数据（如控制台输出）以纯文本文件形式存储，一些数据以 Java 属性文件的形式存储。
+但是大多数结构化数据（如配置项目的方式或构建的各种记录）通过使用 XStream 来持久化。
 
 这允许相对容易地保持对象状态（包括来自插件的状态），但是必须注意XML中的序列化，并采取措施保持向后兼容性。
-例如，在Jenkins的各个部分中，您会看到+transient+关键字（它指示XStream不能将字段绑定到XML），严格保留字段以保持向后兼容性，或者在加载数据后重新构建内存中数据结构。
+例如，在 Jenkins 的各个部分中，您会看到 +transient+ 关键字（它指示 XStream 不能将字段绑定到 XML），
+严格保留字段以保持向后兼容性，或者在加载数据后重新构建内存中数据结构。
 // https://wiki.jenkins-ci.org/display/JENKINS/Architecture#Architecture-Persistence

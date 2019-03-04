@@ -1,35 +1,35 @@
 ---
 layout: documentation
-title: 开始使用Jenkins
+title: 开始使用 Jenkins
 section: doc
 ---
 
-本导读将向您介绍使用Jenkins、Jenkins的主要特性和Jenkins Pipeline的基本知识。
-本导读使用“独立”的Jenkins发行版，它可以在您自己本地的机器上运行。
+本导读将向您介绍使用 Jenkins、Jenkins 的主要特性和 Jenkins Pipeline 的基本知识。
+本导读使用“独立”的 Jenkins 发行版，它可以在您自己本地的机器上运行。
 
 === 准备工作
 
-第一次使用Jenkins，您需要：
+第一次使用 Jenkins，您需要：
 
 * 机器要求：
-** 256MB内存，建议大于512MB
-** 10GB的硬盘空间（用于Jenkins和Docker镜像）
+** 256 MB 内存，建议大于 512 MB
+** 10 GB 的硬盘空间（用于 Jenkins 和 Docker 镜像）
 * 需要安装以下软件：
-** Java 8 (JRE或者JDK都可以)
+** Java 8 ( JRE 或者 JDK 都可以)
 ** https://www.docker.com/[Docker] （导航到网站顶部的Get Docker链接以访问适合您平台的Docker下载）
 
-=== 下载并运行Jenkins
+=== 下载并运行 Jenkins
 
-. http://mirrors.jenkins.io/war-stable/latest/jenkins.war[下载Jenkins].
+. http://mirrors.jenkins.io/war-stable/latest/jenkins.war[下载 Jenkins].
 . 打开终端进入到下载目录.
 . 运行命令 `java -jar jenkins.war --httpPort=8080`.
 . 打开浏览器进入链接 `http://localhost:8080`.
 . 按照说明完成安装.
 
-安装完成后，您可以开始使用Jenkins！
+安装完成后，您可以开始使用 Jenkins！
 
 ---
-**link:../hello-world[继续“创建您的第一个Pipeline”]**
+**link:../hello-world[继续“创建您的第一个 Pipeline”]**
 
 '''
 ++++

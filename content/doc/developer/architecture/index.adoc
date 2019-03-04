@@ -9,5 +9,5 @@ references:
 
 本节对 Jenkins 体系结构进行了高度概括。
 
-适用于熟悉Jenkins（作为用户），想要了解Jenkins内部是如何工作的的Java开发者。
+适用于熟悉 Jenkins（作为用户），想要了解 Jenkins 内部是如何工作的的 Java 开发者。
 
