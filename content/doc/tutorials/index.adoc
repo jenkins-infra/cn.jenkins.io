@@ -20,7 +20,7 @@ Jenkins 用户文档的这一部分包含一系列的入门教程帮你使用 Je
 * link:build-a-python-app-with-pyinstaller[使用 PyInstaller 构建 Python 应用]
 
 本教程展示 如何使用 Jenkins 的关键特性 (比如
-link:/doc/book/blueocean/[Blue Ocean]) 帮助实现 CI / CD
+link:/doc/book/blueocean/[Blue Ocean]) 帮助实现 CI/CD
 进程来构建你的应用:
 
 * link:create-a-pipeline-in-blue-ocean[使用 Blue Ocean 构建流水线]
