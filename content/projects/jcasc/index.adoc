@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Jenkins 代码配置"
+title: "Jenkins 配置即代码"
 section: projects
 tags:
 - jenkins-configuration-as-code
@@ -11,17 +11,17 @@ links:
 
 ---
 
-"as code" 模式是指能够在几分钟内通过方法自动化（作为代码管理）复制或恢复完整的环境。
+"as code" 模式是指能够基于自动化管理的方式在几分钟内复制和（或）恢复完整的环境。
 
-== 将配置管理为可读的配置文件
+== 用可读的文件管理配置
 
 设置 Jenkins 是一个复杂的过程，因为 Jenkins 及其插件都需要一些调整和配置，需要在 Web UI 管理部分设置了许多参数。
 
-Jenkins 代码配置允许将整个配置定义为简化的、人性化的纯文本 yaml 语法。
-无需任何手动步骤，就可以验证此配置，并以完全可重现的方式应用于 Jenkins master。
+Jenkins 配置即代码允许将整个配置定义为简化的、人性化的纯文本 yaml 语法。
+无需任何手动步骤，就可以验证此配置并以完全复制的方式应用于 Jenkins master。
 根据 JCasC 创建一个新的 Jenkins master 将成为一个非常容易的事件。
 
-== 配置所有 jenkins 初始设置
+== jenkins 初始配置
 
 充分运用 Jenkins master:
 
