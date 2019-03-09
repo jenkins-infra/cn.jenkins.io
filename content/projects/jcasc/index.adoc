@@ -21,7 +21,7 @@ Jenkins 配置即代码允许将整个配置定义为简化的、人性化的纯
 无需任何手动步骤，就可以验证此配置并以完全复制的方式应用于 Jenkins master。
 根据 JCasC 创建一个新的 Jenkins master 将成为一个非常容易的事件。
 
-== jenkins 初始配置
+== Jenkins 初始配置
 
 充分运用 Jenkins master:
 
@@ -41,9 +41,9 @@ Jenkins 配置即代码允许将整个配置定义为简化的、人性化的纯
 * link:https://github.com/jenkinsci/configuration-as-code-plugin[源码]
 * 目前通过 github link:https://github.com/jenkinsci/configuration-as-code-plugin/issues[问题跟踪器]可以跟踪功能请求、错误等
 
-=== 办公会议
+=== 办公时间会议
 
-JCasC 办公会议的目的是讨论当前的问题以及插件的未来
+JCasC 办公时间会议的目的是讨论当前的问题以及插件的未来
 
 ==== 时间和地点
 会议在每周三上午 9 点（UTC + 1）举行，每两周举行一次。
