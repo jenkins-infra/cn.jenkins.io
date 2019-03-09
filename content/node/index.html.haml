@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Jenkins Community Blog'
+title: 'Jenkins 社区博客'
 section: blog
 ---
 
@@ -18,17 +18,16 @@ section: blog
           = page.title
 
       .blogintro
-        The Jenkins project has a lot going on between core/plugin development,
-        events and other open source automation related activities. To keep up with
-        it subscribe to our
+        Jenkins 有许多正在推进的关于 Jenkins 核心／插件开发，社区事件和其他开源自动化相关的项目。
+        持续关注请订阅我们的
 
         %a{:href => 'https://feeds.feedburner.com/ContinuousBlog/'}
-          RSS feed
+          RSS 源
 
-        or
+        或者
 
         %a{:href => 'https://twitter.com/jenkinsci'}
-          follow us on Twitter
+          在 Twitter 上关注我们
 
       = partial('blogcardlist.html.haml', :posts => page.posts)
 
