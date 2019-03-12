@@ -37,7 +37,7 @@ GSoC 已经正式启动，请期待更多的学生在我们的 link:/projects/gs
 我们也会为学生组织工作日的会议，在这些会议上你可以见到管理员和导师，并向他们提问。
 另外，加入我们的 link:https://gitter.im/jenkinsci/gsoc-sig[Gitter 频道]和 link:https://groups.google.com/forum/#!forum/jenkinsci-gsoc-all-public[邮件列表]，以便收到项目中即将到来的事情。
 
-申请周期从3月25日开始，但你现在就可以准备了！利用这段申请前的时间来讨论并改进你的项目提议。
+3月25日开放申请，但你现在就可以准备了！利用这段申请前的时间来讨论并改进你的项目提议。
 我们也建议你着手熟悉 Jenkins 并开始探索你的提议的领域。项目的想法包括快速开始的指导，以及有助于初期研究时对新手友好的问题。
 如果没有看到任何感兴趣的，你可以 link:/projects/gsoc/proposing-project-ideas/[提出你自己的项目想法]或者
 查看由其他参与 GSoC 的 link:https://summerofcode.withgoogle.com/organizations/[组织]提出的想法。
