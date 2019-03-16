@@ -1,0 +1,56 @@
+---
+layout: project
+title: "Jenkins 配置即代码"
+section: projects
+tags:
+- jenkins-configuration-as-code
+- jcasc
+links:
+  gitter: 'jenkinsci/configuration-as-code-plugin'
+  github: 'jenkinsci/configuration-as-code-plugin'
+
+---
+
+"as code" 模式是指能够基于自动化管理的方式在几分钟内复制和（或）恢复完整的环境。
+
+== 用可读的文件管理配置
+
+设置 Jenkins 是一个复杂的过程，因为 Jenkins 及其插件都需要一些调整和配置，需要在 Web UI 管理部分设置了许多参数。
+
+Jenkins 配置即代码允许将整个配置定义为简化的、人性化的纯文本 yaml 语法。
+无需任何手动步骤，就可以验证此配置并以完全复制的方式应用于 Jenkins master。
+根据 JCasC 创建一个新的 Jenkins master 将成为一个非常容易的事件。
+
+== Jenkins 初始配置
+
+充分运用 Jenkins master:
+
+* **无需操作** 键盘
+* **无需要点击** UI
+
+== 无需额外的开发工作即可支持大多数插件
+
+* 不需要为每个支持的插件编写粘性代码
+* 大多数插件都是开箱即用
+* 可以捆绑适配器代码
+
+== 入门
+
+* link:https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md[*入门文档*]
+* 可以在常规的 Jenkins 开发人员邮件列表中询问有关它的问题(只需在前面加上[JCasC]的前缀)
+* link:https://github.com/jenkinsci/configuration-as-code-plugin[源码]
+* 目前通过 github link:https://github.com/jenkinsci/configuration-as-code-plugin/issues[问题跟踪器]可以跟踪功能请求、错误等
+
+=== 办公时间会议
+
+JCasC 办公时间会议的目的是讨论当前的问题以及插件的未来
+
+==== 时间和地点
+会议在每周三上午 9 点（UTC + 1）举行，每两周举行一次。
+
+会议将在 link:https://jenkins.io/event-calendar/[*活动日历*]上公布
+
+Hangouts On Air 用于给 link:https://www.youtube.com/channel/UC5JBtmoz7ePk-33ZHimGiDQ[*Jenkins Youtube 频道*]推流直播并进行会议。
+实时会议链接会在会议开始前几分钟内在 link:http://gitter.im/jenkinsci/configuration-as-code-plugin[*configuration-as-code-plugin*]的 gitter 频道上分享
+
+有兴趣的人可以查看 link:https://docs.google.com/document/d/1Hm07Q1egWL6VVAqNgu27bcMnqNZhYJmXKRvknVw4Y84/edit?usp=sharing[*会议记录*]
