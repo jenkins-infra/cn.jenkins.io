@@ -35,12 +35,28 @@ homepage: true
 
 = partial('downloadbanner.html.haml')
 
-= partial('projectjumbotron.html.haml',
-  :href => expand_link('projects/blueocean'),
-  :title => 'Say &ldquo;hello&rdquo; to Blue Ocean',
-  :intro => "Blue Ocean是一种全新的用户体验，可以将持续交付延伸到任何团队，而不会牺牲Jenkins的强大功能。",
-  :image => expand_link('images/blueocean/blueocean-successful-pipeline.png'),
-  :call_to_action => {:text => '开始', :href => expand_link('projects/blueocean')})
+-# Carousel Slides
+- slides = []
+
+-# CDF Blog
+- slides << {:href => expand_link('blog/2019/03/12/cdf-launch/'),
+  :title => 'A New Home for Jenkins',
+  :intro => "Jenkins is joining the newly created Continuous Delivery Foundation (CDF).",
+  :image => {:src => expand_link('images/cdf/logo/cdf-logo-white.png'), :height => "250px"},
+  :call_to_action => {:text => 'Read the Announcement', :href => expand_link('blog/2019/03/12/cdf-launch/')}}
+
+-# CDF Blog
+- slides << {:href => 'https://cd.foundation',
+  :title => 'Meet the Continuous Delivery Foundation',
+  :intro => "The CDF serves as the vendor-neutral home of many of the fastest-growing projects for continuous delivery, including Jenkins, Jenkins&nbsp;X, Spinnaker, and Tekton.",
+  :image => {:src => expand_link('images/cdf/logo/cdf-logo-white.png'), :height => "250px"},
+  :call_to_action => {:text => 'Learn about CDF', :href => 'https://cd.foundation'}}
+
+-# Carousel
+= partial('projectcarousel.html.haml',
+  :background => '#000000',
+  :background_image => {:src => expand_link('images/cdf/cdf-background-wide.jpg')},
+  :slides => slides)
 
 #feature-list-segment.segment
   .container
