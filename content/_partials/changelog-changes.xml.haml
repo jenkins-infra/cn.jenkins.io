@@ -7,7 +7,7 @@
       %description
 
         - if release.lts_changes
-          = "<strong>Changes since #{release.lts_baseline}:</strong>".encode( { :xml => :text } )
+          = "<strong>自 #{release.lts_baseline} 以来的变更:</strong>".encode( { :xml => :text } )
 
         = "<ul>".encode( { :xml => :text } )
         - release.changes.each do | change |
@@ -18,7 +18,7 @@
         = "</ul>".encode( { :xml => :text } )
 
         - if release.lts_changes
-          = "<strong>Notable changes since #{release.lts_predecessor}:</strong>".encode( { :xml => :text } )
+          = "<strong>自 #{release.lts_predecessor} 以来的显著变更:</strong>".encode( { :xml => :text } )
 
           = "<ul>".encode( { :xml => :text } )
           - release.lts_changes.each do | change |
