@@ -1,0 +1,58 @@
+---
+layout: project
+title: "Jenkins X"
+section: projects
+tags:
+- jenkins-x
+- kubernetes
+links:
+  github: 'jenkins-x'
+  chat: 'https://jenkins-x.io/community/#slack'
+  twitter: jenkinsxio
+  meetings: 'https://jenkins-x.io/community/#office-hours'
+  mailinglist: 'https://jenkins-x.io/community/#email'
+---
+
+Jenkins X 是基于 Kubernetes 的现代云应用 CI/CD 解决方案，目前正通过 JEP-400 被提议为 Jenkins 的子项目。
+
+---
+
+== Kubernetes 的原生持续集成/持续部署（CI/CD）
+
+image:/images/jenkins-x-logo.png["Jenkins X"]
+
+
+link:https://jenkins-x.io/zh[*入门文档指南*]
+
+Jenkins X 内置了应用程序和环境的概念。您不需要直接安装 Jenkins 来使用 Jenkins X, Jenkins 流水线作为安装的一部分。Jenkins X 的目标并不是取代 Jenkins，而是以最好的开源工具为基础来构建它。
+
+把它当成是一个不需要自己封装就已经实现了持续集成/持续部署（CI/CD）的方式。
+
+link:https://jenkins-x.io/zh[Jenkins-X]文档站点提供了更多详细信息，阅读 link:/blog/2018/04/10/opinionated-cd-jenkins-x/[博客]上的精彩介绍。
+
+
+== 自动化持续集成和持续部署
+
+您不需要深入了解 Jenkins 的流水线细节，Jenkins X 已经帮您的工程实现了一些非常好的持续集成、持续部署的流水线。
+
+== 应用程序、环境和升级
+
+每个团队都有一组环境。然后，Jenkins X 通过 GitOps 自动管理环境和在环境之间升级新版本的应用。
+
+== Pull Request 预览环境
+
+Jenkins X 自动地为你的 Pull Request 设置预览环境，因此可以在变更被合并到 master 之前快速得到反馈
+
+== 反馈问题和 Pull Requests
+
+当代码可以预览、环境升级或者是自动生成版本升级的 Pull Requests 时，Jenkins X 自动地在你的提交、Issues 和 Pull Requests 添加反馈评论
+
+
+== 入门
+
+* link:https://jenkins-x.io/zh[*入门文档*] 
+* 您可以在常规的 Jenkins 开发人员邮件列表中询问有关它的问题(只需在前面加上[Jenkins X]前缀)
+* 可以中 link:https://jenkins-x.io/community/[此]频道聊天
+* link:https://github.com/jenkins-x[源码]
+* 目前通过github link:https://github.com/jenkins-x/jx/issues[问题跟踪器跟踪]跟踪功能请求、bug等
+
