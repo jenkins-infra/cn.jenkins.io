@@ -1186,7 +1186,7 @@
       pull: 3861
       issue: 55050
       message: >
-        减少以 ZIP 格式下载归档或者工作空间文件时 SECURITY-904 对性能的影响。
+        减少以 ZIP 格式下载制品或者工作空间的文件时 SECURITY-904 对性能的影响。
 
 # Setup
 
