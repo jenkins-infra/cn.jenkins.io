@@ -11,7 +11,7 @@ layout: developerbook
 
 - if chapter.sections && chapter.sections.size > 0
   %h2
-    Sections
+    章节
 
   %ul
     - chapter.sections.each do |section|
@@ -20,17 +20,17 @@ layout: developerbook
           = section.title
         - if section.page.wip
           - if !section.page.references || section.page.references.length == 0
-            %i.icon-warning{:title => 'Work in progress'}
+            %i.icon-warning{:title => '进行中'}
               &nbsp;
           - else
-            %i.icon-warning{:title => 'Partial work in progress', :style => 'opacity: 0.5;'}
+            %i.icon-warning{:title => '部分工作进行中', :style => 'opacity: 0.5;'}
               &nbsp;
         %br
         = section.summary
 
 - if chapter.guides && chapter.guides.size > 0
   %h2
-    How-To Guides
+    操作指南
 
   %ul
     - chapter.guides.each do |guide|

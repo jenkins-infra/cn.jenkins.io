@@ -43,7 +43,7 @@ section: doc
           %li
             = active_href('doc/pipeline/tour/getting-started', '入门指南')
           %li
-            = active_href('doc/pipeline/tour/hello-world', '创建Hello World Pipeline')
+            = active_href('doc/pipeline/tour/hello-world', '创建 Hello World 流水线')
           %li
             = active_href('doc/pipeline/tour/running-multiple-steps', '执行多个步骤')
           %li
@@ -63,20 +63,20 @@ section: doc
           %li
             = active_href('doc/tutorials', t('.Overview'))
           %li
-            = active_href('doc/tutorials/build-a-java-app-with-maven', '用Maven构建Java应用')
+            = active_href('doc/tutorials/build-a-java-app-with-maven', '用 Maven 构建 Java 应用')
           %li
-            = active_href('doc/tutorials/build-a-node-js-and-react-app-with-npm', '用npm构建 Node.js和React应用')
+            = active_href('doc/tutorials/build-a-node-js-and-react-app-with-npm', '用 npm 构建 Node.js 和 React 应用')
           %li
-            = active_href('doc/tutorials/build-a-python-app-with-pyinstaller', '用PyInstaller构建Python应用')
+            = active_href('doc/tutorials/build-a-python-app-with-pyinstaller', '用 PyInstaller 构建 Python 应用')
           %li
-            = active_href('doc/tutorials/create-a-pipeline-in-blue-ocean', '用Blue Ocean创建Pipeline')
+            = active_href('doc/tutorials/create-a-pipeline-in-blue-ocean', '用 Blue Ocean 创建流水线')
           %li
-            = active_href('doc/tutorials/build-a-multibranch-pipeline-project', '构建一个多分支的Pipeline项目')
+            = active_href('doc/tutorials/build-a-multibranch-pipeline-project', '构建一个多分支的 Pipeline 项目')
 
         %h4
           = t('.user_handbook')
           %span{:style => 'font-size: 0.6rem; vertical-align: middle;'}
-            %a{:href => '/user-handbook.pdf'}
+            %a{:href => 'user-handbook.pdf'}
               = t('.pdf')
 
         %ul
@@ -93,11 +93,11 @@ section: doc
           = t('.resources')
         %ul
           %li
-            = active_href('doc/book/pipeline/syntax', 'Pipeline语法参考')
+            = active_href('doc/book/pipeline/syntax', '流水线语法参考')
           %li
-            = active_href('doc/pipeline/steps', 'Pipeline步骤参考')
+            = active_href('doc/pipeline/steps', '流水线步骤参考')
           %li
-            = active_href('doc/upgrade-guide', 'LTS升级指导', :fuzzy => true)
+            = active_href('doc/upgrade-guide', 'LTS 升级指导', :fuzzy => true)
 
         %h5
           = t('.recent_tutorial_blog_posts')
@@ -107,7 +107,7 @@ section: doc
               %a{:href => t.url}
                 = t.title
         .small
-          %a{:href => '/node/tags/tutorial'}
+          %a{:href => 'node/tags/tutorial'}
             = t('.view_all_tutorial_blog_posts')
 
         %p
