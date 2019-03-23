@@ -1,5 +1,5 @@
 ---
-title: "Jenkins Developer Reference"
+title: "Jenkins 开发者参考"
 layout: developerguide
 ---
 
@@ -10,10 +10,10 @@ layout: developerguide
         = chapter.title
       - if chapter.page.wip
         - if !chapter.page.references || chapter.page.references.length == 0
-          %i.icon-warning{:title => 'Early work in progress'}
+          %i.icon-warning{:title => '早期工作，还在进行中'}
             &nbsp;
         - else
-          %i.icon-warning{:title => 'Partial work in progress', :style => 'opacity: 0.5;'}
+          %i.icon-warning{:title => '部分工作还在进行中', :style => 'opacity: 0.5;'}
             &nbsp;
       - if chapter.page.summary
         %p{:style => 'font-size: 14px;'}
@@ -27,11 +27,11 @@ layout: developerguide
 
             - if section.page.wip
               - if !section.page.references || section.page.references.length == 0
-                %i.icon-warning{:title => 'Work in progress'}
+                %i.icon-warning{:title => '进行中'}
                   &nbsp;
               - else
-                %i.icon-warning{:title => 'Partial work in progress', :style => 'opacity: 0.5;'}
+                %i.icon-warning{:title => '部分工作还在进行中', :style => 'opacity: 0.5;'}
                   &nbsp;
   %li{:style => 'font-size: 24px;'}
     %a{:href => 'guides'}
-      Appendix C: Index of All How-To Guides
+      附录 C: 所有操作指南的索引
