@@ -1,6 +1,6 @@
 ---
 layout: simplepage
-title: LTS Changelog
+title: LTS 变更日志
 ---
 
 = partial('changelog-header.html')
@@ -16,7 +16,7 @@ title: LTS Changelog
   - site.changelogs[:lts].reverse_each do | release |
     - if Gem::Version.new(release.version) <= Gem::Version.new(site.jenkins.stable)
       %h3{:id => "v#{release.version}" }
-        = "What's new in #{release.version} (#{release.date})"
+        = "#{release.version} (#{release.date}) 中有什么新内容"
       - if release.banner
         %div{:style => 'margin: 10px; padding: 10px; background-color: #FFFFCE;'}
           = release.banner
@@ -24,7 +24,7 @@ title: LTS Changelog
         %div
           %strong
             -# TODO figure out how to get rid of this
-            = "Changes since #{release.lts_baseline}:"
+            = "自 #{release.lts_baseline} 以来的变更："
       %ul.image
         = partial('changelog-changes.html.haml', :changes => release.changes)
       -if release.changes and release.lts_changes

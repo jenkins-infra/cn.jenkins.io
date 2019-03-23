@@ -1,6 +1,6 @@
 ---
 layout: simplepage
-title: Changelog
+title: 变更日志
 ---
 
 = partial('changelog-header.html')
@@ -10,7 +10,7 @@ title: Changelog
   - site.changelogs[:weekly].reverse_each do | release |
     - if Gem::Version.new(release.version) <= Gem::Version.new(site.jenkins.latest)
       %h3{:id => "v#{release.version}" }
-        = "What's new in #{release.version} (#{release.date})"
+        = "#{release.version} (#{release.date}) 中有什么新内容"
       - if release.banner
         %div{:style => 'margin: 10px; padding: 10px; background-color: #FFFFCE;'}
           = release.banner
@@ -20,6 +20,7 @@ title: Changelog
 
 %p
   %b
-    Older changelogs can be found in a
+    更老的变更日志可以在一个
     %a{:href => '/changelog-old/'}
-      separate file
+      单独的文件
+    中找到
