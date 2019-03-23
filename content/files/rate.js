@@ -31,7 +31,7 @@ function do_loaddata() {
         + (r && r[1] ? r[1] + ' ' : '0 ') + health('cloudy',(r && r[1] ? '' : 'light'),v,0, 'I experienced notable issues')
         + (r && r[2] ? r[2] + ' ' : '0 ') + health('storm',(r && r[2] ? '' : 'light'),v,-1, 'I had to roll back');
     if (r && r.length > 3) {
-      txt += '<span class="related-issues">Community reported issues: ';
+      txt += '<span class="related-issues">社区报告的缺陷：';
       for (j = 3; j < r.length; j+=2)
         txt += r[j+1] + '&times;<a href="https://issues.jenkins-ci.org/browse/JENKINS-' + r[j] + '">JENKINS-' + r[j] + '</a> ';
       txt += '</span>';
@@ -43,20 +43,20 @@ function do_loaddata() {
 }
 
 function rate(version,rating) {
-  var issue = (rating <= 0) ? prompt('Please provide issue number from our JIRA causing trouble:','') : '';
+  var issue = (rating <= 0) ? prompt('请提供记录在我们 JIRA 中的缺陷编号：','') : '';
   if (issue==null) return; // Cancelled
   if (rating <= 0 && issue == '') {
-    issue = prompt('Are you sure you do not want to provide an issue reference? It really helps us improve Jenkins.\nEnter issue number, or leave empty to skip:', '');
+    issue = prompt('你确定不想要提供缺陷索引吗？它确实可以帮忙我们改进 Jenkins.\n输入缺陷编号，或留空白跳过：', '');
     if (issue==null) return; // Cancelled
   }
   var script = document.createElement('SCRIPT');
   script.type = 'text/javascript';
   script.src = 'https://rating.jenkins.io/rate/submit.php?version='
     + encodeURIComponent(version) + '&rating=' + rating + '&issue=' + encodeURIComponent(issue);
-  script.onload = function() { alert('Thanks!'); location.reload(); }
+  script.onload = function() { alert('谢谢！'); location.reload(); }
   script.onreadystatechange = function() { // For IE
     if (this.readyState=='loaded' || this.readyState=='complete') {
-      alert('Thanks!'); location.reload();
+      alert('谢谢！'); location.reload();
     }
   }
   document.getElementById('head').appendChild(script);

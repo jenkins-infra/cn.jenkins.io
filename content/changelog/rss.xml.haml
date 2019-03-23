@@ -5,12 +5,12 @@
 
   %channel
     %title
-      Jenkins Changelog
+      Jenkins 变更日志
     %link
       https://jenkins.io/changelog
     %atom:link(href="#{expand_link(page.url)}" rel="self" type="application/rss+xml")
     %description
-      Changelog for Jenkins weekly releases
+      Jenkins 每周发布的版本变更日志
     %lastBuildDate
       #{Date.today.rfc822}
     = partial('changelog-changes.xml.haml', :releases => site.changelogs[:weekly], :changelog_url => 'https://jenkins.io/changelog/', :newest_release => site.jenkins.latest)
