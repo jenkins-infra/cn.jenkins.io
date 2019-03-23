@@ -1,6 +1,6 @@
 ---
 layout: documentation
-title: Jenkins用户文档
+title: Jenkins 用户文档
 section: doc
 ---
 
@@ -39,5 +39,5 @@ http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html
 
 <p/>
 
-<p>点击 <span id="link" onclick="origUrl()">这儿</span> 回到反馈页面</p>
+<p>点击<span id="link" onclick="origUrl()">这儿</span>回到反馈页面</p>
 ++++
