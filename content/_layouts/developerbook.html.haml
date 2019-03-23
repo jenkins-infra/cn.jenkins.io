@@ -33,20 +33,20 @@ layout: default
               = active_href(File.join('doc/developer', chapter.key), chapter.title, :fuzzy => true)
               - if chapter.page.wip
                 - if !chapter.page.references || chapter.page.references.length == 0
-                  %i.icon-warning{:title => 'Early work in progress'}
+                  %i.icon-warning{:title => '早期工作，还在进行中'}
                     = t('.nbsp')
                 - else
-                  %i.icon-warning{:title => 'Partial work in progress', :style => 'opacity: 0.5;'}
+                  %i.icon-warning{:title => '部分工作还在进行中', :style => 'opacity: 0.5;'}
                     = t('.nbsp')
 
         %h4
-          = active_href('doc/developer/guides', 'How-To Guides', :fuzzy => true)
+          = active_href('doc/developer/guides', '操作指南', :fuzzy => true)
 
         %h4
           = t('.resources')
 
         %h5
-          = active_href('doc/developer/extensions', 'Extensions Index', :fuzzy => true)
+          = active_href('doc/developer/extensions', '扩展索引', :fuzzy => true)
 
         %h5
           = active_href('doc/developer/javadoc', 'Javadoc', :fuzzy => true)
