@@ -60,7 +60,7 @@ link:http://groovy-lang.org/syntax.html[Groovy的语法]同样的规则，
 
 ==== 代理
 
-`agent` 部分指定了整个流水线或特定的部分, 将会在Jenkins环境中执行的位置，这取决于 `agent`区域的位置。该部分必须在`pipeline` 块的顶层被定义, 但是stage级别的使用是可选的。
+`agent` 部分指定了整个流水线或特定的部分, 将会在Jenkins环境中执行的位置，这取决于 `agent` 区域的位置。该部分必须在 `pipeline` 块的顶层被定义, 但是 stage 级别的使用是可选的。
 
 
 [cols="^10h,>90a",role=syntax]
@@ -85,12 +85,12 @@ link:http://groovy-lang.org/syntax.html[Groovy的语法]同样的规则，
 any:: 在任何可用的代理上执行流水线或阶段。例如: `agent any`
 
 none:: 当在 `pipeline` 块的顶部没有全局代理，
-该参数将会被分配到整个流水线的运行中并且每个 `stage`部分都需要包含他自己的`agent` 部分。比如: `agent none`
+该参数将会被分配到整个流水线的运行中并且每个 `stage` 部分都需要包含他自己的 `agent` 部分。比如: `agent none`
 
-label:: 在提供了标签的Jenkins环境中可用的代理上执行流水线或阶段。 例如: `agent { label 'my-defined-label' }`
+label:: 在提供了标签的 Jenkins 环境中可用的代理上执行流水线或阶段。 例如: `agent { label 'my-defined-label' }`
 
 node:: `agent { node { label 'labelName' } }` 和
-`agent { label 'labelName' }`一样, 但是 `node` 允许额外的选项 (比如`customWorkspace`)。
+`agent { label 'labelName' }` 一样, 但是 `node` 允许额外的选项 (比如 `customWorkspace` )。
 
 docker:: 使用给定的容器执行流水线或阶段。该容器将在预置的 <<../glossary#node, node>>上，或在匹配可选定义的`label` 参数上，动态的供应来接受基于Docker的流水线。 `docker` 也可以选择的接受 `args` 参数，该参数可能包含直接传递到 `docker run` 调用的参数, 以及 `alwaysPull` 选项, 该选项强制 `docker pull` ，即使镜像名称已经存在。
 比如: `agent { docker 'maven:3-alpine' }` 或
@@ -106,11 +106,11 @@ agent {
 }
 ----
 
-dockerfile:: 执行流水线或阶段, 使用从源代码库包含的`Dockerfile` 构建的容器。为了使用该选项，
+dockerfile:: 执行流水线或阶段, 使用从源代码库包含的 `Dockerfile` 构建的容器。为了使用该选项，
  `Jenkinsfile` 必须从多个分支流水线中加载, 或者加载
-"Pipeline from SCM." 通常，这是源代码仓库的根目录下的 `Dockerfile` : `agent { dockerfile true }`. 如果在另一个目录下构建 `Dockerfile` , 使用 `dir` 选项: `agent { dockerfile {dir 'someSubDir' } }`。如果 `Dockerfile`有另一个名称, 你可以使用`filename`选项指定该文件名。你可以传递额外的参数到 `docker build ...`
+"Pipeline from SCM." 通常，这是源代码仓库的根目录下的 `Dockerfile` : `agent { dockerfile true }`. 如果在另一个目录下构建 `Dockerfile` , 使用 `dir` 选项: `agent { dockerfile {dir 'someSubDir' } }`。如果 `Dockerfile` 有另一个名称, 你可以使用 `filename` 选项指定该文件名。你可以传递额外的参数到 `docker build ...`
 使用 `additionalBuildArgs` 选项提交, 比如 `agent { dockerfile {additionalBuildArgs '--build-arg foo=bar' } }`。
-例如, 一个带有`build/Dockerfile.build`的仓库,期望一个构建参数`version`:
+例如, 一个带有 `build/Dockerfile.build` 的仓库,期望一个构建参数 `version`:
 +
 [source,groovy]
 ----
@@ -131,10 +131,10 @@ agent {
 
 label:: 一个字符串。该标签用于运行流水线或个别的 `stage`。
 +
-该选项对 `node`, `docker` 和 `dockerfile`可用, 
+该选项对 `node`, `docker` 和 `dockerfile` 可用,
 `node`要求必须选择该选项。
 
-customWorkspace:: 一个字符串。在自定义工作区运行应用了`agent`的流水线或个别的 `stage`, 而不是默认值。 它既可以是一个相对路径, 在这种情况下，自定义工作区会存在于节点工作区根目录下, 或者一个绝对路径。比如:
+customWorkspace:: 一个字符串。在自定义工作区运行应用了 `agent` 的流水线或个别的 `stage`, 而不是默认值。 它既可以是一个相对路径, 在这种情况下，自定义工作区会存在于节点工作区根目录下, 或者一个绝对路径。比如:
 +
 [source,groovy]
 ----
@@ -146,12 +146,12 @@ agent {
 }
 ----
 +
-该选项对 `node`, `docker` 和 `dockerfile`有用 。
+该选项对 `node`, `docker` 和 `dockerfile` 有用 。
 
 reuseNode:: 一个布尔值, 默认为false。 如果是true, 则在流水线的顶层指定的节点上运行该容器, 在同样的工作区, 而不是在一个全新的节点上。
 +
-这个选项对`docker` 和 `dockerfile`有用, 并且只有当
-使用在个别的 `stage`的 `agent` 上才会有效。
+这个选项对 `docker` 和 `dockerfile` 有用, 并且只有当
+使用在个别的 `stage` 的 `agent` 上才会有效。
 
 [[agent-example]]
 ===== 示例
@@ -199,7 +199,7 @@ pipeline {
 }
 // Script //
 ----
-<1> 在流水线顶层定义 `agent none`确保
+<1> 在流水线顶层定义 `agent none` 确保
 <<../glossary#executor, an Executor>> 没有被分配。
 使用 `agent none` 也会强制 `stage` 部分包含他自己的 `agent` 部分。
 <2> 使用镜像在一个新建的容器中执行该阶段的该步骤。
@@ -209,7 +209,7 @@ pipeline {
 
 `post` 部分定义一个或多个<<declarative-steps,steps>>
 ，这些阶段根据流水线或阶段的完成情况而
-运行(取决于流水线中`post`部分的位置). `post` 支持以下 <<post-conditions,post-condition>> 块中的其中之一: `always`,
+运行(取决于流水线中 `post` 部分的位置). `post` 支持以下 <<post-conditions,post-condition>> 块中的其中之一: `always`,
 `changed`, `failure`, `success`, `unstable`, 和 `aborted`。这些条件块允许在  `post` 部分的步骤的执行取决于流水线或阶段的完成状态。
 [cols="^10h,>90a",role=syntax]
 |===
@@ -294,11 +294,11 @@ pipeline {
 // Script //
 ----
 <1> `stages` 部分通常会遵循诸如 `agent`,
-`options`等的指令。
+`options` 等的指令。
 
 ==== steps
 
-`steps` 部分在给定的`stage` 指令中执行的定义了一系列的一个或多个<<declarative-steps, steps>>。
+`steps` 部分在给定的 `stage` 指令中执行的定义了一系列的一个或多个<<declarative-steps, steps>>。
 
 [cols="^10h,>90a",role=syntax]
 |===
@@ -382,13 +382,13 @@ pipeline {
 }
 // Script //
 ----
-<1> 顶层流水线块中使用的`environment` 指令将适用于流水线中的所有步骤。
-<2> 在一个`stage`中定义的 `environment`指令只会将给定的环境变量应用于`stage`中的步骤。
-<3> `environment` 块有一个 助手方法 `credentials()` 定义，该方法可以在Jenkins环境中用于通过标识符访问预定义的凭证。
+<1> 顶层流水线块中使用的 `environment` 指令将适用于流水线中的所有步骤。
+<2> 在一个 `stage` 中定义的 `environment` 指令只会将给定的环境变量应用于 `stage` 中的步骤。
+<3> `environment` 块有一个 助手方法 `credentials()` 定义，该方法可以在 Jenkins 环境中用于通过标识符访问预定义的凭证。
 
 ==== options
 
-`options` 指令允许从流水线内部配置特定于流水线的选项。 流水线提供了许多这样的选项, 比如`buildDiscarder`,但也可以由插件提供, 比如
+`options` 指令允许从流水线内部配置特定于流水线的选项。 流水线提供了许多这样的选项, 比如 `buildDiscarder`,但也可以由插件提供, 比如
 `timestamps`.
 
 
@@ -449,7 +449,7 @@ pipeline {
 }
 // Script //
 ----
-<1> 指定一个小时的全局执行超时, 在此之后，Jenkins将中止流水线运行。
+<1> 指定一个小时的全局执行超时, 在此之后，Jenkins 将中止流水线运行。
 
 [NOTE]
 ====
@@ -459,13 +459,13 @@ link:https://issues.jenkins-ci.org/browse/INFRA-1053[INFRA-1503]次。
 
 ===== 阶段选项
 
-`stage`的`options`指令类似于流水线根目录上的 `options` 指令。然而， `stage`-级别 `options` 只能包括 `retry`, `timeout`, 或 `timestamps`等步骤, 或与 `stage`相关的声明式选项，如 `skipDefaultCheckout`。
+`stage` 的 `options` 指令类似于流水线根目录上的 `options` 指令。然而， `stage` -级别 `options` 只能包括 `retry`, `timeout`, 或 `timestamps` 等步骤, 或与 `stage` 相关的声明式选项，如 `skipDefaultCheckout`。
 
 在`stage`, `options` 指令中的步骤在进入 `agent` 之前被调用或在 `when` 条件出现时进行检查。
 
 ====== 可选的阶段选项
 
-skipDefaultCheckout:: 在`agent`指令中跳过默认的从源代码控制中检出代码。例如: `options { skipDefaultCheckout() }`
+skipDefaultCheckout:: 在 `agent` 指令中跳过默认的从源代码控制中检出代码。例如: `options { skipDefaultCheckout() }`
 
 timeout:: 设置此阶段的超时时间, 在此之后， Jenkins 会终止该阶段。 例如: `options { timeout(time: 1, unit: 'HOURS') }`
 
@@ -495,11 +495,11 @@ pipeline {
 }
 // Script //
 ----
-<1> 指定`Example`阶段的执行超时时间, 在此之后，Jenkins将中止流水线运行。
+<1> 指定 `Example` 阶段的执行超时时间, 在此之后，Jenkins 将中止流水线运行。
 
 ==== 参数
 
-`parameters`指令提供了一个用户在触发流水线时应该提供的参数列表。这些用户指定参数的值可通过`params` 对象提供给流水线步骤,
+`parameters` 指令提供了一个用户在触发流水线时应该提供的参数列表。这些用户指定参数的值可通过 `params` 对象提供给流水线步骤,
 了解更多请参考<<parameters-example>>。
 
 [cols="^10h,>90a",role=syntax]
@@ -551,7 +551,8 @@ link:https://issues.jenkins-ci.org/browse/INFRA-1053[INFRA-1503]的完成。
 
 ==== 触发器
 
-`triggers`指令定义了流水线被重新触发的自动化方法。对于集成了源（ 比如 GitHub 或 BitBucket）的流水线, 可能不需要`triggers` m，因为 基于web的集成很肯能已经存在。当前可用的触发器是
+`triggers` 指令定义了流水线被重新触发的自动化方法。对于集成了源（ 比如 GitHub 或 BitBucket）的流水线, 可能不需要 `triggers` ，因为基于 web 的集成很肯能已经存在。
+当前可用的触发器是
 `cron`, `pollSCM` 和 `upstream`。
 
 [cols="^10h,>90a",role=syntax]
@@ -567,8 +568,8 @@ link:https://issues.jenkins-ci.org/browse/INFRA-1053[INFRA-1503]的完成。
 |===
 
 
-cron:: 接受 cron样式的字符串来定义要重新触发流水线的常规间隔 ,比如: `triggers { cron('H */4 * * 1-5') }`
-pollSCM:: 接受 cron样式的字符串来定义一个固定的间隔，在这个间隔中，Jenkins会检查新的源代码更新。如果存在更改, 流水线就会被重新触发。例如: `triggers { pollSCM('H */4 * * 1-5') }`
+cron:: 接收 cron 样式的字符串来定义要重新触发流水线的常规间隔 ,比如: `triggers { cron('H */4 * * 1-5') }`
+pollSCM:: 接收 cron 样式的字符串来定义一个固定的间隔，在这个间隔中，Jenkins 会检查新的源代码更新。如果存在更改, 流水线就会被重新触发。例如: `triggers { pollSCM('H */4 * * 1-5') }`
 upstream:: 接受逗号分隔的工作字符串和阈值。 当字符串中的任何作业以最小阈值结束时，流水线被重新触发。例如:
 `triggers { upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS) }`
 
@@ -602,7 +603,7 @@ pipeline {
 ==== stage
 
 `stage` 指令在 `stages` 部分进行，应该包含一个
-实际上, 流水巷所做的所有实际工作都将封装进一个或多个`stage` 指令中。
+实际上, 流水巷所做的所有实际工作都将封装进一个或多个 `stage` 指令中。
 
 [cols="^10h,>90a",role=syntax]
 |===
@@ -641,7 +642,7 @@ XXX: This is intentionally light until
 https://issues.jenkins-ci.org/browse/WEBSITE-193
 ////
 
-定义自动安装和放置`PATH`的工具的一部分。如果 `agent none` 指定，则忽略该操作。
+定义自动安装和放置 `PATH` 的工具的一部分。如果 `agent none` 指定，则忽略该操作。
 
 [cols="^10h,>90a",role=syntax]
 |===
@@ -687,26 +688,27 @@ pipeline {
 
 ==== input
 
-`stage`的`input` 指令允许你使用
-link:https://jenkins.io/doc/pipeline/steps/pipeline-input-step/#input-wait-for-interactive-input[`input` step]提示输入。在应用了`options`后，进入 `stage`的 `agent` 或评估 `when` 条件前，
+`stage` 的 `input` 指令允许你使用
+link:https://jenkins.io/doc/pipeline/steps/pipeline-input-step/#input-wait-for-interactive-input[`input` step]提示输入。
+在应用了 `options` 后，进入 `stage` 的 `agent` 或评估 `when` 条件前，
 `stage` 将暂停。 如果 `input`
-被批准,  `stage` 将会继续。 作为`input` 提交的一部分的任何参数都将在环境中用于其他
+被批准,  `stage` 将会继续。 作为 `input` 提交的一部分的任何参数都将在环境中用于其他
 `stage`。
 
 ===== 配置项
 
-message:: 必需的。 这将在用户提交`input`时呈现给用户。
+message:: 必需的。 这将在用户提交 `input` 时呈现给用户。
 
-id:: `input`的可选标识符， 默认为 `stage` 名称。
+id:: `input` 的可选标识符， 默认为 `stage` 名称。
 
 ok:: `input`表单上的"ok" 按钮的可选文本。
 
-submitter:: 可选的以逗号分隔的用户列表或允许提交 `input`的外部组名。默认允许任何用户。
+submitter:: 可选的以逗号分隔的用户列表或允许提交 `input` 的外部组名。默认允许任何用户。
 
-submitterParameter:: 环境变量的可选名称。如果存在，用`submitter` 名称设置。
+submitterParameter:: 环境变量的可选名称。如果存在，用 `submitter` 名称设置。
 
 parameters:: 提示提交者提供的一个可选的参数列表。
-更多信息参见<<parameters>>。
+更多信息参见 <<parameters>>。
 
 [[input-example]]
 ===== 示例
@@ -739,12 +741,12 @@ pipeline {
 
 `when` 指令允许流水线根据给定的条件决定是否应该执行阶段。
 `when` 指令必须包含至少一个条件。
-如果`when` 指令包含多个条件,
+如果 `when` 指令包含多个条件,
 所有的子条件必须返回True，阶段才能执行。
 这与子条件在 `allOf` 条件下嵌套的情况相同
 (参见下面的<<when-example, 示例>>)。
 
-使用诸如`not`, `allOf`, 或 `anyOf`的嵌套条件可以构建更复杂的条件结构 can be built
+使用诸如 `not`, `allOf`, 或 `anyOf` 的嵌套条件可以构建更复杂的条件结构 can be built
 嵌套条件刻意潜逃到任意深度。
 
 [cols="^10h,>90a",role=syntax]
@@ -773,9 +775,11 @@ allOf:: 当所有的嵌套条件都正确时，执行这个阶段,必须包含�
 
 anyOf:: 当至少有一个嵌套条件为真时，执行这个阶段,必须包含至少一个条件，例如: `when { anyOf { branch 'master'; branch 'staging' } }`
 
-===== 在进入 `stage`的 `agent`前评估`when` 
+===== 在进入 `stage` 的 `agent` 前评估 `when`
 
-默认情况下, 如果定义了某个阶段的代理，在进入该`stage`的`agent`后该 `stage`的`when` 条件将会被评估。但是, 可以通过在 `when`块中指定`beforeAgent` 选项来更改此选项。如果`beforeAgent` 被设置为 `true`, 那么就会首先对`when`条件进行评估 , 并且只有在`when`条件验证为真时才会进入`agent` 。
+默认情况下, 如果定义了某个阶段的代理，在进入该`stage` 的 `agent` 后该 `stage` 的
+`when` 条件将会被评估。但是, 可以通过在 `when` 块中指定 `beforeAgent` 选项来更改此选项。
+如果 `beforeAgent` 被设置为 `true`, 那么就会首先对 `when` 条件进行评估 , 并且只有在 `when` 条件验证为真时才会进入 `agent` 。
 
 [[when-example]]
 ===== 示例
@@ -947,11 +951,14 @@ pipeline {
 ----
 === 并行
 
-声明式流水线的阶段可以在他们内部声明多隔嵌套阶段, 它们将并行执行。 注意，一个阶段必须只有一个 `steps` 或 `parallel`的阶段。 嵌套阶段本身不能包含
-进一步的 `parallel` 阶段, 但是其他的阶段的行为与任何其他 `stage`相同。任何包含 `parallel` 的阶段不能包含 `agent` 或
-`tools`阶段, 因为他们没有相关 `steps`。
+声明式流水线的阶段可以在他们内部声明多隔嵌套阶段, 它们将并行执行。
+注意，一个阶段必须只有一个 `steps` 或 `parallel` 的阶段。
+嵌套阶段本身不能包含进一步的 `parallel` 阶段,
+但是其他的阶段的行为与任何其他 `stage` 相同。任何包含 `parallel` 的阶段不能包含 `agent` 或
+`tools` 阶段, 因为他们没有相关 `steps`。
 
-另外, 通过添加 `failFast true` 到包含`parallel`的 `stage`中， 当其中一个进程失败时，你可以强制所有的 `parallel` 阶段都被终止。 
+另外, 通过添加 `failFast true` 到包含 `parallel`的 `stage` 中，
+当其中一个进程失败时，你可以强制所有的 `parallel` 阶段都被终止。
 
 [[parallel-stages-example]]
 ==== 示例
@@ -1005,7 +1012,10 @@ pipeline {
 
 ==== 脚本
 
-`script` 步骤需要 <<scripted-pipeline>>块并在声明式流水线中执行。对于大多数用例来说,应该声明式流水线中的“脚本”步骤是不必要的，但是它可以提供一个有用的"逃生出口"。非平凡的规模和/或复杂性的`script`块应该被转移到 <<shared-libraries#, 共享库>> 。
+`script` 步骤需要 <<scripted-pipeline>>块并在声明式流水线中执行。
+对于大多数用例来说,应该声明式流水线中的“脚本”步骤是不必要的，
+但是它可以提供一个有用的"逃生出口"。
+非平凡的规模和/或复杂性的 `script` 块应该被转移到 <<shared-libraries#, 共享库>> 。
 
 [[script-example]]
 ===== 示例
@@ -1042,7 +1052,7 @@ Groovy 语言提供的大部分功能都可以用于脚本化流水线的用户�
 
 === 流控制
 
-脚本化流水线从`Jenkinsfile`的顶部开始向下串行执行, 就像 Groovy 或其他语言中的大多数传统脚本一样。
+脚本化流水线从 `Jenkinsfile` 的顶部开始向下串行执行, 就像 Groovy 或其他语言中的大多数传统脚本一样。
 因此，提供流控制取决于 Groovy 表达式, 比如
 `if/else` 条件, 例如:
 
