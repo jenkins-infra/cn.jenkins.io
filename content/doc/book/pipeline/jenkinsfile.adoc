@@ -1,6 +1,6 @@
 ---
 layout: section
-title: 使用Jenkinsfile
+title: 使用 Jenkinsfile
 ---
 ifdef::backend-html5[]
 :description:
@@ -13,10 +13,10 @@ ifdef::backend-html5[]
 endif::[]
 
 
-= 使用Jenkinsfile
+= 使用 Jenkinsfile
 
 本节基于 link:../getting-started[开始启动流水线] 所涵盖的信息，
-介绍更有用的步骤, 常见的模式, 以及演示 `Jenkinsfile`的一些特例。
+介绍更有用的步骤, 常见的模式, 以及演示 `Jenkinsfile` 的一些特例。
 
 创建一个 `Jenkinsfile`, 它被检入到源代码控制中
 footnoteref:[scm, https://en.wikipedia.org/wiki/Source_control_management],
@@ -27,15 +27,15 @@ footnoteref:[scm, https://en.wikipedia.org/wiki/Source_control_management],
 * 流水线的真正源代码
   footnote:[https://en.wikipedia.org/wiki/Single_Source_of_Truth], 能够被项目的多个成员查看和编辑。
 
-流水线支持 link:../syntax[两种语法], 声明式 (在流水线
-2.5引入)和脚本化流水线。 两种都支持构建持续交付流水线。两种都可以用来在web UI或 `Jenkinsfile`中定义流水线, 不过通常认为创建一个 `Jenkinsfile`并将其检入带源代码控制仓库是最佳实践。
+流水线支持 link:../syntax[两种语法], 声明式 (在流水线 
+2.5 引入)和脚本化流水线。 两种都支持构建持续交付流水线。两种都可以用来在 web UI 或 `Jenkinsfile` 中定义流水线, 不过通常认为创建一个 `Jenkinsfile` 并将其检入带源代码控制仓库是最佳实践。
 
 
 
-== 创建Jenkinsfile
+== 创建 Jenkinsfile
 
 正如
-link:../getting-started#defining-a-pipeline-in-scm[在SCM中定义流水线]中所讨论的,`Jenkinsfile` 是一个文本文件，它包含了Jenkins流水线的定义并被检入源代码控制。以下流水线实现了基本的三个阶段的连续交付。
+link:../getting-started#defining-a-pipeline-in-scm[在SCM中定义流水线]中所讨论的，`Jenkinsfile` 是一个文本文件，它包含了 Jenkins 流水线的定义并被检入源代码控制。以下流水线实现了基本的三个阶段的连续交付。
 
 [pipeline]
 ----
@@ -75,12 +75,12 @@ node {
 }
 ----
 
-不是所有的流水线都有相同的三个阶段, 但这是一个很好的起点，可以为大多数项目定义它们。下面这一节将演示在Jenkins的测试安装中一个简单流水线的创建和执行。
+不是所有的流水线都有相同的三个阶段, 但这是一个很好的起点，可以为大多数项目定义它们。下面这一节将演示在 Jenkins 的测试安装中一个简单流水线的创建和执行。
 
 [NOTE]
 ====
-假设已经为项目设置了一个源代码控制仓库并在Jenkins下的
-<<getting-started#defining-a-pipeline-in-scm, these instructions>>中定义了一体个流水线。
+假设已经为项目设置了一个源代码控制仓库并在 Jenkins 下的
+<<getting-started#defining-a-pipeline-in-scm, these instructions>>中定义了一个流水线。
 ====
 
 使用文本编辑器, 理想情况，它支持
@@ -89,16 +89,16 @@ link:http://groovy-lang.org[Groovy]
 
 [role=declarative-pipeline]
 上面的声明式流水线示例包含了实现连续交付流水线的最低必要结构。 <<syntax#agent, agent
-directive>>是必需的, 它指示Jenkins为流水线分配一个执行器和工作区。 没有 `agent` 指令的话, 声明式流水线不仅无效, 它也不可能完成任何工作! 通过默认的`agent` 指令确保源代码仓库被检出并在后续阶段中提供步骤。
+directive>>是必需的, 它指示Jenkins为流水线分配一个执行器和工作区。 没有 `agent` 指令的话, 声明式流水线不仅无效, 它也不可能完成任何工作! 通过默认的 `agent` 指令确保源代码仓库被检出并在后续阶段中提供步骤。
 
 <<syntax#stages, stages directive>>和 <<syntax#steps, steps directives>>
-也需要一个有效的声明式流水线，因为它们指示Jenkins要执行什，在哪个阶段执行。
+也需要一个有效的声明式流水线，因为它们指示 Jenkins 要执行什么，在哪个阶段执行。
 
 [role=scripted-pipeline]
 ====
 脚本化流水线的更先进的用法, 上面的 `node` 例子是关键的第一步，因为它为流水线分配了一个执行器和工作区。
-本质上, 在没有 `node`的情况下, 流水线无法工作! 从 `node`内,
-业务的第一步是检出这个项目的源代码。由于 `Jenkinsfile`被直接从源代码控制中拉取出来，流水线提供了一个快速且简单的方式来访问源代码的正确修改 。
+本质上, 在没有 `node` 的情况下, 流水线无法工作! 从 `node` 内,
+业务的第一步是检出这个项目的源代码。由于 `Jenkinsfile` 被直接从源代码控制中拉取出来，流水线提供了一个快速且简单的方式来访问源代码的正确修改 。
 
 [pipeline]
 ----
@@ -109,15 +109,15 @@ node {
 }
 // Declarative not yet implemented //
 ----
-<1>`checkout` 步骤将会从源代码控制中检出代码; `scm` 是一个特定的变量， 它指示`checkout` 步骤clone 触发流水线运行的特定修改。
+<1>`checkout` 步骤将会从源代码控制中检出代码；`scm` 是一个特定的变量， 它指示 `checkout` 步骤 clone 触发流水线运行的特定修改。
 ====
 
 
 === 构建
 
-对于许多项目来说， 流水线中"work" 的开始就是 "build"阶段。通常流水线的这个阶段是源代码组装, 编译, 或打包。 `Jenkinsfile` 文件 *not* 替代现有的例如GNU/Make, Maven, Gradle等的构建工具，但可以将其视为一个将项目的开发周期的多个阶段 (构建, 测试, 部署等) 绑定在一起的粘合层。
+对于许多项目来说， 流水线中 "work" 的开始就是 "build" 阶段。通常流水线的这个阶段是源代码组装, 编译, 或打包。 `Jenkinsfile` 文件 *not* 替代现有的例如 GNU/Make、 Maven、 Gradle 等的构建工具，但可以将其视为一个将项目的开发周期的多个阶段 (构建、 测试、 部署等) 绑定在一起的粘合层。
 
-Jenkins 有许多插件用于在一般使用中实际调用任何构建工具, 但是这个例子只需要从shell步骤(`sh`)调用 `make`。`sh` 步骤假设系统是Unix/基于Linux的, 对于基于Windows的系统可以使用 `bat` 。
+Jenkins 有许多插件用于在一般使用中实际调用任何构建工具, 但是这个例子只需要从 shell 步骤(`sh`)调用 `make`。`sh` 步骤假设系统是 Unix /基于 Linux 的, 对于基于 Windows 的系统可以使用 `bat` 。
 
 [pipeline]
 ----
@@ -149,19 +149,19 @@ node {
 
 [TIP]
 ====
-档案组件不是使用外部组件仓库（例如 Artifactory或 Nexu）的替代 ，被认为只是基本报告和文件档案。
+档案组件不是使用外部组件仓库（例如 Artifactory 或 Nexu）的替代 ，被认为只是基本报告和文件档案。
 ====
 
 
 === 测试
 
-运行自动化测试是任何成功的持续交付过程的重要组成部分。因此，Jenkins有许多测试记录, 报告,
+运行自动化测试是任何成功的持续交付过程的重要组成部分。因此，Jenkins 有许多测试记录, 报告,
 和可视化工具， 这些都是由
 link:https://plugins.jenkins.io/?labels=report[许多插件]提供的。
-在基本级别上, 当测试失败, 让Jenkins记录web UI中报告和可视化的失败是很有用的。 下面的例子使用 `junit` 步骤, 由
-plugin:junit[JUnit插件]提供。
+在基本级别上, 当测试失败, 让 Jenkins 记录 web UI 中报告和可视化的失败是很有用的。 下面的例子使用 `junit` 步骤, 由
+plugin:junit[JUnit 插件]提供。
 
-在下面的例子中, 如果测试失败, 流水线就会被标记为 "不稳定", 这是由web UI中的黄色球表示的。 基于记录的测试报告,
+在下面的例子中, 如果测试失败, 流水线就会被标记为 "不稳定", 这是由 web UI 中的黄色球表示的。 基于记录的测试报告,
 Jenkins 也可以提供历史趋势分析和可视化。
 
 [pipeline]
@@ -196,9 +196,9 @@ node {
 }
 ----
 <1> 使用内联的 shell 条件 (`sh 'make || true'`) 确保
-`sh` 步骤总是看到零退出代码, 使`junit` 步骤有机会
+`sh` 步骤总是看到零退出代码, 使 `junit` 步骤有机会
 捕获和处理测试报告。在下一节<<handling-failure>>中，对它的替代方法有更详细的介绍。
-<2> `junit` 捕获并关联与包含模式 (`**/target/*.xml`)匹配的JUnit XML 文件。
+<2> `junit` 捕获并关联与包含模式 (`**/target/*.xml`)匹配的 JUnit XML 文件。
 
 
 === 部署
@@ -240,16 +240,16 @@ node {
 确定是否有任何测试失败。在这种情况下, 值为
 `UNSTABLE`。
 
-假设在示例的Jenkins流水线中所有的操作都执行成功，
+假设在示例的 Jenkins 流水线中所有的操作都执行成功，
 每个成功的流水线运行会有相关的存档的构建组件,
-报告在Jenkins中的的测试结果和完整的控制台输出。
+报告在 Jenkins 中的的测试结果和完整的控制台输出。
 
 [role=scripted-pipeline]
 脚本化的流水线包含条件测试(如上所示), 循环,
 try/catch/finally 块甚至函数。 下一节将会详细的介绍高级的脚本化流水线语法。
 
 
-== 处理Jenkinsfile
+== 处理 Jenkinsfile
 
 以下部分提供了处理细节:
 
@@ -259,7 +259,7 @@ try/catch/finally 块甚至函数。 下一节将会详细的介绍高级的脚�
 
 === 插入字符串
 
-Jenkins 使用与 link:http://groovy-lang.org[Groovy] 相同的规则进行字符串插值。 Groovy的字符串插值支持可能会使很多新手感到困惑。 尽管 Groovy 支持使用单引号或双引号声明一个字符串，例如:
+Jenkins 使用与 link:http://groovy-lang.org[Groovy] 相同的规则进行字符串插值。 Groovy 的字符串插值支持可能会使很多新手感到困惑。 尽管 Groovy 支持使用单引号或双引号声明一个字符串，例如:
 
 [source,groovy]
 ----
@@ -289,16 +289,16 @@ I said, Hello Mr. Jenkins
 
 === 使用环境变量
 
-Jenkins 流水线通过全局变量 `env`公开环境变量,
-它可以从 `Jenkinsfile`文件的任何地方获得。从Jenkins流水线中可访问的 环境变量的完整列表 被记录在
+Jenkins 流水线通过全局变量 `env` 公开环境变量,
+它可以从 `Jenkinsfile` 文件的任何地方获得。从 Jenkins 流水线中可访问的环境变量的完整列表被记录在
 link:http://localhost:8080/pipeline-syntax/globals#env[localhost:8080/pipeline-syntax/globals#env]中,
-假设Jenkins 主机运行在 `localhost:8080`, 并且包括:
+假设 Jenkins 主机运行在 `localhost:8080`, 并且包括:
 
-BUILD_ID:: 当前的构建 ID, 与Jenkins 版本 1.597+ 中创建的构建的BUILD_NUMBER是完全相同的。
+BUILD_ID:: 当前的构建 ID, 与 Jenkins 版本 1.597+ 中创建的构建的 BUILD_NUMBER 是完全相同的。
 JOB_NAME:: 本次构建的项目名称, 如 "foo" 或 "foo/bar"。
-JENKINS_URL:: Jenkins的完整路径, 如http://example.com:port/jenkins/ (NOTE: 只有Jenkins的URL 设置在 "System Configuration"才会可以找到)
+JENKINS_URL:: Jenkins的完整路径, 如 http://example.com:port/jenkins/ (NOTE: 只有 Jenkins 的 URL 设置在 "System Configuration" 才会可以找到)
 
-引用或使用这些环境变量就像访问Groovy
+引用或使用这些环境变量就像访问 Groovy
 link:http://groovy-lang.org/syntax.html#_maps[Map]一样,
 例如:
 
@@ -324,7 +324,7 @@ node {
 
 ==== 设置环境变量
 
-在Jenkins流水线中设置环境变量的方法不同，这取决于使用的是声明式还是脚本化的流水线。
+在 Jenkins 流水线中设置环境变量的方法不同，这取决于使用的是声明式还是脚本化的流水线。
 
 声明式流水线支持 <<syntax#environment, environment>>
 指令, 而脚本化流水线的用户必须使用 `withEnv` 步骤。
@@ -370,7 +370,7 @@ credentials] 页面。
 
 ==== 机密文本, 用户名和密码, 和私密文件
 
-Jenkins的声明式流水线语法有 `credentials()` helper 思想 (使用在<<syntax#environment,`environment`>> 指令中)，它支持
+Jenkins 的声明式流水线语法有 `credentials()` helper 思想 (使用在<<syntax#environment,`environment`>> 指令中)，它支持
 <<#secret-text,secret text>>, <<#usernames-and-passwords,username and
 password>>, 以及 <<#secret-files,secret file>> 凭证。如果你想处理其他类型的凭证, 请参考 <<#for-other-credential-types,
 For other credential types>> 节 (下面的)。
@@ -380,7 +380,7 @@ For other credential types>> 节 (下面的)。
 
 下面的流水线代码演示了如何使用环境变量为机密文本凭证创建流水线的示例。
 
-在该示例中, 将两个秘密文本凭证分配给单独的环境变来访问 Amazon Web 服务 (AWS)。 这些凭证将在 Jenkins中配置各自的凭证 IDs +
+在该示例中, 将两个秘密文本凭证分配给单独的环境变来访问 Amazon Web 服务 (AWS)。 这些凭证将在 Jenkins 中配置各自的凭证 IDs +
 `jenkins-aws-secret-key-id` 和 `jenkins-aws-secret-access-key`。
 
 [pipeline]
@@ -410,10 +410,10 @@ pipeline {
 // Script //
 ----
 <1>你可以在该阶段的步骤中
-使用用语法`$AWS_ACCESS_KEY_ID` 和 `$AWS_SECRET_ACCESS_KEY`，来引用两个凭证环境变量 (定义在流水线的 <<syntax#environment,`environment`>> 指令中) 。比如, 在这里，你可以使用分配给这些凭证变量的秘密文件凭证对AWS进行身份验证。 +
-为了维护这些凭证的安全性和匿名性, 如果你试图从流水线中检索这些凭证变量的值 (如`echo $AWS_SECRET_ACCESS_KEY`), Jenkins 只会返回 "`****`" 来防止机密信息被写到控制台输出和任何输出。凭证ID本身的任何敏感信息 (如用户名)
+使用用语法`$AWS_ACCESS_KEY_ID` 和 `$AWS_SECRET_ACCESS_KEY`，来引用两个凭证环境变量 (定义在流水线的 <<syntax#environment,`environment`>> 指令中) 。比如, 在这里，你可以使用分配给这些凭证变量的秘密文件凭证对 AWS 进行身份验证。 +
+为了维护这些凭证的安全性和匿名性, 如果你试图从流水线中检索这些凭证变量的值 (如 `echo $AWS_SECRET_ACCESS_KEY`), Jenkins 只会返回 "`****`" 来防止机密信息被写到控制台输出和任何输出。凭证ID本身的任何敏感信息 (如用户名)
 也会以 "`****`" 的形式返回到流水线运行的输出中。
-<2> 在该流水线示例中,分配给两个 `AWS_...`的凭据环境变量是整个流水线的全局范围内都可访问, 所以这些凭据变量 也可以用于用到该阶段的步骤中。然而，如果流水线中的
+<2> 在该流水线示例中,分配给两个 `AWS_...` 的凭据环境变量是整个流水线的全局范围内都可访问, 所以这些凭据变量 也可以用于用到该阶段的步骤中。然而，如果流水线中的
 `environment` 指令被移动到特定的阶段(比如下面的 <<#usernames-and-passwords,Usernames and passwords>> 流水线示例), 然后这些 `AWS_...` 环境变量只能作用于该阶段的步骤中。
 
 
@@ -422,7 +422,7 @@ pipeline {
 下面的流水线代码片段展示了如何创建一个使用用户名和密码凭证的环境变量的流水线
 的示例。
 
-在该示例中, 用户名和密码凭证被分配环境变量，用来使你的组织的团队以一个公用账户访问Bitbucket仓库 ; 这些凭证将会在Jenkins 中配置凭证ID `jenkins-bitbucket-common-creds`。
+在该示例中, 用户名和密码凭证被分配环境变量，用来使你的组织的团队以一个公用账户访问 Bitbucket 仓库 ; 这些凭证将会在 Jenkins 中配置凭证 ID `jenkins-bitbucket-common-creds`。
 
 当在 <<syntax#environment,
 `environment`>> 指令中设置凭证环境变量时:
@@ -436,13 +436,13 @@ environment {
 
 这实际设置了下面的三个环境变量:
 
-* `BITBUCKET_COMMON_CREDS` - 包含一个以冒号分隔的用户名和密码 格式为`username:password`。
+* `BITBUCKET_COMMON_CREDS` - 包含一个以冒号分隔的用户名和密码 格式为 `username:password`。
 * `BITBUCKET_COMMON_CREDS_USR` - 仅包含用户名组件的附加变量。
 * `BITBUCKET_COMMON_CREDS_PSW` - 仅包含密码组件的附加变量。
 
 [NOTE]
 ====
-根据惯例, 环境变量的变量名通常在大写字母中指定, 每个单词用下划线分割。 但是，可以使用小写字母指定任何合法的变量名。 请记住  `credentials()`方法(上面的)所创建附加环境变量总是会附加到 `_USR` 和 `_PSW` (即 以下划线的格式后跟三个字母)。
+根据惯例, 环境变量的变量名通常在大写字母中指定, 每个单词用下划线分割。 但是，可以使用小写字母指定任何合法的变量名。 请记住  `credentials()` 方法(上面的)所创建附加环境变量总是会附加到 `_USR` 和 `_PSW` (即 以下划线的格式后跟三个字母)。
 ====
 
 下面的代码片段完整的展示了示例流水线:
@@ -479,33 +479,33 @@ pipeline {
 * `$BITBUCKET_COMMON_CREDS_PSW`
 
 +
-比如, 在这里你可以使用分配给这些凭证变量的用户名和密码对Bitbucket进行身份验证。 +
+比如, 在这里你可以使用分配给这些凭证变量的用户名和密码对 Bitbucket 进行身份验证。 +
 为了维护这些凭证的安全性和匿名性, 如果你试图从流水线中检索这些凭证变量的值, 那么上面的<<#secret-text,Secret text>> 描述的行为也同样适用于这些用户名和密码凭证变量类型。
 <2> 在该流水线示例中, 分配给三个
 `COMMON_BITBUCKET_CREDS...` 环境变量的凭证仅作用于 `Example stage 1`,所以在
-`Example stage 2` 阶段的步骤中这些凭证变量不可用。 然而，如果流水线中的 `environment` d指令立即在 <<syntax#declarative-pipeline,
+`Example stage 2` 阶段的步骤中这些凭证变量不可用。 然而，如果流水线中的 `environment` d 指令立即在 <<syntax#declarative-pipeline,
 `pipeline`>> 块中移动 (正如上面的 <<#secret-text,Secret text>> 流水线示例一样), 然后这些 `COMMON_BITBUCKET_CREDS...` 环境变量将应用于全局并可以在任何阶段的任何步骤中使用。
 
 ===== 秘密文件
 
 就流水线而言, 秘密文件的处理方式与(<<#secret-text,above>>)完全相同。
 
-本质上来说, 秘密文本和秘密文件凭证之间的唯一不同是，对于秘密文本, 凭据本身直接进入Jenkins，而秘密文件, 凭证最初被存在一个文件中，之后将文件上传到Jenkins。
+本质上来说, 秘密文本和秘密文件凭证之间的唯一不同是，对于秘密文本, 凭据本身直接进入 Jenkins，而秘密文件, 凭证最初被存在一个文件中，之后将文件上传到 Jenkins。
 
 与秘密文本不同的是, 秘密文件凭证符合以下条件:
 
-* 太笨拙而不能直接进入Jenkins
+* 太笨拙而不能直接进入 Jenkins
 * i二进制格式, 比如 GPG 文件。
 
 
 ==== 其他证书类型
 
 如果你需要在流水线中为除了秘密文本, 用户名和密码, 和秘密文件(<<#for-secret-text-usernames-and-passwords-and-secret-files,above>>)以外的其他东西
-设置凭证 - 即 SSH秘钥或证书, 使用Jenkins的 *Snippet Generator* 特性, 你可以通过Jenkins的经典UI访问它。
+设置凭证 - 即 SSH 秘钥或证书, 使用 Jenkins 的 *Snippet Generator* 特性, 你可以通过 Jenkins 的经典 UI 访问它。
 
 访问你的流水线项目的 *Snippet Generator*:
 
-. 从Jenkins 主页 (即Jenkins的经典 UI的仪表盘), 点击流水线项目的名字。
+. 从 Jenkins 主页 (即 Jenkins 的经典 UI 的仪表盘), 点击流水线项目的名字。
 . 在左侧, 点击 *Pipeline Syntax* 并确保 *Snippet Generator*
   链接在右上角粗体显示 (如果没有, 点击它的链接)。
 . 从 *Sample Step* 字段中, 选择 *withCredentials: Bind credentials to variables*。
@@ -513,21 +513,21 @@ pipeline {
   * *SSH User Private Key* - 处理
     link:http://www.snailbook.com/protocols.html[SSH 公有/私有密钥对凭证], 你可以指定:
   ** *Key File Variable* - 将要绑定到这些凭证的环境变量的名称。Jenkins 实际上将这个临时变量分配给要求对进行身份验证的私有密钥文件的安全位置。
-  ** *Passphrase Variable* ( _Optional_ ) - 将会被绑定到与SSH公有/私有密钥对相关的
+  ** *Passphrase Variable* ( _Optional_ ) - 将会被绑定到与 SSH 公有/私有密钥对相关的
      link:https://tools.ietf.org/html/rfc4251#section-9.4.4[passphrase]的环境变量的名称。
-  ** *Username Variable* ( _Optional_ ) - 将要绑定到与SSH公有/私有密钥对相关的用户名的这些凭证的环境变量的名称。
-  ** *Credentials* - 选择存储在Jenkins中的SSH公有/私有密钥对证书。该字段的值是证书ID, Jenkins将其写入生成的代码片段中。
+  ** *Username Variable* ( _Optional_ ) - 将要绑定到与 SSH 公有/私有密钥对相关的用户名的这些凭证的环境变量的名称。
+  ** *Credentials* - 选择存储在 Jenkins 中的 SSH 公有/私有密钥对证书。该字段的值是证书 ID, Jenkins 将其写入生成的代码片段中。
   * *Certificate* - 处理 link:https://tools.ietf.org/html/rfc7292[PKCS#12
     certificates], 你可以指定:
   ** *Keystore Variable* - 将要绑定到这些凭证的环境变量的名称。Jenkins 实际上将这个临时变量分配给要求对进行身份验证的证书密钥库的安全位置。
   ** *Password Variable* ( _Optional_ ) - 将会被绑定到与证书相关的密码的环境变量的名称。  
   ** *Alias Variable* ( _Optional_ ) - 将会被绑定到与证书相关的唯一别名的环境变量的名称。
-  ** *Credentials* - 选择存储在Jenkins中的证书。该字段的值是证书ID, Jenkins将其写入生成的代码片段中。
-  * *Docker client certificate* - 用于处理Docker 主机证书的身份验证。
-. 点击 *Generate Pipeline Script* ，Jenkins会为你指定的凭证生成一个
+  ** *Credentials* - 选择存储在 Jenkins 中的证书。该字段的值是证书 ID, Jenkins 将其写入生成的代码片段中。
+  * *Docker client certificate* - 用于处理 Docker 主机证书的身份验证。
+. 点击 *Generate Pipeline Script* ，Jenkins 会为你指定的凭证生成一个
   `withCredentials( ... ) { ... }` 流水线步骤片段，你可以将其复制并粘贴到你的声明式或脚本化流水线代码中。 +
   *Notes:*
-  * *Credentials* 字段 (上面) 在Jenkins中配置的证书的名称。但是, 这些值在点击 *Generate Pipeline Script*之后词转换成证书ID。
+  * *Credentials* 字段 (上面) 在 Jenkins 中配置的证书的名称。但是, 这些值在点击 *Generate Pipeline Script* 之后词转换成证书ID。
   * 将多个证书组合在 `withCredentials( ... )
   { ... }` 流水线步骤, 查看 <<#combining-credentials-in-one-step,Combining
   credentials in one step>> (下面) 详细信息。
@@ -558,7 +558,7 @@ withCredentials(bindings: [certificate(aliasVariable: '', \
 ----
 可选的 `aliasVariable` 和 `passwordVariable` 变量定义 可以在最终的流水线代码中删除。
 
-下面的代码片段展示了一个完整的示例流水线, 他实现*SSH User Private Key* 和 上面的*Certificate* 片段:
+下面的代码片段展示了一个完整的示例流水线, 他实现 *SSH User Private Key* 和 上面的*Certificate* 片段:
 
 [pipeline]
 ----
@@ -590,11 +590,11 @@ pipeline {
 }
 // Script //
 ----
-<1> 在该步骤中, 你可以使用语法 `$SSH_KEY_FOR_ABC`引用凭证环境变量。 比如, 在这里你可以使用配置的 SSH 公共/私有密钥对证书对ABC应用程序进行身份验证，它的
+<1> 在该步骤中, 你可以使用语法 `$SSH_KEY_FOR_ABC` 引用凭证环境变量。 比如, 在这里你可以使用配置的 SSH 公共/私有密钥对证书对ABC应用程序进行身份验证，它的
 *SSH User Private Key* 文件被分配给 `$SSH_KEY_FOR_ABC`。
-<2> 在该步骤中, 你可以使用语法`$CERTIFICATE_FOR_XYZ`+
-`$XYZ-CERTIFICATE-PASSWORD` 引用凭据环境变量。比如, 在这里你可以使用配置的证书对XYZ应用程序进行身份验证。证书的 *Certificate*的
-秘钥存储文件和密码分别被分配给 `$CERTIFICATE_FOR_XYZ`
+<2> 在该步骤中, 你可以使用语法 `$CERTIFICATE_FOR_XYZ`+
+`$XYZ-CERTIFICATE-PASSWORD` 引用凭据环境变量。比如, 在这里你可以使用配置的证书对 XYZ 应用程序进行身份验证。证书的 *Certificate* 的
+秘钥存储文件和密码分别被分配给 `$CERTIFICATE_FOR_XYZ` 
 和 `$XYZ-CERTIFICATE-PASSWORD`变量。
 <3> 在流水线示例中, 分配给
 `$SSH_KEY_FOR_ABC`书, `$CERTIFICATE_FOR_XYZ`和 +
@@ -606,8 +606,8 @@ pipeline {
 
 [NOTE]
 ====
-* 当 在 *Snippet Generator*使用 *Sample Step* 字段的 *withCredentials: Bind credentials to variables* 选项时,只能
-从*Credentials* 字段的列表选择当前可访问的流水线项目的凭证。虽然你可以为你的流水线手动编写
+* 当 在 *Snippet Generator* 使用 *Sample Step* 字段的 *withCredentials: Bind credentials to variables* 选项时,只能
+从 *Credentials* 字段的列表选择当前可访问的流水线项目的凭证。虽然你可以为你的流水线手动编写
 `withCredentials( ... ) { ... }` 步骤 (如
 <<#withcredentials-script-examples,above>>所示), 但建议使用 *Snippet Generator* 来防止指定超出该流水线范围的的证书,进而避免运行时的步骤失败。
 * 你也可以用 *Snippet Generator* 来管理处理秘密文本，用户名和密码以及秘密文件的 `withCredentials( ... ) { ... }` 步骤 。
@@ -619,11 +619,11 @@ pipeline {
 
 使用 *Snippet Generator*, 你可以在单个`withCredentials( ... ) { ... }` 步骤中提供多个可用凭证，操作如下:
 
-. 从Jenkins的主页中 (即Jenkins的经典UI的仪表盘), 点击流水线项目的名称。
-. 在左侧, 点击 *Pipeline Syntax* 确保 *Snippet Generator*
+. 从 Jenkins 的主页中 (即 Jenkins 的经典UI的仪表盘), 点击流水线项目的名称。
+. 在左侧, 点击 *Pipeline Syntax* 确保 *Snippet Generator* 
   链接在右上加粗显示。(如果没有, 点击它的链接)。
-. 从*Sample Step* 字段, 选择*withCredentials: Bind credentials to variables*。
-. 点击*Bindings*下的 *Add*。
+. 从 *Sample Step* 字段, 选择 *withCredentials: Bind credentials to variables*。
+. 点击 *Bindings* 下的 *Add*。
 . 从下拉列表中选择要添加到 `withCredentials( ... ) { ... }` 步骤的凭证类型。
 . 指定凭证 *Bindings* 的细节。 请在<<#for-other-credential-types,For other credential types>> (上面)过程中，阅读以上这些内容。
 . 重复"点击 *Add* ..." (上面) 将每个 (组) 凭证添加到 `withCredentials( ... ) { ... }` 步骤。
@@ -637,8 +637,8 @@ pipeline {
 parameters directive>>接受用户指定的参数。配置 脚本化流水线参数 is done
 with the `properties` step, 可以被在代码生成器发现。
 
-如果你将流水线配置为使用 *Build with Parameters* 选项接受参数, 这些参数作为`params`变量的成员访问。
-假设在`Jenkinsfile`中配置了名为 "Greeting"的字符串参数, 它可以通过 `${params.Greeting}`访问该参数:
+如果你将流水线配置为使用 *Build with Parameters* 选项接受参数, 这些参数作为 `params` 变量的成员访问。
+假设在 `Jenkinsfile` 中配置了名为 "Greeting" 的字符串参数, 它可以通过 `${params.Greeting}` 访问该参数:
 
 [pipeline]
 ----
@@ -670,7 +670,7 @@ node {
 声明式流水线默认通过
 <<syntax#post, post section>>支持健壮的失败处理，它允许声明许多不同的
 "post conditions" 比如: `always`, `unstable`, `success`, `failure`, 和
-`changed`. <<syntax, 流水线语法>> 提供了关于如何使用各种post条件的更多细节。
+`changed`. <<syntax, 流水线语法>> 提供了关于如何使用各种 post 条件的更多细节。
 
 [pipeline]
 ----
@@ -710,22 +710,22 @@ node {
 
 [role=scripted-pipeline]
 ====
-然而脚本化的流水线依赖于 Groovy的内置的 `try`/`catch`/`finally` 语义来处理流水线运行期间的失败。
+然而脚本化的流水线依赖于 Groovy 的内置的 `try`/`catch`/`finally` 语义来处理流水线运行期间的失败。
 
-在上面的 <<测试>> 示例中,  `sh` s步骤被修改为永远不会返回非零的退出代码(`sh 'make check || true'`)。虽然，这种方法有效, 但意味着接下来的阶段需要检查`currentBuild.result` 来了解是否有测试失败。
+在上面的 <<测试>> 示例中,  `sh` 步骤被修改为永远不会返回非零的退出代码(`sh 'make check || true'`)。虽然，这种方法有效, 但意味着接下来的阶段需要检查 `currentBuild.result` 来了解是否有测试失败。
 
-该问题的另一种处理方式是使用一系列的`try`/`finally` 块,它保留了 流水线中失败的提前退出行为, 它仍然给 `junit` 捕获测试报告的机会:
+该问题的另一种处理方式是使用一系列的 `try`/`finally` 块,它保留了 流水线中失败的提前退出行为, 它仍然给 `junit` 捕获测试报告的机会:
 ====
 
 
 === 使用多个代理
 
-在之前所有的示例中, 只使用了一个代理。 这意味着不论Jenkins是如何标记或配置的，
-它将在任何可用的地方分配一个执行器。这种行为不仅会被覆盖, 而且流水线允许在Jenkins环境中使用 _same_ `Jenkinsfile`中的多个代理，这将有助于更高级的用例，例如跨多个平台的执行构建/测试。
+在之前所有的示例中, 只使用了一个代理。 这意味着不论 Jenkins 是如何标记或配置的，
+它将在任何可用的地方分配一个执行器。这种行为不仅会被覆盖, 而且流水线允许在 Jenkins 环境中使用 _same_ `Jenkinsfile` 中的多个代理，这将有助于更高级的用例，例如跨多个平台的执行构建/测试。
 
-在下面的示例中, 将会在一个代理中执行"Build"阶段 ，并且构建结果将会在之后
-在 "Test" 阶段被两个分别标记为 "linux" 和
-"windows"的后续代理重用。
+在下面的示例中, 将会在一个代理中执行 "Build" 阶段 ，并且构建结果将会在之后
+在 "Test" 阶段被两个分别标记为 "linux" 和 
+"windows" 的后续代理重用。
 
 [pipeline]
 ----
@@ -804,9 +804,9 @@ stage('Test') {
 }
 ----
 <1>  `stash` 步骤允许捕获与包含模式
-(`**/target/*.jar`)匹配的文件,以便在 _same_ 流水线中重用。 一旦流水线完成了它的执行， 就会从Jenkins主机中删除暂存文件。
-<2>  `agent`/`node`中的参数允许使用任何可用的Jenkins标签表达式。参考 <<syntax#, 流水线语法>> 部分了解更多信息。
-<3> `unstash`将会从Jenkins 主机中检索命名的 "存储" 到流水线的当前工作区中。
+(`**/target/*.jar`)匹配的文件,以便在 _same_ 流水线中重用。 一旦流水线完成了它的执行， 就会从 Jenkins 主机中删除暂存文件。
+<2>  `agent`/`node` 中的参数允许使用任何可用的 Jenkins 标签表达式。参考 <<syntax#, 流水线语法>> 部分了解更多信息。
+<3> `unstash` 将会从 Jenkins 主机中检索命名的 "存储" 到流水线的当前工作区中。
 <4> `bat` 脚本允许在基于Windows的平台上执行批处理脚本。
 
 === 可选的步骤参数
@@ -822,7 +822,7 @@ git url: 'git://example.com/amazing-project.git', branch: 'master'
 git([url: 'git://example.com/amazing-project.git', branch: 'master'])
 ----
 
-为了方便, 当调用只有一个参数的步骤时 (或仅一个强制参数), t参数名称可以省略, 例如:
+为了方便, 当调用只有一个参数的步骤时 (或仅一个强制参数), 参数名称可以省略, 例如:
 
 [source, groovy]
 ----
@@ -835,7 +835,7 @@ sh([script: 'echo hello'])  /* long form */
 
 脚本化的流水线是一种特定于领域的语言
 footnoteref:[dsl, https://en.wikipedia.org/wiki/Domain-specific_language]
-它基于Groovy, 大多数
+它基于 Groovy, 大多数
 link:http://groovy-lang.org/semantics.html[Groovy 语法]都可以在没有修改的脚本化流水线中使用。
 
 
@@ -884,4 +884,4 @@ stage('Test') {
 // Declarative not yet implemented //
 ----
 
-不再串联的执行在标记的 "linux" 和 "windows" 节点中的测试, 而是在Jenkins环境中并行执行。
+不再串联的执行在标记的 "linux" 和 "windows" 节点中的测试, 而是在 Jenkins 环境中并行执行。
