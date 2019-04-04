@@ -85,7 +85,7 @@ image::/images/post-images/2019-03-29-becoming-contributor/awestruct-site.png[]
 
 ==== 创建代码仓库分支
 
-第一步，通常是将代码仓库复制分支（fork）到本地。
+第一步，通常是 fork 代码仓库，并克隆到本地。
 
 ==== 进行修改
 
