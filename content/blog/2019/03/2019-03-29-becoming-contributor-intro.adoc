@@ -106,7 +106,7 @@ image::/images/post-images/2019-03-29-becoming-contributor/executing-make.png[]
 
 ==== 创建 PR
 
-把我的改动提交（commit）并推送（push）到远程库以后，我就需要创建一个 PR 了。
+把我的改动 commit 并 push 到远程库以后，我就需要创建一个 PR 了。
 有一个简单的方法，只需单击推送完成后在 git 日志中显示的链接，如果愿意的话也可以通过 GitHub UI 创建 PR;
 或者甚至可以使用 GitHub CLI 的 https://github.com/github/hub[“hub”] 来完成它。
 
@@ -125,11 +125,11 @@ image::/images/post-images/2019-03-29-becoming-contributor/pr-created-passing.pn
 
 image::/images/post-images/2019-03-29-becoming-contributor/pr-checks-jenkins.png[]
 
-==== PR 审阅
+==== PR review
 
-现在我们已经创建好了 PR 并通过了自动测试，只需要等待代码审阅了。
+现在我们已经创建好了 PR 并通过了自动测试，只需要等待代码 review 了。
 
-一旦 PR 被审核通过然后被合并（merge），你的贡献就会被整合到代码仓库的主分支并成为下次版本更新的一部分。
+一旦 PR 被审核通过然后被 merge，你的贡献就会被整合到代码仓库的主分支并成为下次版本更新的一部分。
 
 image::/images/post-images/2019-03-29-becoming-contributor/pr-merged.png[]
 
