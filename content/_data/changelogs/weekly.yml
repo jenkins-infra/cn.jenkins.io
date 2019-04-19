@@ -2299,7 +2299,7 @@
     pull: 3973
     issue: 55292
     message: |-
-      从核心中移除 Mailer 相关的本地化字符串。确保你使用 Mailer Plugin 1.23.
+      从核心中移除 Mailer 相关的本地化字符串。确保你使用 Mailer Plugin 1.23。
   - type: bug
     pull: 3959
     issue: 56995
@@ -2334,7 +2334,7 @@
   - type: rfe
     pull: 3948
     message: |-
-      内部：更新 commons-beanutils 1.8.3 到 1.9.3.
+      内部：更新 commons-beanutils 1.8.3 到 1.9.3。
   # pull: 3976 (Improve help text)
   # pull: 3974 (Merge back different security tests that were splitted for the security release)
   # pull: 3803 (JENKINS-55130 - Rewrite OldDataMonitor configure text)
