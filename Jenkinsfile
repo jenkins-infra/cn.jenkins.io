@@ -17,6 +17,7 @@ if (infra.isTrusted()) {
 if (!env.CHANGE_ID) {
     if (env.BRANCH_NAME == null) {
         projectProperties.add(pipelineTriggers([cron('H/30 * * * *')]))
+        projectProperties.add(disableConcurrentBuilds())
     }
 }
 
