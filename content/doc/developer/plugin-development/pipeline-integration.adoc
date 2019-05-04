@@ -31,8 +31,8 @@ references:
 
 推荐的版本:
 
-- <<Basic update>>
-- <<Build wrappers>>
+- <<基本更新>>
+- <<构建包装>>
 
 这引入了一些新的 API 方法，并弃用了一些旧方法。
 
