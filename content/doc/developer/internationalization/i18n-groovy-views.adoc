@@ -27,8 +27,7 @@ f.section(title:_("Plugin Manager")) {
 }
 ----
 
-Then you could add, for example, a Chinese localization file simply as:
-然后，您可以添加一个中文本地化文件，如下所示：
+然后，您可以简单地添加一个中文本地化文件，例如：
 
 `src/main/resources/org/example/package/index_zh_CN.properties`:
 [source, properties]
