@@ -28,7 +28,7 @@ Jenkins 使用 https://github.com/stapler/stapler-jetty[stapler-jelly] 库来实
 </j:jelly>
 ----
 
-然后，您可以简单地添加一个中文本地化文件，例如：
+然后，比如，您可以简单地添加一个中文本地化文件，如下所示：
 
 `src/main/resources/org/example/package/index_zh_CN.properties`
 [source, properties]
