@@ -6,5 +6,34 @@ references:
   title: API documentation for the InternationalizedStringExpression class in Stapler
 - url: https://commons.apache.org/proper/commons-jexl/
   title: Apache JEXL
-wip: true
 ---
+
+== 介绍
+
+Jenkins 使用 https://github.com/stapler/stapler-jetty[stapler-jelly] 库来实现国际化。
+
+在 Jenkins 中，您需要在和 `.jelly` 文件相同的目录下添加一个类似的 `.properties` 文件。
+任何 `.properties` 文件的变化不需要重启 Jenkins 或插件。
+
+== 例子
+
+以下面的 jelly 页面为例:
+
+`src/main/resources/org/example/package/index.jelly`:
+[source, jelly]
+----
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:s="/lib/form">
+<div>${%message}</div>
+</j:jelly>
+----
+
+然后，比如，您可以简单地添加一个中文本地化文件，如下所示：
+
+`src/main/resources/org/example/package/index_zh_CN.properties`
+[source, properties]
+----
+message=\u6D88\u606F
+----
+在 property 文件中，所有非 ASCII 字符都需要转换为十六进制。
+现代的 IDEs 会自动完成这项工作，所以您可以在那里用目标语言编写本地化。

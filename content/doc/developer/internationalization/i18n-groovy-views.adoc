@@ -3,3 +3,39 @@ title: 在Groovy视图中使消息国际化
 layout: developersection
 wip: true
 ---
+
+== 介绍
+
+在 Jenkins 中，您需要在和 `.groovy` 文件相同的目录下添加一个类似的 `.properties` 文件。
+任何 `.properties` 文件的变化不需要重启 Jenkins 或插件。
+
+== 例子
+
+以下面的 groovy 页面为例:
+
+`src/main/resources/org/example/package/index.groovy`:
+[source, groovy]
+----
+package jenkins.security.DownloadSettings
+
+def f = namespace(lib.FormTagLib)
+
+f.section(title:_("Plugin Manager")) {
+	f.entry(field: "useBrowser") {
+		f.checkbox(title: _("Use browser for metadata download"))
+	}
+}
+----
+
+然后，比如，您可以简单地添加一个中文本地化文件，如下所示：
+
+`src/main/resources/org/example/package/index_zh_CN.properties`:
+[source, properties]
+----
+Plugin\ Manager=\u63D2\u4EF6\u7BA1\u7406
+Use\ Browser=\u4F7F\u7528\u6D4F\u89C8\u5668
+Use\ browser\ for\ metadata\ download=\u4F7F\u7528\u6D4F\u89C8\u5668\u4E0B\u8F7D\u5143\u6570\u636E
+----
+
+在 property 文件中，所有非 ASCII 字符都需要转换为十六进制。
+现代的 IDEs 会自动完成这项工作，所以您可以在那里用目标语言编写本地化。

@@ -8,6 +8,8 @@ references:
   title: Translation Tool
 - url: https://wiki.jenkins-ci.org/display/JENKINS/Internationalization
   title: Internationalization documentation on the wiki
+- url: https://github.com/jenkinsci/jep/blob/master/jep/216/README.adoc
+  title: Localization Plugin
 ---
 
 国际化（有时称为 i18n）是设计软件的过程，以便可以适应多种语言和地区。
