@@ -26,7 +26,7 @@ JEP 是 Jenkins Enhancement Proposoals 的缩写，也就是 Jenkins 增强提�
 
 在之前，所有语言的本地化资源文件都是集中保存在 Jenkins Core 以及各个插件中的。而在 https://github.com/jenkinsci/jep/blob/master/jep/216/README.adoc[该提议]中，每个语言都可以有一个单独的本地化插件，例如：
 https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文插件]。
-终于，经过半年多的时间，https://github.com/jenkinsci/localization-support-plugin[本地化支持插件]和 https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文插件]已经可以支持各种类型的本地化资源文件（包括：
+终于，经过半年多的时间， https://github.com/jenkinsci/localization-support-plugin[本地化支持插件]和 https://github.com/jenkinsci/localization-zh-cn-plugin[简体中文插件]已经可以支持各种类型的本地化资源文件（包括：
 Messages、属性以及帮助文件等）。从 https://plugins.jenkins.io/localization-zh-cn[插件网站]上，你可以看到
 简体中文插件已经有超过1.3万的安装量，而且还在持续增长中。到目前为止，我们已经把 Jenkins Core 里所有简体中文的资源文件
 迁移到了简体中文插件中，具体可以查看 https://github.com/jenkinsci/jenkins/pull/4008[PR-4008]。
