@@ -23,6 +23,9 @@ participants:
 - name: "杨振涛"
   id: "node"
   github: "node"
+- name: "王冬辉"
+  id: "donhui"
+  github: "donhui"
 organizations:
 - name: "灵雀云"
   github: "alauda"
