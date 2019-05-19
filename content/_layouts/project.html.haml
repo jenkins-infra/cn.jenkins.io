@@ -48,5 +48,5 @@ layout: default
               %ul
                 - articles.each do |article|
                   %li
-                    %a{:href => article.url}
+                    %a{:href => '/zh' + article.url}
                       = article.title
