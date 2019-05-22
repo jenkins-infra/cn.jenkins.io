@@ -1,13 +1,13 @@
 ---
 layout: post
-:title: "Jenkins 文档特别兴趣小组"
-:tags:
+title: "Jenkins 文档特别兴趣小组"
+tags:
 - documentation
 - docs
 - community
-:author: markewaite
-:translator: donhui
-:sig: docs
+author: markewaite
+translator: donhui
+sig: docs
 ---
 
 image:/images/logos/needs-you/Jenkins_Needs_You-02.png[Jenkins Needs You, role=center, float=right, height=256]
