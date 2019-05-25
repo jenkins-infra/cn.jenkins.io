@@ -182,7 +182,7 @@ pipeline {
 <1> 在任何可用的代理上，执行流水线或它的任何阶段。
 <2> 定义 "Build" 阶段。
 <3> 执行与 "Build" 阶段相关的步骤。
-<4> 定义"Test" 阶。
+<4> 定义"Test" 阶段。
 <5> 执行与"Test" 阶段相关的步骤。
 <6> 定义 "Deploy" 阶段。
 <7> 执行与 "Deploy" 阶段相关的步骤。
@@ -214,7 +214,7 @@ node {  // <1>
 }
 ----
 <1> 在任何可用的代理上，执行流水线或它的任何阶段。
-<2> 定义 "Build" 阶段。 `stage` blocks 在脚本化流水线语法中是可选的。 然而, 在脚本化流水线中实现`stage` 块 ，可以清楚的显示Jenkins UI中的每个`stage`的任务子集。
+<2> 定义 "Build" 阶段。 `stage` 块 在脚本化流水线语法中是可选的。 然而, 在脚本化流水线中实现 `stage` 块 ，可以清楚的显示Jenkins UI中的每个 `stage` 的任务子集。
 <3> 执行与 "Build" 阶段相关的步骤。
 <4> 定义 "Test" 阶段。
 <5> 执行与 "Test" 阶段相关的步骤。
@@ -224,7 +224,7 @@ node {  // <1>
 
 == 流水线示例
 
-这有一个使用声明式流水线的语法编写的`Jenkinsfile` 文件 - 可以通过点击下面 *Toggle Scripted Pipeline* 链接来访问它的等效的脚本化语法：
+这有一个使用声明式流水线的语法编写的 `Jenkinsfile` 文件 - 可以通过点击下面 *Toggle Scripted Pipeline* 链接来访问它的等效的脚本化语法：
 
 [pipeline]
 ----
@@ -265,11 +265,10 @@ node { // <7>
 }
 ----
 <1> link:syntax#declarative-pipeline[`pipeline`] 是声明式流水线的一种特定语法，他定义了包含执行整个流水线的所有内容和指令的 "block" 。
-<2> link:syntax#agent[`agent`]是声明式流水线的一种特定语法，它
-指示 Jenkins 为整个流水线分配一个执行器 (在节点上)和工作区。
+<2> link:syntax#agent[`agent`]是声明式流水线的一种特定语法，它指示 Jenkins 为整个流水线分配一个执行器 (在节点上)和工作区。
 <3> `stage` 是一个描述
 link:#stage[stage of this Pipeline]的语法块。在 link:syntax#stage[Pipeline syntax] 页面阅读更多有关声明式流水线语法的`stage`块的信息。如 link:#scripted-pipeline-fundamentals[above]所述, 在脚本化流水线语法中，`stage` 块是可选的。
-<4> link:syntax#steps[`steps`] 是声明式流水线的一种特定语法，它描述了在这个`stage`中要运行的步骤。
+<4> link:syntax#steps[`steps`] 是声明式流水线的一种特定语法，它描述了在这个 `stage` 中要运行的步骤。
 <5> `sh` 是一个执行给定的shell命令的流水线 link:syntax#steps[step] (由
 plugin:workflow-durable-task-step[Pipeline: Nodes and Processes plugin]提供) 。
 <6> `junit` 是另一个聚合测试报告的流水线 link:syntax#steps[step] (由
