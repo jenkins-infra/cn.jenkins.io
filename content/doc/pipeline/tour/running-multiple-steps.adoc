@@ -18,7 +18,7 @@ Jenkins Pipeline 允许您使用一种简单的方式组合多个步骤，
 
 === Linux, BSD, and Mac OS
 
-在 Linux, BSD, 和 Mac OS (类Unix) 系统中的 shell 命令，
+在 Linux、BSD和 Mac OS (类Unix) 系统中的 shell 命令，
  对应于 Pipeline 中的一个 `sh` 步骤（step）
 
 [pipeline]
@@ -121,7 +121,7 @@ node {
 “Deploy”阶段（stage）重试运行 `flakey-deploy.sh` 脚本3次，然后等待 `health-check.sh` 脚本最多执行3分钟。
 如果 `health-check.sh` 脚本在 3 分钟内没有完成，Pipeline 将会标记在“Deploy”阶段失败。
 
-内嵌类型的步骤，例如 `timeout` and `retry` 可以包含其他的步骤，包括 `timeout` and `retry` 。
+内嵌类型的步骤，例如 `timeout` 和 `retry` 可以包含其他的步骤，包括 `timeout` 和 `retry` 。
 
 我们也可以组合这些步骤。例如，如果我们想要重试部署任务 5 次，但是总共花费的时间不能超过 3 分钟。
 
