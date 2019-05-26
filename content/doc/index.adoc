@@ -7,37 +7,32 @@ section: doc
 
 欢迎浏览 Jenkins 用户手册，这个手册主要介绍如何使用 Jenkins 现有的功能和插件特性。
 
-如果想通过开发插件来扩展 Jenkins 的能力，请参考 <<doc/developer#,扩展Jenkins>>
-(开发者手册).
+如果想通过开发插件来扩展 Jenkins 的能力，请参考<<doc/developer#,扩展 Jenkins>>
+(开发者手册)。
 
 
 == Jenkins 是什么?
 
-Jenkins是一款开源 CI&CD 软件，用于自动化各种任务，包括构建、测试和部署软件.
+Jenkins是一款开源 CI&CD 软件，用于自动化各种任务，包括构建、测试和部署软件。
 
-Jenkins 支持各种运行方式，可通过系统包, Docker 或者通过一个独立的 Java 程序.
+Jenkins 支持各种运行方式，可通过系统包、Docker 或者通过一个独立的 Java 程序。
 
 
 == 关于此文档
 
-此文档由
-<<doc/pipeline/tour/getting-started#,流水线入门指南>>开始，通过让用户熟悉 Jenkins 主要功能的流水线来了解 Jenkins。
+此文档由<<doc/pipeline/tour/getting-started#,流水线入门指南>>开始，通过让用户熟悉 Jenkins 主要功能的流水线来了解 Jenkins。
 
-除此之外， <<doc/tutorials#,教程>> 主要向读者介绍如何通过流水线和 Blue Ocean 来编排自动化构建过程。
+除此之外，<<doc/tutorials#,教程>>主要向读者介绍如何通过流水线和 Blue Ocean 来编排自动化构建过程。
 
-如果读者是一个 Jenkins 初学者，那么入门指南将是一个比较不错的开始，如果想要更多更详细的内容，
-请查看<<doc/book/getting-started#,用户手册>>.
+如果读者是一个 Jenkins 初学者，那么入门指南将是一个比较不错的开始，如果想要更多更详细的内容，请查看<<doc/book/getting-started#,用户手册>>。
 
 
 === 文档范围
 
 Jenkins 是一个扩展性非常强的软件，其功能主要通过插件来扩展。
 
-在 Jenkins 里面有非常多的插件，不过此文档的
-<<doc/pipeline/tour/getting-started#,入门指南>>,
-<<doc/tutorials#,教程>>和<<doc/book/getting-started#,用户手册>>都是基于<<doc/book/installing#,Jenkins安装>>
-和<<doc/book/blueocean/getting-started#,Blue Ocean插件安装>>,
-以及建议安装的插件, <<doc/book/installing#setup-wizard,安装后向导>>等安装的插件.
+在 Jenkins 里面有非常多的插件，不过此文档的<<doc/pipeline/tour/getting-started#,入门指南>>，<<doc/tutorials#,教程>>和<<doc/book/getting-started#,用户手册>>都是基于 <<doc/book/installing#,Jenkins 安装>>
+和 <<doc/book/blueocean/getting-started#,Blue Ocean 插件安装>>，以及建议安装的插件，<<doc/book/installing#setup-wizard,安装后向导>>等安装的插件。
 
 
 '''

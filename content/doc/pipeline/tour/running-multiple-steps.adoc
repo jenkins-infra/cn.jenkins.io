@@ -1,25 +1,25 @@
 ---
 layout: documentation
-title: 运行多重步骤 steps
+title: 执行多个步骤（step）
 section: doc
 ---
 
 :toc:
 
-Pipelines 由多重 steps 组成，包括构建、测试和部署等应用。
-Jenkins Pipeline 允许您使用一种简单的方式组合多重 steps，
+Pipelines 由多个步骤（step）组成，允许你构建、测试和部署应用。
+Jenkins Pipeline 允许您使用一种简单的方式组合多个步骤，
 以帮助您实现多种类型的自动化构建过程。
 
-可以把 “step” 看作一个简单的命令去执行一个简单的动作，或者说是一个步骤。
+可以把“步骤（step）”看作一个执行单一动作的单一的命令。
 当一个步骤运行成功时继续运行下一个步骤。
 当任何一个步骤执行失败时，Pipeline 的执行结果也为失败。
 
 当所有的步骤都执行完成并且为成功时，Pipeline 的执行结果为成功。
 
-=== Linux, BSD, and Mac OS
+=== Linux、BSD 和 Mac OS
 
-在 Linux, BSD, 和 Mac OS (类Unix) 系统中的 shell 命令，
- 对应于 Pipeline 中的一个 `sh` 步骤（step）
+在 Linux、BSD 和 Mac OS（类 Unix ) 系统中的 shell 命令，
+ 对应于 Pipeline 中的一个 `sh` 步骤（step）。
 
 [pipeline]
 ----
@@ -52,7 +52,7 @@ node {
 
 === Windows
 
-基于 Windows 的系统使用 `bat` 步骤表示执行批处理命令
+基于 Windows 的系统使用 `bat` 步骤表示执行批处理命令。
 
 [pipeline]
 ----
@@ -83,7 +83,7 @@ XXX: (rtyler) I think this section doesn't belong at this point in the Guided To
 
 == 超时、重试和更多
 
-Jenkins Pipeline 提供了很多的步骤（steps），这些步骤可以相互组合嵌套更加方便的解决重试问题和超时问题。
+Jenkins Pipeline 提供了很多的步骤（step），这些步骤可以相互组合嵌套，方便地解决像重复执行步骤直到成功（重试）和如果一个步骤执行花费的时间太长则退出（超时）等问题。
 
 [pipeline]
 ----
@@ -118,10 +118,10 @@ node {
 }
 ----
 
-“Deploy”阶段（stage）重试运行 `flakey-deploy.sh` 脚本3次，然后等待 `health-check.sh` 脚本最多执行3分钟。
+“Deploy”阶段（stage）重复执行 `flakey-deploy.sh` 脚本3次，然后等待 `health-check.sh` 脚本最长执行3分钟。
 如果 `health-check.sh` 脚本在 3 分钟内没有完成，Pipeline 将会标记在“Deploy”阶段失败。
 
-内嵌类型的步骤（带有 body 的步骤）例如 `timeout` and `retry` 可以包含其他的步骤。
+内嵌类型的步骤，例如 `timeout` 和 `retry` 可以包含其他的步骤，包括 `timeout` 和 `retry` 。
 
 我们也可以组合这些步骤。例如，如果我们想要重试部署任务 5 次，但是总共花费的时间不能超过 3 分钟。
 
@@ -222,8 +222,8 @@ node {
 
 ---
 
-完成定义多重步骤 steps 的基本学习之后，我们
-**link:../agents[继续去“定义执行环境”]**
+完成定义多个步骤（step）的基本学习之后，我们
+**link:../agents[继续学习“定义执行环境”]**
 
 '''
 ++++

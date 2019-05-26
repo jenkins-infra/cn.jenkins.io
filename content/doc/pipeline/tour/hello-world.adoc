@@ -7,22 +7,21 @@ section: doc
 :toc:
 :imagesdir: ../../../book/resources
 
-=== 什么是Jenkins Pipeline?
+=== 什么是 Jenkins Pipeline?
 
-Jenkins Pipeline (或简称为 "Pipeline" )是一套插件，将持续交付的实现和实施集成到 Jenkins 中。
+Jenkins Pipeline（或简称为 "Pipeline"）是一套插件，将持续交付的实现和实施集成到 Jenkins 中。
 
-持续交付Pipeline自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。
+持续交付 Pipeline 自动化的表达了这样一种流程：将基于版本控制管理的软件持续的交付到您的用户和消费者手中。
 
-Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。
-Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被检入到项目的源代码控制库中。
+Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被放入项目的源代码控制库中。
 footnoteref:[scm,https://en.wikipedia.org/wiki/Source_control_management[Source Control Management]]
 
-Pipeline和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/doc/book/pipeline[Pipeline] 和
+Pipeline 和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/doc/book/pipeline[Pipeline] 和
 link:/doc/book/pipeline/jenkinsfile[Using a Jenkinsfile]
 
-快速开始使用 Pipeline:
+快速开始使用 Pipeline：
 
-. 将以下示例 <<examples, examples below>> 复制到您的仓库中并命名为 `Jenkinsfile`
+. 将<<examples,以下示例>> 复制到您的仓库中并命名为 `Jenkinsfile`
 . 单击Jenkins中的 *New Item* 菜单
 image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%]
 . 为您的新工程起一个名字 (例如 *My Pipeline*) ，选择 *Multibranch Pipeline*
@@ -34,7 +33,7 @@ image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%
 在配置好 Pipeline 之后，Jenkins 会自动检测您仓库中创建的任何新的分支或合并请求，
 并开始为它们运行 Pipelines。
 
-**link:../running-multiple-steps[继续去 "Run multiple steps"]**
+**link:../running-multiple-steps[继续学习 "执行多个步骤"]**
 
 [[examples]]
 == 快速开始示例
@@ -177,7 +176,7 @@ node('docker') {
 ----
 
 ---
-**link:../running-multiple-steps[继续“运行多重步骤 steps”]**
+**link:../running-multiple-steps[继续学习“运行多重步骤 steps”]**
 
 '''
 ++++
