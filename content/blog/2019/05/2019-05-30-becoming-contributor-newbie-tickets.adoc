@@ -1,0 +1,345 @@
+---
+layout: post
+title: "成为一名 Jenkins 贡献者：对新手友好的工单"
+tags:
+- jenkins
+- community
+- developer
+- contributing
+- newcomer
+author: romenrg
+translator: linuxsuren
+description: "修复 Jenkins 核心中的一个缺陷——从工单到 PR，再到发布"
+opengraph:
+  image: /images/post-images/2019-05-30-becoming-contributor/pr-merged.png
+---
+
+Two months ago I published an https://jenkins.io/blog/2019/03/29/becoming-contributor-intro/[introductory article] on
+the journey of becoming a Jenkins contributor. In that first article, the jenkins.io site was reviewed, learning about
+the multiple ways in which we can participate and contribute. Then, a first--basic--contribution I made to the site
+repository was described.
+两个月前，我发表了一篇 https://jenkins.io/blog/2019/03/29/becoming-contributor-intro/[介绍性文章]，
+成为一名 Jenkins 贡献者的旅程。在那篇第一次发表的文章 review 过后，学习到了我们可以参与和贡献的多种途径。
+因此，在这个站点仓库中有对首次、基础的贡献的描述。
+
+Now, in this new article we will be exploring more advanced contributions, committing code to the actual Jenkins core.
+现在，我们将会在这篇文章中探索更多高级的贡献，向 Jenkins 核心中提交代码。
+
+== Getting started with tickets and processes
+== 从工单和过程开始
+
+=== Beginners guide to contributing and Jenkins Jira
+=== 新手贡献指导以及 Jenkins Jira
+
+Reviewing the https://jenkins.io/doc/developer/[developer section] in jenkins.io is probably the best starting point, and a
+reference link to keep handy. The https://wiki.jenkins.io/display/JENKINS/Beginners+Guide+to+Contributing[beginners guide to contributing to Jenkins]
+can also be useful, since it points to different repositories, tools (such as the issue tracker) and governance documents.
+Besides, it describes best practices for commit messages, code style conventions, PR guidelines, etc.
+查看位于 jenins.io 上的 https://jenkins.io/doc/developer/[开发者章节] 可能是最好的起点，
+参考链接也很方便。同时， https://wiki.jenkins.io/display/JENKINS/Beginners+Guide+to+Contributing[向 Jenkins 贡献的新手指导] 也很有用，因为它指出了不同的仓库、工具（例如问题跟踪系统）以及治理文档。
+此外，它还描述了提交消息、代码风格约定、PR 指导等的最佳实践。
+
+Once we get a general understanding of the former and want to actually start coding, we may get stuck trying to come up
+with something to work on.
+一旦我们对之前描述的有了一般性的了解，并想要真正地开始编码，我们可能会对该做些什么感到困惑。
+
+Visiting the https://issues.jenkins-ci.org/projects/JENKINS/issues[Jenkins issue tracker], feels like the natural next
+step, since it is full of potential bugs and enhancements that have already been reported by the community. However, it
+is quite easy to feel overwhelmed by the possibilities listed there. Bear in mind that in a 10+-year-old project like
+this, most of the things that are reported are tricky for a newcomer to work on. For that reason, filtering by
+https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20component%20%3D%20core%20AND%20labels%20in%20(newbie-friendly)[newbie-friendly tickets] is probably
+the best idea.
+似乎浏览 https://issues.jenkins-ci.org/projects/JENKINS/issues[Jenkins 问题跟踪系统]是顺其自然
+的下一步，因为那里充满了已经由社区报告了的潜在的缺陷和待改进的部分。然而，你很容易被无数的可能性列表所淹没。
+请记住一点，对于一个像这样有十年历史之久的项目，很多是为新手准备的。因此，通过 https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20component%20%3D%20core%20AND%20labels%20in%20(newbie-friendly)[newbie-friendly tickets]来过滤可能是最好的主意。
+
+.Screenshot displaying the list of newbie-friendly tickets in the Jenkins Jira
+image::/images/post-images/2019-05-30-becoming-contributor/list-newbie-tickets.png[]
+
+=== Selecting a ticket
+=== 选择一个工单
+
+In my case, I spent some time reviewing the `newbie-friendly` tickets, until https://issues.jenkins-ci.org/browse/JENKINS-56477[I found one]
+that seemed interesting to me and also looked like something I would be able to fix:
+在我案例中，我花了一些时间来浏览带 `newbie-friendly` 标签的工单，直到 https://issues.jenkins-ci.org/browse/JENKINS-56477[发现了一个]我似乎感兴趣并看起来有能力修复的：
+
+.Screenshot of the ticket I decided to work on
+image::/images/post-images/2019-05-30-becoming-contributor/jenkins-newbie-jira-ticket-selected.png[]
+
+=== Processes
+=== 过程
+
+At this stage, when we have decided to take ownership of a ticket, it’s a good practice to let the rest of the community
+know that we are planning to start working on it. We can do so easily, by assigning the ticket to ourselves (see the
+“_Assign_” button below the ticket summary).
+在这个阶段，当我们准备接手这个工单时，最好让社区中的其他人知道我们正在开始解决它。我们可以很容易做到这一点，
+只要把工单分配给我们自己即可（查看工单概览下的 “_Assign_” 按钮）。
+
+Assigning the ticket to ourselves in the Jenkins Jira will allow any other contributors to know that we are planning to
+take care of the ticket; and in case they are also interested in contributing to it, they will know who to reach if they
+want to coordinate work or ask for status. That said, it is worth mentioning that assigning a ticket to yourself does
+not mean that other contributors cannot work on it from then onwards. Jenkins is an open-source project and anyone is
+welcome to create their own PRs, so anybody can propose their own solution to the ticket. But as you can guess, if the
+ticket is assigned to somebody, most people will probably reach the assignee before starting to work on it.
+在 Jenkins 的 Jira 中把工单分配给我们自己的话，可以让其他的贡献者知道我们正在处理；另外，为了保证其他人有兴趣对此一起做贡献时，可以知道
+该去联系谁或者如何询问状态。也就是说，把工单分配给你自己，并不意味着其他贡献者就无法继续推进。Jenkins 是一个开源项目，欢迎任何人创建他们自己
+的 PR，因此，任何人都可以在工单中提出自己的方案。但是，你也能想到，如果工单分配给某个人的话，大多数人在开始工作前也可能会去联系承接人。
+
+Related to the former, it is also important to bear in mind that we should not postpone work on the ticket for too long
+once we have assigned the ticket to ourselves. Other potential contributors might be ignoring the ticket because they
+see yourself assigned to it.
+与之相关的是，请牢记当我们把工单分配给自己时，不应该在这个工作上拖延太久。其他的贡献者，可能会由于工单已被分配而忽略。
+
+Once we are about to actually start working on the ticket, it is also a good practice to click the “_Start Progress_”
+button. This action will change the status to “_In progress_”, signaling to the community that we are currently working
+on this particular ticket.
+当我们马上就要开始工作时，推荐的做法是先点击"_Start Progress_"按钮。这个动作，会把状态修改为“_In progress_”，对社区而言，
+意味着我们正在处理这个工单。
+
+== Setting up the necessary stuff on our computer
+== 在我们的电脑设置必要的工具
+
+=== Configuring, installing and testing
+=== 配置，安装和测试
+
+As described in the https://jenkins.io/blog/2019/03/29/becoming-contributor-intro/[first article of this journey], the
+initial step to start contributing to a particular repository is to fork it to our GitHub account, and then clone it to
+our local computer.
+正如在 https://jenkins.io/blog/2019/03/29/becoming-contributor-intro/[该旅程的第一篇文章]中描述的，开始为某个仓库做贡献的第一步
+是首先派生到我们自己的 GitHub 账号下，然后，克隆到你的电脑上。
+
+As usual, in the Jenkins core repository the https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md[CONTRIBUTING file]
+describes the necessary steps to get the repository working locally. This includes installing the necessary development
+tools: Java Development Kit (_https://adoptopenjdk.net/[OpenJDK] is the recommended choice_), Maven and any IDE supporting
+Maven projects. Note that instructions to install JDK and Maven are linked in the contributing guidelines.
+正如，在 Jenkins Core 仓库中的 https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md[CONTRIBUTING 文件]里
+所描述的，让仓库在本地运行的必要步骤。它包括，安装必要的开发工具：Java Development Kit (_https://adoptopenjdk.net/[OpenJDK] 为推荐的选择_)，Maven 以及任意支持 Maven 项目的 IDE。注意，安装 JDK 和 Maven 的步骤在贡献指南中有链接。
+
+Once we have all the necessary tools installed and configured, we are ready to https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#building-and-debugging[build Jenkins locally]
+and also to https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#testing-changes[run tests].
+当安装并配置好所需要的工具后，我们就准备好了 https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#building-and-debugging[在本地构建 Jenkins]，也可以 https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#testing-changes[运行测试]。
+
+== Getting down to business
+== 开始干活
+
+=== Reviewing ticket details
+=== 复查工单细节
+
+Now that I was ready to start working on the ticket, I had to review it in more detail, to fully understand the problem.
+现在，我准备好开始处理工单了，我必须仔细查看细节，以便全面地理解问题所在。
+
+The description of the ticket I was planning to work on included two links. The first one was to
+https://github.com/jenkinsci/jenkins/pull/3715#issuecomment-470873111[a screenshot that showed the actual bug]. It showed
+how several non-compatible plugins were being selected when clicking “_All_”, even though the intended behavior was to
+only select the compatible plugins. The second link was https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/hudson/PluginManager/table.jelly#L108...L120[a reference to a code fragment]
+that showed other validations that had to be taken into account when checking if a plugin update was compatible or not
+with the current installation.
+我计划处理的工单的描述中有两个链接。第一个是，https://github.com/jenkinsci/jenkins/pull/3715#issuecomment-470873111[体现真正缺陷的截图]。它展示出当点击按钮“_所有_“时，几个不兼容的插件是如何被选中的，甚至尽管预期的行为是仅选中兼容的插件。
+第二个链接是 https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/hudson/PluginManager/table.jelly#L108...L120[代码片段的引用]，它展示了当检查一个插件更新是否与当前版本兼容时需要考虑的校验。
+
+=== Reproducing the issue locally
+=== 本地复现问题
+
+Even though I had now understood the issue in better detail, I had not seen it myself live yet, so it seemed to me that
+the next logical step was to reproduce it locally.
+尽管我现在已经对该缺陷的细节了解清楚了，但还没有亲眼见过。因此，对我而言，下一个符合逻辑的步骤就是在本地复现。
+
+To reproduce the issue locally in our computer, we can either use the local `war` file that we can generate by
+https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#building-and-debugging[building Jenkins from the source code]
+or we can download the https://jenkins.io/download/[latest Jenkins version] available and run it locally. When I worked
+on this ticket, the latest available version was `2.172` and, when I built if from the sources I saw version `2.173-SNAPSHOT`,
+which was the next version, in which the community was already working on.
+为了在我们的电脑上复现该缺陷，可以利用 https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#building-and-debugging[源代码构建出 Jenkins] 的本地 `war` 文件，或者也可以下载 https://jenkins.io/download/[最新可用的 Jenkins 版本]，并在本地运行。
+当我处理该工单时，最新可用的版本为 `2.172`；当我自行构建源码时看到的版本为 `2.173-SNAPSHOT`，也就是社区正在进行的下一个版本。
+
+In general it is a good idea to reproduce bugs locally, not only to get a better understanding, but also to make sure
+they are actual issues. It could always be an issue happening only on the reporter’s end (e.g. some user misconfiguration).
+Or it could be a ticket referencing an old issue that has been fixed already. This latest possibility didn’t sound that
+strange to me, since the ticket was one month old. It could have been handled by someone else in the meantime, without
+noticing the ticket existed. Or the contributor might have forgotten to update the ticket in the issue tracker after the
+fix was committed.
+通常来说，在本地复现缺陷是一个好的主意，这不仅仅是为了能更好的理解，也可以确保问题真实存在。它可能只在报告者的环境中发生（例如：一些用户
+错误的配置）。或者，是已经修复了的久的缺陷。也有可能是某人在工单还没有提出时已经修复了。或者，可能是贡献者在修复后忘记了更新工单的状态。
+
+So, for all the reasons above, I ran the latest Jenkins version locally. From a terminal, I went to the
+folder in which the war file was placed, and ran `java -jar jenkins.war`, which starts Jenkins locally on http://localhost:8080.
+因此，基于以上的所有原因，我在本地运行最新版本的 Jenkins。从终端进入到 war 文件所在的目录，然后运行 `java -jar jenkins.war`，
+就会在本地启动 Jenkins，访问路径为 http://localhost:8080。
+
+From the home page I navigated to the Plugin Manager (clicking the “_Manage Jenkins_” link in the left hand side and
+then selecting “_Manage Plugins_” in the list).
+从首页上，切换到插件管理页面（在左侧点击 “_管理 Jenkins_” 的链接，然后选择在列表中选择 “_管理插件_”）。
+
+In the Manage Plugins page, the list of plugin updates appears. In my case, since I re-used an old `JENKINS_HOME`
+from an older installation, several plugins showed up in the list, requiring updates. That allowed me to test the behavior
+that was supposed to be failing.
+在管理插件的页面中，有一个插件更新的列表。对我而言，由于复用了之前安装的旧的 `JENKINS_HOME` 目录，已经有一些插件出现在这里，并需要
+更新。这使得我可以测试这个假定会失败的行为。
+
+When I clicked on the “Select all” option at the bottom, this is what I got:
+当我点击了底部的“全选”选项，得到了如下结果：
+
+.Screenshot showing the error, reproduced locally, after clicking “Select All”
+image::/images/post-images/2019-05-30-becoming-contributor/jenkins-plugin-manager-updates-selected-bottom.png[]
+
+As it had been reported in the ticket, the behavior was inconsistent. In a previous version, the behavior of the “_All_”
+selector had been changed (with the best intent), aiming to only check the compatible plugins. However, as can be seen
+in the screenshot, the behavior was not the expected one. Now, neither “all” nor “only compatible” plugins were being
+selected, since some plugins with compatibility issues were also being checked, unintentionally.
+正如在它在工单中报告的，该行为是不一致的。在上一个版本中，“_全选_”的行为已经改变（试图改进），是为了只选中兼容的插件。然而，
+正如在截图中看到的，该行为并未像期待的那样。现在，不管是“全选”还是“兼容性的“插件都会被选中，一些有兼容性问题的插件也会被无意中被选中。
+
+=== Figuring out a fix
+=== 尝试修复
+
+When reading the conversation in the original PR in which the behavior of the “_All_” selector had been changed, I saw a
+suggestion of having a separate “_Compatible_” selector, thus leaving the “_All_” selector with the traditional behavior.
+I liked the idea, so I decided to include it as part of my proposed change.
+当在阅读原始 PR 中关于“全选”行为变更的讨论时，我看到了一个采用分离的“_兼容性的_”按钮的建议，而保留“_全选_”按钮的传统行为。
+我喜欢这个主意，因此，我决定把它作为我的变更提议的一部分。
+
+At this stage, I had a clear picture of the different things I needed to change. These included: 1) The UI, to add a new
+selector for “Compatible” plugins only, 2) the JS code that applied the changes to the interface when the selectors were
+clicked and 3) probably the back-end method that was determining if a plugin was compatible or not.
+在这个阶段，我对需要做的变更有了清晰的想法。包括：1)界面UI，为“兼容的”插件增加一个按钮，2)当按钮点击后 JS 代码应用变更，然后3)
+后端的方法来决定一个插件是否为兼容的。
+
+=== Applying the change
+=== 应用变更
+
+As usual, and as it is also recommended in the contributing guidelines, I created a separate feature branch to work on
+the ticket.
+正如在贡献指南中推荐的，我创建了一个独立的 feature 分支来处理这个工单。
+
+After reviewing the code, I spent some time figuring out which pieces I needed to change, both in the back-end and also
+in the front-end. For more details about the changes I had to make, you can take a look at the https://github.com/jenkinsci/jenkins/pull/3985/files[changes in my PR].
+复查完代码后，我花了一些时间来搞清楚应该做哪些修改，包括前端和后端的代码。关于我修改的更多细节，你可以看一下 https://github.com/jenkinsci/jenkins/pull/3985/files[在我的 PR 中的变更]。
+
+As a basic summary, I learned that the classic Jenkins UI was built using https://commons.apache.org/proper/commons-jelly/tutorial.html[Jelly]
+and, after understanding its basics, I modified the `index.jelly` file to include the new selector, assigning the
+function that checked the compatible plugins to this new selector, and re-using the existing “toggle” function to set
+all checkboxes to true in the case of “_All_”. I also had to modify the behavior of the `checkPluginsWithoutWarnings`
+JavaScript function, to un-check the incompatible ones, since there was now an actual “_All_” selector that was not there
+previously, and that un-check case was not being taken into account. Then, I created a new back-end Java method
+`isCompatible`, inside the `UpdateSite.java` class, which now calls all the different methods that check different
+compatibilities and returns the combined boolean result. For this change, I included an automated test to verify the
+correct behavior of the method, contributing to the test coverage of the project. Finally, I modified the `table.jelly`
+file to call the new back-end method from the UI, replacing the existing one that was not taking all cases into account.
+
+As you can see, the change involved touching different technologies, but even if you face a similar situation in which
+you are not familiar with some of them, my advice would be carry on, don’t let that stop you. As software engineers, we
+should https://github.com/romenrg/evergreen-skills-developers[focus on our evergreen skills], rather than on knowing
+specific technologies; adapting to whatever framework we have to use at a given moment, learning whatever we need about
+the new technology to complete the task and applying cross-framework principles and best practices to provide a quality
+solution.
+
+=== Result
+=== 结果
+
+After the changes described above, the resulting UI includes a new option, and the corresponding behaviors of the three
+selectors work as expected:
+
+.Screenshot of the new version, displaying the behavior achieved by clicking the new “Compatible” selector
+image::/images/post-images/2019-05-30-becoming-contributor/fixed-select-compatible.png[]
+
+== Publishing the change
+== 发布变更
+
+=== Submitting a Pull Request
+=== 提交一个 Pull Request
+
+In the contributing guidelines of the Jenkins core repository there is also a section about https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#proposing-changes[proposing changes],
+which describes the necessary steps that have to be followed in order to create a Pull Request (PR) with our change.
+在 Jenkins 核心仓库里的贡献指南中，有一章关于 https://github.com/jenkinsci/jenkins/blob/master/CONTRIBUTING.md#proposing-changes[变更提议]的内容，描述了为我们的变更创建一个 Pull Request (PR) 所必须要遵守的步骤。
+
+Furthermore, there is a https://github.com/jenkinsci/jenkins/blob/master/.github/PULL_REQUEST_TEMPLATE.md[PR template] in
+the repository, which will be loaded automatically when creating a new PR and that will serve as a basis for us to provide
+the necessary information for the reviewers. We are expected to: include a link to the ticket, list the proposed changelog
+entries describing our changes, complete the submitter checklist and add mentions to the desired reviewers (if any).
+此外，这个仓库中还有一个 https://github.com/jenkinsci/jenkins/blob/master/.github/PULL_REQUEST_TEMPLATE.md[PR 模板]，
+将会在创建一个新的 PR 时自动加载，作为一个让我们给复查者提供必要信息的基础。我们期望的是：工单链接，描述变更的变更日志条目，
+完成提交者的检查单，并提醒期望的复查者（如果有的话）。
+
+In my case, https://github.com/jenkinsci/jenkins/pull/3985#issue-270291185[I followed the template when creating my PR],
+completing all sections. I linked the Jira ticket, provided two proposed changelog entries, completed the submitter
+checklist and added three desired reviewers (explaining why I thought their reviews would be valuable). I also linked
+the original PR that was referenced in the ticket, to provide further context.
+在我的案例中， https://github.com/jenkinsci/jenkins/pull/3985#issue-270291185[我在创建 PR 时遵照模板]，完成了所有部分。
+我添加了 Jira 工单链接，提供了两条变更日志条目，完成了提交者的检查单，并增加了三位期望的复查者（并介绍了我为什么认为条目的复查会是有价值的）。
+我还添加了工单中提到的原始 PR 链接，以便提供更多的上下文。
+
+.Screenshot of the PR I submitted
+image::/images/post-images/2019-05-30-becoming-contributor/pr-created.png[]
+
+=== The approve and merge process
+=== 通过和合并的流程
+
+As stated in the contributing guidelines, typically two approvals are needed for the PR to be merged; and it can take
+from a few days to a couple of weeks to get them. Sometimes, one approval from a reviewer and a 1-week delay without
+extra reviews is considered enough to set the PR as `ready-for-merge`. However, both the time-to-merge and the number
+of approvals necessary might vary, depending on the complexity of the change or the area of Jenkins core that it affects.
+正如在贡献指南中申明的，一个 PR 需要有两个人通过才能被合并；这可能需要几天到几周的时间。有时候，有一个复查者通过了，一周后没有额外的复查
+也认为足够设置 PR 为 `ready-for-merge`。然而，合并所需要的时间以及通过的数量可能不同，这取决于变更的复杂度或者对 Jenkins Core 的影响面。
+
+After the necessary approvals have been received, a Jenkins core maintainer will set the PR as  `ready-for-merge`, which
+will lead to it being merged into the master branch when one of the following releases are being prepared.
+当收到必要的通过建议后，一个 Jenkins Core 的维护者讲会把 PR 设置为 `ready-for-merge`，并会在准备下次发布时被合并到 master 分支。
+
+In my case, I received a review by Daniel (the reporter of the ticket and one of my “desired reviewers”) the very day I
+submitted the PR (April 14th). He made several very useful suggestions, which led to changes from my side. After those
+changes, Daniel made minor remarks and my PR got another review, which was its first approval. After a week had passed
+without further news, I added the remaining minor suggestions from Daniel and a few days later received another approval,
+to which Daniel’s final approval was added, leading the PR to be labeled `ready-for-merge`, being later merged the same
+day (April 26th).
+对我而言，在提交 PR (四月十四日)当天，我收到了 Daniel（工单的报告者，也是我“期望的复查者”）的复查。他给出了几个非常有用的建议，
+我据此进行了修改。之后，Daniel 再次复查我的 PR 并给了一些小的备注，并被核准。之后一周，没有任何动态，我根据 Daniel 的建议增加了一些修改，
+最后，Daniel 通过我的 PR，这使得 PR 添加上了 `ready-for-merge` 的标签，并在后来的某天被合并了（四月26日）。
+
+.Screenshot of the final state of the PR, after being merged
+image::/images/post-images/2019-05-30-becoming-contributor/pr-merged.png[]
+
+=== Release
+=== 发布
+
+For every new release, repository maintainers will select a set of PRs that have already been labeled `ready-for-merge`,
+merge them to master, prepare changelogs (often using the suggestions included in the PRs by the authors) and proceed with
+the creation of the new release. There is no additional action required from Pull Request authors at this point.
+每次新的发布，仓库的维护者会选择被添加 `ready-for-merge` 标记的 PR 合并到 master 分支，准备变更日志（通常会采用 PR 作者的提议）并
+继续创建新的版本。此时，PR 的作者不需要有额外的参与。
+
+Every week a new version of Jenkins is released, so when your PR is merged, your changes will--most likely--become part
+of the following weekly release of Jenkins.
+每周，Jenkins 都会发布一个新的版本，因此，当你的 PR 被合并后，你的变更非常有可能会成为下一个每周发布版的 Jenkins 的一部分。
+
+Eventually, your changes will also reach the https://jenkins.io/download/lts/[Long-term support (LTS) release], which is
+a different release line, aimed for more conservative users. This release line gets synced with the weekly release by
+picking, every 12 weeks, a relatively recent weekly release as baseline for the new LTS release. In between, intermediate
+LTS releases are created only to include important bug fixes, cherry-picked from the weekly releases. New features are
+typically delayed until the next baseline for the LTS release is defined.
+最终，你的变更也会到达 https://jenkins.io/download/lts/[长期支持 (LTS) 版本]，这是一个不同的发布线，目标是更加保守的用户。
+这个发布线是与每周发布的版本选择同步的，每12周一个最新的每周发布版会作为新的 LTS 版本基线。在此期间，中间的 LTS 版本只会包括重要的缺陷修复，
+来自每周发布版 cherry-picked。新的功能通常会等到下一个 LTS 的基线被确定后。
+
+Regarding the example described in this post, *it was released in Jenkins `2.175`* (weekly release), soon after being
+merged. And will probably be included in the next LTS, which should be released next month (June 2019).
+鉴于在这篇博客中描述的例子，在合并后 *它发布在了 Jenkins `2.175`*（每周发布版）。并可能会包括在下一个 LTS 中，
+应该是在下个月发布（2019年6月）。
+
+== Done!
+== 完工！
+
+And that’s it! We have now covered the whole lifecycle of a new proposed change to Jenkins core. We have reviewed the
+process from the very beginning, picking a ticket from the Jenkins issue tracker; all the way to the end, having our
+change released in a new Jekins version.
+就这么多！到此，我们已经覆盖了向 Jenkins Core 提出一个新的提议的完整生命流程。我们回顾了从流程的开始，在 Jenkins 缺陷跟踪系统中挑选
+一个工单；一直到最后，发布我们的变更到一个新的 Jenkins 版本。
+
+If you have never contributed but are willing to do so, I hope this article motivates you to go back to the list of
+https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20component%20%3D%20core%20AND%20labels%20in%20(newbie-friendly)[`newbie-friendly` tickets], find one that looks interesting to you, and follow the steps described above, until you see
+your own change released in a new Jenkins version.
+如果你从未但是想要做贡献，我希望这篇文章能够激励你回到 https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20component%20%3D%20core%20AND%20labels%20in%20(newbie-friendly)[标记了 `newbie-friendly` 的工单]列表中，
+找到一个你感兴趣的，按照上面描述的步骤，知道你看到自己的变更发布到了一个新的 Jenkins 版本中。
+
+Remember, don’t try to solve a complicated issue as your first ticket, there are plenty of easier ways in which you can
+contribute, and every little helps!
+记住，不要尝试在你的首个工单中解决一个复杂的问题，有很多更轻松的方法你可以做贡献，而且，不管多小都是有帮助的！
