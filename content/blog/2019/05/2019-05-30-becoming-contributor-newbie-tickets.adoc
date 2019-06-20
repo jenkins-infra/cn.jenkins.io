@@ -293,7 +293,7 @@ to which Daniel’s final approval was added, leading the PR to be labeled `read
 day (April 26th).
 对我而言，在提交 PR (四月十四日)当天，我收到了 Daniel（工单的报告者，也是我“期望的复查者”）的复查。他给出了几个非常有用的建议，
 我据此进行了修改。之后，Daniel 再次复查我的 PR 并给了一些小的备注，并被核准。之后一周，没有任何动态，我根据 Daniel 的建议增加了一些修改，
-最后，Daniel 通过我的 PR，这使得 PR 添加上了 `ready-for-merge` 的标签，并在后来的某天被合并了（四月26日）。
+最后，Daniel 通过我的 PR，这使得 PR 添加上了 `ready-for-merge` 的标签，并在后来的某天被合并了（四月二十六日）。
 
 .Screenshot of the final state of the PR, after being merged
 image::/images/post-images/2019-05-30-becoming-contributor/pr-merged.png[]
