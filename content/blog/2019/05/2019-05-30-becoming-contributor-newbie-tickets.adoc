@@ -330,7 +330,7 @@ LTS releases are created only to include important bug fixes, cherry-picked from
 typically delayed until the next baseline for the LTS release is defined.
 最终，你的变更也会到达 https://jenkins.io/download/lts/[长期支持 (LTS) 版本]，这是一个不同的发布线，目标是更加保守的用户。
 这个发布线是与每周发布的版本选择同步的，每12周一个最新的每周发布版会作为新的 LTS 版本基线。在此期间，中间的 LTS 版本只会包括重要的缺陷修复，
-来自每周发布版 cherry-picked。新的功能通常会等到下一个 LTS 的基线被确定后。
+来自每周发布版 cherry-pick。新的功能通常会等到下一个 LTS 的基线被确定后。
 
 Regarding the example described in this post, *it was released in Jenkins `2.175`* (weekly release), soon after being
 merged. And will probably be included in the next LTS, which should be released next month (June 2019).
