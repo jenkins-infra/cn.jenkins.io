@@ -27,7 +27,7 @@ https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins
 从公司内部网的工作站, 到连接到公共互联网的高性能服务器，Jenkins无处不在。 为了安全支持这一广泛的安全和威胁配置文件的传播, Jenkins提供了许多配置选项 来启用, 编辑, 或禁用各种安全特性。
 
 在Jenkins 2.0中,许多安全选项默认是启用的，
-e以确保Jenkins环境保持安全，除非管理员明确禁用某些保护。
+以确保Jenkins环境保持安全，除非管理员明确禁用某些保护。
 
 本节将介绍管理员可用的各种安全选项 , 解释所提供的保护, 并权衡禁用其中的一些选项。
 
