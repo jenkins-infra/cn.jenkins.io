@@ -220,15 +220,19 @@ and, after understanding its basics, I modified the `index.jelly` file to includ
 function that checked the compatible plugins to this new selector, and re-using the existing “toggle” function to set
 all checkboxes to true in the case of “_All_”. I also had to modify the behavior of the `checkPluginsWithoutWarnings`
 JavaScript function, to un-check the incompatible ones, since there was now an actual “_All_” selector that was not there
-previously, and that un-check case was not being taken into account. Then, I created a new back-end Java method
+previously, and that un-check case was not being taken into account. 
+Then, I created a new back-end Java method
 `isCompatible`, inside the `UpdateSite.java` class, which now calls all the different methods that check different
 compatibilities and returns the combined boolean result. For this change, I included an automated test to verify the
-correct behavior of the method, contributing to the test coverage of the project. Finally, I modified the `table.jelly`
+correct behavior of the method, contributing to the test coverage of the project. 
+Finally, I modified the `table.jelly`
 file to call the new back-end method from the UI, replacing the existing one that was not taking all cases into account.
 简单总结下，我了解到经典的 Jenkins UI 是使用 https://commons.apache.org/proper/commons-jelly/tutorial.html[Jelly] 来编写的，
 在了解它的基本原理后，我修改文件 `index.jelly` 让包括新的选择器，并关联检查兼容性插件的函数到这个选择器上，当点击 “_全选_” 时
-复用已有的函数 “toggle” 来勾选所有的复选框。我同时必须要修改 JavaScript 函数 `checkPluginsWithoutWarnings` 的行为，不再检查不兼容的，
-
+复用已有的函数 “toggle” 来勾选所有的复选框。我同时必须要为未经检查兼容性的情况修改 JavaScript 函数 `checkPluginsWithoutWarnings` 的行为，
+因为现在已经有了一个真正的 “_全选_” 按钮，未经检查的情况不再考虑。然后，我在类 `UpdateSite.java` 中添加了一个后端的 Java 方法 `isCompatible`，
+来调用所有检查不同的兼容性的方法，并最终返回一个结果。在这次修改中，我还增加了一个自动化测试来验证该方法的正确行为，为项目增加了代码测试覆盖率。
+最后，我修改了文件 `table.jelly` 来从前端调用后端的方法，替换了之前没有把所有类都考虑进去的方法。
 
 As you can see, the change involved touching different technologies, but even if you face a similar situation in which
 you are not familiar with some of them, my advice would be carry on, don’t let that stop you. As software engineers, we
@@ -236,6 +240,9 @@ should https://github.com/romenrg/evergreen-skills-developers[focus on our everg
 specific technologies; adapting to whatever framework we have to use at a given moment, learning whatever we need about
 the new technology to complete the task and applying cross-framework principles and best practices to provide a quality
 solution.
+正如你所看到的，变更涉及到了不同的技术，甚至你遇到的是简单的场景，却不是很熟悉。我的建议是，不要让这些困难让你停止了前进的脚步。作为一名软件工程师，
+我们应该 https://github.com/romenrg/evergreen-skills-developers[专注于让我们永远不过时的技能]，而不是只了解特定的技术；
+在特定的场景下，要适应不同的框架，学习一切为了完成任务所需要的新技术，采用跨框架的原则和最佳实践以提供高质量的方案。
 
 === Result
 === 结果
