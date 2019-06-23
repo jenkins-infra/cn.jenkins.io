@@ -76,7 +76,7 @@ image::/images/post-images/2019-05-30-becoming-contributor/jenkins-newbie-jira-t
 
 现在，我准备好开始处理工单了，我必须仔细查看细节，以便全面地理解问题所在。
 
-我计划处理的工单的描述中有两个链接。第一个是，https://github.com/jenkinsci/jenkins/pull/3715#issuecomment-470873111[体现真正缺陷的截图]。它展示出当点击按钮“_所有_“时，几个不兼容的插件是如何被选中的，甚至尽管预期的行为是仅选中兼容的插件。
+我计划处理的工单的描述中有两个链接。第一个是，https://github.com/jenkinsci/jenkins/pull/3715#issuecomment-470873111[体现真正缺陷的截图]。它展示出当点击按钮"_所有_"时，几个不兼容的插件是如何被选中的，甚至尽管预期的行为是仅选中兼容的插件。
 第二个链接是 https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/hudson/PluginManager/table.jelly#L108...L120[代码片段的引用]，它展示了当检查一个插件更新是否与当前版本兼容时需要考虑的校验。
 
 === 本地复现问题
@@ -103,12 +103,12 @@ image::/images/post-images/2019-05-30-becoming-contributor/jenkins-newbie-jira-t
 .Screenshot showing the error, reproduced locally, after clicking “Select All”
 image::/images/post-images/2019-05-30-becoming-contributor/jenkins-plugin-manager-updates-selected-bottom.png[]
 
-正如在它在工单中报告的，该行为是不一致的。在上一个版本中，“_全选_”的行为已经改变（试图改进），是为了只选中兼容的插件。然而，
+正如在它在工单中报告的，该行为是不一致的。在上一个版本中，"_全选_"的行为已经改变（试图改进），是为了只选中兼容的插件。然而，
 正如在截图中看到的，该行为并未像期待的那样。现在，不管是“全选”还是“兼容性的“插件都会被选中，一些有兼容性问题的插件也会被无意中被选中。
 
 === 尝试修复
 
-当在阅读原始 PR 中关于“全选”行为变更的讨论时，我看到了一个采用分离的“_兼容性的_”按钮的建议，而保留“_全选_”按钮的传统行为。
+当在阅读原始 PR 中关于“全选”行为变更的讨论时，我看到了一个采用分离的"_兼容性的_"按钮的建议，而保留"_全选_"按钮的传统行为。
 我喜欢这个主意，因此，我决定把它作为我的变更提议的一部分。
 
 在这个阶段，我对需要做的变更有了清晰的想法。包括：1)界面UI，为“兼容的”插件增加一个按钮，2)当按钮点击后 JS 代码应用变更，然后3)
