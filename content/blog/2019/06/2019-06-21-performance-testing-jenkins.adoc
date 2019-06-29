@@ -156,7 +156,6 @@ runBenchmarks('jmh-report.json')
 
 == 可视化基准测试结果
 
-
 可以使用 plugin:jmh-report[JMH 报告插件]或将基准测试报告传递给 link:https://jmh.morethan.io[JMH 可视化工具] web 服务来可视化生成的基准报告（JSON格式）。
 举个例子，这里有一些来自角色策略插件（Role Strategy Plugin）中基准测试的可视化报告:
 
