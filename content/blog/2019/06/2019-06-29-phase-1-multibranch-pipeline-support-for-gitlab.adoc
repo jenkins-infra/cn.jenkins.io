@@ -273,7 +273,7 @@ link:https://github.com/omehegan[Owen]。
 
 也感谢整个 Jenkins 社区提供的专业技术和灵感。
 
-== Links
+== 链接
 
 * link:https://www.youtube.com/watch?v=ij6ByZqI67o[第一阶段示例]
 * link:https://drive.google.com/open?id=1c3UWwEb5rDmO6YEn5fU3qVbVW-opuUXb[演示幻灯片]
