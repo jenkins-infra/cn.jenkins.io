@@ -3,7 +3,7 @@ layout: simplepage
 title: Jenkins 微信公众号
 ---
 
-====== 本公众号为 Jenkins 官方微信公众号。每周会有相关 Jenkins 方面的文章（包含原创、翻译、版本更新等），不定期会举行一些如 Meetup、WorkShop、黑客松等活动，有意愿参与进来的小伙伴请尽快关注。
+====== 本公众号为 Jenkins 官方微信公众号。每周会有相关 Jenkins 方面的文章（包含原创、翻译、版本更新等），link:https://jenkins-zh.cn[中文社区]会不定期举办一些如 Meetup、WorkShop、黑客松等活动并会在公众号上发布，有意愿参与进来的小伙伴请尽情关注。
 
 image:/images/wechat/wechat.jpg[alt="Jenkins 微信公众号"]
 
