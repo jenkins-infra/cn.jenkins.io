@@ -16,7 +16,7 @@ translator: donhui
 = 多分支流水线任务对 GitLab SCM 的支持
 
 这是在 GSoC 2019中的一个 Jenkins 项目。
-我们正致力于增加link:/projects/gsoc/2019/gitlab-support-for-multibranch-pipeline/[多分支流水线任务和文件夹组织对 GitLab]的支持。
+我们正致力于增加link:/projects/gsoc/2019/gitlab-support-for-multibranch-pipeline/[多分支流水线任务和文件夹组织对 GitLab ]的支持。
 这个计划是创建以下插件：
 
 * link:https://github.com/jenkinsci/gitlab-api-plugin[GitLab API 插件] - 包装 GitLab Java APIs。
@@ -134,7 +134,7 @@ image:/images/post-images/2019/06/2019-06-29-multibranch-pipeline-support-for-gi
 
 ** `Web Hook` - 此字段是一个复选框。如果希望插件在与 Gitlab 项目相关的任务上设置 Webhook ，请选中此框。该插件监听相关 Gitlab 项目的 URL ，当 Gitlab 服务器中发生事件时，服务器将向设置 Web Hook 的 URL 发送事件触发器。如果您希望在 Gitlab 项目上持续集成（或持续交付），那么您可能希望自动设置它。
      
-. 添加一个 Personal Access Token 凭据(自动生成 Personal Access Token 请参考link:#creating-personal-access-token-within-jenkins[下一个部分]):
+. 添加一个 Personal Access Token 凭据(自动生成 Personal Access Token 请参考link:#在-jenkins-内创建个人访问令牌[下一个部分]):
 
 .. 用户需要添加一个 `GitLab Personal Access Token` 类型凭证条目用来安全地将 token 保存在 Jenkins 内部。
 
