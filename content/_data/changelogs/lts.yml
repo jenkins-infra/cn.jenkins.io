@@ -1283,37 +1283,37 @@
     references:
       - pull: 3838
       - url: https://jenkins.io/blog/2019/02/17/remoting-cli-removed/
-        title: announcement blog post
-    message: >
-      Support for the Remoting mode of the CLI (<code>-remoting</code> option) has been removed.
+        title: 博客发布
+    message: > 
+      CLI 中通过参数 (<code>-remoting</code> option) 对远程模式的支持已经被移除。
   - type: major rfe
     pull: 3951
     issue: 56776
     message: >
-      Remove misleading <code>nonStoredPasswordParam</code> symbol for password parameter definitions, since it's actually stored encrypted.
+      移除符号  <code>nonStoredPasswordParam</code>  对密码参数定义的误导，因为，它会存储加密后的数据。
   - type: major rfe
     pull: 2691
     issue: 40750
     message: |-
-      Remove built-in support for CCtray (cc.xml) files.
-      To restore this feature, install the <a href="https://plugins.jenkins.io/cctray-xml">CCtray XML Plugin</a>
+      移除对 CCtray (cc.xml) 文件的默认支持。
+      要使用该功能，需要按照插件 <a href="https://plugins.jenkins.io/cctray-xml">CCtray XML Plugin</a>。
 # Features
 
   - type: rfe
     pull: 3686
     issue: 11888
     message: |-
-      Add <code>stop-job</code> CLI command which allows aborting builds.
+      增加 CLI 命令 <code>stop-job</code> 终止构建。
   - type: rfe
     pull: 3906
     issue: 56200
     message: >
-      Add support for turning off a log recorder in the logger configuration.
+      在日志配置中支持关闭一项日志记录器。
   - type: rfe
     pull: 3934
     issue: 56554
     message: >
-      Add the run parameter filter value to REST API responses.
+      为 REST API 的响应增加运行参数过滤器。
 # UI Improvements
 #  - type: rfe
 #    pull: 3923
@@ -1324,11 +1324,11 @@
     pull: 3952
     issue: 16750
     message: |-
-      Update status icon of a build when the build is finished.
+      构建结束后更新状态图标。
   - type: rfe
     pull: 3998
     message: |-
-      Remove misleading references to Java Web Start and JNLP from GUI surrounding inbound Jenkins agents.
+      在 Jenkins 节点的界面上移除对 Java Web Start and JNLP 的误导性引用。
 #  - type: rfe
 #    pull: 3985
 #    issue: 56477
@@ -1341,23 +1341,22 @@
     pull: 3919 # and 3926
     issue: 24513
     message: >
-      Inform administrators about potentially unsafe permissions setup involving builds running as the virtual SYSTEM user.
+      当涉及到以虚拟 SYSTEM 用户运行构建时，通知管理员潜在的不安全设置。
   - type: rfe
     pull: 3908
     message: >
-      Add a log message to build logs when builds run with the virtual SYSTEM authentication.
+      当运行在虚拟的 SYSTEM 认证下时，在构建日志中增加一条日志消息。
 # Misc
   - type: rfe
     pull: 4008
     message: |-
-      Migrate all Chinese localization resources into <a href="https://plugins.jenkins.io/localization-zh-cn">Localization: Chinese (Simplified) plugin</a>.
+      迁移所有中文本地化资源文件到 <a href="https://plugins.jenkins.io/localization-zh-cn">简体中文插件</a>。
   - type: rfe
     pull: 3961
     message: |-
-      Adjust stream flushing behavior for code running remotely on agents for better performance.
-      This may lead to loss of messages for plugins which print to a build log from the agent machine but do not flush their output.
-      Use <code>-Dhudson.util.StreamTaskListener.AUTO_FLUSH=true</code> to restore the previous behavior for freestyle builds.
-      Note that Pipeline builds always expect remote flush.
+      调整流刷新行为，使得运行在远程的节点上时有更好的性能。这可能会导致部分插件在节点机器上打印构建日志却不刷新输出时丢失消息。
+      通过 <code>-Dhudson.util.StreamTaskListener.AUTO_FLUSH=true</code> 可以让自由风格的构建回到之前的行为。
+      注意，流水线的构建总是期待远程刷新。
 # Dependencies
   - type: rfe
     pull: 3943
@@ -1365,20 +1364,20 @@
       - issue: 56659
       - issue: 56591
       - url: https://github.com/jenkinsci/winstone/blob/master/CHANGELOG.md#52
-        title: full changelog
+        title: 完整变更日志
     message: >
-      Update Winstone from 5.1 to 5.2 to make HTTPS cipher exclusions configurable.
+      Winstone 的版本从 5.1 更新到 5.2，使得 HTTPS cipher 为可配置的。
 # Notable bugs
   - type: bug
     pull: 3973
     issue: 55292
     message: |-
-      Remove Mailer related localized strings from core. Make sure you use Mailer Plugin 1.23.
+      从核心中移除邮件相关的本地化字符串。确保你使用 Mailer Plugin 1.23。
   - type: bug
     pull: 3955
     issue: 50504
     message: |-
-      Do not offer a workspace lease to a new build if it is already in use by a (Pipeline) build running across an agent reconnection.
+      如果工作空间已经被一个跨节点运行的流水线重连时使用了，那么，它将不会再给新的构建分配租期。
 #  - type: bug
 #    pull: 3925
 #    issue: 56403
@@ -1395,27 +1394,27 @@
       - url: https://github.com/jenkinsci/jep/tree/master/jep/216
         title: JEP-216
       - url: https://github.com/stapler/stapler/blob/master/CHANGELOG.md#1257
-        title: full changelog
+        title: 完整变更日志
     message: |-
-      Developer: Update Stapler from 1.256 to 1.257 to add support for loading localized webapp resources from any plugin.
-      Add <code>jenkins.PluginLocaleDrivenResourceProvider</code> interface for plugins to participate in localized resource lookup.
+      开发者：为了支持从任意插件中加载本地化资源，Stapler 的版本从 1.256 更新到 1.257。
+      增加接口 <code>jenkins.PluginLocaleDrivenResourceProvider</code> 用于让其他插件可以定制本地化资源的查找过程。
   - type: rfe
     references:
       - pull: 3896
       - url: https://github.com/jenkinsci/jep/tree/master/jep/216
         title: JEP-216
       - url: https://github.com/kohsuke/localizer/compare/localizer-parent-1.24...localizer-parent-1.26
-        title: full changelog
+        title: 完整变更日志
     message: >
-      Developer: Update Localizer library from 1.24 to 1.26 allowing plugins to override the lookup for localized resource files.
+      开发者：本地化库的版本从 1.24 更新到 1.26，使用插件可以覆盖查找本地化资源文件的逻辑。
 # Other
   - type: rfe
     references:
       - pull: 3967
       - url: https://jenkins.io/doc/developer/security/secrets/
-        title: Storing Secrets in Jenkins
+        title: 在 Jenkins 中存储凭据
     message: |-
-      Developer: Add Jelly UI component <code>f:secretTextarea</code> for multi-line secrets analogous to <code>f:password</code> for single-line.
+      开发者：为类似于单行 <code>f:password</code> 的多行文本凭据添加 Jelly UI 组件 <code>f:secretTextarea</code>。
 #  - type: rfe
 #    pull: 3963
 #    message: |-
@@ -1423,18 +1422,17 @@
   - type: rfe
     pull: 3961
     message: |-
-      Developer: <code>SystemProperties</code> may now be used from agent-side code.
-      See <code>SystemProperties#allowOnAgent</code>.
+      开发者：<code>SystemProperties</code> 现在可以用于节点端的代码。参考 <code>SystemProperties#allowOnAgent</code>。
   changes:
   - type: bug
     pull: 4014
     issue: 57412
-    message: Restore Chinese localized resources used by the setup wizard.
+    message: 恢复安装向导中用到的中文本地化资源。
   - type: bug
     pull: 4015
     issue: 57111
     message: |-
-      Robustness: Do not put agent offline for runtime exceptions in <code>ComputerListener#onOnline()</code>.
+      Robustness: 当 <code>ComputerListener#onOnline()</code> 发生运行时异常后不把节点设置为离线状态。
 
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
