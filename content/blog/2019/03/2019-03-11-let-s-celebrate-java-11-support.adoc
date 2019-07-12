@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Let's celebrate Java 11 Support on Jenkins"
+title: "让我们庆祝 Jenkins 对 Java 11的支持"
 tags:
 - core
 - developer
@@ -27,7 +27,7 @@ image:/images/logos/formal/256.png[Jenkins Java, role=center, float=right]
 除了这些事件之外，Core/Plugins 维护者和许多其他贡献者都在努力工作，确保他们发现并解决与 Java 11支持相关的尽可能多的问题。
 
 支持 Java 11的努力导致在 Jenkins 中创建了 https://github.com/jenkinsci/jep/blob/master/jep/211/README.adoc[JEP-211: Java 10+ support in Jenkins]。
-它还促使 https://jenkins.io/sigs/platform[平台特别兴趣小组]的成立，以协调 Java 11工作和其他平台支持工作。
+它还促使https://jenkins.io/sigs/platform[平台特别兴趣小组]的成立，以协调 Java 11工作和其他平台支持工作。
 
 == 庆祝活动
 
@@ -78,7 +78,7 @@ Wadeck Follonier
 
 （如果我们错过了此列表中的任何人，我们深感抱歉。）
 
-== 方针
+== 指南
 
 为了简单起见，以下是使用 Docker 镜像在 Java 11上启动 Jenkins 的方法。
 您可以通过为镜像的标签添加后缀来选择基于 Java 11的镜像`-jdk11`。
@@ -91,7 +91,7 @@ Wadeck Follonier
 docker run -p 50000:50000 -p 8080:8080 jenkins/jenkins:2.164-jdk11
 ----
 
-但是，和往常一样，您仍然可以使用其他方法启动 Jenkins。请参阅 link:/doc/administration/requirements/jenkins-on-java-11[Java 11上运行 Jenkins]的更详细文档。
+但是，和往常一样，您仍然可以使用其他方法启动 Jenkins。请参阅 link:/doc/administration/requirements/jenkins-on-java-11[Java 11上运行 Jenkins] 的更详细文档。
 
 == 开发者指南
 
@@ -104,8 +104,8 @@ docker run -p 50000:50000 -p 8080:8080 jenkins/jenkins:2.164-jdk11
 
 尽管这是一项重大成就，但我们仍有工作要做。
 
-我们的首要任务是为 link:https://github.com/jenkinsci/jenkinsfile-runner[JenkinsFile Runner]项目添加 Java 11支持。
-从那里开始，我们将继续为 link:https://github.com/jenkins-x[Jenkins X]项目和 link:/projects/evergreen/[Evergreen]项目提供 Java 11支持。
+我们的首要任务是为 link:https://github.com/jenkinsci/jenkinsfile-runner[JenkinsFile Runner] 项目添加 Java 11支持。
+从那里开始，我们将继续为 link:https://github.com/jenkins-x[Jenkins X] 项目和 link:/projects/evergreen/[Evergreen] 项目提供 Java 11支持。
 
 所以，即使这对我们来说是个大问题，这也不是故事的结局。这是使Jenkins社区的用户，开发人员和成员受益的重要一步。
 
