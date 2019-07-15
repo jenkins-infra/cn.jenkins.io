@@ -2573,7 +2573,7 @@
       pull: 3994
       issue: 57121
       message: |-
-        改善配置及管理对 <code>ListView</code> 的兼容性。
+        改善配置及代码对 <code>ListView</code> 的兼容性。
     # pull: 4045 too minor ([JENKINS-55787] remove accidentally resurrected localization file)
     # pull: 4056 too minor (Fix login link localization in loginLink_tr.properties)
 - version: '2.181'
@@ -2679,7 +2679,7 @@
       pull: 3939
       issue: 25046
       message: |-
-        注销时，移除过期的会话 cookies，阻止头信息中的相关错误太大。
+        注销时，移除过期的会话 cookies ，阻止头信息中的相关错误太大。
     - type: rfe
       pull: 4003
       issue: 57223
