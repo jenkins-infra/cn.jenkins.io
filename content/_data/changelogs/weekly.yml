@@ -2573,7 +2573,7 @@
       pull: 3994
       issue: 57121
       message: |-
-        改善配置及代码对 <code>ListView</code> 的兼容性。
+        改善配置即代码对 <code>ListView</code> 的兼容性。
     # pull: 4045 too minor ([JENKINS-55787] remove accidentally resurrected localization file)
     # pull: 4056 too minor (Fix login link localization in loginLink_tr.properties)
 - version: '2.181'
