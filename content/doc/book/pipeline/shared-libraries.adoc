@@ -65,7 +65,7 @@ Git 和 Subversion 插件支持该模式；其他人应该遵循。
 匹配 `*.txt`, 如果存在, 可以包含文档, 通过系统的配置标记格式化从处理
 (所以可能是 HTML, Markdown 等，虽然 `txt` 扩展是必需的)。
 
-这些目录中的Groovy 源文件 在脚本化流水线中的 “CPS transformation” 一样。
+这些目录中的 Groovy 源文件 在脚本化流水线中的 “CPS transformation” 一样。
 
 `resources` 目录允许从外部库中使用 `libraryResource` 步骤来加载有关的非 Groovy 文件。
 目前，内部库不支持该特性。
@@ -80,9 +80,8 @@ Git 和 Subversion 插件支持该模式；其他人应该遵循。
 image::pipeline/add-global-pipeline-libraries.png["Add a Global Pipeline Library", role=center]
 
 由于这些库将是全局可用的, 系统中的任何流水线都可以使用这些库中实现的功能。
-utilize functionality implemented in these libraries.
 
-这些库被认为是 "可信的:"他们在 Java，Groovy, Jenkins 内部 API, Jenkins 插件, 或第三方库中运行的任何方法。
+这些库被认为是 "可信的:"他们可以在 Java，Groovy, Jenkins 内部 API, Jenkins 插件, 或第三方库中运行任何方法。
 这允许你定义将单个不安全的API封进一个更高级别的包装中以便于在流水线中使用的库。 请注意 **anyone able to push commits to this SCM repository could obtain unlimited access to Jenkins**。
 你需要 _Overall/RunScripts_ 权限来配置这些库
 (通常这些权限会授予 Jenkins 管理员)。
