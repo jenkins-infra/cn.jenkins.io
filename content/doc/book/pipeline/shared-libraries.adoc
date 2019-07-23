@@ -25,19 +25,18 @@ footnoteref:[dry, http://en.wikipedia.org/wiki/Don\'t_repeat_yourself]。
 
 == 定义共享库
 
-共享库被一个名称, 源代码检索方法定义， 比如 SCM, 以及可选的默认版本。名称应该是一个简短的标识符，因为它将在脚本中使用。
+共享库被一个名称，源代码检索方法定义，比如 SCM，以及可选的默认版本。名称应该是一个简短的标识符，因为它将在脚本中使用。
 
-该版本可以被 SCM理解; 比如, 分支,
-标签, 和提交 hashes 所有工作给Git。你还可以声明脚本是否需要显示的请求该库 (下面详细说明), 或者在默认情况下是否存。此外, 如果你在 Jenkins 配置中指定了版本,
-你可以阻止脚本选择 _different_ 版本。
+该 SCM 可以理解该版本的任何内容；比如，分支、标签、和提交哈希值都适用于 Git。你还可以声明脚本是否需要显式地请求该库 (下面详细说明)，或者在默认情况下是否存在该库。此外，如果你在 Jenkins
+配置中指定了版本，则可以阻止脚本选择 _different_ 版本。
 
-指定SCM 最好的方式是使用 SCM 插件，他已经被特别的更新以支持一个新的API 检出一个任意命名的版本 (_Modern SCM_ 选项)。 在编写时, 最新版本的
-Git和Subversion 插件支持该模式; 其他人应该遵循。
+指定 SCM 最好的方式是使用一个专门更新的 SCM 插件，以支持新的 API 检出一个任意命名的版本 (_Modern SCM_ 选项)。 在编写时，最新版本的
+Git 和 Subversion 插件支持该模式；其他人应该遵循。
 
 如果你的SCM 插件没有被集成, 你可以选择 _Legacy SCM_ 并选择提供的任何东西。
 在这种情况下, 你需要包含
-`${library.yourLibName.version}` 在SCM的配置中, 所以在检出插件期间，将会扩展该变量来选择需要的版本比如, 对于Subversion,你可以设置 _Repository URL_为
-`https://svnserver/project/${library.yourLibName.version}` 然后使用诸如 `trunk` 或 `branches/dev` 或 `tags/1.0`的版本。
+`${library.yourLibName.version}` 在 SCM 的配置中, 所以在检出插件期间，将会扩展该变量来选择需要的版本比如，对于 Subversion ，你可以设置 _Repository URL_ 为
+`https://svnserver/project/${library.yourLibName.version}` 然后使用诸如 `trunk` 或 `branches/dev` 或 `tags/1.0` 的版本。
 
 === 目录结构
 
@@ -59,16 +58,16 @@ Git和Subversion 插件支持该模式; 其他人应该遵循。
 |           +- bar.json    # static helper data for org.foo.Bar
 ----
 
- `src` 目录应该看起来像标准的Java 源目录结构。当执行流水线时，该目录被添加到类路径下。
+`src` 目录应该看起来像标准的 Java 源目录结构。当执行流水线时，该目录被添加到类路径下。
 
 `vars` 目录定义可从流水线访问的全局变量的脚本。
-每个`*.groovy` 文件的基名应该是一个 Groovy (~ Java) 标识符, 通常是 `camelCased`。
+每个 `*.groovy` 文件的基名应该是一个 Groovy (~ Java) 标识符, 通常是 `camelCased`。
 匹配 `*.txt`, 如果存在, 可以包含文档, 通过系统的配置标记格式化从处理
-(所以可能是 HTML, Markdown等，虽然 `txt` 扩展是必需的)。
+(所以可能是 HTML, Markdown 等，虽然 `txt` 扩展是必需的)。
 
-这些目录中的Groovy 源文件 在脚本化流水线中的 “CPS transformation”一样。
+这些目录中的Groovy 源文件 在脚本化流水线中的 “CPS transformation” 一样。
 
-`resources` 目录允许从外部库中使用 `libraryResource` 步骤来加载有关的非Groovy 文件。
+`resources` 目录允许从外部库中使用 `libraryResource` 步骤来加载有关的非 Groovy 文件。
 目前，内部库不支持该特性。
 
 根目录下的其他目录被保留下来以便于将来的增强。
@@ -83,29 +82,29 @@ image::pipeline/add-global-pipeline-libraries.png["Add a Global Pipeline Library
 由于这些库将是全局可用的, 系统中的任何流水线都可以使用这些库中实现的功能。
 utilize functionality implemented in these libraries.
 
-这些库被认为是 "可信的:"他们在Java，Groovy, Jenkins内部API, Jenkins 插件, 或第三方库中运行的任何方法。
+这些库被认为是 "可信的:"他们在 Java，Groovy, Jenkins 内部 API, Jenkins 插件, 或第三方库中运行的任何方法。
 这允许你定义将单个不安全的API封进一个更高级别的包装中以便于在流水线中使用的库。 请注意 **anyone able to push commits to this SCM repository could obtain unlimited access to Jenkins**。
 你需要 _Overall/RunScripts_ 权限来配置这些库
-(通常这些权限会授予Jenkins 管理员)。
+(通常这些权限会授予 Jenkins 管理员)。
 
 === 文件夹级别的共享库
 
 创建的任何文件夹都可以有一个与之关联的共享库。该机制允许将特定库的范围扩展到文件夹或子文件夹的所有流水线。
 
-基于文件夹的库不被认为是 "可信的:" 他们在Groovy
+基于文件夹的库不被认为是 "可信的:" 他们在 Groovy
 沙箱中运行，就像典型的流水线一样。
 
 ===  自动分享库
 
-其他插件可能会添加定义库的方法on the fly。比如, 
+其他插件可能会添加定义库的方法on the fly。比如，
 plugin:github-branch-source[GitHub 分支源] 插件提供了 "GitHub
-组织文件夹"项，它允许脚本使用一个不被信任的库，
-比如`github.com/someorg/somerepo` 而不需要任何额外的配置。在这种情况下, 指定的 GitHub 仓库将会从 `master`分支加载, 使用匿名检出。
+组织文件夹" 项，它允许脚本使用一个不被信任的库，
+比如 `github.com/someorg/somerepo` 而不需要任何额外的配置。在这种情况下, 指定的 GitHub 仓库将会从 `master` 分支加载, 使用匿名检出。
 
 == 使用库
 
-标记为 _Load implicitly_ 的共享库允许流水线立即使用任何此库定义的类或全局变量。为了访问其他共享库, `Jenkinsfile` 需要使用 `@Library` 注解,
-指定库的名字:
+标记为 _Load implicitly_ 的共享库允许流水线立即使用任何此库定义的类或全局变量。为了访问其他共享库， `Jenkinsfile` 需要使用 `@Library` 注解，
+指定库的名字：
 
 image::pipeline/configure-global-pipeline-library.png["Configuring a Global Pipeline Library", role=center]
 
@@ -118,7 +117,7 @@ image::pipeline/configure-global-pipeline-library.png["Configuring a Global Pipe
 @Library(['my-shared-library', 'otherlib@abc1234']) _
 ----
 
-该注解可以在脚本的Groovy允许注解的任何地方。当引用类库时 (在 `src/` 目录下),
+该注解可以在脚本的 Groovy 允许注解的任何地方。当引用类库时 (在 `src/` 目录下),
 通常注释会进入 `import` 语句:
 
 [source,groovy]
@@ -130,9 +129,9 @@ import com.mycorp.pipeline.somelib.UsefulClass
 [TIP]
 ====
 对于只定义了全局变量 (`vars/`)的共享库, 或者只需要一个全局变量的
-`Jenkinsfile`文件, 
+`Jenkinsfile` 文件, 
 link:http://groovy-lang.org/objectorientation.html#\_annotation[annotation]
-模式 `@Library('my-shared-library') _` 有助于保持代码简洁。 从本质上说, 并不是注释一个 不必要的`import` 语句,
+模式 `@Library('my-shared-library') _` 有助于保持代码简洁。 从本质上说, 并不是注释一个不必要的 `import` 语句,
 符号 `_` 是带注释的。
 
 不建议 `import` 一个全局变量/函数,
@@ -142,7 +141,7 @@ link:http://groovy-lang.org/objectorientation.html#\_annotation[annotation]
 ====
 
 在脚本的 _compilation_ 期间,
-在库执行之前，它被解析和加载。这允许Groovy 编译器理解在静态类型检查中使用的符号的意义， 并允许他们在脚本的类型声明中被使用，比如:
+在库执行之前，它被解析和加载。这允许 Groovy 编译器理解在静态类型检查中使用的符号的意义， 并允许他们在脚本的类型声明中被使用，比如:
 
 [source,groovy]
 ----
@@ -320,7 +319,7 @@ z.checkOutFrom(repo)
 
 该方法有一定的局限性; 比如, 它避免了父类的声明。
 
-此外,在构造函数中, 或只是在一个方法中使用 `this`可以将一组 `steps` 显式地传递给类库:
+此外，在构造函数中, 或只是在一个方法中使用 `this`可以将一组 `steps` 显式地传递给类库:
 
 [source,groovy]
 ----
