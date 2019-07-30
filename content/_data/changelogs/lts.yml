@@ -1082,46 +1082,46 @@
   date: 2018-02-14
   changes:
     - type: security
-      message: Important security fixes.
+      message: 重要的安全修复。
       references:
         - url: https://jenkins.io/security/advisory/2018-02-14/
-          title: security advisory
+          title: 安全咨询
     - type: rfe
       message: >
-        Security hardening to prevent problems like SECURITY-624 in the future.
+        安全强化，以防止将来出现类似 SECURITY-624 的问题。
       references:
         - url: https://jenkins.io/security/advisory/2017-12-05/
-          title: 2017-12-05 security advisory
+          title: 2017-12-05 安全通报
         - url: https://jenkins.io/security/advisory/2018-01-22/#xss-vulnerability-in-job-configuration-forms-in-ant-plugin
-          title: Ant Plugin fix in 2018-01-22 security advisory
+          title: Ant Plugin 修复于 2018-01-22 安全通报
     - type: bug
       pull: 3187
       message: >
-        Update Stapler from 1.253 to 1.254 to make the form that shows up when a URL requiring <code>POST</code> is accessed using a different HTTP verb work with CSRF protection enabled.
+        将 Stapler 从 1.253 更新到 1.254，以便在使用启用了CSRF保护的不同HTTP动词访问需要 <code>POST</code> 的 URL 时可正常工作。
       references:
         - issue: 34254
         - url: https://github.com/stapler/stapler/blob/master/CHANGELOG.md#1254
-          title: Stapler changelog
+          title: Stapler 变更日志
     - type: bug
       pull: 3229
       issue: 48899
       message: >
-        Do not downgrade detached plugins when upgrading Jenkins while its previous version was not properly recorded.
+        在升级Jenkins之前的版本没有正确记录时，不要降级无关的插件。
     - type: bug
       issue: 47439
       pull: 3166
       message: >
-        The setup wizard is now resumed upon restart if it hasn't been completed yet, instead of showing the regular login screen (regression in 2.81).
+        如果安装向导尚未完成，重新启动时将恢复安装向导，而不是显示常规登录屏幕（回退到2.81）。 
     - type: rfe
       issue: 48348
       pull: 3157
       message: >
-        Reduce memory usage when scheduling pipelines on big clusters.
+        在大集群上调度流水线时减少内存使用。
     - type: rfe
       pull: 3143
       issue: 48350
       message: >
-        Improve UI performance with long list of running builds by caching the estimated duration.
+        通过缓存预估的持续时间来提高具有长的运行构建列表的UI性能。
 
 - version: 2.164.1
   date: 2019-03-13
