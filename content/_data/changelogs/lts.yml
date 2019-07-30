@@ -1085,7 +1085,7 @@
       message: 重要的安全修复。
       references:
         - url: https://jenkins.io/security/advisory/2018-02-14/
-          title: 安全咨询
+          title: 安全通报
     - type: rfe
       message: >
         安全强化，以防止将来出现类似 SECURITY-624 的问题。
