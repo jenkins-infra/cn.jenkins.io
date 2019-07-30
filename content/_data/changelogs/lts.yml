@@ -1296,7 +1296,7 @@
     issue: 40750
     message: |-
       移除对 CCtray (cc.xml) 文件的默认支持。
-      要使用该功能，需要按照插件 <a href="https://plugins.jenkins.io/cctray-xml">CCtray XML Plugin</a>。
+      要使用该功能，需要安装插件 <a href="https://plugins.jenkins.io/cctray-xml">CCtray XML Plugin</a>。
 # Features
 
   - type: rfe
