@@ -15,7 +15,7 @@ translator: linuxsuren
 该问题涉及到的重要的修复包含在如下的插件中，它们都需要 Jenkins 2.138.4 以及更新的版本：
 
 * Pipeline: API 2.34
-* Pipeline: Basic Steps 2.18 (同时会更新到 Pipeline: Groovy 2.70)
+* Pipeline: Basic Steps 2.18 (需要同步更新到 Pipeline: Groovy 2.70)
 * Pipeline: Graph Analysis 1.10
 * Pipeline: Declarative 1.3.9
 * Blue Ocean 1.17.0
@@ -54,7 +54,7 @@ try {
 
 == 局限
 
-* 如果你不迁移到 `unstable` 或 `warnError` 步骤，或不升级插件到集成来新 API 的情况下设置构建状态，那么及时构建是不稳定的，Blue Ocean 也不会把任何阶段显示为不稳定的。
+* 如果你不迁移到 `unstable` 或 `warnError` 步骤，或不升级插件到集成来新 API 的情况下设置构建状态，那么即使构建是不稳定的，Blue Ocean 也不会把任何阶段显示为不稳定的。
 * 即使在这些变化后，`currentBuild.result` 继续只会覆盖构建状态。不幸的是，由于 `currentBuild` 是作为全局变量而实现的，因此，无法让它设置步骤或者阶段级别的结果，这意味这它没有任何步骤级别的上下文可以使用到新的 API。
 * link:https://plugins.jenkins.io/pipeline-stage-view[Pipeline Stage View Plugin] 尚未升级到使用这个新的 API，因此，这些变更不会在它提供的可视化中得到体现。
 
