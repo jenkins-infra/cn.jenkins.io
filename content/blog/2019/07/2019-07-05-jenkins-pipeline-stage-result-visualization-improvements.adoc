@@ -50,7 +50,7 @@ try {
 
 * **link:https://plugins.jenkins.io/junit[JUnit Plugin]**: 更新到 1.28 或者更高的版本，使得步骤 `junit` 可以直接把该阶段设置为不稳定的。
 * **link:https://plugins.jenkins.io/warnings-ng[Warnings Next Generation Plugin]**: 更新到 5.2.0 或者更高的版本，使得步骤 `publishIssues` 和 `recordIssues` 可以直接把该阶段设置为不稳定的。
-* **其他插件**: 如果你的流水线被其他插件中的步骤标记为不稳定的，请（确保没有重复的话）给该组件 link:https://issues.jenkins-ci.org[提交一个新的 issue]，清晰地描述哪个步骤是有问题的，以及发生问题的环境，并添加链接到该文章的开发者区域，以便维护者了解如何才能解决该问题。
+* **其他插件**: 如果你的流水线被其他插件中的步骤标记为不稳定的，请（在检查没有重复项后）给该组件 link:https://issues.jenkins-ci.org[提交一个新的 issue]，清晰地描述哪个步骤是有问题的，以及发生问题的环境，并添加链接到该文章的开发者区域，以便维护者了解如何才能解决该问题。
 
 == 局限
 
