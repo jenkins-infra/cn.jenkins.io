@@ -1,0 +1,6 @@
+---
+title: "开源持续交付黑客松"
+date: "2019-10-25T19:30:00"
+link: "https://jenkins-zh.cn/event/beijing-2019-10-25/"
+---
+如果你的团队或项目涉及 CI/CD 以及 DevOps，我们诚挚邀请你参加由 Jenkins 中文社区发起的以 DevOps 为主题的黑客松编程比赛，我们的口号是 Everything as Code（一切皆代码）。
