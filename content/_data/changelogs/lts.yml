@@ -1082,46 +1082,46 @@
   date: 2018-02-14
   changes:
     - type: security
-      message: Important security fixes.
+      message: 重要的安全修复。
       references:
         - url: https://jenkins.io/security/advisory/2018-02-14/
-          title: security advisory
+          title: 安全通报
     - type: rfe
       message: >
-        Security hardening to prevent problems like SECURITY-624 in the future.
+        安全强化，以防止将来出现类似 SECURITY-624 的问题。
       references:
         - url: https://jenkins.io/security/advisory/2017-12-05/
-          title: 2017-12-05 security advisory
+          title: 2017-12-05 安全通报
         - url: https://jenkins.io/security/advisory/2018-01-22/#xss-vulnerability-in-job-configuration-forms-in-ant-plugin
-          title: Ant Plugin fix in 2018-01-22 security advisory
+          title: Ant Plugin 修复于 2018-01-22 安全通报
     - type: bug
       pull: 3187
       message: >
-        Update Stapler from 1.253 to 1.254 to make the form that shows up when a URL requiring <code>POST</code> is accessed using a different HTTP verb work with CSRF protection enabled.
+        将 Stapler 从 1.253 更新到 1.254，以便在使用启用了CSRF保护的不同HTTP动词访问需要 <code>POST</code> 的 URL 时可正常工作。
       references:
         - issue: 34254
         - url: https://github.com/stapler/stapler/blob/master/CHANGELOG.md#1254
-          title: Stapler changelog
+          title: Stapler 变更日志
     - type: bug
       pull: 3229
       issue: 48899
       message: >
-        Do not downgrade detached plugins when upgrading Jenkins while its previous version was not properly recorded.
+        在升级 Jenkins 之前的版本没有正确记录时，不要降级无关的插件。
     - type: bug
       issue: 47439
       pull: 3166
       message: >
-        The setup wizard is now resumed upon restart if it hasn't been completed yet, instead of showing the regular login screen (regression in 2.81).
+        如果安装向导尚未完成，重新启动时将恢复安装向导，而不是显示常规登录屏幕（由 2.81 引入的缺陷回归）。 
     - type: rfe
       issue: 48348
       pull: 3157
       message: >
-        Reduce memory usage when scheduling pipelines on big clusters.
+        在大集群上调度流水线时减少内存使用。
     - type: rfe
       pull: 3143
       issue: 48350
       message: >
-        Improve UI performance with long list of running builds by caching the estimated duration.
+        通过缓存预估的持续时间来提高具有长的运行构建列表的 UI 性能。
 
 - version: 2.164.1
   date: 2019-03-13
@@ -1135,7 +1135,7 @@
       pull: 3794
       message: >
         Java 11 现已全面支持。
-        自 2.150.x 开始在 Java 11 上运行 Jenkins 的多项改进，包括：支持插件在它们的元数据中申明最小 Java 版本，并拒绝加载不兼容的插件，以及当运行在 Java11 上时安装新的 JAXB 插件后允许使用 JAXB 的 API.
+        自 2.150.x 开始在 Java 11 上运行 Jenkins 的多项改进，包括：支持插件在它们的元数据中申明最小 Java 版本，并拒绝加载不兼容的插件，以及当运行在 Java11 上时安装新的 JAXB 插件后允许使用 JAXB 的 API。
       references:
       - url: /blog/2019/03/11/let-s-celebrate-java-11-support/
         title: 博客发布的申明
@@ -1164,7 +1164,7 @@
       pull: 3648
       issue: 27177
       message: >
-        增加一个新的 CLI 命令 <code>disable-plugin</code> 来禁用一个或多个已安装的插件，并可以选择同时重启 Jenkins.
+        增加一个新的 CLI 命令 <code>disable-plugin</code> 来禁用一个或多个已安装的插件，并可以选择同时重启 Jenkins。
 
 # Security
 
@@ -1226,6 +1226,213 @@
       message: >
         开发者: 登陆和注册页面在 2.129 中重新设计了，现在可以从多个插件中接收风格贡献 (<code>SimplePageDecorator</code> 的视图页面 <code>footer</code>)
 
+- version: 2.164.2
+  date: 2019-04-10
+  changes:
+  - type: security
+    message: 安全修复。
+    references:
+    - url: https://jenkins.io/security/advisory/2019-04-10/
+      title: 安全公告
+  - type: bug
+    pull: 3914
+    issue: 56114
+    message: >
+      运行在 Microsoft Docker 下的 Windows Server 2016 时，工作空间以及归档文件无法工作。（由 2.150.2 引入的缺陷回归）
+  - type: bug
+    pull: 3910
+    issue: 43218
+    message: >
+      当丢弃不可读的指纹数据时避免 <code>NullPointerException</code> 。
+- version: 2.164.3
+  date: 2019-05-09
+  changes:
+    - type: bug
+      pull: 3940
+      issue: 45661
+      message: |-
+        有问题的 console notes 会使得 <code>ConsoleNote#readFrom</code> 抛出一个无意义的 <code>NegativeArraySizeException</code> 异常，并导致构建日志无法正常显示。
+    - type: bug
+      pull: 3960
+      issue: 56856
+      message: 安装向导没有正确地对密码进行转义，导致遇到特殊字符后会有错误。
+    - type: bug
+      pull: 3761
+      references:
+        - issue: 53462
+        - url: https://bugzilla.mozilla.org/show_bug.cgi?id=1370630
+          title: Firefox bug 1370630
+      message: 使得 Jenkins 经典界面中的表单提交按钮与 Firefox 即将发布的缺陷修复兼容。
+    - type: bug
+      pull: 3959
+      issue: 56995
+      message: 正确地刷新 Maven console annotator 的输出。
+    - type: bug
+      issue: 57096
+      message: 使得 Debian/Ubuntu 的启动脚本与 Java 11 兼容。
+    - type: rfe
+      issue: 57167
+      message: 复用 Stapler 请求分发 telemetry。
+- version: 2.176.1
+  date: 2019-06-10
+  lts_predecessor: 2.164.3
+  lts_baseline: 2.176
+  lts_changes:
+# Major changes
+  - type: major rfe
+    references:
+      - pull: 3838
+      - url: https://jenkins.io/blog/2019/02/17/remoting-cli-removed/
+        title: 博客发布
+    message: > 
+      CLI 中通过参数 (<code>-remoting</code> option) 对远程模式的支持已经被移除。
+  - type: major rfe
+    pull: 3951
+    issue: 56776
+    message: >
+      移除符号  <code>nonStoredPasswordParam</code>  对密码参数定义的误导，因为，它会存储加密后的数据。
+  - type: major rfe
+    pull: 2691
+    issue: 40750
+    message: |-
+      移除对 CCtray (cc.xml) 文件的默认支持。
+      要使用该功能，需要安装插件 <a href="https://plugins.jenkins.io/cctray-xml">CCtray XML Plugin</a>。
+# Features
+
+  - type: rfe
+    pull: 3686
+    issue: 11888
+    message: |-
+      增加 CLI 命令 <code>stop-job</code> 终止构建。
+  - type: rfe
+    pull: 3906
+    issue: 56200
+    message: >
+      在日志配置中支持关闭一项日志记录器。
+  - type: rfe
+    pull: 3934
+    issue: 56554
+    message: >
+      为 REST API 的响应增加运行参数过滤器。
+# UI Improvements
+#  - type: rfe
+#    pull: 3923
+#    issue: 56398
+#    message: >
+#      Mobile friendly layout of the login, loading and restart screens.
+  - type: rfe
+    pull: 3952
+    issue: 16750
+    message: |-
+      构建结束后更新状态图标。
+  - type: rfe
+    pull: 3998
+    message: |-
+      在 Jenkins 节点的界面上移除对 Java Web Start and JNLP 的误导性引用。
+#  - type: rfe
+#    pull: 3985
+#    issue: 56477
+#    message: |-
+#      The Plugin Manager now provides easier selection for applicable plugin updates with options to select "All", "Compatible" or "None".
+#      The selection of "Compatible" plugins (previously "All") has been fixed to exclude all that contain any compatibility warnings.
+
+# Security
+  - type: rfe
+    pull: 3919 # and 3926
+    issue: 24513
+    message: >
+      当涉及到以虚拟 SYSTEM 用户运行构建时，通知管理员潜在的不安全设置。
+  - type: rfe
+    pull: 3908
+    message: >
+      当运行在虚拟的 SYSTEM 认证下时，在构建日志中增加一条日志消息。
+# Misc
+  - type: rfe
+    pull: 4008
+    message: |-
+      迁移所有中文本地化资源文件到 <a href="https://plugins.jenkins.io/localization-zh-cn">简体中文插件</a>。
+  - type: rfe
+    pull: 3961
+    message: |-
+      调整流刷新行为，使得运行在远程的节点上时有更好的性能。这可能会导致部分插件在节点机器上打印构建日志却不刷新输出时丢失消息。
+      通过 <code>-Dhudson.util.StreamTaskListener.AUTO_FLUSH=true</code> 可以让自由风格的构建回到之前的行为。
+      注意，流水线的构建总是期待远程刷新。
+# Dependencies
+  - type: rfe
+    pull: 3943
+    references:
+      - issue: 56659
+      - issue: 56591
+      - url: https://github.com/jenkinsci/winstone/blob/master/CHANGELOG.md#52
+        title: 完整变更日志
+    message: >
+      Winstone 的版本从 5.1 更新到 5.2，使得 HTTPS cipher 为可配置的。
+# Notable bugs
+  - type: bug
+    pull: 3973
+    issue: 55292
+    message: |-
+      从核心中移除邮件相关的本地化字符串。确保你使用 Mailer Plugin 1.23。
+  - type: bug
+    pull: 3955
+    issue: 50504
+    message: |-
+      如果工作空间已经被一个跨节点运行的流水线重连时使用了，那么，它将不会再给新的构建分配租期。
+#  - type: bug
+#    pull: 3925
+#    issue: 56403
+#    message: |-
+#      Renaming an agent retained old agent configuration, causing it to re-appear on restart.
+#    # Not mentioning regression, since this apparently has existed for 3 years (since Jenkins 2.8)
+
+# Developer
+
+# Dependencies
+  - type: rfe
+    pull: 3729
+    references:
+      - url: https://github.com/jenkinsci/jep/tree/master/jep/216
+        title: JEP-216
+      - url: https://github.com/stapler/stapler/blob/master/CHANGELOG.md#1257
+        title: 完整变更日志
+    message: |-
+      开发者：为了支持从任意插件中加载本地化资源，Stapler 的版本从 1.256 更新到 1.257。
+      增加接口 <code>jenkins.PluginLocaleDrivenResourceProvider</code> 用于让其他插件可以定制本地化资源的查找过程。
+  - type: rfe
+    references:
+      - pull: 3896
+      - url: https://github.com/jenkinsci/jep/tree/master/jep/216
+        title: JEP-216
+      - url: https://github.com/kohsuke/localizer/compare/localizer-parent-1.24...localizer-parent-1.26
+        title: 完整变更日志
+    message: >
+      开发者：本地化库的版本从 1.24 更新到 1.26，使用插件可以覆盖查找本地化资源文件的逻辑。
+# Other
+  - type: rfe
+    references:
+      - pull: 3967
+      - url: https://jenkins.io/doc/developer/security/secrets/
+        title: 在 Jenkins 中存储凭据
+    message: |-
+      开发者：为类似于单行 <code>f:password</code> 的多行文本凭据添加 Jelly UI 组件 <code>f:secretTextarea</code>。
+#  - type: rfe
+#    pull: 3963
+#    message: |-
+#      Developer: Deprecated <code>Run.getLogFile()</code>, as it is not compatible with <a href="https://jenkins.io/jep/210">JEP-210</a>.
+  - type: rfe
+    pull: 3961
+    message: |-
+      开发者：<code>SystemProperties</code> 现在可以用于节点端的代码。参考 <code>SystemProperties#allowOnAgent</code>。
+  changes:
+  - type: bug
+    pull: 4014
+    issue: 57412
+    message: 恢复安装向导中用到的中文本地化资源。
+  - type: bug
+    pull: 4015
+    issue: 57111
+    message: |-
+      Robustness: 当 <code>ComputerListener#onOnline()</code> 发生运行时异常后不把节点设置为离线状态。
 
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS

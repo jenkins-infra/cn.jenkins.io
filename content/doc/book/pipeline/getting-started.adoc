@@ -24,7 +24,7 @@ footnoteref:[dsl,link:https://en.wikipedia.org/wiki/Domain-specific_language[Dom
 
 == 配置要求
 
-T为了使用Jenkins流水线, 你需要:
+为了使用Jenkins流水线, 你需要:
 
 * Jenkins 2.x或以上版本(旧版本回到 1.642.3 可能有用，但不建议)
 * 流水线插件,
