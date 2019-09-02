@@ -50,7 +50,7 @@ author: linuxsuren
 == 如何获取？
 
 你可以从 https://github.com/jenkins-zh/jenkins-cli/[jenkins-cli 的代码仓库]中克隆 `jcli`。目前，我们支持三个主流的操作
-系统平台： MacOS, Linux, and Windows。
+系统平台： MacOS、Linux、和 Windows。
 
 === MacOS
 
@@ -63,7 +63,7 @@ brew install jcli
 
 === Linux
 
-It's very simple to install jcli into your Linux OS. Just need to execute a command line at below:
+在 Linux 下安装也是非常的简单。你只需要执行下面的命令即可：
 
 ```
 curl -L https://github.com/jenkins-zh/jenkins-cli/releases/latest/download/jcli-linux-amd64.tar.gz|tar xzv
@@ -92,7 +92,6 @@ jenkins_servers:
 # Goto 'http://localhost:8080/jenkins/me/configure', then you can generate your token.
 ```
 
-In most cases, you should modify three fields which are `url`, `username` and `token`. OK, I believe you're ready. Please check whether you install the `github` plugin in your Jenkins:
 在大多数情况下，你应该只需要修改三个字段，包括：`url`、`username` 和 `token`。好的，我相信你已经准备好了。
 然后，就可以通过下面的命令来检查你的 Jenkins 中是否安装了 `github` 插件：
 
