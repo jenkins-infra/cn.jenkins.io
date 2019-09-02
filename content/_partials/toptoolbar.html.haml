@@ -6,6 +6,21 @@
       = site.base_title
 
     #CollapsingNavbar.collapse.navbar-collapse
+
+    %ul.nav.navbar-nav.mr-auto
+      %li.nav-item.dropdown
+        = partial("dropdown.html.haml", :name => partial('cdf_logo.html.haml'))
+
+        .dropdown-menu
+          %a.dropdown-item.feature{:href => "https://cd.foundation/"}
+            什么是 CDF？
+          %a.dropdown-item.feature{:href => "https://jenkins-x.io/"}
+            Jenkins X
+          %a.dropdown-item.feature{:href => "https://cloud.google.com/tekton/"}
+            Tekton
+          %a.dropdown-item.feature{:href => "https://www.spinnaker.io/"}
+            Spinnaker
+
       %ul.nav.navbar-nav.ml-auto
         %li.nav-item{:class => active_link?('node')}
           %a.nav-link{:href => expand_link('node')}
