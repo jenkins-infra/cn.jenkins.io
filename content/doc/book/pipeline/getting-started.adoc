@@ -65,7 +65,7 @@ link:../../blueocean/getting-started[Blue Ocean 入门]页面。
 想要通过 Jenkins 经典 UI 创建一个基本流水线：
 
 . 如果有要求的话，确保你已登录进 Jenkins。
-. 从Jenkins 主页（即 Jenkins 经典 UI 的仪表盘），点击左上的 *New Item/新建任务*。
+. 从Jenkins 主页（即 Jenkins 经典 UI 的工作台），点击左上的 *New Item/新建任务*。
 +
 [.boxshadow]
 image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%]
@@ -128,7 +128,7 @@ image:pipeline/hello-world-console-output.png[alt="*Console Output* for the Pipe
 +
 *注意：*
 
-* 你也可以通过点击构建号左边的彩色地球仪从仪表盘直接访问控制台输出（例如 *#1*）。
+* 你也可以通过点击构建号左边的彩色地球仪从工作台直接访问控制台输出（例如 *#1*）。
 * 通过经典的 UI 定义流水线可以很方便的测试流水线代码片段，也可以处理简单的或不需要从源代码仓库中检出/克隆的流水线。正如上面提到的，和通过 Blue Ocean（link:#through-blue-ocean[上面]）或在版本管理系统中（link:#defining-a-pipeline-in-scm[下面]）定义的 ``Jenkinsfile`` 不同，在流水线项目的 *Script/脚本* 文本区域输入的 ``Jenkinsfile`` 由 Jenkins 自己存储在 Jenkins 主目录下。因此，为了更好地控制和扩展你的流水线，尤其是源代码管理系统中那些复杂的项目，建议使用
   link:#through-blue-ocean[Blue Ocean] 或
   link:#defining-a-pipeline-in-scm[源码管理系统]来定义你的 `Jenkinsfile` 文件。
