@@ -512,14 +512,14 @@ pipeline {
 [[for-other-credential-types]]
 ==== 其他凭据类型
 
-如果你需要在流水线中设置除了 secret 文本、带密码的用户名、secret 文件（<<#for-secret-text-usernames-and-passwords-and-secret-files,见上>>）以外的其他凭据 - 即 SSH 秘钥或证书，那么请使用 Jenkins 的**片段生成器**特性，你可以通过 Jenkins 的经典 UI 访问它。
+如果你需要在流水线中设置除了 secret 文本、带密码的用户名、secret 文件（<<#for-secret-text-usernames-and-passwords-and-secret-files,见上>>）以外的其他凭据——即 SSH 秘钥或证书，那么请使用 Jenkins 的**片段生成器**特性，你可以通过 Jenkins 的经典 UI 访问它。
 
 要从你的流水线项目访问**片段生成器**：
 
 . 从 Jenkins 主页（即 Jenkins 的经典 UI 工作台）点击流水线项目的名字。
-. 在左侧，点击 *Pipeline Syntax/流水线语法* 并确保 **Snippet Generator/片段生成器** 的链接在右上角粗体显示（如果没有, 点击它的链接）。
-. 从 *Sample Step/示例步骤* 字段中，选择 *withCredentials: Bind credentials to variables*。
-. 在 *Bindings/绑定* 下面, 点击 *Add/新增* 并从下拉框中选择：
+. 在左侧，点击**流水线语法**并确保 **Snippet Generator/片段生成器**的链接在右上角粗体显示（如果没有，点击它的链接）。
+. 从**示例步骤**字段中，选择 *withCredentials: Bind credentials to variables*。
+. 在**绑定**下面，点击**新增**并从下拉框中选择：
   * *SSH User Private Key* - 要处理
     link:http://www.snailbook.com/protocols.html[SSH 公私钥对凭据]，你可以提供：
   ** *Key 文件变量* - 将要绑定到这些凭据的环境变量的名称。Jenkins 实际上将此临时变量分配给 SSH 公私钥对身份验证过程中所需的私钥文件的安全位置。
@@ -648,7 +648,7 @@ node {
 
 === 处理参数
 
-声明式流水线支持参数开箱即用，允许流水线在运行时通过<<syntax#parameters,parameters 指令>>接受用户指定的参数。配置脚本式流水线的参数是通过 `properties` 步骤实现的，可以在代码生成器中找到。
+声明式流水线支持参数开箱即用，允许流水线在运行时通过<<../syntax#parameters,parameters 指令>>接受用户指定的参数。配置脚本式流水线的参数是通过 `properties` 步骤实现的，可以在代码生成器中找到。
 
 如果你使用 *Build with Parameters* 选项将流水线配置为接受参数，这些参数将作为 `params` 变量的成员被访问。
 
@@ -683,7 +683,7 @@ node {
 === 处理故障
 
 声明式流水线默认通过
-<<syntax#post, post 节段>>支持强大的故障处理，它允许声明许多不同的 “post 条件”，比如: `always`、`unstable`、`success`、`failure` 和 `changed`。<<syntax, 流水线语法>> 提供了关于如何使用各种 post 条件的更多细节。
+<<../syntax#post, post 节段>>支持强大的故障处理，它允许声明许多不同的 “post 条件”，比如: `always`、`unstable`、`success`、`failure` 和 `changed`。<<../syntax, 流水线语法>> 提供了关于如何使用各种 post 条件的更多细节。
 
 [pipeline]
 ----
@@ -855,7 +855,7 @@ cleaner parallel syntax is supported for Declarative Pipeline. Right now
 stuff.
 ////
 
-<<using-multiple-nodes,上面这节>>中的示例跨两个不同的平台串联地运行测试。在实践中，如果执行 `make check` 需要30分钟来完成，那么 “Test” 阶段就需要 60 分钟来完成！
+<<#using-multiple-nodes,上面这节>>中的示例跨两个不同的平台串联地运行测试。在实践中，如果执行 `make check` 需要30分钟来完成，那么 “Test” 阶段就需要 60 分钟来完成！
 
 幸运的是，流水线有一个内置的并行执行部分脚本式流水线的功能，通过贴切的名为 `parallel` 的步骤实现。
 

@@ -65,26 +65,26 @@ link:../../blueocean/getting-started[Blue Ocean 入门]页面。
 想要通过 Jenkins 经典 UI 创建一个基本流水线：
 
 . 如果有要求的话，确保你已登录进 Jenkins。
-. 从Jenkins 主页（即 Jenkins 经典 UI 的工作台），点击左上的 *New Item/新建任务*。
+. 从Jenkins 主页（即 Jenkins 经典 UI 的工作台），点击左上的 *新建任务*。
 +
 [.boxshadow]
 image:pipeline/classic-ui-left-column.png[alt="Classic UI left column",width=30%]
-. 在 **Enter an item name/输入一个任务名称**字段，填写你新建的流水线项目的名称。 +
+. 在 **输入一个任务名称**字段，填写你新建的流水线项目的名称。 +
   **警告：**Jenkins 使用这个项目名称在磁盘上创建目录。建议不要在项目名称中使用空格，因为这样做可能会触发在脚本中不能正确处理目录路径中的空格的bug。
-. 向下滚动并点击 *Pipeline/流水线*，然后点击页面底部的 *OK/确定* 打开流水线配置页（已选中 *General* 选项）。
+. 向下滚动并点击 *流水线*，然后点击页面底部的 *确定* 打开流水线配置页（已选中 *General* 选项）。
 +
 [.boxshadow]
 image:pipeline/new-item-creation.png[alt="Enter a name, click *Pipeline* and then click *OK*",width=100%]
 
-. 点击页面顶部的 *Pipeline/流水线* 选项卡让页面向下滚动到
-  *Pipeline/流水线* 部分。 +
+. 点击页面顶部的 *流水线* 选项卡让页面向下滚动到
+  *流水线* 部分。 +
   **注意：**如果你在源代码管理系统中定义了 `Jenkinsfile`，
   请按照下面的<<defining-a-pipeline-in-scm,在源码管理系统中定义>>的说明。
-. 在 **Pipeline/流水线** 部分, 确保 *Definition/定义* 字段显示
+. 在 **流水线** 部分, 确保 *定义* 字段显示
   *Pipeline script* 选项。
-. 将你的流水线代码输入到 **Script/脚本** 文本区域。 +
+. 将你的流水线代码输入到 **脚本** 文本区域。 +
   例如，复制并粘贴下面的声明式示例流水线代码（在
-  _Jenkinsfile ( ... )_ 标题下）或者它的脚本化的版本到 *Script/脚本* 文本区域。（下面的声明式示例将在整个过程的其余部分使用。）
+  _Jenkinsfile ( ... )_ 标题下）或者它的脚本化的版本到 *脚本* 文本区域。（下面的声明式示例将在整个过程的其余部分使用。）
 +
 [pipeline]
 ----
@@ -113,10 +113,10 @@ node { // <3>
 [.boxshadow]
 image:pipeline/example-pipeline-in-classic-ui.png[alt="Example Pipeline in the classic UI",width=100%]
 +
-**注意：**你也可以从 *Script/脚本* 文本区域右上方的
+**注意：**你也可以从 *脚本* 文本区域右上方的
 *try sample Pipeline...* 选项选择__脚本式__流水线的示例。注意该区域没有可用的声明式流水线示例。
-. 点击 *Save/保存* 打开流水线项目视图页面。
-. 在该页面, 点击左侧的 *Build Now/立即构建* 运行流水线。
+. 点击 *保存* 打开流水线项目视图页面。
+. 在该页面, 点击左侧的 *立即构建* 运行流水线。
 +
 [.boxshadow]
 image:pipeline/classic-ui-left-column-on-item.png[alt="Classic UI left column on an item",width=35%]
@@ -129,7 +129,7 @@ image:pipeline/hello-world-console-output.png[alt="*Console Output* for the Pipe
 *注意：*
 
 * 你也可以通过点击构建号左边的彩色地球仪从工作台直接访问控制台输出（例如 *#1*）。
-* 通过经典的 UI 定义流水线可以很方便的测试流水线代码片段，也可以处理简单的或不需要从源代码仓库中检出/克隆的流水线。正如上面提到的，和通过 Blue Ocean（link:#through-blue-ocean[上面]）或在版本管理系统中（link:#defining-a-pipeline-in-scm[下面]）定义的 ``Jenkinsfile`` 不同，在流水线项目的 *Script/脚本* 文本区域输入的 ``Jenkinsfile`` 由 Jenkins 自己存储在 Jenkins 主目录下。因此，为了更好地控制和扩展你的流水线，尤其是源代码管理系统中那些复杂的项目，建议使用
+* 通过经典的 UI 定义流水线可以很方便的测试流水线代码片段，也可以处理简单的或不需要从源代码仓库中检出/克隆的流水线。正如上面提到的，和通过 Blue Ocean（link:#through-blue-ocean[上面]）或在版本管理系统中（link:#defining-a-pipeline-in-scm[下面]）定义的 ``Jenkinsfile`` 不同，在流水线项目的 *脚本* 文本区域输入的 ``Jenkinsfile`` 由 Jenkins 自己存储在 Jenkins 主目录下。因此，为了更好地控制和扩展你的流水线，尤其是源代码管理系统中那些复杂的项目，建议使用
   link:#through-blue-ocean[Blue Ocean] 或
   link:#defining-a-pipeline-in-scm[源码管理系统]来定义你的 `Jenkinsfile` 文件。
 
@@ -140,19 +140,19 @@ image:pipeline/hello-world-console-output.png[alt="*Console Output* for the Pipe
 === 在源码管理系统中
 
 复杂的流水线很难在流水线配置页面
-link:#through-the-classic-ui[经典 UI] 的 **Script/脚本**文本区域进行编写和维护。
+link:#through-the-classic-ui[经典 UI] 的**脚本**文本区域进行编写和维护。
 
 为简化操作，流水线的 `Jenkinsfile` 可以在文本编辑器或集成开发环境（IDE）中进行编写并提交到源码管理系统 footnoteref:[scm]（可选择性地与需要 Jenkins 构建的应用程序代码放在一起）。然后 Jenkins 从源代码管理系统中检出 `Jenkinsfile` 文件作为流水线项目构建过程的一部分并接着执行你的流水线。
 
 要使用来自源代码管理系统的 `Jenkinsfile` 文件配置流水线项目：
 
 . 按照
-  link:#through-the-classic-ui[通过经典 UI]上面的步骤定义你的流水线直到第5步（在流水线配置页面访问 **Pipeline/流水线**部分）。
-. 从 *Definition/定义* 字段选择 *Pipeline script from SCM* 选项。
-. 从 *SCM* 字段, 选择包含 `Jenkinsfile` 文件的仓库的源代码管理系统的类型。
+  link:#through-the-classic-ui[通过经典 UI]上面的步骤定义你的流水线直到第5步（在流水线配置页面访问 **流水线**部分）。
+. 从 *定义* 字段选择 *Pipeline script from SCM* 选项。
+. 从 *SCM* 字段，选择包含 `Jenkinsfile` 文件的仓库的源代码管理系统的类型。
 . 填充对应仓库的源代码管理系统的字段。 +
   *Tip:* 如果你不确定给定字段应填写什么值，点击它右侧的 *?* 图标以获取更多信息。
-. 在 *Script Path/脚本路径* 字段，指定你的 `Jenkinsfile` 文件的位置（和名称）。这个位置是 Jenkins 检出/克隆包括 `Jenkinsfile` 文件的仓库的位置，它应该与仓库的文件结构匹配。该字段的默认值采取名称为 "Jenkinsfile" 的 `Jenkinsfile` 文件并位于仓库的根路径。
+. 在 *脚本路径* 字段，指定你的 `Jenkinsfile` 文件的位置（和名称）。这个位置是 Jenkins 检出/克隆包括 `Jenkinsfile` 文件的仓库的位置，它应该与仓库的文件结构匹配。该字段的默认值采取名称为 "Jenkinsfile" 的 `Jenkinsfile` 文件并位于仓库的根路径。
 
 当你更新指定的仓库时，只要流水线配置了版本管理系统的轮询触发器，就会触发一个新的构建。
 ////
@@ -173,7 +173,7 @@ footnoteref:[groovy_shebang,link:http://groovy-lang.org/syntax.html#_shebang_lin
 
 流水线拥有内置文档的特性可以让创建各种复杂的流水线变得更容易。该内置文档基于 Jenkins 实例中安装的插件自动生成和更新。
 
-该内置文档可以在 ``${YOUR_JENKINS_URL}/pipeline-syntax`` 全局地找到。对于任何已配置的流水线项目，这个文档也被链接到侧栏的 *Pipeline Syntax/流水线语法* 。
+该内置文档可以在 ``${YOUR_JENKINS_URL}/pipeline-syntax`` 全局地找到。对于任何已配置的流水线项目，这个文档也被链接到侧栏的**流水线语法**。
 
 [.boxshadow]
 image:pipeline/classic-ui-left-column-on-item.png[alt="Classic UI left column on an item",width=35%]
@@ -188,10 +188,10 @@ image:pipeline/classic-ui-left-column-on-item.png[alt="Classic UI left column on
 
 要使用代码生成器生成一个步骤的片段：
 
-. 从已配置好的流水线导航到 *Pipeline Syntax/流水线语法* 链接（见上），或访问 ``${YOUR_JENKINS_URL}/pipeline-syntax``。
-. 在 **Sample Step/示例步骤** 下拉菜单中选择需要的步骤。
-. 使用 **Sample Step/示例步骤** 下拉菜单的动态填充区来配置已选的步骤。
-. 点击 **Generate Pipeline Script/生成流水线脚本** 生成一个能够被复制并粘贴到流水线中的流水线片段。
+. 从已配置好的流水线导航到 *流水线语法* 链接（见上），或访问 ``${YOUR_JENKINS_URL}/pipeline-syntax``。
+. 在 **示例步骤** 下拉菜单中选择需要的步骤。
+. 使用 **示例步骤** 下拉菜单的动态填充区来配置已选的步骤。
+. 点击 **生成流水线脚本** 生成一个能够被复制并粘贴到流水线中的流水线片段。
 
 
 ////
@@ -207,7 +207,7 @@ image:pipeline/snippet-generator.png[alt="Snippet Generator",width=100%]
 
 === 全局变量参考
 
-对于只展示步骤的片段生成器的补充，流水线还提供了一个内置的“*全局变量参考*”。和片段生成器一样，它也是由插件动态添加。但和片段生成器不一样的是，全局变量参考只包含由流水线或插件提供的可用于流水线的**变量**文档。
+对于只展示步骤的片段生成器的补充，流水线还提供了一个内置的“**全局变量参考**”。和片段生成器一样，它也是由插件动态添加。但和片段生成器不一样的是，全局变量参考只包含由流水线或插件提供的可用于流水线的**变量**文档。
 
 流水线默认提供的变量是：
 
