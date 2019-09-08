@@ -1,0 +1,205 @@
+---
+layout: post
+title: "React Plugin Template，让你可以使用React来编写Jenkins插件"
+tags:
+- react
+- plugins
+- template
+- gsoc
+- gsoc2019
+author: jackshen
+---
+模板地址
+link:https://github.com/jenkinsci/react-plugin-template[React Plugin Template]
+
+== 起因
+
+这个模板是笔者在今年的Google Summer of Code中的项目Working Hours - UI Improvement 中产出的。由于我们想使用React的一些组件来优化用户体验，例如在Working Hours里面我们想用ReactDatepicker来帮助用户选择日期，于是整个Working Hours插件的前端部分都试图用React来编写，而由于Jenkins的传统插件编写主要还是用的Jelly，一套类似JSP的后端渲染引擎，因此笔者在一开始也踩了不少坑。以至于想到，可以抽象出一套插件的脚手架来帮助有相似需求的同学。
+
+链接：
+
+GSoC：Working Hours UI Improvement link:https://summerofcode.withgoogle.com/projects/#6112735123734528[] 
+
+Github：Working Hours 插件 link:https://github.com/jenkinsci/working-hours-plugin[]
+
+
+== 概述
+在以往，我们可以使用jelly来开发Jenkins插件的前端部分，同时一些请求可以绑定到对应的类，但是当我懵想要更高程度地去自定义插件界面的时候，jelly就显得捉襟见肘了。这就是这个模板的目的，帮助开发者使用React来开发一个插件。
+
+同时，有了React，我们就可以使用很多基于React的库，webpack也可以帮助我们更安全更高效地使用js库。
+
+== 特点
+
+[cols="2,8"]
+|=====================================
+| 集成React      | 开发者可以使用React充分控制UI
+| 使用了Iframe          | Iframe隔离了之前Jenkins添加的一些js库会造成的影响，例如Prototype.js。
+| 使用maven的生命周期       | 使用了Frontend Maven Plugin link:https://github.com/eirslett/frontend-maven-plugin/[]，npm脚本可以在maven的生命周期中被同步执行。
+| 使用Webpack               | Webpack可以减少最终包的体积，同时避免js库对全部命名空间的影响
+| 为每个请求附加Jenkins Crumb| Jenkins Crumb 是Jenkins的一套token系统，在本模板中已经自动附加到axios实例上
+| 使用了Express的devserver  | 可以单独打开一个支持热更新的devserver来编写前端界面
+|=====================================
+
+== 截图
+
+插件UI
+
+image:/images/post-images/react-plugin-template/plugin-ui.jpg[]
+
+示例入口
+
+image:/images/post-images/react-plugin-template/management-link.jpg[]
+
+== 入门
+
+拷贝Repo:
+[source,shell]
+---------------------------
+git clone https://github.com/jenkinsci/react-plugin-template.git
+cd react-plugin-template
+---------------------------
+安装maven依赖和npm包.
+[source,shell]
+---------------------------
+mvn install -DskipTests
+---------------------------
+
+运行支持热更新的网页
+[source,shell]
+---------------------------
+npm run start
+---------------------------
+运行插件
+[source,shell]
+---------------------------
+mvn hpi:run -Dskip.npm -f pom.xml
+---------------------------
+
+== 发送HTTP请求
+
+由于Jenkins Crumb策略默认是开启的，每个请求都被要求包含一个Jenkins Crumb, 所以请使用已经设置好了Jenkins Crumb的 `axiosInstance`，可以在 `src/main/react/app/api.js` 中找到。
+[source,javascript]
+---------------------------
+export const apiGetData = () => {
+  return axiosInstance.post("/data");
+};
+---------------------------
+或者你想使用你自己的http client，你只需将Jenkins Crumb添加到你每个请求的header中，这个header的key和content都可以使用 `src/main/react/app/utils/urlConfig.js`，具体操作如下
+
+[source,javascript]
+---------------------------
+const headers = {};
+const crumbHeaderName = UrlConfig.getCrumbHeaderName();
+
+if (crumbHeaderName) {
+  headers[crumbHeaderName] = UrlConfig.getCrumbToken();
+}
+---------------------------
+
+=== 编写后端的请求处理器
+
+当你可以自定义你的请求后，你同时也需要一个在后端的Handler。
+
+Jenkins 使用了一个叫做Stapler的框架来处理请求。你可以使用一个继承了Action的类来创建一个子url，同时可以使用一个StaplerProxy来转发或者直接处理请求。
+
+链接
+
+Stapler Reference link:http://stapler.kohsuke.org/reference.html[].
+
+=== 示例 handler
+
+如下，ManagementLink（已经继承Action）会首先拿到这个请求然后转交个 `PluginUI` 来处理。
+
+[source,java]
+---------------------------
+@Extension
+public class PluginManagementLink extends ManagementLink implements StaplerProxy {
+
+    PluginUI webapp;
+
+    public Object getTarget() {
+        return webapp;
+    }
+
+    public String getUrlName() {
+        return "react-plugin-template";
+    }
+}
+---------------------------
+
+随后， stapler会在 `PluginUI` 中寻找适合的处理函数，如下, `doDynamic` 便是一个处理函数, 然后便是我摸自定义的，根据url来判断需要调用的函数, `getTodos` 或者 `setTodos`, 在这里 `PluginUI` 可能更像一个 url router.
+
+[source,java]
+---------------------------
+public class PluginUI{
+    public HttpResponse doDynamic(StaplerRequest request) {
+        ...
+
+        List<String> params = getRequestParams(request);
+
+        switch (params.get(0)) {
+        case "get-todos":
+            return getTodos();
+        case "set-todos":
+            return setTodos(request);
+        }
+        ...
+    }
+}
+---------------------------
+
+== 保存数据
+你可以使用一个Descriptor来保存你的数据
+
+[source,java]
+---------------------------
+@Extension
+public class PluginConfig extends Descriptor<PluginConfig> implements Describable<PluginConfig>
+---------------------------
+
+当你每次修改数据, 调用 `save()` 来保存他们。Jenkins是使用基于xml的序列化方法来保持数据的。
+[source,java]
+---------------------------
+    public void setTodos(
+            @CheckForNull List<Todo> value) {
+        this.todos = value;
+        save();
+    }
+---------------------------
+
+而在你的handler中，你可以调用如下代码来找到你的这个存储数据的对象。
+[source,java]
+---------------------------
+config = ExtensionList.lookup(PluginConfig.class).get(0);
+---------------------------
+
+
+== 自定义你的插件
+
+=== 把所有 `react-template` 修改为你的插件名
+
+- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginUI/index.jelly` , 修改 iframe的 id 和 source url.
+- 在 `src/main/react/server/config.js` , 修改devserver的代理路径
+- 在 `src/main/react/package.json` , 修修 start命令中的 BASE_URL
+- 在 `pom.xml` , 修改 artifactId
+- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginManagementLink.java` , 修改 names.
+
+=== 为你的插件自定义一个页面
+
+比较推荐使用 Management Link, 这会让你的插件有一个独立的页面, 并且可以在系统管理界面 `/manage` 放置一个入口。
+
+image:/images/post-images/react-plugin-template/management-link.jpg[]
+
+== 原理
+
+本模板仅仅是将一个webpack的project放到了Maven project中，同时将webpack的build结果复制到插件的webapp目录，随后便可以在iframe中通过url访问到，最后被Jelly渲染到网页。
+
+== 为什么使用Iframe?
+
+因为到现在，Jenkins的网页已经添加了很多的js库了（似乎是添加到全局的），因此可能会和较新的库产生一些冲突。因此也行一个Iframe可以使我们的插件运行在一个相对“干净”的环境里面。
+
+== 链接
+
+link:https://github.com/jenkinsci/react-plugin-template[Github: React Plugin Template]
+
+link:https://github.com/jenkinsci/working-hours-plugin[Github: Working Hours Plugin]
