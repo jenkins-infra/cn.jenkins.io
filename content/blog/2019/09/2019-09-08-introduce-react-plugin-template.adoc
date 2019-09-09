@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "React Plugin Template，让你可以使用React来编写Jenkins插件"
+title: "React Plugin Template，让你可以使用 React 来编写 Jenkins 插件"
 tags:
 - react
 - plugins
@@ -14,7 +14,7 @@ link:https://github.com/jenkinsci/react-plugin-template[React Plugin Template]
 
 == 起因
 
-这个模板是笔者在今年的 Google Summer of Code 中的项目 Working Hours - UI Improvement 中产出的。由于我们想使用React的一些组件来优化用户体验，例如在 Working Hours 里面我们想用 ReactDatepicker 来帮助用户选择日期，于是整个 Working Hours 插件的前端部分都试图用 React 来编写，而由于 Jenkins 的传统插件编写主要还是用的 Jelly ，一套类似 JSP 的后端渲染引擎，因此笔者在一开始也踩了不少坑。以至于想到，可以抽象出一套插件的脚手架来帮助有相似需求的同学。
+这个模板是笔者在今年的 Google Summer of Code 中的项目 Working Hours - UI Improvement 中产出的。由于我们想使用 React 的一些组件来优化用户体验，例如在 Working Hours 里面我们想用 ReactDatepicker 来帮助用户选择日期，于是整个 Working Hours 插件的前端部分都试图用 React 来编写，而由于 Jenkins 的传统插件编写主要还是用的 Jelly ，一套类似 JSP 的后端渲染引擎，因此笔者在一开始也踩了不少坑。以至于想到，可以抽象出一套插件的脚手架来帮助有相似需求的同学。
 
 链接：
 
@@ -24,25 +24,25 @@ Github：Working Hours 插件 link:https://github.com/jenkinsci/working-hours-pl
 
 
 == 概述
-在以往，我们可以使用 Jelly 来开发 Jenkins 插件的前端部分，同时一些请求可以绑定到对应的类，但是当我懵想要更高程度地去自定义插件界面的时候，Jelly 就显得捉襟见肘了。这就是这个模板的目的，帮助开发者使用 React 来开发一个插件。
+在以往，我们可以使用 Jelly 来开发 Jenkins 插件的前端部分，同时一些请求可以绑定到对应的类，但是当我们想要更高程度地去自定义插件界面的时候，Jelly 就显得捉襟见肘了。这就是这个模板的目的，帮助开发者使用 React 来开发一个插件。
 
-同时，有了 React ，我们就可以使用很多基于 React 的库，webpack 也可以帮助我们更安全更高效地使用js库。
+同时，有了 React ，我们就可以使用很多基于 React 的库，webpack 也可以帮助我们更安全更高效地使用 js 库。
 
 == 特点
 
 [cols="2,8"]
 |=====================================
 | 集成 React      | 开发者可以使用 React 充分控制 UI
-| 使用了 Iframe          | Iframe 隔离了之前 Jenkins 添加的一些 js 库会造成的影响，例如Prototype.js。
-| 使用 maven 的生命周期       | 使用了 Frontend Maven Plugin link:https://github.com/eirslett/frontend-maven-plugin/[]，npm脚本可以在 maven 的生命周期中被同步执行。
-| 使用 Webpack               | Webpack可以减少最终包的体积，同时避免 js 库对全部命名空间的影响
+| 使用了 Iframe          | Iframe 隔离了之前 Jenkins 添加的一些 js 库会造成的影响，例如 Prototype.js。
+| 使用 maven 的生命周期       | 使用了 Frontend Maven Plugin link:https://github.com/eirslett/frontend-maven-plugin/[]，npm 脚本可以在 maven 的生命周期中被同步执行。
+| 使用 Webpack               | Webpack 可以减少最终包的体积，同时避免 js 库对全部命名空间的影响
 | 为每个请求附加 Jenkins Crumb| Jenkins Crumb 是 Jenkins 的一套 token 系统，在本模板中已经自动附加到 axios 实例上
-| 使用了 Express 的 devserver  | 可以单独打开一个支持热更新的 devserver来编写前端界面
+| 使用了 Express 的 devserver  | 可以单独打开一个支持热更新的 devserver 来编写前端界面
 |=====================================
 
 == 截图
 
-插件UI
+插件 UI
 
 image:/images/post-images/react-plugin-template/plugin-ui.jpg[]
 
@@ -52,13 +52,13 @@ image:/images/post-images/react-plugin-template/management-link.jpg[]
 
 == 入门
 
-拷贝 Repo:
+克隆仓库:
 [source,shell]
 ---------------------------
 git clone https://github.com/jenkinsci/react-plugin-template.git
 cd react-plugin-template
 ---------------------------
-安装 maven 依赖和 npm 包.
+安装 maven 依赖和 npm 包
 [source,shell]
 ---------------------------
 mvn install -DskipTests
@@ -84,7 +84,7 @@ export const apiGetData = () => {
   return axiosInstance.post("/data");
 };
 ---------------------------
-或者你想使用你自己的 http client，你只需将 Jenkins Crumb添加到你每个请求的 header中，这个 header的 key 和 content 都可以使用 `src/main/react/app/utils/urlConfig.js`，具体操作如下
+或者你想使用你自己的 http client，你只需将 Jenkins Crumb 添加到你每个请求的 header中，这个 header 的 key 和 content 都可以使用 `src/main/react/app/utils/urlConfig.js`，具体操作如下
 
 [source,javascript]
 ---------------------------
@@ -100,7 +100,7 @@ if (crumbHeaderName) {
 
 当你可以自定义你的请求后，你同时也需要一个在后端的 Handler。
 
-Jenkins 使用了一个叫做 Stapler的框架来处理请求。你可以使用一个继承了 Action的类来创建一个子 url ，同时可以使用一个 StaplerProxy 来转发或者直接处理请求。
+Jenkins 使用了一个叫做 Stapler的框架来处理请求。你可以使用一个继承了 Action 的类来创建一个子 url ，同时可以使用一个 StaplerProxy 来转发或者直接处理请求。
 
 链接
 
@@ -177,11 +177,11 @@ config = ExtensionList.lookup(PluginConfig.class).get(0);
 
 === 把所有 `react-template` 修改为你的插件名
 
-- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginUI/index.jelly` , 修改 iframe的 id 和 source url.
+- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginUI/index.jelly` , 修改 iframe 的 id 和 source url.
 - 在 `src/main/react/server/config.js` , 修改 devserver 的代理路径
 - 在 `src/main/react/package.json` , 修修 start 命令中的 BASE_URL
 - 在 `pom.xml` , 修改 artifactId
-- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginManagementLink.java` , 修改 names.
+- 在 `org/jenkinsci/plugins/reactplugintemplate/PluginManagementLink.java` , 修改 names。
 
 === 为你的插件自定义一个页面
 
