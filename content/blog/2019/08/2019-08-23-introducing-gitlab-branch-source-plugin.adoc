@@ -21,10 +21,10 @@ GitLab 分支源插件已经走出 beta 阶段，并已发布到 Jenkins 更新�
 它允许您基于 GitLab `用户` 或 `组` 或 `子组` 项目创建任务。
 您可以:
 
-* 从 Gitlab 用户/组/子组导入单个项目的分支作为任务（多分支流水线任务）
-* 从 Gitlab 用户/组/子组导入所有或部分项目的分支作为任务（Gitlab 组任务或 Gitlab 文件夹组织）
+* 从 GitLab 用户/组/子组导入单个项目的分支作为任务（多分支流水线任务）
+* 从 GitLab 用户/组/子组导入所有或部分项目的分支作为任务（GitLab 组任务或 GitLab 文件夹组织）
 
-GitLab 组项目对项目进行扫描， 导入根据提供的标准确定的流水线任务。
+GitLab 组项目对项目进行扫描， 导入根据提供的标准识别的流水线任务。
 导入项目之后， Jenkins 立即基于 `Jenkinsfile` 流水线脚本运行任务并且将状态通知到 GitLab 流水线状态。
 这个插件与其他分支源插件不同，它提供了 GitLab 服务器配置，可以在系统配置中配置。
 Jenkins 配置即代码 (JCasC) 也可以用于配置服务器。
@@ -38,7 +38,7 @@ Jenkins 配置即代码 (JCasC) 也可以用于配置服务器。
 
 == 创建任务
 
-要创建多分支流水线任务（使用 Gitlab 分支源）或 GitLab 组任务，您必须将 GitLab 个人访问令牌添加到服务端配置。
+要创建多分支流水线任务（使用 GitLab 分支源）或 GitLab 组任务，您必须将 GitLab 个人访问令牌添加到服务端配置。
 凭据用于获取项目的元数据，并在 GitLab 服务器上设置 hook。
 如果令牌具有管理访问权限，您还可以设置 `系统 Hook`，而 `Web Hook` 可以从任何用户令牌设置。
 
@@ -50,7 +50,7 @@ image::/images/post-images/gsoc-gitlab-branch-source-plugin/branch-source.png[Gi
 
 * `Server` - 从下拉菜单中选择所需的 GitLab 服务器，需要在创建此任务之前进行配置。
 
-* `Checkout Credentials` - 如果插件要构建任何私有项目，添加 `SSHPrivateKey` or `用户名/密码` 类型的凭据。如果所有的项目都是公开的则不需要检出凭据。检出凭据与 GitLab 服务器配置中的凭据(`GitLab 个人访问令牌` 类型)不同。
+* `Checkout Credentials` - 如果插件要构建任何私有项目，添加 `SSHPrivateKey` 或 `用户名/密码` 类型的凭据。如果所有的项目都是公开的则不需要检出凭据。检出凭据与 GitLab 服务器配置中的凭据(`GitLab 个人访问令牌` 类型)不同。
 
 * `Owner` - 可以是 `用户`、`组` 或 `子组`。 根据这一点填充 `Projects` 字段。
 
@@ -217,7 +217,7 @@ organizationFolder('GitLab Organization Folder') {
 
 你也可以使用 `JCasC` 从 Job DSL 脚本直接创建任务。示例请查看该插件link:https://github.com/jenkinsci/gitlab-branch-source-plugin/blob/develop/README.md[仓库]。
 
-== 如何与我们谈论 bug 或新特性?
+== 如何与我们讨论 bug 或新特性?
 
 * 这个项目使用 link:https://issues.jenkins-ci.org/[Jenkins JIRA] 来跟踪问题。 你可以查看 link:https://issues.jenkins-ci.org/issues/?jql=project+%3D+JENKINS+AND+component+%3D+gitlab-branch-source-plugin[`gitlab-branch-source-plugin`] 组件下面的问题。
 
@@ -228,7 +228,7 @@ organizationFolder('GitLab Organization Folder') {
 == 未来的工作
 
 * 积极维护 `GitLab 分支源插件` 并从用户那里获取反馈以改进插件的用户体验。
-* 扩展在 Blueocean 中对 GitLab 流水线的支持。
+* 扩展在 BlueOcean 中对 GitLab 流水线的支持。
 
 = 资源
 
