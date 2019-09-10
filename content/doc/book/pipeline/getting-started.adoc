@@ -17,24 +17,24 @@ endif::[]
 
 = 流水线入门
 
-正如 link:../[前文]提到的，Jenkins 流水线是一套插件，它支持实现和集成持续交付流水线到 Jenkins。流水线提供了一组可扩展的工具，用于通过流水线 DSL 将简单到复杂的交付流水线建模为“代码”。
+正如 link:../[前文] 提到的，Jenkins 流水线是一套插件，它支持实现和集成持续交付流水线到 Jenkins。流水线提供了一组可扩展的工具，用于通过流水线 DSL 将简单到复杂的交付流水线建模为“代码”。
 footnoteref:[dsl,link:https://en.wikipedia.org/wiki/Domain-specific_language[Domain-specific language]]
 
-本节描述了如何在Jenkins中开始创建你的流水线并介绍创建和存储 `Jenkinsfile` 的各种方式。
+本节描述了如何在 Jenkins 中开始创建你的流水线并介绍创建和存储 `Jenkinsfile` 的各种方式。
 
 == 配置要求
 
-为了使用Jenkins流水线，你需要：
+为了使用 Jenkins 流水线，你需要：
 
 * Jenkins 2.x 或以上版本（旧版本到 1.642.3 可能可以，但不建议）
-* 流水线插件，footnoteref:[pipeline,link:https://plugins.jenkins.io/workflow-aggregator[Pipeline plugin]]作为“建议插件”的一部分安装（在link:../../installing[安装 Jenkins]后，运行link:../../installing#setup-wizard[Post-installation setup wizard]时指定）。
+* 流水线插件，footnoteref:[pipeline,link:https://plugins.jenkins.io/workflow-aggregator[Pipeline plugin]] 作为“建议插件”的一部分安装（在link:../../installing[安装 Jenkins] 后，运行 link:../../installing#setup-wizard[Post-installation setup wizard] 时指定）。
 
 在 link:../../managing/plugins[Managing Plugins] 中阅读了解更多与安装和管理插件有关的信息。
 
 
 == 定义流水线
 
-link:../#declarative-versus-scripted-pipeline-syntax[声明式和脚本式流水线]都是 DSL 语言footnoteref:[dsl]，用来描述软件交付流水线的一部分。 脚本式流水线是用一种限制形式的
+link:../#declarative-versus-scripted-pipeline-syntax[声明式和脚本式流水线]都是 DSL 语言，footnoteref:[dsl]用来描述软件交付流水线的一部分。 脚本式流水线是用一种限制形式的
 link:http://groovy-lang.org/semantics.html[Groovy 语法]编写的。
 
 本文档将根据需要介绍 Groovy 语法的相关部分，所以虽然理解 Groovy 对使用流水线有所帮助，但并不是必须的。
@@ -147,7 +147,7 @@ link:#through-the-classic-ui[经典 UI] 的**脚本**文本区域进行编写和
 要使用来自源代码管理系统的 `Jenkinsfile` 文件配置流水线项目：
 
 . 按照
-  link:#through-the-classic-ui[通过经典 UI]上面的步骤定义你的流水线直到第5步（在流水线配置页面访问 **流水线**部分）。
+  link:#through-the-classic-ui[通过经典 UI]上面的步骤定义你的流水线直到第5步（在流水线配置页面访问**流水线**部分）。
 . 从 *定义* 字段选择 *Pipeline script from SCM* 选项。
 . 从 *SCM* 字段，选择包含 `Jenkinsfile` 文件的仓库的源代码管理系统的类型。
 . 填充对应仓库的源代码管理系统的字段。 +
