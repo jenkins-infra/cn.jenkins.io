@@ -1,12 +1,12 @@
 ---
 layout: documentation
-title:  Jenkins Upgrade Guide
+title:  Jenkins 升级指南
 notitle: true
 ---
 
-== Upgrading to Jenkins LTS 2.138.x
+== 升级到 Jenkins LTS 2.138.x
 
-Each section covers the upgrade from the previous LTS release, the section on 2.138.1 covers the upgrade from 2.121.3.
+每个部分涵盖了从之前的LTS版本升级，2.138.1的部分涵盖了从2.121.3升级。
 
 === Upgrading to Jenkins LTS 2.138.4
 
