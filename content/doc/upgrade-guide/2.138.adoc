@@ -15,28 +15,27 @@ notitle: true
 
 link:/security/advisory/2018-12-05/#SECURITY-1072[SECURITY-1072]
 
-After applying this upgrade, Jenkins will migrate the user records to a slightly different storage format that uses a central index to map user IDs to directory names.
-This is a backwards incompatible change, so older releases of Jenkins will not be able to deal with the new storage format.
-We strongly recommend taking a full backup of at least the `$JENKINS_HOME/users/` directory before upgrading.
+应用此升级后， Jenkins 将用户记录迁移到稍有不同的存储格式，该存储格式使用中央索引将用户 ID 映射到目录名称。
+这是一个向前不兼容的更改， 因此较旧的 Jenkins 版本将无法处理新的存储格式。 
+强烈建议您在升级之前至少备份 `$JENKINS_HOME/users/` 目录。
 
-If Jenkins crashes or is killed during startup, the migration may be incomplete, possibly making a subset of user records unavailable.
-To determine whether this is the case, check for the existence of the file `$JENKINS_HOME/users/users.xml`.
-If it does not exist, but user directories have been renamed as described below, the migration was interrupted.
-In such cases, if no backup is available, we recommend checking the Jenkins system log and using the information in it to restore directories to their previous names.
-The log entries look similar to the following message:
+如果 Jenkins 崩溃或在启动过程中被杀死， 则迁移可能不完整， 可能使一部分用户记录不可用。
+要确定是否属于这种情况，请检查 `$JENKINS_HOME/users/users.xml` 文件是否存在。
+如果不存在，但是用户目录已按如下所述重命名，则迁移被中断。
+在这种情况下，如果没有备份可用， 我们建议检查 Jenkins 系统日志， 并使用其中的信息将目录恢复为以前的名称。
+日志条目看起来类似于以下消息：
 
 ----
-INFO: Migrating user 'admin' from 'users/admin/' to 'users/admin_6635238516816951048/'
+INFO: 迁移用户 'admin' 从 'users/admin/' 到 'users/admin_6635238516816951048/'
 ----
 
-In this case, rename the directory `$JENKINS_HOME/users/admin_6635238516816951048/` to `$JENKINS_HOME/users/admin/` while Jenkins is not running.
-Repeat this for all other user directories listed in the log.
-Doing all of the above will undo the partial migration.
-Jenkins will re-run it on the next startup.
+在这种情况下， 在 Jenkins 非运行状态下， 将目录 `$JENKINS_HOME/users/admin_6635238516816951048/` 重命名为 `$JENKINS_HOME/users/admin/`。
+对日志中列出的所有其他用户目录重复此操作。
+完成上述所有操作将撤消部分迁移。
+Jenkins 将在下次启动时重新运行它。
 
-If Jenkins needs to be downgraded after an update and successfully applied user directory migration, do all of the above and additionally delete the `$JENKINS_HOME/users/users.xml` file.
-This reverts the migration and restored all user records to a format compatible with Jenkins 2.138.3 and earlier.
-
+如果更新后 Jenkins 需要降级并成功应用了用户目录迁移，请执行上述所有操作，并同时删除 `$JENKINS_HOME/users/users.xml` 文件。
+这将还原迁移并将所有用户记录还原为与 Jenkins 2.138.3 及更早版本兼容的格式。
 IMPORTANT: Please note that downgrading Jenkins is not generally supported, and may fail for reasons unrelated to this migration.
 
 
