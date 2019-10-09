@@ -36,7 +36,7 @@ Jenkins 将在下次启动时重新运行它。
 
 如果更新后 Jenkins 需要降级并成功应用了用户目录迁移，请执行上述所有操作，并同时删除 `$JENKINS_HOME/users/users.xml` 文件。
 这将还原迁移并将所有用户记录还原为与 Jenkins 2.138.3 及更早版本兼容的格式。
-IMPORTANT: Please note that downgrading Jenkins is not generally supported, and may fail for reasons unrelated to this migration.
+IMPORTANT: 请注意，降级 Jenkins 通常不受支持，并且可能由于与迁移无关的原因而失败。
 
 
 [#SECURITY-595]
