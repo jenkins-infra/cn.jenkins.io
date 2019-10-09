@@ -8,10 +8,10 @@ notitle: true
 
 每个部分涵盖了从之前的LTS版本升级，2.138.1的部分涵盖了从2.121.3升级。
 
-=== Upgrading to Jenkins LTS 2.138.4
+=== 升级到 Jenkins LTS 2.138.4
 
 [#SECURITY-1072]
-==== Migration of user records
+==== 用户记录的迁移
 
 link:/security/advisory/2018-12-05/#SECURITY-1072[SECURITY-1072]
 
@@ -41,7 +41,7 @@ IMPORTANT: Please note that downgrading Jenkins is not generally supported, and 
 
 
 [#SECURITY-595]
-==== New restrictions on HTTP request routing
+==== HTTP 请求路由的新限制
 
 link:/security/advisory/2018-12-05/#SECURITY-595[SECURITY-595]
 
@@ -72,11 +72,11 @@ jenkins.security.stapler.StaticRoutingDecisionProvider.get().reload()
 
 We track known affected plugins and their status in link:https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+the+SECURITY-595+fix[the Jenkins wiki].
 
-=== Upgrading to Jenkins LTS 2.138.3
+=== 升级到 Jenkins LTS 2.138.3
 
 No notable changes requiring upgrade notes.
 
-=== Upgrading to Jenkins LTS 2.138.2
+=== 升级到 Jenkins LTS 2.138.2
 
 ==== Security hardening to prevent XSS vulnerabilities
 
@@ -115,9 +115,9 @@ As a workaround, it is possible to temporarily disable part of the security hard
 
 IMPORTANT: Please see the link:/security/advisory/2018-12-05/#SECURITY-595[description of SECURITY-595 in the 2018-12-05 security advisory] for important information about this workaround.
 
-=== Upgrading to Jenkins LTS 2.138.1
+=== 升级到 LTS 2.138.1
 
-==== New login and user signup pages
+==== 新的登录和用户注册页面
 
 link:/blog/2018/06/27/new-login-page/[Announcement blog post],
 https://issues.jenkins-ci.org/browse/JENKINS-50447[JENKINS-50447]
@@ -128,7 +128,7 @@ As a side effect, existing `PageDecorator` implementations will not be used on t
 See the link:/blog/2018/06/27/new-login-page/[announcement blog post] for further information.
 
 
-==== New API token system
+==== 新的 API token 系统
 
 link:/blog/2018/07/02/new-api-token-system/[Announcement blog post],
 https://issues.jenkins-ci.org/browse/JENKINS-32442[JENKINS-32442],
@@ -140,7 +140,7 @@ API tokens can now be created and revoked, and are stored in a non-recoverable f
 See the link:/blog/2018/07/02/new-api-token-system/[announcement blog post] for further information.
 
 
-==== Disabled deprecated agent protocols
+==== 禁用不推荐使用的代理协议
 
 https://issues.jenkins-ci.org/browse/JENKINS-48480[JENKINS-48480]
 
@@ -149,7 +149,7 @@ The deprecated Jenkins CLI Protocol versions 1 and 2, and Java Web Start Agent P
 If you still use these protocols (e.g. remoting-based CLI, or old `slave.jar` files on agents), you need to re-enable these protocols after upgrade, or upgrade the clients.
 The same recommendations as in link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[the 2.121.x upgrade guide for remoting changes] apply here.
 
-==== Require GNU C Library 2.7 or above on Unix systems
+==== Unix系统上需要 2.7 以上版本的GUN C 库
 
 jira:JENKINS-52771[]
 
