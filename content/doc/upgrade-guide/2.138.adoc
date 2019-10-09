@@ -44,7 +44,7 @@ IMPORTANT: 请注意，降级 Jenkins 通常不受支持，并且可能由于与
 
 link:/security/advisory/2018-12-05/#SECURITY-595[SECURITY-595]
 
-A design flaw in the Stapler web framework allowed accessing fields and invoking methods that were not intended to be invoked this way by accessing specific URLs.
+Stapler web 框架中的一个设计缺陷允许通过访问特定 URLs 来访问原本不打算通过这种方式调用的字段和方法。
 link:/security/advisory/2018-12-05/#SECURITY-595[For further details, see the security advisory].
 
 As a side effect of this security fix, some HTTP requests will no longer work as before.
