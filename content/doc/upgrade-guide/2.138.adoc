@@ -22,14 +22,14 @@ link:/security/advisory/2018-12-05/#SECURITY-1072[SECURITY-1072]
 如果 Jenkins 崩溃或在启动过程中被杀死， 则迁移可能不完整，可能使一部分用户记录不可用。
 要确定是否属于这种情况，请检查 `$JENKINS_HOME/users/users.xml` 文件是否存在。
 如果不存在，但是用户目录已按如下所述重命名，则迁移被中断。
-在这种情况下，如果没有备份可用，我们建议检查 Jenkins 系统日志， 并使用其中的信息将目录恢复为以前的名称。
+在这种情况下，如果没有备份可用，我们建议检查 Jenkins 系统日志，并使用其中的信息将目录恢复为以前的名称。
 日志条目看起来类似于以下消息：
 
 ----
 INFO: 迁移用户 'admin' 从 'users/admin/' 到 'users/admin_6635238516816951048/'
 ----
 
-在这种情况下， 在 Jenkins 非运行状态下， 将目录 `$JENKINS_HOME/users/admin_6635238516816951048/` 重命名为 `$JENKINS_HOME/users/admin/`。
+在这种情况下，在 Jenkins 非运行状态下，将目录 `$JENKINS_HOME/users/admin_6635238516816951048/` 重命名为 `$JENKINS_HOME/users/admin/`。
 对日志中列出的所有其他用户目录重复此操作。
 完成上述所有操作将撤消部分迁移。
 Jenkins 将在下次启动时重新运行它。
@@ -48,14 +48,14 @@ Stapler web 框架中的一个设计缺陷允许通过访问特定 URLs 来访�
 link:/security/advisory/2018-12-05/#SECURITY-595[For further details, see the security advisory].
 
 作为此安全修复的副作用，某些 HTTP 请求将不再像以前那样工作。
-这通常会导致 `HTTP 404 Not Found` 响应，尽管一小部分请求将成功， 但响应将与应用程序修复之前完全不同。
+这通常会导致 `HTTP 404 Not Found` 响应，尽管一小部分请求将成功，但响应将与应用程序修复之前完全不同。
 无论何时发生， Jnkins都会向Jenkins 系统日志中写入类似于以下内容的消息： 
 
 ----
 WARNING: New Stapler routing rules result in the URL "/example" no longer being allowed. If you consider it safe to use, add the following to the whitelist: "method hudson.model.Hudson doExample". Learn more: https://jenkins.io/redirect/stapler-routing
 ----
 
-如果这是由于合法使用 Jenkins UI 造成的， 则可以将受影响的签名添加到已批准的签名列表中。
+如果这是由于合法使用 Jenkins UI 造成的，则可以将受影响的签名添加到已批准的签名列表中。
 为此，请以管理员身份在 Jenkins 脚本控制台中运行以下命令：
 
 ----
