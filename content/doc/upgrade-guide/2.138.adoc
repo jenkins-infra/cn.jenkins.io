@@ -19,10 +19,10 @@ link:/security/advisory/2018-12-05/#SECURITY-1072[SECURITY-1072]
 这是一个向前不兼容的更改， 因此较旧的 Jenkins 版本将无法处理新的存储格式。 
 强烈建议您在升级之前至少备份 `$JENKINS_HOME/users/` 目录。
 
-如果 Jenkins 崩溃或在启动过程中被杀死， 则迁移可能不完整， 可能使一部分用户记录不可用。
+如果 Jenkins 崩溃或在启动过程中被杀死， 则迁移可能不完整，可能使一部分用户记录不可用。
 要确定是否属于这种情况，请检查 `$JENKINS_HOME/users/users.xml` 文件是否存在。
 如果不存在，但是用户目录已按如下所述重命名，则迁移被中断。
-在这种情况下，如果没有备份可用， 我们建议检查 Jenkins 系统日志， 并使用其中的信息将目录恢复为以前的名称。
+在这种情况下，如果没有备份可用，我们建议检查 Jenkins 系统日志， 并使用其中的信息将目录恢复为以前的名称。
 日志条目看起来类似于以下消息：
 
 ----
@@ -143,11 +143,8 @@ API 令牌现在可以被创建和撤销，并以不可恢复的格式存储。
 
 https://issues.jenkins-ci.org/browse/JENKINS-48480[JENKINS-48480]
 
-The deprecated Jenkins CLI Protocol versions 1 and 2, and Java Web Start Agent Protocol versions 1, 2, and 3 have been disabled.
+已经禁用已弃用的 Jenkins CLI 协议 1 和 2 版本，以及 Java Web 启动代理协议的 1、 2 和 3 版本。
 
-If you still use these protocols (e.g. remoting-based CLI, or old `slave.jar` files on agents), you need to re-enable these protocols after upgrade, or upgrade the clients.
-The same recommendations as in link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[the 2.121.x upgrade guide for remoting changes] apply here.
-已禁用已弃用的 Jenkins CLI 协议版本 1 和 2 以及 Java Web 启动代理协议版本 1、 2 和 3。
 如果仍然使用这些协议（例如基于远程处理的CLI 或代理上的旧 `slave.jar` 文件），则需要在升级后重新启用这些协议，或升级客户端。
 相同的建议 link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[用于远程处理更改的 2.121.x 升级指南]适用于此处。 
 
