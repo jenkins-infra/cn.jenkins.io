@@ -6,7 +6,7 @@ notitle: true
 
 == 升级到 Jenkins LTS 2.138.x
 
-每个部分涵盖了从之前的LTS版本升级，2.138.1的部分涵盖了从2.121.3升级。
+每个部分涵盖了从之前的LTS版本升级，2.138.1 的部分涵盖了从 2.121.3 升级。
 
 === 升级到 Jenkins LTS 2.138.4
 
@@ -47,51 +47,51 @@ link:/security/advisory/2018-12-05/#SECURITY-595[SECURITY-595]
 Stapler web 框架中的一个设计缺陷允许通过访问特定 URLs 来访问原本不打算通过这种方式调用的字段和方法。
 link:/security/advisory/2018-12-05/#SECURITY-595[For further details, see the security advisory].
 
-As a side effect of this security fix, some HTTP requests will no longer work as before.
-This typically results in `HTTP 404 Not Found` responses, although a very small subset of requests will be successful, but the response will simply be different than it would have been before the fix was applied.
-Whenever either happens, Jenkins write a message similar to the following to the Jenkins system log:
+作为此安全修复的副作用，某些 HTTP 请求将不再像以前那样工作。
+这通常会导致 `HTTP 404 Not Found` 响应，尽管一小部分请求将成功， 但响应将与应用程序修复之前完全不同。
+无论何时发生， Jnkins都会向Jenkins 系统日志中写入类似于以下内容的消息： 
 
 ----
 WARNING: New Stapler routing rules result in the URL "/example" no longer being allowed. If you consider it safe to use, add the following to the whitelist: "method hudson.model.Hudson doExample". Learn more: https://jenkins.io/redirect/stapler-routing
 ----
 
-If this happens due to legitimate use of the Jenkins UI, the affected signature can be added to the list of approved signatures.
-To do this, run the following command in the Jenkins script console as administrator:
+如果这是由于合法使用 Jenkins UI 造成的， 则可以将受影响的签名添加到已批准的签名列表中。
+为此，请以管理员身份在 Jenkins 脚本控制台中运行以下命令：
 
 ----
 jenkins.security.stapler.StaticRoutingDecisionProvider.get().add('method hudson.model.Hudson doExample')
 ----
 
-This will create a file called `stapler-whitelist.txt` in the Jenkins home directory, and add the specified entry.
-This file can also be modified manually, but the following script needs to be executed afterwards to apply any changes if Jenkins is already running:
+这将在 Jenkins 主目录中创建一个名为 `stapler-whitelist.txt` 的文件，并添加指定的条目。
+也可以手动修改此文件，但如果 Jenkins已经在运行，则需要在应用任何更改后执行以下脚本： 
 
 ----
 jenkins.security.stapler.StaticRoutingDecisionProvider.get().reload()
 ----
 
-We track known affected plugins and their status in link:https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+the+SECURITY-595+fix[the Jenkins wiki].
+我们在link中跟踪已知受影响的插件及其状态： https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+the+SECURITY-595+fix[the Jenkins wiki]。
 
 === 升级到 Jenkins LTS 2.138.3
 
-No notable changes requiring upgrade notes.
+没有需要升级说明的显著变化。 
 
 === 升级到 Jenkins LTS 2.138.2
 
-==== Security hardening to prevent XSS vulnerabilities
+==== 加强安全性以防止 XSS 漏洞
 
-A security hardening to prevent cross-site scripting vulnerabilities from being exploitable was applied to views in Jenkins.
-This can in rare cases result in views having some content escaped twice (typically resulting in visible HTML entities).
+Jenkins 中的视图应用了一种安全性强化，以防止跨站点脚本漏洞被利用。
+在极少数情况下，这会导致视图中某些内容转义两次（通常会导致可见的 HTML 实体）。
 
-We consider these effects to be a bug in plugins that either opt out of the default test suite, or use outdated toolchains.
-We track known affected plugins and their status on https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+2018-10-10+Stapler+security+hardening[the Jenkins wiki].
+我们认为这些影响是插件的一个 bug ，要么选择跳过默认测试套件，要么使用过时的工具链。
+我们在 https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+2018-10-10+Stapler+security+hardening[the Jenkins wiki] 上跟踪已知受影响的插件及其状态。
 
-As a temporary workaround, this hardening can be disabled by setting the system property `org.kohsuke.stapler.jelly.CustomJellyContext.escapeByDefault` to `false`.
+作为临时解决方法，可以通过将系统属性 `org.kohsuke.stapler.jelly.CustomJellyContext.escapeByDefault` 设置为 `false` 来禁用此强化。 
 
-==== Warning logged on first startup after upgrade
+==== 升级后首次启动时的登录告警
 
 https://issues.jenkins-ci.org/browse/JENKINS-53998[JENKINS-53998]
 
-When starting Jenkins 2.138.2 for the first time, a warning like the following might be logged if the plugin:jobConfigHistory[Job Config History Plugin] is installed in a version older than 2.19.
+第一次启动 Jenkins 2.138.2 ，如果插件 jobConfigHistory[Job Config History Plugin] 安装的是 2.19 之前的版本，则可能会记录如下警告。
 
 ----
 Oct 10, 2018 2:27:17 PM hudson.ExtensionFinder$GuiceFinder$FaultTolerantScope$1 error
@@ -101,18 +101,18 @@ com.google.inject.ProvisionException: Unable to provision, see the following err
 1) Tried proxying jenkins.telemetry.Correlator to support a circular dependency, but it is not an interface.
 ----
 
-This does not appear to result in further problems.
-Subsequent restarts of Jenkins will no longer log this warning.
+这似乎不会导致进一步的问题。
+Jenkins 的后续重新启动将不再记录此警告。 
 
-==== Security hardening impacts use of GitHub OAuth Plugin
+==== 安全强化影响 GitHub OAuth 插件的使用
 
 https://issues.jenkins-ci.org/browse/JENKINS-54031[JENKINS-54031]
 
-A security hardening in 2.138.2 and 2.146 can result in problems accessing jobs with plugin:github-oauth[GitHub OAuth Plugin] due to a bug in the plugin.
+2.138.2 和 2.146 中的安全强化可能导致使用 github-oauth[GitHub OAuth Plugin] 插件访问任务时出现问题，由于插件的 bug 。
 
-As a workaround, it is possible to temporarily disable part of the security hardening by setting the https://wiki.jenkins.io/display/JENKINS/Features+controlled+by+system+properties[Java system properties] `hudson.model.AbstractItem.skipPermissionCheck` and `hudson.model.Run.skipPermissionCheck` to `true`.
+作为解决方法，可以通过将 https://wiki.jenkins.io/display/JENKINS/Features+controlled+by+system+properties[Java system properties] `hudson.model.AbstractItem.skipPermissionCheck` 和 `hudson.model.Run.skipPermissionCheck` 设置为 `true` 来暂时禁用部分安全强化。 
 
-IMPORTANT: Please see the link:/security/advisory/2018-12-05/#SECURITY-595[description of SECURITY-595 in the 2018-12-05 security advisory] for important information about this workaround.
+IMPORTANT: 请查看 link:/security/advisory/2018-12-05/#SECURITY-595[description of SECURITY-595 in the 2018-12-05 security advisory] 获取有关此解决方案的重要信息。 
 
 === 升级到 LTS 2.138.1
 
@@ -121,10 +121,10 @@ IMPORTANT: Please see the link:/security/advisory/2018-12-05/#SECURITY-595[descr
 link:/blog/2018/06/27/new-login-page/[Announcement blog post],
 https://issues.jenkins-ci.org/browse/JENKINS-50447[JENKINS-50447]
 
-The login and user signup pages have been redesigned.
-As a side effect, existing `PageDecorator` implementations will not be used on the redesigned pages.
+登陆和用户注册页面被重新设计。
+作为副作用，现有的 `PageDecorator` 实现将不会在重新设计的页面上使用。
 
-See the link:/blog/2018/06/27/new-login-page/[announcement blog post] for further information.
+查看 link:/blog/2018/06/27/new-login-page/[announcement blog post] 获取进一步信息。
 
 
 ==== 新的 API token 系统
@@ -133,13 +133,13 @@ link:/blog/2018/07/02/new-api-token-system/[Announcement blog post],
 https://issues.jenkins-ci.org/browse/JENKINS-32442[JENKINS-32442],
 https://issues.jenkins-ci.org/browse/JENKINS-32776[JENKINS-32776]
 
-The per-user API tokens that allow access to the HTTP remote API have been redesigned:
-API tokens can now be created and revoked, and are stored in a non-recoverable format.
+允许访问 HTTP 远程 API 的用户API 令牌 已重新设计：
+API 令牌现在可以被创建和撤销，并以不可恢复的格式存储。 
 
-See the link:/blog/2018/07/02/new-api-token-system/[announcement blog post] for further information.
+查看 link:/blog/2018/07/02/new-api-token-system/[announcement blog post] 获取进一步信息。
 
 
-==== 禁用不推荐使用的代理协议
+==== 禁用已弃用的代理协议
 
 https://issues.jenkins-ci.org/browse/JENKINS-48480[JENKINS-48480]
 
@@ -147,11 +147,14 @@ The deprecated Jenkins CLI Protocol versions 1 and 2, and Java Web Start Agent P
 
 If you still use these protocols (e.g. remoting-based CLI, or old `slave.jar` files on agents), you need to re-enable these protocols after upgrade, or upgrade the clients.
 The same recommendations as in link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[the 2.121.x upgrade guide for remoting changes] apply here.
+已禁用已弃用的 Jenkins CLI 协议版本 1 和 2 以及 Java Web 启动代理协议版本 1、 2 和 3。
+如果仍然使用这些协议（例如基于远程处理的CLI 或代理上的旧 `slave.jar` 文件），则需要在升级后重新启用这些协议，或升级客户端。
+相同的建议 link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[用于远程处理更改的 2.121.x 升级指南]适用于此处。 
 
 ==== Unix系统上需要 2.7 以上版本的GUN C 库
 
 jira:JENKINS-52771[]
 
-Starting from this version, Jenkins requires link:https://www.gnu.org/software/libc/[GNU C Library] version 2.7 or above.
-It makes some Linux distributions unsupported, in particular RHEL 5 and CentOS 5.
-See jira:JENKINS-53924[] and jira:JENKINS-53832[] for more info.
+从当前版本开始， Jenkins 需要2.7版本以上的 link:https://www.gnu.org/software/libc/[GNU C 库]。 
+它使得一些Linux发行版不受支持，特别是RHEL 5和CentOS 5
+查看 jira:JENKINS-53924[] 和 jira:JENKINS-53832[] 获取更多信息。
