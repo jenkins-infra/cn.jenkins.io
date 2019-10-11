@@ -1039,45 +1039,45 @@
       pull: 3193 # and its #3201 regression
       issue: 48365 # and its 48604 regression
       message: >
-        Make sure detached plugins (plugins whose functionality used to be part of Jenkins itself) are installed when upgrading Jenkins past the version at which the plugin was detached.
+        在将 Jenkins 升级到脱离该插件的版本时，请确保已安装脱离的插件（其功能曾经是 Jenkins 本身的插件）。
     - type: bug
       references:
         - issue: 48593
         - url: https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties
-          title: Jenkins features controlled by system properties
+          title: 受系统属性控制的 Jenkins 功能
       pull: 3200
       message: >
-        Make the system property <code>hudson.consoleTailKB</code> actually work.
+        确保系统属性 <code>hudson.consoleTailKB</code> 起作用。
     - type: bug
       pull: 3198
       issue: 48505
       message: >
-        Fix a performance regression in Jenkins 2.86 due to lock contention in <code>ExtensionList</code>.
+        修复了 Jenkins 2.86 中由于 <code>ExtensionList</code> 锁竞争而导致的性能下降。
     - type: bug
       pull: 3164
       issue: 48080
       message: >
-        Prevent setup wizard from hanging when the two provided passwords differ, instead show a validation error.
+        当提供的两个密码不同时，防止安装向导挂起，而是显示验证错误。
     - type: bug
       issue: 34138
       pull: 3042
       message: >
-        Prevent concurrent installation of Maven on the same node to prevent problems.
+        防止在同一节点上同时安装 Maven ，以防止出现问题。
     - type: bug
       pull: 3156
       issue: 48157
       message: >
-        Prevent potential <code>NullPointerException</code> when migrating the default "All View" name for a "My Views" user property.
+        迁移"我的视图"用户属性的默认"所有视图"名称时，请防止潜在的 <code>NullPointerException</code> 。
     - type: rfe
       pull: 3155
       issue: 48349
       message: >
-        Cache permission names, allowing Jenkins to recover faster after "stop-the-world" Java GC pauses.
+        缓存权限名称，使 Jenkins 在 "stop-the-world" Java GC 暂停后可以更快地恢复。
     - type: rfe
       issue: 47429
       pull: 3150
       message: >
-        Improve user lookup performance, for example from Git changelog calculation.
+        提高用户查找性能，例如通过计算 Git 变更日志。
 - version: "2.89.4"
   date: 2018-02-14
   changes:
