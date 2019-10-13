@@ -1067,7 +1067,7 @@
       pull: 3156
       issue: 48157
       message: >
-        迁移"我的视图"用户属性的默认"所有视图"名称时，请防止潜在的 <code>NullPointerException</code> 。
+        迁移"我的视图"用户属性的默认"所有视图"名称 ，防止潜在的 <code>NullPointerException</code> 。
     - type: rfe
       pull: 3155
       issue: 48349
@@ -1116,12 +1116,12 @@
       issue: 48348
       pull: 3157
       message: >
-        在大集群上调度流水线时减少内存使用。
+        在大规模集群上调度流水线时减少内存使用。
     - type: rfe
       pull: 3143
       issue: 48350
       message: >
-        通过缓存预估的持续时间来提高具有长的运行构建列表的 UI 性能。
+        缓存预估的构建执行持续时间，以此来提高具有长列表的正在运行构建时的 UI 性能。
 
 - version: 2.164.1
   date: 2019-03-13
