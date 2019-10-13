@@ -1067,7 +1067,7 @@
       pull: 3156
       issue: 48157
       message: >
-        迁移"我的视图"用户属性的默认"所有视图"名称 ，防止潜在的 <code>NullPointerException</code> 。
+        迁移"我的视图"用户属性的默认"所有视图"名称 ，防止可能出现的 <code>NullPointerException</code> 。
     - type: rfe
       pull: 3155
       issue: 48349
