@@ -6,7 +6,7 @@ notitle: true
 
 == 升级到 Jenkins LTS 2.138.x
 
-每个部分涵盖了从之前的LTS版本升级，2.138.1 的部分涵盖了从 2.121.3 升级。
+每个部分涵盖了从之前的 LTS 版本升级，2.138.1 的部分涵盖了从 2.121.3 升级。
 
 === 升级到 Jenkins LTS 2.138.4
 
@@ -152,6 +152,6 @@ https://issues.jenkins-ci.org/browse/JENKINS-48480[JENKINS-48480]
 
 jira:JENKINS-52771[]
 
-从当前版本开始， Jenkins 需要2.7版本以上的 link:https://www.gnu.org/software/libc/[GNU C 库]。 
-它使得一些Linux发行版不受支持，特别是RHEL 5和CentOS 5
+从当前版本开始， Jenkins 需要 2.7 版本以上的 link:https://www.gnu.org/software/libc/[GNU C 库]。 
+它使得一些 Linux 发行版不受支持，特别是 RHEL 5 和 CentOS 5 。
 查看 jira:JENKINS-53924[] 和 jira:JENKINS-53832[] 获取更多信息。
