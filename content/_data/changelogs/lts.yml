@@ -1438,7 +1438,7 @@
   date: 2019-07-17
   changes:
     - type: security
-      message: 重要的安全修复
+      message: 重要的安全修复。
       references:
         - url: https://jenkins.io/security/advisory/2019-07-17/
           title: 安全公告
@@ -1453,7 +1453,7 @@
       issue: 57528
       message: |-
         当分离的插件（其功能曾经是 Jenkins 本身的一部分的插件）作为已经存在的其他插件的隐含依赖时，确保 Jenkins 在启动时对其进行安装。
-        这简化了不使用更新中心的专用安装方案的兼容性，例如当从带有某些插件的预包装 Docker镜像 运行 Jenkins 时。
+        这简化了不使用更新中心的专用安装方案的兼容性，例如当从带有某些插件的预包装 Docker 镜像运行 Jenkins 时。
     - type: bug
       pull: 4029
       references:
@@ -1461,7 +1461,7 @@
         - url: https://github.com/kohsuke/winp/blob/master/CHANGELOG.md#128
           title: 完整变更日志
       message: |-
-        更新 WinP 从 1.27 到 1.28 ，以修复 Windows 正常进程关闭逻辑中缺少DLL和控制台窗口闪退的问题
+        更新 WinP 从 1.27 到 1.28 ，以修复 Windows 正常进程关闭逻辑中缺少 DLL 和控制台窗口闪退的问题
     - type: rfe
       pull: 4066
       issue: 57993
@@ -1490,7 +1490,7 @@
     - type: bug
       pull: 4107
       issue: 55945
-      message: 防止 Jenkins 重启和用户会话无效时的偶发 <code>IllegalStateException</code> 。
+      message: 防止 Jenkins 重启和用户会话无效时的偶发 <code>IllegalStateException</code> 异常。
 
 - version: 2.176.4
   date: 2019-09-25
@@ -1520,7 +1520,7 @@
       pull: 4188
       issue: 59167
       message: |-
-        修复 RSS / Atom 提要中缺少的绝对 URL  (由 2.190 引入的缺陷回归)
+        修复 RSS / Atom 提要中缺少的绝对 URL 。 (由 2.190 引入的缺陷回归)
     - type: major bug
       pull: 4176
       issue: 58938
@@ -1541,7 +1541,7 @@
       pull: 4085 # and 4109
       issue: 43610
       message: |-
-        从Jenkins核心中删除Trilead SSH库，并使其在新的<a href="https://plugins.jenkins.io/trilead-api" target="_blank">独立插件</a>中可用。
+        从 Jenkins 核心中删除 Trilead SSH 库，并使其在新的<a href="https://plugins.jenkins.io/trilead-api" target="_blank">独立插件</a>中可用。
 
     # Notable bugs not backported into previous LTS line
     - type: bug
