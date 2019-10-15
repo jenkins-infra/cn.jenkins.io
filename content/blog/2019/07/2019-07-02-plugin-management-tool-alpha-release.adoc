@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Plugin Management Library and CLI Tool Alpha Release"
+title: "插件管理库和 CLI 工具 Alpha 版本"
 tags:
 - plugins
 - pluginmanagement
@@ -9,6 +9,7 @@ tags:
 - gsoc
 - gsoc2019
 author: stopalopa
+translator: zhaoying818
 ---
 
 _"Everybody is re-inventing the wheel, partially implementing the "details" of plugin management (signed metadata, artifacts checksums, plugins detached from core,...).
