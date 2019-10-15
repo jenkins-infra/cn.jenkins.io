@@ -1534,7 +1534,7 @@
       pull: 3982
       issue: 37862
       message: |-
-        Jenkins不再在项目或构建目录中创建符号链接。
+        Jenkins 不再在项目或构建目录中创建符号链接。
         如果需要，可以安装 <a href="https://plugins.jenkins.io/build-symlink" target="_blank">Build Symlink</a> 插件来恢复此功能。
         诸如 <code>/job/…/lastStableBuild/</code> 之类的URL不受影响，仅影响直接访问 <code>$JENKINS_HOME</code> 文件系统的工具。
     - type: major rfe
