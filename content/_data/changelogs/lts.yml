@@ -1595,7 +1595,7 @@
           title: 文档
         - pull: 3915
       message: |-
-        支持在 Pipiline 和其他任务类型的 <code>fingerprint()</code> 构建步骤中设置排除和大小写敏感。
+        支持在流水线和其他任务类型的 <code>fingerprint()</code> 构建步骤中设置排除和大小写敏感。
     - type: rfe
       pull: 3994
       issue: 57121
