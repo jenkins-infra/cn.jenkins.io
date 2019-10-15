@@ -1525,7 +1525,7 @@
       pull: 4176
       issue: 58938
       message: |-
-        当显示缓慢的触发管理警告时， Jenkins UI 中断。 (由 2.189 引入的缺陷回归)
+        当提示慢触发的管理警告时， Jenkins UI 中断。 (由 2.189 引入的缺陷回归)
 
   lts_changes: # compared to lts_predecessor
 
