@@ -1611,7 +1611,7 @@
       pull: 3939
       issue: 25046
       message: |-
-        注销时删除过时的会话 cookie ，以防止与 header 相关的错误太大。
+        注销时删除超时的会话 cookie ，以防止与 header 太大等相关的错误。
     - type: rfe
       pull: 4072
       issue: 58041
