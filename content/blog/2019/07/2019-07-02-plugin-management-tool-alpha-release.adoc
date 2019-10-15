@@ -20,41 +20,27 @@ _"人人都在重复造轮子，部分像实现插件管理的"细节"（签名�
 我很高兴分享我们刚刚发布的 Alpha 版本，您可以在link:https://github.com/jenkinsci/plugin-installation-manager-tool/releases[此处]查看！
 
 
-== GSoC Phase 1 Update
+== GSoC 1 期更新
 
-While I looked into pulling the link:https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/PluginManager.java[Plugin Manager] out of Jenkins core,
-this ended up being a challenging first step due to the complexity and number of dependencies.  We instead decided to start by converting the
-link:https://github.com/jenkinsci/docker/blob/master/install-plugins.sh[install-plugins.sh bash script] in Jenkins Docker to Java.
-There are several issues with the install-plugins.sh script - namely, that it is a bash script and has limited extensibility.
-Furthermore, it does not retrieve all of the most-up-to-date update center metadata.
+当我考虑将link:https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/PluginManager.java[插件管理器]从Jenkins核心中撤出时，由于依赖项的复杂性和数量，这最终成为了最具挑战性的第一步。相反，我们决定首先将 Jenkins Docker 中的   link:https://github.com/jenkinsci/docker/blob/master/install-plugins.sh[install-plugins.sh bash 脚本]转换为 Java。 install-plugins.sh 脚本存在多个问题，即它是 bash 脚本并且扩展性有限，此外，它不会检索所有最新的更新中心的元数据。
 
-== Alpha Release Details
+== Alpha 版本详情
 
-Mimicking what was done in the link:https://github.com/jenkinsci/docker/blob/master/install-plugins.sh[install-plugins.sh] script from the official Jenkins Docker image, the new plugin management library takes in a list of plugins, their versions,
-and/or urls from which to download the plugins, and downloads the requested plugins and their dependencies. The plugins are downloaded from the update center
-to a specified directory, and can then be loaded into Jenkins. Currently, the plugins to be downloaded can be specified via a plugins.txt file and/or the -plugins cli option, but we plan to further expand the input formats that can be accepted.
-link:https://github.com/jenkinsci/docker#plugin-version-format[Custom version specifiers] for different update centers are also supported.
+模仿官方 Jenkins Docker 镜像中 link:https://github.com/jenkinsci/docker/blob/master/install-plugins.sh[install-plugins.sh] 脚本中的操作，新的插件管理库接收插件列表、它们的版本和（或） URL，从中可以下载插件，并下载所需的插件及其依赖。插件从更新中心下载到指定目录，然后可以加载到 Jenkins 中。当前，可以通过 plugins.txt 文件和（或） -plugins 的 cli 选项指定要下载的插件，我们计划进一步扩展可以接收的输入格式。 还支持用于不同更新中心的link:https://github.com/jenkinsci/docker#plugin-version-format[自定义版本说明符]。
 
 image::/images/post-images/gsoc-plugin-management-tool/pluginstxt.png[Example plugins.txt File]
 
-The library will first check if any of the requested plugins are currently either installed in the user-specified download location or user-specified Jenkins war file.
-Already installed plugins will be ignored or upgraded if a higher version is requested or required as a dependency.  After determining the plugin download URL, the library
-will download the plugins and resolve and download their dependencies.
+该库将首先检查当前是否在用户指定的下载位置或用户指定的 Jenkins war 文件中安装了任何请求的插件。如果要求更高版本或更高版本作为依赖项，则将忽略或升级已安装的插件。确定插件下载 URL 后，库将下载插件并解析和下载其依赖。
 
 image::/images/post-images/gsoc-plugin-management-tool/downloadexample.png[Example of Downloading Plugins]
 
 image::/images/post-images/gsoc-plugin-management-tool/downloadedplugins.png[Plugin Download Directory]
 
-This is just the beginning: the plugin manager library and cli tool are very much still a work in progress.
-For the most up-to-date information on CLI options and how to run the tool, see the https://github.com/jenkinsci/plugin-installation-manager-tool/blob/master/README.md[repository README.md].
-More robust input parsing, support for security warnings and available updates, Docker integration, and additional features coming soon!
+这仅仅是个开始：插件管理器库和 cli 工具仍在开发中。 有关 CLI 选项以及如何运行该工具的最新信息，请参见https://github.com/jenkinsci/plugin-installation-manager-tool/blob/master/README.md[存储库 README.md ]。 即将提供更强大的输入解析，对安全警告和可用更新的支持，Docker集成以及其他功能！
 
-== Links and Feedback
+== 链接和反馈
 
-Feel free to reach out through
-the link:https://gitter.im/jenkinsci/plugin-installation-manager-cli-tool[Plugin Installation Manager CLI Tool Gitter chat] or through
-the link:mailto:jenkinsci-dev@googlegroups.com[Jenkins Developer Mailing list]. I would love to get your questions, comments, and feedback!
-We have meetings Tuesdays and Thursdays at 6PM UTC.
+欢迎通过 link:https://gitter.im/jenkinsci/plugin-installation-manager-cli-tool[插件安装管理器 CLI 工具 Gitter 聊天]或通过 link:mailto:jenkinsci-dev@googlegroups.com[Jenkins 开发者邮件列表]与我们联系。我希望收到您的问题，评论和反馈！我们在世界标准时间下午6点（星期二和星期四）开会。
 
 * link:https://docs.google.com/presentation/d/12Bo8w9SinrG5n82w-Unjx4MNq0mjkHFEOMc3Jf6rTQQ/edit#slide=id.p1[Phase 1 Presentation Slides]
 * link:https://youtu.be/MDs0Vr7gnnA?t=196[Phase 1 Recorded Demo]
