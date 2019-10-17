@@ -1039,7 +1039,7 @@
       pull: 3193 # and its #3201 regression
       issue: 48365 # and its 48604 regression
       message: >
-        在将 Jenkins 升级到脱离该插件的版本时，请确保已安装脱离的插件（其功能曾经是 Jenkins 本身的插件）。
+        在将 Jenkins 升级到脱离该插件的版本时，请确保已安装脱离的插件（其功能曾经是 Jenkins 的一部分）。
     - type: bug
       references:
         - issue: 48593
