@@ -3179,36 +3179,36 @@
       pull: 4239
       issue: 41891
       message: |-
-        Add an option for a Resource Root URL through which Jenkins will serve user-generated static resources like workspace files or archived artifacts without the need for Content-Security-Policy headers.
+        为资源根 URL 添加一个选项，Jenkins 可以通过该选项为用户生成的静态资源（例如工作空间文件或已归档的结果件）提供服务，而无需 Content-Security-Policy 标头。
     - type: major rfe
       pull: 3970
       message: |-
-        Remove the ability to download update center metadata using the user's browser (deprecated since 2015).
-        Jenkins will no longer inform about available updates without a connection to update sites.
-        We recommend the use of a local mirror of our update sites, or a self-hosted update center like <a href="https://github.com/jenkinsci/juseppe">Juseppe</a> in these situations.
+        删除使用用户浏览器下载更新中心元数据的功能（自 2015 年起不推荐使用）。
+        如果没有连接更新站点，Jenkins 将不再通知可用更新。
+        在这种情况下，建议使用更新站点的本地镜像，或使用 <a href="https://github.com/jenkinsci/juseppe">Juseppe</a> 之类的自托管更新中心。
     - type: bug
       pull: 4276
       issue: 59684
       message: |-
-        Fix style of administrative monitors showing informational messages in the popup.
+        修复在弹出窗口中显示参考消息的管理监视器的样式。
     - type: bug
       pull: 4279
       issue: 34226
       message: |-
-        Add a missing "pressed" style for the Create Item button.
+        为"创建项目"按钮添加缺少的按下样式。
     - type: bug
       pull: 4269
       issue: 48375
       message: |-
-        Fix labels to Atom feed links.
+        将标签固定到 Atom 供稿链接。
     - type: rfe
       pull: 4278
       message: |-
-        Developer: Add <code>Functions#urlEncode(String)</code> to ease encoding of URL query parameters from Jelly views.
+        开发者：添加 <code>Functions#urlEncode(String)</code> 可以简化来自 Jelly 视图的 URL 查询参数的编码。
     - type: rfe
       pull: 4272
       message: |-
-        Developer: <code>TarOutputStream</code> is now marked restricted so it is not used from plugins.
+        开发者：<code>TarOutputStream</code> 现在被标记为受限，因此插件中不使用它。
     - type: rfe
       references:
         - issue: 36720
@@ -3220,7 +3220,7 @@
         - pull: 4261
         - pull: 4267
       message: |-
-        Internal: Various code cleanups.
+        内部： 清理无用代码。
     # pull: 4277 (PR title: Update documented Maven requirement: 3.5.3 -> 3.5.4)
     # pull: 4283 (PR title: Release Drafter: Split developer and internal changes)
     # pull: 4285 (PR title: [JENKINS-59605] Unify the JS validation behavior and the AJAX one)
@@ -3231,12 +3231,12 @@
     pull: 4302
     issue: 59849
     message: |-
-      Resource URLs failed to serve files with nontrivial names due to encoding problems.
+      由于编码问题，资源URL无法提供名称不重要的文件。
   - type: bug
     pull: 4295
     issue: 59800
     message: |-
-      Fix presentation when localized headers span multiple lines in the setup wizard.
+      修复本地化标题在安装向导中跨越多行时的显示问题。
   # pull: 4249 (PR title:  [JENKINS-36720] - Fix SpotBugs warnings for "Non-null field is not initialized" values)
   # pull: 4287 (PR title: Modernize LoginRedirectTest)
   # pull: 4288 (PR title: Resolve TODO using JenkinsRule#waitOnline)
