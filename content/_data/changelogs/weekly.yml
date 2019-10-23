@@ -3123,42 +3123,42 @@
     pull: 4171
     issue: 58993
     message: |-
-      Prevent calls to <code>Jenkins#save</code> persisting data before we have finished loading the in-memory model.
-      This prevents possible corruption of the main Jenkins configuration.
+      在完成加载内存模型之前，请避免调用 <code>Jenkins#save</code> 持久数据。 
+      这样可以防止 Jenkins 主配置损坏。
   - type: bug
     pull: 4263
     issue: 59267
     message: |-
-      Increase client-side keep-alive ping frequency on the HTTP-based CLI to prevent timeouts.
+      在基于 HTTP 的 CLI 上增加客户端保持活动 ping 的频率，以防止超时。
   - type: rfe
     pull: 4225
     issue: 59152
     message: |-
-      Reduce default soft-kill timeout from two minutes to five seconds so that builds that spawned other processes can finish more quickly.
+      将默认的软终止超时从 2 分钟减少到 5 秒，以便生成其他进程的构建可以更快地完成。
   - type: rfe
     pull: 4242
     message: |-
-      Stop bundling Maven Plugin and Subversion Plugin with Jenkins.
-      In very rare cases, this could result in problems when attempting to install plugins compatible with Jenkins before 1.310.
-      The Jenkins project is currently not publishing any such plugins.
+      停止与 Jenkins 捆绑 Maven 插件和 Subversion 插件。
+      在极少数情况下，尝试安装与 1.310 版本之前的 Jenkins 兼容的插件时，可能会导致问题。
+      Jenkins 项目目前未发布任何此类插件。
   - type: rfe
     pull: 4040
     message: |-
-      Remove plugins bundled only to promote their use, as they are not needed for compatibility with old plugins.
-      Since Jenkins 2.0, the concept of plugins installed by default is replaced with the setup wizard.
+      删除捆绑在一起的插件只是为了促进其使用，因为与旧插件兼容时不需要它们。
+      从 Jenkins 2.0 开始，默认情况下安装插件的概念已替换为安装向导。
   - type: rfe
     pull: 4245
     message: |-
-      Update bundled version of Script Security Plugin to 1.65.
+      将捆绑的脚本安全插件版本更新为 1.65 。
   - type: bug
     pull: 4232
     message: |-
-      Developer: <code>ProcessTree#killAll</code> no longer fails with NPE if <code>proc</code> argument is <code>null</code>.
+      开发者： 如果 <code>proc</code> 参数为 <code>null</code> ，<code>ProcessTree#killAll</code> 不会再因 NPE 失败。
   - type: bug
     pull: 4231
     issue: 59580
     message: |-
-      Internal: <code>hudson.util.ProcessTree.OSProcess#getEnvironmentVariables</code> returned <code>null</code> when an error occurred even though it shouldn't.
+      内部: 发生错误时，<code>hudson.util.ProcessTree.OSProcess#getEnvironmentVariables</code> 返回 <code>null</code> ，即使它不应该发生也是如此。
   # pull: 4234 (PR title: Fix ProcessTreeKillerTest#doNotKillProcessWithCookie to work on Windows)
   # pull: 4235 (PR title: Fix formatting of ProcessTreeKillerTest.java)
   # pull: 4236 (PR title: Annotate ProcessTree with @CheckForNull/@Nonnull)
