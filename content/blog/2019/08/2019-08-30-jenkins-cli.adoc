@@ -1,0 +1,100 @@
+---
+layout: post
+title: "利用 jcli 管理 Jenkins"
+tags:
+- general
+- jcli
+- cli
+- tools
+author: linuxsuren
+---
+
+作为一名开发者，我通常像下面那样使用 Jenkins：
+
+* 查找与我当前工作相关的任务
+* 触发任务构建
+* 检查构建日志
+
+有时候，我可能需要检查插件更新中心，安装新的插件，或者更新一个已有的插件。再或者，希望从本地上传一个插件。所有的这些情况，其实都没有必要
+访问 UI 界面甚至是浏览器。我更倾向于使用命令行（CLI）来完成大部分的工作。例如：我可以使用 `kubectl` 来管理我的 Kubernets 集群，
+创建或者修改 Kubernetes 资源。因此，我开始思考，“为什么不用命令行来管理 Jenkins 呢”？
+
+== 什么要创造新的轮子？
+
+首先，我几乎都已经忘记了那个早已存在的命令行，用 Java 编写的 https://jenkins.io/doc/book/managing/cli/[Jenkins CLI]。让我先
+介绍一下如何使用这个命令行。
+
+访问 Jenkins 的页面 `http://localhost:8080/jenkins/cli/`。你将会看到类似于 `java -jar jenkins-cli.jar -s http://localhost:8080/jenkins/ help` 的命令行。因此，需要下载一个 jar 文件。我们可以用命令 `wget http://localhost:8080/jenkins/jnlpJars/jenkins-cli.jar` 来下载。
+
+此时，你应该能看到，这并不是一个 Linux 风格的 CLI。请思考下面的几个点：
+
+* 用户必须要有一个 JRE 环境。这对于非 Java 开发者来说并不方便。
+* 命令行使用繁琐，需要输入很多字符。我们每次都需要输入 `java -jar jenkins-cli.jar -s http://localhost:8080/jenkins/` 作为命令的前缀。
+* 无法使用一些流行的包管理器安装，例如：`brew` 或 `yum`。
+
+当然，Java 版本的命令行和 Jenkins 的兼容性更好。但是，我期望在使用时可以更简单些。
+因此，我决定使用 Golang 来编写一个新的命令行，这样可以运行在多个平台上。
+
+这就是创建 `jcli` 的故事。
+
+== 特性
+
+* 易于维护的 jcli 配置文件
+* 支持管理多个 Jenkins
+* 插件管理（列表、搜索、安装、上传）
+* 任务管理（搜索、构建、日志）
+* 在浏览器中打开 Jenkins
+* 重启 Jenkins
+* 支持连接代理
+
+== 如何获取？
+
+你可以从 https://github.com/jenkins-zh/jenkins-cli/[jenkins-cli 的代码仓库]中克隆 `jcli`。目前，我们支持三个主流的操作
+系统平台： MacOS、Linux、和 Windows。
+
+=== MacOS
+
+你可以使用 brew 安装 jcli。
+
+```
+brew tap jenkins-zh/jcli
+brew install jcli
+```
+
+=== Linux
+
+在 Linux 下安装也是非常的简单。你只需要执行下面的命令即可：
+
+```
+curl -L https://github.com/jenkins-zh/jenkins-cli/releases/latest/download/jcli-linux-amd64.tar.gz|tar xzv
+sudo mv jcli /usr/local/bin/
+```
+
+=== Windows
+
+你可以点击 https://github.com/jenkins-zh/jenkins-cli/releases/latest/download/jcli-windows-386.tar.gz[这里]找到最新的版本。
+然后，下载 tar 文件，把解压后的 `jcli` 拷贝到系统目录下。
+
+=== 如何开始？
+
+使用这个非常简单。你安装好 `jcli` 后，可以通过下面的命令生成一个配置样本：
+
+```
+$ jcli config generate
+current: yourServer
+jenkins_servers:
+- name: yourServer
+  url: http://localhost:8080/jenkins
+  username: admin
+  token: 111e3a2f0231198855dceaff96f20540a9
+  proxy: ""
+  proxyAuth: ""
+# Goto 'http://localhost:8080/jenkins/me/configure', then you can generate your token.
+```
+
+在大多数情况下，你应该只需要修改三个字段，包括：`url`、`username` 和 `token`。好的，我相信你已经准备好了。
+然后，就可以通过下面的命令来检查你的 Jenkins 中是否安装了 `github` 插件：
+
+`jcli plugin list --filter name=github`
+
+最后，该命令行工具还处在研发的早期阶段，我们欢迎任何形式的贡献！
