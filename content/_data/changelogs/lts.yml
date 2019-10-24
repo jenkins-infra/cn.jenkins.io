@@ -1396,7 +1396,7 @@
       - url: https://github.com/stapler/stapler/blob/master/CHANGELOG.md#1257
         title: 完整变更日志
     message: |-
-      开发者：为了支持从任意插件中加载本地化资源，Stapler 的版本从 1.256 更新到 1.257。
+      开发者: 为了支持从任意插件中加载本地化资源，Stapler 的版本从 1.256 更新到 1.257。
       增加接口 <code>jenkins.PluginLocaleDrivenResourceProvider</code> 用于让其他插件可以定制本地化资源的查找过程。
   - type: rfe
     references:
@@ -1406,7 +1406,7 @@
       - url: https://github.com/kohsuke/localizer/compare/localizer-parent-1.24...localizer-parent-1.26
         title: 完整变更日志
     message: >
-      开发者：本地化库的版本从 1.24 更新到 1.26，使用插件可以覆盖查找本地化资源文件的逻辑。
+      开发者: 本地化库的版本从 1.24 更新到 1.26，使用插件可以覆盖查找本地化资源文件的逻辑。
 # Other
   - type: rfe
     references:
@@ -1414,7 +1414,7 @@
       - url: https://jenkins.io/doc/developer/security/secrets/
         title: 在 Jenkins 中存储凭据
     message: |-
-      开发者：为类似于单行 <code>f:password</code> 的多行文本凭据添加 Jelly UI 组件 <code>f:secretTextarea</code>。
+      开发者: 为类似于单行 <code>f:password</code> 的多行文本凭据添加 Jelly UI 组件 <code>f:secretTextarea</code>。
 #  - type: rfe
 #    pull: 3963
 #    message: |-
@@ -1422,7 +1422,7 @@
   - type: rfe
     pull: 3961
     message: |-
-      开发者：<code>SystemProperties</code> 现在可以用于节点端的代码。参考 <code>SystemProperties#allowOnAgent</code>。
+      开发者: <code>SystemProperties</code> 现在可以用于节点端的代码。参考 <code>SystemProperties#allowOnAgent</code>。
   changes:
   - type: bug
     pull: 4014
@@ -1432,7 +1432,7 @@
     pull: 4015
     issue: 57111
     message: |-
-      Robustness: 当 <code>ComputerListener#onOnline()</code> 发生运行时异常后不把节点设置为离线状态。
+      稳定性: 当 <code>ComputerListener#onOnline()</code> 发生运行时异常后不把节点设置为离线状态。
 
 - version: 2.176.2
   date: 2019-07-17
