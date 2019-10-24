@@ -3064,52 +3064,52 @@
       - issue: 19760
       - issue: 31209
     message: |-
-      Remove 100 character length limitation of build description in build history widget.
+      删除构建历史记录小部件中的构建说明的 100 个字符长度限制。
   - type: rfe
     pull: 4208
     message: |-
-      Update the minimum required Remoting client version to 3.14 to simplify the implementation.
+      将所需的 Remoting 客户端最低版本更新为 3.14 ，以简化实现。
   - type: rfe
     pull: 4195
     issue: 59283
     message: |-
-      Use different computer icon for temporary offline state.
+      临时离线状态使用不同的计算机图标。
   - type: rfe
     pull: 4223
     issue: 59514
     message: |-
-      Robustness: Do not allow users to resubmit requests using POST on URLs requiring a form submission, as that will fail anyway.
+      稳定性：不允许用户使用 POST 在需要提交表单的 URL 上重新提交请求，因为那样无论如何都会失败。
   - type: rfe
     pull: 4226
     message: |-
-      Better diagnostics in a failure message from <code>Computer.getLogDir</code>.
+      来自 <code>Computer.getLogDir</code> 的失败消息的更好的诊断。
   - type: rfe
     pull: 4230
     message: |-
-      Update bundled versions of Ant, PAM Authentication, Mailer, and Script Security plugins for the rare cases they're installed from bundled versions.
+      在少数情况下会从捆绑版本中安装 Ant ， PAM Authentication ， Mailer 和 Script Security 插件的捆绑版本。
   - type: rfe
     references:
       - pull: 4221
       - url: https://commons.apache.org/proper/commons-compress/changes-report.html
         title: changelog
     message: |-
-      Update commons-compress from 1.10 to 1.19.
+      将 commons-compress 从 1.10 更新为 1.19。
   - type: rfe
     references:
       - pull: 4229
       - url: https://github.com/jfree/jfreechart#history
-        title: changelog
+        title: 变更日志
     message: |-
-      Update jfreechart from 1.0.9 to 1.0.19 to pick-up recent improvements and bugfixes.
+      将 jfreechart 从 1.0.9 更新到 1.0.19，以获取最新的改进和错误修复。
   - type: bug
     pull: 4228
     issue: 56809
     message: |-
-      The <code>lastCompletedBuild</code> permalink was not being cached in the <code>…/builds/permalinks</code> file.
+      <code>lastCompletedBuild</code> 永久链接未缓存在 <code>…/builds/permalinks</code> 文件中。
   - type: rfe
     pull: 4227
     message: |-
-      Developer: Add <code>TcpSlaveAgentListener#getAdvertisedHost()</code>.
+      开发者： 添加 <code>TcpSlaveAgentListener#getAdvertisedHost()</code>。
   # pull: 4206 (PR title: Extracted duplicate code)
   # pull: 4213 (removed powermock dependency because it was not used in cli)
   # pull: 4214 (Remove redundant String.format() and merge array creation with addAll())
