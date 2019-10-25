@@ -2769,7 +2769,7 @@
       pull: 4111
       issue: 58483
       message: |-
-        从Jenkins核心中删除Trilead SSH依赖。这些依赖性导致 2.185 中的 SSH 构建节点连接问题。
+        从 Jenkins 核心中删除 Trilead SSH 依赖。这些依赖性导致 2.185 中的 SSH 构建节点连接问题。
     - type: rfe
       references:
         - pull: 4111
