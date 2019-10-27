@@ -2710,7 +2710,7 @@
       pull: 4085 # and 4109
       issue: 43610
       message: |-
-        从 Jenkins 核心中删除 Trilead SSH 库，并使其在新的<a href="https://plugins.jenkins.io/trilead-api" target="_blank">独立插件</a>中可用。
+        从 Jenkins 核心中删除 Trilead SSH 库，并使其在新的 <a href="https://plugins.jenkins.io/trilead-api" target="_blank">独立插件</a> 中可用。
 
     - type: bug
       pull: 4104
