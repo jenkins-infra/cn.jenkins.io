@@ -3086,7 +3086,7 @@
   - type: rfe
     pull: 4230
     message: |-
-      在少数情况下会从捆绑版本中安装 Ant ， PAM Authentication ， Mailer 和 Script Security 插件的捆绑版本。
+      在少数情况下会从捆绑版本中安装 Ant 、 PAM Authentication 、 Mailer 和 Script Security 插件的捆绑版本。
   - type: rfe
     references:
       - pull: 4221
