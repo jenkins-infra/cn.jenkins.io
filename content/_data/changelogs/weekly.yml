@@ -2789,7 +2789,7 @@
         - url: https://wiki.jenkins.io/display/JENKINS/Features+controlled+by+system+properties
           title: 受系统属性控制的 Jenkins 功能
       message: |-
-        现在可以通过设置系统属性  <code>hudson.node_monitors.AbstractNodeMonitorDescriptor.periodMinutes</code> 来更改节点监视器的默认大小（例如可用磁盘空间）。
+        现在可以通过设置系统属性  <code>hudson.node_monitors.AbstractNodeMonitorDescriptor.periodMinutes</code> 来更改节点监视器的默认时间间隔（例如可用磁盘空间）。
     - type: rfe
       pull: 4114
       message: |-
