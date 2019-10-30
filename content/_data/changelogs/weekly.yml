@@ -3179,7 +3179,7 @@
       pull: 4239
       issue: 41891
       message: |-
-        为资源根 URL 添加一个选项，Jenkins 可以通过该选项为用户生成的静态资源（例如工作空间文件或已归档的结果件）提供服务，而无需 Content-Security-Policy 标头。
+        为资源根 URL 添加一个选项，Jenkins 可以通过该选项为用户生成的静态资源（例如工作空间文件或已归档的制品）提供服务，而无需 Content-Security-Policy 标头。
     - type: major rfe
       pull: 3970
       message: |-
