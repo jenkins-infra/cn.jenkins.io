@@ -3025,7 +3025,7 @@
       - url: https://wiki.jenkins.io/display/JENKINS/Features+controlled+by+system+properties
         title: Jenkins features controlled by system properties
     message: |-
-      现在，可以通过设置系统属性 <code>jenkins.model.StandardArtifactManager.disableTrafficCompression=true</code> 来禁用从节点将归档的结果件传输到主服务器时的 Gzip 压缩。
+      现在，可以通过设置系统属性 <code>jenkins.model.StandardArtifactManager.disableTrafficCompression=true</code> 来禁用从节点将归档的结果件传输到主服务器时的 Gzip 压缩包。
   - type: rfe
     pull: 4138
     issue: 58779
