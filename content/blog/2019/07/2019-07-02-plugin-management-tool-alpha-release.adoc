@@ -36,7 +36,7 @@ image::/images/post-images/gsoc-plugin-management-tool/downloadexample.png[Examp
 
 image::/images/post-images/gsoc-plugin-management-tool/downloadedplugins.png[Plugin Download Directory]
 
-这仅仅是个开始：插件管理器库和 cli 工具仍在开发中。 有关 CLI 选项以及如何运行该工具的最新信息，请参见link:https://github.com/jenkinsci/plugin-installation-manager-tool/blob/master/README.md[存储库 README.md ]。 即将提供更强大的输入解析，对安全警告和可用更新的支持，Docker集成以及其他功能！
+这仅仅是个开始：插件管理器库和 cli 工具仍在开发中。 有关 CLI 选项以及如何运行该工具的最新信息，请参见link:https://github.com/jenkinsci/plugin-installation-manager-tool/blob/master/README.md[存储库 README.md ]。 即将提供更强大的输入解析，对安全警告和可用更新的支持，Docker 集成以及其他功能！
 
 == 链接和反馈
 
