@@ -3341,7 +3341,7 @@
 
   - type: rfe
     message: |-
-      开发者: 使 <code>ResourceDomainConfiguration</code> 中的某些方法可在插件中访问。
+      开发者: 使 <code>ResourceDomainConfiguration</code> 中的某些方法可以在插件中调用。
     pull: 4335
     authors:
       - jglick
