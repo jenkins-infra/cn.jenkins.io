@@ -65,7 +65,7 @@ jenkins:
             - "user1"
 ----
 
-## 带有 Swagger 支持的 REST API
+== 带有 Swagger 支持的 REST API
 
 该插件提供 REST API，用于通过 Swagger.json 管理具有 OpenAPI 规范的角色。您可以在 link:https://app.swaggerhub.com/apis/abhyudaya/folder-auth/1.0.0s[SwaggerHub] 上查看 Swagger API。SwaggerHub 提供了多种语言的存根，可以下载并用于与插件进行交互。您还可以使用 link:https://curl.haxx.se/[curl] 从命令行查看一些示例请求。
 
