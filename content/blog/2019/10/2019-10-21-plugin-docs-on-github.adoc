@@ -19,7 +19,7 @@ opengraph:
 现在可以将插件文档直接存储在插件储存库中，而不是 link:https://wiki.jenkins.io[Jenkins Wiki] 中，对于插件维护者和 Jenkins 基础设施团队来说，这在过去是很难维护的。
 
 这篇博文可能对插件维护者和那些想为 Jenkins 文档做贡献的人来说很有趣。
-我将描述如何将插件文档迁移到GitHub并获得如下页面:
+我将描述如何将插件文档迁移到 GitHub 并获得如下页面:
 
 image::/images/post-images/2019-github-documentation/thumbnail.png[GitHub Documentation example, role=center]
 
@@ -39,7 +39,7 @@ image::/images/post-images/2019-github-documentation/thumbnail.png[GitHub Docume
 如果你订阅了link:https://groups.google.com/d/forum/jenkinsci-dev[开发者邮件列表]，
 你可能还看到了 link:https://github.com/rtyler[R. Tyler Croy] 关于 Jenkins Wiki 稳定性问题的声明，
 并将其设置为只读，作为稳定实例的临时措施
-(link:https://groups.google.com/forum/#!topic/jenkinsci-dev/lNmas8aBRrI[邮件列表主题]).
+(link:https://groups.google.com/forum/#!topic/jenkinsci-dev/lNmas8aBRrI[邮件列表主题])。
 虽然功能后来部分恢复了，
 基础架构团队一致认为，我们应该逐渐转向替代解决方案。
 
@@ -107,7 +107,7 @@ image:/images/post-images/2019-github-documentation/role-strategy-screenshot.png
 您想用 Java 或 JavaScript 编写一些代码吗？
 或者你愿意致力于 CSS 样式并改进 Jenkins 的设计吗?
 在这种情况下，欢迎向 link:https://plugins.jenkins.io[Jenkins 插件站点]做贡献。
-这是我们自己的插件市场实现，我们邀请队这个领域的贡献。
+这是我们自己的插件市场实现，我们邀请对这个领域的贡献。
 这个插件站点很容易开发。
 
 * jira:WEBSITE-637[] - 用于插件站点以及 GitHub 集成的 Epic
