@@ -20,7 +20,7 @@ translator: wenjunzhangp
 * 代理角色：限制连接到您的实例的多个代理的权限
 * 文件夹角色：适用于文件夹内组织的多个作业
 
-image::/images/post-images/introducing-new-folder-authorization-plugin/folder-auth.png[folder-auth]
+image::/images/post-images/gsoc-folder-auth-plugin/folder-auth.png[folder-auth]
 
 == 角色策略插件的性能改进
 与角色策略插件不同，此插件不使用正则表达式来查找匹配的项目和代理，从而改善了我们的性能并简化了管理员的工作。为了减少需要管理的角色数量，通过文件夹角色授予文件夹的权限将继承其所有子项。这对于通过单个角色访问多个项目很有用。同样，一个代理角色可以应用于多个代理，并分配给多个用户。
@@ -69,9 +69,9 @@ jenkins:
 
 该插件提供 REST API，用于通过 Swagger.json 管理具有 OpenAPI 规范的角色。您可以在 link:https://app.swaggerhub.com/apis/abhyudaya/folder-auth/1.0.0s[SwaggerHub] 上查看 Swagger API。SwaggerHub 提供了多种语言的存根，可以下载并用于与插件进行交互。您还可以使用 link:https://curl.haxx.se/[curl] 从命令行查看一些示例请求。
 
-image::/images/post-images/introducing-new-folder-authorization-plugin/swagger.png[swagger]
+image::/images/post-images/gsoc-folder-auth-plugin/swagger.png[swagger]
 
-image::/images/post-images/introducing-new-folder-authorization-plugin/swagger2.png[swagger2]
+image::/images/post-images/gsoc-folder-auth-plugin/swagger2.png[swagger2]
 
 == 接下来做什么
 
