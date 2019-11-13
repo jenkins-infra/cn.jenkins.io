@@ -1,0 +1,120 @@
+---
+layout: post
+title: "插件文档即代码：将文档迁移到 GitHub"
+tags:
+- hacktoberfest
+- developer
+- documentation
+- wiki
+- contributors
+author: oleg_nenashev
+translator: donhui
+opengraph:
+  image: /images/post-images/2019-github-documentation/thumbnail.png
+---
+
+在2019年9月，我们link:https://groups.google.com/forum/#!msg/jenkinsci-dev/VSdfVMDIW-A/vqXxJiI7AQAJ[宣布了]
+对 GitHub 作为 link:https://plugins.jenkins.io[Jenkins 插件站点]文档来源的支持。
+感谢 link:https://github.com/zbynek[Zbynek Konecny] 和 link:https://github.com/olblak[Olivier Vernin] 以及其他贡献者，
+现在可以将插件文档直接存储在插件储存库中，而不是 link:https://wiki.jenkins.io[Jenkins Wiki] 中，对于插件维护者和 Jenkins 基础设施团队来说，这在过去是很难维护的。
+
+这篇博文可能对插件维护者和那些想为 Jenkins 文档做贡献的人来说很有趣。
+我将描述如何将插件文档迁移到 GitHub 并获得如下页面:
+
+image::/images/post-images/2019-github-documentation/thumbnail.png[GitHub Documentation example, role=center]
+
+== 为什么？
+
+通过使用插件的 GitHub 仓库存储文档，
+插件维护者可以遵循 _文档即代码_ 的方法，将文档更改作为 pull request 的一部分，这样就不会忘记文档的后续工作。
+它还提供了一个 review 文档更改以及增加文档贡献者的认可度的机会，尤其是如果 story 与 link:https://github.com/jenkinsci/.github/blob/master/.github/release-drafter.adoc[Release Drafter] 结合。
+
+不幸的是，在2019年9月之前，GitHub 文档的使用引起了一些问题。
+首先，许多插件维护者已经将他们的文档迁移到 GitHub，这导致了文档的碎片化（Wiki、GitHub、jenkins.io）。
+为了解决这个问题，插件维护者仍然需要使用重定向来维护存根 Wiki 页面，
+用户不得不花一些时间来找出真正的文档在哪里。
+通过支持 GitHub 作为文档来源，我们允许维护者逐步淘汰插件 Wiki 页面，同时改善用户体验。
+
+现在进行迁移还有更紧迫的原因……
+如果你订阅了link:https://groups.google.com/d/forum/jenkinsci-dev[开发者邮件列表]，
+你可能还看到了 link:https://github.com/rtyler[R. Tyler Croy] 关于 Jenkins Wiki 稳定性问题的声明，
+并将其设置为只读，作为稳定实例的临时措施
+(link:https://groups.google.com/forum/#!topic/jenkinsci-dev/lNmas8aBRrI[邮件列表主题])。
+虽然功能后来部分恢复了，
+基础架构团队一致认为，我们应该逐渐转向替代解决方案。
+
+== 例子
+
+自从9月份宣布以来，超过50个插件已经从 Wiki 迁移到 GitHub。
+几个例子：
+
+* plugin:configuration-as-code[配置即代码插件]
+* plugin:mailer[Mailer 插件]
+* plugin:gradle[Gradle 插件]
+* plugin:role-strategy[角色策略插件]
+
+image:/images/post-images/2019-github-documentation/role-strategy-screenshot.png[Role Strategy example, role=center]
+
+== 如何为你的插件启用 GitHub 文档？
+
+. 将文档从 Wiki 转换到 GitHub Asciidoc 或 Markdown 格式，如果你还没有做。
+** 它可以用半自动的方式完成，请看link:/doc/developer/publishing/wiki-page/#migrating-from-wiki-to-github[这里]的指南。
+. 更改 pom.xml 中的 `<url>` 字段，使其指向 GitHub
+(link:/doc/developer/publishing/documentation/#referencing-the-documentation-page-from-the-project-file[指南])。
+ 有效链接的例子：
+ - `https://github.com/jenkinsci/mailer-plugin` - 插件站点将使用 GitHub REST API 来提取 README
+ - `https://github.com/jenkinsci/ssh-credentials-plugin/blob/master/doc/README.md` - 从自定义位置提取插件页面
+. 可选：添加徽章到页面，以改善外观和感觉，并为用户提供快速链接。
+  变更日志、聊天室、插件站点和安装量都有标准的徽章。
+** link:https://raw.githubusercontent.com/jenkinsci/role-strategy-plugin/master/README.md[Markdown 例子]
+** link:https://raw.githubusercontent.com/jenkinsci/mailer-plugin/master/README.adoc[Asciidoc 例子]
+. 发布新的插件版本
+. 等待几个小时，直到更改传播。
+  之后，link:https://plugins.jenkins.io[Jenkins 插件站点]将会展示来自 GitHub 的新文档。
+
+== 下一步？
+
+这个 story 被跟踪为 jira:WEBSITE-406[]，它是使用 GitHub 作为 Jenkins 插件站点和更新管理器（jira:WEBSITE-637[]）数据源的更广泛子项目的一部分。
+后面的步骤包括支持显示来自 GitHub release 的变更日志，从 GitHub 中提取插件标签，显示插件 logo，
+以及使用 link:https://github.com/jenkins-infra/repository-permissions-updater[Repository Permission Updater] 作为维护者信息的来源。
+
+== 如何贡献？
+
+10月是一个贡献的好机会！
+插件文档是 link:/events/hacktoberfest[Hacktoberfest] 活动中的一个特色项目，
+我们欢迎所有对文档和代码库的贡献。
+
+=== 为文档做贡献
+
+我们正在寻找有兴趣改进插件文档并帮助我们从 Wiki 迁移到 GitHub 的贡献者。
+对于几十个插件来说，文档已经在 GitHub 中，欢迎你针对任何仓库提交 pull request。
+
+迁移文档：
+
+* link:/doc/developer/publishing/wiki-page/#migrating-from-wiki-to-github[迁移插件文档从 Wiki 到 GitHub]
+* link:https://github.com/jenkins-infra/jenkins.io/blob/master/CONTRIBUTING.adoc#moving-documentation-from-jenkins-wiki[迁移文档从 Jenkins Wiki 到 jenkins.io]
+* jira:JENKINS-59467[用于插件文档迁移的 issue 模板]
+* link:https://issues.jenkins-ci.org/issues/?filter=18650&jql=project%20%3D%20WEBSITE%20AND%20labels%20%3D%20newbie-friendly%20and%20status%20in%20(Open%2C%20Reopened%2C%20%22To%20Do%22)[新手友好的文档任务]
+
+
+如果你有任何关于贡献文档的问题，
+请查看link:https://jenkins.io/participate/#document[这个页面]或者在 link:https://gitter.im/jenkinsci/docs[Docs SIG Gitter 聊天室]联系我们。
+
+
+
+=== 贡献代码
+
+您想用 Java 或 JavaScript 编写一些代码吗？
+或者你愿意致力于 CSS 样式并改进 Jenkins 的设计吗?
+在这种情况下，欢迎向 link:https://plugins.jenkins.io[Jenkins 插件站点]做贡献。
+这是我们自己的插件市场实现，我们邀请对这个领域的贡献。
+这个插件站点很容易开发。
+
+* jira:WEBSITE-637[] - 用于插件站点以及 GitHub 集成的 Epic
+* link:https://github.com/jenkins-infra/plugin-site[jenkins-infra/plugin-site] - 前端 （JavaScript、React、XSS、YARN）
+* link:https://github.com/jenkins-infra/plugin-site-api[jenkins-infra/plugin-site-api] - 插件站点 API 和 Docker 包（Java、Maven、Docker）
+
+=== 有用的链接
+
+* link:/doc/developer/publishing/documentation/[Plugin 文档]
+* link:https://plugins.jenkins.io[Jenkins 插件站点]
