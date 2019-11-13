@@ -3381,7 +3381,7 @@
     pull: 4311
     issue: 59886
     message: |-
-      开发者: 加强队列，以防止 NodeProperty 和 QueueTaskDispatcher 扩展点中的 canTake() 和 canRun()实现而导致的队列挂起。
+      开发者: 加强队列，以防止 NodeProperty 和 QueueTaskDispatcher 扩展点中的 canTake() 和 canRun() 实现而导致的队列挂起。
     authors:
       - MRamonLeon
   # pull: 4324 (PR title: added CheckForNull)
