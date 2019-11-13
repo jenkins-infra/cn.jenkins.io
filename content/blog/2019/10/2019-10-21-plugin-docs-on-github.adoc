@@ -27,7 +27,7 @@ image::/images/post-images/2019-github-documentation/thumbnail.png[GitHub Docume
 
 通过使用插件的 GitHub 仓库存储文档，
 插件维护者可以遵循 _文档即代码_ 的方法，将文档更改作为 pull request 的一部分，这样就不会忘记文档的后续工作。
-它还提供了一个 review 文档更改以及添加文档贡献者识别的机会，尤其是如果 story 与 link:https://github.com/jenkinsci/.github/blob/master/.github/release-drafter.adoc[Release Drafter] 结合。
+它还提供了一个 review 文档更改以及增加文档贡献者的认可度的机会，尤其是如果 story 与 link:https://github.com/jenkinsci/.github/blob/master/.github/release-drafter.adoc[Release Drafter] 结合。
 
 不幸的是，在2019年9月之前，GitHub 文档的使用引起了一些问题。
 首先，许多插件维护者已经将他们的文档迁移到 GitHub，这导致了文档的碎片化（Wiki、GitHub、jenkins.io）。
@@ -65,7 +65,7 @@ image:/images/post-images/2019-github-documentation/role-strategy-screenshot.png
  - `https://github.com/jenkinsci/mailer-plugin` - 插件站点将使用 GitHub REST API 来提取 README
  - `https://github.com/jenkinsci/ssh-credentials-plugin/blob/master/doc/README.md` - 从自定义位置提取插件页面
 . 可选：添加徽章到页面，以改善外观和感觉，并为用户提供快速链接。
-  这里有标准的变更日志、聊天室、插件站点和安装量。
+  变更日志、聊天室、插件站点和安装量都有标准的徽章。
 ** link:https://raw.githubusercontent.com/jenkinsci/role-strategy-plugin/master/README.md[Markdown 例子]
 ** link:https://raw.githubusercontent.com/jenkinsci/mailer-plugin/master/README.adoc[Asciidoc 例子]
 . 发布新的插件版本
