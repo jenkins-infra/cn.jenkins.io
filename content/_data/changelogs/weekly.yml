@@ -3488,7 +3488,7 @@
       - DarphBoBo
     issue: 59665
     message: |-
-      修复"插件管理器安装"窗格中的<code>卸载</code>列排序。
+      修复"插件管理-已安装"列表中<code>卸载</code>列的排序。
 
   - type: bug
     pull: 4342
