@@ -3461,7 +3461,7 @@
       - title: Jetty 9.4.19 变更日志
         url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.19.v20190610
     message: |-
-      将 Winstone 从 5.3 更新到 5.4，将 Jetty 从 9.4.18 更新到9.4.22。
+      将 Winstone 从 5.3 更新到 5.4，将 Jetty 从 9.4.18 更新到 9.4.22。
 
   - type: rfe
     pull: 3935
@@ -3530,7 +3530,7 @@
     message: |-
       禁用 HTTP TRACE，以防止安全扫描程序的告警。
       对于 2003 年的 Web 浏览器来说，这种风险是巨大的。
-      禁用HTTP TRACE，以防止安全扫描程序投诉。 对于2003年的Web浏览器来说，这种风险是巨大的。现代的浏览器禁止 TRACE 请求来防止跨站点跟踪（XST）攻击，因此没有真正的风险。
+      现代的浏览器禁止 TRACE 请求来防止跨站点跟踪（XST）攻击，因此没有真正的风险。
 
   # pull: 4080 (PR title: IntelliJ/Java: Duplicate code -- Refactored as DOSToUnixPathHelper.validate)
   # pull: 4354 (PR title: Document workaround for Stapler data binding bug in repeatableProperty)
