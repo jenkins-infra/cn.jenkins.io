@@ -3626,7 +3626,7 @@
     pull: 4366
     issue: 6798
     message: |-
-      Do not reload too early when Jenkins is behind a reverse proxy and is restarting.
+      当 Jenkins 使用反向代理并重新启动时，请不要过早重新加载。
     authors:
       - Vlatombe
 
