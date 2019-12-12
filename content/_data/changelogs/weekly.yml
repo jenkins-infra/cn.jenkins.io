@@ -3640,7 +3640,7 @@
   - type: bug
     pull: 4383
     message: |-
-      修复文件访问规则的在线示例/文档。
+      修复文件访问规则的在线示例、文档。
     authors:
       - fedepell
   - type: bug
