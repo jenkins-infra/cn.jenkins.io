@@ -3647,7 +3647,7 @@
     pull: 4373
     issue: 60278
     message: |-
-      基于“代理节点到 master 的访问控制“使用白名单命令，当输入为空时，防止出现异常。
+      基于“代理节点到 master 的访问控制”使用白名单命令，当输入为空时，防止出现异常。
     authors:
       - fedepell
   - type: bug
