@@ -1680,7 +1680,7 @@
         title: Firefox issue 1370630
       message: |-
         在 Firefox 的 Jenkins 经典 UI 中还原表单提交的更改。
-        更改导致了带有"文件"输入的表单的回归。
+        更改导致了带有"文件"输入的表单的缺陷回归。
         这样做是为了预料 Firefox 中的错误修正，此错误已被撤消。
         (由 2.164.3 引入的缺陷回归)
 
@@ -1773,7 +1773,7 @@
       authors:
         - thomasgl-orange
       message: |-
-        在 Firefox 的 Jenkins 经典 UI 中还原表单提交的更改已导致带有"文件"输入的表单的回归。
+        还原在 Firefox 的 Jenkins 经典 UI 中对表单提交的更改（此更改导致了带有"文件"输入的表单的缺陷回归）。
         这样做是为了预料 Firefox 中的错误修正，此错误已被撤消。
         (由 2.173 引入的缺陷回归)
     - type: rfe
