@@ -1689,7 +1689,7 @@
   banner: >
     升级为 Jenkins 2.204.1 的 <b>Configuration as code plugin</b> 用户需要查看
     <a href="/doc/upgrade-guide/2.204/#global-configuration-save-and-configuration-as-code-plugin">LTS升级指南全局配置保存</a>主题和
-    <a href="/doc/upgrade-guide/2.204/#remove-browser-based-metadata-download-settings">LTS升级指南下载设置主题</a>主题
+    <a href="/doc/upgrade-guide/2.204/#remove-browser-based-metadata-download-settings"> LTS 升级指南下载设置</a>主题
   lts_predecessor: 2.190.3
   lts_baseline: '2.204'
   changes: # compared to lts_baseline
