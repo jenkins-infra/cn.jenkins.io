@@ -3759,7 +3759,7 @@
 - version: '2.212'
   date: 2020-01-05
   banner: |-
-    <b>WARNING:</b> 此版本引入了严重的回归，请参阅 <a href="https://issues.jenkins-ci.org/browse/JENKINS-60644">JENKINS-60644</a>。
+    <b>WARNING:</b> 此版本存在严重的问题，请参阅 <a href="https://issues.jenkins-ci.org/browse/JENKINS-60644">JENKINS-60644</a>。
     请避免更新到此版本。
   changes:
   - type: bug
