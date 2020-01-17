@@ -3876,7 +3876,7 @@
     authors:
     - ilpianista
     message: |-
-      修复从节点机器机离线时 Agent API 中的空指针异常（例如检索代理版本或操作系统说明）。
+      修复代理脱机时代理 API 中的空指针异常（例如查询代理版本或操作系统说明）。
   - type: bug
     category: bug
     pull: 3904
