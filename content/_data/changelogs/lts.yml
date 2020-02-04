@@ -1830,12 +1830,12 @@
       message: |-
          验证另一个用户时，当前用户不再注销。
     - type: rfe
-      message: 与 Stapler 路由相关的安全性增强。
+      message: 与 Stapler 路由相关的安全增强。
       authors:
         - daniel-beck
     - type: rfe
       message: >
-        安全性增强：在 REST API 响应中将 <code>X-Content-Type-Options</code> 设置为 <code>nosniff</code>。
+        安全增强：在 REST API 响应中将 <code>X-Content-Type-Options</code> 设置为 <code>nosniff</code>。
       authors:
         - wadeck
     - type: bug
