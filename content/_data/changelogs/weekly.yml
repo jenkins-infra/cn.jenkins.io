@@ -3909,6 +3909,207 @@
   # pull: 4426 (PR title: Revert "Upload draft Changelog YAMLs to GitHub Release assets")
   # pull: 4427 (PR title: [JENKINS-60740] - Rely on GitHub Actions to generate the release draft YAMLs)
 
+- version: '2.215'
+  date: 2020-01-19
+  changes:
+  - type: bug
+    category: bug
+    pull: 4430
+    issue: 60750
+    authors:
+    - jglick
+    message: |-
+      如果在运行安装向导之前已经通过脚本配置了 Jenkins 根 URL，即使选择跳过创建 admin 用户的选项，跳过位置配置面板。
+  - type: bug
+    category: bug
+    pull: 4411
+    issue: 60577
+    authors:
+    - fcojfernandez
+    message: |-
+      防止计算节点页面中的 RSS 订阅返回错误 404。
+  - type: bug
+    category: bug
+    pull: 4422
+    issue: 60716
+    authors:
+    - jglick
+    message: |-
+      当构建连续失败时，在系统日志中包括详细信息。
+
+  # pull: 4416 (PR title: Spotbugs issues)
+  # pull: 4429 (PR title: Release Drafter Fix: Properly inherit the parent config)
+  # pull: 4435 (PR title: Disable native maven based tests)
+
+- version: '2.216'
+  date: 2020-01-22
+  banner: |-
+    <b>NOTE:</b> 版本构建失败，不发布。
+  changes:
+  - type: bug
+    category: bug
+    authors:
+    - kohsuke
+    message: |-
+      构建失败，版本不发布。
+
+- version: '2.217'
+  date: 2020-01-23
+  changes:
+  - type: major bug
+    category: regression
+    pull: 4440
+    issue: 60822
+    authors:
+    - jonbrohauge
+    message: |-
+      将本地化版本修复为不再报告 <code>can't parse argument number: changelog.url</code> (由 2.214 引入的缺陷回归)。
+  - type: major bug
+    category: major bug
+    pull: 4444
+    issue: 60816
+    authors:
+    - jglick
+    message: |-
+      Jenkins 2.212+ 无法加载某些注入的字段，例如 Bitbucket Server Integration 插件使用的字段。
+  - type: major rfe
+    category: major rfe
+    pull: 4369
+    authors:
+    - jglick
+    references:
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/222/README.adoc
+        title: JEP-222
+      - url: /blog/2020/02/02/web-socket/
+        title: blog post
+    message: |-
+      添加实验性的 WebSocket 支持。
+  - type: rfe
+    category: rfe
+    pull: 4369
+    authors:
+    - jglick
+    references:
+      - title: Jetty 9.4.23 发布说明
+        url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.23.v20191118
+      - title: Jetty 9.4.24 发布说明
+        url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.24.v20191120
+      - title: Jetty 9.4.25 发布说明
+        url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.25.v20191220
+    message: |-
+      将 Jetty 从 9.4.22.v20191022 升级到 9.4.25.v20191220。
+  - type: rfe
+    category: rfe
+    pull: 4369
+    authors:
+    - jglick
+    references:
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.0
+        title: Remoting 4.0 发布说明
+    message: |-
+      将 Remoting 升级到 4.0。
+  - type: bug
+    category: bug
+    pull: 4433
+    issue: 60725
+    authors:
+    - MRamonLeon
+    message: |-
+      在安装 Monitoring 插件时，防止有关 Java 11 缺少的、由 JavaMelody 触发的类的错误告警。
+  - type: bug
+    category: bug
+    pull: 4434
+    issue: 60678
+    authors:
+    - MRamonLeon
+    message: |-
+      修复 AdoptOpenJDK 11 的 Java 版本检查。
+  - type: major rfe
+    category: developer
+    pull: 4425
+    issue: 60734
+    authors:
+    - fqueiruga
+    message: |-
+      内部: 前端工具链已升级为使用 webpack。 使 babel 能够转义某些 JS 模块。
+  - type: rfe
+    category: developer
+    pull: 4441
+    authors:
+    - jtnord
+    message: |-
+      开发者: 更新访问修饰符以允许插件使用屏蔽。
+
+  # pull: 4438 (PR title: Removed unnecessary semicolons and unused imports)
+
+- version: '2.218'
+  date: 2020-01-27
+  changes:
+  - type: major bug
+    category: regression
+    pull: 4454
+    authors:
+    - jglick
+    references:
+      - issue: 60857
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.8
+        title: Winstone 5.8 发布说明 - 由 Winstone 5.6 引入的缺陷回归
+    message: |-
+      Winstone 5.8: 修复传递某些种类的证书（例如域通配符）时，Jetty 的 <code>KeyStores with multiple certificates are not supported</code> 错误 (由 2.217 引入的缺陷回归)
+  - type: bug
+    category: bug
+    pull: 4452
+    issue: 57888
+    authors:
+    - lrpg
+    message: |-
+      Winstone 5.7: 修复对系统日志记录定制的支持 (由 2.177 引入的缺陷回归)
+    references:
+      - issue: 57888
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.7
+        title: Winstone 5.7 发布说明
+  - type: rfe
+    category: rfe
+    pull: 4436
+    authors:
+    - daniel-beck
+    message: |-
+      将布尔<code>禁用</code>标志添加到适用于任务的 REST API 输出中，以用于 Freestyle、Maven 和 Multi-configuration（Matrix）等经典项目类型。
+  - type: rfe
+    category: rfe
+    pull: 4452
+    issue: 60821
+    authors:
+    - jtnord
+    references:
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.7
+        title: Winstone 5.7 发布说明
+    message: |-
+      内部: Winstone 5.7: 将 Jetty 线程池名称更改为“Jetty（winstone）”
+
+- version: '2.219'
+  date: 2020-01-29
+  changes:
+    - type: security
+      message: 重要的安全修复。
+      references:
+        - url: https://jenkins.io/security/advisory/2020-01-29/
+          title: 安全公告
+      authors:
+        - daniel-beck
+        - jeffret-b
+        - jvz
+        - wadeck
+    - type: rfe
+      message: 与 Stapler 路由相关的安全增强。
+      authors:
+        - daniel-beck
+    - type: rfe
+      message: >
+        安全增强: 在 REST API 响应中将 <code>X-Content-Type-Options</code> 设置为 <code>nosniff</code>。
+      authors:
+        - wadeck
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
