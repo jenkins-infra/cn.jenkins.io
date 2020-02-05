@@ -3927,7 +3927,7 @@
     authors:
     - fcojfernandez
     message: |-
-      防止计算机页面中的 RSS 订阅返回错误 404。
+      防止计算节点页面中的 RSS 订阅返回错误 404。
   - type: bug
     category: bug
     pull: 4422
@@ -3944,14 +3944,14 @@
 - version: '2.216'
   date: 2020-01-22
   banner: |-
-    <b>NOTE:</b> 这个版本构建失败，不发布。
+    <b>NOTE:</b> 版本构建失败，不发布。
   changes:
   - type: bug
     category: bug
     authors:
     - kohsuke
     message: |-
-      构建失败，版本不发布。Build failed.  Release bits were not deployed.
+      构建失败，版本不发布。
 
 - version: '2.217'
   date: 2020-01-23
