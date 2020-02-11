@@ -4172,7 +4172,7 @@
     authors:
     - daniel-beck
     message: |-
-      在某些情况下，请勿记录创建代理的用户。
+      在某些情况下，不会记录创建代理的用户。
   - type: rfe
     category: rfe
     pull: 4461
