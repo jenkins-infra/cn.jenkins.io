@@ -16,8 +16,8 @@ Jenkins Pipeline（或简称为 "Pipeline"）是一套插件，将持续交付�
 Jenkins Pipeline 提供了一套可扩展的工具，用于将“简单到复杂”的交付流程实现为“持续交付即代码”。Jenkins Pipeline 的定义通常被写入到一个文本文件（称为 `Jenkinsfile` ）中，该文件可以被放入项目的源代码控制库中。
 footnoteref:[scm,https://en.wikipedia.org/wiki/Source_control_management[Source Control Management]]
 
-Pipeline 和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/doc/book/pipeline[Pipeline] 和
-link:/doc/book/pipeline/jenkinsfile[Using a Jenkinsfile]
+Pipeline 和 `Jenkinsfile` 的更多相关信息，请参考用户手册中的相关链接 link:/zh/doc/book/pipeline[Pipeline] 和
+link:/zh/doc/book/pipeline/jenkinsfile[使用 Jenkinsfile]
 
 快速开始使用 Pipeline：
 
