@@ -4249,7 +4249,7 @@
   banner: >
     此版本首次提供了全局配置的构建废弃器。
     Jenkins 现在将定期执行已配置的每个项目的构建废弃器，<strong>即使当前尚无构建完成</strong>。
-    如果自上次运行构建以来，已经为项目配置了更具攻击性的构建丢弃程序配置，则全局配置的构建丢弃程序可能会删除旧的构建。
+    如果自上次运行构建以来，已经为项目配置了更激进的构建丢弃程序配置，则全局配置的构建丢弃程序可能会删除旧的构建。
   changes:
   - type: major rfe
     category: major rfe
@@ -4257,7 +4257,7 @@
     authors:
     - daniel-beck
     message: |-
-      添加全局配置的构建丢弃程序，删除未标记为“永久保留”的旧构建，即使没有配置、积极性较低、配置的按项目构建丢弃程序或者在构建完成后执行定期执行。
+      添加全局配置的构建丢弃程序，删除未标记为“永久保留”的旧构建，即使没有配置、积极性较低、配置的按项目构建丢弃程序或者在构建完成后定期执行。
   - type: major bug
     category: major bug
     pull: 4368
@@ -4265,7 +4265,7 @@
     - daniel-beck
     message: |-
       默认情况下，即使当前没有构建完成，Jenkins 也会定期执行配置的每个项目的构建废弃器。
-      <strong>这可能会删除自上次运行以来具有更积极的构建丢弃程序配置的项目的旧构建。
+      <strong>这可能会删除自上次运行以来具有更积极的构建丢弃程序配置的项目的旧构建。</strong>
   - type: bug
     category: bug
     pull: 4491
@@ -4309,7 +4309,7 @@
     authors:
     - daniel-beck
     message: |-
-      开发者: 添加新的扩展点 <code>BackgroundBuildDiscarderStrategy</code>，以为全局构建丢弃程序配置提供更灵活的构建丢弃策略。
+      开发者: 添加新的扩展点 <code>BackgroundBuildDiscarderStrategy</code>，以便为全局构建丢弃程序配置提供更灵活的构建丢弃策略。
   - type: rfe
     category: developer
     pull: 4381
