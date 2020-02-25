@@ -4338,6 +4338,190 @@
   # pull: 4494 (PR title: Remove references to Azure maven cache)
   # pull: 4502 (PR title: [JENKINS-61102] Use XMLUnit to fix test)
 
+- version: '2.222'
+  date: 2020-02-23
+  changes:
+  - type: major rfe
+    category: major rfe
+    pull: 4463
+    issue: 60920
+    authors:
+    - fqueiruga
+    - daniel-beck
+    message: |-
+      修改标题栏和面包屑导航的布局和图标。
+      依赖于 Jenkins 布局细节的插件的实例（例如，建议主题插件）可能会遇到UI/布局问题。
+      通过将 <code>jenkins.ui.refresh</code> 系统属性设置为 <code>true</code>，可以启用新的实验性标题颜色方案。
+  - type: major rfe
+    category: major rfe
+    pull: 4463
+    authors:
+    - fqueiruga
+    - daniel-beck
+    message: |-
+      引入一个新的实验性 UI，可以通过将 <code>jenkins.ui.refresh</code> 系统属性设置为 <code>true</code> 来启用。
+      作为 UI/UX 改进的一部分，当前，它包括一个新的标题颜色方案，后续将添加更多更改。
+    references:
+      - pull: 4463
+      - issue: 60920
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+      - url: https://jenkins.io/sigs/ux/
+        title: Jenkins UX SIG
+  - type: major rfe
+    category: major rfe
+    pull: 4501
+    authors:
+    - daniel-beck
+    - mikecirioli
+    - EstherAF
+    - aHenryJard
+    references:
+      - pull: 4501
+      - issue: 60266
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+    message: |-
+      添加新的实验性 <code>Overall/Manage</code> 权限，该权限允许用户在不具有 <code>Overall/Administer</code> 权限的情况下配置部分全局 Jenkins 配置。
+      这是一项实验性功能，默认情况下处于禁用状态，可以通过将 <code>jenkins.security.ManagePermission</code> 系统属性设置为 <code>true</code> 来启用。
+  - type: major rfe
+    category: major rfe
+    pull: 4506
+    authors:
+    - timja
+    - daniel-beck
+    references:
+      - pull: 4506
+      - issue: 12548
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
+        title: JEP-224
+      - url: https://plugins.jenkins.io/extended-read-permission/
+        title: 扩展读取权限插件
+    message: |-
+      添加一个新的实验性<code>总体/系统读取</code>权限，该权限（几乎）为 Jenkins 实例提供完全读取权限。
+      默认情况下，该权限是禁用的，请安装扩展读取权限插件以将其激活。
+  - type: rfe
+    category: rfe
+    pull: 4365
+    issue: 60266
+    authors:
+    - mikecirioli
+    references:
+      - pull: 4365
+      - issue: 60266
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+      - url: https://jenkins.io/security/advisory/2017-04-10/#matrix-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
+        title: 2017-04-10 矩阵授权插件的安全公告
+      - url: https://jenkins.io/security/advisory/2017-04-10/#role-based-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
+        title: 2017-04-10 基于角色的授权插件的安全公告
+    message: |-
+      弃用<code>总体/运行脚本</code>、<code>总体/上传插件</code>和<code>总体/配置更新中心</code>权限。
+      在 2017 年，主要授权插件中的权限被宣布为危险且默认情况下被禁用。
+      自定义授权策略实现将授予<code>总体/管理</code>权限，而不暗示这三个权限中的一个或多个将不再按预期工作。
+      在没有<code>总体/管理</code>权限的情况下向用户授予这些权限中任何一个的配置将不能按预期工作。
+  - type: rfe
+    category: rfe
+    pull: 4509
+    authors:
+    - daniel-beck
+    message: |-
+      删除禁用 CSRF 保护的功能。
+      从较旧版本的 Jenkins 升级的实例将启用 CSRF 保护和设置默认的发行者，如果之前被禁用。
+  - type: rfe
+    category: rfe
+    pull: 4487
+    issue: 60966
+    authors:
+    - Dohbedoh
+    message: |-
+      在全局配置页面中订购管理员监视器。
+  - type: rfe
+    category: rfe
+    pull: 4499
+    authors:
+    - daniel-beck
+    message: |-
+      将内存使用情况监视器添加到系统信息页面。
+  - type: rfe
+    category: rfe
+    pull: 4497
+    authors:
+    - res0nance
+    message: |-
+      提高加载捆绑任务时的性能。I
+  - type: bug
+    category: bug
+    pull: 4504
+    issue: 61121
+    authors:
+    - daniel-beck
+    message: |-
+      解决使用资源域时打开文件过多错误的问题。
+  - type: rfe
+    category: localization
+    pull: 4505
+    authors:
+    - jbleduigou
+    message: |-
+      添加法语翻译以获取并发构建帮助。
+  - type: rfe
+    category: developer
+    pull: 4506
+    issue: 12548
+    authors:
+    - daniel-beck
+    - timja
+    references:
+      - pull: 4506
+      - issue: 12548
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
+        title: JEP-224
+    message: |-
+      开发者: 添加新的 <code>checkAnyPermission</code> 和 <code>hasAnyPermission</code> 方法，如果用户具有上述权限之一，则允许访问。
+  - type: rfe
+    category: developer
+    pull: 4506
+    issue: 12548
+    authors:
+    - daniel-beck
+    - timja
+    references:
+      - pull: 4506
+      - issue: 12548
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
+        title: JEP-224
+    message: |-
+      开发者: 添加一个新的 <code>f:possibleReadOnlyField</code> jelly 标签，将字段包装为 if 只读检查，如果经过身份验证的用户仅具有读取访问权限，则将结果以文本输出。
+      如果该字段为空，则添加 N/A。
+  - type: rfe
+    category: developer
+    pull: 4506
+    issue: 12548
+    authors:
+    - daniel-beck
+    - timja
+    references:
+      - pull: 4506
+      - issue: 12548
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
+        title: JEP-224
+    message: |-
+      开发者: 添加一个新的 <code>l:hasAdministerOrManage</code> jelly 标签，如果用户没有 <code>Jenkins.ADMINISTER</code> 或<code>Jenkins.MANAGE</code>，则隐藏标签的正文。
+  - type: rfe
+    category: developer
+    pull: 4488
+    issue: 61046
+    authors:
+    - jtnord
+    message: |-
+      开发者: 允许插件强制更新 <code>UpdateSite</code>。
+  # pull: 4496 (PR title: Follow up optimizations to getAllItems() and getItems())
+  # pull: 4508 (PR title: [JENKINS-36720] Spotbugs fix possible NPE)
+  # pull: 4510 (PR title: [JENKINS-36720] Fix instances of double checked locking)
+  # pull: 4511 (PR title: [JENKINS-36720] Spotbugs fixes)
+  # pull: 4514 (PR title: Update note after this was done wrong yet again)
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
