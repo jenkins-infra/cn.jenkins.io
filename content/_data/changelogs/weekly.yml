@@ -4449,7 +4449,7 @@
     authors:
     - res0nance
     message: |-
-      提高加载捆绑任务时的性能。I
+      提高加载捆绑任务时的性能。
   - type: bug
     category: bug
     pull: 4504
