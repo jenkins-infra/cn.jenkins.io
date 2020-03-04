@@ -4585,7 +4585,7 @@
     message: |-
       默认情况下重新引入构建历史描述截断。
       允许通过 <code>historyWidget.descriptionLimit</code> 系统属性管理/禁用限制。
-      负值将消除限制，0 则强制为空描述。
+      负值将消除限制，0 则强制为空。
   - type: bug
     category: bug
     pull: 4527
@@ -4593,7 +4593,7 @@
     authors:
     - jglick
     message: |-
-      避免在将自定义根目录设置为文件系统根目录（例如 <code>C:\</code>）的情况下启动非流水线构建时的<code>空指针异常</code>。
+      避免在将自定义根目录设置为文件系统根目录（例如 <code>C:\</code>）的情况下启动非流水线构建时的 <code>NullPointerException</code>。
   - type: rfe
     category: developer
     pull: 4478
