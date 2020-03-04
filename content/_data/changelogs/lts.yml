@@ -1891,7 +1891,7 @@
     authors:
     - jglick
     message: |-
-      如果在运行安装向导之前已经通过脚本配置了 Jenkins 根 URL，请跳过位置配置面板，即使选择跳过创建 admin 用户的选项。
+      如果在运行安装向导之前已经通过脚本配置了 Jenkins 根 URL，即使跳过了创建 admin 用户的选项，也要跳过配置面板。
   - type: bug
     category: bug
     pull: 4433
