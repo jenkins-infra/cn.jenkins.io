@@ -4666,7 +4666,7 @@
     authors:
     - daniel-beck
     message: |-
-      不会对某些具有<code>任务/配置</code>权限的用户禁用任务配置表单上的所有控件(由 2.223引入的缺陷回归)。
+      不会对某些具有<code>任务/配置</code>权限的用户禁用任务配置表单上的所有控件(由 2.223 引入的缺陷回归)。
   - type: rfe
     category: rfe
     pull: 4535
