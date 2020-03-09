@@ -1981,7 +1981,7 @@
       olamy
       jglick
     message: |-
-      修复由于 X-Forwarded-Host 和 X-Forwarded-Port 而将不正确的反向代理重定向到 127.0.0.1 的订阅问题。
+      修复由于 X-Forwarded-Host 和 X-Forwarded-Port 订阅问题而导致的将不正确的反向代理重定向到 127.0.0.1 的问题。
   - type: bug
     category: regression
     references:
