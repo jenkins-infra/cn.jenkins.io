@@ -1973,7 +1973,7 @@
     authors:
       jglick
     message: |-
-      修复最大表单内容大小和表单内容密钥的传递(由 2.204.3 引入的缺陷回归, Jetty 9.4.24 和 Winstone 5.5)。
+      修复最大表单内容大小和表单内容密钥的传递(由 Jenkins 2.204.3、Jetty 9.4.24 和 Winstone 5.5 引入的缺陷回归)。
   - type: major bug
     category: regression
     issue: 60199
