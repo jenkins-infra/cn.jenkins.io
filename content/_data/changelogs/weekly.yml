@@ -4629,7 +4629,7 @@
 - version: 2.224
   date: 2020-03-08
   banner: |-
-    <strong>WARNING:</strong> 此版本在保存任务时时引入了严重的问题。
+    <strong>WARNING:</strong> 此版本在保存任务时引入了严重的问题。
     请参阅 <a href="https://issues.jenkins-ci.org/browse/JENKINS-61398">JENKINS-61398</a>。
     请避免更新到此版本。 
   changes:
@@ -4718,7 +4718,7 @@
     authors:
     - zbynek
     message: |-
-      调整屏幕大小时，更新搜索框到合适的大小。
+      调整屏幕大小时，调整搜索框到合适的大小。
   - type: bug
     category: bug
     pull: 4536
@@ -4742,7 +4742,7 @@
     authors:
     - timja
     message: |-
-      如果未安装云插件，修复配置云页面上的空白页面。
+      如果未安装 cloud plugin，修复 clouds 配置页面上的空白页面。
   - type: bug
     category: bug
     pull: 3969
