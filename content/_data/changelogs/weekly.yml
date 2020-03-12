@@ -4647,7 +4647,7 @@
     - jglick
     - olamy
     message: |-
-      JENKINS-60409 - Winstone 5.9: 修复最大表单内容大小和表单内容密钥的传递(由 Jetty 9.4.20 和 Jenkins 2.205 引入的缺陷回归)。
+      Winstone 5.9: 修复最大表单内容大小和表单内容密钥的传递(由 Jetty 9.4.20 和 Jenkins 2.205 引入的缺陷回归)。
   - type: major bug
     category: regression
     pull: 4542
