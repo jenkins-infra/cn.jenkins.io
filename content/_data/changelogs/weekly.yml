@@ -4783,14 +4783,14 @@
     authors:
     - fqueiruga
     message: |-
-      修复了任务配置表单中之前保存步骤的拖放操作问题 (由 2.217 引入的缺陷回归)。
+      修复了任务配置表单中之前保存步骤中存在的拖放操作问题 (由 2.217 引入的缺陷回归)。
   - type: major rfe
     category: major rfe
     pull: 4546
     authors:
     - daniel-beck
     message: |-
-      将“管理 Jenkins ”页面上的条目组织成类别，并在网格中显示它们。
+      将“管理 Jenkins” 页面上的条目进行分类，并以网格化显示。
     category: rfe
     pull: 4555
     issue: 61224
@@ -4846,7 +4846,7 @@
     authors:
     - daniel-beck
     message: |-
-      当前安装的插件中存在安全问题时，在插件管理列表中显示。
+      当前已安装的插件中存在安全问题时，在插件管理列表中显示。
   - type: rfe
     category: localization
     pull: 4566
@@ -4869,7 +4869,7 @@
     authors:
     - daniel-beck
     message: |-
-      添加 <code>ManagementLink#getCategory()</code> 以便将管理 Jenkins 上的条目分组到类别中。
+      添加 <code>ManagementLink#getCategory()</code> 以便于将“管理 Jenkins” 上的条目分类。
       有关支持的返回值，请参见 <code>ManagementLink.Category</code> 枚举。
   - type: rfe
     category: rfe
@@ -4893,7 +4893,7 @@
     authors:
     - Wadeck
     message: |-
-      内部: 从重新启动视图中删除内联资源。
+      内部: 重新启动视图中删除内联资源。
 
   # pull: 4564 (PR title: Fixed spotbugs NP_NULL_ON_SOME_PATH)
   # pull: 4565 (PR title: Change UpdateSiteWarningsMonitor blurb punctuation)
