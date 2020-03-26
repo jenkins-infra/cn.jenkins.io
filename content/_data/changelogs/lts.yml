@@ -1996,7 +1996,303 @@
       将 Winstone 从 5.8 还原到 5.3，以解决 Winstone 更高版本中嵌入的 Jetty Web 容器引入的问题。
       默认最大表单大小限制和反向代理重定向被还原(由 2.204.3 引入的缺陷回归)。
 
+- version: 2.204.6
+  date: 2020-03-25
+  changes:
+    - type: security
+      message: 重要安全修复。
+      references:
+        - url: /security/advisory/2020-03-25/
+          title: 安全公告
+      authors:
+        - daniel-beck
+        - wadeck
+    - type: rfe
+      message: 与请求路由和 CSRF 保护有关的安全增强。
+      references:
+        - url: /doc/upgrade-guide/2.204/#upgrading-to-jenkins-lts-2-204-6
+          title: 相关升级指导
+      authors:
+        - jvz
+
+- version: 2.222.1
+  date: 2020-03-25
+  lts_predecessor: 2.204.6
+  lts_baseline: '2.222'
+  banner: >
+    Jenkins 启动时未从磁盘加载全局构建丢弃配置(<a href="https://issues.jenkins-ci.org/browse/JENKINS-61688>JENKINS-61688</a>)。
+    配置已保存，但在重新启动时未加载。
+    Jenkins 2.222.1 将始终以 Job Build Discarder 的默认配置启动。
+    重新启动时将忽略自定义全局构建丢弃配置。
+    每次 Jenkins 重新启动时，都会配置默认的全局构建丢弃。
+  changes: # compared to lts_baseline 2.222
+  - type: security
+    message: 重要安全修复。
+    references:
+      - url: /security/advisory/2020-03-25/
+        title: 安全公告
+    authors:
+      - daniel-beck
+      - wadeck
+  - type: major bug
+    category: regression
+    pull: 4568
+    issue: 61429
+    authors:
+    - fqueiruga
+    message: |-
+      修复了任务配置表单中之前保存步骤中存在的拖放操作问题 (由 2.217 引入的缺陷回归)。
+  - type: major bug
+    category: regression
+    pull: 4542
+    issue: 60409
+    references:
+      - pull: 4542
+      - issue: 60409
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.9
+        title: Winstone 5.9 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.27.v20200227
+        title: Jetty 9.4.27 变更日志
+    authors:
+    - jglick
+    - olamy
+    message: |-
+      Winstone 5.9: 修复最大表单内容大小和表单内容密钥的传递(由 Jetty 9.4.20 和 Jenkins 2.205 引入的缺陷回归)。
+  - type: major bug
+    category: regression
+    pull: 4542
+    issue: 60199
+    authors:
+    - jglick
+    - olamy
+    references:
+      - pull: 4542
+      - issue: 60199
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.9
+        title: Winstone 5.9 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.27.v20200227
+        title: Jetty 9.4.27 变更日志
+    message: |-
+      Winstone 5.9: 修复由于 X-Forwarded-Host 和 X-Forwarded-Port 订阅问题而导致的将不正确的反向代理重定向到 Host 的问题(由 Jetty 9.4.20 和 Jenkins 2.205 引入的缺陷回归)。
+  - type: rfe
+    message: 与请求路由和 CSRF 保护有关的安全增强。
+    references:
+      - url: /doc/upgrade-guide/2.204/#upgrading-to-jenkins-lts-2-204-6
+        title: 相关升级指导
+    authors:
+      - jvz
+  - type: rfe
+    category: developer
+    pull: 4515
+    authors:
+    - daniel-beck
+    message: |-
+      开发者: 在调试模式下，默认监听回送接口。
+  lts_changes: # compared to lts_predecessor 2.204.5
+  - type: major rfe
+    category: major rfe
+    pull: 4463
+    issue: 60920
+    authors:
+    - fqueiruga
+    - daniel-beck
+    message: |-
+      修改标题栏和 breadcrumbs 导航的布局和图标。
+      依赖于 Jenkins 布局细节的插件的实例（例如简易主题插件）可能会遇到 UI/布局问题。
+      通过将 <code>jenkins.ui.refresh</code> 系统属性设置为 <code>true</code>，可以启用新的实验性标题颜色方案。
+  - type: major rfe
+    category: major rfe
+    pull: 4368
+    authors:
+    - daniel-beck
+    message: |-
+      添加全局配置的构建丢弃程序，删除未标记为“永久保留”的旧构建，即使没有配置、积极性较低、配置的按项目构建丢弃程序或者在构建完成后定期执行。
+  - type: major rfe
+    pull: 4339
+    authors:
+      - daniel-beck
+    message: |-
+      将云配置从"配置系统"移动到"管理节点"页面上其自身的配置表单中。
+  - type: major rfe
+    category: major rfe
+    pull: 4415
+    issue: 40228
+    authors:
+    - ksenia-nenasheva
+    - jglick
+    message: |-
+      删除全局安全配置中的<strong>启用安全</strong>复选框。
+  - type: major rfe
+    category: major rfe
+    pull: 4509
+    authors:
+    - daniel-beck
+    message: |-
+      删除禁用 <strong>CSRF 保护</strong>的功能。
+      从较旧版本的 Jenkins 升级的实例将启用 CSRF 保护和设置默认的发行者，如果之前被禁用。
+  - type: major rfe
+    pull: 3991
+    authors:
+      - daniel-beck
+    message: |-
+      重新设计密码字段，以防止自动填写密码（登录表单除外）。 
+      减少提供更新存储密码的浏览器。
+      通过将系统属性 <code>hudson.Functions.hidingPasswordFields</code> 设置为 <code>false</code> 来还原。
+  - type: major rfe
+    message: |-
+      弃用 macOS 本地安装程序包。
+    references:
+      - url: https://jenkins.io/blog/2019/11/25/macos-native-installer-deprecation/
+        title: Jenkins macOS 本地安装程序弃用
+    authors:
+      - oleg-nenashev
+  - type: major rfe
+    category: major rfe
+    pull: 4387
+    issue: 60381
+    authors:
+    - jeffret-b
+    message: |-
+      删除古老的、不推荐使用的、不支持的代理协议 <code>Inbound TCP Agent Protocol/1</code>, <code>Inbound TCP Agent Protocol/2</code> 和 <code>Inbound TCP Agent Protocol/3</code>。
+      将 Remoting 从 3.36 更新到 4.2，以删除不受支持的协议和增加对于 WebSocket 的支持。
+    references:
+      - issue: 60381
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-3.40
+        title: Remoting 3.40 发布说明
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.0
+        title: Remoting 4.0 发布说明
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.0.1
+        title: Remoting 4.0.1 发布说明
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.2
+        title: Remoting 4.2 发布说明
+  - type: major rfe
+    category: major rfe
+    pull: 4369
+    authors:
+    - jglick
+    references:
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/222/README.adoc
+        title: JEP-222
+      - url: /blog/2020/02/02/web-socket/
+        title: 博客文章
+    message: |-
+      增加实验性的 WebSocket 支持。
+  - type: major rfe
+    category: major rfe
+    pull: 4450
+    issue: 51856
+    authors:
+    - fcojfernandez
+    message: |-
+      扩展当前里程碑，以便插件可以在 Jenkins 初始化期间更新任务和配置。
+      增加初始化里程碑: <code>SYSTEM_CONFIG_LOADED</code>、<code>SYSTEM_CONFIG_ADAPTED</code> 和 <code>JOB_CONFIG_ADAPTED</code>。
+  - type: major rfe
+    category: major rfe
+    pull: 4463
+    authors:
+    - fqueiruga
+    - daniel-beck
+    message: |-
+      引入一个新的实验性 UI，可以通过将 <code>jenkins.ui.refresh</code> 系统属性设置为 <code>true</code> 来启用。
+      作为 UI/UX 改进的一部分，当前，它包括一个新的标题颜色方案，后续将添加更多更改。
+    references:
+      - pull: 4463
+      - issue: 60920
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+      - url: https://jenkins.io/sigs/ux/
+        title: Jenkins UX SIG
+  - type: major rfe
+    category: major rfe
+    pull: 4501
+    authors:
+    - daniel-beck
+    - mikecirioli
+    - EstherAF
+    - aHenryJard
+    references:
+      - pull: 4501
+      - issue: 60266
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+    message: |-
+      添加新的实验性 <code>全局/管理</code> 权限，该权限允许用户在不具有 <code>全局/Administer</code> 权限的情况下配置部分全局 Jenkins 配置。
+      这是一项实验性功能，默认情况下处于禁用状态，可以通过将 <code>jenkins.security.ManagePermission</code> 系统属性设置为 <code>true</code> 来启用。
+  - type: major rfe
+    category: major rfe
+    pull: 4506
+    authors:
+    - timja
+    - daniel-beck
+    references:
+      - pull: 4506
+      - issue: 12548
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
+        title: JEP-224
+      - url: https://plugins.jenkins.io/extended-read-permission/
+        title: Extended Read Permission 插件
+    message: |-
+      添加一个新的实验性<code>全局/系统读取</code>权限，该权限（几乎）为 Jenkins 实例提供完全读取权限。
+      默认情况下，该权限是禁用的，请安装 Extended Read Permission 插件以将其激活。
+  - type: rfe
+    category: rfe
+    pull: 4414
+    issue: 60634
+    authors:
+    - jglick
+    message: |-
+      现在可以从（非流水线）构建中使用环境变量 <code>WORKSPACE_TMP</code> 来访问与构建工作空间关联的临时目录。
+  - type: rfe
+    category: rfe
+    pull: 4365
+    issue: 60266
+    authors:
+    - mikecirioli
+    references:
+      - pull: 4365
+      - issue: 60266
+      - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
+        title: JEP-223
+      - url: https://jenkins.io/security/advisory/2017-04-10/#matrix-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
+        title: 2017-04-10 Matrix Authorization 插件的安全公告
+      - url: https://jenkins.io/security/advisory/2017-04-10/#role-based-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
+        title: 2017-04-10 Role-Based Authorization 插件的安全公告
+    message: |-
+      弃用<code>全局/运行脚本</code>、<code>全局/上传插件</code>和<code>全局/配置更新中心</code>权限。
+      在 2017 年，主要授权插件中的权限被宣布为危险且默认情况下被禁用。
+      自定义授权策略实现将授予<code>全局/Administer</code> 权限，而不暗示这三个权限中的一个或多个将不再按预期工作。
+      在没有<code>全局/Administer</code> 权限的情况下向用户授予这些权限中任何一个的配置将不能按预期工作。
+  - type: major bug
+    category: regression
+    pull: 4471
+    issue: 60884
+    authors:
+    - AaronZurawski
+    message: |-
+      修复在获取具有状态阈值的运行列表时的空指针异常（由 2.202 引入的缺陷回归）。
+  - type: major bug
+    pull: 4394
+    issue: 59107
+    message: |-
+      验证另一个用户时，当前用户不再注销。
+    authors:
+      - jvz
+  - type: bug
+    category: regression
+    pull: 4452
+    issue: 57888
+    authors:
+    - lrpg
+    message: |-
+      Winstone 5.9: 修复对自定义系统日志的支持(由 2.204.5 引入的缺陷回归)。
+    references:
+      - pull: 4452
+      - issue: 57888
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.9
+        title: Winstone 5.9 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.27.v20200227
+        title: Jetty 9.4.27 变更日志
+
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
-
