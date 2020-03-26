@@ -4382,7 +4382,7 @@
       - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
         title: JEP-223
     message: |-
-      添加新的实验性 <code>全局/管理</code> 权限，该权限允许用户在不具有 <code>Overall/Administer</code> 权限的情况下配置部分全局 Jenkins 配置。
+      添加新的实验性 <code>全局/管理</code> 权限，该权限允许用户在不具有 <code>全局/Administer</code> 权限的情况下配置部分全局 Jenkins 配置。
       这是一项实验性功能，默认情况下处于禁用状态，可以通过将 <code>jenkins.security.ManagePermission</code> 系统属性设置为 <code>true</code> 来启用。
   - type: major rfe
     category: major rfe
@@ -4396,10 +4396,10 @@
       - url: https://github.com/jenkinsci/jep/blob/master/jep/224/README.adoc
         title: JEP-224
       - url: https://plugins.jenkins.io/extended-read-permission/
-        title: 扩展读取权限插件
+        title: Extended Read Permission 插件
     message: |-
       添加一个新的实验性<code>全局/系统读取</code>权限，该权限（几乎）为 Jenkins 实例提供完全读取权限。
-      默认情况下，该权限是禁用的，请安装扩展读取权限插件以将其激活。
+      默认情况下，该权限是禁用的，请安装 Extended Read Permission 插件以将其激活。
   - type: rfe
     category: rfe
     pull: 4365
@@ -4412,14 +4412,14 @@
       - url: https://github.com/jenkinsci/jep/blob/master/jep/223/README.adoc
         title: JEP-223
       - url: https://jenkins.io/security/advisory/2017-04-10/#matrix-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
-        title: 2017-04-10 矩阵授权插件的安全公告
+        title: 2017-04-10 Matrix Authorization 插件的安全公告
       - url: https://jenkins.io/security/advisory/2017-04-10/#role-based-authorization-strategy-plugin-allowed-configuring-dangerous-permissions
-        title: 2017-04-10 基于角色的授权插件的安全公告
+        title: 2017-04-10 Role-Based Authorization 插件的安全公告
     message: |-
       弃用<code>全局/运行脚本</code>、<code>全局/上传插件</code>和<code>全局/配置更新中心</code>权限。
       在 2017 年，主要授权插件中的权限被宣布为危险且默认情况下被禁用。
-      自定义授权策略实现将授予<code>全局/管理</code>权限，而不暗示这三个权限中的一个或多个将不再按预期工作。
-      在没有<code>总体/管理</code>权限的情况下向用户授予这些权限中任何一个的配置将不能按预期工作。
+      自定义授权策略实现将授予<code>全局/Administer</code> 权限，而不暗示这三个权限中的一个或多个将不再按预期工作。
+      在没有<code>全局/Administer</code> 权限的情况下向用户授予这些权限中任何一个的配置将不能按预期工作。
   - type: rfe
     category: rfe
     pull: 4509
