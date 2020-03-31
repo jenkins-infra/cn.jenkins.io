@@ -2020,8 +2020,8 @@
   lts_predecessor: 2.204.6
   lts_baseline: '2.222'
   banner: >
-    Jenkins 启动时未从磁盘加载全局构建丢弃配置(<a href="https://issues.jenkins-ci.org/browse/JENKINS-61688>JENKINS-61688</a>)。
-    配置已保存，但在重新启动时未加载。
+    Jenkins 启动时将不从磁盘加载全局构建丢弃程序的配置(<a href="https://issues.jenkins-ci.org/browse/JENKINS-61688>JENKINS-61688</a>)。
+    配置已保存，但在重新启动时将不加载。
     Jenkins 2.222.1 将始终以 Job Build Discarder 的默认配置启动。
     重新启动时将忽略自定义全局构建丢弃配置。
     每次 Jenkins 重新启动时，都会配置默认的全局构建丢弃。
@@ -2098,7 +2098,7 @@
     - daniel-beck
     message: |-
       修改标题栏和 breadcrumbs 导航的布局和图标。
-      依赖于 Jenkins 布局细节的插件的实例（例如简易主题插件）可能会遇到 UI/布局问题。
+      依赖于 Jenkins 布局细节的插件的实例（例如 Simple Theme Plugin）可能会遇到 UI/布局问题。
       通过将 <code>jenkins.ui.refresh</code> 系统属性设置为 <code>true</code>，可以启用新的实验性标题颜色方案。
   - type: major rfe
     category: major rfe
