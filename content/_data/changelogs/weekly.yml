@@ -5003,8 +5003,8 @@
     authors:
     - daniel-beck
     message: |-
-      Use the saved global build discarder configuration on restart.
-      Jenkins 2.221 through 2.228 ignore the saved global build discarder configuration when they restart.
+      重新启动时使用保存的全局构建丢弃配置。
+      Jenkins 2.221 到 2.228 在重新启动时会忽略保存的全局构建丢弃配置。
   - type: major bug
     category: regression
     pull: 4607
@@ -5012,14 +5012,14 @@
     authors:
     - daniel-beck
     message: |-
-      Fix proxy form validation when a password is set (regression in 2.205).
+      修复设置密码后代理表单验证的问题(由 2.205 引入的缺陷回归)。
   - type: rfe
     category: rfe
     pull: 4554
     authors:
     - NextTurn
     message: |-
-      Update .NET version checks to be more correct for modern .NET versions.
+      更新 .NET 版本检查，使其更适合自带的 .NET 版本。
   - type: rfe
     category: rfe
     pull: 4569
@@ -5028,14 +5028,14 @@
     - amuniz
     - timja
     message: |-
-      <code>About Jenkins</code> management link is now accessible to users with <code>Overall/Manage</code> or <code>Overall/SystemRead</code> (as well as the usual <code>Overal/Administer</code>).
+      具有<code>全局/管理</code>或<code>全局/系统读取</code>（以及通常的<code>全局/Administer</code>）权限的用户可以访问<code>关于 Jenkins</code> 的管理链接。
   - type: bug
     category: bug
     pull: 4608
     authors:
     - daniel-beck
     message: |-
-      Robustness: Don't throw a <code>NullPointerException</code> when trying to convert <code>null</code> to <code>Secret</code>.
+      稳定性: 将 <code>null</code> 转换为 <code>Secret</code> 时不再抛出 <code>NullPointerException</code>。
   - type: bug
     category: bug
     pull: 4601
@@ -5049,14 +5049,14 @@
       - pull: 4596
       - issue: 61409
       - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.3
-        title: Remoting 4.3 changelog
+        title: Remoting 4.3 变更日志
       - url: /blog/2020/02/02/web-socket/
-        title: WebSockets blog post
+        title: WebSockets 博客文章
       - url: https://github.com/jenkinsci/jep/blob/master/jep/222/README.adoc
         title: JEP-222
     message: |-
-      Upgrade to Remoting 4.3 to fix an issue with large payloads over WebSockets.
-      Requires a matching <code>agent.jar</code> with remoting 4.3 or later.
+      升级到 Remoting 4.3，以解决 WebSockets 上的大量有效负载的问题。
+      需要具有 Remoting 4.3 或更高版本的配套 <code>agent.jar</code>。
   - type: rfe
     category: developer
     pull: 3941
@@ -5064,14 +5064,14 @@
     authors:
     - jsoref
     message: |-
-      Developer: Create symlinks atomically and log warning on failure.
+      开发者: 在失败时自动创建符号链接，并记录告警。
   - type: rfe
     category: internal
     pull: 4603
     authors:
     - jglick
     message: |-
-      Developer: <code>Secret</code> and <code>ConfidentialKey</code> implementations can now be used from unit tests without <code>JenkinsRule</code>.
+      开发者: 无需 <code>JenkinsRule</code> 即可在单元测试中使用 <code>Secret</code> 和 <code>ConfidentialKey</code>。 
 
   # pull: 4075 (PR title: IntelliJ/Java: Duplicate code -- Refactored as AntClassLoader.storeAndConvert(...Convert<T>))
   # pull: 4507 (PR title: Static nested classes)
