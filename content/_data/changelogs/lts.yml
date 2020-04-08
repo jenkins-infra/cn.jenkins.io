@@ -2020,7 +2020,7 @@
   lts_predecessor: 2.204.6
   lts_baseline: '2.222'
   banner: >
-    Jenkins 启动时将不从磁盘加载全局构建丢弃程序的配置(<a href="https://issues.jenkins-ci.org/browse/JENKINS-61688>JENKINS-61688</a>)。
+    Jenkins 启动时将不从磁盘加载全局构建丢弃程序的配置(<a href="https://issues.jenkins-ci.org/browse/JENKINS-61688">JENKINS-61688</a>)。
     配置已保存，但在重新启动时将不加载。
     Jenkins 2.222.1 将始终以 Job Build Discarder 的默认配置启动。
     重新启动时将忽略自定义全局构建丢弃配置。
