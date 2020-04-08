@@ -5093,7 +5093,7 @@
     - daniel-beck
     - timja
     message: |-
-      检查任何一个权限时，不要在权限错误中显示禁用的权限。
+      检查任何一个权限时，权限错误中将不再显示已禁用的权限。
   - type: rfe
     category: rfe
     pull: 4616
