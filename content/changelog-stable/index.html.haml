@@ -30,7 +30,7 @@ title: LTS 变更日志
       -if release.changes and release.lts_changes
         %div
           %strong
-            = "Notable changes since #{release.lts_predecessor}:"
+            = "自 #{release.lts_predecessor} 以来的重大变更:"
         %ul.image
           = partial('changelog-changes.html.haml', :changes => release.lts_changes)
   = partial('changelog-stable.html')
