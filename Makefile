@@ -24,7 +24,7 @@ run: prepare scripts/awestruct
 cn-run: prepare scripts/awestruct
 	LISTEN=true SITE_LANG=zh-CN ./scripts/awestruct --dev --bind 0.0.0.0  $(AWESTRUCT_CONFIG)
 
-generate: site pdfs
+generate: site
 
 site: scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P $(AWESTRUCT_PROFILE) --verbose $(AWESTRUCT_CONFIG)
@@ -36,13 +36,6 @@ user-site: prepare scripts/awestruct
 	SITE_LANG=zh-CN ./scripts/awestruct --generate -P $(AWESTRUCT_PROFILE) --verbose $(AWESTRUCT_CONFIG) $(AWESTRUCT_USER_SITE)
 	./scripts/user-site-deploy.sh $(BRANCH)
 	@echo SUCCESS: Published to $(USER_SITE_URL)index.html
-
-pdfs: prepare scripts/generate-handbook-pdf scripts/asciidoctor-pdf
-	./scripts/ruby scripts/generate-handbook-pdf $(BUILD_DIR)/user-handbook.adoc
-	./scripts/asciidoctor-pdf -a allow-uri-read \
-		--base-dir content \
-		--out-file user-handbook.pdf \
-		$(BUILD_DIR)/user-handbook.adoc
 
 # Fetching and generating content from external sources
 #######################################################
@@ -136,4 +129,4 @@ clean:
 #######################################################
 
 .PHONY: all archive assets clean depends \
-		fetch fetch-reset generate pdfs prepare run site update
+		fetch fetch-reset generate prepare run site update
