@@ -73,12 +73,6 @@ section: doc
           %li
             = active_href('doc/tutorials/build-a-multibranch-pipeline-project', '构建一个多分支的 Pipeline 项目')
 
-        %h4
-          = t('.user_handbook')
-          %span{:style => 'font-size: 0.6rem; vertical-align: middle;'}
-            %a{:href => 'user-handbook.pdf'}
-              = t('.pdf')
-
         %ul
           - site.handbook.chapters.each do |chapter|
             %li
