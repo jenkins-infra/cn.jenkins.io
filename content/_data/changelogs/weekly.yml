@@ -5227,7 +5227,7 @@
     authors:
     - StefanSpieker
     message: |-
-      在 cookie 上设置 httpOnly 标头 以存储 iconSize。
+      在 cookie 上设置 httpOnly 标头以存储 iconSize。
   - type: bug
     category: regression
     pull: 4629
