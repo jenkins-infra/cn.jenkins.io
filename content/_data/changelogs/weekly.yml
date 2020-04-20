@@ -5280,6 +5280,8 @@
   date: 2020-04-16
   banner: |-
     <strong>NOTE:</strong> 这是 <a href="https://issues.jenkins-ci.org/browse/INFRA-910">core release automation project</a> 发布的第一个 Jenkins 周版本。
+    某些 Jenkins 周发布包可能无法从 <a href="https://jenkins.io/download/">Jenkins 下载</a>页面获取。
+    在这种情况下，请在<b>发布</b>部分查看<a href="http://mirrors.jenkins-ci.org/"/>镜像仓</a>上的软件包链接。
   changes:
   - type: bug
     category: regression
