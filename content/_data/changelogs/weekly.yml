@@ -5360,8 +5360,8 @@
     authors:
     - daniel-beck
     message: |-
-      转发 Groovy 视图权限错误到登录表单。
-      当缺少必要的权限时，某些视图显示错误屏幕，而不是转发到登录表单。
+      跳转 Groovy 视图显示错误界面到登录表单。
+      当缺少必要的权限时，某些视图显示错误界面，而不是转发到登录表单。
 
   # pull: 4651 (PR title: Make the timestamp on the footer more compact)
   # pull: 4654 (PR title: Fix comment about when this is set)
