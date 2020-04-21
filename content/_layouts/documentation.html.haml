@@ -75,10 +75,6 @@ section: doc
 
         %h4
           = t('.user_handbook')
-          %span{:style => 'font-size: 0.6rem; vertical-align: middle;'}
-            %a{:href => 'user-handbook.pdf'}
-              = t('.pdf')
-
         %ul
           - site.handbook.chapters.each do |chapter|
             %li
