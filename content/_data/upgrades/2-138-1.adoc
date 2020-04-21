@@ -1,0 +1,39 @@
+==== 新的登录和用户注册页面
+
+link:/blog/2018/06/27/new-login-page/[Announcement blog post],
+https://issues.jenkins-ci.org/browse/JENKINS-50447[JENKINS-50447]
+
+登陆和用户注册页面被重新设计。
+作为副作用，现有的 `PageDecorator` 实现将不会在重新设计的页面上使用。
+
+查看 link:/blog/2018/06/27/new-login-page/[announcement blog post] 获取进一步信息。
+
+
+==== 新的 API token 系统
+
+link:/blog/2018/07/02/new-api-token-system/[Announcement blog post],
+https://issues.jenkins-ci.org/browse/JENKINS-32442[JENKINS-32442],
+https://issues.jenkins-ci.org/browse/JENKINS-32776[JENKINS-32776]
+
+允许访问 HTTP 远程 API 的用户API 令牌 已重新设计：
+API 令牌现在可以被创建和撤销，并以不可恢复的格式存储。 
+
+查看 link:/blog/2018/07/02/new-api-token-system/[announcement blog post] 获取进一步信息。
+
+
+==== 禁用已弃用的代理协议
+
+https://issues.jenkins-ci.org/browse/JENKINS-48480[JENKINS-48480]
+
+已经禁用已弃用的 Jenkins CLI 协议 1 和 2 版本，以及 Java Web 启动代理协议的 1、 2 和 3 版本。
+
+如果仍然使用这些协议（例如基于远程处理的CLI 或代理上的旧 `slave.jar` 文件），则需要在升级后重新启用这些协议，或升级客户端。
+相同的建议 link:https://jenkins.io/doc/upgrade-guide/2.121/#remoting-update[用于远程处理更改的 2.121.x 升级指南]适用于此处。 
+
+==== Unix系统上需要 2.7 以上版本的 GUN C 库
+
+jira:JENKINS-52771[]
+
+从当前版本开始， Jenkins 需要 2.7 版本以上的 link:https://www.gnu.org/software/libc/[GNU C 库]。 
+它使得一些 Linux 发行版不受支持，特别是 RHEL 5 和 CentOS 5 。
+查看 jira:JENKINS-53924[] 和 jira:JENKINS-53832[] 获取更多信息。

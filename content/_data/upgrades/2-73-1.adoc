@@ -1,0 +1,108 @@
+==== 已知问题：代理连接失败，涉及Jenkins掌握未定义或不可写主目录
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-45755[JENKINS-45755]
+
+涉及代理连接的回归已经被确定。
+如果Jenkins主服务器上的用户主目录（`HOME`，而不是`JENKINS_HOME`）未定义或不可写，则不能建立远程连接。
+
+已知下列功能会受到影响:
+
+. 代理连接
+. 基于远程处理的CLI连接（自2.46.2起弃用）
+. 构建Maven项目（Maven 集成插件）
+
+显示的错误将包括主目录内的目录`.jenkins/cache/jars`的路径，其堆栈跟踪将引用`hudson.remoting.FileSystemJarCache`。
+
+Jenkins Docker镜像已更改为Jenkins用户定义的，可写的主目录。
+典型的Web应用程序容器（例如Tomcat）设置可能没有可运行容器的用户的可写主目录，并且可能需要适应这个问题。
+
+可能的解决方法:
+
+. 使指定的主目录可写入Jenkins用户。
+. 定义Jenkins运行的用户可写的主目录。
+. 
+
+==== 已知问题：使用密码保护的ed25519 SSH密钥随机出现连接失败
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-46754[JENKINS-46754]
+
+涉及使用密码保护的ed25519 SSH密钥进行认证的回归已在2.73中确定。
+它随机导致使用这些键的功能出现故障，例如:
+
+. SSH Slaves插件连接
+. 使用JGit实现访问Git存储库
+. 访问Subversion版本库（未确认）
+
+解决此问题的方法:
+
+. 在Jenkins中不要使用ed25519作为SSH密钥
+. 不要使用密码来保护Jenkins中的ed25519 SSH密钥
+. 在Git插件的情况下，切换到Git CLI实现
+
+
+link:https://gist.github.com/rtyler/cd3a3f759c46f308bf7151819f5538a0[Groovy Script], 当在"Script Console"（位于`/script`处）执行时，可以用来确定实例是否包含任何密码保护的ed25519 SSH密钥，然后再升级。
+
+
+==== Groovy 2.4.11 升级
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-43197[JENKINS-43197]
+
+Groovy从2.4.8更新为2.4.11。
+这可能会解决与Groovy相关的现有内存问题，因为2.4.9包含对 link:https://issues.apache.org/jira/browse/GROOVY-8067[GROOVY-8067]的修复。
+可能不再需要应用 `groovy.use.classvalue`解决方法。
+
+
+==== Winstone 4.1 升级
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-43713[JENKINS-43713], 
+link:https://issues.jenkins-ci.org/browse/JENKINS-46968[JENKINS-46968]
+
+嵌入式Jetty容器已从版本9.2.15更新到版本9.4.5。
+有关更改的详细列表，请参阅 link:https://github.com/eclipse/jetty.project/blob/master/VERSION.txt[Jetty 更新日志]。
+
+在这次更新中，支持可选的`--spdy`参数已被删除。
+如果指定了`--spdy`参数，Jenkins现在将拒绝启动。
+它需要从任何Jenkins初始化脚本中删除。
+
+此外，对1.2之前的所有TLS版本的支持已被删除。
+如果您使用嵌入式Jetty容器的HTTPS功能，它将不再接受TLS 1.0或1.1连接。
+
+
+==== 构建授权
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-22949[JENKINS-22949],
+link:https://issues.jenkins-ci.org/browse/JENKINS-30574[JENKINS-30574]
+
+此更改仅影响授权项目插件的用户。
+
+当授权项目插件未指定全局默认配置时，以前版本的Jenkins实施了特殊权限回退:
+出于*Build other projects* and *Build after other projects are built*的目的，如果授权项目配置没有为有问题的作业指定构建授权，它将回退到使用 _anonymous_ 用户的权限进行操作。
+这确保了安全的默认值，但仅限于这些与触发器相关的权限检查。
+
+这种行为已经改变了，Jenkins现在将执行权限检查作为SYSTEM（即具有完全权限）以确定是否应构建项目。
+
+要恢复先前的行为，请配置全局*Project default Build Authorization* ，将默认授权设置为匿名用户的授权。
+此功能已在授权项目插件1.2.0版中实施。
+
+==== 远程工作目录
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-44108[JENKINS-44108],
+link:https://issues.jenkins-ci.org/browse/JENKINS-44112[JENKINS-44112]
+
+嵌入式 link:https:/projects/remoting/[Jenkins Remoting]版本已经从3.7更新为3.10。
+它引入了对工作目录的支持，Remoting可以使用它来存储缓存，日志和其他元数据。
+
+一旦启用工作目录模式，Jenkins代理开始将日志写入磁盘并更改文件系统JAR缓存的默认目标。
+在远程处理中，可以使用命令行选项启用该选择性功能，但Jenkins为某些代理程序启动器定义了自定义行为:
+
+* Java Web Start启动器 (又名 _JNLP agent_)
+** 旧代理：工作目录需要手动启用
+** 从Web UI创建的新代理：工作目录默认启用，工作目录指向代理的 _Remote root directory_ 。
+** 从CLI / API创建的新代理：行为取决于传递的配置文件，默认情况下禁用工作目录
+* 命令启动器
+** 如果需要，应该在启动设置中手动启用工作目录
+* 其他启动器类型（例如SSH启动器）
+** 该行为在插件中定义，它具有独立的发布周期
+** 跟随门票的更新链接到 link:https://issues.jenkins-ci.org/browse/JENKINS-44108[JENKINS-44108]
+
+您可以在 link:https://github.com/jenkinsci/remoting/blob/master/docs/workDir.md[Jenkins Remoting 文档]中找到更多信息，示例和升级指南。

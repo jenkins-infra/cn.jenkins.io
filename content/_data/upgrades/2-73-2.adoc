@@ -1,0 +1,29 @@
+==== 低特权用户可能无法再重新配置某些代理
+
+link:/security/advisory/2017-10-11/[SECURITY-478]
+
+启动方法 _Launch agent via execution of command on master_ 未正确检查配置用户的命令运行权限。
+这个问题已经解决了，现在这个启动方法只能由Jenkins管理员配置（或者更具体地说，具有_Run Scripts_权限的用户）。
+
+此修补程序的一个已知限制是，即使启动方法和脚本保持不变，没有 _Run Scripts_ 权限的用户（通常不是管理员的每个人）都不能再使用此启动方法配置代理程序。
+
+
+==== 对远程 API 输出的限制
+
+link:/security/advisory/2017-10-11/[SECURITY-514, SECURITY-611, SECURITY-617, SECURITY-618]
+
+多个远程API端点具有限制的内容。
+更详细的信息可以在上面链接的安全建议中找到。
+
+* 所有 _user properties_ 已经从 +/user/(username)/api/+ 其他返回用户的API中删除，除非由管理员或用户自己访问。
+* 现在，返回队列项目和任务（构建）的API只有在具有读取权限的用户请求时才会返回它们。
+* `/queue/item/(ID)/api/` 现在只能由具有指定项目的读取权限的用户访问。
+
+
+==== 修复了 2.73.1 中的回归
+
+link:https://issues.jenkins-ci.org/browse/JENKINS-45755[JENKINS-45755], 
+link:https://issues.jenkins-ci.org/browse/JENKINS-46754[JENKINS-46754]
+
+下面列出的 2.73.1 中的回归在 2.73.2 中已经确定。
+

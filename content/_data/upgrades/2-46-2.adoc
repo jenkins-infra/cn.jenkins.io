@@ -1,0 +1,28 @@
+==== 新的非远程处理 CLI
+
+为了解决使用基于远程处理的CLI所面临的安全问题，Jenkins 2.54 中引入的新的非远程实现被反向移植到 Jenkins 的这个版本中，并且不推荐使用远程处理 CLI 模式。
+
+从较旧版本的 Jenkins升级的用户仍将启用远程处理模式。
+建议在调整Jenkins CLI的所有用途以处理非远程协议后，禁用远程模式。
+
+先前下载的 `jenkins-cli.jar` 将继续工作，除非CLI的远程处理模式被禁用。
+新下载的 `jenkins-cli.jar` 现在还支持现有的 SSH 模式和 CLI 的新 HTTP 模式，并且调用需要传递新参数 `-remoting` 以使用远程模式。
+这对于一些命令是必需的，通常在文件上操作或修改"当前构建"。
+
+有关新CLI执行的更多信息:
+
+* link:/blog/2017/04/11/new-cli/[公告博客帖子]
+* link:/doc/book/managing/cli#using-the-cli-client[Jenkins手册：使用 CLI 客户端]
+* link:https://www.youtube.com/watch?v=rfscxse74fw#t=87[介绍新的CLI实施] (从 1:27 到 18:20)
+
+==== 缓存的 CLI 认证无效
+
+由于 CLI 身份验证缓存中发现的漏洞，在此发行版之前创建的现有缓存身份验证将不再有效，并且用户需要再次运行 `login` CLI 命令。
+
+`login` CLI 命令特定于 CLI 的远程处理模式。
+
+==== 无法通过 GET 访问多个网址
+
+为了修复一些 CSRF 漏洞，几个操作的 URL 已经被更改为仅在通过 POST 接收请求时才起作用，可能需要 CSRF crumb。
+其中大部分不会通过 `GET` 访问, 但有一些可能。
+例如，如果您在 Web 浏览器中直接访问 URL `/quietDown`，则这将不再有效。

@@ -1,0 +1,22 @@
+==== Remoting 3 升级
+
+Remoting，处理 Jenkins master 和代理之间通信的库，进行了一次重大升级，引入了一种新的通信协议（JNLP4）。
+
+通过此次升级，可以限制哪些 `Launcher` 实现可以连接。
+一些插件（主要是 _cloud_ 实现）可能无法连接。
+如果发生这种情况，请设置系统属性 `jenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification` 作为解决方法。
+
+    java -Djenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification=true … -jar jenkins.war
+
+https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties[详细了解Jenkins中的系统属性.]
+
+此外，这是第一个需要 Java 7 的远程处理版本。尽管代理现在需要 Java 7，但远程处理也用于与 Maven 集成插件中的 Maven 项目类型中的 Maven 进程进行通信。 这些版本现在需要运行 JDK 7 或更新的版本。 使用工具链与旧版 Java 进行编译。
+
+==== 管理监视器现在显示在大多数页面上
+
+_Administrative monitors_ 是目前为止仅在 _Manage Jenkins_ 页面上显示的通知。
+它们现在还显示给大多数其他页面上的管理员，以提高重要通知的可见性。
+
+为了更好地控制显示哪些管理监视器，现在可以在 _Configure Jenkins_中禁用并启用它们。
+
+请注意，由于它的实现方式，_Reverse Proxy Setup_ 监视器将 _not_ 显示在每个屏幕上。
