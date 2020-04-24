@@ -1,0 +1,5 @@
+==== 支持远程处理组件中的 HTTP_PROXY 环境变量
+
+https://issues.jenkins-ci.org/browse/JENKINS-32326[JENKINS-32326]
+
+增加了对构建代理启动器中 HTTP 代理排除的支持。 构建定义此变量的代理，但其与 Jenkins 主机的连接依赖于未启用的代理现在可能无法连接到 Jenkins。 解决方案是修复传递给代理进程的代理配置。
