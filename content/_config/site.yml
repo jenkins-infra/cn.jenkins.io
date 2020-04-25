@@ -32,7 +32,7 @@ asciidoctor:
     notitle: ''
 profiles:
   production:
-    base_url: https://jenkins.io/
+    base_url: https://www.jenkins.io/
   user-site:
     # Don't log to GA while working on the site
     # User will provide base_url
@@ -46,4 +46,4 @@ profiles:
   cn-site:
     base_url: http://cn.jenkins.io/
   jenkinsio-zh:
-    base_url: https://jenkins.io/zh/
+    base_url: https://www.jenkins.io/zh/
