@@ -1,3 +1,0 @@
-==== 修复通过 HTTP 的 CLI
-
-HTTP 上的 CLI（禁用 JNLP 端口时）现在可以与 CSRF 保护一起使用，并且不需要明确设置 `hudson.diyChunking`。 因此，现在可以恢复应用于以前版本的 Jenkins 以使 CLI 工作的任何解决方法。

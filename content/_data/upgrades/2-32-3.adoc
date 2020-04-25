@@ -1,9 +1,0 @@
-==== 在 "Permission denied" 页面上删除 `X-You-Are-In-Group` 标头
-
-https://issues.jenkins-ci.org/browse/JENKINS-39402[JENKINS-39402]
-
-"Permission denied" 页面将不再包含列出当前用户所属的所有组的 HTTP 标题，因为在某些情况下，大量标题可能会导致反向代理错误。
-
-访问 URL 如 `/whoAmI` 来获取有关当前登录的用户和组成员身份的信息。
-
-要恢复以前的行为，请设置系统属性 `hudson.security.AccessDeniedException2.REPORT_GROUP_HEADERS` 为 `true`。 这通常不被推荐。

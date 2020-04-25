@@ -1,7 +1,0 @@
-==== 强制升级分离插件
-
-https://issues.jenkins-ci.org/browse/JENKINS-37041[JENKINS-37041]
-
-Jenkins 现在将确保分离的插件，即那些功能曾经是 Jenkins 核心的一部分但被移入插件的插件，至少是捆绑版本。 一条消息将被打印到日志中来通知管理员:
-
- 升级的分离插件（和依赖关系）
