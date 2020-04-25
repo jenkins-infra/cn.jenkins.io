@@ -1,0 +1,123 @@
+---
+layout: documentation
+title:  Jenkins 升级指南
+notitle: true
+---
+
+== 升级到 Jenkins LTS 2.32.x
+
+每个部分都涵盖了从之前的LTS版本升级，2.32.1部分涵盖了从2.19.4升级。
+
+=== 升级到 Jenkins LTS 2.32.3
+
+==== 在“Permission denied”页面上删除+X-You-Are-In-Group+标头
+
+https://issues.jenkins-ci.org/browse/JENKINS-39402[JENKINS-39402]
+
+"Permission denied" 页面将不再包含列出当前用户所属的所有组的HTTP标题，因为在某些情况下，大量标题可能会导致反向代理错误。
+
+访问 URL如 +/whoAmI+ 来获取有关当前登录的用户和组成员身份的信息。
+
+要恢复以前的行为，请设置系统属性 `hudson.security.AccessDeniedException2.REPORT_GROUP_HEADERS` 为 `true`。 这通常不被推荐。
+
+=== 升级到 Jenkins LTS 2.32.2
+
+==== 控制台记录安全修复
+
+https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2017-02-01[SECURITY-382]
+
+控制台记录，通常是粗体或彩色的附加功能，可以通过插件创建日志，例如 plugin:timestamper[Timestamper] or plugin:ansicolor[AnsiColor], 在升级到Jenkins 2.43或2.32.2之前创建的文件将因安全原因不再被加载。
+要恢复先前（不安全）的行为，请设置系统属性 `hudson.console.ConsoleNote.INSECURE` 为`true` 如 link:https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties[ wiki 页面]所述。
+
+plugin:maven-plugin[Maven集成插件]2.14及更早版本中使用Maven 3.0.x构建的Maven项目将创建控制台记录，这些笔记不能再由Jenkins读取，因此其构建输出的部分内容不会被着色/粗体显示。
+这对自由式项目不影响。
+
+
+==== 新的加密秘密格式
+
+https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2017-02-01[SECURITY-304]
+
+加密的秘密不是AES-128 CBC，而是随机IV，而不是没有IV的AES-128 ECB。 因此加密秘密的格式已经改变。
+尽管仍然可以读取现有秘密，但保存配置文件将导致以新格式重新加密存储的秘密。
+在更改Jenkins存储的密码作为密钥后，单击_Apply_重复提交相同的表单，现在会导致配置文件被更改。
+
+
+==== 重新键入备份文件已删除
+
+https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2017-02-01[SECURITY-376]
+
+重新键入，为Jenkins 1.480.2安全更新实施的一个流程，并且仅在从版本1.480.1或1.497或更低版本升级Jenkins时执行，并留下没有限制性文件访问权限的备份文件。
+在应用2.32.2更新后的第一次重新启动时，Jenkins将删除这些备份文件（如果存在）。
+
+如果您依靠文件系统权限来保护存储在Jenkins中的秘密，并且正在运行最初运行Jenkins 1.480.1或1.497（或更早版本）的实例，那么请考虑更改Jenkins中存储的任何秘密。
+
+如果您依靠文件系统权限来保护存储在Jenkins主目录备份中的秘密，建议您从所有备份中删除 `JENKINS_HOME/jenkins.security.RekeySecretAdminMonitor/backups`目录。
+
+==== 远程黑名单天剑
+
+https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2017-02-01[SECURITY-383]
+
+禁止在XStream和Java对象序列化中使用的类的远程黑名单已被扩展。 这些条目已被添加:
+
+   ^javax[.]imageio[.].*
+   ^java[.]util[.]ServiceLoader$
+   ^java[.]net[.]URLClassLoader$
+
+预计不会合法使用这些类型，但可能。 link:/doc/upgrade-guide/2.19/#upgrading-to-jenkins-lts-2-19-3[Jenkins 2.19.3升级指南] 中先前的建议仍然适用。
+
+==== 不能通过GET创建用户
+
+https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2017-02-01[SECURITY-406]
+
+Jenkins管理员可以通过访问URL `/user/example`来创建用户。 这样做会为（此URL）创建一个ID为`example`的新用户，如果它以前不存在的话。
+
+虽然方便，但这构成了一个 link:https://en.wikipedia.org/wiki/CSRF[跨站请求伪造]漏洞，因为Jenkins管理员可能被骗入创建数百个（并非总是短暂的）用户。
+因此此功能已被删除。
+
+在使用内部Jenkins用户数据库时，可以通过 _Manage Jenkins » Manage Users_ 创建新用户。
+
+要恢复先前（不安全）的行为，请设置系统属性`hudson.model.User.allowUserCreationViaUrl`为 `true` ，如 link:https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties[wiki 页面]所述。
+
+==== 安全警告管理监视器
+
+https://issues.jenkins-ci.org/browse/JENKINS-40494[JENKINS-40494]
+
+Jenkins现在将在安装的组件（插件或核心）出现安全问题时显示警告。
+这些警告还会显示在插件管理器的_Available_ 和 _Updates_标签中，以在安装易受攻击的插件或更新为易受攻击的版本之前发出警告。
+由于这些警告是由您配置的更新站点发布的，因此通常每天更新一次。 请注意，第三方更新站点可能不支持此功能（尚未）。
+
+==== Winstone-Jetty支持在Java 8上创建临时证书
+
+https://issues.jenkins-ci.org/browse/JENKINS-25333[JENKINS-25333]
+
+在Java 8上运行时，嵌入式Winstone-Jetty容器现在支持临时SSL证书生成。
+
+但是，此功能使用内部Oracle JRE API，因此将来可能会随时中断。
+因此，仍建议管理员手动创建自签名证书并使用它们。
+
+
+
+=== 升级到 Jenkins LTS 2.32.1
+
+==== Remoting 3 升级
+
+Remoting，处理Jenkins master和代理之间通信的库，进行了一次重大升级，引入了一种新的通信协议（JNLP4）。
+
+通过此次升级，可以限制哪些`Launcher`实现可以连接。
+一些插件（主要是_cloud_实现）可能无法连接。
+如果发生这种情况，请设置系统属性`jenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification`作为解决方法。
+
+    java -Djenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification=true … -jar jenkins.war
+
+https://wiki.jenkins-ci.org/display/JENKINS/Features+controlled+by+system+properties[详细了解Jenkins中的系统属性.]
+
+此外，这是第一个需要Java 7的远程处理版本。尽管代理现在需要Java 7，但远程处理也用于与Maven集成插件中的Maven项目类型中的Maven进程进行通信。 这些版本现在需要运行JDK 7或更新的版本。 使用工具链与旧版Java进行编译。
+
+==== 管理监视器现在显示在大多数页面上
+
+_Administrative monitors_ 是目前为止仅在 _Manage Jenkins_ 页面上显示的通知。
+它们现在还显示给大多数其他页面上的管理员，以提高重要通知的可见性。
+
+为了更好地控制显示哪些管理监视器，现在可以在 _Configure Jenkins_中禁用并启用它们。
+
+请注意，由于它的实现方式， _Reverse Proxy Setup_ 监视器将 _not_ 显示在每个屏幕上。
