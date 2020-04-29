@@ -2295,6 +2295,19 @@
 
 - version: 2.222.2
   date: 2020-04-22
+  banner: >
+    Jenkins 2.222.2 未打包或发布。
+    计划在 2.222.2 中进行的所有更改都包含在 2.222.3 中。
+  changes:
+  - type: bug
+    category: internal
+    authors:
+    - kohsuke
+    message: |-
+      Jenkins 2.222.2 未放置在制品仓库中或下载站点上。
+
+- version: 2.222.3
+  date: 2020-04-22
   changes:
   - type: major bug
     category: major bug
