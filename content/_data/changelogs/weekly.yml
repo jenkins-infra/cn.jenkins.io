@@ -5459,7 +5459,7 @@
     authors:
     - daniel-beck
     message: |-
-      Prevent a form validation "404 Not Found" error when the resource root URL configuration points at a previously configured resource root URL (regression in 2.205).
+      当资源根 URL 配置指向先前配置的资源根 URL 时，防止表单验证出现 “404 Not Found” 错误（由 2.205 引入的缺陷回归）。
   - type: major bug
     category: regression
     pull: 4696
@@ -5467,7 +5467,7 @@
     authors:
     - romenrg
     message: |-
-      Make Breadcrumbs displayed after notification alerts clickable again.
+      在通知告警可再次单击之前显示面包屑。
   - type: rfe
     category: rfe
     pull: 4685
@@ -5475,7 +5475,7 @@
     authors:
     - timja
     message: |-
-      Allow system read to view more admin monitors.
+      允许系统读取以查看更多管理员监视器。
   - type: rfe
     category: rfe
     pull: 4655
@@ -5483,15 +5483,15 @@
     authors:
     - dwnusbaum
     message: |-
-      Limit the number of exceptions thrown by some operations such as recursive directory deletion.
-      Previously, in rare cases, exceptions thrown when failing to delete large directories could consume significant amounts of memory.
+      限制某些操作（例如递归目录删除）引发的异常数。
+      在这之前，在极少数情况下，无法删除大目录时引发的异常会占用大量内存。
   - type: rfe
     category: rfe
     pull: 4668
     authors:
     - daniel-beck
     message: |-
-      Indicate which component provides an URL that is always available without authentication in the global security configuration.
+      指示哪个组件提供的 URL 在全局安全配置中无需身份验证即始终可用。
   - type: bug
     category: bug
     pull: 4681
@@ -5499,7 +5499,7 @@
     authors:
     - Vlatombe
     message: |-
-      Fix a classloading issue while executing <code>ProcessTree.get()</code>.
+      解决执行 <code>ProcessTree.get()</code> 时的类加载问题。
   - type: bug
     category: bug
     pull: 4687
@@ -5507,7 +5507,7 @@
     authors:
     - daniel-beck
     message: |-
-      Developer: Make it possible to look up extension implementations from more than one specific extension point at a time.
+      开发者: 一次可以从多个特定扩展点查找扩展实现。
   - type: rfe
     category: developer
     pull: 4693
@@ -5515,15 +5515,15 @@
     authors:
     - uhafner
     message: |-
-      Developer: Add <code>nogrid</code> option to <code>layout.jelly</code> tag to allow suppressing the bootstrap 3 grid.
-      See <a href="https://github.com/jenkinsci/bootstrap4-api-plugin">bootstrap4-api-plugin</a> for details.
+      开发者: Add <code>nogrid</code> 在 <code>layout.jelly</code> 标签中添加 <code>nogrid</code> 选项，以禁止隐藏 bootstrap 3 网格。
+      详细信息，请参见 <a href="https://github.com/jenkinsci/bootstrap4-api-plugin">bootstrap4-api-plugin</a> 。
   - type: rfe
     category: developer
     pull: 4660
     authors:
     - jvz
     message: |-
-      Developer: Update javax.mail to jakarta.mail 1.6.5.
+      开发者: 升级 javax.mail 为 jakarta.mail 1.6.5。
   - type: rfe
     category: internal
     pull: 4626
@@ -5531,8 +5531,8 @@
     authors:
     - Wadeck
     message: |-
-      Internal: Remove inline resources from ReverseProxySetupMonitor view.
-      Add a specific warning when the Jenkins Root URL does not contain the contextPath.
+      内部: 从 ReverseProxySetupMonitor 视图中删除内联资源。
+      当 Jenkins 根 URL 不包含 contextPath 时，添加特定的告警。
   - type: rfe
     category: internal
     pull: 4627
@@ -5541,8 +5541,8 @@
     - Wadeck
     - timja
     message: |-
-      Internal: Remove inline resources from LogRecorder views.
-      Align the column headers of bigtables to the left
+      内部: 从 LogRecorder 视图中删除内联资源。
+      将 bigtables 的列标题向左对齐。
 
   # pull: 4686 (PR title: Add form validation warning when signup is enabled)
   # pull: 4691 (PR title: Maintainer guide: Reference the IRC channel)
