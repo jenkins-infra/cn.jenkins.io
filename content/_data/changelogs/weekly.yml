@@ -5565,7 +5565,7 @@
     authors:
     - daniel-beck
     message: |-
-      Make plugin manager work on Internet Explorer 11 again (regression in 2.231).
+      使插件管理可以再次支持 Internet Explorer 11 (由 2.231 引入的缺陷回归)。
   - type: rfe
     category: rfe
     pull: 4630
@@ -5573,8 +5573,8 @@
     authors:
     - daniel-beck
     message: |-
-      Security hardening: Always round-trip password form control values in an encrypted form, even if not backed by an encrypted <code>Secret</code> field.
-      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> to <code>false</code> on startup.
+      安全增强: 即使没有加密的 <code>Secret</code> 字段支持，也始终以加密形式来回传递密码表单控制值。
+      如果出现问题，可以通过在启动时将系统属性 <code>hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> 设置为 <code>false</code> 来禁用此功能。
   - type: rfe
     category: rfe
     pull: 4630
@@ -5582,8 +5582,8 @@
     authors:
     - daniel-beck
     message: |-
-      Security hardening: Always use a placeholder value for password form control values in item related configuration forms when the user is missing Item/Configure permission, even if not backed by an encrypted <code>Secret</code> field.
-      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> to <code>false</code>.
+      安全增强: 当用户缺少“项目/配置”权限时，即使没有加密的 <code>Secret</code> 字段支持，也始终在项目相关的配置表单中使用占位符值作为密码表单控制值。
+      如果出现问题，可以通过将系统属性 <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> 设置为 <code>false</code> 来禁用此功能
   - type: rfe
     category: developer
     pull: 4707
@@ -5592,11 +5592,11 @@
     references:
       - pull: 4707
       - url: https://javadoc.jenkins.io/jenkins/util/SystemProperties.html
-        title: Javadoc System Properties
+        title: Javadoc 系统属性
       - url: https://www.jenkins.io/doc/book/managing/system-properties/
-        title: Jenkins Features Controlled with System Properties
+        title: 受系统属性控制的 Jenkins 功能
     message: |-
-      Developer: Make the SystemProperties API available to plugins so that their properties could be managed by a standard engine.
+      开发者: 使 SystemProperties API 可用于插件，以便它们的属性可以由标准引擎管理。
 
   # pull: 4708 (PR title: Fix up Protector class)
 
