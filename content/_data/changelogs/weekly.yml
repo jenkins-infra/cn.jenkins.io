@@ -5459,7 +5459,7 @@
     authors:
     - daniel-beck
     message: |-
-      当资源根 URL 配置指向先前配置的资源根 URL 时，防止表单验证出现 “404 Not Found” 错误（由 2.205 引入的缺陷回归）。
+      当根目录 URL 配置指向先前配置的根目录 URL 时，防止表单验证出现 “404 Not Found” 错误（由 2.205 引入的缺陷回归）。
   - type: major bug
     category: regression
     pull: 4696
