@@ -5467,7 +5467,7 @@
     authors:
     - romenrg
     message: |-
-      在通知告警可再次单击之前显示面包屑。
+      在通知告警可再次单击之前一直显示面包屑导航页面。
   - type: rfe
     category: rfe
     pull: 4685
