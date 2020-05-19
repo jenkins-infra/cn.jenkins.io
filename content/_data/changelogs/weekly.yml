@@ -5610,7 +5610,7 @@
     authors:
     - MRamonLeon
     message: |-
-      Prevent telemetry warnings about missing <code>javax.annotation</code> classes when running with Java 11 (regression in 2.231).
+      防止以 Java 11 运行时缺少 <code>javax.annotation</code> 类的导致的遥测告警(由 2.231 引入的缺陷回归)。
   - type: bug
     category: bug
     pull: 4718
@@ -5618,7 +5618,7 @@
     authors:
     - MRamonLeon
     message: |-
-      Prevent Old Data Monitor from failing plugin loading in the case of class field unmarshalling issues.
+      在类字段解组问题的情况下，防止 Old Data Monitor 插件加载失败。
   - type: bug
     category: bug
     pull: 4711
@@ -5626,7 +5626,7 @@
     authors:
     - oleg-nenashev
     message: |-
-      Ensure that <code>UserLanguages</code> telemetry initializer always runs after extensions are augmented.
+      确保在扩展增强后，<code>UserLanguages</code> 遥测初始化程序始终运行。
   - type: bug
     category: bug
     pull: 4684
@@ -5634,14 +5634,14 @@
     authors:
     - calvinpark
     message: |-
-      Ensure that job/folder creation routines properly check the requested name for invalid characters.
+      确保 job/folder 创建事务正确检查请求的名称中是否包含无效字符。
   - type: rfe
     category: developer
     pull: 4725
     authors:
     - jvz
     message: |-
-      Developer: Update Apache Ant from 1.10.7 to 1.10.8.
+      开发者: 将 Apache Ant 从 1.10.7 更新到 1.10.8。
   - type: rfe
     category: developer
     pull: 4656
@@ -5650,20 +5650,20 @@
     references:
       - pull: 4656
       - url: https://tomcat.apache.org/taglibs/CHANGES.txt
-        title: Changelog up to 1.2.5
+        title: 变更日志更新到 1.2.5
       - url: https://github.com/eclipse-ee4j/jstl-api/compare/1.2.3-RELEASE..1.2.7-RELEASE
-        title: Diff of 1.2.3 to 1.2.7
+        title: 1.2.3 到 1.2.7 的差异
       - url: https://github.com/javaee/jstl-api/compare/javax.servlet.jsp.jstl-1.2.1..javax.servlet.jsp.jstl-1.2.3
-        title: Diff of 1.2.1 to 1.2.3
+        title: 1.2.1 到 1.2.3 的差异
     message: |-
-      Developer: Update the JSTL API library from 1.2.1 to 1.2.7.
+      开发者: 将 JSTL API 库从 1.2.1 更新到 1.2.7。
   - type: rfe
     category: developer
     pull: 4715
     authors:
     - jglick
     message: |-
-      Developer: Deprecate <code>jenkins.model.Configuration</code> in the Java API.
+      开发者: 在 Java API 中弃用 <code>jenkins.model.Configuration</code>。
 
   # pull: 4689 (PR title: Minor pom cleanup and switched assertions to junit5)
   # pull: 4717 (PR title: Adapt to JUnit 4.13's deprecation of org.junit.Assert.assertThat)
