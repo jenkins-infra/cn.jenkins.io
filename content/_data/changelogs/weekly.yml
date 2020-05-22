@@ -5626,7 +5626,7 @@
     authors:
     - oleg-nenashev
     message: |-
-      确保在扩展增强后，<code>UserLanguages</code> 遥测初始化程序始终运行。
+      确保在 <code>UserLanguages</code> 遥测初始化程序总是在扩展后运行。
   - type: bug
     category: bug
     pull: 4684
