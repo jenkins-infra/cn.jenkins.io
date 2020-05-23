@@ -5449,6 +5449,229 @@
   # pull: 4674 (PR title: Fix rendering of links in the Maintainer guide)
   # pull: 4678 (PR title: Reduce code duplication in SystemProperties)
 
+- version: '2.235'
+  date: 2020-05-04
+  changes:
+  - type: major bug
+    category: regression
+    pull: 4701
+    issue: 62133
+    authors:
+    - daniel-beck
+    message: |-
+      当根目录 URL 配置指向先前配置的根目录 URL 时，防止表单验证出现 “404 Not Found” 错误（由 2.205 引入的缺陷回归）。
+  - type: major bug
+    category: regression
+    pull: 4696
+    issue: 62065
+    authors:
+    - romenrg
+    message: |-
+      在通知告警可再次单击之前一直显示面包屑导航页面。
+  - type: rfe
+    category: rfe
+    pull: 4685
+    issue: 61208
+    authors:
+    - timja
+    message: |-
+      允许系统读取以查看更多管理员监视器。
+  - type: rfe
+    category: rfe
+    pull: 4655
+    issue: 61841
+    authors:
+    - dwnusbaum
+    message: |-
+      限制某些操作（例如递归目录删除）引发的异常数。
+      在这之前，在极少数情况下，无法删除大目录时引发的异常会占用大量内存。
+  - type: rfe
+    category: rfe
+    pull: 4668
+    authors:
+    - daniel-beck
+    message: |-
+      指示哪个组件提供的 URL 在全局安全配置中无需身份验证即始终可用。
+  - type: bug
+    category: bug
+    pull: 4681
+    issue: 62006
+    authors:
+    - Vlatombe
+    message: |-
+      解决执行 <code>ProcessTree.get()</code> 时的类加载问题。
+  - type: bug
+    category: bug
+    pull: 4687
+    issue: 62056
+    authors:
+    - daniel-beck
+    message: |-
+      开发者: 一次可以从多个特定扩展点查找扩展实现。
+  - type: rfe
+    category: developer
+    pull: 4693
+    issue: 61326
+    authors:
+    - uhafner
+    message: |-
+      开发者: Add <code>nogrid</code> 在 <code>layout.jelly</code> 标签中添加 <code>nogrid</code> 选项，以禁止隐藏 bootstrap 3 网格。
+      详细信息，请参见 <a href="https://github.com/jenkinsci/bootstrap4-api-plugin">bootstrap4-api-plugin</a> 。
+  - type: rfe
+    category: developer
+    pull: 4660
+    authors:
+    - jvz
+    message: |-
+      开发者: 升级 javax.mail 为 jakarta.mail 1.6.5。
+  - type: rfe
+    category: internal
+    pull: 4626
+    issue: 60866
+    authors:
+    - Wadeck
+    message: |-
+      内部: 从 ReverseProxySetupMonitor 视图中删除内联资源。
+      当 Jenkins 根 URL 不包含 contextPath 时，添加特定的告警。
+  - type: rfe
+    category: internal
+    pull: 4627
+    issue: 60866
+    authors:
+    - Wadeck
+    - timja
+    message: |-
+      内部: 从 LogRecorder 视图中删除内联资源。
+      将 bigtables 的列标题向左对齐。
+
+  # pull: 4686 (PR title: Add form validation warning when signup is enabled)
+  # pull: 4691 (PR title: Maintainer guide: Reference the IRC channel)
+  # pull: 4692 (PR title: JENKINS-62088 Fix correct fonts not loading for buttons and plugin manager filter)
+  # pull: 4694 (PR title: Better logging for signature validation)
+  # pull: 4695 (PR title: [JENKINS-62089] Reduces the help icon size to 20px)
+  # pull: 4697 (PR title:  Extracts essential CSS off the responsive-grid.css file)
+  # pull: 4698 (PR title: Removed redundant supressions)
+  # pull: 4703 (PR title: Remove abusive badges)
+  # pull: 4704 (PR title: Add proper title for setup wizard)
+  # pull: 4705 (PR title: Update at-since up to May 3, 2020)
+
+- version: '2.236'
+  date: 2020-05-11
+  changes:
+  - type: major bug
+    category: regression
+    pull: 4713
+    issue: 62163
+    authors:
+    - daniel-beck
+    message: |-
+      使插件管理可以再次支持 Internet Explorer 11 (由 2.231 引入的缺陷回归)。
+  - type: rfe
+    category: rfe
+    pull: 4630
+    issue: 61808
+    authors:
+    - daniel-beck
+    message: |-
+      安全增强: 即使没有加密的 <code>Secret</code> 字段支持，也始终以加密形式来回传递密码表单控制值。
+      如果出现问题，可以通过在启动时将系统属性 <code>hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> 设置为 <code>false</code> 来禁用此功能。
+  - type: rfe
+    category: rfe
+    pull: 4630
+    issue: 61808
+    authors:
+    - daniel-beck
+    message: |-
+      安全增强: 当用户缺少“项目/配置”权限时，即使没有加密的 <code>Secret</code> 字段支持，也始终在项目相关的配置表单中使用占位符值作为密码表单控制值。
+      如果出现问题，可以通过将系统属性 <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> 设置为 <code>false</code> 来禁用此功能
+  - type: rfe
+    category: developer
+    pull: 4707
+    authors:
+    - oleg-nenashev
+    references:
+      - pull: 4707
+      - url: https://javadoc.jenkins.io/jenkins/util/SystemProperties.html
+        title: Javadoc 系统属性
+      - url: https://www.jenkins.io/doc/book/managing/system-properties/
+        title: 受系统属性控制的 Jenkins 功能
+    message: |-
+      开发者: 使 SystemProperties API 可用于插件，以便它们的属性可以由标准引擎管理。
+
+  # pull: 4708 (PR title: Fix up Protector class)
+
+- version: '2.237'
+  date: 2020-05-18
+  changes:
+  - type: major bug
+    category: regression
+    pull: 4712
+    issue: 61920
+    authors:
+    - MRamonLeon
+    message: |-
+      防止以 Java 11 运行时缺少 <code>javax.annotation</code> 类的导致的遥测告警(由 2.231 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 4718
+    issue: 62231
+    authors:
+    - MRamonLeon
+    message: |-
+      在类字段解组问题的情况下，防止 Old Data Monitor 插件加载失败。
+  - type: bug
+    category: bug
+    pull: 4711
+    issue: 60118
+    authors:
+    - oleg-nenashev
+    message: |-
+      确保在 <code>UserLanguages</code> 遥测初始化程序总是在扩展后运行。
+  - type: bug
+    category: bug
+    pull: 4684
+    issue: 61956
+    authors:
+    - calvinpark
+    message: |-
+      确保 job/folder 创建事务正确检查请求的名称中是否包含无效字符。
+  - type: rfe
+    category: developer
+    pull: 4725
+    authors:
+    - jvz
+    message: |-
+      开发者: 将 Apache Ant 从 1.10.7 更新到 1.10.8。
+  - type: rfe
+    category: developer
+    pull: 4656
+    authors:
+    - jvz
+    references:
+      - pull: 4656
+      - url: https://tomcat.apache.org/taglibs/CHANGES.txt
+        title: 变更日志更新到 1.2.5
+      - url: https://github.com/eclipse-ee4j/jstl-api/compare/1.2.3-RELEASE..1.2.7-RELEASE
+        title: 1.2.3 到 1.2.7 的差异
+      - url: https://github.com/javaee/jstl-api/compare/javax.servlet.jsp.jstl-1.2.1..javax.servlet.jsp.jstl-1.2.3
+        title: 1.2.1 到 1.2.3 的差异
+    message: |-
+      开发者: 将 JSTL API 库从 1.2.1 更新到 1.2.7。
+  - type: rfe
+    category: developer
+    pull: 4715
+    authors:
+    - jglick
+    message: |-
+      开发者: 在 Java API 中弃用 <code>jenkins.model.Configuration</code>。
+
+  # pull: 4689 (PR title: Minor pom cleanup and switched assertions to junit5)
+  # pull: 4717 (PR title: Adapt to JUnit 4.13's deprecation of org.junit.Assert.assertThat)
+  # pull: 4720 (PR title: System read code simplification)
+  # pull: 4722 (PR title: Taglib descriptions)
+  # pull: 4723 (PR title: Reduce heading for repeatable)
+  # pull: 4727 (PR title: Fix ItemGroupMixInTest compilation.)
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
