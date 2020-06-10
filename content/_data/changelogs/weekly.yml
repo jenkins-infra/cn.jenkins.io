@@ -5368,7 +5368,7 @@
   # pull: 4659 (PR title: [JENKINS-61932] Fix redirect URL)
   # pull: 4661 (PR title: Bump parent pom to 1.55)
 
- version: '2.234'
+- version: '2.234'
   date: 2020-04-27
   changes:
   - type: major bug
@@ -5386,7 +5386,6 @@
     - fqueiruga
     message: |-
       修复了无法正确呈现自动完成小部件的下拉菜单的缺陷回归（由 2.233 引入缺陷的回归）。
-  - type: rfe
     category: rfe
     pull: 4663
     authors:
