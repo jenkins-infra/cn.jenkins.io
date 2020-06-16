@@ -5879,7 +5879,7 @@
     authors:
     - timja
     message: |-
-      使 RSS 字段和与代理断开连接的图像对于暗黑主题透明展示。
+      使 RSS 字段和与代理断开连接的图片对于暗黑主题透明展示。
   - type: rfe
     category: rfe
     pull: 4742
