@@ -10,7 +10,10 @@ title: Jenkins 的安装和设置
   end
 
 
-= partial('downloadbanner.html.haml')
+%p
+  Jenkins 项目产生两个发行线, 长期支持版本 (LTS) 和每周更新版本。
+  根据你的组织需求, 一个可能比另一个更受欢迎。
+  请参阅下面的链接，以获取有关发行版的更多信息和建议。
 
 .container
   .row.body
@@ -21,22 +24,12 @@ title: Jenkins 的安装和设置
 
       .container
         .row
-          %p
-            Jenkins 项目产生两个发行线, 长期支持版本 (LTS) 和每周更新版本。
-            根据你的组织需求, 一个可能比另一个更受欢迎。
-          %p
-            两个版本都以
-            %code
-              \.war
-            文件、原生包、安装程序和 Docker 容器的形式分发。带有
-            %span.icon-gear-menu-o
-            齿轮的包由第三方维护。
-        .row
           .col-md-6
             %h4
               长期支持版本 (LTS)
             %p
               LTS (长期支持) 版本每12周从常规版本流中选择，作为该时间段的稳定版本。
+              每隔 4 周，我们会发布稳定版本，其中包括错误和安全修复反向移植。
 
               %a{'href' => 'lts'}
                 了解更多…
