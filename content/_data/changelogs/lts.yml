@@ -2672,7 +2672,7 @@
     authors:
     - oleg-nenashev
     message: |-
-      修复 <code>--httpKeepAliveTimeout</code> o选项无效的问题(由 2.235.1 引入的缺陷回顾)。
+      修复 <code>--httpKeepAliveTimeout</code> 选项无效的问题(由 2.235.1 引入的缺陷回顾)。
   - type: bug
     category: bug
     pull: 4770
