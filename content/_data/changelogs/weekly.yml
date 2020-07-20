@@ -6228,7 +6228,7 @@
 - version: "2.245"
   date: 2020-07-15
   banner: >
-    由于意外的发布基础设施问题，Windows MSI 软件包尚未发布。
+    由于发布基础设施的问题导致的意外，Windows MSI 软件包尚未发布。
     解决方法是，手动下载并替换 JENKINS_HOME 中的 jenkins.war。
   changes:
     - type: security
