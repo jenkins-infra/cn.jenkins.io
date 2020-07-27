@@ -6467,7 +6467,7 @@
     authors:
     - StefanSpieker
     message: |-
-      内部: Allow JUnit 5 tests in the Jenkins core unit tests.在 Jenkins 核心单元测试中允许 JUnit 5 测试。
+      内部: 允许在 Jenkins 核心单元测试中使用 JUnit 5。
       基于 Jenkins Test Harness 的集成测试仍然需要 JUnit 4。
   - type: rfe
     category: internal
