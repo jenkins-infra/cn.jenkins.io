@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: simplepage
 title: Jenkins 的安装和设置
 ---
 
@@ -10,199 +10,220 @@ title: Jenkins 的安装和设置
   end
 
 
-= partial('downloadbanner.html.haml')
+%p
+  Jenkins 项目产生两个发行线, 长期支持版本 (LTS) 和每周更新版本。
+  根据你的组织需求, 一个可能比另一个更受欢迎。
+  请参阅下面的链接，以获取有关发行版的更多信息和建议。
+
+
 
 .container
-  .row.body
-    .col-md-1
-    .col-md-10
-      %h2
-        开始使用 Jenkins
+  .row
+    .col-md-6
+      %h4
+        稳定版 (LTS)
+      %p
+        LTS (长期支持) 版本每12周从常规版本流中选择，作为该时间段的稳定版本。
+        每隔 4 周，我们会发布稳定版本，其中包括错误和安全修复反向移植。
 
-      .container
-        .row
-          %p
-            Jenkins 项目产生两个发行线, 长期支持版本 (LTS) 和每周更新版本。
-            根据你的组织需求, 一个可能比另一个更受欢迎。
-          %p
-            两个版本都以
-            %code
-              \.war
-            文件、原生包、安装程序和 Docker 容器的形式分发。带有
-            %span.icon-gear-menu-o
-            齿轮的包由第三方维护。
-        .row
-          .col-md-6
-            %h4
-              长期支持版本 (LTS)
-            %p
-              LTS (长期支持) 版本每12周从常规版本流中选择，作为该时间段的稳定版本。
+        %a{'href' => 'lts'}
+          了解更多…
 
-              %a{'href' => 'lts'}
-                了解更多…
+        %p.details
+          %a.item{:href=>'/zh/changelog-stable'}
+            变更日志
+          |
+          %a.item{:href=>'/zh/doc/upgrade-guide'}
+            升级指南
+          |
+          %a.item{:href=>'http://mirrors.jenkins.io/war-stable/'}
+            以前的发行版
+    .col-md-6
+      %h4
+        定期发布 (每周)
+      %p
+        每周都会发布一个新版本，为用户和插件开发人员提供错误修复和功能。
 
-              %p.details
-                %a.item{:href=>'/zh/changelog-stable'}
-                  变更日志
-                |
-                %a.item{:href=>'/zh/doc/upgrade-guide'}
-                  升级指南
-                |
-                %a.item{:href=>'http://mirrors.jenkins.io/war-stable/'}
-                  以前的发行版
+      %p.details
+        %a.item{:href=>'/zh/changelog'}
+          变更日志
+        |
+        %a.item{:href=>'http://mirrors.jenkins.io/war/'}
+          以前的发行版
+             
+%h2
+  下载 Jenkins
 
-          .col-md-6
-            %h4
-              每周更新版
-            %p
-              每周都会发布一个新版本，为用户和插件开发人员提供错误修复和功能。
+%p
+  Jenkins 以 WAR 文件、原生包/安装程序和 Docker 镜像分发。
+  请遵循以下安装步骤：
 
-            %p.details
-              %a.item{:href=>'/zh/changelog'}
-                变更日志
-              |
-              %a.item{:href=>'http://mirrors.jenkins.io/war/'}
-                以前的发行版
-        .row
-          .col-md-6
-            %strong
-              %i.icon-box-add
-              部署 Jenkins
-              = site.jenkins.stable
+%ol
+  %li
+    在下载之前，请花一点时间查看用户手册的
+    %strong
+      %a{:href => '/zh/doc/book/installing/#prerequisites'}
+        硬件和软件要求
+    部分。
+  %li
+    选择以下软件包之一，然后按照下载说明进行操作。
+  %li
+    下载Jenkins软件包后，请转向用户手册的
+    %strong
+      %a{:href => '/doc/book/getting-started/installing/'}
+        安装 Jenkins
+    部分。              
+    
 
-              .container
-                .row
-                  .m-3
-                    %a{:href => 'https://aka.ms/jenkins-on-azure'}
-                      - # 如果有问题出现请联系 azdevopspub@microsoft.com
-                      %img{:src => '/images/azure-deploy-button.png'}/
+.container          
+  .row
+    .col-md-6
+      .list-group
+        %strong
+          %i.icon-box-add
+          下载 Jenkins
+          = site.jenkins.stable
+          LTS for:
 
-            .list-group
-            %strong
-              %i.icon-box-add
-              下载 Jenkins
-              = site.jenkins.stable
-              for:
+        .list-group
+          %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins.io/war-stable/' + site.jenkins.stable + '/jenkins.war'}
+            %span.title
+              Generic Java package (.war)
+              %div{:style => 'font-size: x-small;'}
+                SHA-256:
+                = open('https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/' + site.jenkins.stable + '/jenkins-war-' + site.jenkins.stable + '.war.sha256').read()
+          %a.list-group-item.list-group-item-action{:href=>'https://hub.docker.com/r/jenkins/jenkins'}
+            %span.icon
+            %span.title
+              Docker
+          %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/debian-stable/'}
+            %span.icon
+            %span.title
+              Ubuntu/Debian
+          %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/redhat-stable/'}
+            %span.icon
+            %span.title
+              CentOS/Fedora/Red Hat
+          %a.list-group-item.list-group-item-action{:href=>'/download/thank-you-downloading-windows-installer-stable'}
+            %span.icon
+            %span.title
+              Windows
+          %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/opensuse-stable/'}
+            %span.icon
+            %span.title
+              openSUSE
+          %a.list-group-item.list-group-item-action{third_party_href('https://www.freshports.org/devel/jenkins-lts')}
+            %span.icon
+            %span.title
+              FreeBSD
+            %span.icon-gear-menu-o/
+          %a.list-group-item.list-group-item-action{third_party_href('https://packages.gentoo.org/packages/dev-util/jenkins-bin')}
+            %span.title
+              Gentoo
+            %span
+              &nbsp;
+            %span.icon-gear-menu-o/
+          %a.list-group-item.list-group-item-action{third_party_href('/download/lts/macos')}
+            %span.icon
+            %span.title
+              macOS
+            %span
+              &nbsp;
+            %span.icon-gear-menu-o/
+          %a.list-group-item.list-group-item-action{third_party_href('http://openports.se/devel/jenkins/stable')}
+            %span.title
+              OpenBSD
+            %span
+              &nbsp;
+            %span.icon-gear-menu-o/
 
-            .list-group
-              %a.list-group-item.list-group-item-action{:href=>'https://hub.docker.com/r/jenkins/jenkins'}
-                %span.icon
-                %span.title
-                  Docker
-              %a.list-group-item.list-group-item-action{:href => 'http://www.freshports.org/devel/jenkins-lts'}
-                %span.icon
-                %span.title
-                  FreeBSD
-              %a.list-group-item.list-group-item-action{third_party_href('https://packages.gentoo.org/packages/dev-util/jenkins-bin')}
-                %span.title
-                  Gentoo
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'/zh/download/thank-you-downloading-osx-installer-stable'}
-                %span.icon
-                %span.title
-                  Mac OS X
-              %a.list-group-item.list-group-item-action{third_party_href('http://openports.se/devel/jenkins/stable')}
-                %span.title
-                  OpenBSD
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/opensuse-stable/'}
-                %span.icon
-                %span.title
-                  openSUSE
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/redhat-stable/'}
-                %span.icon
-                %span.title
-                  Red Hat/Fedora/CentOS
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/debian-stable/'}
-                %span.icon
-                %span.title
-                  Ubuntu/Debian
-              %a.list-group-item.list-group-item-action{:href=>'/zh/download/thank-you-downloading-windows-installer-stable'}
-                %span.icon
-                %span.title
-                  Windows
-              %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins.io/war-stable/latest/jenkins.war'}
-                %span.title
-                Generic Java package (.war)
+    .col-md-6
+      %strong
+        %i.icon-box-add
+        下载 Jenkins
+        = site.jenkins.latest
+        for:
 
-          .col-md-6
-            %strong
-              %i.icon-box-add
-              下载 Jenkins
-              = site.jenkins.latest
-              for:
+      .list-group
+        %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins-ci.org/war/' + site.jenkins.latest + '/jenkins.war'}
+          %span.title
+            Generic Java package (.war)
+            %div{:style => 'font-size: x-small;'}
+              SHA-256:
+              = open('https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-war/' + site.jenkins.latest + '/jenkins-war-' + site.jenkins.latest + '.war.sha256').read()
+        %a.list-group-item.list-group-item-action{:href=>'https://hub.docker.com/r/jenkins/jenkins/'}
+          %span.icon
+          %span.title
+            Docker
+        %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/debian/'}
+          %span.icon
+          %span.title
+            Ubuntu/Debian
+        %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins-ci.org/redhat/'}
+          %span.icon
+          %span.title
+            CentOS/Fedora/Red Hat
+        %a.list-group-item.list-group-item-action{:href=>'/download/thank-you-downloading-windows-installer'}
+          %span.icon
+          %span.title
+            Windows
+        %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins-ci.org/opensuse/'}
+          %span.icon
+          %span.title
+            openSUSE
+        %a.list-group-item.list-group-item-action{third_party_href('https://www.archlinux.org/packages/community/any/jenkins/')}
+          %span.title
+            Arch Linux
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
+        %a.list-group-item.list-group-item-action{third_party_href('https://www.freshports.org/devel/jenkins')}
+          %span.title
+            FreeBSD
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
+        %a.list-group-item.list-group-item-action{third_party_href('https://packages.gentoo.org/packages/dev-util/jenkins-bin')}
+          %span.title
+            Gentoo
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
+        %a.list-group-item.list-group-item-action{third_party_href('/download/weekly/macos')}
+          %span.icon
+          %span.title
+            macOS
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
+        %a.list-group-item.list-group-item-action{third_party_href('http://openports.se/devel/jenkins/devel')}
+          %span.title
+            OpenBSD
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
+        %a.list-group-item.list-group-item-action{third_party_href('https://pkg.openindiana.org/hipster/en/search.shtml?token=jenkins')}
+          %span.title
+            OpenIndiana Hipster
+          %span
+            &nbsp;
+          %span.icon-gear-menu-o/
 
-            .list-group
-              %a.list-group-item.list-group-item-action{third_party_href('https://www.archlinux.org/packages/community/any/jenkins/')}
-                %span.title
-                  Arch Linux
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'https://hub.docker.com/r/jenkins/jenkins/'}
-                %span.icon
-                %span.title
-                  Docker
-              %a.list-group-item.list-group-item-action{third_party_href('http://www.freshports.org/devel/jenkins')}
-                %span.title
-                  FreeBSD
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{third_party_href('https://packages.gentoo.org/packages/dev-util/jenkins-bin')}
-                %span.title
-                  Gentoo
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'/zh/download/thank-you-downloading-osx-installer'}
-                %span.icon
-                %span.title
-                  Mac OS X
-              %a.list-group-item.list-group-item-action{third_party_href('http://openports.se/devel/jenkins/devel')}
-                %span.title
-                  OpenBSD
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/opensuse/'}
-                %span.icon
-                %span.title
-                  openSUSE
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/redhat/'}
-                %span.icon
-                %span.title
-                  Red Hat/Fedora/CentOS
-              %a.list-group-item.list-group-item-action{:href=>'https://pkg.jenkins.io/debian/'}
-                %span.icon
-                %span.title
-                  Ubuntu/Debian
-              %a.list-group-item.list-group-item-action{third_party_href('http://pkg.openindiana.org/hipster/en/search.shtml?token=jenkins')}
-                %span.title
-                  OpenIndiana Hipster
-                %span
-                  &nbsp;
-                %span.icon-gear-menu-o/
-              %a.list-group-item.list-group-item-action{:href=>'/zh/download/thank-you-downloading-windows-installer'}
-                %span.icon
-                %span.title
-                  Windows
-              %a.list-group-item.list-group-item-action{:href=>'http://mirrors.jenkins.io/war/latest/jenkins.war'}
-                %span.title
-                Generic Java package (.war)
+%h2
+  在公共云中上部署 Jenkins
+  
+%p
+  有一些公共云供应商在市场上提供自己的Jenkins发行版。
+  这样的发行版可用于快速部署 Jenkins，并且在许多情况下，可用于预先配置实例以在公共云中使用（例如捆绑的插件、与公共云服务的集成等）。
 
-
-        %hr/
-
-        .row
-          .col-md-12
-            %p
-              下载软件包后, 请前往用户手册的
-              %strong
-                %a{:href => '/zh/doc/book/getting-started/installing/'}
-                  安装 Jenkins
-              部分。
+  %div
+    %a{third_party_href('https://aka.ms/jenkins-on-azure')}
+      - # Contact azdevopspub@microsoft.com if issues arise
+      %img{:src => '/images/azure-deploy-button.png'}/
+      %span.icon-gear-menu-o/
+%hr
+  NOTE: 带有
+  %span.icon-gear-menu-o
+  齿轮图标的包由第三方维护。
+  此类软件包的更新频率可能不如 Jenkins 项目直接支持的软件包那么频繁。
+  
