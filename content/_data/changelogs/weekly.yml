@@ -6225,6 +6225,335 @@
 
   # pull: 4828 (PR title: Fix JavaScript typo)
 
+- version: "2.245"
+  date: 2020-07-15
+  banner: >
+    由于发布基础设施的问题导致的意外，Windows MSI 软件包尚未发布。
+    解决方法是，手动下载并替换 JENKINS_HOME 中的 jenkins.war。
+  changes:
+    - type: security
+      message: 重要的安全修复
+      references:
+        - url: /security/advisory/2020-07-15/
+          title: 安全公告
+      authors:
+        - wadeck
+
+- version: "2.246"
+  date: 2020-07-21
+  banner: >
+    此发行版本未在发行基础设施上正确签名。
+    jenkins.war 的发行已被暂停，不建议使用。
+    安装程序和本地软件包未发布。
+  changes: []
+
+- version: "2.247"
+  date: 2020-07-21
+  banner: >
+    此发行版本未在发行基础设施上正确签名。
+    jenkins.war 的发行已被暂停，不建议使用。
+    安装程序和本地软件包未发布。
+  changes: []
+
+- version: "2.248"
+  date: 2020-07-21
+  banner: >
+    由于发布基础设施的问题导致的意外，Windows MSI 软件包尚未发布。
+    解决方法是，手动下载并替换 JENKINS_HOME 中的 jenkins.war。
+  changes:
+  - type: major rfe
+    category: major rfe
+    pull: 4823
+    references:
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/
+        title: 公告
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/#use-cases-affected-by-net-framework-2-0-support-removal
+        title: 升级指南
+      - issue: 60005
+      - issue: 61862
+      - url: https://www.jenkins.io/doc/administration/requirements/windows/
+        title: Windows 支持策略
+    authors:
+    - NextTurn
+    - oleg-nenashev
+    message: |-
+      停止支持 .NET Framework 2.0 将 Jenkins 服务和代理作为 Windows 服务启动。
+      现在需要 .NET Framework 4.0 或更高版本。
+  - type: major rfe
+    category: major rfe
+    pull: 4823
+    references:
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/#windows-service-management-changes-in-jenkins-2-248
+        title: 变更摘要
+      - url: https://github.com/winsw/winsw/releases
+        title: WinSW 完整的变更日志
+      - url: https://github.com/jenkinsci/windows-slave-installer-module/releases/tag/windows-slave-installer-2.0
+        title: Windows Agent Installer 2.0 变更日志
+    authors:
+    - NextTurn
+    - oleg-nenashev
+    message: |-
+      将 Windows Service Wrapper（WinSW）从基于 .NET Framework 2.0 的 2.3.0 可执行文件更新为基于 .NET Framework 4.0 的 2.9.0。
+      包括多项改进和问题修复。
+      最值得注意的是，如果需要，服务安装程序现在将要求权限提升。
+  - type: rfe
+    category: rfe
+    pull: 4852
+    authors:
+    - oleg-nenashev
+    message: |-
+      重新排列左侧面板中的配置和删除按钮。
+  - type: rfe
+    category: rfe
+    pull: 4683
+    issue: 62014
+    authors:
+    - daniel-beck
+    message: |-
+      为 Shell 和 Windows 批处理构建步骤添加了过滤掉环境变量的功能。
+  - type: rfe
+    category: rfe
+    pull: 4835
+    issue: 63002
+    authors:
+    - fqueiruga
+    message: |-
+      使用更好的间距和一致的调色板来修改选项卡和表格。
+  - type: rfe
+    category: rfe
+    pull: 4748
+    issue: 61806
+    authors:
+    - 95jonpet
+    - jglick
+    message: |-
+      从页脚中删除页面生成时间戳。
+  - type: rfe
+    category: rfe
+    pull: 4840
+    issue: 25259
+    authors:
+    - tizki
+    message: |-
+      “旧数据”管理表添加排序功能。
+  - type: rfe
+    category: rfe
+    pull: 4834
+    authors:
+    - stellargo
+    message: |-
+      允许从配置页面中选择指纹存储引擎。
+    references:
+      - issue: 63022
+      - url: https://github.com/jenkinsci/jep/tree/master/jep/226
+        title: JEP-226
+  - type: rfe
+    category: rfe
+    pull: 4073
+    issue: 59136
+    authors:
+    - jetersen
+    - daniel-beck
+    message: |-
+      在更新管理器和管理监视器中显示有关<b>已弃用</b>插件的告警。
+  - type: rfe
+    category: rfe
+    pull: 4820
+    authors:
+    - timja
+    message: |-
+      更新 Jenkins 表单样式，为更改表单布局做准备。
+    references:
+      - issue: 56109
+      - url: https://issues.jenkins-ci.org/browse/JENKINS-62437
+        title: "Configuration UI Accessibility: Tables to Divs migration"
+  - type: rfe
+    category: rfe
+    pull: 4841
+    issue: 61806
+    authors:
+    - jglick
+    message: |-
+      在配置<b>用户定义的时区</b>时，在服务器时区上显示有关当前时间的提示。
+  - type: bug
+    category: bug
+    pull: 4833
+    issue: 62723
+    authors:
+    - jglick
+    - Zastai
+    message: |-
+      修复由于 <code>Util.isOverridden()</code> 中的行为异常导致的 <code>IllegalArgumentException: Method not found</code>(由 2.241 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 4830
+    authors:
+    - jglick
+    message: |-
+      当代理使用旧版本的 glibc 时，避免堆栈跟踪。
+  - type: bug
+    category: bug
+    pull: 4839
+    issue: 63014
+    authors:
+    - jglick
+    message: |-
+      从 JNLP 启动文件中删除 Jenkins URL回调，以便可以通过 Java Web Start 连接 WebSocket 代理。
+  - type: bug
+    category: bug
+    pull: 4823
+    authors:
+    - NextTurn
+    message: |-
+      修复 Windows 服务 <code>serviceaccount</code> 配置中的默认域名。
+    references:
+      - issue: 12660
+      - url: https://github.com/winsw/winsw/releases/tag/v2.7.0
+        title: Windows Service Wrapper 2.7.0 变更日志
+  - type: rfe
+    category: developer
+    pull: 4683
+    issue: 62014
+    authors:
+    - daniel-beck
+    message: |-
+      开发者: 添加新的扩展点以定义构建步骤环境过滤器(当前处于 beta 阶段)。
+  - type: rfe
+    category: developer
+    pull: 4842
+    references:
+      - url: https://github.com/jenkinsci/dark-theme
+        title: 暗黑主题仓库
+    authors:
+    - timja
+    message: |-
+      开发者: 添加对于 <code>alert-*</code> 类的主题支持。
+  - type: rfe
+    category: rfe
+    pull: 4842
+    issue: 62747
+    authors:
+    - timja
+    message: |-
+      开发者: 添加 <code>alert-success</code> 横幅。
+  - type: rfe
+    category: developer
+    pull: 4843
+    references:
+      - url: https://github.com/jenkinsci/dark-theme
+        title: 暗黑主题仓库
+    authors:
+    - timja
+    message: |-
+      开发者: 允许主题化文本区域句柄。
+  - type: rfe
+    category: developer
+    pull: 4834
+    issue: 63022
+    authors:
+    - stellargo
+    message: |-
+      开发者: 需要 FingerprintStorage 描述符，以便可以从配置页面进行配置。
+  - type: rfe
+    category: developer
+    pull: 4838
+    authors:
+    - jeffret-b
+    message: |-
+      开发者: 移除 <code>BeanBuilder.loadBeans(String)</code> 方法。
+  - type: rfe
+    category: internal
+    pull: 4699
+    authors:
+    - StefanSpieker
+    message: |-
+      内部: 允许在 Jenkins 核心单元测试中使用 JUnit 5。
+      基于 Jenkins Test Harness 的集成测试仍然需要 JUnit 4。
+  - type: rfe
+    category: internal
+    pull: 4823
+    references:
+      - pull: 4823
+      - url: https://github.com/jenkinsci/windows-slave-installer-module/releases/tag/windows-slave-installer-2.0
+        title: Windows Agent Installer 2.0 变更日志
+    authors:
+    - NextTurn
+    - oleg-nenashev
+    message: |-
+      内部: 使用内置的 WinSW 功能进行权限提升和强加密。
+  - type: rfe
+    category: internal
+    pull: 4831
+    references:
+      - pull: 4832
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.4
+        title: Remoting 4.4 变更日志
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.5
+        title: Remoting 4.5 变更日志
+    authors:
+    - jeffret-b
+    message: |-
+      内部: 升级到 Remoting 4.5。
+      这会将 agent.jar 和 remoting.jar 切换到 CDF 拥有的代码签名证书。
+  - type: rfe
+    category: internal
+    pull: 4741
+    issue: 60866
+    authors:
+    - Wadeck
+    message: |-
+      内部: 从布局中删除内联资源。
+  - type: rfe
+    category: internal
+    pull: 4847
+    authors:
+    - oleg-nenashev
+    message: |-
+      内部: 记录 Jenkins 核心问题分类指南。
+    references:
+      - url: https://github.com/jenkinsci/jenkins/blob/master/docs/MAINTAINERS.adoc#issue-triage
+        title: 文档
+
+  # pull: 4759 (PR title: add compilerArg <code>-Xpkginfo:always</code> for useIncrementalCompilation which make build fast)
+  # pull: 4800 (PR title: less cleanup to reduce warnings by stylelint)
+  # pull: 4822 (PR title: Added English localization for "orchestration")
+  # pull: 4836 (PR title: Update README: Governance, Adopters and more links)
+  # pull: 4837 (PR title: Document the weekly release line in README and the Maintainer guide)
+  # pull: 4845 (PR title: Minor refactorings either for performance or readability)
+  # pull: 4846 (PR title: tests: minor refactorings either for performance or readability)
+  # pull: 4856 (PR title: Add .factorypath to .gitignore)
+
+- version: 2.249
+  date: 2020-07-24
+  changes:
+  - type: major bug
+    category: bug
+    pull: 4864
+    issue: 63168
+    authors:
+    - daniel-beck
+    message: |-
+      为某些构建步骤构建环境时，不再抛出异常（由 2.248 引入的缺陷的回归）。
+      特别是，对 Powershell 插件中的 Powershell 步骤有影响。
+  - type: rfe
+    category: rfe
+    pull: 4858
+    authors:
+    - fqueiruga
+    message: |-
+      对齐插件管理器表标题。
+  - type: bug
+    category: bug
+    pull: 4861
+    authors:
+    - fqueiruga
+    message: |-
+      修复了某些元素的标题（例如授权矩阵）的样式错误的问题。
+
+  # pull: 4857 (PR title: Add the Core Infrastructure Initiative Badge to README)
+  # pull: 4859 (PR title: Use support-log-formatter from jetty:run)
+  # pull: 4862 (PR title: Add badges for Regular and LTS releases)
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
