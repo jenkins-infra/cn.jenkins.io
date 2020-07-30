@@ -8,6 +8,34 @@ notitle: true
 
 每个部分涵盖了从之前的 LTS 版本升级，2.235.1 的部分涵盖了自 2.222.4 以来的升级。 
 
+=== 升级到 Jenkins LTS 2.235.3
+
+==== 仓库签名密钥更新
+
+从 Jenkins LTS link:/changelog-stable/#v2.235.3[2.235.3] 版开始，将使用与每周仓库签名相同的 GPG 密钥对稳定的仓库进行签名。 Linux 系统管理员**必须**在 Linux 服务器上安装新的签名密钥，**然后**再安装 Jenkins 2.235.3。
+
+===== Debian/Ubuntu
+
+使用以下命令更新兼容 Debian 的操作系统（Debian、Ubuntu 和 Linux Mint Debian Edition 等）：
+
+.Debian/Ubuntu
+[source,bash]
+----
+# wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+----
+
+===== Red Hat/CentOS
+
+Update Red Hat compatible operating systems (Red Hat Enterprise Linux, CentOS, Fedora, Oracle Linux, Scientific Linux, etc.) 使用以下命令更新与 Red Hat 兼容的操作系统（Red Hat Enterprise Linux、CentOS、Fedora、Oracle Linux 和 Scientific Linux 等）：
+
+.Red Hat/CentOS
+[source,bash]
+----
+# rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+----
+
+有关更多详细信息，请参见link:/blog/2020/07/27/repository-signing-keys-changing/[博客文章]。
+
 
 === 升级到 Jenkins LTS 2.235.2
 
