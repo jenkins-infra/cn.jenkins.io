@@ -10,11 +10,11 @@ notitle: true
 
 === 升级到 Jenkins LTS 2.235.5
 
-==== Docker Alpine image overhaul
+==== Docker Alpine 镜像大修
 
-The base images of the Alpine-based Docker images for Jenkins (`jenkins/jenkins:lts-alpine` and similar) and various agent images have been replaced and are now based on images provided by the AdoptOpenJDK project.
+基于 Alpine 的 Jenkins Docker 镜像（`jenkins/jenkins:lts-alpine` 和类似镜像）的基础镜像和各种代理程序镜像已被替换，现在是基于 AdoptOpenJDK 项目提供的镜像。
 
-For details, see the release notes:
+有关详细信息，请参见发行说明:
 
 // TODO Release note for core image
 * https://github.com/jenkinsci/docker-agent/releases/tag/4.3-8
