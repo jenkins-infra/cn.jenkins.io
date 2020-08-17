@@ -2691,7 +2691,7 @@
       更新 Jenkins 长期支持仓库的 Debian 和 Red Hat 仓库的签名密钥。
     references:
       - url: /blog/2020/07/27/repository-signing-keys-changing/
-        title: announcement and upgrade guidelines
+        title: 公告与升级指南
     authors:
       - olblak
 
