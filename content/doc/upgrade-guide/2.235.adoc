@@ -24,48 +24,48 @@ notitle: true
 
 === 升级到 Jenkins LTS 2.235.4
 
-==== New Windows Installer
+==== 新的 Windows 安装程序
 
-Beginning with Jenkins LTS release link:/changelog-stable/#v2.235.3[2.235.3], the same Windows installer is used in the stable release as has been used since April 2020 in the weekly release.
-The new Windows installer was announced in a link:/blog/2019/02/01/windows-installers/[blog post].
+从 Jenkins LTS link:/changelog-stable/#v2.235.3[2.235.3] 版开始，稳定版中使用的 Windows 安装程序与自 2020 年 4 月以来在每周版本中使用的 Windows 安装程序相同。
+在link:/blog/2019/02/01/windows-installers/[博客]中宣布了新的 Windows 安装程序。
 
-Jenkins administrators on Windows may choose to continue using and upgrading their existing installation using the mechanism in the Jenkins UI, or they may choose to migrate to the new Windows installer.
+Windows 上的 Jenkins 管理员可以选择使用 Jenkins UI 中的机制继续使用和升级其现有安装，也可以选择迁移到新的 Windows 安装程序。
 
-===== Upgrade with existing installation
+===== 使用现有安装升级
 
-Jenkins administrators on Windows are offered new Jenkins versions from within the "Manage Jenkins" page of their installation.
-After the initial installation of Jenkins on Windows, administrators perform upgrades through the "Manage Jenkins" page.
-Administrators generally do not use the Jenkins MSI installer to perform a Jenkins upgrade because the upgrade is simple and easy from within Jenkins itself.
+Windows Jenkins 管理员可以从其安装的“管理Jenkins” 页面中获得新的 Jenkins版本。
+在 Windows 上初始安装 Jenkins 之后，管理员可以通过“管理 Jenkins” 页面执行升级。
+管理员通常不使用 Jenkins MSI 安装程序来执行 Jenkins升级，因为从 Jenkins 自身内部升级很容易。
 
-Administrators that choose to continue using their existing installation will continue to be able to upgrade to new Jenkins versions.
-Settings in the Jenkins installation can be modified by editing the `jenkins.exe.config` file and other configuration files.
+选择继续使用其现有安装的管理员将能够继续升级到新的 Jenkins 版本。
+可以通过编辑 `jenkins.exe.config` 文件和其他配置文件来修改 Jenkins 安装中的设置。
 
-In this configuration, Jenkins will continue to use the 32 bit Java Runtime Environment that was included with the previous installer unless `jenkins.exe.config` has been modified to use a 64 bit Java Runtime Environment.
-It will similarly continue to use the default port and service account unless it has been modified locally.
+在此配置中，除非将 `jenkins.exe.config` 修改为使用 64 位 Java 运行时环境，否则 Jenkins 将继续使用先前安装程序随附的 32 位 Java 运行时环境。
+除非已在本地进行修改，否则它将继续使用默认端口和服务帐户。
 
-===== Upgrade with new Windows Installer
+===== 使用新的 Windows 安装程序升级
 
-The new Windows installer provides the following additional features:
+新的Windows安装程序提供以下附加功能：
 
-* Choose a 64 bit Java 8 or 64 bit Java 11 installation to run Jenkins
-* Choose the port that Jenkins will use
-* Choose the user account and password that will run the Jenkins service
+* 选择 64 位 Java 8 或 64 位 Java 11 安装以运行 Jenkins
+* 选择 Jenkins 要使用的端口号
+* 选择运行 Jenkins 服务的账户密码
 
-In addition to those choices, the Jenkins home directory is created in the standard AppData location rather than in `C:\Program Files (x86)\Jenkins`.
-You'll find the Jenkins home directory in the `%LocalAppData%` of the user account that runs the Jenkins service.
-For example, if the user account running the Jenkins service is named `jservice`, then the Jenkins home directory will be in `C:\Users\jservice\AppData\Local\Jenkins.jenkins`.
-Once Jenkins is running, the 'System Information' page within 'Manage Jenkins' displays the properties and variables that describe the Jenkins installation.
+除了这些选择之外，还将在标准 AppData 位置而不是 `C:\Program Files (x86)\Jenkins` 中创建 Jenkins 主目录。
+您可以在运行 Jenkins 服务的用户帐户的 `%LocalAppData%` 中找到 Jenkins 主目录。
+例如，如果运行 Jenkins 服务的用户帐户名为 `jservice`，则 Jenkins 主目录将位于 `C:\Users\jservice\AppData\Local\Jenkins.jenkins` 中。
+Jenkins 运行后，“管理Jenkins”中的“系统信息”页面将显示描述 Jenkins 安装的属性和变量。
 
-Upgrading an existing Windows installation to the new installer requires:
+将现有 Windows 安装升级到新安装程序需要：
 
-. Stop and disable the existing Jenkins service from the Windows Service Manager
-. Run the new installer to create the new installation with desired settings
-. Stop the newly installed Jenkins service
-. Copy existing Jenkins configuration files to the new Jenkins home directory
-. Start the newly installed Jenkins service
-. Confirm newly installed Jenkins service is behaving as expected
+. 从 Windows 服务管理器停止并禁用现有的 Jenkins 服务
+. 运行新安装程序以使用所需设置创建新安装
+. 停止新安装的 Jenkins 服务
+. 将现有的 Jenkins 配置文件复制到新的 Jenkins 主目录
+. 启动新安装的 Jenkins 服务
+. 确认新安装的 Jenkins 服务的行为符合预期
 
-See the link:/blog/2019/02/01/windows-installers/[Windows installer blog post] for more details.
+有关更多详细信息，请参见 link:/blog/2019/02/01/windows-installers/[Windows 安装程序博客文章]。
 
 
 === 升级到 Jenkins LTS 2.235.3
