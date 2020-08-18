@@ -33,7 +33,7 @@ Windows 上的 Jenkins 管理员可以选择使用 Jenkins UI 中的机制继续
 
 ===== 使用现有安装升级
 
-Windows Jenkins 管理员可以从其安装的“管理Jenkins” 页面中获得新的 Jenkins版本。
+Windows Jenkins 管理员可以从其安装的“管理 Jenkins” 页面中获得新的 Jenkins 版本。
 在 Windows 上初始安装 Jenkins 之后，管理员可以通过“管理 Jenkins” 页面执行升级。
 管理员通常不使用 Jenkins MSI 安装程序来执行 Jenkins升级，因为从 Jenkins 自身内部升级很容易。
 
