@@ -8,6 +8,94 @@ notitle: true
 
 每个部分涵盖了从之前的 LTS 版本升级，2.235.1 的部分涵盖了自 2.222.4 以来的升级。 
 
+=== 升级到 Jenkins LTS 2.235.5
+
+==== Docker Alpine 镜像大修
+
+基于 Alpine 的 Jenkins Docker 镜像（`jenkins/jenkins:lts-alpine` 和类似镜像）的基础镜像和各种代理程序镜像已被替换，现在是基于 AdoptOpenJDK 项目提供的镜像。
+
+有关详细信息，请参见发行说明:
+
+// TODO Release note for core image
+* https://github.com/jenkinsci/docker-agent/releases/tag/4.3-8
+* https://github.com/jenkinsci/docker-inbound-agent/releases/tag/4.3-9
+* https://github.com/jenkinsci/docker-ssh-agent/releases/tag/3.0.0
+
+
+=== 升级到 Jenkins LTS 2.235.4
+
+==== 新的 Windows 安装程序
+
+从 Jenkins LTS link:/changelog-stable/#v2.235.3[2.235.3] 版开始，稳定版中使用的 Windows 安装程序与自 2020 年 4 月以来在每周版本中使用的 Windows 安装程序相同。
+在link:/blog/2019/02/01/windows-installers/[博客]中宣布了新的 Windows 安装程序。
+
+Windows 上的 Jenkins 管理员可以选择使用 Jenkins UI 中的机制继续使用和升级其现有安装，也可以选择迁移到新的 Windows 安装程序。
+
+===== 使用现有安装升级
+
+Windows Jenkins 管理员可以从其安装的“管理 Jenkins” 页面中获得新的 Jenkins 版本。
+在 Windows 上初始安装 Jenkins 之后，管理员可以通过“管理 Jenkins” 页面执行升级。
+管理员通常不使用 Jenkins MSI 安装程序来执行 Jenkins 升级，因为从 Jenkins 自身内部升级很容易。
+
+选择继续使用其现有安装的管理员将能够继续升级到新的 Jenkins 版本。
+可以通过编辑 `jenkins.exe.config` 文件和其他配置文件来修改 Jenkins 安装中的设置。
+
+在此配置中，除非将 `jenkins.exe.config` 修改为使用 64 位 Java 运行时环境，否则 Jenkins 将继续使用先前安装程序随附的 32 位 Java 运行时环境。
+除非已在本地进行修改，否则它将继续使用默认端口和服务帐户。
+
+===== 使用新的 Windows 安装程序升级
+
+新的Windows安装程序提供以下附加功能：
+
+* 选择 64 位 Java 8 或 64 位 Java 11 安装以运行 Jenkins
+* 选择 Jenkins 要使用的端口号
+* 选择运行 Jenkins 服务的账户密码
+
+除了这些选择之外，还将在标准 AppData 位置而不是 `C:\Program Files (x86)\Jenkins` 中创建 Jenkins 主目录。
+您可以在运行 Jenkins 服务的用户帐户的 `%LocalAppData%` 中找到 Jenkins 主目录。
+例如，如果运行 Jenkins 服务的用户帐户名为 `jservice`，则 Jenkins 主目录将位于 `C:\Users\jservice\AppData\Local\Jenkins.jenkins` 中。
+Jenkins 运行后，“管理 Jenkins” 中的“系统信息”页面将显示描述 Jenkins 安装的属性和变量。
+
+将现有 Windows 安装升级到新安装程序需要：
+
+. 从 Windows 服务管理器停止并禁用现有的 Jenkins 服务
+. 运行新安装程序以使用所需设置创建新安装
+. 停止新安装的 Jenkins 服务
+. 将现有的 Jenkins 配置文件复制到新的 Jenkins 主目录
+. 启动新安装的 Jenkins 服务
+. 确认新安装的 Jenkins 服务的行为符合预期
+
+有关更多详细信息，请参见 link:/blog/2019/02/01/windows-installers/[Windows 安装程序博客文章]。
+
+
+=== 升级到 Jenkins LTS 2.235.3
+
+==== 仓库签名密钥更新
+
+从 Jenkins LTS link:/changelog-stable/#v2.235.3[2.235.3] 版开始，将使用与每周仓库签名相同的 GPG 密钥对稳定的仓库进行签名。 Linux 系统管理员**必须**在 Linux 服务器上安装新的签名密钥，**然后**再安装 Jenkins 2.235.3。
+
+===== Debian/Ubuntu
+
+使用以下命令更新兼容 Debian 的操作系统（Debian、Ubuntu 和 Linux Mint Debian Edition 等）：
+
+.Debian/Ubuntu
+[source,bash]
+----
+# wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+----
+
+===== Red Hat/CentOS
+
+Update Red Hat compatible operating systems (Red Hat Enterprise Linux, CentOS, Fedora, Oracle Linux, Scientific Linux, etc.) 使用以下命令更新与 Red Hat 兼容的操作系统（Red Hat Enterprise Linux、CentOS、Fedora、Oracle Linux 和 Scientific Linux 等）：
+
+.Red Hat/CentOS
+[source,bash]
+----
+# rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+----
+
+有关更多详细信息，请参见link:/blog/2020/07/27/repository-signing-keys-changing/[博客文章]。
+
 
 === 升级到 Jenkins LTS 2.235.2
 
