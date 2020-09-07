@@ -6798,7 +6798,7 @@
     authors:
     - timja
     message: |-
-      全局/系统读取 权限正式变为整体可用 (GA) 状态。
+      “全局/系统读取”权限正式变为“整体可用 (GA) ” 状态。
   - type: rfe
     category: rfe
     pull: 4910
