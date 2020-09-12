@@ -17,9 +17,9 @@ image::/images/post-images/2020/07-windows-support-updates/winsw-logo.png[title=
 从此版本开始，我们将不支持 .NET Framework 2.0 将 Jenkins 控制器或代理作为 Windows 服务启动。
 现在，使用默认服务管理功能需要 Microsoft.NET Framework 4.0 或更高版本。
 
-此版本还将 [Windows Service Wrapper (WinSW)](https://github.com/winsw/winsw) 从 2.3.0 升级到 2.9.0，并将捆绑的二进制文件从 .NET Framework 2.0 升级到 4.0。
-这些版本有许多改进和修正，非常感谢 [NextTurn](https://github.com/NextTurn) 和所有其他贡献者。
-[此处](https://github.com/winsw/winsw/releases)，您可以找到完整的 WinSW 变更日志，以下是对 Jenkins 用户重要的一些要点：
+此版本还将 link:https://github.com/winsw/winsw[Windows Service Wrapper (WinSW)] 从 2.3.0 升级到 2.9.0，并将捆绑的二进制文件从 .NET Framework 2.0 升级到 4.0。
+这些版本有许多改进和修正，非常感谢 link:https://github.com/NextTurn[NextTurn] 和所有其他贡献者。
+link:https://github.com/winsw/winsw/releases[这里]，您可以找到完整的 WinSW 变更日志，以下是对 Jenkins 用户重要的一些要点：
 
 
 * 当需要管理访问权限时，提示权限提升。
@@ -42,8 +42,8 @@ WinSW 中的某些更改也替代了 Jenkins 核心中的旧办法，使代码�
 * 通过 Web U I将 Jenkins 控制器安装为 Windows 服务。
   官方的 MSI 安装程序目前支持 .NET Framework 2.0，但将来的版本中将对其进行更改。
 * 通过 GUI 将代理安装为 Windows 服务。
-  Jenkins 核心中 [Windows 代理安装程序模块](https://github.com/jenkinsci/windows-slave-installer-module)提供了此功能。
-* 通过 [WMI Windows 代理](https://plugins.jenkins.io/windows-slaves) 插件在 Windows Management Instrumentation（WMI）安装代理。
+  Jenkins 核心中的 link:https://github.com/jenkinsci/windows-slave-installer-module[Windows Agent Installer Module] 提供了此功能。
+* 通过 plugin:windows-slaves[WMI Windows Agents] 插件在 Windows Management Instrumentation（WMI）安装代理。
 * 在从 GUI 安装的代理上自动更新 Windows 服务包装程序。
 
 ===== 升级指南
@@ -57,4 +57,4 @@ WinSW 中的某些更改也替代了 Jenkins 核心中的旧办法，使代码�
 如果您想继续使用 .NET Framework 2.0 运行某些代理，需要以下额外的升级步骤：
 
 1. 通过在 Jenkins 控制器端的设置 `-Dorg.jenkinsci.modules.windows_slave_installer.disableAutoUpdate=true` 选项在代理上禁用 Windows Service Wrapper 的自动升级
-2. 通过从 [WinSW GitHub Releases](https://github.com/winsw/winsw/releases) 下载最新的 Windows Service Wrapper 2.x，使用 .NET Framework 4.0+ 升级代理，并手动替换代理工作区中的包装器“ .exe”文件。
+2. 通过从 link:https://github.com/winsw/winsw/releases[WinSW GitHub Releases] 下载最新的 Windows Service Wrapper 2.x，使用 .NET Framework 4.0+ 升级代理，并手动替换代理工作区中的包装器“ .exe”文件。
