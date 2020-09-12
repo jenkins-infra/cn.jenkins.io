@@ -4,7 +4,7 @@ title:  Jenkins 升级指南
 notitle: true
 ---
 
-== 升级到 Jenkins LTS 2.235.x
+== 升级到 Jenkins LTS 2.249.x
 
 每个部分涵盖了从之前的 LTS 版本升级，2.249.1 的部分涵盖了自 2.235.5 以来的升级。 
 
