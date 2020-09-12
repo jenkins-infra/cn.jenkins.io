@@ -2755,6 +2755,403 @@
       - url: /doc/upgrade-guide/2.235/#docker-alpine-image-overhaul
         title: 升级指南
 
+- version: "2.249.1"
+  date: 2020-09-09
+  lts_predecessor: "2.235.5"
+  lts_baseline: "2.249"
+
+  changes: # compared to lts_baseline 2.249 - extracted from the RC commit(s)
+
+  - type: security
+    message: Jenkins 2.252 和 2.235.4 的重要安全修复。
+    references:
+      - url: /security/advisory/2020-08-12/
+        title: 安全公告
+    authors:
+      - daniel-beck
+      - wadeck
+  - type: major bug
+    category: regression
+    pull: 4912
+    issue: 63458
+    authors:
+    - jglick
+    message: |-
+      停止预格式化代理日志以防止死锁(由 2.231 引入的缺陷回归)。
+  - type: major bug
+    category: regression
+    pull: 4897
+    issue: 63274
+    authors:
+    - Wadeck
+    message: |-
+      修复将 API token 复制到剪贴板的按钮(由 2.238 引入的缺陷回归)。
+  - type: major bug
+    category: regression
+    pull: 4870
+    issue: 63180
+    authors:
+    - fqueiruga
+    message: |-
+      将包装选项卡还原为多行，而不是溢出(由 2.248 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    references:
+      - url: https://github.com/jenkinsci/dark-theme-plugin/issues/126
+        title: 修复暗黑主题中的面包屑刷新
+    issue: 63285
+    pull: 4867
+    authors:
+    - fqueiruga
+    message: |-
+      标准化小部件颜色，使其与新调色板一致。
+  - type: bug
+    category: regression
+    pull: 4892
+    issue: 63276
+    authors:
+    - fqueiruga
+    message: |-
+      空的已安装插件表文本将再次可读(由 2.249 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 4893
+    issue: 63232
+    authors:
+    - Wadeck
+    message: |-
+      在“构建时间趋势”页面中显示构建时间数据(由 2.245 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 4863
+    issue: 63166
+    authors:
+    - takashiharano
+    message: |-
+      在日语文档和消息中用 agent 替换对 slave 的文本引用。
+  - type: bug
+    category: regression
+    pull: 4901
+    issue: 63342
+    authors:
+    - francoiscampbell
+    message: |-
+      修复退格键有时无法从 Mac 上的脚本控制台删除文本的问题 (由 2.248 引入的缺陷回归)。
+  - type: bug
+    category: regression
+    pull: 4896
+    issue: 63308
+    authors:
+    - timja
+    message: |-
+      修复正则表达式验证器 UI 位置 (由 2.244 引入的缺陷回归)。
+  - type: rfe
+    category: rfe
+    pull: 4850
+    issue: 61687
+    authors:
+    - gmshake
+    message: |-
+      防止并发构建删除。
+
+  lts_changes: # compared to lts_predecessor 2.235.5 (selected by personal review)
+
+  # Major user experience improvements
+  - type: major rfe
+    category: major rfe
+    pull: 4752
+    authors:
+    - 95jonpet
+    - timja
+    - fqueiruga
+    references:
+      - issue: 60924
+      - pull: 4752
+      - issue: 62515
+      - pull: 4763
+      - pull: 4772
+      - pull: 4814
+      - pull: 4842
+      - pull: 4843
+      - url: https://github.com/jenkinsci/dark-theme
+        title: 暗黑主题仓库
+      - url: https://cd.foundation/blog/2020/08/04/introducing-the-jenkins-dark-theme/
+        title: Jenkins 暗黑主题简介
+    message: |-
+      发布 'alpha' 版本暗黑主题。
+
+  # Major Windows Support Updates
+  - type: major rfe
+    category: major rfe
+    pull: 4823
+    references:
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/
+        title: 公告
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/#use-cases-affected-by-net-framework-2-0-support-removal
+        title: 升级指南
+      - issue: 60005
+      - issue: 61862
+      - url: https://www.jenkins.io/doc/administration/requirements/windows/
+        title: Windows 支持策略
+    authors:
+    - NextTurn
+    - oleg-nenashev
+    message: |-
+      停止支持 .NET Framework 2.0 将 Jenkins 服务器和代理作为 Windows 服务启动。
+      需要 .NET Framework 4.0 或更高版本。
+  - type: major rfe
+    category: major rfe
+    pull: 4823
+    references:
+      - url: https://www.jenkins.io/blog/2020/07/23/windows-support-updates/#windows-service-management-changes-in-jenkins-2-248
+        title: 变更摘要
+      - url: https://github.com/winsw/winsw/releases
+        title: 完整的 WinSW 变更日志
+      - url: https://github.com/jenkinsci/windows-slave-installer-module/releases/tag/windows-slave-installer-2.0
+        title: Windows Agent Installer 2.0 变更日志
+    authors:
+    - NextTurn
+    - oleg-nenashev
+    message: |-
+      将 Windows Service Wrapper（WinSW） 从 基于.NET Framework 2.0 的 2.3.0 可执行文件更新为 基于 .NET Framework 4.0 的 2.9.0 版本。
+      包括许多改进和错误修正。
+      最值得注意的是，如果需要，服务安装程序现在将要求权限提升。
+
+  # Plugin manager improvements
+  - type: rfe
+    category: rfe
+    pull: 4073
+    issue: 59136
+    references:
+      - pull: 4073
+      - issue: 59136
+      - pull: 4742
+      - issue: 62332
+    authors:
+    - jetersen
+    - daniel-beck
+    message: |-
+      当存在较新版本的插件，但由于需求未满足而未提供时，在插件管理器中显示。
+      在更新管理器和管理监视器中显示<b>已弃用</b>插件的警告。
+
+  # More user experience improvements
+  - type: rfe
+    category: rfe
+    issue: 62698
+    pull: 4808
+    references:
+      - issue: 62698
+      - pull: 4808
+      - issue: 61973
+      - pull: 4700
+      - issue: 62750
+      - pull: 4816
+      - issue: 56109
+      - pull: 4820
+      - issue: 63002
+      - pull: 4835
+      - url: https://issues.jenkins-ci.org/browse/JENKINS-62437
+        title: “配置 UI 辅助功能：从表到 Divs 的迁移”
+      - pull: 4782
+      - issue: 4767
+      - issue: 62175
+    authors:
+    - fqueiruga
+    message: |-
+      为 Jenkins UI 提供更现代化的外观。
+  - type: rfe
+    category: rfe
+    pull: 4748
+    issue: 61806
+    authors:
+    - 95jonpet
+    - jglick
+    message: |-
+      从页脚中删除页面生成时间戳。
+
+  # Permissions enhancements - System read support, Overall/Manage
+  - type: rfe
+    category: rfe
+    pull: 4724
+    issue: 62264
+    references:
+      - issue: 62264
+      - pull: 4724
+      - issue: 61458
+      - pull: 4728
+    authors:
+    - amuniz
+    - timja
+    message: |-
+      允许具有“全局/管理”权限的用户配置节点监视并从磁盘重新加载配置。
+  - type: rfe
+    category: rfe
+    pull: 4531
+    issue: 61206
+    authors:
+    - timja
+    message: |-
+      添加对“节点监视配置”、配置云、查看代理配置、系统信息和日志系统读取支持。
+
+  # Jenkins command line interface
+  - type: rfe
+    category: rfe
+    pull: 4673
+    authors:
+    - sorend
+    message: |-
+      在 Jenkins-CLI <code>-auth</code> 参数中支持 Bearer token。
+
+  # Security hardening
+  - type: rfe
+    category: rfe
+    pull: 4630
+    issue: 61808
+    authors:
+    - daniel-beck
+    message: |-
+      Security hardening: Always round-trip password form control values in an encrypted form, even if not backed by an encrypted <code>Secret</code> field.
+      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> to <code>false</code> on startup.
+  - type: rfe
+    category: rfe
+    pull: 4630
+    issue: 61808
+    authors:
+    - daniel-beck
+    message: |-
+      Security hardening: Always use a placeholder value for password form control values in item related configuration forms when the user is missing Item/Configure permission, even if not backed by an encrypted <code>Secret</code> field.
+      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> to <code>false</code>.
+  - type: bug
+    category: bug
+    pull: 4823
+    authors:
+    - NextTurn
+    message: |-
+      Fix the default domain name in Windows service <code>serviceaccount</code> configurations.
+    references:
+      - issue: 12660
+      - url: https://github.com/winsw/winsw/releases/tag/v2.7.0
+        title: Windows Service Wrapper 2.7.0 changelog
+
+  # Winstone 5.10
+  - type: rfe
+    category: rfe
+    pull: 4811
+    authors:
+    - oleg-nenashev
+    references:
+      - pull: 4811
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.28.v20200408
+        title: 9.4.28.v20200408 changelog
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.29.v20200521
+        title: 9.4.29.v20200521 changelog
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.30.v20200611
+        title: 9.4.30.v20200611 changelog
+    message: |-
+      Update Winstone from 5.9 to 5.10.
+      Update Jetty from 9.4.27.v20200227 to 9.4.30.v20200611.
+      Add <code>--httpsRedirectHttp</code> option that activates automatic HTTP request redirects to HTTPs.
+  - type: bug
+    category: bug
+    pull: 4811
+    issue: 61823
+    authors:
+    - oleg-nenashev
+    message: |-
+      Fix <code>--httpKeepAliveTimeout</code> option which had no effect (regression in 2.224).
+
+  # Stapler 1.260
+  - type: bug
+    category: bug
+    pull: 4813
+    issue: 61438
+    authors:
+    - rahulsom
+    references:
+      - issue: 61438
+      - pull: 4813
+      - url: https://github.com/stapler/stapler/releases/tag/stapler-parent-1.260
+        title: Stapler 1.260 changelog
+    message: |-
+      Update Stapler from 1.259 to 1.260.
+
+  # Other fixes
+  - type: rfe
+    category: rfe
+    pull: 4683
+    issue: 62014
+    authors:
+    - daniel-beck
+    message: |-
+      Add the ability to filter out environment variables for Shell and Windows batch build steps.
+  - type: bug
+    category: bug
+    pull: 4833
+    issue: 62723
+    authors:
+    - jglick
+    - Zastai
+    message: |-
+      Fix <code>IllegalArgumentException: Method not found</code> error caused by misbehaviour in <code>Util.isOverridden()</code> (regression in 2.241).
+  - type: bug
+    category: bug
+    pull: 4839
+    issue: 63014
+    authors:
+    - jglick
+    message: |-
+      Remove the fallback Jenkins URL from the JNLP launch file so that WebSocket agents can be connected over Java Web Start.
+
+  # Fingerprint improvements
+  - type: rfe
+    category: rfe
+    pull: 4834
+    authors:
+    - stellargo
+    references:
+      - pull: 4834
+      - issue: 62345
+      - pull: 4731
+      - url: https://github.com/jenkinsci/jep/tree/master/jep/226
+        title: JEP-226
+      - url: https://javadoc.jenkins.io/hudson/model/Fingerprint.html
+        title: Fingerprint API Javadoc
+      - url: https://github.com/jenkinsci/redis-fingerprint-storage-plugin
+        title: Redis reference implementation
+    message: |-
+      Allow fingerprint storage engine to be selected from the configuration page.
+      Add new external fingerprint storage API methods.
+  - type: rfe
+    category: rfe
+    pull: 4842
+    issue: 62747
+    authors:
+    - timja
+    message: |-
+      Developer: Add <code>alert-success</code> banner.
+  - type: rfe
+    category: developer
+    pull: 4683
+    issue: 62014
+    authors:
+    - daniel-beck
+    message: |-
+      Developer: Add new extension points to define build step environment filters (currently in beta).
+  - type: rfe
+    category: internal
+    pull: 4831
+    references:
+      - pull: 4832
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.4
+        title: Remoting 4.4 changelog
+      - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.5
+        title: Remoting 4.5 changelog
+    authors:
+    - jeffret-b
+    message: |-
+      Internal: Upgrade to Remoting 4.5.
+      This switches agent.jar and remoting.jar to a code-signing certificate owned by the CDF.
+
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
