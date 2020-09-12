@@ -3010,8 +3010,8 @@
     authors:
     - daniel-beck
     message: |-
-      Security hardening: Always round-trip password form control values in an encrypted form, even if not backed by an encrypted <code>Secret</code> field.
-      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> to <code>false</code> on startup.
+      安全增强: 即使没有加密的 <code>Secret</code> 字段支持，密码形式的控制值也总是以加密形式来回传递。
+      如果出现问题，可以通过在启动时将系统属性 <code> hudson.util.Secret.AUTO_ENCRYPT_PASSWORD_CONTROL</code> 设置为 <code>false</code> 来禁用此功能。
   - type: rfe
     category: rfe
     pull: 4630
@@ -3019,19 +3019,19 @@
     authors:
     - daniel-beck
     message: |-
-      Security hardening: Always use a placeholder value for password form control values in item related configuration forms when the user is missing Item/Configure permission, even if not backed by an encrypted <code>Secret</code> field.
-      In case of problems, this can be disabled by setting the system property <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> to <code>false</code>.
+      安全增强: 当用户缺少“项目/配置”权限时，即使没有加密的 <code>Secret</code>字段支持，也请始终在项目相关的配置表单中使用占位符值作为密码表单控制值。
+      如果出现问题，可以通过将系统属性 <code>hudson.util.Secret.BLANK_NONSECRET_PASSWORD_FIELDS_WITHOUT_ITEM_CONFIGURE</code> 设置为 <code>false</code> 来禁用此功能。
   - type: bug
     category: bug
     pull: 4823
     authors:
     - NextTurn
     message: |-
-      Fix the default domain name in Windows service <code>serviceaccount</code> configurations.
+      修复 Windows 服务 <code>serviceaccount</code> 配置中的默认域名。
     references:
       - issue: 12660
       - url: https://github.com/winsw/winsw/releases/tag/v2.7.0
-        title: Windows Service Wrapper 2.7.0 changelog
+        title: Windows Service Wrapper 2.7.0 变更日志
 
   # Winstone 5.10
   - type: rfe
@@ -3042,15 +3042,15 @@
     references:
       - pull: 4811
       - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.28.v20200408
-        title: 9.4.28.v20200408 changelog
+        title: 9.4.28.v20200408 变更日志
       - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.29.v20200521
-        title: 9.4.29.v20200521 changelog
+        title: 9.4.29.v20200521 变更日志
       - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.30.v20200611
-        title: 9.4.30.v20200611 changelog
+        title: 9.4.30.v20200611 变更日志
     message: |-
-      Update Winstone from 5.9 to 5.10.
-      Update Jetty from 9.4.27.v20200227 to 9.4.30.v20200611.
-      Add <code>--httpsRedirectHttp</code> option that activates automatic HTTP request redirects to HTTPs.
+      将 Winstone 从 5.9 更新到 5.10。
+      将 Jetty 从 9.4.27.v20200227 更新到 9.4.30.v20200611。
+      添加 <code>-httpsRedirectHttp</code> 选项，以激活自动 HTTP 请求重定向到 HTTPs。
   - type: bug
     category: bug
     pull: 4811
@@ -3058,7 +3058,7 @@
     authors:
     - oleg-nenashev
     message: |-
-      Fix <code>--httpKeepAliveTimeout</code> option which had no effect (regression in 2.224).
+      修复 <code>--httpKeepAliveTimeout</code> 选项不生效的问题(由 2.224 引入的缺陷回归)。
 
   # Stapler 1.260
   - type: bug
@@ -3071,9 +3071,9 @@
       - issue: 61438
       - pull: 4813
       - url: https://github.com/stapler/stapler/releases/tag/stapler-parent-1.260
-        title: Stapler 1.260 changelog
+        title: Stapler 1.260 变更日志
     message: |-
-      Update Stapler from 1.259 to 1.260.
+      将 Stapler 从 1.259 更新到 1.260。
 
   # Other fixes
   - type: rfe
@@ -3083,7 +3083,7 @@
     authors:
     - daniel-beck
     message: |-
-      Add the ability to filter out environment variables for Shell and Windows batch build steps.
+      添加了为 Shell 和 Windows 批处理构建步骤过滤掉环境变量的功能。
   - type: bug
     category: bug
     pull: 4833
@@ -3092,7 +3092,7 @@
     - jglick
     - Zastai
     message: |-
-      Fix <code>IllegalArgumentException: Method not found</code> error caused by misbehaviour in <code>Util.isOverridden()</code> (regression in 2.241).
+      修复由 <code>Util.isOverridden()</code> 异常引起的 <code>IllegalArgumentException: Method not found</code> 错误(由 2.241 引入的缺陷回归)。
   - type: bug
     category: bug
     pull: 4839
@@ -3100,7 +3100,7 @@
     authors:
     - jglick
     message: |-
-      Remove the fallback Jenkins URL from the JNLP launch file so that WebSocket agents can be connected over Java Web Start.
+      从 JNLP 启动文件中删除返回的 Jenkins URL，以便可以通过 Java Web Start 连接 WebSocket 代理。
 
   # Fingerprint improvements
   - type: rfe
@@ -3117,10 +3117,10 @@
       - url: https://javadoc.jenkins.io/hudson/model/Fingerprint.html
         title: Fingerprint API Javadoc
       - url: https://github.com/jenkinsci/redis-fingerprint-storage-plugin
-        title: Redis reference implementation
+        title: Redis 参考实施
     message: |-
-      Allow fingerprint storage engine to be selected from the configuration page.
-      Add new external fingerprint storage API methods.
+      允许从配置页面选择指纹存储引擎。
+      添加新的外部指纹存储 API 方法。
   - type: rfe
     category: rfe
     pull: 4842
@@ -3128,7 +3128,7 @@
     authors:
     - timja
     message: |-
-      Developer: Add <code>alert-success</code> banner.
+      开发者: 添加 <code>alert-success</code> 横幅。
   - type: rfe
     category: developer
     pull: 4683
@@ -3136,21 +3136,21 @@
     authors:
     - daniel-beck
     message: |-
-      Developer: Add new extension points to define build step environment filters (currently in beta).
+      开发者: 添加新的扩展点以定义构建步骤环境过滤器（当前为 Beta 版本）。
   - type: rfe
     category: internal
     pull: 4831
     references:
       - pull: 4832
       - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.4
-        title: Remoting 4.4 changelog
+        title: Remoting 4.4 变更日志
       - url: https://github.com/jenkinsci/remoting/releases/tag/remoting-4.5
-        title: Remoting 4.5 changelog
+        title: Remoting 4.5 变更日志
     authors:
     - jeffret-b
     message: |-
-      Internal: Upgrade to Remoting 4.5.
-      This switches agent.jar and remoting.jar to a code-signing certificate owned by the CDF.
+      内部: 升级到 Remoting 4.5。
+      这会将 agent.jar 和 remoting.jar 切换到 CDF 拥有的代码签名证书。
 
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
