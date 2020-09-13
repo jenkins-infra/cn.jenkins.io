@@ -2913,7 +2913,7 @@
     - NextTurn
     - oleg-nenashev
     message: |-
-      将 Windows Service Wrapper（WinSW） 从 基于.NET Framework 2.0 的 2.3.0 可执行文件更新为 基于 .NET Framework 4.0 的 2.9.0 版本。
+      基于 .NET Framework 2.0 的  Windows Service Wrapper（WinSW） 2.3.0 可执行文件更新为 基于 .NET Framework 4.0 的 2.9.0 版本。
       包括许多改进和错误修正。
       最值得注意的是，如果需要，服务安装程序现在将要求权限提升。
 
