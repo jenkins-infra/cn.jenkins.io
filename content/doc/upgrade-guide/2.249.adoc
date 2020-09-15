@@ -1,0 +1,60 @@
+---
+layout: documentation
+title:  Jenkins 升级指南
+notitle: true
+---
+
+== 升级到 Jenkins LTS 2.249.x
+
+每个部分涵盖了从之前的 LTS 版本升级，2.249.1 的部分涵盖了自 2.235.5 以来的升级。 
+
+=== 升级到 Jenkins LTS 2.249.1
+
+==== 移除对 Microsoft .NET Framework 2.0 的支持
+
+image::/images/post-images/2020/07-windows-support-updates/winsw-logo.png[title="WinSW Logo", float=right, width="224px"]
+
+从此版本开始，我们将不支持 .NET Framework 2.0 将 Jenkins 控制器或代理作为 Windows 服务启动。
+现在，使用默认服务管理功能需要 Microsoft.NET Framework 4.0 或更高版本。
+
+此版本还将 link:https://github.com/winsw/winsw[Windows Service Wrapper (WinSW)] 从 2.3.0 升级到 2.9.0，并将捆绑的二进制文件从 .NET Framework 2.0 升级到 4.0。
+这些版本有许多改进和修正，非常感谢 link:https://github.com/NextTurn[NextTurn] 和所有其他贡献者。
+link:https://github.com/winsw/winsw/releases[这里]，您可以找到完整的 WinSW 变更日志，以下是对 Jenkins 用户重要的一些要点：
+
+
+* 当需要管理访问权限时，提示权限提升。
+   现在，Jenkins 用户无需以管理员身份运行代理进程即可通过 GUI 将代理安装为服务。
+* 在 Windows 7 和 Windows Server 2008 R2 的 .NET Framework 4.0 程序包中启用TLS 1.1/1.2。
+* 在 .NET 4.6 上运行 .NET Framework 4.0 二进制文件时，请启用强加密。
+* 在 Windows 服务定义中支持安全描述符字符串。
+* 支持 'If-Modified-Since' 和代理设置以进行自动下载。
+* 修复了 Runaway Process Killer 扩展，以便它不会在启动时杀死具有相同 PID 的错误进程。
+* 在 `serviceaccount` 参数中修复默认域名（jira：JENKINS-12660 []）。
+* 修正在“按大小滚动时间”模式下对旧日志的归档。
+
+如您所见，此版本有许多改进，我们希望这将使 Windows 服务安装更加可靠。
+WinSW 中的某些更改也替代了 Jenkins 核心中的旧办法，使代码更具可维护性。
+
+===== 受不再支持 .NET Framework 2.0 影响的用例
+
+如果您使用 .NET Framework 2.0 运行 Jenkins Windows 服务，以下用例可能会受到影响：
+
+* 通过 Web U I将 Jenkins 控制器安装为 Windows 服务。
+  官方的 MSI 安装程序目前支持 .NET Framework 2.0，但将来的版本中将对其进行更改。
+* 通过 GUI 将代理安装为 Windows 服务。
+  Jenkins 核心中的 link:https://github.com/jenkinsci/windows-slave-installer-module[Windows Agent Installer Module] 提供了此功能。
+* 通过 plugin:windows-slaves[WMI Windows Agents] 插件在 Windows Management Instrumentation（WMI）安装代理。
+* 在从 GUI 安装的代理上自动更新 Windows 服务包装程序。
+
+===== 升级指南
+
+如果您所有的 Jenkins 控制器和代理实例都已使用 .NET Framework 4.0或更高版本，不需要任何特殊的升级步骤。
+请享受新功能！
+
+如果您通过 .NET Framework 2.0 将 Jenkins 控制器作为 Windows 服务运行，此实例需要将 .NET Framework 升级到 4.0 或更高版本。
+我们建议使用 .NET Framework 4.6.1 或更高版本，因为此 .NET 版本默认提供许多平台功能（例如 TLS 1.2 加密和强大的加密技术），Windows Service Wrapper 不必应用自定义解决方法。
+
+如果您想继续使用 .NET Framework 2.0 运行某些代理，需要以下额外的升级步骤：
+
+1. 通过在 Jenkins 控制器端的设置 `-Dorg.jenkinsci.modules.windows_slave_installer.disableAutoUpdate=true` 选项在代理上禁用 Windows Service Wrapper 的自动升级。
+2. 通过从 link:https://github.com/winsw/winsw/releases[WinSW GitHub Releases] 下载最新的 Windows Service Wrapper 2.x，使用 .NET Framework 4.0+ 升级代理，并手动替换代理工作区中的包装器 “.exe” 文件。
