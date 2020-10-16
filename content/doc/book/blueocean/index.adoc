@@ -131,7 +131,7 @@ in link:../pipeline/getting-started[Pipeline入门]中关于经典UI的更多信
 
 可扩展性是Jenkins的核心特性，因此，扩展Blue Ocean UI非常重要。
 `<ExtensionPoint name=..>`可以被用作Blue Ocean的标记，为插件流出位置来作用于Blue Ocean UI（即插件可以拥有自己的Blue Ocean
-扩展点，就像现在在Jenkins里面一样），到目前位置，Blue Ocean 本身也是基于这些扩展点实现的。
+扩展点，就像现在在Jenkins里面一样），到目前为止，Blue Ocean 本身也是基于这些扩展点实现的。
 
 扩展程序通常由插件提供，但是，插件开发者需要引入一些额外的javaScript 以关联Blue Ocean扩展点，为
 Blue Ocean用户体验做出贡献。
