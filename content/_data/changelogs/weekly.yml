@@ -7100,7 +7100,7 @@
     authors:
     - benebsiny
     message: |-
-      繁体中文翻译中的“从”引用替换为“代理”。
+      繁体中文翻译中的 “slave” 引用替换为 “agent”。
   - type: bug
     category: bug
     pull: 4980
