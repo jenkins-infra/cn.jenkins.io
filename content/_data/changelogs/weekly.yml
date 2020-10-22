@@ -7108,7 +7108,7 @@
     authors:
     - MarkEWaite
     message: |-
-      使用“代理到控制器”来描述代理访问控制系统，而不是“代理到主控”。
+      使用 “Agent to controller” 来描述代理访问控制系统，而不是 “Agent to master”。
   - type: bug
     category: bug
     pull: 4978
