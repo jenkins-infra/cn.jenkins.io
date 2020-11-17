@@ -7440,7 +7440,7 @@
     authors:
     - jsoref
     message: |-
-      对资源根 URL 设置进行少量英语清除。
+      对英文资源根 URL 设置进行少量清理。
   - type: major rfe
     category: developer
     pull: 4944
