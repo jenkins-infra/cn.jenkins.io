@@ -7267,6 +7267,250 @@
   # pull: 5004 (PR title: removed dc-license.txt)
   # pull: 5007 (PR title: Improve tests for Labels)
 
+- version: '2.264'
+  date: 2020-10-27
+  changes:
+  - type: major rfe
+    category: major rfe
+    pull: 3895
+    issue: 56109
+    authors:
+    - jsoref
+    - timja
+    - fqueiruga
+    message: |-
+      将 Jenkins 配置 UI 从表更改为 div，以进行表单布局。
+  - type: rfe
+    category: rfe
+    pull: 5034
+    issue: 64035
+    authors:
+    - oleg-nenashev
+    references:
+      - issue: 64035
+      - url: https://github.com/jenkinsci/winstone/releases/tag/winstone-5.12
+        title: Winstone 5.12 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.31.v20200723
+        title: Jetty 9.4.31.v20200723 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.32.v20200930
+        title: Jetty 9.4.32.v20200930 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.33.v20201020
+        title: Jetty 9.4.33.v20201020 变更日志
+    message: |-
+      Winstone 5.12: 将 Jetty 从 9.4.30.v20200611 更新到 9.4.33.v20201020。
+  - type: bug
+    category: bug
+    pull: 4985
+    authors:
+    - Wadeck
+    message: |-
+      清理 “esclave” 参考并修复法语本地化中的工作术语。
+  - type: bug
+    category: bug
+    pull: 5010
+    issue: 35452
+    authors:
+    - jeffret-b
+    message: |-
+      将用于获取入站代理配置文件的标准 URL 从 <code>${agent_url}/slave-agent.jnlp</code> 挂接到 <code>${agent_url}/jenkins-agent.jnlp</code>。
+      旧名称已过时，以后将被删除。
+  - type: bug
+    category: bug
+    pull: 5013
+    issue: 63868
+    authors:
+    - oleg-nenashev
+    message: |-
+      当用户具有“发现”权限而没有“读取文件夹”权限时，防止“构建历史记录”小组件崩溃。
+
+  # pull: 4993 (PR title: Made small changes to make the README and CONTRIBUTING files easier to follow)
+  # pull: 5020 (PR title: Bump release-drafter/release-drafter from v5.11.0 to v5.12.1)
+  # pull: 5031 (PR title: Fix JS tests failing on master)
+  # pull: 5032 (PR title: Commenting out part of FunctionsTest.printThrowable which fails in JDK 11.0.9+)
+
+- version: '2.265'
+  date: 2020-11-03
+  changes:
+  - type: rfe
+    category: rfe
+    pull: 5035
+    issue: 64039
+    authors:
+    - jtnord
+    message: |-
+      当身份验证领域不区分大小写时，提高授权策略的性能。
+  - type: rfe
+    category: rfe
+    pull: 5009
+    authors:
+    - aHenryJard
+    message: |-
+      用户配置中的令牌段落和根面包屑（“仪表板”）的法语翻译。
+  - type: bug
+    category: bug
+    pull: 5038
+    issue: 62985
+    authors:
+    - jglick
+    message: |-
+      修复查看损坏的构建日志时文件句柄泄漏的问题。
+  - type: bug
+    category: bug
+    pull: 5037
+    issue: 63899
+    authors:
+    - res0nance
+    message: |-
+      修复使用空格或非拉丁字符重命名任务时的重定向。
+  - type: rfe
+    category: developer
+    pull: 5039
+    authors:
+    - jglick
+    message: |-
+      开发者: 启用 <code>UnbufferedBase64InputStream</code>。
+  - type: rfe
+    category: developer
+    pull: 5026
+    authors:
+    - jglick
+    message: |-
+      开发者: 为 <code>XMLUtils</code> 添加更好的解析重载。
+  - type: rfe
+    category: internal
+    pull: 5030
+    issue: 60866
+    authors:
+    - Wadeck
+    message: |-
+      内部: 删除 LoadStatistics 的内联资源。
+  - type: bug
+    category: internal
+    pull: 5041
+    authors:
+    - Wadeck
+    message: |-
+      内部: 更正对 <code>TokenUuidAndPlainValue</code> 的限制范围。
+
+  # pull: 5005 (PR title: Fixed eslint warnings of type no-mixed-spaces-and-tabs)
+  # pull: 5006 (PR title: Stylelint fixes)
+  # pull: 5027 (PR title: Hacktoberfest - Use StandardCharsets except deprecated Charsets from Apache Commons)
+  # pull: 5029 (PR title: Queue (mainly) style consistency)
+  # pull: 5033 (PR title: JDK 11.0.9 / 8.0.272+ compatible FunctionsTest#printThrowable())
+
+- version: '2.266'
+  date: 2020-11-10
+  banner: >
+    此版本替换了几个关键组件。
+    用于身份验证的 Acegi 安全库已由 Spring Security (<a href="https://github.com/jenkinsci/jep/blob/master/jep/227/README.adoc">JEP-227</a>) 取代。
+    用于读写 XML 文件的 XStream 库的分支已由 XStream 的上游版本(<a href="https://github.com/jenkinsci/jep/blob/master/jep/228/README.adoc">JEP-228</a>)代替。
+    有关更多详细信息，请参阅 <a href="/blog/2020/11/10/spring-xstream/"> Spring 和 XStream 更新（重大变更！）</a> 博客文章。
+  changes:
+  - type: major bug
+    category: major bug
+    pull: 5046
+    issue: 64040
+    authors:
+    - timja
+    message: |-
+      修复单选块中不应显示的隐藏页面元素。
+  - type: bug
+    category: bug
+    pull: 5043
+    authors:
+    - jeffret-b
+    references:
+      - pull: 5043
+      - url: "https://github.com/jenkinsci/remoting/releases/tag/remoting-4.6"
+        title: Remoting 4.6 变更日志
+    message: |-
+      错误修复和依赖更新，Remoting 从 4.5 升级到 4.6。
+  - type: rfe
+    category: rfe
+    pull: 5008
+    issue: 62446
+    authors:
+    - aHenryJard
+    message: |-
+      使全局工具的 Maven 配置与配置代码化插件兼容。
+  - type: rfe
+    category: rfe
+    pull: 4294
+    issue: 41891
+    authors:
+    - jsoref
+    message: |-
+      对英文资源根 URL 设置进行少量清理。
+  - type: major rfe
+    category: developer
+    pull: 4944
+    issue: 19561
+    authors:
+    - jglick
+    references:
+      - pull: 4944
+      - url: "https://github.com/jenkinsci/jep/blob/master/jep/227/README.adoc"
+        title: JEP-227
+      - url: "/blog/2020/11/10/spring-xstream/"
+        title:  Spring 和 XStream 更新（重大变更！） 博客文章
+    message: |-
+      开发者: Jenkins 现在使用没有自定义补丁程序的 XStream 序列化库的更新版本。
+  - type: major rfe
+    category: developer
+    pull: 4848
+    authors:
+    - jglick
+    references:
+      - pull: 4948
+      - url: "https://github.com/jenkinsci/jep/blob/master/jep/228/README.adoc"
+        title: JEP-228
+      - url: "/blog/2020/11/10/spring-xstream/"
+        title: Spring 和 XStream 更新（重大变更！） 博客文章
+    message: |-
+      开发者: Jenkins 现在使用 Spring Security，而不是其前身 Acegi Security。
+      其他捆绑的 Spring 库也已更新。
+  - type: major rfe
+    category: developer
+    pull: 4929
+    authors:
+    - fqueiruga
+    references:
+      - pull: 4929
+      - url: "https://blog.jquery.com/"
+        title: jQuery 旧版本的发布说明 (3.1.1, 3.2.1, 3.3.0, 3.3.1, 3.4.0, 3.4.1)
+      - url: "https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/"
+        title: jQuery 3.5.0 发布说明
+      - url: "https://blog.jquery.com/2020/05/04/jquery-3-5-1-released-fixing-a-regression/"
+        title: jQuery 3.5.1 发布说明
+    message: |-
+      开发者: 将 jQuery 从 2.1.4 升级到 3.5.1。
+  - type: rfe
+    category: developer
+    pull: 5042
+    authors:
+    - jglick
+    message: |-
+      开发者: 删除不推荐使用的 <code>zeroclipboard</code> UI组件和 ZeroClipboard 的未使用依赖项。
+  - type: rfe
+    category: developer
+    pull: 5040
+    issue: 64037
+    authors:
+    - oleg-nenashev
+    message: |-
+      开发者: 移除对使用 JRebel 进行实时类重新加载的过时支持。
+  - type: rfe
+    category: internal
+    pull: 5028
+    issue: 60563
+    authors:
+    - Wadeck
+    message: |-
+      内部: 使用现代化的 ConsistentHash 的哈希函数。
+
+  # pull: 5000 (PR title: Fix combobox.js issues)
+  # pull: 5044 (PR title: Simplified IdentityRootAction.getFingerprint)
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
