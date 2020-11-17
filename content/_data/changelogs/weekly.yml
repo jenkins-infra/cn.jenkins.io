@@ -7390,7 +7390,7 @@
     authors:
     - Wadeck
     message: |-
-      内部: 更正对 <code>TokenUuidAndPlainValue</code>.的限制范围。
+      内部: 更正对 <code>TokenUuidAndPlainValue</code> 的限制范围。
 
   # pull: 5005 (PR title: Fixed eslint warnings of type no-mixed-spaces-and-tabs)
   # pull: 5006 (PR title: Stylelint fixes)
