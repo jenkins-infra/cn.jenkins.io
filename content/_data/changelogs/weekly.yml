@@ -7593,7 +7593,7 @@
     - gulyaev13
     - res0nance
     message: |-
-      Improve pipeline startup performance with faster comparison method.使用更快的比较方法提高流水线启动性能。
+      使用更快的比较方法提高流水线启动性能。
       将 <code>equals</code> 和 <code>hashCode</code> 添加到 <code>ParameterDefinition</code> 实现中。
       <code>equals</code> 严格针对相同的类工作，以防止扩展类出现问题。
   - type: rfe
