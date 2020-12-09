@@ -3336,7 +3336,7 @@
     authors:
     - daniel-beck
     message: >
-      SSHD module 2.7: 删除不推荐使用的密钥交换和 MAC 算法。
+      SSHD 模块 2.7: 删除不推荐使用的密钥交换和 MAC 算法。
     references:
       - pull: 4951
       - url: "https://github.com/jenkinsci/sshd-module/blob/master/CHANGELOG.md#27"
@@ -3348,11 +3348,11 @@
     authors:
     - daniel-beck
     message: >
-      SSHD module 2.7: 允许通过系统属性配置禁用密钥交换和 MAC 算法。
+      SSHD 模块 2.7: 允许通过系统属性配置禁用密钥交换和 MAC 算法。
     references:
       - pull: 4951
       - url: "https://github.com/jenkinsci/sshd-module/blob/master/CHANGELOG.md#27"
-        title: SSHD module 2.7 变更日志
+        title: SSHD 模块 2.7 变更日志
 
   - type: rfe
     category: rfe
