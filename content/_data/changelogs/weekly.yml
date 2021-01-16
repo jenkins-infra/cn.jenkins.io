@@ -7758,6 +7758,211 @@
   # pull: 5119 (PR title: Bump objenesis from 2.6 to 3.1)
   # pull: 5120 (PR title: Prevent Dependabot from updating Groovy)
 
+- version: '2.272'
+  date: 2020-12-22
+  changes:
+  - type: major bug
+    category: regression
+    pull: 5121
+    issue: 64445
+    authors:
+    - oleg-nenashev
+    message: |-
+      使用不支持插件类别的更新中心时，在插件管理器中防止 NullPointerException (由 2.270 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 5131
+    issue: 64465
+    authors:
+    - amuniz
+    message: |-
+      修复身份验证筛选注册上的竞态条件。
+  - type: rfe
+    category: rfe
+    pull: 4962
+    authors:
+    - StefanSpieker
+    message: |-
+      不再支持不推荐使用的系统属性，包括 <code>hudson.model.Hudson.logStartupPerformance</code>、 <code>hudson.model.Hudson.initLogLevel</code>、 <code>hudson.model.Hudson.parallelLoad</code>、 <code>hudson.model.Hudson.killAfterLoad</code> 和 <code>hudson.model.Hudson.workspaceDirName</code>。
+      请使用 <code>jenkins.model.Jenkins.</code> 前缀的系统属性。
+  - type: rfe
+    category: rfe
+    pull: 5123
+    authors:
+    - oleg-nenashev
+    message: |-
+      删除对 queue.txt 格式的支持（2009 年由 XML 取代）。
+  - type: rfe
+    category: rfe
+    pull: 5122
+    authors:
+    - oleg-nenashev
+    references:
+      - pull: 5122
+      - url: "https://github.com/jenkinsci/winstone/releases/tag/winstone-5.13"
+        title: Winstone 5.13 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.34.v20201102"
+        title: Jetty 9.4.34 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.35.v20201120"
+        title: Jetty 9.4.35 变更日志
+    message: |-
+      将 Eclipse Jetty 从 9.4.33.v20201020 更新到 9.4.35.v20201120，以进行错误修复和增强。
+  - type: rfe
+    category: rfe
+    pull: 5047
+    authors:
+    - jglick
+    message: |-
+      删除了用于在 ZFS 文件系统上迁移 <code>$JENKINS_HOME</code> 的管理监视器。
+  - type: rfe
+    category: rfe
+    pull: 5115
+    references:
+      - pull: 5115
+      - url: "https://x-stream.github.io/changes.html#1.4.15"
+        title: XStream 1.4.15 变更日志
+    authors:
+    - dependabot[bot]
+    message: |-
+      将捆绑的 XStream 库从 1.4.14 更新到 1.4.15。
+
+  # pull: 5109 (PR title: Code cleanup)
+  # pull: 5127 (PR title: Ignore is a list for dependabot)
+  # pull: 5128 (PR title: Bump tyrus-standalone-client-jdk from 1.12 to 2.0.0)
+  # pull: 5130 (PR title: Add comments for why dependabot updates are excluded)
+  # pull: 5133 (PR title: Do not show an empty tooltip on svg icons)
+
+- version: '2.273'
+  date: 2020-12-29
+  changes:
+  - type: major bug
+    category: regression
+    pull: 5137
+    issue: 64504
+    authors:
+    - fqueiruga
+    message: |-
+      修复插件管理器按钮以正确地重新定位自己，而不是在某些情况下卡住 (由 2.270 引入的缺陷回归)。
+  - type: rfe
+    category: rfe
+    pull: 4965
+    issue: 63833
+    authors:
+    - PierreBtz
+    message: |-
+      使用 <code>jenkins.util.groovy.GroovyHookScript.ROOT_PATH</code> 自定义 GroovyHookScript 的资源根路径。
+  - type: rfe
+    category: rfe
+    pull: 5132
+    issue: 64483
+    authors:
+    - daniel-beck
+    message: |-
+      如果无法折叠，则在侧边栏小部件中隐藏折叠图标。
+  - type: rfe
+    category: rfe
+    pull: 5111
+    authors:
+    - timja
+    references:
+      - pull: 5111
+      - url: "https://github.com/stapler/stapler/releases/tag/stapler-parent-1.262"
+        title: Stapler 1.262 变更日志
+    message: |-
+      将 stapler 更新为 1.262，以修复在 Java 11 上运行时的许多非法反射访问告警。
+
+  # pull: 5135 (PR title: Update frontend-maven-plugin from 1.6 to 1.11.0)
+  # pull: 5141 (PR title: Fix broken 'download Maven here' link)
+  # pull: 5142 (PR title: Bump release-drafter/release-drafter from v5.12.1 to v5.13.0)
+
+- version: '2.274'
+  date: 2021-01-05
+  changes:
+  - type: rfe
+    category: rfe
+    pull: 5082
+    issue: 58101
+    authors:
+    - res0nance
+    message: |-
+      减少有关 jenkins 队列的锁竞争。
+  - type: bug
+    category: bug
+    pull: 5145
+    issue: 64439
+    authors:
+    - benebsiny
+    message: |-
+      防止用户输入 “e” 或 “E” 作为“正数”、“非负数”或“数字”。
+  - type: rfe
+    category: rfe
+    pull: 5129
+    authors:
+    - dependabot[bot]
+    references:
+      - pull: 5129
+      - url: "https://github.com/jnr/jnr-posix/compare/jnr-posix-3.0.45...jnr-posix-3.1.4"
+        title: 从 jnr-posix 3.0.45 到 3.1.4 的提交
+    message: |-
+      将 jnr-posix 库从 3.0.45 更新到 3.1.4。
+  - type: rfe
+    category: rfe
+    pull: 5125
+    authors:
+    - dependabot[bot]
+    references:
+      - pull: 5125
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-560"
+        title: JNA 5.6.0 变更日志
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-550"
+        title: JNA 5.5.0 变更日志
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-540"
+        title: JNA 5.4.0 变更日志
+    message: |-
+      将 Java 本机访问（jna）库从 5.3.1 更新到 5.6.0，以获取最新的平台库修复和增强功能。
+
+  # pull: 5134 (PR title: Code cleanup)
+  # pull: 5146 (PR title: Replaced deprecated IOUtils.LINE_SEPARATOR with System.lineSeparator())
+  # pull: 5147 (PR title: Minor spotbugs issues)
+  # pull: 5149 (PR title: Update parent pom to 1.62)
+  # pull: 5150 (PR title: Ignore jakarta.mail upgrades with dependabot)
+  # pull: 5151 (PR title: Bump actions/upload-artifact from v2.2.1 to v2.2.2)
+
+- version: '2.275'
+  date: 2021-01-13
+  changes:
+  - type: security
+    message: 重要的安全修复。
+    references:
+      - url: /security/advisory/2021-01-13/
+        title: 安全公告
+    authors:
+      - daniel-beck
+      - jeffret-b
+      - jvz
+      - Wadeck
+  - type: rfe
+    message: 使用 <code>Digester2</code> 来增强与XML处理有关的安全性。
+    references:
+      - url: /doc/upgrade-guide/2.263/#digester2
+        title: LTS 升级指南相关条目
+    authors:
+      - daniel-beck
+  - type: rfe
+    message: 与表单验证响应有关的安全性增强。
+    references:
+      - url: /doc/upgrade-guide/2.263/#formvalidation
+        title: LTS 升级指南相关条目
+    authors:
+      - daniel-beck
+  - type: rfe
+    message: 限制标签名称的安全加固。
+    references:
+      - url: /doc/upgrade-guide/2.263/#labelatom
+        title: 升级指南相关条目
+    authors:
+      - daniel-beck
+
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
