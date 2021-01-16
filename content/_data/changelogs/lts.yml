@@ -3498,7 +3498,7 @@
     authors:
     - timja
     message: |-
-      帮助文本现在扩展了GitHub组织文件夹的行为(由 2.244 引入的缺陷回归)。
+      帮助文本现在扩展了 GitHub 组织文件夹的行为(由 2.244 引入的缺陷回归)。
   - type: rfe
     message: 使用 <code>Digester2</code> 来进行与 XML 处理有关的安全性增强。
     references:
