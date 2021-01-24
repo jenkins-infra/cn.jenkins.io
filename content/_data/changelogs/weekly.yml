@@ -7973,7 +7973,7 @@
     authors:
     - jeffret-b
     message: |-
-      提供“所有文件以 zip 包”下载链接的默认实现。
+      提供“所有文件以 zip 包形式”下载链接的默认实现。
       这对于外部存储插件尤其重要（由 2.275 引入的缺陷回归）。
   - type: major bug
     category: regression
