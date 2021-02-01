@@ -8106,7 +8106,7 @@
     authors:
     - fqueiruga
     message: |-
-      修复更改表单中的拖放操纵(由 2.264 引入的缺陷回归)。
+      修复更改表单中的拖放操作(由 2.264 引入的缺陷回归)。
   - type: bug
     category: bug
     pull: 5195
