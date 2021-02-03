@@ -8136,7 +8136,7 @@
       - pull: 5174
       - issue: 64650
       - url: https://commons.apache.org/proper/commons-fileupload
-        title: Apache Commons FileUpload project
+        title: Apache Commons FileUpload 项目
     message: |-
       使用无自定义修补程序的 Commons FileUpload 库 1.4 的更新版本。
   - type: rfe
