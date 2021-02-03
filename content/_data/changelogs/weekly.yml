@@ -8138,7 +8138,7 @@
       - url: https://commons.apache.org/proper/commons-fileupload
         title: Apache Commons FileUpload project
     message: |-
-      Use an updated version of the Commons FileUpload library 1.4 without custom patches.
+      使用无自定义修补程序的 Commons FileUpload 库 1.4 的更新版本。
   - type: rfe
     category: rfe
     authors:
@@ -8155,7 +8155,7 @@
       - pull: 5231
       - pull: 5232
     message: |-
-      Library dependency updates: reflections, javassist, annotation-indexer, commons-compress, bridge-method-annotation, bridge-method-injector, access-modifier-annotation, jaxen. 
+      库依赖关系更新: 反射、javassist、注释索引器、commons-compress、桥方法注释、桥方法注入器、访问修饰符注释和 jaxen。Library dependency updates: reflections, javassist, annotation-indexer, commons-compress, bridge-method-annotation, bridge-method-injector, access-modifier-annotation, jaxen. 
   - type: bug
     category: bug
     pull: 5216
@@ -8163,7 +8163,7 @@
     authors:
     - escoem
     message: |-
-      Restore, as deprecated, the old constructor based on acegisecurity <code>Authentication</code> parameter in order to keep backward compatibility.
+      不建议使用基于 acegisecurity <code>Authentication</code> 参数的旧构造函数，以保持向后兼容性。
 
   # pull: 5205 (PR title: Minor cleanups to Fingerprint writing codepaths)
   # pull: 5207 (PR title: Rename API endpoint to avoid URL collisions)
