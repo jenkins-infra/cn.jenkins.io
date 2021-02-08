@@ -8155,7 +8155,7 @@
       - pull: 5231
       - pull: 5232
     message: |-
-      库依赖关系更新: 反射、javassist、注释索引器、commons-compress、桥方法注释、桥方法注入器、访问修饰符注释和 jaxen。Library dependency updates: reflections, javassist, annotation-indexer, commons-compress, bridge-method-annotation, bridge-method-injector, access-modifier-annotation, jaxen. 
+      库依赖关系更新: 反射、javassist、注释索引器、commons-compress、桥方法注释、桥方法注入器、访问修饰符注释和 jaxen。
   - type: bug
     category: bug
     pull: 5216
