@@ -8,7 +8,84 @@ notitle: true
 
 每个部分涵盖了从之前的 LTS 版本升级，2.263.1 的部分涵盖了自 2.249.3 以来的升级。 
 
+=== 升级到 Jenkins LTS 2.263.4
+
+==== Docker 镜像更新
+
+Jenkins 2.263.4 Docker 镜像标签为 `jenkins/jenkins:2.263.4-lts` 和 `jenkins/jenkins:2.263.4`，同时 `jenkins/jenkins:lts` 使用 AdoptOpenJDK 8u282 版本替代了之前镜像中使用的 OpenJDK 8u242 版本。
+这些镜像也使用 Debian 10 (link:https://www.debian.org/releases/buster/["Buster"]) 版本替代了之前镜像中使用的 Debian 9 (link:https://www.debian.org/releases/stretch/["Stretch"]) 。
+关于变更更详尽的说明请查阅 link:/blog/2021/02/08/docker-base-os-upgrade/[博客文章]。
+
+从 Debian 9 到 Debian 10 的更改从基础 Docker 镜像中删除了几个软件包。 
+`subversion`、`mercurial`、`bzr` 和 `python` 包已经从基础镜像以及其他软件包中移除。
+依赖于特定操作系统软件包的 Jenkins 安装的 Dockerfile 定义可能需要更新以使用 Jenkins 2.263.4 及更高版本
+
+下面提供了示例 Dockerfile 定义： 
+
+* <<Subversion>>
+* <<Mercurial>>
+* <<Bazaar>>
+* <<Python>>
+
+===== Subversion
+
+以下 Docker 镜像定义将 Jenkins 2.263.4 与 plugin:subversion[subversion 插件]和操作系统 `subversion` 软件包一起使用：
+
+[source]
+----
+FROM jenkins/jenkins:2.263.4-lts
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends subversion
+USER jenkins
+RUN jenkins-plugin-cli --plugins subversion:2.14.0
+----
+
+===== Mercurial
+
+以下 Docker 镜像定义将 Jenkins 2.263.4 与 plugin:mercurial[mercurial 插件]和操作系统 `mercurial` 软件包一起使用：
+
+[source]
+----
+FROM jenkins/jenkins:2.263.4
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends mercurial
+USER jenkins
+RUN jenkins-plugin-cli --plugins mercurial:2.12
+----
+
+===== Bazaar
+
+以下 Docker 镜像定义将 Jenkins 2.263.4 与 plugin:bazaar[bazaar 插件]和操作系统 `bzr` 软件包一起使用：
+
+[source]
+----
+FROM jenkins/jenkins:2.263.4-lts
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends bzr
+USER jenkins
+RUN jenkins-plugin-cli --plugins bazaar:1.22
+----
+
+===== Python
+
+以下 Docker 镜像定义将 Jenkins 2.263.4 与操作系统 `python3` 安装包(自 2020 年 1 月 Python 2 支持终止)一起使用：
+
+[source]
+----
+FROM jenkins/jenkins:2.263.4
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3
+USER jenkins
+----
+
+如果您的 Jenkins 安装需要其他操作系统软件包（例如 bzip2 或某些库），则可以使用 `apt-get install` 命令从 Dockerfile 安装这些软件包。 
+
 === 升级到 Jenkins LTS 2.263.3
+
 升级没有需要特别注意的内容。
 
 === 升级到 Jenkins LTS 2.263.2
