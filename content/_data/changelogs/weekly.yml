@@ -8205,13 +8205,13 @@
     references:
       - pull: 5244
       - url: "https://github.com/jenkinsci/ldap-plugin/releases/tag/ldap-2.3"
-        title: LDAP 2.3 changelog
+        title: LDAP 2.3 变更日志
       - url: "https://github.com/jenkinsci/ldap-plugin/releases/tag/ldap-2.2"
-        title: LDAP 2.2 changelog
+        title: LDAP 2.2 变更日志
       - url: "https://github.com/jenkinsci/ldap-plugin/releases/tag/ldap-2.1"
-        title: LDAP 2.1 changelog
+        title: LDAP 2.1 变更日志
       - url: "https://github.com/jenkinsci/ldap-plugin/releases/tag/ldap-2.0"
-        title: LDAP 2.0 changelog
+        title: LDAP 2.0 变更日志
     message: |-
       将 LDAP 插件从最低 1.26 升级到 2.3。 
       
