@@ -10,4 +10,70 @@ notitle: true
 
 === 升级到 Jenkins LTS 2.277.1
 
-升级没有需要特别注意的内容。
+==== 配置表格现代化
+
+从配置表中的 HTML `table` 布局过渡到 HTML `div` 布局需要对某些插件进行更改以实现兼容性。
+升级到 Jenkins 2.277.1 时，Jenkins 管理员应更新已安装的插件。
+一些较旧的插件版本将导致 Jenkins 的“配置系统”页面无法保存。
+其他较早的插件版本将报告 Java 运行时异常，直到将它们更新为最新版本为止。
+
+升级到 Jenkins 2.277.1 之后，请使用插件管理器立即更新受配置形式现代化影响的插件。
+
+NOTE: 从 table 布局到 div 布局的更改可能需要更新私有维护的插件。 
+插件维护者应参考 link:/doc/developer/views/table-to-div-migration/[table 到 div 布局迁移指南]。
+link:https://issues.jenkins.io/secure/Dashboard.jspa?selectPageId=20741[table 到 div 仪表盘]提供与此用户界面改进相关的问题的状态。
+
+==== Spring Security 升级
+
+Jenkins 2.277.1 已用 Spring Security 库替换了过时的 Acegi Security 库。
+最受欢迎的插件已经根据需要进行了更新，以支持此更改。
+对于 Acegi Security 中定义的过时类型，某些较早的插件版本可能会报告 `NoClassDefFoundError`。
+其他较早的插件版本将报告 Java 运行时异常，例如 `NoSuchMethodError` 或 `AccessDeniedException2`，直到它们更新到最新版本为止。 
+有关特定插件的问题，请参考 link:https://github.com/jenkinsci/jep/blob/master/jep/227/compatibility.adoc[Spring Security 兼容性表]。 
+
+在升级到 Jenkins 2.277.1 之前，请使用插件管理器来更新受 Spring Security 更新影响的插件。 
+
+NOTE: 私有维护的插件可能需要更改才能适应从 Acegi Security 到 Spring Security 的更改。 
+参考 Jesse Glick 的 link:/blog/2020/11/10/spring-xstream/[Spring Security 博客文章]获取更多详细信息。
+
+==== XStream 升级(JEP-228)
+
+Jenkins 2.277.1 已经用最新发布的官方 XStream 库替换了它过时的 XStream XML 序列化库分支。
+最受欢迎的插件已经根据需要进行了更新，以支持此更改。
+一些较旧的插件版本可能会报告 `NoSuchMethodError`。
+其他较旧的插件版本可能无法解释现有设置，或者可能以与 XStrea m更新之前使用的格式不同的格式写入其设置。
+有关特定插件的问题，请参考 link:https://github.com/jenkinsci/jep/blob/master/jep/228/compatibility.adoc[XStream 兼容性表]。
+
+在升级到 Jenkins 2.277.1 之前，请使用插件管理器来更新受 XStream 更新影响的插件。 
+
+NOTE: 私人维护的插件可能需要更改才能适应从 Jenkins XStream fork 到官方 XStream 库的更改。 
+参考 Jesse Glick 的 link:/blog/2020/11/10/spring-xstream/[XStream unfork 博客文章]获取更多详细信息。
+
+// 有意不包括此内容，因为我不知道所报告的任何问题，也不知道如果出现问题用户会怎么做。 
+//
+// ==== JQuery 升级
+//
+// Jenkins 2.277.1 已用最新的发行版本库替换了其过时的 link:https://jquery.com/[JQuery 用户界面库]。
+// 最受欢迎的插件已经根据需要进行了更新，以支持此更改。 
+
+==== ASM 升级
+
+Jenkins 2.277.1 更新了 link:https://asm.ow2.io/[ASM Java 字节码操作和分析框架]，该链接用于许多插件中的字节码处理。
+此更新影响依赖于 ASM 进行字节码处理的插件。
+一些较早的插件版本可能会报告 `RuntimeException`，并显示消息“创建扩展的解析器类出错”（例如 plugin:token-macro[Token Macro 插件]）。
+其他较旧的插件版本可能无法解释现有设置（例如 plugin:email-ext[电子邮件扩展插件]）。
+
+升级到 Jenkins 2.277.1 后，使用插件管理器来更新受 ASM 更新影响的插件。
+
+==== 停止与 Jenkins 捆绑 CVS 插件 
+
+某些关键的 Jenkins 功能最初是在 Jenkins 核心内部创建的。
+随着 Jenkins 的进一步发展，功能已从 Jenkins 内核内部转移到专用的 Jenkins 插件，例如 plugin:cvs[CVS 插件]。
+创建这些插件时，将这些插件“捆绑”在 jenkins.war 文件中，以保留与依赖于其功能的插件在 Jenkins 核心中的兼容性。
+Jenkins 项目不再发布任何需要“捆绑” plugin:cvs[CVS 插件]版本的插件。
+plugin:cvs[CVS 插件]不再与 Jenkins 捆绑在一起。
+
+在极少数情况下，尝试在 1.340 之前尝试安装与 Jenkins（当时为 Hudson）兼容的插件时，可能会导致问题。
+如果使用依赖于 CVS 插件提供的功能的插件并在 Jenkins 插件管理器之外管理插件，则现在需要确保自己已安装了最新版本的 CVS 插件。
+Jenkins 将尝试加载此类插件，但可能会在启动过程中或之后的任何时候因 `ClassNotFoundException` 或类似情况而失败。
+在这些情况下，最好的解决方法通常是修改有问题的插件，以便它需要更新版本的 Jenkins 内核。 
