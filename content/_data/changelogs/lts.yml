@@ -3627,6 +3627,405 @@
     message: |-
       当注册不可用时，不要让用户去注册。 
 
+- version: "2.277.1"
+  date: 2021-03-10
+  lts_predecessor: "2.263.4"
+  lts_baseline: "2.277"
+  banner: >
+    如 <a href="/blog/2020/11/10/major-changes-in-weekly-releases/">每周发布中的主要变更</a> 博客所述，此版本改进了关键的用户界面组件。
+    配置用户界面现在使用 html <code>div</ code> 标记来呈现比以前的 html <code>table</code> 更好的布局。 
+    现在，配置页面更易读、易理解，并且可以在各种屏幕上更好地工作。 
+    请参阅 <a href="https://issues.jenkins.io/secure/Dashboard.jspa?selectPageId=20741">Jenkins 问题跟踪器</a>，以获取已知存在更改问题的插件列表。
+    <p>&nbsp;</p>
+    <p>如 <a href="/blog/2020/11/10/spring-xstream/">Spring 和 XStream更新（重大更改！）</a>博客中所述，此版本更新并替换了过时的内部组件。 
+    用于身份验证的 Acegi 安全库已由 Spring Security (<a href="https://github.com/jenkinsci/jep/blob/master/jep/227/README.adoc">JEP-227</a>) 取代。
+    请参阅 <a href="https://github.com/jenkinsci/jep/blob/master/jep/227/compatibility.adoc">Spring Security 兼容性表</a>了解最新的插件兼容性状态。 
+    用于读写 XML 文件的 XStream 库的 fork 已被 XStream (<a href="https://github.com/jenkinsci/jep/blob/master/jep/228/README.adoc">JEP-228</a>)的上游版本取代。
+    请参阅 <a href="https://github.com/jenkinsci/jep/blob/master/jep/228/compatibility.adoc">XStream 兼容性表</a>了解最新的插件兼容性状态。 
+
+  changes: # compared to lts_baseline 2.277 - extracted from the RC commit(s)
+
+  - type: security
+    pull: 5285
+    authors:
+    - dependabot
+    references:
+      - url: /security/advisory/2021-02-19/
+        title: 安全公告
+      - url: https://github.com/spring-projects/spring-security/releases/tag/5.4.4
+        title: Spring Security 5.4.4 发布说明
+      - url: https://github.com/spring-projects/spring-security/releases/tag/5.4.3
+        title: Spring Security 5.4.3 发布说明
+    message: |-
+      重要的安全修复程序。
+      在任何 Jenkins LTS 版本中均不存在此漏洞。
+      它是在每周发行版本中发现的，并在每周发行版本中进行了修复，而没有成为 LTS 发行版本的一部分。 
+
+  - type: major bug
+    category: major bug
+    pull: 5282
+    issue: 41727
+    authors:
+    - timja
+    message: |-
+      通过在升级/降级时重新加载更新中心数据来显示可用的插件更新。 
+
+  - type: major bug
+    category: regression
+    pull: 5263
+    issue: 64805
+    authors:
+    - fqueiruga
+    message: |-
+      修复<em>可用</em>插件选项卡在 Internet Explorer 11 上的呈现(由 2.270引入的缺陷回归)。
+
+  - type: major bug
+    category: regression
+    pull: 5236
+    issue: 64775
+    authors:
+    - alecharp
+    message: |-
+      <em>可用</em>插件选项卡包含 'plugin-id' 和 'plugin-version' 数据属性(由 2.270 引入的缺陷回归)。
+
+  - type: major bug
+    category: major bug
+    pull: 5281
+    issue: 64840
+    authors:
+    - rsandell
+    message: |-
+      修复插件在多个更新站点上的搜索(由 2.270 引入的缺陷回归)。
+
+  - type: bug
+    category: bug
+    pull: 5216
+    issue: 64746
+    authors:
+    - escoem
+    references:
+      - issue: 64746
+      - pull: 5216
+      - url: https://github.com/spring-projects/spring-security/releases/tag/5.4.2
+        title: Spring Security 5.4.2 发布说明
+    message: |-
+      不建议使用基于 acegisecurity <code>Authentication</code> 参数的旧构造函数还原，以保持向后兼容性。
+
+  lts_changes: # compared to lts_predecessor 2.249.3 (selected by personal review)
+
+  - type: major rfe
+    category: major rfe
+    pull: 3895
+    issue: 56109
+    authors:
+    - jsoref
+    - timja
+    - fqueiruga
+    references:
+      - issue: 56109
+      - pull: 3895
+      - url: /doc/developer/views/table-to-div-migration/
+        title: Table 到 div 布局迁移指南 
+    message: |-
+      将 Jenkins 配置 UI 从表更改为 div，以在表单中进行布局。
+
+  - type: major rfe
+    category: major rfe
+    pull: 5051
+    issue: 64196
+    authors:
+    - timja
+    message: |-
+      插件管理器的可用插件页面的性能大幅增强。
+      插件名称的精确匹配将移至顶部。 
+
+  - type: bug
+    category: bug
+    pull: 5051
+    issue: 63684
+    authors:
+    - timja
+    message: |-
+      在插件管理的可用页面上修复行的不正确条带化。 
+
+  - type: bug
+    category: bug
+    pull: 5145
+    issue: 64439
+    authors:
+    - benebsiny
+    message: |-
+      禁止用户输入 “e” 或 “E” 作为“正数”、“非负数”或“数字”。 
+
+  - type: bug
+    category: bug
+    pull: 5010
+    issue: 35452
+    authors:
+    - jeffret-b
+    message: |-
+      将用于获取入站代理配置文件的标准 URL 从 <code>${agent_url}/slave-agent.jnlp</code> 更改为 <code>${agent_url}/jenkins-agent.jnlp</code>。
+      旧名称已过时，以后将被删除。 
+
+  - type: rfe
+    category: rfe
+    pull: 5035
+    issue: 64039
+    authors:
+    - jtnord
+    message: |-
+      当身份验证领域不区分大小写时，提高授权策略的性能。 
+
+  - type: rfe
+    category: rfe
+    pull: 4274
+    issue: 1877
+    authors:
+    - Austry
+    message: |-
+      添加指定静默关闭 Jenkins 的理由的功能("准备关闭")。
+
+  - type: rfe
+    category: rfe
+    pull: 4962
+    authors:
+    - StefanSpieker
+    message: |-
+      不再支持不推荐使用的系统属性: <code>hudson.model.Hudson.logStartupPerformance</code>、 <code>hudson.model.Hudson.initLogLevel</code>、 <code>hudson.model.Hudson.parallelLoad</code>、 <code>hudson.model.Hudson.killAfterLoad</code> 和 <code>hudson.model.Hudson.workspaceDirName</code>。
+      请使用带 <code>jenkins.model.Jenkins.</code> 前缀的系统属性。
+
+  - type: rfe
+    category: rfe
+    pull: 5047
+    authors:
+    - jglick
+    message: |-
+      删除管理监视器，以在 ZFS 文件系统上迁移 <code>$JENKINS_HOME</code>。
+
+  - type: rfe
+    category: rfe
+    pull: 5015
+    issue: 63977
+    authors:
+    - Wadeck
+    message: |-
+      使用相关的图标在单独的类别中显示安全和非安全通知。 
+
+  - type: rfe
+    category: rfe
+    pull: 5063
+    authors:
+    - fqueiruga
+    - Wadeck
+    message: |-
+      通过按需加载管理监视器弹出窗口来减少页面加载时间。
+      即使有活动的管理监视器，也允许键盘导航。 
+
+  - type: rfe
+    category: rfe
+    pull: 5176
+    authors:
+    - fqueiruga
+    - timja
+    message: |-
+      在配置表单选项卡中使用更易于访问的调色板。
+
+  - type: rfe
+    category: rfe
+    pull: 5198
+    authors:
+    - res0nance
+    - alecharp
+    - batmat
+    references:
+      - pull: 5190
+      - pull: 5198
+      - issue: 64670
+    message: |-
+      提高指纹保存性能。 
+
+  - type: rfe
+    category: rfe
+    pull: 5153
+    issue: 63222
+    authors:
+    - caseyduquettesc
+    message: |-
+      添加系统属性 <code>jenkins.agent.inboundUrl</code> 为入站 TCP 代理提供备用 URL。 
+
+  - type: rfe
+    category: rfe
+    pull: 4962
+    authors:
+    - StefanSpieker
+    message: |-
+      不再支持不推荐使用的系统属性: <code>hudson.model.Hudson.logStartupPerformance</code>、 <code>hudson.model.Hudson.initLogLevel</code>、 <code>hudson.model.Hudson.parallelLoad</code>、 <code>hudson.model.Hudson.killAfterLoad</code> 和 <code>hudson.model.Hudson.workspaceDirName</code>。
+      请使用带 <code>jenkins.model.Jenkins.</code> 前缀的系统属性。
+
+  - type: rfe
+    category: rfe
+    pull: 5082
+    issue: 58101
+    authors:
+    - res0nance
+    message: |-
+      减少围绕 Jenkins 队列的锁竞争。 
+
+  - type: rfe
+    category: rfe
+    pull: 5102
+    authors:
+    - daniel-beck
+    message: |-
+      停止捆绑 CVS 插件。
+      如果发现依赖于 Jenkins（当时为 Hudson）1.340 或更早版本的插件，Jenkins 将不再在启动时自动安装 CVS 插件。
+      如果使用依赖于 CVS 插件提供的功能的插件并在 Jenkins 插件管理器之外管理插件，则现在需要确保自己已安装了最新版本的 CVS 插件。
+      Jenkins 将尝试加载此类插件，但可能会在启动过程中或之后的任何时候因 <code>ClassNotFoundException</code> 或类似原因而失败。
+
+  - type: rfe
+    category: rfe
+    pull: 5122
+    authors:
+    - oleg-nenashev
+    - olamy
+    references:
+      - issue: 64035
+      - pull: 5034
+      - pull: 5122
+      - pull: 5332
+      - url: "https://github.com/jenkinsci/winstone/releases/tag/winstone-5.12"
+        title: Winstone 5.12 变更日志
+      - url: "https://github.com/jenkinsci/winstone/releases/tag/winstone-5.13"
+        title: Winstone 5.13 变更日志
+      - url: "https://github.com/jenkinsci/winstone/releases/tag/winstone-5.14"
+        title: Winstone 5.14 变更日志
+      - url: "https://github.com/jenkinsci/winstone/releases/tag/winstone-5.15"
+        title: Winstone 5.15 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.31.v20200723"
+        title: Jetty 9.4.31.v20200723 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.32.v20200930"
+        title: Jetty 9.4.32.v20200930 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.33.v20201020"
+        title: Jetty 9.4.33.v20201020 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.34.v20201102"
+        title: Jetty 9.4.34 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.35.v20201120"
+        title: Jetty 9.4.35 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.36.v20210114"
+        title: Jetty 9.4.36 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.37.v20210219"
+        title: Jetty 9.4.37 变更日志
+      - url: "https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.38.v20210224"
+        title: Jetty 9.4.38 变更日志
+    message: |-
+      Winstone 5.15: 将 Jetty 从 9.4.30.v20200611 更新到 9.4.38.v20210224，以进行错误修复和增强。 
+
+  - type: rfe
+    category: rfe
+    pull: 5043
+    authors:
+    - jeffret-b
+    references:
+      - pull: 5043
+      - url: "https://github.com/jenkinsci/remoting/releases/tag/remoting-4.6"
+        title: Remoting 4.6 变更日志
+    message: |-
+      从 Remoting 4.5 升级到 Remoting 4.6，以进行错误修复和依赖项更新。 
+
+  - type: rfe
+    category: rfe
+    pull: 5111
+    authors:
+    - timja
+    references:
+      - pull: 5111
+      - url: "https://github.com/stapler/stapler/releases/tag/stapler-parent-1.262"
+        title: Stapler 1.262 变更日志
+    message: |-
+      在Java 11上运行时，将 stapler 更新为 1.262，以修复许多 <code>IllegalReflectiveAccessWarnings</code>。
+
+  - type: rfe
+    category: rfe
+    pull: 5129
+    authors:
+    - dependabot
+    references:
+      - pull: 5129
+      - url: "https://github.com/jnr/jnr-posix/compare/jnr-posix-3.0.45...jnr-posix-3.1.4"
+        title: 从 jnr-posix 3.0.45 到 3.1.4 的提交
+    message: |-
+      将 jnr-posix 库从 3.0.45 更新到 3.1.4。 
+
+  - type: rfe
+    category: rfe
+    pull: 5125
+    authors:
+    - dependabot
+    references:
+      - pull: 5125
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-560"
+        title: JNA 5.6.0 变更日志
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-550"
+        title: JNA 5.5.0 变更日志
+      - url: "https://github.com/java-native-access/jna/blob/master/CHANGES.md#release-540"
+        title: JNA 5.4.0 变更日志
+    message: |-
+      将 Java 本机访问（jna）库从 5.3.1 更新到 5.6.0，以获取最新的平台库修复和增强功能。 
+
+  - type: major rfe
+    category: developer
+    pull: 4944
+    issue: 19561
+    authors:
+    - jglick
+    references:
+      - pull: 4944
+      - pull: 5115
+      - url: "https://github.com/jenkinsci/jep/blob/master/jep/227/README.adoc"
+        title: JEP-227
+      - url: "/blog/2020/11/10/spring-xstream/"
+        title: Spring 和 XStream 升级 (重大更新!) 博客文章
+      - url: "https://x-stream.github.io/changes.html#1.4.14"
+        title: XStream 1.4.14 变更日志
+      - url: "https://x-stream.github.io/changes.html#1.4.15"
+        title: XStream 1.4.15 变更日志
+    message: |-
+      开发者: 使用没有自定义修补程序的 XStream 序列化库的更新版本。 
+
+  - type: major rfe
+    category: developer
+    pull: 4848
+    authors:
+    - jglick
+    references:
+      - pull: 4948
+      - pull: 5166
+      - url: "https://github.com/jenkinsci/jep/blob/master/jep/228/README.adoc"
+        title: JEP-228
+      - url: "/blog/2020/11/10/spring-xstream/"
+        title: Spring 和 XStream 升级 (重大更新!) 博客文章
+      - url: https://github.com/spring-projects/spring-security/releases/tag/5.4.2
+        title: Spring Security 5.4.2 发布说明
+    message: |-
+      开发者: 使用 Spring Security 而不是其前身 Acegi Security。
+      其他捆绑的 Spring 库也已更新。 
+
+  - type: major rfe
+    category: developer
+    pull: 4929
+    authors:
+    - fqueiruga
+    references:
+      - pull: 4929
+      - url: "https://blog.jquery.com/"
+        title: jQuery 较早发布说明（3.1.1、3.2.1、3.3.0、3.3.1、3.4.0、3.4.1） 
+      - url: "https://blog.jquery.com/2020/04/10/jquery-3-5-0-released/"
+        title: jQuery 3.5.0 发布说明
+      - url: "https://blog.jquery.com/2020/05/04/jquery-3-5-1-released-fixing-a-regression/"
+        title: jQuery 3.5.1 发布说明
+    message: |-
+      开发者: 将 jQuery 从 2.1.4 升级到3.5.1。
+
 # DO NOT EDIT THIS FILE DIRECTLY
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
 # MALFORMED FILE CONTENTS WILL BREAK THE SITE BUILD
