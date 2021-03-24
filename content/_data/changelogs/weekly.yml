@@ -8313,13 +8313,231 @@
     message: |-
       开发者: 放宽 <code>ParameterDefinition</code> 和子类构造函数签名，以允许在 setter 中定义诸如 <code>description</code> 之类的可选属性。
 
-  # pull: 5212 (PR title: Clean up VirtualFile after adding base implementation)
-  # pull: 5269 (PR title: replaced deprecated jenkins.getInstance() calls with .get())
-  # pull: 5276 (PR title: Add at-since annotations up to 2.279)
-  # pull: 5277 (PR title: Update RestrictedSince annotations with version numbers)
-  # pull: 5288 (PR title: Merge back security tests)
-  # pull: 5294 (PR title: Use FINE not FINEST for log messages that used to be INFO)
-  # pull: 5295 (PR title: Update ATH)
+- version: '2.282'
+  date: 2021-03-02
+  changes:
+  - type: major bug
+    category: regression
+    pull: 5317
+    authors:
+    - olamy
+    references:
+      - pull: 5317
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.38.v20210224
+        title: Jetty 9.4.38 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.37.v20210219
+        title: Jetty 9.4.37 变更日志
+      - url: https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.36.v20210114
+        title: Jetty 9.4.36 变更日志
+    message: |-
+      将 Eclipse Jetty 从 9.4.35.v20201120 更新到 9.4.38.v20210224，以进行错误修复和增强。 
+  - type: major rfe
+    category: major rfe
+    pull: 5049
+    issue: 64107
+    authors:
+    - kuisathaverat
+    - timja
+    references:
+      - issue: 55582
+      - issue: 64107
+      - pull: 5049
+      - url: https://github.com/jenkinsci/sshd-module
+        title: SSHD 模块仓库
+    message: |-
+      SSHD 模块不再捆绑在 Jenkins 核心中。
+      提供 SSHD 作为插件。
+  - type: rfe
+    category: rfe
+    pull: 5311
+    authors:
+    - basil
+    message: |-
+      不要强制对最近分离的插件进行插件升级。 
+  - type: rfe
+    category: rfe
+    pull: 5292
+    authors:
+    - dependabot
+    references:
+      - pull: 5292
+      - url: "https://github.com/jenkinsci/remoting/releases/tag/remoting-4.7"
+        title: Remoting 4.7 变更日志
+    message: |-
+      Remoting 4.6 升级到 Remoting 4.7，以进行错误修复和依赖项更新。 
+  - type: rfe
+    category: rfe
+    pull: 5266
+    authors:
+    - gulyaev13
+    message: |-
+      删除硬编码的 JKS 密钥库，以便可以使用其他密钥库，例如 Bouncy Castle 的 FIPS 版本中的 BCFKS。 
+  - type: bug
+    category: bug
+    pull: 5138
+    issue: 64510
+    authors:
+    - jeffret-b
+    message: |-
+      改善入站 TCP 代理的重新连接行为。 
+  - type: bug
+    category: bug
+    pull: 5301
+    authors:
+    - jvz
+    message: |-
+      内部: 确保仅在成功设置所有视图后，<code>Jenkins#setViews()</code> 才更新配置。
+
+  # pull: 5054 (PR title: Log a message about the interrupted exception at this level)
+  # pull: 5272 (PR title: Bump jline from 2.12 to 2.14.6)
+  # pull: 5289 (PR title: Bump frontend-maven-plugin from 1.11.0 to 1.11.2)
+  # pull: 5300 (PR title: Bump spring-security-bom from 5.4.4 to 5.4.5)
+  # pull: 5307 (PR title: Bump mockito-core from 3.7.7 to 3.8.0)
+  # pull: 5312 (PR title: Replace usages of deprecated jenkins.widgets.HistoryPageFilter.add(java.util.List) with non-deprecated jenkins.widgets.HistoryPageFilter.add(Iterable))
+  # pull: 5313 (PR title: Use native Java functionality rather than Guava's Lists#newArrayList, Maps#newHashMap, and Sets#newHashSet where possible)
+  # pull: 5314 (PR title: Clean up JUnit assertions)
+  # pull: 5315 (PR title: Update jetty-maven-plugin to match winstone)
+
+- version: '2.283'
+  date: 2021-03-09
+  changes:
+  - type: major bug
+    category: regression
+    pull: 5316
+    issue: 64972
+    authors:
+    - benebsiny
+    message: |-
+      修复可拖动部分中的帮助按钮(由 2.264 引入的缺陷回归)。
+  - type: major rfe
+    category: major rfe
+    pull: 5065
+    authors:
+    - timja
+    - fqueiruga
+    - josephbrueggen
+    message: |-
+      添加现代图标：构建状态和天气。 
+  - type: bug
+    category: bug
+    pull: 5341
+    authors:
+    - felfert
+    message: |-
+      在数字输入控件中接受负数(由 2.274 引入的缺陷回归)。
+  - type: bug
+    category: bug
+    pull: 5305
+    issue: 64931
+    authors:
+    - olamy
+    message: |-
+      在某些情况下取消任务时，防止 Jenkins 队列死锁。 
+  - type: bug
+    category: bug
+    pull: 5333
+    issue: 65017
+    authors:
+    - daniel-beck
+    message: |-
+      验证配置表单中的字段时，如果出现内部错误，请不要提供完整的错误响应。 
+  - type: bug
+    category: bug
+    pull: 5326
+    authors:
+    - jglick
+    message: |-
+      <code>Queue.save()</code> 错误消息的详细程度较低。
+  - type: rfe
+    category: rfe
+    pull: 5078
+    authors:
+    - daniel-beck
+    - fqueiruga
+    message: |-
+      在全局管理监视器配置中添加与安全性相关的条目的指示符。 
+  - type: rfe
+    category: rfe
+    pull: 5334
+    authors:
+    - takashiharano
+    message: |-
+      为“新建任务”屏幕添加日语翻译。 
+  - type: major rfe
+    category: major rfe
+    pull: 5065
+    authors:
+    - timja
+    - fqueiruga
+    - josephbrueggen
+    references:
+      - pull: 5065
+      - url: https://github.com/jenkinsci/github-branch-source-plugin/pull/393
+        title: GitHub Branch Source 插件中的示例外部 SVG Sprite 实现 
+    message: |-
+      开发者: 添加对插件的支持，以在其图标中使用外部 SVG Sprite。 
+
+  # pull: 5235 (PR title: replaced MS_SHOULD_BE_FINAL general spotbugs exclude with individual excludes)
+  # pull: 5242 (PR title: Bump antisamy-markup-formatter from 1.0 to 2.1)
+  # pull: 5309 (PR title: Bump structs from 1.21 to 1.22)
+  # pull: 5322 (PR title: Migrate from Guava's com.google.common.util.concurrent.SettableFuture to Java 8's java.util.concurrent.CompletableFuture)
+  # pull: 5323 (PR title: Add missing @Override annotations)
+  # pull: 5327 (PR title: Delete SSH-specific scenarios from CLITest)
+  # pull: 5330 (PR title: Bump sshd from 3.0.1 to 3.0.3)
+  # pull: 5339 (PR title: Declare modifiers in JLS order)
+  # pull: 5340 (PR title: Migrate from com.google.common.base.Function to java.util.function.Consumer in hudson.model.listeners.ItemListener)
+  # pull: 5343 (PR title: Bump Node.js from 14.15.1 to 14.16.0)
+
+- version: '2.284'
+  date: 2021-03-16
+  changes:
+  - type: major bug
+    category: regression
+    pull: 5354
+    authors:
+    - timja
+    message: |-
+      齿轮、剪贴板和用户图标再次透明(由 2.283 引入的缺陷回归)。
+  - type: rfe
+    category: rfe
+    pull: 5338
+    authors:
+    - basil
+    references:
+      - pull: 5338
+      - url: https://plugins.jenkins.io/ant
+        title: Ant 插件
+      - url: https://plugins.jenkins.io/javadoc
+        title: Javadoc 插件
+      - url: https://plugins.jenkins.io/rad-builder
+        title: RAD Builder 插件
+    message: |-
+      停止捆绑 Ant 和 Javadoc 插件。
+      如果发现依赖于 Jenkins（之前是 Hudson）1.430 或更早版本的插件，Jenkins 将不再在启动时自动安装 Ant 和 Javadoc 插件。
+      如果您使用的此类插件还依赖于 Ant 或 Javadoc 插件提供的功能（例如，RAD Builder 和 Jenkins 插件管理器之外的管理插件），则现在需要确保 Ant 或 Javadoc 插件的最新版本已安装。
+      Jenkins 将尝试加载此类插件，但可能会在启动过程中或之后的任何时候因 <code>ClassNotFoundException</code> 或类似原因而失败。 
+  - type: rfe
+    category: rfe
+    pull: 5206
+    authors:
+    - res0nance
+    message: |-
+      将 Jenkins CLI 依赖的 SSHD Core 从 1.7.0 升级到 2.6.0。
+  - type: rfe
+    category: localization
+    pull: 5350
+    authors:
+    - takashiharano
+    message: |-
+      为仪表板、视图和重命名添加日语翻译。 
+
+  # pull: 5258 (PR title: Remove deprecated and unused jenkins.widgets.HistoryPageFilter.add(java.util.List))
+  # pull: 5342 (PR title: Use versions from parent POM where possible)
+  # pull: 5346 (PR title: Bump Checkstyle from 8.29 to 8.41 and enable additional checks)
+  # pull: 5348 (PR title: Bump jnr-posix from 3.1.4 to 3.1.5)
+  # pull: 5355 (PR title: Fix build issues)
+  # pull: 5356 (PR title: Fix sort order)
+  # pull: 5357 (PR title: Test cleanup)
 
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
