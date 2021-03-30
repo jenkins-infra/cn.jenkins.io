@@ -37,10 +37,10 @@ include::doc/book/installing/_run-jenkins-in-docker.adoc[]
 你就可以获取一个"Welcome to React"简单Node.js和React应用程序。
 
 . 请确保你登陆了你的GitHub账户。如果你还没有Github账户，你可以在 https://github.com/[GitHub网站] 免费注册一个账户。.
-. 将示例仓库 https://github.com/jenkins-docs/building-a-multibranch-pipeline-project[`building-a-multibranch-pipeline-project`]
+. 将示例仓库 https://github.com/jenkins-docs/simple-node-js-react-npm-app[`simple-node-js-react-npm-app`]
   fork到你的账户的Github仓库中。在此过程中，如果你需要帮助，
   请参考 https://help.github.com/articles/fork-a-repo/[Fork A Repo] 文档。
-. 将你的GitHub账户中的 `simple-java-maven-app` 仓库clone到你的本地机器。
+. 将你的GitHub账户中的 `simple-node-js-react-npm-app` 仓库clone到你的本地机器。
   根据你的情况完成以下步骤之一(其中 `<your-username>` 是你的操作系统用户账户名称)：
 ** 在GitHub网站上，点击绿色的 *Clone or download* 按钮，再点击 *Open in Desktop*.
 .. 在Github桌面版中，在点击 *Clone a Repository* 对话框上的 *Clone* 按钮之前，确保 *Local Path* 的配置为：
