@@ -8712,10 +8712,10 @@
       - daniel-beck
       - jvz
   - type: rfe
-    message: 针对某些 CSRF 攻击的安全性得到了加强。 
+    message: 针对某些 CSRF 攻击的安全增强。
     references:
       - url: /doc/upgrade-guide/2.277/#submittedform
-        title: 相关的 LTS 升级指导入口
+        title: 相关的 LTS 升级指导条目
     authors:
       - daniel-beck
 
