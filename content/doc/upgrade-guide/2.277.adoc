@@ -8,6 +8,26 @@ notitle: true
 
 每个部分涵盖了从之前的 LTS 版本升级，2.277.1 的部分涵盖了自 2.63.4 以来的升级。 
 
+=== 升级到 Jenkins LTS 2.277.3
+
+没有需要升级说明的显著更改。
+
+=== 升级到 Jenkins LTS 2.277.2
+
+==== 表单提交的安全性强增强
+
+Jenkins 插件中一个反复出现的安全问题是在表单提交端点上缺乏跨站点请求伪造（CSRF）保护。 
+
+Jenkins 2.277.2 和2.287 中的安全性增强通过导致结构化表单提交（对 `StaplerRequest#getSubmittedForm` 的调用）失败而解决了其中一些问题，除非请求的 HTTP 动作为 POST（CSRF保护有效的要求） 。 
+这将阻止 GET 请求能够将 JSON 表单提交（通常在 Jenkins 中使用）作为 `?form` 查询参数提交。 
+
+可以通过设置 link:/doc/book/managing/system-properties/#org-kohsuke-stapler-requestimpl-allowed_http_verbs_for_forms[Java 系统属性  `org.kohsuke.stapler.RequestImpl.ALLOWED_HTTP_VERBS_FOR_FORMS`] 来配置此附加保护措施。
+它接受逗号分隔的 HTTP 请求动作列表，这些请求允许提供结构化表单提交。 
+默认值为 `POST`。
+设置这个系统属性为 `GET,POST` 将运行 `GET` 请求提供结构化的表单提交。
+不鼓励这样做。
+受影响的组件应该通过使用 `@POST` 注释 Web 方法来显式地要求 `POST` 请求，并配置它们提供的 HTML 表单以使用 `<form … method="POST">`，并且客户端应提交 `POST` 请求。 
+
 === 升级到 Jenkins LTS 2.277.1
 
 ==== 配置表格现代化
@@ -76,4 +96,4 @@ plugin:cvs[CVS 插件]不再与 Jenkins 捆绑在一起。
 在极少数情况下，尝试在 1.340 之前尝试安装与 Jenkins（当时为 Hudson）兼容的插件时，可能会导致问题。
 如果使用依赖于 CVS 插件提供的功能的插件并在 Jenkins 插件管理器之外管理插件，则现在需要确保自己已安装了最新版本的 CVS 插件。
 Jenkins 将尝试加载此类插件，但可能会在启动过程中或之后的任何时候因 `ClassNotFoundException` 或类似情况而失败。
-在这些情况下，最好的解决方法通常是修改有问题的插件，以便它需要更新版本的 Jenkins 内核。 
+在这些情况下，最好的解决方法通常是修改有问题的插件，以便它需要更新版本的 Jenkins 内核。
