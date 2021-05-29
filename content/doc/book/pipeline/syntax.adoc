@@ -747,7 +747,7 @@ pipeline {
 (参见下面的<<when-example, 示例>>)。
 
 使用诸如 `not`, `allOf`, 或 `anyOf` 的嵌套条件可以构建更复杂的条件结构 can be built
-嵌套条件刻意潜逃到任意深度。
+嵌套条件可以嵌套到任意深度。
 
 [cols="^10h,>90a",role=syntax]
 |===
