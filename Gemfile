@@ -10,7 +10,7 @@ gem 'asciidoctor', '~> 1.5.5'
 # Support for various template engines we use
 gem 'haml', '~> 4.0.7'
 gem 'liquid', '~> 3.0'
-gem 'kramdown', '~> 2.3.0'
+gem 'kramdown', '~> 2.3.1'
 gem "haml-i18n-extractor", "~>0.5.9"
 gem 'rack', '>=1.6.11'
 gem 'ffi', '>=1.9.24'
