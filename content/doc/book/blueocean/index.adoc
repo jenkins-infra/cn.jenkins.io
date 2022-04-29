@@ -127,7 +127,7 @@ in link:../pipeline/getting-started[Pipeline入门]中关于经典UI的更多信
 可能会有更多了例子，这就是经典用户界面被长期保留很重要的原因。
 
 
-=== 这对插件来说以为着什么？
+=== 这对插件来说意味着什么？
 
 可扩展性是Jenkins的核心特性，因此，扩展Blue Ocean UI非常重要。
 `<ExtensionPoint name=..>`可以被用作Blue Ocean的标记，为插件流出位置来作用于Blue Ocean UI（即插件可以拥有自己的Blue Ocean
