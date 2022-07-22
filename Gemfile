@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 gem 'colorize'
 gem 'i18n'
-gem 'awestruct', '~> 0.5.7'
+gem 'awestruct', '~> 0.6.1'
 gem 'awestruct-ibeams', '~> 0.4'
 gem 'asciidoctor-jenkins-extensions'
 gem 'asciidoctor', '~> 1.5.5'
 #gem 'haml-il8n-extractor','~> 0.5.6'
 # Support for various template engines we use
-gem 'haml', '~> 4.0.7'
+gem 'haml', '~> 5.2.2'
 gem 'liquid', '~> 3.0'
 gem 'kramdown', '~> 2.3.1'
 gem "haml-i18n-extractor", "~>0.5.9"
