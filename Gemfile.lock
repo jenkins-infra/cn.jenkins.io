@@ -172,7 +172,7 @@ GEM
       polyglot (~> 0.3)
     trollop (1.16.2)
     ttfunk (1.5.1)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
