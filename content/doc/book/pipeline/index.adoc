@@ -16,26 +16,19 @@ endif::[]
 
 = 流水线
 
-This chapter covers all recommended aspects of Jenkins Pipeline functionality,
-including how to:
+本章涵盖了Jenkins Pipeline功能的所有推荐方面, 包括: 
 
-* link:getting-started[get started with Pipeline] - covers how to
-  link:getting-started#defining-a-pipeline[define a Jenkins Pipeline] (i.e. your
-  `Pipeline`) through
-  link:getting-started#through-blue-ocean[Blue Ocean], through the
-  link:getting-started#through-the-classic-ui[classic UI] or in
-  link:getting-started#defining-a-pipeline-in-scm[SCM],
-* link:jenkinsfile[create and use a `Jenkinsfile`] - covers use-case scenarios
-  on how to craft and construct your `Jenkinsfile`,
-* work with link:multibranch[branches and pull reqeusts],
-* link:docker[use Docker with Pipeline] - covers how Jenkins can invoke Docker
-  containers on agents/nodes (from a `Jenkinsfile`) to build your Pipeline
-  projects,
-* link:shared-libraries[extend Pipeline with shared libraries],
-* use different link:development[development tools] to facilitate the creation
-  of your Pipeline, and
-* work with link:syntax[Pipeline syntax] - this page is a comprehensive
-  reference of all Declarative Pipeline syntax.
+* link:getting-started[开始使用流水线] - 如何通过
+  link:getting-started#through-blue-ocean[Blue Ocean],  通过
+  link:getting-started#through-the-classic-ui[经典的 UI] 或者在
+  link:getting-started#defining-a-pipeline-in-scm[SCM]中
+  link:getting-started#defining-a-pipeline[定义一个Jenkins 流水线] (i.e. 你的`流水线`) 
+* link:jenkinsfile[创建和使用一个`Jenkinsfile`] - 如何制作和构建`Jenkinsfile`的使用场景,
+* link:multibranch[分支和拉取请求]的工作,
+* link:docker[使用容器和流水线] - Jenkins 如何在代理/节点上调用Docker 容器 (来自 `Jenkinsfile`) 来构建你的流水线项目, 
+* link:shared-libraries[使用共享库扩展流水线],
+* 使用不同的 link:development[开发工具]加快流水线的创建, 以及
+* 使用 link:syntax[流水线语法] - 本页面是所有声明式流水线语法的综合参考
 
 有关Jenkins用户手册的内容的概述, 请前往
 link:getting-started[用户手册概述]。
