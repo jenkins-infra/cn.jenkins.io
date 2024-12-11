@@ -551,7 +551,7 @@ link:https://issues.jenkins-ci.org/browse/INFRA-1053[INFRA-1503]的完成。
 
 ==== 触发器
 
-`triggers` 指令定义了流水线被重新触发的自动化方法。对于集成了源（ 比如 GitHub 或 BitBucket）的流水线, 可能不需要 `triggers` ，因为基于 web 的集成很肯能已经存在。
+`triggers` 指令定义了流水线被重新触发的自动化方法。对于集成了源（ 比如 GitHub 或 BitBucket）的流水线, 可能不需要 `triggers` ，因为基于 web 的集成很可能已经存在。
 当前可用的触发器是
 `cron`, `pollSCM` 和 `upstream`。
 
