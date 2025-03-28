@@ -12,7 +12,7 @@ title: LTS 变更日志
   获取有关升级 Jenkins 的建议。
 
 .ratings
-  - # source: https://github.com/jenkins-infra/jenkins.io/blob/master/content/_data/changelogs/lts.yml
+  - # source: https://github.com/jenkins-infra/jenkins.io/blob/main/content/_data/changelogs/lts.yml
   - site.changelogs[:lts].reverse_each do | release |
     - if Gem::Version.new(release.version) <= Gem::Version.new(site.jenkins.stable)
       %h3{:id => "v#{release.version}" }
