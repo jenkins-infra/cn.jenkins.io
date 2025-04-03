@@ -12,7 +12,7 @@ To contribute to this repository you will
 link:https://guides.github.com/activities/forking/[fork this repository],
 push changes to a branch in your fork, and then
 link:https://help.github.com/articles/creating-a-pull-request-from-a-fork/[create as a pull request]
-from that branch to the `main` branch of this repository.
+from that branch to the `master` branch of this repository.
 Forking only needs to be done once, after which you can push changes to your fork
 using the GitHub website file editor or from a local clone, as described below.
 
@@ -23,7 +23,7 @@ using the GitHub website file editor or from a local clone, as described below.
 Creating a fork, aka link:https://guides.github.com/activities/forking/[forking],
 makes a personal copy of another repository.
 Any changes you make in your fork of the repository will not show up on the website
-until they are merged (via pull request) to the `main` branch of this repository.
+until they are merged (via pull request) to the `master` branch of this repository.
 If you are unfamiliar with how to create a fork or how forks work, see the
 link:link:https://guides.github.com/activities/forking/[GitHub tutorial on forking].
 
@@ -392,11 +392,11 @@ C++/Windows specific content.
 === Adding an event
 
 To add an event to the Jenkins event calendar, create a file in the
-`https://github.com/jenkins-infra/jenkins.io/tree/main/content/_data/events[content/_data/events/]`
+`https://github.com/jenkins-infra/jenkins.io/tree/master/content/_data/events[content/_data/events/]`
 folder of this repo.
 
 To create a file in this folder using the GitHub web editor,
-link:https://github.com/jenkins-infra/jenkins.io/new/main/content/_data/events[open this page in a new tab].
+link:https://github.com/jenkins-infra/jenkins.io/new/master/content/_data/events[open this page in a new tab].
 
 Name the file using the pattern `<DATE>-<CITY><OPTIONAL_ID>.adoc`:
 
