@@ -520,6 +520,18 @@ string:: 字符串类型的参数, 例如: `parameters { string(name: 'DEPLOY_EN
 
 booleanParam:: 布尔参数, 例如: `parameters { booleanParam(name: 'DEBUG_BUILD', defaultValue: true, description: '') }`
 
+credentials:: 凭据参数, 例如: `parameters { credentials(credentialType: 'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey', defaultValue: '', name: 'crendentials', required: true, description: '') }`
+
+choice:: 选项参数, 例如: `parameters { choice(choices: ['choice01', 'choice02'], description: '', name: 'choice_name') }`
+
+file:: 文件参数, 例如: `parameters { file(description: '', name: '/test') }`
+
+password:: 密码参数, 例如: `parameters {password(defaultValue: '1', description: '', name: 'pwd_name') }`
+
+run:: 运行时参数, 例如: `parameters { run(description: '', filter: 'SUCCESSFUL', name: '1', projectName: 'name') }`
+
+text:: 文本参数, 例如: `parameters { text(defaultValue: '', description: '', name: 'name') }`
+
 
 [[parameters-example]]
 ===== 示例
