@@ -106,7 +106,7 @@ pipeline {
     stages {
         stage('Build') { // <3>
             steps {
-                sh 'npm install' // <4>
+                sh 'npm ci' // <4>
             }
         }
     }
@@ -201,7 +201,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm ci'
             }
         }
         stage('Test') { // <2>
@@ -215,7 +215,7 @@ pipeline {
 <1> 这里的 link:/doc/book/pipeline/syntax#environment[`environment`] 指令 设置环境变量 `CI` 为布尔值 `true`, 它对管道中的所有步骤都是有用的。 当 `test.sh` 的`npm test` 命令  (在定义在流水线的下一步的 `Test` 阶段运行) 检测到环境变量 `CI`值为 `true`时, 该命令在
 "non-watch" (i.e. non-interactive) 模式下运行。在"watch" 模式下, `npm test` 期望用户的输入,它能够无限期地停止 CI/CD 应用的运行。
 作为在Jenkins的流水线中指定 `environment` 指令的替代选择, 你也可以在`package.json`域中指定该环境变量的值(通过 `npm test` 命令) 通过以下方式:
-.. 在`jenkins/scripts/test.sh` 取消 `npm install --save-dev cross-env` 命令
+.. 在`jenkins/scripts/test.sh` 取消 `npm ci --save-dev cross-env` 命令
    ( 在`Test` 阶段安装 `cross-env` 依赖)。了解更多请参考 `test.sh` 文件.
 .. 在 `package.json` 文件中修改以下行 (在
    `simple-node-js-react-npm-app` 仓库的根目录下) 从
@@ -286,7 +286,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm ci'
             }
         }
         stage('Test') {
