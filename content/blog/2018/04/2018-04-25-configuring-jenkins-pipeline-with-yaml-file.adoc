@@ -20,7 +20,7 @@ translator: zacker330
 * 支持 Docker 构建。我们的项目依赖的一个或多个 Docker 镜像的执行（应用，数据库，Redis 等）
 * 如有必要，易于配置和复制
 * 易于增加新项目
-* 易于修改构建步骤。工作在项目上的所有人都应该能修改它，如果他们希望执行 `npm install` 或 `yarn install`
+* 易于修改构建步骤。工作在项目上的所有人都应该能修改它，如果他们希望执行 `npm ci` 或 `yarn install`
 
 === 安装Jenkins和Docker
 
