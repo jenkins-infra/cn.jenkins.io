@@ -79,7 +79,7 @@ $(BUILD_DIR)/ruby: Gemfile Gemfile.lock scripts/ruby | $(OUTPUT_DIR)
 # without this images can get stale and out of sync from CI system
 $(BUILD_DIR)/node: package.json package-lock.json scripts/node | $(OUTPUT_DIR)
 	./scripts/node pull
-	./scripts/node npm install
+	./scripts/node npm ci
 	@touch $(BUILD_DIR)/node
 
 assets: $(BUILD_DIR)/assets
